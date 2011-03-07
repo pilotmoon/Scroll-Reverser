@@ -1,0 +1,6 @@
+*.swp
+*~.nib
+build/
+buildAS/
+*.xcodeproj/
+InfoPlist.h

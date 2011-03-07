@@ -1,0 +1,11 @@
+//
+// Prefix header for all source files of the 'Scroll Inverter' target in the 'Scroll Inverter' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
+
+#ifndef DEBUG_BUILD
+#define NSLog(...) /* */
+#endif
