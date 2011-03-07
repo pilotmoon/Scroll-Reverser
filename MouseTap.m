@@ -16,12 +16,22 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
 	struct MouseTapData *data=(struct MouseTapData *)refcon;
 	if (data->invert) {
 		if (type==kCGEventScrollWheel) {
-			// negate the x and y scrolling deltas
-			int64_t dx=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
+			// line deltas
+			int64_t ldy=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);		
+			int64_t ldx=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
+			NSLog(@"ldx: %lli, ldy: %lli", ldx, ldy);
+			
+			// pixel deltas
 			int64_t dy=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);				
+			int64_t dx=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
 			NSLog(@"dx: %lli, dy: %lli", dx, dy);
-			CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -dx);
+			
+			/* Negate them all. It's worth noting we have to set them in this order (lines then pixels) 
+			 otherwise the line setting clobbers the pixel setting and scrolling stops being smooth. */
+			CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -ldy);		
+			CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -ldx);
 			CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -dy);		
+			CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -dx);
 		}
 		else  {
 			// something else, probably error
