@@ -1,6 +1,7 @@
 #import "ScrollInverterAppDelegate.h"
 #import "MouseTap.h"
 #import "NSObject+ObservePrefs.h"
+#import "NSImage+CopySize.h"
 
 static NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 
@@ -26,11 +27,32 @@ static NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 	return self;
 }
 
+- (void)setStatusImage
+{
+	BOOL on=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsInvertScrolling];
+	if (on) {
+		[statusItem setImage:statusImage];
+	}
+	else {
+		[statusItem setImage:statusImageDisabled];
+	}
+}
+
 - (void)awakeFromNib
 {
 	NSLog(@"Awake");
+
+	// load images
+	NSImage *original=[NSImage imageNamed:@"ScrollInverterStatus"];
+	NSSize statusSize=NSMakeSize(14,18);
+	statusImage=[original copyWithSize:statusSize colorTo:[NSColor blackColor]];
+	statusImageInverse=[original copyWithSize:statusSize colorTo:[NSColor whiteColor]];
+	statusImageDisabled=[original copyWithSize:statusSize colorTo:[NSColor grayColor]];
+	
+	// initialize status item
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-	[statusItem setTitle:@"SI"];
+	[self setStatusImage];
+	[statusItem setAlternateImage:statusImageInverse];
 	[statusItem setHighlightMode:YES];	
 	[statusItem setMenu:statusMenu];
 	[self observePrefsKey:PrefsInvertScrolling];
@@ -50,6 +72,7 @@ static NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	BOOL on=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsInvertScrolling];
+	[self setStatusImage];
 	tap.inverting=on;
 }
 
