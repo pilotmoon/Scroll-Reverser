@@ -7,6 +7,8 @@
 
 #import "MouseTap.h"
 
+#define NEGATE_FIELD (type) CGEventSetIntegerValueField(event, type, -CGEventGetIntegerValueField(event, type))
+
 // This is called every time there is a scroll event. It has to be efficient.
 static CGEventRef eventTapCallback (CGEventTapProxy proxy,
 							 CGEventType type,
@@ -14,31 +16,29 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
 							 void *userInfo)
 {
 	MouseTap *tap=(MouseTap *)userInfo;
-	if (tap->inverting) {
-		if (type==kCGEventScrollWheel) {
-			// line deltas
-			int64_t ldy=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);		
-			int64_t ldx=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
-			NSLog(@"ldx: %lli, ldy: %lli", ldx, ldy);
+	if (tap->inverting)
+	{
+		if (type==kCGEventScrollWheel)
+		{
+			// First get the line and pixel delta values.
+			int64_t line_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);		
+			int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
+			int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);				
+			int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
 			
-			// pixel deltas
-			int64_t dy=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);				
-			int64_t dx=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
-			NSLog(@"dx: %lli, dy: %lli", dx, dy);
-			
-			/* Negate them all. It's worth noting we have to set them in this order (lines then pixels) 
-			 otherwise the line setting clobbers the pixel setting and scrolling stops being smooth. */
-			CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -ldy);		
-			CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -ldx);
-			CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -dy);		
-			CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -dx);
+			/* Now negate them all. It's worth noting we have to set them in this order (lines then pixels) 
+			 or we lose smooth scrolling. */
+			CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -line_axis1);		
+			CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -line_axis2);
+			CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);		
+			CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
 		}
-		else  {
-			// something else, probably error
-			NSLog(@"*********** unexpected tap event type: %d ", type);
-			if(type==kCGEventTapDisabledByTimeout) { 
-				// this can happen sometimes (why? dunno...) 
-				[tap enableTap:TRUE]; // just re-enable it
+		else 
+		{
+			if(type==kCGEventTapDisabledByTimeout)
+			{ 
+				// This can happen sometimes. (Not sure why.) 
+				[tap enableTap:TRUE]; // Just re-enable it.
 			}	
 		}		
 	}
