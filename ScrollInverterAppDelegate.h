@@ -6,5 +6,5 @@
 	NSStatusItem *statusItem;
 	IBOutlet NSMenu *statusMenu;
 }
-
+- (IBAction)showAbout:(id)sender;
 @end
