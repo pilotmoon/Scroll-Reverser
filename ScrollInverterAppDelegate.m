@@ -11,8 +11,6 @@
 
 @implementation ScrollInverterAppDelegate
 
-@synthesize window;
-
 - (id)init
 {
 	self=[super init];
@@ -22,6 +20,15 @@
 	return self;
 }
 
+
+- (void)awakeFromNib
+{
+	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+	[statusItem setTitle:@"SI"];
+	[statusItem setHighlightMode:YES];	
+	[statusItem setMenu:statusMenu];
+}
+	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	[tap start];
 }

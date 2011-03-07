@@ -10,10 +10,9 @@
 @class MouseTap;
 
 @interface ScrollInverterAppDelegate : NSObject {
-    NSWindow *window;
 	MouseTap *tap;
+	NSStatusItem *statusItem;
+	IBOutlet NSMenu *statusMenu;
 }
-
-@property (assign) IBOutlet NSWindow *window;
 
 @end

@@ -30,5 +30,9 @@
 	<string>NSApplication</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>©2011 Nicholas Moore</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>LSUIElement</key>
+	<true/>
 </dict>
 </plist>
