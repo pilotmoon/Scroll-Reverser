@@ -1,10 +1,3 @@
-//
-//  MouseTap.h
-//
-//  Created by Nicholas Moore on 03/03/2010.
-//  Copyright 2010 Nicholas Moore. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 @class MouseTap;

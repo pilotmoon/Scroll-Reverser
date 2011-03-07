@@ -1,11 +1,3 @@
-//
-//  ScrollInverterAppDelegate.m
-//  Scroll Inverter
-//
-//  Created by Work on 07/03/2011.
-//  Copyright 2011 Nicholas Moore. All rights reserved.
-//
-
 #import "ScrollInverterAppDelegate.h"
 #import "MouseTap.h"
 
@@ -21,9 +13,9 @@
 	return self;
 }
 
-
 - (void)awakeFromNib
 {
+	NSLog(@"Awake");
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	[statusItem setTitle:@"SI"];
 	[statusItem setHighlightMode:YES];	
@@ -31,6 +23,7 @@
 }
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+	NSLog(@"Start");
 	[tap start];
 }
 

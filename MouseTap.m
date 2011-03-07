@@ -1,10 +1,3 @@
-//
-//  MouseTap.m
-//
-//  Created by Nicholas Moore on 03/03/2010.
-//  Copyright 2010 Nicholas Moore. All rights reserved.
-//
-
 #import "MouseTap.h"
 
 #define NEGATE_FIELD (type) CGEventSetIntegerValueField(event, type, -CGEventGetIntegerValueField(event, type))
