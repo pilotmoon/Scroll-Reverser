@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		0199D2DB13254E9B000D8011 /* ScrollInverterIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */; };
+		0199D30913254F0E000D8011 /* FCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D2FA13254F0E000D8011 /* FCButton.m */; };
+		0199D30A13254F0E000D8011 /* FCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D2FC13254F0E000D8011 /* FCButtonCell.m */; };
+		0199D30B13254F0E000D8011 /* DCAboutWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D2FE13254F0E000D8011 /* DCAboutWindow.m */; };
+		0199D30C13254F0E000D8011 /* FCWhiteBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D30013254F0E000D8011 /* FCWhiteBox.m */; };
+		0199D30D13254F0E000D8011 /* FCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D30213254F0E000D8011 /* FCAboutController.m */; };
+		0199D30E13254F0E000D8011 /* FCDraggableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D30413254F0E000D8011 /* FCDraggableImageView.m */; };
+		0199D30F13254F0E000D8011 /* FCLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D30613254F0E000D8011 /* FCLinkView.m */; };
+		0199D34913254F94000D8011 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0199D34813254F94000D8011 /* About.xib */; };
+		0199D36C13255051000D8011 /* XIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0199D36B13255051000D8011 /* XIcon.png */; };
+		0199D3751325519E000D8011 /* FCBubbleCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D3741325519E000D8011 /* FCBubbleCloseButton.m */; };
+		0199D388132551B5000D8011 /* FCImageButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D385132551B5000D8011 /* FCImageButtonCell.m */; };
+		0199D389132551B5000D8011 /* FCImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D387132551B5000D8011 /* FCImageButton.m */; };
 		01B662D513250CA800658B5C /* LoginItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B662D413250CA800658B5C /* LoginItemsController.m */; };
 		01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */; };
 		01B66480132539D500658B5C /* ScrollInverterStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B6647F132539D500658B5C /* ScrollInverterStatus.png */; };
@@ -22,6 +34,28 @@
 
 /* Begin PBXFileReference section */
 		0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ScrollInverterIcon.icns; sourceTree = "<group>"; };
+		0199D2F913254F0E000D8011 /* FCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCButton.h; sourceTree = "<group>"; };
+		0199D2FA13254F0E000D8011 /* FCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCButton.m; sourceTree = "<group>"; };
+		0199D2FB13254F0E000D8011 /* FCButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCButtonCell.h; sourceTree = "<group>"; };
+		0199D2FC13254F0E000D8011 /* FCButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCButtonCell.m; sourceTree = "<group>"; };
+		0199D2FD13254F0E000D8011 /* DCAboutWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCAboutWindow.h; sourceTree = "<group>"; };
+		0199D2FE13254F0E000D8011 /* DCAboutWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCAboutWindow.m; sourceTree = "<group>"; };
+		0199D2FF13254F0E000D8011 /* FCWhiteBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCWhiteBox.h; sourceTree = "<group>"; };
+		0199D30013254F0E000D8011 /* FCWhiteBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCWhiteBox.m; sourceTree = "<group>"; };
+		0199D30113254F0E000D8011 /* FCAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAboutController.h; sourceTree = "<group>"; };
+		0199D30213254F0E000D8011 /* FCAboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAboutController.m; sourceTree = "<group>"; };
+		0199D30313254F0E000D8011 /* FCDraggableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCDraggableImageView.h; sourceTree = "<group>"; };
+		0199D30413254F0E000D8011 /* FCDraggableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCDraggableImageView.m; sourceTree = "<group>"; };
+		0199D30513254F0E000D8011 /* FCLinkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLinkView.h; sourceTree = "<group>"; };
+		0199D30613254F0E000D8011 /* FCLinkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLinkView.m; sourceTree = "<group>"; };
+		0199D34813254F94000D8011 /* About.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
+		0199D36B13255051000D8011 /* XIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XIcon.png; sourceTree = "<group>"; };
+		0199D3731325519E000D8011 /* FCBubbleCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCBubbleCloseButton.h; sourceTree = "<group>"; };
+		0199D3741325519E000D8011 /* FCBubbleCloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCBubbleCloseButton.m; sourceTree = "<group>"; };
+		0199D384132551B5000D8011 /* FCImageButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCImageButtonCell.h; sourceTree = "<group>"; };
+		0199D385132551B5000D8011 /* FCImageButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCImageButtonCell.m; sourceTree = "<group>"; };
+		0199D386132551B5000D8011 /* FCImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCImageButton.h; sourceTree = "<group>"; };
+		0199D387132551B5000D8011 /* FCImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCImageButton.m; sourceTree = "<group>"; };
 		01B662D313250CA800658B5C /* LoginItemsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemsController.h; sourceTree = "<group>"; };
 		01B662D413250CA800658B5C /* LoginItemsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemsController.m; sourceTree = "<group>"; };
 		01B66449132528A000658B5C /* NSObject+ObservePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ObservePrefs.h"; sourceTree = "<group>"; };
@@ -57,9 +91,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0199D2F813254F0E000D8011 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				0199D384132551B5000D8011 /* FCImageButtonCell.h */,
+				0199D385132551B5000D8011 /* FCImageButtonCell.m */,
+				0199D386132551B5000D8011 /* FCImageButton.h */,
+				0199D387132551B5000D8011 /* FCImageButton.m */,
+				0199D3731325519E000D8011 /* FCBubbleCloseButton.h */,
+				0199D3741325519E000D8011 /* FCBubbleCloseButton.m */,
+				0199D2F913254F0E000D8011 /* FCButton.h */,
+				0199D2FA13254F0E000D8011 /* FCButton.m */,
+				0199D2FB13254F0E000D8011 /* FCButtonCell.h */,
+				0199D2FC13254F0E000D8011 /* FCButtonCell.m */,
+				0199D2FD13254F0E000D8011 /* DCAboutWindow.h */,
+				0199D2FE13254F0E000D8011 /* DCAboutWindow.m */,
+				0199D2FF13254F0E000D8011 /* FCWhiteBox.h */,
+				0199D30013254F0E000D8011 /* FCWhiteBox.m */,
+				0199D30113254F0E000D8011 /* FCAboutController.h */,
+				0199D30213254F0E000D8011 /* FCAboutController.m */,
+				0199D30313254F0E000D8011 /* FCDraggableImageView.h */,
+				0199D30413254F0E000D8011 /* FCDraggableImageView.m */,
+				0199D30513254F0E000D8011 /* FCLinkView.h */,
+				0199D30613254F0E000D8011 /* FCLinkView.m */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0199D2F813254F0E000D8011 /* About */,
 				01B66481132539EC00658B5C /* NSImage+CopySize.h */,
 				01B66482132539EC00658B5C /* NSImage+CopySize.m */,
 				01B66449132528A000658B5C /* NSObject+ObservePrefs.h */,
@@ -124,6 +186,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0199D36B13255051000D8011 /* XIcon.png */,
+				0199D34813254F94000D8011 /* About.xib */,
 				0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */,
 				01B6647F132539D500658B5C /* ScrollInverterStatus.png */,
 				8D1107310486CEB800E47090 /* Scroll_Inverter-Info.plist */,
@@ -196,6 +260,8 @@
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				01B66480132539D500658B5C /* ScrollInverterStatus.png in Resources */,
 				0199D2DB13254E9B000D8011 /* ScrollInverterIcon.icns in Resources */,
+				0199D34913254F94000D8011 /* About.xib in Resources */,
+				0199D36C13255051000D8011 /* XIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +278,16 @@
 				01B662D513250CA800658B5C /* LoginItemsController.m in Sources */,
 				01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */,
 				01B66483132539EC00658B5C /* NSImage+CopySize.m in Sources */,
+				0199D30913254F0E000D8011 /* FCButton.m in Sources */,
+				0199D30A13254F0E000D8011 /* FCButtonCell.m in Sources */,
+				0199D30B13254F0E000D8011 /* DCAboutWindow.m in Sources */,
+				0199D30C13254F0E000D8011 /* FCWhiteBox.m in Sources */,
+				0199D30D13254F0E000D8011 /* FCAboutController.m in Sources */,
+				0199D30E13254F0E000D8011 /* FCDraggableImageView.m in Sources */,
+				0199D30F13254F0E000D8011 /* FCLinkView.m in Sources */,
+				0199D3751325519E000D8011 /* FCBubbleCloseButton.m in Sources */,
+				0199D388132551B5000D8011 /* FCImageButtonCell.m in Sources */,
+				0199D389132551B5000D8011 /* FCImageButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +324,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Scroll_Inverter_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG_BUILD;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					APPSTORE,
+					DEBUG_BUILD,
+				);
 				INFOPLIST_FILE = "Scroll_Inverter-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = "Scroll Inverter";
@@ -264,6 +343,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Scroll_Inverter_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					APPSTORE,
 					NS_BLOCK_ASSERTIONS,
 					NDEBUG,
 				);

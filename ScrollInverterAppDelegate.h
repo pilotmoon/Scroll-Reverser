@@ -1,5 +1,5 @@
 #import <Cocoa/Cocoa.h>
-@class MouseTap;
+@class MouseTap, FCAboutController;
 
 @interface ScrollInverterAppDelegate : NSObject {
 	MouseTap *tap;
@@ -8,6 +8,7 @@
 	NSImage *statusImage;
 	NSImage *statusImageDisabled;
 	NSImage *statusImageInverse;
+	FCAboutController *aboutController;
 }
 - (IBAction)showAbout:(id)sender;
 @end

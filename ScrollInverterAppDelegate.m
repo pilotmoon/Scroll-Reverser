@@ -2,6 +2,7 @@
 #import "MouseTap.h"
 #import "NSObject+ObservePrefs.h"
 #import "NSImage+CopySize.h"
+#import "FCAboutController.h"
 
 static NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 
@@ -66,7 +67,10 @@ static NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 - (IBAction)showAbout:(id)sender
 {
 	[NSApp activateIgnoringOtherApps:YES];
-	[NSApp orderFrontStandardAboutPanel:self];
+	if (!aboutController) {
+		aboutController=[[FCAboutController alloc] init];
+	}
+	[aboutController showWindow:self];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
