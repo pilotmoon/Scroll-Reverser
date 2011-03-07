@@ -16,6 +16,7 @@
 	self=[super init];
 	if (self) {
 		tap=[[MouseTap alloc] init];
+		tap.inverting=YES;
 	}
 	return self;
 }

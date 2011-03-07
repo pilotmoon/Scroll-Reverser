@@ -8,18 +8,17 @@
 #import <Foundation/Foundation.h>
 
 @class MouseTap;
-struct MouseTapData {
-	MouseTap *tap;
-	BOOL invert;
-};
-
 @interface MouseTap : NSObject {
 	CGEventMask mask;
 	CFMachPortRef port;
 	CFRunLoopSourceRef source;
-	struct MouseTapData data;
+@public
+	/* This is public so that the tap function doesn't have to invoke a method to get to it.
+	 Maybe over-optimizing here but it's all pretty straightforward. */
+	BOOL inverting;
 }
-@property (assign, getter=isActive) BOOL active;
+@property (readonly, getter=isActive) BOOL active;
+@property (getter=isInverting) BOOL inverting;
 - (void)start;
 - (void)stop;
 - (void)enableTap:(BOOL)state;
