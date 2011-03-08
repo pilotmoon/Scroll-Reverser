@@ -32,12 +32,10 @@
 	[[self window] setBackgroundColor:[NSColor clearColor]];
 	[[self window] setMovableByWindowBackground:YES];
 	
-	NSLog(@"OI");
 	linkButton1.backgroundColor=[NSColor colorWithDeviceRed:0.34 green:0.69 blue:0.78 alpha:1.0]; 
 	linkButton1.borderColor=nil;
-	//linkButton2.backgroundColor=[NSColor colorWithDeviceRed:0.34 green:0.69 blue:0.78 alpha:1.0];
-	//linkButton2.borderColor=nil;	
-	NSLog(@"YAH");
+	linkButton2.backgroundColor=[NSColor colorWithDeviceRed:0.34 green:0.69 blue:0.78 alpha:1.0];
+	linkButton2.borderColor=nil;	
 	return self;
 }
 
@@ -72,7 +70,23 @@
 - (IBAction)linkButton1:(id)sender
 {
 	[self closeAboutWindow:self];
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.pilotmoon.com/link/scrollinverter/more"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.pilotmoon.com/link/scrollreversal/more"]];
+}
+
+- (NSString *)linkButton2Text
+{
+	return @"Tell a Friend";
+}
+
+- (IBAction)linkButton2:(id)sender
+{
+	[self closeAboutWindow:self];
+	NSString *addr=@"";
+	NSString *subj=@"Check out this Mac app: Scroll Reversal";
+	NSString *body=@"Scroll Inverter for Mac, at http://www.pilotmoon.com/scrollreversal";
+	NSString *urls=[[NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", addr, subj, body, nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urls]];
+	
 }
 
 @end

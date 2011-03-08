@@ -42,7 +42,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="NSMenuItem" id="962185928">
 						<reference key="NSMenu" ref="552230148"/>
-						<string key="NSTitle">Invert Scrolling</string>
+						<string key="NSTitle">Reverse Scrolling</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSOnImage" id="598029772">
@@ -107,7 +107,7 @@
 					</object>
 					<object class="NSMenuItem" id="445893040">
 						<reference key="NSMenu" ref="552230148"/>
-						<string key="NSTitle">Quit Scroll Inverter</string>
+						<string key="NSTitle">Quit Scroll Reversal</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="598029772"/>
@@ -320,7 +320,7 @@
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{296, 499}, {179, 103}}</string>
+					<string>{{296, 499}, {184, 103}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
