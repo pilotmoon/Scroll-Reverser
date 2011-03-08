@@ -12,7 +12,7 @@
 	NSColor *backgroundColor;
 	NSColor *borderColor;
 }
-@property (assign) NSColor *backgroundColor;
-@property (assign) NSColor *borderColor;
+@property (retain) NSColor *backgroundColor;
+@property (retain) NSColor *borderColor;
 
 @end

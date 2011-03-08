@@ -119,13 +119,6 @@
 				<string key="NSClassName">LoginItemsController</string>
 			</object>
 			<object class="NSUserDefaultsController" id="227659737">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="NSMutableString">
-						<characters key="NS.bytes">inverting</characters>
-					</object>
-					<string>InvertScrollingOn</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</object>

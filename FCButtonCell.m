@@ -39,8 +39,8 @@ static NSColor *disabledColor, *enabledColor;
 {
 	[self setButtonType:NSMomentaryPushInButton];
 	[self setBezelStyle:NSRoundRectBezelStyle];
-	backgroundColor=[NSColor colorWithDeviceWhite:0.1 alpha:1.0];
-	borderColor=[NSColor colorWithDeviceWhite:0.04f alpha:1.0f];
+	self.backgroundColor=[NSColor colorWithDeviceWhite:0.1 alpha:1.0];
+	self.borderColor=[NSColor colorWithDeviceWhite:0.04f alpha:1.0f];
 }
 
 - (id)initWithCoder:(NSCoder *)aCoder
@@ -83,7 +83,6 @@ static NSColor *disabledColor, *enabledColor;
 		NSRectFill(frame);
 		
 	}
-	
 	CGFloat inset=borderColor?1.0f:0.0f;
 	// Background fill and gradient
 	NSBezierPath *backgroundPath = 
@@ -91,6 +90,7 @@ static NSColor *disabledColor, *enabledColor;
                                     xRadius:roundedRadius 
                                     yRadius:roundedRadius];
 	[backgroundPath addClip];
+
 	[backgroundColor set];
 	NSRectFill(frame);
 	
@@ -101,12 +101,6 @@ static NSColor *disabledColor, *enabledColor;
 								   endingColor:[NSColor colorWithDeviceWhite:1.0 alpha:0.06]]
 	 drawInRect:gradBounds angle:90];
 	
-	// Dark stroke	
-	//[[NSColor colorWithDeviceWhite:0.01f alpha:1.0f] setStroke];
-	//[[NSBezierPath bezierPathWithRoundedRect:NSInsetRect(frame, 1.5f, 1.5f) 
-	//								 xRadius:roundedRadius 
-	//								 yRadius:roundedRadius] stroke];
-	
 	// Inner light stroke
 	[[NSColor colorWithDeviceWhite:1.0f alpha:0.02f] setStroke];
 	[[NSBezierPath bezierPathWithRoundedRect:NSInsetRect(frame, 2.5f, 2.5f) 
@@ -115,24 +109,20 @@ static NSColor *disabledColor, *enabledColor;
 	
 	// Draw darker overlay if button is pressed
 	if([self isHighlighted]) {
-		/*[[NSBezierPath bezierPathWithRoundedRect:NSInsetRect(frame, 2.0f, 2.0f) 
-										 xRadius:roundedRadius 
-										 yRadius:roundedRadius] setClip];*/
 		[[NSColor colorWithCalibratedWhite:0.0f alpha:0.35] setFill];
 		NSRectFillUsingOperation(frame, NSCompositeSourceOver);
 	}
+	NSLog(@"DRAW2");
 }
 
 - (void)drawImage:(NSImage *)image withFrame:(NSRect)frame inView:(NSButton *)controlView
 {	
-//	DLog(@"draw image %@ %@", self, [controlView title]);
 	[_shadow set];
 	[super drawImage:image withFrame:NSInsetRect(frame,2,2) inView:controlView];
 }
 
 - (NSRect)drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSButton *)controlView
 {
-//	DLog(@"draw title %@ %@", self, [controlView title]);
 	return [super drawTitle:title withFrame:frame inView:controlView];
 }
 
