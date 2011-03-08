@@ -112,7 +112,6 @@ static NSColor *disabledColor, *enabledColor;
 		[[NSColor colorWithCalibratedWhite:0.0f alpha:0.35] setFill];
 		NSRectFillUsingOperation(frame, NSCompositeSourceOver);
 	}
-	NSLog(@"DRAW2");
 }
 
 - (void)drawImage:(NSImage *)image withFrame:(NSRect)frame inView:(NSButton *)controlView
@@ -146,6 +145,5 @@ static NSColor *disabledColor, *enabledColor;
 	
 	return interiorColor;
 }
-
 
 @end

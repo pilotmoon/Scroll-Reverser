@@ -85,6 +85,7 @@ static CGFloat _nubOffset(CGFloat aBoxSide, CGFloat aPoint, CGFloat aNubSize, CG
 	}
 	
 	// caluclate window path
+	[nubWindowPath release];
 	nubWindowPath=[[NSBezierPath bezierPathWithNubRect:container
 											   radius:[self cornerRadius]
 										  nubPosition:nubPosition
