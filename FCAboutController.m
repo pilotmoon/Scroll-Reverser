@@ -17,8 +17,7 @@
 	nib=[[NSNib alloc] initWithNibNamed:@"About" bundle:nil];
 	if (![nib instantiateNibWithOwner:self topLevelObjects:0]) return nil;
 
-	
-	
+
 	self.window=[[DCAboutWindow alloc] initWithContentRect:[contents frame]
 											styleMask:NSBorderlessWindowMask
 											  backing:NSBackingStoreBuffered
@@ -33,10 +32,10 @@
 	[[self window] setBackgroundColor:[NSColor clearColor]];
 	[[self window] setMovableByWindowBackground:YES];
 	
-	reviewButton.backgroundColor=[NSColor colorWithDeviceRed:0.34 green:0.69 blue:0.78 alpha:1.0]; 
-	reviewButton.borderColor=nil;
-	friendButton.backgroundColor=[NSColor colorWithDeviceRed:0.34 green:0.69 blue:0.78 alpha:1.0];
-	friendButton.borderColor=nil;	
+	linkButton1.backgroundColor=[NSColor colorWithDeviceRed:0.34 green:0.69 blue:0.78 alpha:1.0]; 
+	linkButton1.borderColor=nil;
+	linkButton2.backgroundColor=[NSColor colorWithDeviceRed:0.34 green:0.69 blue:0.78 alpha:1.0];
+	linkButton2.borderColor=nil;	
 	return self;
 }
 
@@ -63,20 +62,31 @@
 	return [NSString stringWithFormat:base, [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
 }
 
-- (NSString *)reviewButtonText
+- (NSString *)linkButton1Text
 {
 	return @"More Apps";
 }
 
-- (NSString *)webLink
-{
-	return @"http://dwellclick.com";
-}
-
-- (IBAction)writeAReview:(id)sender
+- (IBAction)linkButton1:(id)sender
 {
 	[self closeAboutWindow:self];
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.pilotmoon.com/link/scrollinverter/site"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.pilotmoon.com/link/scrollreverser/more"]];
+}
+
+- (NSString *)linkButton2Text
+{
+	return @"Tell a Friend";
+}
+
+- (IBAction)linkButton2:(id)sender
+{
+	[self closeAboutWindow:self];
+	NSString *addr=@"";
+	NSString *subj=@"Check out this Mac app: Scroll Reverser";
+	NSString *body=@"Scroll Reverser for Mac, at http://www.pilotmoon.com/scrollreverser";
+	NSString *urls=[[NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", addr, subj, body, nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urls]];
+	
 }
 
 @end

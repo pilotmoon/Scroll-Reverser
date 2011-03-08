@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		015872991326456900100E4C /* DCWelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 015872981326456900100E4C /* DCWelcomeWindowController.m */; };
+		0158729B1326457800100E4C /* Welcome.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0158729A1326457800100E4C /* Welcome.xib */; };
+		015872C41326467C00100E4C /* DCNubWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 015872BF1326467C00100E4C /* DCNubWindow.m */; };
+		015872C51326467C00100E4C /* DCNubWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 015872C11326467C00100E4C /* DCNubWindowView.m */; };
+		015872C61326467C00100E4C /* NSBezierPath+Nub.m in Sources */ = {isa = PBXBuildFile; fileRef = 015872C31326467C00100E4C /* NSBezierPath+Nub.m */; };
+		015872D7132646B800100E4C /* DCBubbleWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 015872BA1326466100100E4C /* DCBubbleWindow.m */; };
+		015872D8132646B800100E4C /* DCBubbleWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 015872BC1326466100100E4C /* DCBubbleWindowView.m */; };
+		0158735813265EDD00100E4C /* DCStatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0158735513265EDD00100E4C /* DCStatusItemController.m */; };
+		0158735913265EDD00100E4C /* DCStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0158735713265EDD00100E4C /* DCStatusItemView.m */; };
 		0199D2DB13254E9B000D8011 /* ScrollInverterIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */; };
 		0199D30913254F0E000D8011 /* FCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D2FA13254F0E000D8011 /* FCButton.m */; };
 		0199D30A13254F0E000D8011 /* FCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D2FC13254F0E000D8011 /* FCButtonCell.m */; };
@@ -33,6 +42,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		015872971326456900100E4C /* DCWelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWelcomeWindowController.h; sourceTree = "<group>"; };
+		015872981326456900100E4C /* DCWelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCWelcomeWindowController.m; sourceTree = "<group>"; };
+		0158729A1326457800100E4C /* Welcome.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Welcome.xib; sourceTree = "<group>"; };
+		015872B91326466100100E4C /* DCBubbleWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCBubbleWindow.h; sourceTree = "<group>"; };
+		015872BA1326466100100E4C /* DCBubbleWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCBubbleWindow.m; sourceTree = "<group>"; };
+		015872BB1326466100100E4C /* DCBubbleWindowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCBubbleWindowView.h; sourceTree = "<group>"; };
+		015872BC1326466100100E4C /* DCBubbleWindowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCBubbleWindowView.m; sourceTree = "<group>"; };
+		015872BE1326467C00100E4C /* DCNubWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCNubWindow.h; sourceTree = "<group>"; };
+		015872BF1326467C00100E4C /* DCNubWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCNubWindow.m; sourceTree = "<group>"; };
+		015872C01326467C00100E4C /* DCNubWindowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCNubWindowView.h; sourceTree = "<group>"; };
+		015872C11326467C00100E4C /* DCNubWindowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCNubWindowView.m; sourceTree = "<group>"; };
+		015872C21326467C00100E4C /* NSBezierPath+Nub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBezierPath+Nub.h"; sourceTree = "<group>"; };
+		015872C31326467C00100E4C /* NSBezierPath+Nub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBezierPath+Nub.m"; sourceTree = "<group>"; };
+		0158735413265EDD00100E4C /* DCStatusItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCStatusItemController.h; sourceTree = "<group>"; };
+		0158735513265EDD00100E4C /* DCStatusItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCStatusItemController.m; sourceTree = "<group>"; };
+		0158735613265EDD00100E4C /* DCStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCStatusItemView.h; sourceTree = "<group>"; };
+		0158735713265EDD00100E4C /* DCStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCStatusItemView.m; sourceTree = "<group>"; };
 		0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ScrollInverterIcon.icns; sourceTree = "<group>"; };
 		0199D2F913254F0E000D8011 /* FCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCButton.h; sourceTree = "<group>"; };
 		0199D2FA13254F0E000D8011 /* FCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCButton.m; sourceTree = "<group>"; };
@@ -76,7 +102,7 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Scroll_Inverter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Scroll_Inverter-Info.plist"; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Scroll Inverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scroll Inverter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* Scroll Reverser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scroll Reverser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +117,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		015872901326453D00100E4C /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				015872971326456900100E4C /* DCWelcomeWindowController.h */,
+				015872981326456900100E4C /* DCWelcomeWindowController.m */,
+			);
+			name = Welcome;
+			sourceTree = "<group>";
+		};
+		015872B81326466100100E4C /* Bubbles */ = {
+			isa = PBXGroup;
+			children = (
+				015872B91326466100100E4C /* DCBubbleWindow.h */,
+				015872BA1326466100100E4C /* DCBubbleWindow.m */,
+				015872BB1326466100100E4C /* DCBubbleWindowView.h */,
+				015872BC1326466100100E4C /* DCBubbleWindowView.m */,
+			);
+			name = Bubbles;
+			sourceTree = "<group>";
+		};
+		015872BD1326467C00100E4C /* Nub */ = {
+			isa = PBXGroup;
+			children = (
+				015872BE1326467C00100E4C /* DCNubWindow.h */,
+				015872BF1326467C00100E4C /* DCNubWindow.m */,
+				015872C01326467C00100E4C /* DCNubWindowView.h */,
+				015872C11326467C00100E4C /* DCNubWindowView.m */,
+				015872C21326467C00100E4C /* NSBezierPath+Nub.h */,
+				015872C31326467C00100E4C /* NSBezierPath+Nub.m */,
+			);
+			name = Nub;
+			sourceTree = "<group>";
+		};
+		0158734013265E2B00100E4C /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				0158735413265EDD00100E4C /* DCStatusItemController.h */,
+				0158735513265EDD00100E4C /* DCStatusItemController.m */,
+				0158735613265EDD00100E4C /* DCStatusItemView.h */,
+				0158735713265EDD00100E4C /* DCStatusItemView.m */,
+			);
+			name = Status;
+			sourceTree = "<group>";
+		};
 		0199D2F813254F0E000D8011 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +191,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0158734013265E2B00100E4C /* Status */,
+				015872BD1326467C00100E4C /* Nub */,
+				015872B81326466100100E4C /* Bubbles */,
+				015872901326453D00100E4C /* Welcome */,
 				0199D2F813254F0E000D8011 /* About */,
 				01B66481132539EC00658B5C /* NSImage+CopySize.h */,
 				01B66482132539EC00658B5C /* NSImage+CopySize.m */,
@@ -157,7 +231,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* Scroll Inverter.app */,
+				8D1107320486CEB800E47090 /* Scroll Reverser.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +260,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0158729A1326457800100E4C /* Welcome.xib */,
 				0199D36B13255051000D8011 /* XIcon.png */,
 				0199D34813254F94000D8011 /* About.xib */,
 				0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */,
@@ -209,9 +284,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* Scroll Inverter */ = {
+		8D1107260486CEB800E47090 /* Scroll Reverser */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Scroll Inverter" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Scroll Reverser" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
@@ -221,10 +296,10 @@
 			);
 			dependencies = (
 			);
-			name = "Scroll Inverter";
+			name = "Scroll Reverser";
 			productInstallPath = "$(HOME)/Applications";
 			productName = "Scroll Inverter";
-			productReference = 8D1107320486CEB800E47090 /* Scroll Inverter.app */;
+			productReference = 8D1107320486CEB800E47090 /* Scroll Reverser.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -246,7 +321,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* Scroll Inverter */,
+				8D1107260486CEB800E47090 /* Scroll Reverser */,
 			);
 		};
 /* End PBXProject section */
@@ -262,6 +337,7 @@
 				0199D2DB13254E9B000D8011 /* ScrollInverterIcon.icns in Resources */,
 				0199D34913254F94000D8011 /* About.xib in Resources */,
 				0199D36C13255051000D8011 /* XIcon.png in Resources */,
+				0158729B1326457800100E4C /* Welcome.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +348,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				015872D7132646B800100E4C /* DCBubbleWindow.m in Sources */,
+				015872D8132646B800100E4C /* DCBubbleWindowView.m in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* ScrollInverterAppDelegate.m in Sources */,
 				01EB78C41324D574005390BD /* MouseTap.m in Sources */,
@@ -288,6 +366,12 @@
 				0199D3751325519E000D8011 /* FCBubbleCloseButton.m in Sources */,
 				0199D388132551B5000D8011 /* FCImageButtonCell.m in Sources */,
 				0199D389132551B5000D8011 /* FCImageButton.m in Sources */,
+				015872991326456900100E4C /* DCWelcomeWindowController.m in Sources */,
+				015872C41326467C00100E4C /* DCNubWindow.m in Sources */,
+				015872C51326467C00100E4C /* DCNubWindowView.m in Sources */,
+				015872C61326467C00100E4C /* NSBezierPath+Nub.m in Sources */,
+				0158735813265EDD00100E4C /* DCStatusItemController.m in Sources */,
+				0158735913265EDD00100E4C /* DCStatusItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +401,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Nicholas Moore";
 				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_POSTPROCESSING = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -330,7 +416,9 @@
 				);
 				INFOPLIST_FILE = "Scroll_Inverter-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = "Scroll Inverter";
+				PRODUCT_NAME = "Scroll Reverser";
+				STRIP_INSTALLED_PRODUCT = NO;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -338,7 +426,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Nicholas Moore";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Scroll_Inverter_Prefix.pch;
@@ -349,7 +439,9 @@
 				);
 				INFOPLIST_FILE = "Scroll_Inverter-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = "Scroll Inverter";
+				PRODUCT_NAME = "Scroll Reverser";
+				STRIP_INSTALLED_PRODUCT = YES;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};
@@ -357,6 +449,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CURRENT_PROJECT_VERSION = 2;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -365,6 +458,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -372,19 +466,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CURRENT_PROJECT_VERSION = 2;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.5;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Scroll Inverter" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Scroll Reverser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,

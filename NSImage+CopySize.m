@@ -16,7 +16,7 @@
 	[NSGraphicsContext saveGraphicsState];
 
 	// new image to draw into
-	NSImage *new=[NSImage blankBitmapOfSize:size];
+	NSImage *new=[NSImage newBlankBitmapOfSize:size];
 	NSBitmapImageRep *rep=[[new representations] objectAtIndex:0];
 	[NSGraphicsContext setCurrentContext:[NSGraphicsContext graphicsContextWithBitmapImageRep:rep]];
 	
@@ -41,9 +41,9 @@
 }
 
 
-+ (NSImage *)blankBitmapOfSize:(NSSize)size;
++ (NSImage *)newBlankBitmapOfSize:(NSSize)size;
 {
-	NSBitmapImageRep *rep=[[NSBitmapImageRep alloc] initWithBitmapDataPlanes:NULL
+	NSBitmapImageRep *rep=[[[NSBitmapImageRep alloc] initWithBitmapDataPlanes:NULL
 																  pixelsWide:size.width
 																  pixelsHigh:size.height
 															   bitsPerSample:8
@@ -52,7 +52,7 @@
 																	isPlanar:NO
 															  colorSpaceName:NSDeviceRGBColorSpace
 																 bytesPerRow:0
-																bitsPerPixel:0];
+																bitsPerPixel:0] autorelease];
 	
 	// blank the image
 	unsigned char *data=[rep bitmapData];
@@ -60,7 +60,7 @@
 	memset(data, 0, count);
 	
 	NSImage *img=[[NSImage alloc] initWithSize:size];
-	[img addRepresentation:rep];
+	[img addRepresentation:rep]; // rep is retained
 	return img;
 }
 

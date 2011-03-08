@@ -11,8 +11,10 @@
 @interface FCAboutController : NSWindowController {
 	IBOutlet NSView *contents;
 	NSNib *nib;
-	IBOutlet FCButton *reviewButton;
-	IBOutlet FCButton *friendButton;
+	IBOutlet FCButton *linkButton1;
+	IBOutlet FCButton *linkButton2;
 }
 - (IBAction)closeAboutWindow:(id)sender;
+- (IBAction)linkButton1:(id)sender;
+- (IBAction)linkButton2:(id)sender;
 @end
