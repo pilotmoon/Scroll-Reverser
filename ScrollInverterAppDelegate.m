@@ -3,6 +3,7 @@
 #import "NSObject+ObservePrefs.h"
 #import "NSImage+CopySize.h"
 #import "FCAboutController.h"
+#import "DCWelcomeWindowController.h"
 
 static NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 
@@ -58,9 +59,18 @@ static NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 	[statusItem setMenu:statusMenu];
 	[self observePrefsKey:PrefsInvertScrolling];
 }
+
+- (void)doWelcome
+{
+	if (!welcomeController) {
+		welcomeController=[[DCWelcomeWindowController alloc] init];
+	}
+	[welcomeController doWelcome];
+}
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	NSLog(@"Start");
+	[self doWelcome];
 	[tap start];
 }
 
