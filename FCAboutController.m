@@ -70,7 +70,7 @@
 - (IBAction)linkButton1:(id)sender
 {
 	[self closeAboutWindow:self];
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.pilotmoon.com/link/scrollreversal/more"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.pilotmoon.com/link/scrollreverser/more"]];
 }
 
 - (NSString *)linkButton2Text
@@ -82,8 +82,8 @@
 {
 	[self closeAboutWindow:self];
 	NSString *addr=@"";
-	NSString *subj=@"Check out this Mac app: Scroll Reversal";
-	NSString *body=@"Scroll Inverter for Mac, at http://www.pilotmoon.com/scrollreversal";
+	NSString *subj=@"Check out this Mac app: Scroll Reverser";
+	NSString *body=@"Scroll Reverser for Mac, at http://www.pilotmoon.com/scrollreverser";
 	NSString *urls=[[NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", addr, subj, body, nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urls]];
 	

@@ -86,7 +86,7 @@
 										<object class="NSTextFieldCell" key="NSCell" id="1011671872">
 											<int key="NSCellFlags">67239424</int>
 											<int key="NSCellFlags2">272629760</int>
-											<string key="NSContents">Scroll Reversal</string>
+											<string key="NSContents">Scroll Reverser</string>
 											<object class="NSFont" key="NSSupport">
 												<string key="NSName">Helvetica-Bold</string>
 												<double key="NSSize">18</double>
@@ -170,18 +170,18 @@
 											</object>
 										</object>
 									</object>
-									<object class="NSButton" id="872026143">
+									<object class="NSButton" id="413411051">
 										<reference key="NSNextResponder" ref="662954843"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{138, 16}, {100, 22}}</string>
+										<string key="NSFrame">{{138, 16}, {94, 22}}</string>
 										<reference key="NSSuperview" ref="662954843"/>
 										<bool key="NSEnabled">YES</bool>
-										<object class="NSButtonCell" key="NSCell" id="735117955">
+										<object class="NSButtonCell" key="NSCell" id="917675961">
 											<int key="NSCellFlags">67239424</int>
 											<int key="NSCellFlags2">134217728</int>
 											<string key="NSContents">TEXT</string>
 											<reference key="NSSupport" ref="627019841"/>
-											<reference key="NSControlView" ref="872026143"/>
+											<reference key="NSControlView" ref="413411051"/>
 											<int key="NSButtonFlags">-2038284033</int>
 											<int key="NSButtonFlags2">134</int>
 											<string key="NSAlternateContents"/>
@@ -361,17 +361,17 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">linkButton2:</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="872026143"/>
+						<reference key="destination" ref="413411051"/>
 					</object>
 					<int key="connectionID">108</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">title: linkButton2Text</string>
-						<reference key="source" ref="872026143"/>
+						<reference key="source" ref="413411051"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="872026143"/>
+							<reference key="NSSource" ref="413411051"/>
 							<reference key="NSDestination" ref="1001"/>
 							<string key="NSLabel">title: linkButton2Text</string>
 							<string key="NSBinding">title</string>
@@ -385,7 +385,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">linkButton2</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="872026143"/>
+						<reference key="destination" ref="413411051"/>
 					</object>
 					<int key="connectionID">110</int>
 				</object>
@@ -436,8 +436,8 @@
 							<reference ref="658866864"/>
 							<reference ref="238388290"/>
 							<reference ref="455768814"/>
-							<reference ref="872026143"/>
 							<reference ref="347160409"/>
+							<reference ref="413411051"/>
 						</object>
 						<reference key="parent" ref="222278619"/>
 					</object>
@@ -532,17 +532,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">104</int>
-						<reference key="object" ref="872026143"/>
+						<reference key="object" ref="413411051"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="735117955"/>
+							<reference ref="917675961"/>
 						</object>
 						<reference key="parent" ref="360018358"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">105</int>
-						<reference key="object" ref="735117955"/>
-						<reference key="parent" ref="872026143"/>
+						<reference key="object" ref="917675961"/>
+						<reference key="parent" ref="413411051"/>
 					</object>
 				</object>
 			</object>
@@ -590,11 +590,11 @@
 					<string>FCButton</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCCAAAwhAAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABCCAAAwbgAAA</bytes>
 					</object>
 					<string>FCButtonCell</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{164, 678}, {416, 198}}</string>
+					<string>{{85, 683}, {416, 198}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>FCDraggableImageView</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

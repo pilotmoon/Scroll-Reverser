@@ -107,7 +107,7 @@
 					</object>
 					<object class="NSMenuItem" id="445893040">
 						<reference key="NSMenu" ref="552230148"/>
-						<string key="NSTitle">Quit Scroll Reversal</string>
+						<string key="NSTitle">Quit Scroll Reverser</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="598029772"/>
@@ -320,7 +320,7 @@
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{296, 499}, {184, 103}}</string>
+					<string>{{296, 499}, {185, 103}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
