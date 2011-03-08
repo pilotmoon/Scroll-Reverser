@@ -4,8 +4,9 @@
 #import "NSImage+CopySize.h"
 #import "FCAboutController.h"
 #import "DCWelcomeWindowController.h"
+#import "DCStatusItemController.h"
 
-static NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
+NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 
 @implementation ScrollInverterAppDelegate
 
@@ -25,39 +26,29 @@ static NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 	if (self) {
 		tap=[[MouseTap alloc] init];
 		tap.inverting=YES;
+		statusController=[[DCStatusItemController alloc] init];
 	}
 	return self;
 }
 
-- (void)setStatusImage
+- (NSValue *)bubblePoint
 {
-	BOOL on=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsInvertScrolling];
-	if (on) {
-		[statusItem setImage:statusImage];
+	NSRect rect=[statusController statusItemRect];
+	NSScreen *screen=[[NSScreen screens] objectAtIndex:0];
+	if (screen) {
+		CGFloat maxSize=[screen frame].size.height-22;
+		if (rect.origin.y>maxSize) {
+			rect.origin.y=maxSize;
+		}
 	}
-	else {
-		[statusItem setImage:statusImageDisabled];
-	}
+	NSPoint pt=NSMakePoint(NSMidX(rect), NSMinY(rect)-0);
+	return [NSValue valueWithPoint:pt];
 }
 
 - (void)awakeFromNib
 {
-	NSLog(@"Awake");
-
-	// load images
-	NSImage *original=[NSImage imageNamed:@"ScrollInverterStatus"];
-	NSSize statusSize=NSMakeSize(14,18);
-	statusImage=[original copyWithSize:statusSize colorTo:[NSColor blackColor]];
-	statusImageInverse=[original copyWithSize:statusSize colorTo:[NSColor whiteColor]];
-	statusImageDisabled=[original copyWithSize:statusSize colorTo:[NSColor grayColor]];
-	
-	// initialize status item
-	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-	[self setStatusImage];
-	[statusItem setAlternateImage:statusImageInverse];
-	[statusItem setHighlightMode:YES];	
-	[statusItem setMenu:statusMenu];
-	[self observePrefsKey:PrefsInvertScrolling];
+	NSLog(@"Awake");	
+	[statusController attachMenu:statusMenu];
 }
 
 - (void)doWelcome
@@ -86,7 +77,6 @@ static NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	BOOL on=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsInvertScrolling];
-	[self setStatusImage];
 	tap.inverting=on;
 }
 

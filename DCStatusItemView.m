@@ -8,7 +8,6 @@
 
 #import "DCStatusItemView.h"
 #import "DCStatusItemController.h"
-#import "DCEngine.h"
 
 @implementation DCStatusItemView
 
@@ -33,14 +32,11 @@
 - (void)drawRect:(NSRect)rect
 {
 	[controller.statusItem drawStatusBarBackgroundInRect:rect withHighlight:controller.menuIsOpen];
-    [[self image] drawAtPoint:NSMakePoint(5, 2) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];	
+    [[self image] drawAtPoint:NSMakePoint(2, 3) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];	
 }
-
 
 - (void)mouseDown:(NSEvent *)event
 {
-    //NSRect frame = [[self window] frame];
-    //NSPoint pt = NSMakePoint(NSMidX(frame), NSMinY(frame));
 	[controller showAttachedMenu:YES];
 	[self setNeedsDisplay:YES];
 }

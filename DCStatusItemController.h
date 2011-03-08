@@ -24,8 +24,6 @@
 @property (readonly) NSStatusItem *statusItem;
 @property (readonly) BOOL menuIsOpen;
 
-- (void)attachedMenuWillOpen;
-- (void)attachedMenuDidClose;
 - (void)attachMenu:(NSMenu *)menu;
 - (void)showAttachedMenu:(BOOL)force;
 - (void)showAttachedMenu;

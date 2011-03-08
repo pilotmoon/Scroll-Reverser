@@ -30,10 +30,9 @@
 						  nubSize:BUBBLE_NUB_SIZE];
 	if (self)
 	{
-		//[self setFloatingPanel:YES];
 		[self setLevel:NSMainMenuWindowLevel+1];
 		[self setAvoidEdgeOverlap:NO];
-		//[self setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
+		[self setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
 	}
 	return self;
 }
@@ -142,6 +141,11 @@
 		NSLog(@"centerBlock");
 		[self setNubLocation:centerBlock()];
 	}
+	else if (pointObj) {
+		NSLog(@"centerBlock");
+		NSValue *pt=(NSValue *)[pointObj performSelector:pointSel withObject:nil];
+		[self setNubLocation:[pt pointValue]];
+	}
 	else {
 		NSLog(@"center");
 		[self setNubLocation:NSMakePoint(500, 500)];
@@ -162,6 +166,12 @@
 - (BOOL)canBecomeKeyWindow
 {
 	return YES;
+}
+
+- (void)setPointObj:(id)obj sel:(SEL)sel
+{
+	pointObj=obj;
+	pointSel=sel;
 }
 
 @end

@@ -9,28 +9,25 @@
 #import "DCStatusItemController.h"
 #import "DCStatusItemView.h"
 #import "NSImage+CopySize.h"
+#import "ScrollInverterAppDelegate.h"
+#import "NSObject+ObservePrefs.h"
 
 @implementation DCStatusItemController
 @synthesize statusItem, menuIsOpen;
 
 - (void)updateItems
 {
+	NSLog(@"update");
 	if (menuIsOpen) {
 		[(NSButton *)[statusItem view] setImage:statusImageInverse];
 	}
 	else {
-		if (animating) {
-			[(NSButton *)[statusItem view] setImage:[flashImages objectAtIndex:animPos]];
+		if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsInvertScrolling]) {
+			[(NSButton *)[statusItem view] setImage:statusImage];
 		}
 		else {
-			if ([DCUniversalAccessHelper sharedInstance].axEnabled&&[DCEngine sharedInstance].dwellClickOn) {
-				[(NSButton *)[statusItem view] setImage:statusImage];
-			}
-			else {
-				[(NSButton *)[statusItem view] setImage:statusImageDisabled];
-			}		
-			
-		}
+			[(NSButton *)[statusItem view] setImage:statusImageDisabled];
+		}					
 	}
 	[[statusItem view] setNeedsDisplay:YES];
 }
@@ -41,8 +38,8 @@
 	self = [super init];
 	
 	// Loadup status icons.
-	const NSSize iconSize=NSMakeSize(14, 19);
-	NSImage *original=[NSImage imageNamed:@"DCIconStatus.png"];
+	const NSSize iconSize=NSMakeSize(14, 17);
+	NSImage *original=[NSImage imageNamed:@"ScrollInverterStatus"];
 	
 	statusImage=[original copyWithSize:iconSize];
 	statusImageInverse=[original copyWithSize:iconSize colorTo:[NSColor whiteColor]];
@@ -51,54 +48,49 @@
 	statusImageDisabled=[grayTemp copyWithSize:iconSize];	
 	
 	// build status item
-	float width = 22.0;
+	float width = iconSize.width+4;
     float height = [[NSStatusBar systemStatusBar] thickness];
     NSRect viewFrame = NSMakeRect(0, 0, width, height);
-    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:width];
+    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:width] retain];
     [statusItem setView:[[DCStatusItemView alloc] initWithFrame:viewFrame controller:self]];
 	[self updateItems];
 	[[statusItem view] display];
+	
+	[self observePrefsKey:PrefsInvertScrolling];
 	
 	canOpenMenu=YES;
 	
 	return self;
 }
 
-- (void)setReady
+- (void)menuWillOpen:(NSMenu *)menu
 {
-	ready=YES;
-	[self updateItems];
-}
-
-- (void)attachedMenuWillOpen
-{
-	DLog(@"ATTACHED will open");
 	menuIsOpen=YES;
 	canOpenMenu=NO;
 	[self updateItems];
 }
 
-- (void)attachedMenuDidClose
+- (void)allowOpen
 {
-	DLog(@"ATTACHED did close");
+	canOpenMenu=YES;
+}
+
+- (void)menuDidClose:(NSMenu *)menu
+{
 	menuIsOpen=NO;
 	[self updateItems];	
-	DCRunAsyncWithDelay(0.3, ^{ // prevent reopen if reopen occured while menu tracking (dodgy but works)
-		canOpenMenu=YES;
-	});
+	[self performSelector:@selector(allowOpen) withObject:nil afterDelay:0.3];
 }
 
 - (void)attachMenu:(NSMenu *)menu
 {
 	theMenu=menu;
+	[menu setDelegate:self];
 }
 
 - (void)showAttachedMenu:(BOOL)force
 {
-	if ([DCEngine sharedInstance].override) {
-		[(DCAppDelegate *)[NSApp delegate] notifyClickedIconDuringOverride];
-	}
-	else if (force || (!menuIsOpen && canOpenMenu)) {
+	if (force || (!menuIsOpen && canOpenMenu)) {
 		[statusItem popUpStatusItemMenu:theMenu	];
 	}
 }
@@ -117,6 +109,11 @@
 	else {
 		return NSZeroRect;
 	}
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	[self updateItems];
 }
 
 @end

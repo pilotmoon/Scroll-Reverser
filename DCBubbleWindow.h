@@ -15,9 +15,12 @@
 	NSView *childContentView;
 	NSWindow *attachedWindow;
 	NSPoint(^centerBlock)(void);
+	id pointObj;
+	SEL pointSel;
 }
 
 - (void)setView:(NSView *)view;
+- (void)setPointObj:(id)obj sel:(SEL)pointSel;
 
 @property (readwrite, copy) NSPoint (^centerBlock)(void);
 @end

@@ -17,6 +17,8 @@
 	{
 		window=[[DCBubbleWindow alloc] init];
 		[window setLevel:NSFloatingWindowLevel];	
+		[window setPointObj:[NSApp delegate] sel:@selector(bubblePoint)];
+		
 		nib=[[NSNib alloc] initWithNibNamed:@"Welcome" bundle:nil];
 		if (![nib instantiateNibWithOwner:self topLevelObjects:0]) return nil;
 		[startupSetting setState:NSOffState];
