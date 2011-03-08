@@ -13,6 +13,6 @@
 
 - (NSImage *)copyWithSize:(NSSize)size colorTo:(NSColor *)color;
 - (NSImage *)copyWithSize:(NSSize)size;
-+ (NSImage *)blankBitmapOfSize:(NSSize)size;
++ (NSImage *)newBlankBitmapOfSize:(NSSize)size;
 
 @end

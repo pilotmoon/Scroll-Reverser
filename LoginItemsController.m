@@ -25,7 +25,7 @@ static LoginItemsController *sharedInstance=nil;
 + (LoginItemsController *)sharedInstance
 {        
 	if (!sharedInstance) {
-		sharedInstance=[[LoginItemsController hiddenAlloc] init];
+		sharedInstance=[[super alloc] init];
 	}
 	return sharedInstance;
 }

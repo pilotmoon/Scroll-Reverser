@@ -15,7 +15,7 @@
 {
 	self=[super initWithFrame:frameRect];
 	if (self) {
-		[[self cell] setImage:[[NSImage imageNamed:@"XIcon"] copyWithSize:frameRect.size colorTo:[NSColor grayColor]]];
+		[[self cell] setImage:[[[NSImage imageNamed:@"XIcon"] copyWithSize:frameRect.size colorTo:[NSColor grayColor]] autorelease]];
 	}
 	return self;
 }
@@ -24,8 +24,8 @@
 {
 	self=[super initWithCoder:aDecoder];
 	if(self) {
-		[[self cell] setImage:[[NSImage imageNamed:@"XIcon"] copyWithSize:[self frame].size colorTo:[NSColor grayColor]]];
-		[[self cell] setAlternateImage:[[NSImage imageNamed:@"XIcon"] copyWithSize:[self frame].size colorTo:[NSColor grayColor]]];
+		[[self cell] setImage:[[[NSImage imageNamed:@"XIcon"] copyWithSize:[self frame].size colorTo:[NSColor grayColor]] autorelease]];
+		[[self cell] setAlternateImage:[[[NSImage imageNamed:@"XIcon"] copyWithSize:[self frame].size colorTo:[NSColor grayColor]] autorelease]];
 	}
 	return self;
 }
