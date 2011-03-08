@@ -7,6 +7,7 @@
 #import "DCStatusItemController.h"
 
 NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
+NSString *const PrefsHasRunBefore=@"HasRunBefore";
 
 @implementation ScrollInverterAppDelegate
 
@@ -61,7 +62,12 @@ NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	NSLog(@"Start");
-	[self doWelcome];
+	
+	BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
+	if(first) {
+		[self doWelcome];		
+	}
 	[tap start];
 }
 
