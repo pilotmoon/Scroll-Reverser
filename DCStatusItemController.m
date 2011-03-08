@@ -44,7 +44,7 @@
 	statusImage=[original copyWithSize:iconSize];
 	statusImageInverse=[original copyWithSize:iconSize colorTo:[NSColor whiteColor]];
 	// gray icon needs coloring before sizing due to aliasing effects
-	NSImage *grayTemp=[original copyWithSize:[original size] colorTo:[NSColor colorWithDeviceRed:0.6 green:0.6 blue:0.6 alpha: 1.0]]; 
+	NSImage *grayTemp=[[original copyWithSize:[original size] colorTo:[NSColor colorWithDeviceRed:0.6 green:0.6 blue:0.6 alpha: 1.0]] autorelease]; 
 	statusImageDisabled=[grayTemp copyWithSize:iconSize];	
 	
 	// build status item
@@ -52,7 +52,7 @@
     float height = [[NSStatusBar systemStatusBar] thickness];
     NSRect viewFrame = NSMakeRect(0, 0, width, height);
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:width] retain];
-    [statusItem setView:[[DCStatusItemView alloc] initWithFrame:viewFrame controller:self]];
+    [statusItem setView:[[[DCStatusItemView alloc] initWithFrame:viewFrame controller:self] autorelease]];
 	[self updateItems];
 	[[statusItem view] display];
 	

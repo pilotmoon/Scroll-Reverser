@@ -97,8 +97,8 @@ static NSColor *disabledColor, *enabledColor;
 	// draw the gradient
 	NSRect gradBounds = [backgroundPath bounds];
 	gradBounds.size.height*=0.5;
-	[[[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceWhite:1.0 alpha:0.35]
-								   endingColor:[NSColor colorWithDeviceWhite:1.0 alpha:0.06]]
+	[[[[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceWhite:1.0 alpha:0.35]
+								   endingColor:[NSColor colorWithDeviceWhite:1.0 alpha:0.06]] autorelease]
 	 drawInRect:gradBounds angle:90];
 	
 	// Inner light stroke

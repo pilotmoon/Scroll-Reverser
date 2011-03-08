@@ -16,7 +16,7 @@
 {
 	NSRect vframe=[controlView bounds];
 	NSImage *srcImage=[self state]?[self alternateImage]:[self image];
-	NSImage *img=[srcImage copyWithSize:vframe.size];
+	NSImage *img=[[srcImage copyWithSize:vframe.size] autorelease];
 	
 	CGFloat fraction=0.7;
 	if ([self isHighlighted]) {
