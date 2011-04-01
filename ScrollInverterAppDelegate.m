@@ -21,13 +21,20 @@ NSString *const PrefsHasRunBefore=@"HasRunBefore";
 	}
 }
 
+- (void)updateTap
+{
+    BOOL on=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsInvertScrolling];
+	tap.inverting=on;
+}
+
 - (id)init
 {
 	self=[super init];
 	if (self) {
 		tap=[[MouseTap alloc] init];
-		tap.inverting=YES;
+		[self updateTap];
 		statusController=[[DCStatusItemController alloc] init];
+        [self observePrefsKey:PrefsInvertScrolling];
 	}
 	return self;
 }
@@ -82,8 +89,7 @@ NSString *const PrefsHasRunBefore=@"HasRunBefore";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	BOOL on=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsInvertScrolling];
-	tap.inverting=on;
+	[self updateTap];
 }
 
 @end
