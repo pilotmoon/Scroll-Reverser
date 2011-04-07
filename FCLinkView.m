@@ -13,6 +13,6 @@
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.pilotmoon.com/link/scrollinverter/site"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://pilotmoon.com/link/scrollreverser/site"]];
 }
 @end
