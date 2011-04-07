@@ -12,6 +12,8 @@
 #import "ScrollInverterAppDelegate.h"
 #import "NSObject+ObservePrefs.h"
 
+static NSSize _iconSize;
+
 @implementation DCStatusItemController
 @synthesize statusItem, menuIsOpen;
 
@@ -32,31 +34,58 @@
 	[[statusItem view] setNeedsDisplay:YES];
 }
 
+- (void)addStatusIcon
+{
+	if (!statusItem) {
+		float width = _iconSize.width+4;
+		float height = [[NSStatusBar systemStatusBar] thickness];
+		NSRect viewFrame = NSMakeRect(0, 0, width, height);
+		statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:width] retain];
+		[statusItem setView:[[[DCStatusItemView alloc] initWithFrame:viewFrame controller:self] autorelease]];
+		[self updateItems];
+		[[statusItem view] display];			
+	}
+}
+
+- (void)removeStatusIcon
+{
+	if (statusItem) {
+		[[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
+		[statusItem release];
+		statusItem=nil;
+	}
+}
+
+- (void)displayStatusIcon
+{
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon]) {
+		[self removeStatusIcon];
+	}
+	else {
+		[self addStatusIcon];
+	}
+}
+
 #define FRAMES (40.0f)
 - (id)init
 {
 	self = [super init];
 	
+	_iconSize=NSMakeSize(14, 17);
+	
 	// Loadup status icons.
-	const NSSize iconSize=NSMakeSize(14, 17);
 	NSImage *original=[NSImage imageNamed:@"ScrollInverterStatus"];
 	
-	statusImage=[original copyWithSize:iconSize];
-	statusImageInverse=[original copyWithSize:iconSize colorTo:[NSColor whiteColor]];
+	statusImage=[original copyWithSize:_iconSize];
+	statusImageInverse=[original copyWithSize:_iconSize colorTo:[NSColor whiteColor]];
 	// gray icon needs coloring before sizing due to aliasing effects
 	NSImage *grayTemp=[[original copyWithSize:[original size] colorTo:[NSColor colorWithDeviceRed:0.6 green:0.6 blue:0.6 alpha: 1.0]] autorelease]; 
-	statusImageDisabled=[grayTemp copyWithSize:iconSize];	
+	statusImageDisabled=[grayTemp copyWithSize:_iconSize];	
 	
-	// build status item
-	float width = iconSize.width+4;
-    float height = [[NSStatusBar systemStatusBar] thickness];
-    NSRect viewFrame = NSMakeRect(0, 0, width, height);
-    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:width] retain];
-    [statusItem setView:[[[DCStatusItemView alloc] initWithFrame:viewFrame controller:self] autorelease]];
-	[self updateItems];
-	[[statusItem view] display];
+	[self displayStatusIcon];
 	
 	[self observePrefsKey:PrefsInvertScrolling];
+	[self observePrefsKey:PrefsHideIcon];
 	
 	canOpenMenu=YES;
 	
@@ -113,6 +142,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+	[self displayStatusIcon];
 	[self updateItems];
 }
 

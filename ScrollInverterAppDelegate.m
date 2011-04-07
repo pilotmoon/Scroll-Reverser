@@ -8,6 +8,7 @@
 
 NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 NSString *const PrefsHasRunBefore=@"HasRunBefore";
+NSString *const PrefsHideIcon=@"HideIcon";
 
 @implementation ScrollInverterAppDelegate
 
@@ -85,6 +86,25 @@ NSString *const PrefsHasRunBefore=@"HasRunBefore";
 		aboutController=[[FCAboutController alloc] init];
 	}
 	[aboutController showWindow:self];
+}
+
+- (IBAction)hideIcon:(id)sender
+{
+	NSLog(@"Hide icon");
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHideIcon];
+	NSAlert *alert=[NSAlert alertWithMessageText:@"Status Icon Hidden"
+								   defaultButton:@"OK"
+								 alternateButton:nil
+									 otherButton:nil
+					   informativeTextWithFormat:@"The status icon has been hidden. To get it back, click Scroll Reverser in the dock or double-click its icon in Finder."];
+	[alert runModal];
+}
+
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+{
+	NSLog(@"reveal icon");
+	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsHideIcon];
+	return NO;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
