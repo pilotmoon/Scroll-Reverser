@@ -95,6 +95,7 @@
 		01B66482132539EC00658B5C /* NSImage+CopySize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CopySize.m"; sourceTree = "<group>"; };
 		01EB78C21324D574005390BD /* MouseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseTap.m; sourceTree = "<group>"; };
 		01EB78C31324D574005390BD /* MouseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseTap.h; sourceTree = "<group>"; };
+		01EFD5AC134E2ED900798678 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		256AC3D80F4B6AC300CF3369 /* ScrollInverterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollInverterAppDelegate.h; sourceTree = "<group>"; };
@@ -321,6 +322,7 @@
 				German,
 				en,
 				fr,
+				pt,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -388,6 +390,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0158730D134DD1FA00CD9CC4 /* en */,
+				01EFD5AC134E2ED900798678 /* pt */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
