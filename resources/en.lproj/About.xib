@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="13"/>
+			<integer value="15"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -63,7 +63,7 @@
 											<int key="NSCellFlags">-2080244224</int>
 											<int key="NSCellFlags2">134217728</int>
 											<string key="NSContents">Gradient Button</string>
-											<object class="NSFont" key="NSSupport" id="627019841">
+											<object class="NSFont" key="NSSupport">
 												<string key="NSName">LucidaGrande</string>
 												<double key="NSSize">13</double>
 												<int key="NSfFlags">1044</int>
@@ -80,7 +80,7 @@
 									<object class="NSTextField" id="658866864">
 										<reference key="NSNextResponder" ref="662954843"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{31, 88}, {204, 23}}</string>
+										<string key="NSFrame">{{31, 94}, {204, 23}}</string>
 										<reference key="NSSuperview" ref="662954843"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="1011671872">
@@ -111,7 +111,7 @@
 									<object class="NSTextField" id="238388290">
 										<reference key="NSNextResponder" ref="662954843"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{31, 65}, {217, 21}}</string>
+										<string key="NSFrame">{{31, 70}, {217, 21}}</string>
 										<reference key="NSSuperview" ref="662954843"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="1041319010">
@@ -134,14 +134,18 @@
 									<object class="NSButton" id="455768814">
 										<reference key="NSNextResponder" ref="662954843"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{34, 16}, {94, 22}}</string>
+										<string key="NSFrame">{{34, 14}, {144, 24}}</string>
 										<reference key="NSSuperview" ref="662954843"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="473711517">
 											<int key="NSCellFlags">67239424</int>
 											<int key="NSCellFlags2">134217728</int>
 											<string key="NSContents">TEXT</string>
-											<reference key="NSSupport" ref="627019841"/>
+											<object class="NSFont" key="NSSupport" id="669712186">
+												<string key="NSName">LucidaGrande</string>
+												<double key="NSSize">12</double>
+												<int key="NSfFlags">16</int>
+											</object>
 											<reference key="NSControlView" ref="455768814"/>
 											<int key="NSButtonFlags">-2038284033</int>
 											<int key="NSButtonFlags2">134</int>
@@ -154,7 +158,7 @@
 									<object class="NSTextField" id="347160409">
 										<reference key="NSNextResponder" ref="662954843"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{168, 89}, {91, 22}}</string>
+										<string key="NSFrame">{{168, 95}, {91, 22}}</string>
 										<reference key="NSSuperview" ref="662954843"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="873111134">
@@ -177,14 +181,14 @@
 									<object class="NSButton" id="413411051">
 										<reference key="NSNextResponder" ref="662954843"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{138, 16}, {94, 22}}</string>
+										<string key="NSFrame">{{188, 14}, {144, 24}}</string>
 										<reference key="NSSuperview" ref="662954843"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="917675961">
 											<int key="NSCellFlags">67239424</int>
 											<int key="NSCellFlags2">134217728</int>
 											<string key="NSContents">TEXT</string>
-											<reference key="NSSupport" ref="627019841"/>
+											<reference key="NSSupport" ref="669712186"/>
 											<reference key="NSControlView" ref="413411051"/>
 											<int key="NSButtonFlags">-2038284033</int>
 											<int key="NSButtonFlags2">134</int>
@@ -197,7 +201,7 @@
 									<object class="NSTextField" id="569787479">
 										<reference key="NSNextResponder" ref="662954843"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{31, 45}, {284, 21}}</string>
+										<string key="NSFrame">{{31, 46}, {284, 21}}</string>
 										<reference key="NSSuperview" ref="662954843"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="954017706">
@@ -214,12 +218,12 @@
 										</object>
 									</object>
 								</object>
-								<string key="NSFrame">{{31.5, 0}, {362, 152}}</string>
+								<string key="NSFrame">{{31.5, 0}, {407, 152}}</string>
 								<reference key="NSSuperview" ref="360018358"/>
 							</object>
 						</object>
-						<string key="NSFrame">{{14, 82}, {362, 152}}</string>
-						<string key="NSBounds">{{31.5, 0}, {362, 152}}</string>
+						<string key="NSFrame">{{14, 41}, {407, 152}}</string>
+						<string key="NSBounds">{{31.5, 0}, {407, 152}}</string>
 						<reference key="NSSuperview" ref="222278619"/>
 						<string key="NSOffsets">{0, 0}</string>
 						<object class="NSTextFieldCell" key="NSTitleCell">
@@ -272,7 +276,7 @@
 								<string>NeXT TIFF v4.0 pasteboard type</string>
 							</object>
 						</object>
-						<string key="NSFrame">{{285, 58}, {200, 200}}</string>
+						<string key="NSFrame">{{328, 17}, {200, 200}}</string>
 						<reference key="NSSuperview" ref="222278619"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="460437639">
@@ -290,7 +294,7 @@
 						<bool key="NSEditable">YES</bool>
 					</object>
 				</object>
-				<string key="NSFrameSize">{533, 267}</string>
+				<string key="NSFrameSize">{496, 226}</string>
 				<reference key="NSSuperview"/>
 			</object>
 			<object class="NSUserDefaultsController" id="619679291">
@@ -472,12 +476,12 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1058445633"/>
-							<reference ref="658866864"/>
-							<reference ref="347160409"/>
 							<reference ref="455768814"/>
 							<reference ref="413411051"/>
-							<reference ref="569787479"/>
+							<reference ref="658866864"/>
+							<reference ref="347160409"/>
 							<reference ref="238388290"/>
+							<reference ref="569787479"/>
 						</object>
 						<reference key="parent" ref="222278619"/>
 					</object>
@@ -648,37 +652,27 @@
 					<string>FCButton</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDCgAAwlgAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDNwAAwhAAAA</bytes>
 					</object>
 					<string>FCButtonCell</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>FCLinkView</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABB+AAAwoYAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABB+AAAwoAAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{85, 614}, {533, 267}}</string>
+					<string>{{313, 352}, {496, 226}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>FCDraggableImageView</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUOTAABChgAAA</bytes>
+						<bytes key="NSTransformStruct">AUOkAABBiAAAA</bytes>
 					</object>
 					<string>FCWhiteBox</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableArray">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="IBUserGuide">
-							<reference key="view" ref="360018358"/>
-							<double key="location">54</double>
-							<int key="affinity">1</int>
-						</object>
-						<object class="IBUserGuide">
-							<reference key="view" ref="360018358"/>
-							<double key="location">54.5</double>
-							<int key="affinity">1</int>
-						</object>
 					</object>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">AcCgAABC5gAAA</bytes>
@@ -693,23 +687,23 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABB+AAAwqoAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABB+AAAwtoAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDHwAAwrYAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDKAAAwtoAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABB+AAAwqoAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABB+AAAwqgAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>FCButton</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCCAAAwlgAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABCCAAAwhAAAA</bytes>
 					</object>
 					<string>FCButtonCell</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1390,7 +1384,7 @@
 			<integer value="3000" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<string key="IBDocument.LastKnownRelativeProjectPath">ScrollInverter.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../../ScrollInverter.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">ScrollInverterIcon</string>
