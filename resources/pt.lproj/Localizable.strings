@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>About</key>
+	<string>Sobre</string>
+	<key>Check out this Mac app: Scroll Reverser</key>
+	<string>Veja este aplicativo para Mac: Scroll Reverser</string>
+	<key>Hide Status Icon</key>
+	<string>Esconder Ícone de Status</string>
+	<key>More Apps</key>
+	<string>Mais Apps</string>
+	<key>OK</key>
+	<string>OK</string>
+	<key>Preferences</key>
+	<string>Preferências</string>
+	<key>Quit Scroll Reverser</key>
+	<string>Fechar Scroll Reverser</string>
+	<key>Reverse Scrolling</key>
+	<string>Rolando Inversamente</string>
+	<key>Scroll Reverser for Mac, at %@</key>
+	<string>Scroll Reverser para Mac, em %@</string>
+	<key>Start at Login</key>
+	<string>Iniciar com o Mac</string>
+	<key>Status Icon Hidden</key>
+	<string>Ícone de Status Escondido</string>
+	<key>Tell a Friend</key>
+	<string>Conte para um amigo</string>
+	<key>The status icon has been hidden. To get it back, click Scroll Reverser in the dock or double-click its icon in Finder.</key>
+	<string>O ícone de status foi escondido. Para tê-lo de volta clique em  Scroll Reverser pela Dock ou clique duplo pelo Finder.</string>
+</dict>
+</plist>
