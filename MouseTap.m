@@ -1,6 +1,8 @@
 #import "MouseTap.h"
 
 #define NEGATE_FIELD (type) CGEventSetIntegerValueField(event, type, -CGEventGetIntegerValueField(event, type))
+#define MAGIC_NUMBER (0x7363726F726576)
+// "scrorev" in hex
 
 // This is called every time there is a scroll event. It has to be efficient.
 static CGEventRef eventTapCallback (CGEventTapProxy proxy,
@@ -13,18 +15,26 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
 	{
 		if (type==kCGEventScrollWheel)
 		{
-			// First get the line and pixel delta values.
-			int64_t line_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);		
-			int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
-			int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);				
-			int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
-			
-			/* Now negate them all. It's worth noting we have to set them in this order (lines then pixels) 
-			 or we lose smooth scrolling. */
-			CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -line_axis1);		
-			CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -line_axis2);
-			CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);		
-			CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
+			// don't reverse scrolling we have already reversed
+			int64_t ud=CGEventGetIntegerValueField(event, kCGEventSourceUserData);
+			if (ud!=MAGIC_NUMBER)
+			{
+				// First get the line and pixel delta values.
+				int64_t line_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);		
+				int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
+				int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);				
+				int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
+				
+				/* Now negate them all. It's worth noting we have to set them in this order (lines then pixels) 
+				 or we lose smooth scrolling. */
+				CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -line_axis1);		
+				CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -line_axis2);
+				CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);		
+				CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
+				
+				// set user data
+				CGEventSetIntegerValueField(event, kCGEventSourceUserData, MAGIC_NUMBER);				
+			}
 		}
 		else 
 		{
