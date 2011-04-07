@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="565"/>
+			<integer value="533"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -42,7 +42,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="NSMenuItem" id="962185928">
 						<reference key="NSMenu" ref="552230148"/>
-						<string key="NSTitle">Reverse Scrolling</string>
+						<string key="NSTitle">REVERSE SCROLLING</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSOnImage" id="598029772">
@@ -66,19 +66,19 @@
 					</object>
 					<object class="NSMenuItem" id="552625487">
 						<reference key="NSMenu" ref="552230148"/>
-						<string key="NSTitle">Preferences</string>
+						<string key="NSTitle">PREFERENCES</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="598029772"/>
 						<reference key="NSMixedImage" ref="960309333"/>
 						<string key="NSAction">submenuAction:</string>
 						<object class="NSMenu" key="NSSubmenu" id="427852243">
-							<string key="NSTitle">Preferences</string>
+							<string key="NSTitle">PREFERENCES</string>
 							<object class="NSMutableArray" key="NSMenuItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSMenuItem" id="647625113">
 									<reference key="NSMenu" ref="427852243"/>
-									<string key="NSTitle">Start at Login</string>
+									<string key="NSTitle">START AT LOGIN</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="598029772"/>
@@ -96,7 +96,7 @@
 								</object>
 								<object class="NSMenuItem" id="847658302">
 									<reference key="NSMenu" ref="427852243"/>
-									<string key="NSTitle">Hide Status Icon</string>
+									<string key="NSTitle">HIDE STATUS ICON</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="598029772"/>
@@ -107,7 +107,7 @@
 					</object>
 					<object class="NSMenuItem" id="840178010">
 						<reference key="NSMenu" ref="552230148"/>
-						<string key="NSTitle">About</string>
+						<string key="NSTitle">ABOUT</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="598029772"/>
@@ -125,7 +125,7 @@
 					</object>
 					<object class="NSMenuItem" id="445893040">
 						<reference key="NSMenu" ref="552230148"/>
-						<string key="NSTitle">Quit Scroll Reverser</string>
+						<string key="NSTitle">QUIT S R</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="598029772"/>
@@ -214,6 +214,102 @@
 						<reference key="destination" ref="847658302"/>
 					</object>
 					<int key="connectionID">573</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">title: menuStringReverseScrolling</string>
+						<reference key="source" ref="962185928"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="962185928"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">title: menuStringReverseScrolling</string>
+							<string key="NSBinding">title</string>
+							<string key="NSKeyPath">menuStringReverseScrolling</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">575</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">title: menuStringPreferences</string>
+						<reference key="source" ref="552625487"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="552625487"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">title: menuStringPreferences</string>
+							<string key="NSBinding">title</string>
+							<string key="NSKeyPath">menuStringPreferences</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">578</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">title: menuStringStartAtLogin</string>
+						<reference key="source" ref="647625113"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="647625113"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">title: menuStringStartAtLogin</string>
+							<string key="NSBinding">title</string>
+							<string key="NSKeyPath">menuStringStartAtLogin</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">581</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">title: menuStringHideStatusIcon</string>
+						<reference key="source" ref="847658302"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="847658302"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">title: menuStringHideStatusIcon</string>
+							<string key="NSBinding">title</string>
+							<string key="NSKeyPath">menuStringHideStatusIcon</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">583</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">title: menuStringAbout</string>
+						<reference key="source" ref="840178010"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="840178010"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">title: menuStringAbout</string>
+							<string key="NSBinding">title</string>
+							<string key="NSKeyPath">menuStringAbout</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">585</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">title: menuStringQuit</string>
+						<reference key="source" ref="445893040"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="445893040"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">title: menuStringQuit</string>
+							<string key="NSBinding">title</string>
+							<string key="NSKeyPath">menuStringQuit</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">587</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -360,7 +456,7 @@
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{296, 499}, {185, 103}}</string>
+					<string>{{213, 434}, {190, 103}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -369,7 +465,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{481, 519}, {162, 53}}</string>
+					<string>{{403, 454}, {181, 53}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -392,7 +488,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">573</int>
+			<int key="maxID">587</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -112,4 +112,23 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	[self updateTap];
 }
 
+- (NSString *)menuStringReverseScrolling {
+	return NSLocalizedString(@"Reverse Scrolling", @"this is a 'on/off' tick item in menu");
+}
+
+- (NSString *)menuStringAbout {
+	return NSLocalizedString(@"About", nil);
+}
+- (NSString *)menuStringPreferences {
+	return NSLocalizedString(@"Preferences", nil);
+}
+- (NSString *)menuStringQuit {
+	return NSLocalizedString(@"Quit Scroll Reverser", nil);
+}
+- (NSString *)menuStringStartAtLogin {
+	return NSLocalizedString(@"Start at Login", nil);
+}
+- (NSString *)menuStringHideStatusIcon {
+	return NSLocalizedString(@"Hide Status Icon", nil);
+}
 @end
