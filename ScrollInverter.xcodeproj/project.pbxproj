@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		015872991326456900100E4C /* DCWelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 015872981326456900100E4C /* DCWelcomeWindowController.m */; };
-		0158729B1326457800100E4C /* Welcome.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0158729A1326457800100E4C /* Welcome.xib */; };
 		015872C41326467C00100E4C /* DCNubWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 015872BF1326467C00100E4C /* DCNubWindow.m */; };
 		015872C51326467C00100E4C /* DCNubWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 015872C11326467C00100E4C /* DCNubWindowView.m */; };
 		015872C61326467C00100E4C /* NSBezierPath+Nub.m in Sources */ = {isa = PBXBuildFile; fileRef = 015872C31326467C00100E4C /* NSBezierPath+Nub.m */; };
@@ -16,6 +15,9 @@
 		015872D8132646B800100E4C /* DCBubbleWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 015872BC1326466100100E4C /* DCBubbleWindowView.m */; };
 		0158735813265EDD00100E4C /* DCStatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0158735513265EDD00100E4C /* DCStatusItemController.m */; };
 		0158735913265EDD00100E4C /* DCStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0158735713265EDD00100E4C /* DCStatusItemView.m */; };
+		0163B5FE134DCA5F00CD96F1 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0163B5FA134DCA5F00CD96F1 /* About.xib */; };
+		0163B5FF134DCA5F00CD96F1 /* Welcome.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0163B5FC134DCA5F00CD96F1 /* Welcome.xib */; };
+		0163B611134DCB2100CD96F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0163B60F134DCB2100CD96F1 /* Localizable.strings */; };
 		0199D2DB13254E9B000D8011 /* ScrollInverterIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */; };
 		0199D30913254F0E000D8011 /* FCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D2FA13254F0E000D8011 /* FCButton.m */; };
 		0199D30A13254F0E000D8011 /* FCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D2FC13254F0E000D8011 /* FCButtonCell.m */; };
@@ -24,7 +26,6 @@
 		0199D30D13254F0E000D8011 /* FCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D30213254F0E000D8011 /* FCAboutController.m */; };
 		0199D30E13254F0E000D8011 /* FCDraggableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D30413254F0E000D8011 /* FCDraggableImageView.m */; };
 		0199D30F13254F0E000D8011 /* FCLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D30613254F0E000D8011 /* FCLinkView.m */; };
-		0199D34913254F94000D8011 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0199D34813254F94000D8011 /* About.xib */; };
 		0199D36C13255051000D8011 /* XIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0199D36B13255051000D8011 /* XIcon.png */; };
 		0199D3751325519E000D8011 /* FCBubbleCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D3741325519E000D8011 /* FCBubbleCloseButton.m */; };
 		0199D388132551B5000D8011 /* FCImageButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199D385132551B5000D8011 /* FCImageButtonCell.m */; };
@@ -44,7 +45,6 @@
 /* Begin PBXFileReference section */
 		015872971326456900100E4C /* DCWelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWelcomeWindowController.h; sourceTree = "<group>"; };
 		015872981326456900100E4C /* DCWelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCWelcomeWindowController.m; sourceTree = "<group>"; };
-		0158729A1326457800100E4C /* Welcome.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Welcome.xib; sourceTree = "<group>"; };
 		015872B91326466100100E4C /* DCBubbleWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCBubbleWindow.h; sourceTree = "<group>"; };
 		015872BA1326466100100E4C /* DCBubbleWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCBubbleWindow.m; sourceTree = "<group>"; };
 		015872BB1326466100100E4C /* DCBubbleWindowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCBubbleWindowView.h; sourceTree = "<group>"; };
@@ -59,6 +59,11 @@
 		0158735513265EDD00100E4C /* DCStatusItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCStatusItemController.m; sourceTree = "<group>"; };
 		0158735613265EDD00100E4C /* DCStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCStatusItemView.h; sourceTree = "<group>"; };
 		0158735713265EDD00100E4C /* DCStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCStatusItemView.m; sourceTree = "<group>"; };
+		0163B5F4134DC9EF00CD96F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0163B5F5134DC9EF00CD96F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		0163B5FB134DCA5F00CD96F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/About.xib; sourceTree = "<group>"; };
+		0163B5FD134DCA5F00CD96F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Welcome.xib; sourceTree = "<group>"; };
+		0163B610134DCB2100CD96F1 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ScrollInverterIcon.icns; sourceTree = "<group>"; };
 		0199D2F913254F0E000D8011 /* FCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCButton.h; sourceTree = "<group>"; };
 		0199D2FA13254F0E000D8011 /* FCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCButton.m; sourceTree = "<group>"; };
@@ -74,7 +79,6 @@
 		0199D30413254F0E000D8011 /* FCDraggableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCDraggableImageView.m; sourceTree = "<group>"; };
 		0199D30513254F0E000D8011 /* FCLinkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLinkView.h; sourceTree = "<group>"; };
 		0199D30613254F0E000D8011 /* FCLinkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLinkView.m; sourceTree = "<group>"; };
-		0199D34813254F94000D8011 /* About.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 		0199D36B13255051000D8011 /* XIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XIcon.png; sourceTree = "<group>"; };
 		0199D3731325519E000D8011 /* FCBubbleCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCBubbleCloseButton.h; sourceTree = "<group>"; };
 		0199D3741325519E000D8011 /* FCBubbleCloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCBubbleCloseButton.m; sourceTree = "<group>"; };
@@ -91,10 +95,8 @@
 		01B66482132539EC00658B5C /* NSImage+CopySize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CopySize.m"; sourceTree = "<group>"; };
 		01EB78C21324D574005390BD /* MouseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseTap.m; sourceTree = "<group>"; };
 		01EB78C31324D574005390BD /* MouseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseTap.h; sourceTree = "<group>"; };
-		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		256AC3D80F4B6AC300CF3369 /* ScrollInverterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollInverterAppDelegate.h; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollInverterAppDelegate.m; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* Scroll_Inverter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scroll_Inverter_Prefix.pch; sourceTree = "<group>"; };
@@ -260,9 +262,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0158729A1326457800100E4C /* Welcome.xib */,
+				0163B60F134DCB2100CD96F1 /* Localizable.strings */,
+				0163B5FA134DCA5F00CD96F1 /* About.xib */,
+				0163B5FC134DCA5F00CD96F1 /* Welcome.xib */,
 				0199D36B13255051000D8011 /* XIcon.png */,
-				0199D34813254F94000D8011 /* About.xib */,
 				0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */,
 				01B6647F132539D500658B5C /* ScrollInverterStatus.png */,
 				8D1107310486CEB800E47090 /* Scroll_Inverter-Info.plist */,
@@ -316,6 +319,7 @@
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -335,9 +339,10 @@
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				01B66480132539D500658B5C /* ScrollInverterStatus.png in Resources */,
 				0199D2DB13254E9B000D8011 /* ScrollInverterIcon.icns in Resources */,
-				0199D34913254F94000D8011 /* About.xib in Resources */,
 				0199D36C13255051000D8011 /* XIcon.png in Resources */,
-				0158729B1326457800100E4C /* Welcome.xib in Resources */,
+				0163B5FE134DCA5F00CD96F1 /* About.xib in Resources */,
+				0163B5FF134DCA5F00CD96F1 /* Welcome.xib in Resources */,
+				0163B611134DCB2100CD96F1 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,10 +383,34 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0163B5FA134DCA5F00CD96F1 /* About.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0163B5FB134DCA5F00CD96F1 /* en */,
+			);
+			name = About.xib;
+			sourceTree = "<group>";
+		};
+		0163B5FC134DCA5F00CD96F1 /* Welcome.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0163B5FD134DCA5F00CD96F1 /* en */,
+			);
+			name = Welcome.xib;
+			sourceTree = "<group>";
+		};
+		0163B60F134DCB2100CD96F1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0163B610134DCB2100CD96F1 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				089C165DFE840E0CC02AAC07 /* English */,
+				0163B5F4134DC9EF00CD96F1 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -389,7 +418,7 @@
 		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1DDD58150DA1D0A300B32029 /* English */,
+				0163B5F5134DC9EF00CD96F1 /* en */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";

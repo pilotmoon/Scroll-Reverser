@@ -56,6 +56,11 @@
 	return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSHumanReadableCopyright"];
 }
 
+- (NSString *)productUrl
+{
+	return @"http://pilotmoon.com/scrollreverser";
+}
+
 - (NSString *)versionStatement
 {
 	NSString *base=@"v%@";
@@ -64,7 +69,7 @@
 
 - (NSString *)linkButton1Text
 {
-	return @"More Apps";
+	return NSLocalizedString(@"More Apps", @"Button which takes the user to see more apps from Pilotmoon Software on the web site");
 }
 
 - (IBAction)linkButton1:(id)sender
@@ -75,15 +80,15 @@
 
 - (NSString *)linkButton2Text
 {
-	return @"Tell a Friend";
+	return NSLocalizedString(@"Tell a Friend", nil);
 }
 
 - (IBAction)linkButton2:(id)sender
 {
 	[self closeAboutWindow:self];
 	NSString *addr=@"";
-	NSString *subj=@"Check out this Mac app: Scroll Reverser";
-	NSString *body=@"Scroll Reverser for Mac, at http://www.pilotmoon.com/scrollreverser";
+	NSString *subj=NSLocalizedString(@"Check out this Mac app: Scroll Reverser", nil);
+	NSString *body=[NSString stringWithFormat:NSLocalizedString(@"Scroll Reverser for Mac, at %@", @"%@ is the url of scroll reverser (usually http://pilotmoon.com/scrollreverser)"), [self productUrl]];
 	NSString *urls=[[NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", addr, subj, body, nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urls]];
 	

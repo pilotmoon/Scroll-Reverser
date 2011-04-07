@@ -92,11 +92,11 @@ NSString *const PrefsHideIcon=@"HideIcon";
 {
 	NSLog(@"Hide icon");
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHideIcon];
-	NSAlert *alert=[NSAlert alertWithMessageText:@"Status Icon Hidden"
-								   defaultButton:@"OK"
+	NSAlert *alert=[NSAlert alertWithMessageText:NSLocalizedString(@"Status Icon Hidden",nil)
+								   defaultButton:NSLocalizedString(@"OK",nil)
 								 alternateButton:nil
 									 otherButton:nil
-					   informativeTextWithFormat:@"The status icon has been hidden. To get it back, click Scroll Reverser in the dock or double-click its icon in Finder."];
+					   informativeTextWithFormat:NSLocalizedString(@"The status icon has been hidden. To get it back, click Scroll Reverser in the dock or double-click its icon in Finder.", nil)];
 	[alert runModal];
 }
 
