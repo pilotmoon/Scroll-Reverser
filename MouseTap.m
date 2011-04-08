@@ -17,24 +17,31 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
 		{
 			// don't reverse scrolling we have already reversed
 			int64_t ud=CGEventGetIntegerValueField(event, kCGEventSourceUserData);
-			if (ud!=MAGIC_NUMBER)
-			{
-				// First get the line and pixel delta values.
-				int64_t line_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);		
-				int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
-				int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);				
-				int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
-				
-				/* Now negate them all. It's worth noting we have to set them in this order (lines then pixels) 
-				 or we lose smooth scrolling. */
-				CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -line_axis1);		
-				CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -line_axis2);
-				CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);		
-				CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
-				
-				// set user data
-				CGEventSetIntegerValueField(event, kCGEventSourceUserData, MAGIC_NUMBER);				
+			if (ud==MAGIC_NUMBER) {
+				goto end_tap;
 			}
+			
+			// don't reverse scrolling which comes from another app
+			int64_t sourcepid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);				
+			if (sourcepid==0) {
+				goto end_tap;
+			}
+
+			// First get the line and pixel delta values.
+			int64_t line_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
+			int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
+			int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);				
+			int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
+			
+			/* Now negate them all. It's worth noting we have to set them in this order (lines then pixels) 
+			 or we lose smooth scrolling. */
+			CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -line_axis1);		
+			CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -line_axis2);
+			CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);		
+			CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
+			
+			// set user data
+			CGEventSetIntegerValueField(event, kCGEventSourceUserData, MAGIC_NUMBER);									
 		}
 		else 
 		{
@@ -45,6 +52,7 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
 			}	
 		}		
 	}
+end_tap:
 	return event;
 }
 
