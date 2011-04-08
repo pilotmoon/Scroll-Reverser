@@ -23,7 +23,7 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
 			
 			// don't reverse scrolling which comes from another app
 			int64_t sourcepid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);				
-			if (sourcepid==0) {
+			if (sourcepid!=0) {
 				goto end_tap;
 			}
 
