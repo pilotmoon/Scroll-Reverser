@@ -8,6 +8,7 @@
 
 NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
 NSString *const PrefsHasRunBefore=@"HasRunBefore";
+NSString *const PrefsHideIcon=@"HideIcon";
 
 @implementation ScrollInverterAppDelegate
 
@@ -87,9 +88,47 @@ NSString *const PrefsHasRunBefore=@"HasRunBefore";
 	[aboutController showWindow:self];
 }
 
+- (IBAction)hideIcon:(id)sender
+{
+	NSLog(@"Hide icon");
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHideIcon];
+	NSAlert *alert=[NSAlert alertWithMessageText:NSLocalizedString(@"Status Icon Hidden",nil)
+								   defaultButton:NSLocalizedString(@"OK",nil)
+								 alternateButton:nil
+									 otherButton:nil
+					   informativeTextWithFormat:NSLocalizedString(@"The status icon has been hidden. To get it back, click Scroll Reverser in the dock or double-click its icon in Finder.", nil)];
+	[alert runModal];
+}
+
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+{
+	NSLog(@"reveal icon");
+	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsHideIcon];
+	return NO;
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	[self updateTap];
 }
 
+- (NSString *)menuStringReverseScrolling {
+	return NSLocalizedString(@"Reverse Scrolling", @"this is a 'on/off' tick item in menu");
+}
+
+- (NSString *)menuStringAbout {
+	return NSLocalizedString(@"About", nil);
+}
+- (NSString *)menuStringPreferences {
+	return NSLocalizedString(@"Preferences", nil);
+}
+- (NSString *)menuStringQuit {
+	return NSLocalizedString(@"Quit Scroll Reverser", nil);
+}
+- (NSString *)menuStringStartAtLogin {
+	return NSLocalizedString(@"Start at Login", nil);
+}
+- (NSString *)menuStringHideStatusIcon {
+	return NSLocalizedString(@"Hide Status Icon", nil);
+}
 @end

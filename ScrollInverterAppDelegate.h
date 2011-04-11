@@ -2,17 +2,15 @@
 @class MouseTap, FCAboutController, DCWelcomeWindowController, DCStatusItemController;
 
 extern NSString *const PrefsInvertScrolling;
+extern NSString *const PrefsHideIcon;
 
 @interface ScrollInverterAppDelegate : NSObject {
 	MouseTap *tap;
-	//NSStatusItem *statusItem;
 	IBOutlet NSMenu *statusMenu;
-	//NSImage *statusImage;
-	//NSImage *statusImageDisabled;
-	//NSImage *statusImageInverse;
 	FCAboutController *aboutController;
 	DCWelcomeWindowController *welcomeController;
 	DCStatusItemController *statusController;
 }
 - (IBAction)showAbout:(id)sender;
+- (IBAction)hideIcon:(id)sender;
 @end
