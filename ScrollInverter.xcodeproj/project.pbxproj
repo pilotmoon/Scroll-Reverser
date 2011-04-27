@@ -86,6 +86,7 @@
 		0199D385132551B5000D8011 /* FCImageButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCImageButtonCell.m; sourceTree = "<group>"; };
 		0199D386132551B5000D8011 /* FCImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCImageButton.h; sourceTree = "<group>"; };
 		0199D387132551B5000D8011 /* FCImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCImageButton.m; sourceTree = "<group>"; };
+		01B1F4041368A62400BB9A3A /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = resources/el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01B662D313250CA800658B5C /* LoginItemsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemsController.h; sourceTree = "<group>"; };
 		01B662D413250CA800658B5C /* LoginItemsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemsController.m; sourceTree = "<group>"; };
 		01B66449132528A000658B5C /* NSObject+ObservePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ObservePrefs.h"; sourceTree = "<group>"; };
@@ -323,6 +324,7 @@
 				en,
 				fr,
 				pt,
+				el,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -391,6 +393,7 @@
 			children = (
 				0158730D134DD1FA00CD9CC4 /* en */,
 				01EFD5AC134E2ED900798678 /* pt */,
+				01B1F4041368A62400BB9A3A /* el */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
