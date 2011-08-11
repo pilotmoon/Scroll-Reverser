@@ -36,6 +36,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 		[self updateTap];
 		statusController=[[DCStatusItemController alloc] init];
         [self observePrefsKey:PrefsInvertScrolling];
+        [self observePrefsKey:PrefsHideIcon];
 	}
 	return self;
 }
@@ -88,16 +89,18 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	[aboutController showWindow:self];
 }
 
-- (IBAction)hideIcon:(id)sender
+- (void)handleHideIcon
 {
 	NSLog(@"Hide icon");
-	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHideIcon];
 	NSAlert *alert=[NSAlert alertWithMessageText:NSLocalizedString(@"Status Icon Hidden",nil)
 								   defaultButton:NSLocalizedString(@"OK",nil)
-								 alternateButton:nil
+								 alternateButton:NSLocalizedString(@"Restore Now",nil)
 									 otherButton:nil
-					   informativeTextWithFormat:NSLocalizedString(@"The status icon has been hidden. To get it back, click Scroll Reverser in the dock or double-click its icon in Finder.", nil)];
-	[alert runModal];
+					   informativeTextWithFormat:NSLocalizedString(@"MENU_HIDDEN_TEXT", @"text shown when the menu bar icon is hidden")];
+	const NSInteger button=[alert runModal];
+    if (button==NSAlertAlternateReturn) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsHideIcon];
+    }
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
@@ -109,11 +112,20 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	[self updateTap];
+    if ([keyPath hasSuffix:@"HideIcon"]) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon])
+        {
+            [self handleHideIcon];
+        }
+    }
+    else 
+    {
+        [self updateTap];
+    }
 }
 
 - (NSString *)menuStringReverseScrolling {
-	return NSLocalizedString(@"Reverse Scrolling", @"this is a 'on/off' tick item in menu");
+	return NSLocalizedString(@"Reverse Scrolling", nil);
 }
 
 - (NSString *)menuStringAbout {
@@ -128,7 +140,23 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (NSString *)menuStringStartAtLogin {
 	return NSLocalizedString(@"Start at Login", nil);
 }
-- (NSString *)menuStringHideStatusIcon {
-	return NSLocalizedString(@"Hide Status Icon", nil);
+- (NSString *)menuStringShowInMenuBar {
+	return NSLocalizedString(@"Show in Menu Bar", nil);
+}
+- (NSString *)menuStringHorizontal {
+	return NSLocalizedString(@"Reverse Horizontal", nil);
+}
+- (NSString *)menuStringVertical {
+	return NSLocalizedString(@"Reverse Vertical", nil);
+}
+- (NSString *)menuStringTrackpad {
+	return NSLocalizedString(@"Reverse Trackpad", nil);
+}
+- (NSString *)menuStringMouse {
+	return NSLocalizedString(@"Reverse Mouse", nil);
+}
+- (NSString *)menuStringTablet {
+	return NSLocalizedString(@"Reverse Tablet", nil);
 }
 @end
+

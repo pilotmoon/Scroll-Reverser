@@ -12,5 +12,4 @@ extern NSString *const PrefsHideIcon;
 	DCStatusItemController *statusController;
 }
 - (IBAction)showAbout:(id)sender;
-- (IBAction)hideIcon:(id)sender;
 @end

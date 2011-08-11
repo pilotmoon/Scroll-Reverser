@@ -26,7 +26,7 @@
 	<string>Ícone de Status Escondido</string>
 	<key>Tell a Friend</key>
 	<string>Conte para um amigo</string>
-	<key>The status icon has been hidden. To get it back, click Scroll Reverser in the dock or double-click its icon in Finder.</key>
+	<key>MENU_HIDDEN_TEXT</key>
 	<string>O ícone de status foi escondido. Para tê-lo de volta clique em  Scroll Reverser pela Dock ou clique duplo pelo Finder.</string>
 </dict>
 </plist>
