@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 @class DCStatusItem;
 
-@interface DCStatusItemController : NSWindowController {
+@interface DCStatusItemController : NSWindowController <NSMenuDelegate> {
 	NSStatusItem *statusItem;
 	NSImage *statusImage;
 	NSImage *statusImageInverse;

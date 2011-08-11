@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -56,7 +56,7 @@
 		015872C21326467C00100E4C /* NSBezierPath+Nub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBezierPath+Nub.h"; sourceTree = "<group>"; };
 		015872C31326467C00100E4C /* NSBezierPath+Nub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBezierPath+Nub.m"; sourceTree = "<group>"; };
 		0158730C134DD1FA00CD9CC4 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0158730D134DD1FA00CD9CC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0158730D134DD1FA00CD9CC4 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0158734F134DD2B300CD9CC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = resources/en.lproj/About.xib; sourceTree = "<group>"; };
 		01587351134DD2B300CD9CC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = resources/en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		01587353134DD2B300CD9CC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = resources/en.lproj/Welcome.xib; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		0199D385132551B5000D8011 /* FCImageButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCImageButtonCell.m; sourceTree = "<group>"; };
 		0199D386132551B5000D8011 /* FCImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCImageButton.h; sourceTree = "<group>"; };
 		0199D387132551B5000D8011 /* FCImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCImageButton.m; sourceTree = "<group>"; };
-		01B1F4041368A62400BB9A3A /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = resources/el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01B1F4041368A62400BB9A3A /* el */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = el; path = resources/el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01B662D313250CA800658B5C /* LoginItemsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemsController.h; sourceTree = "<group>"; };
 		01B662D413250CA800658B5C /* LoginItemsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemsController.m; sourceTree = "<group>"; };
 		01B66449132528A000658B5C /* NSObject+ObservePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ObservePrefs.h"; sourceTree = "<group>"; };
@@ -312,8 +312,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0410;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ScrollInverter" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -441,7 +444,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -491,9 +493,9 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -507,8 +509,9 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
