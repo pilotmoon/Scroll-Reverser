@@ -38,6 +38,7 @@
 		01B66483132539EC00658B5C /* NSImage+CopySize.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B66482132539EC00658B5C /* NSImage+CopySize.m */; };
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
 		256AC3DA0F4B6AC300CF3369 /* ScrollInverterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */; };
+		27AF3F6D13F3CCF00034733F /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0158734E134DD2B300CD9CC4 /* About.xib */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		256AC3D80F4B6AC300CF3369 /* ScrollInverterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollInverterAppDelegate.h; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollInverterAppDelegate.m; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* Scroll_Inverter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scroll_Inverter_Prefix.pch; sourceTree = "<group>"; };
+		27AF3F6C13F3CCF00034733F /* it */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = it; path = resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -328,6 +330,7 @@
 				fr,
 				pt,
 				el,
+				it,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -351,6 +354,7 @@
 				01587354134DD2B300CD9CC4 /* About.xib in Resources */,
 				01587355134DD2B300CD9CC4 /* MainMenu.xib in Resources */,
 				01587356134DD2B300CD9CC4 /* Welcome.xib in Resources */,
+				27AF3F6D13F3CCF00034733F /* About.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +401,7 @@
 				0158730D134DD1FA00CD9CC4 /* en */,
 				01EFD5AC134E2ED900798678 /* pt */,
 				01B1F4041368A62400BB9A3A /* el */,
+				27AF3F6C13F3CCF00034733F /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
