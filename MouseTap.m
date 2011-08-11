@@ -20,7 +20,6 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
     {
         // how many fingers on the pad
         tap->fingers=[[[NSEvent eventWithCGEvent:event] touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];		
-        NSLog(@"fingers=%lu",tap->fingers);
         goto end_tap;
     }
     else if (type==kCGEventScrollWheel)
