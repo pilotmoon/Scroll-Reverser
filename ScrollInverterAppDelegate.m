@@ -12,7 +12,7 @@ NSString *const PrefsReverseVertical=@"ReverseY";
 NSString *const PrefsReverseTrackpad=@"ReverseTrackpad";
 NSString *const PrefsReverseMouse=@"ReverseMouse";
 NSString *const PrefsReverseTablet=@"ReverseTablet";
-NSString *const PrefsHasRunBefore=@"HasRunBefore_1_4";
+NSString *const PrefsHasRunBefore=@"HasRunBefore";
 NSString *const PrefsHideIcon=@"HideIcon";
 
 @implementation ScrollInverterAppDelegate
