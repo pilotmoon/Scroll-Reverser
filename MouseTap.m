@@ -11,8 +11,21 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
 							 void *userInfo)
 {
 	MouseTap *tap=(MouseTap *)userInfo;
-	if (tap->inverting)
+    if (type==kCGEventTabletProximity) 
+    {
+        // is the pen next to the tablet?
+        tap->tabletProx=!!CGEventGetIntegerValueField(event, kCGTabletProximityEventEnterProximity);
+        goto end_tap;
+    }
+	
+    if (tap->inverting)
 	{
+        // invert tablet?
+        if (tap->tabletProx&&!tap->invertTablet)
+        {
+            goto end_tap;
+        }
+        
 		if (type==kCGEventScrollWheel)
 		{
 			// don't reverse scrolling we have already reversed
@@ -71,7 +84,7 @@ end_tap:
 	port = (CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
 										   kCGTailAppendEventTap,
 										   kCGEventTapOptionDefault,
-										   CGEventMaskBit(kCGEventScrollWheel),
+										   CGEventMaskBit(kCGEventScrollWheel)|CGEventMaskBit(kCGEventTabletProximity),
 										   eventTapCallback,
 										   self);
 
