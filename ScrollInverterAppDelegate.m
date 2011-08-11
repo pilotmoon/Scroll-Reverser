@@ -94,8 +94,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
 	if(first) {
-        // re-show icon
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsHideIcon];
         if (NSClassFromString(@"NSPopover")) { // lion
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsReverseHorizontal];
         }
