@@ -88,7 +88,7 @@
 											<int key="NSCellFlags2">272629760</int>
 											<string key="NSContents">Scroll Reverser</string>
 											<object class="NSFont" key="NSSupport">
-												<string key="NSName">Helvetica-Bold</string>
+												<string key="NSName">LucidaGrande-Bold</string>
 												<double key="NSSize">18</double>
 												<int key="NSfFlags">16</int>
 											</object>
@@ -111,15 +111,15 @@
 									<object class="NSTextField" id="238388290">
 										<reference key="NSNextResponder" ref="662954843"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{31, 70}, {217, 21}}</string>
+										<string key="NSFrame">{{31, 70}, {350, 21}}</string>
 										<reference key="NSSuperview" ref="662954843"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="1041319010">
 											<int key="NSCellFlags">68288064</int>
 											<int key="NSCellFlags2">272630784</int>
 											<string key="NSContents">©2011 Copyright Statement</string>
-											<object class="NSFont" key="NSSupport" id="1021278099">
-												<string key="NSName">Helvetica-Light</string>
+											<object class="NSFont" key="NSSupport" id="254659566">
+												<string key="NSName">LucidaGrande</string>
 												<double key="NSSize">17</double>
 												<int key="NSfFlags">16</int>
 											</object>
@@ -158,7 +158,7 @@
 									<object class="NSTextField" id="347160409">
 										<reference key="NSNextResponder" ref="662954843"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{168, 95}, {91, 22}}</string>
+										<string key="NSFrame">{{179, 95}, {167, 22}}</string>
 										<reference key="NSSuperview" ref="662954843"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="873111134">
@@ -166,7 +166,7 @@
 											<int key="NSCellFlags2">272630784</int>
 											<string key="NSContents">version</string>
 											<object class="NSFont" key="NSSupport">
-												<string key="NSName">Helvetica-Light</string>
+												<string key="NSName">LucidaGrande</string>
 												<double key="NSSize">18</double>
 												<int key="NSfFlags">16</int>
 											</object>
@@ -201,14 +201,14 @@
 									<object class="NSTextField" id="569787479">
 										<reference key="NSNextResponder" ref="662954843"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{31, 46}, {284, 21}}</string>
+										<string key="NSFrame">{{31, 46}, {350, 21}}</string>
 										<reference key="NSSuperview" ref="662954843"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="954017706">
 											<int key="NSCellFlags">68288064</int>
 											<int key="NSCellFlags2">272630784</int>
 											<string key="NSContents">http://pilotmoon.com/scrollreverser</string>
-											<reference key="NSSupport" ref="1021278099"/>
+											<reference key="NSSupport" ref="254659566"/>
 											<reference key="NSControlView" ref="569787479"/>
 											<reference key="NSBackgroundColor" ref="181826370"/>
 											<object class="NSColor" key="NSTextColor">
@@ -479,9 +479,9 @@
 							<reference ref="455768814"/>
 							<reference ref="413411051"/>
 							<reference ref="658866864"/>
-							<reference ref="347160409"/>
 							<reference ref="238388290"/>
 							<reference ref="569787479"/>
+							<reference ref="347160409"/>
 						</object>
 						<reference key="parent" ref="222278619"/>
 					</object>
@@ -692,7 +692,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDKAAAwtoAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDMAAAwuYAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

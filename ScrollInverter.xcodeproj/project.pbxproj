@@ -86,6 +86,7 @@
 		0199D385132551B5000D8011 /* FCImageButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCImageButtonCell.m; sourceTree = "<group>"; };
 		0199D386132551B5000D8011 /* FCImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCImageButton.h; sourceTree = "<group>"; };
 		0199D387132551B5000D8011 /* FCImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCImageButton.m; sourceTree = "<group>"; };
+		01B1F4041368A62400BB9A3A /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = resources/el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01B662D313250CA800658B5C /* LoginItemsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemsController.h; sourceTree = "<group>"; };
 		01B662D413250CA800658B5C /* LoginItemsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemsController.m; sourceTree = "<group>"; };
 		01B66449132528A000658B5C /* NSObject+ObservePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ObservePrefs.h"; sourceTree = "<group>"; };
@@ -323,6 +324,7 @@
 				en,
 				fr,
 				pt,
+				el,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -391,6 +393,7 @@
 			children = (
 				0158730D134DD1FA00CD9CC4 /* en */,
 				01EFD5AC134E2ED900798678 /* pt */,
+				01B1F4041368A62400BB9A3A /* el */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -451,7 +454,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = "Scroll Reverser";
 				STRIP_INSTALLED_PRODUCT = NO;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = "i386 ppc ppc64 ppc7400 ppc970 x86_64";
 			};
 			name = Debug;
 		};
@@ -474,7 +477,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = "Scroll Reverser";
 				STRIP_INSTALLED_PRODUCT = YES;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = "i386 ppc ppc64 ppc7400 ppc970 x86_64";
 			};
 			name = Release;
 		};
@@ -482,7 +485,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 8;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -499,7 +502,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 8;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
