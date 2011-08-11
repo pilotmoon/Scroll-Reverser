@@ -9,6 +9,7 @@
 	/* This is public so that the tap function doesn't have to invoke a method to get to it.
 	 Maybe over-optimizing here but it's all pretty straightforward. */
     BOOL tabletProx;
+    NSUInteger fingers;
 	BOOL inverting;
     BOOL invertX;
     BOOL invertY;
