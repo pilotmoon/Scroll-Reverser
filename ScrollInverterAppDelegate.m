@@ -12,7 +12,7 @@ NSString *const PrefsReverseVertical=@"ReverseY";
 NSString *const PrefsReverseTrackpad=@"ReverseTrackpad";
 NSString *const PrefsReverseMouse=@"ReverseMouse";
 NSString *const PrefsReverseTablet=@"ReverseTablet";
-NSString *const PrefsHasRunBefore=@"HasRunBefore";
+NSString *const PrefsHasRunBefore=@"HasRunBefore_1_4";
 NSString *const PrefsHideIcon=@"HideIcon";
 
 @implementation ScrollInverterAppDelegate
@@ -94,6 +94,11 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
 	if(first) {
+        // re-show icon
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsHideIcon];
+        if (NSClassFromString(@"NSPopover")) { // lion
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsReverseHorizontal];
+        }
 		[self doWelcome];		
 	}
 	[tap start];
