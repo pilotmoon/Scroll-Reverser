@@ -24,13 +24,23 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
     }
     else if (type==kCGEventScrollWheel)
     {
+        // cached trackpad state so we invert the momentum
+        const UInt32 tickCount=TickCount();
+        const UInt32 ticksElapsed=tickCount-tap->lastScrollEventTick;
+        tap->lastScrollEventTick=tickCount;
+        const BOOL newScrollEvent=ticksElapsed>20; // ticks are about 1/60 of second
+        if (newScrollEvent) 
+        {
+            tap->cachedIsTrackpad=tap->fingers>0;
+        }
+        
         if (!tap->inverting) goto end_tap;
         
         if (tap->tabletProx)
         {
             if (!tap->invertTablet) goto end_tap;
         }
-        else if (tap->fingers>0)
+        else if (tap->cachedIsTrackpad)
         {
             if (!tap->invertMultiTouch) goto end_tap;
         }

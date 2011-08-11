@@ -10,6 +10,8 @@
 	 Maybe over-optimizing here but it's all pretty straightforward. */
     BOOL tabletProx;
     NSUInteger fingers;
+    BOOL cachedIsTrackpad;
+    UInt32 lastScrollEventTick;
 	BOOL inverting;
     BOOL invertX;
     BOOL invertY;
