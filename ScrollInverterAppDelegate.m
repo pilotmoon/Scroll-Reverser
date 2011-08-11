@@ -34,8 +34,12 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)updateTap
 {
-    BOOL on=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
-	tap.inverting=on;
+	tap.inverting=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
+    tap.invertX=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal];
+    tap.invertY=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical];
+    tap.invertMultiTouch=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad];
+    tap.invertTablet=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTablet];
+    tap.invertOther=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse];
 }
 
 - (id)init
@@ -46,8 +50,13 @@ NSString *const PrefsHideIcon=@"HideIcon";
 		[self updateTap];
 		statusController=[[DCStatusItemController alloc] init];
         [self observePrefsKey:PrefsReverseScrolling];
+        [self observePrefsKey:PrefsReverseHorizontal];
+        [self observePrefsKey:PrefsReverseVertical];
+        [self observePrefsKey:PrefsReverseTrackpad];
+        [self observePrefsKey:PrefsReverseMouse];
+        [self observePrefsKey:PrefsReverseTablet];
         [self observePrefsKey:PrefsHideIcon];
-	}
+    }
 	return self;
 }
 

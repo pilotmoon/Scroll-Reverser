@@ -82,7 +82,7 @@
 							<string key="NSTitle">PREFERENCES</string>
 							<object class="NSMutableArray" key="NSMenuItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMenuItem" id="248917492">
+								<object class="NSMenuItem" id="128657237">
 									<reference key="NSMenu" ref="427852243"/>
 									<string key="NSTitle">HORIZONTAL</string>
 									<string key="NSKeyEquiv"/>
@@ -90,7 +90,7 @@
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
 								</object>
-								<object class="NSMenuItem" id="128292678">
+								<object class="NSMenuItem" id="692805086">
 									<reference key="NSMenu" ref="427852243"/>
 									<string key="NSTitle">VERTICAL</string>
 									<string key="NSKeyEquiv"/>
@@ -108,7 +108,7 @@
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
 								</object>
-								<object class="NSMenuItem" id="391030533">
+								<object class="NSMenuItem" id="953333715">
 									<reference key="NSMenu" ref="427852243"/>
 									<string key="NSTitle">TRACKPAD</string>
 									<string key="NSKeyEquiv"/>
@@ -116,7 +116,7 @@
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
 								</object>
-								<object class="NSMenuItem" id="442452233">
+								<object class="NSMenuItem" id="571108470">
 									<reference key="NSMenu" ref="427852243"/>
 									<string key="NSTitle">MOUSE</string>
 									<string key="NSKeyEquiv"/>
@@ -124,7 +124,7 @@
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
 								</object>
-								<object class="NSMenuItem" id="197459620">
+								<object class="NSMenuItem" id="890263706">
 									<reference key="NSMenu" ref="427852243"/>
 									<string key="NSTitle">TABLET</string>
 									<string key="NSKeyEquiv"/>
@@ -132,7 +132,7 @@
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
 								</object>
-								<object class="NSMenuItem" id="64333053">
+								<object class="NSMenuItem" id="954595759">
 									<reference key="NSMenu" ref="427852243"/>
 									<bool key="NSIsDisabled">YES</bool>
 									<bool key="NSIsSeparator">YES</bool>
@@ -150,7 +150,7 @@
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
 								</object>
-								<object class="NSMenuItem" id="755260849">
+								<object class="NSMenuItem" id="476379081">
 									<reference key="NSMenu" ref="427852243"/>
 									<bool key="NSIsDisabled">YES</bool>
 									<bool key="NSIsSeparator">YES</bool>
@@ -160,7 +160,7 @@
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
 								</object>
-								<object class="NSMenuItem" id="915272162">
+								<object class="NSMenuItem" id="794862054">
 									<reference key="NSMenu" ref="427852243"/>
 									<string key="NSTitle">SHOW IN MENU BAR</string>
 									<string key="NSKeyEquiv"/>
@@ -205,7 +205,7 @@
 			<object class="NSUserDefaultsController" id="227659737">
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
-			<object class="NSMenuItem" id="874350666">
+			<object class="NSMenuItem" id="550151490">
 				<string key="NSTitle">Item</string>
 				<string key="NSKeyEquiv"/>
 				<int key="NSMnemonicLoc">2147483647</int>
@@ -363,10 +363,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">title: menuStringHorizontal</string>
-						<reference key="source" ref="248917492"/>
+						<reference key="source" ref="128657237"/>
 						<reference key="destination" ref="976324537"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="248917492"/>
+							<reference key="NSSource" ref="128657237"/>
 							<reference key="NSDestination" ref="976324537"/>
 							<string key="NSLabel">title: menuStringHorizontal</string>
 							<string key="NSBinding">title</string>
@@ -379,10 +379,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">title: menuStringVertical</string>
-						<reference key="source" ref="128292678"/>
+						<reference key="source" ref="692805086"/>
 						<reference key="destination" ref="976324537"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="128292678"/>
+							<reference key="NSSource" ref="692805086"/>
 							<reference key="NSDestination" ref="976324537"/>
 							<string key="NSLabel">title: menuStringVertical</string>
 							<string key="NSBinding">title</string>
@@ -395,10 +395,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">title: menuStringTrackpad</string>
-						<reference key="source" ref="391030533"/>
+						<reference key="source" ref="953333715"/>
 						<reference key="destination" ref="976324537"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="391030533"/>
+							<reference key="NSSource" ref="953333715"/>
 							<reference key="NSDestination" ref="976324537"/>
 							<string key="NSLabel">title: menuStringTrackpad</string>
 							<string key="NSBinding">title</string>
@@ -411,10 +411,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">title: menuStringMouse</string>
-						<reference key="source" ref="442452233"/>
+						<reference key="source" ref="571108470"/>
 						<reference key="destination" ref="976324537"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="442452233"/>
+							<reference key="NSSource" ref="571108470"/>
 							<reference key="NSDestination" ref="976324537"/>
 							<string key="NSLabel">title: menuStringMouse</string>
 							<string key="NSBinding">title</string>
@@ -427,10 +427,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">title: menuStringTablet</string>
-						<reference key="source" ref="197459620"/>
+						<reference key="source" ref="890263706"/>
 						<reference key="destination" ref="976324537"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="197459620"/>
+							<reference key="NSSource" ref="890263706"/>
 							<reference key="NSDestination" ref="976324537"/>
 							<string key="NSLabel">title: menuStringTablet</string>
 							<string key="NSBinding">title</string>
@@ -443,10 +443,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">title: menuStringShowInMenuBar</string>
-						<reference key="source" ref="915272162"/>
+						<reference key="source" ref="794862054"/>
 						<reference key="destination" ref="976324537"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="915272162"/>
+							<reference key="NSSource" ref="794862054"/>
 							<reference key="NSDestination" ref="976324537"/>
 							<string key="NSLabel">title: menuStringShowInMenuBar</string>
 							<string key="NSBinding">title</string>
@@ -459,10 +459,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.HideIcon</string>
-						<reference key="source" ref="915272162"/>
+						<reference key="source" ref="794862054"/>
 						<reference key="destination" ref="227659737"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="915272162"/>
+							<reference key="NSSource" ref="794862054"/>
 							<reference key="NSDestination" ref="227659737"/>
 							<string key="NSLabel">value: values.HideIcon</string>
 							<string key="NSBinding">value</string>
@@ -477,20 +477,12 @@
 					<int key="connectionID">613</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">showAbout:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="248917492"/>
-					</object>
-					<int key="connectionID">614</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.ReverseX</string>
-						<reference key="source" ref="248917492"/>
+						<reference key="source" ref="128657237"/>
 						<reference key="destination" ref="227659737"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="248917492"/>
+							<reference key="NSSource" ref="128657237"/>
 							<reference key="NSDestination" ref="227659737"/>
 							<string key="NSLabel">value: values.ReverseX</string>
 							<string key="NSBinding">value</string>
@@ -503,10 +495,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.ReverseY</string>
-						<reference key="source" ref="128292678"/>
+						<reference key="source" ref="692805086"/>
 						<reference key="destination" ref="227659737"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="128292678"/>
+							<reference key="NSSource" ref="692805086"/>
 							<reference key="NSDestination" ref="227659737"/>
 							<string key="NSLabel">value: values.ReverseY</string>
 							<string key="NSBinding">value</string>
@@ -519,10 +511,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.ReverseTrackpad</string>
-						<reference key="source" ref="391030533"/>
+						<reference key="source" ref="953333715"/>
 						<reference key="destination" ref="227659737"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="391030533"/>
+							<reference key="NSSource" ref="953333715"/>
 							<reference key="NSDestination" ref="227659737"/>
 							<string key="NSLabel">value: values.ReverseTrackpad</string>
 							<string key="NSBinding">value</string>
@@ -535,10 +527,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.ReverseMouse</string>
-						<reference key="source" ref="442452233"/>
+						<reference key="source" ref="571108470"/>
 						<reference key="destination" ref="227659737"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="442452233"/>
+							<reference key="NSSource" ref="571108470"/>
 							<reference key="NSDestination" ref="227659737"/>
 							<string key="NSLabel">value: values.ReverseMouse</string>
 							<string key="NSBinding">value</string>
@@ -551,10 +543,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.ReverseTablet</string>
-						<reference key="source" ref="197459620"/>
+						<reference key="source" ref="890263706"/>
 						<reference key="destination" ref="227659737"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="197459620"/>
+							<reference key="NSSource" ref="890263706"/>
 							<reference key="NSDestination" ref="227659737"/>
 							<string key="NSLabel">value: values.ReverseTablet</string>
 							<string key="NSBinding">value</string>
@@ -662,15 +654,15 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="647625113"/>
-							<reference ref="442452233"/>
-							<reference ref="197459620"/>
+							<reference ref="571108470"/>
+							<reference ref="890263706"/>
 							<reference ref="412512856"/>
-							<reference ref="391030533"/>
-							<reference ref="128292678"/>
-							<reference ref="248917492"/>
-							<reference ref="64333053"/>
-							<reference ref="915272162"/>
-							<reference ref="755260849"/>
+							<reference ref="953333715"/>
+							<reference ref="692805086"/>
+							<reference ref="128657237"/>
+							<reference ref="954595759"/>
+							<reference ref="794862054"/>
+							<reference ref="476379081"/>
 						</object>
 						<reference key="parent" ref="552625487"/>
 					</object>
@@ -681,27 +673,27 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">588</int>
-						<reference key="object" ref="755260849"/>
+						<reference key="object" ref="476379081"/>
 						<reference key="parent" ref="427852243"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">589</int>
-						<reference key="object" ref="874350666"/>
+						<reference key="object" ref="550151490"/>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">590</int>
-						<reference key="object" ref="391030533"/>
+						<reference key="object" ref="953333715"/>
 						<reference key="parent" ref="427852243"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">591</int>
-						<reference key="object" ref="442452233"/>
+						<reference key="object" ref="571108470"/>
 						<reference key="parent" ref="427852243"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">593</int>
-						<reference key="object" ref="197459620"/>
+						<reference key="object" ref="890263706"/>
 						<reference key="parent" ref="427852243"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -711,22 +703,22 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">595</int>
-						<reference key="object" ref="128292678"/>
+						<reference key="object" ref="692805086"/>
 						<reference key="parent" ref="427852243"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">596</int>
-						<reference key="object" ref="248917492"/>
+						<reference key="object" ref="128657237"/>
 						<reference key="parent" ref="427852243"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">604</int>
-						<reference key="object" ref="64333053"/>
+						<reference key="object" ref="954595759"/>
 						<reference key="parent" ref="427852243"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">608</int>
-						<reference key="object" ref="915272162"/>
+						<reference key="object" ref="794862054"/>
 						<reference key="parent" ref="427852243"/>
 					</object>
 				</object>
