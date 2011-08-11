@@ -24,7 +24,7 @@ static NSSize _iconSize;
 		[(NSButton *)[statusItem view] setImage:statusImageInverse];
 	}
 	else {
-		if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsInvertScrolling]) {
+		if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]) {
 			[(NSButton *)[statusItem view] setImage:statusImage];
 		}
 		else {
@@ -84,7 +84,7 @@ static NSSize _iconSize;
 	
 	[self displayStatusIcon];
 	
-	[self observePrefsKey:PrefsInvertScrolling];
+	[self observePrefsKey:PrefsReverseScrolling];
 	[self observePrefsKey:PrefsHideIcon];
 	
 	canOpenMenu=YES;

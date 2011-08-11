@@ -6,7 +6,12 @@
 #import "DCWelcomeWindowController.h"
 #import "DCStatusItemController.h"
 
-NSString *const PrefsInvertScrolling=@"InvertScrollingOn";
+NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
+NSString *const PrefsReverseHorizontal=@"ReverseX";
+NSString *const PrefsReverseVertical=@"ReverseY";
+NSString *const PrefsReverseTrackpad=@"ReverseTrackpad";
+NSString *const PrefsReverseMouse=@"ReverseMouse";
+NSString *const PrefsReverseTablet=@"ReverseTablet";
 NSString *const PrefsHasRunBefore=@"HasRunBefore";
 NSString *const PrefsHideIcon=@"HideIcon";
 
@@ -17,14 +22,19 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	if ([self class]==[ScrollInverterAppDelegate class]) {
 		[[NSUserDefaults standardUserDefaults] registerDefaults:
 		 [NSDictionary dictionaryWithObjectsAndKeys:
-		  [NSNumber numberWithBool:YES], PrefsInvertScrolling,
-		  nil]];		
+		  [NSNumber numberWithBool:YES], PrefsReverseScrolling,
+		  [NSNumber numberWithBool:YES], PrefsReverseHorizontal,
+          [NSNumber numberWithBool:YES], PrefsReverseVertical,
+          [NSNumber numberWithBool:YES], PrefsReverseTrackpad,
+          [NSNumber numberWithBool:YES], PrefsReverseMouse,
+          [NSNumber numberWithBool:YES], PrefsReverseTablet,
+          nil]];		
 	}
 }
 
 - (void)updateTap
 {
-    BOOL on=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsInvertScrolling];
+    BOOL on=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
 	tap.inverting=on;
 }
 
@@ -35,7 +45,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 		tap=[[MouseTap alloc] init];
 		[self updateTap];
 		statusController=[[DCStatusItemController alloc] init];
-        [self observePrefsKey:PrefsInvertScrolling];
+        [self observePrefsKey:PrefsReverseScrolling];
         [self observePrefsKey:PrefsHideIcon];
 	}
 	return self;
