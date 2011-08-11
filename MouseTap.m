@@ -4,6 +4,8 @@
 #define MAGIC_NUMBER (0x7363726F726576)
 // "scrorev" in hex
 
+static BOOL _preventReverseOtherApp;
+
 // This is called every time there is a scroll event. It has to be efficient.
 static CGEventRef eventTapCallback (CGEventTapProxy proxy,
 							 CGEventType type,
@@ -21,12 +23,15 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
 				goto end_tap;
 			}
 			
-			// don't reverse scrolling which comes from another app
-			int64_t sourcepid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);				
-			if (sourcepid!=0) {
-				goto end_tap;
-			}
-
+            if(_preventReverseOtherApp)
+            {
+                // don't reverse scrolling which comes from another app
+                int64_t sourcepid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);				
+                if (sourcepid!=0) {
+                    goto end_tap;
+                }
+            }
+            
 			// First get the line and pixel delta values.
             int64_t line_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
             int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
@@ -72,6 +77,8 @@ end_tap:
 {
 	if(self.active)
 		return;
+    
+    _preventReverseOtherApp=[[NSUserDefaults standardUserDefaults] boolForKey:@"NoReverseOtherApps"];
 
 	// create mach port
 	port = (CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
