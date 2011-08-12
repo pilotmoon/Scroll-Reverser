@@ -16,6 +16,9 @@ static NSString *_bundleIdForPID(const pid_t pid)
 	return nil;
 }
 
+
+static BOOL _wacomMode=NO;
+
 static BOOL _pidIsTablet(const pid_t pid)
 {
     static pid_t lastKnownTabletPid=0;
@@ -32,6 +35,7 @@ static BOOL _pidIsTablet(const pid_t pid)
     if (pidIsTablet)
     {
         lastKnownTabletPid=pid;
+        _wacomMode=YES;
         return YES;
     }
     
@@ -45,12 +49,20 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
 							 void *userInfo)
 {    
 	MouseTap *tap=(MouseTap *)userInfo;
-    BOOL tabletProxChanged=NO;
+    
     
     if (type==kCGEventTabletProximity) 
     {
         // is the pen next to the tablet?
-        tap->tabletProx=!!CGEventGetIntegerValueField(event, kCGTabletProximityEventEnterProximity);
+        if(_wacomMode) 
+        {
+            tap->tabletProx=NO;           
+        }
+        else
+        {
+            NSLog(@"not wacom mode");
+            tap->tabletProx=!!CGEventGetIntegerValueField(event, kCGTabletProximityEventEnterProximity);   
+        }
     }
     else if (type==NSEventTypeGesture)
     {
@@ -62,24 +74,18 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
         // check for tablet override
         const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
         tap->tabletProxOverride=pid&&_pidIsTablet(pid);
-            
-        // override
-        if(tap->tabletProxOverride)
-        {
-            tap->tabletProx=YES;
-        }            
         
         // has proximity changed
-        tabletProxChanged=(tap->lastTabletProxOverride!=tap->tabletProxOverride);
+        const BOOL tabletProxOverrideChanged=(tap->lastTabletProxOverride!=tap->tabletProxOverride);
         tap->lastTabletProxOverride=tap->tabletProxOverride;
         
-        NSLog(@"tabletprox changed? %d", tabletProxChanged);
+        NSLog(@"tabletprox changed? %d", tabletProxOverrideChanged);
         
         // cached trackpad state so we invert the momentum
         const UInt32 tickCount=TickCount();
         const UInt32 ticksElapsed=tickCount-tap->lastScrollEventTick;
         tap->lastScrollEventTick=tickCount;
-        const BOOL newScrollEvent=tabletProxChanged||ticksElapsed>20; // ticks are about 1/60 of second
+        const BOOL newScrollEvent=tabletProxOverrideChanged||ticksElapsed>20; // ticks are about 1/60 of second
         if (newScrollEvent) 
         {
             tap->cachedIsTrackpad=tap->fingers>0;
@@ -91,7 +97,7 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
         {
             source=ScrollEventSourceTrackpad;
         }
-        else if (tap->tabletProx)
+        else if (tap->tabletProxOverride||tap->tabletProx)
         {
             source=ScrollEventSourceTablet;
         }
