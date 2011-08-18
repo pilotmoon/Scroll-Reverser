@@ -9,6 +9,7 @@ if [ "$ver_string" == "" ]
 fi
 
 if git diff-index --quiet HEAD; then
+	echo "Proceeding."
 	#nothing, I just don;t know how to do a not
 else
 	echo "There are uncommitted changes."
