@@ -117,7 +117,7 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
             }
         }
         
-        if (!(preventBecauseOfMagicNumber||preventBecauseComingFromOtherApp))
+        if (tap->inverting&&!(preventBecauseOfMagicNumber||preventBecauseComingFromOtherApp))
         {
             
             BOOL allow=YES;
