@@ -6,7 +6,7 @@ if [ "$ver_string" == "" ]
 	exit
 fi
 
-if git diff-index --quiet; then
+if git diff-index --quiet HEAD; then
 	echo "There are uncommitted changes."
 	exit
 fi
