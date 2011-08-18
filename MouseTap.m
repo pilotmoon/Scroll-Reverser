@@ -4,6 +4,7 @@
 #define MAGIC_NUMBER (0x7363726F726576)
 // "scrorev" in hex
 
+static BOOL _preventReverseOtherApp;
 
 static NSString *_bundleIdForPID(const pid_t pid)
 {
@@ -104,8 +105,21 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
         
         // don't reverse scrolling we have already reversed
         const int64_t ud=CGEventGetIntegerValueField(event, kCGEventSourceUserData);
-        if (ud!=MAGIC_NUMBER)
+        const BOOL preventBecauseOfMagicNumber=ud==MAGIC_NUMBER;
+        
+        // don't reverse scrolling which comes from another app (if that setting is on)
+        BOOL preventBecauseComingFromOtherApp=NO;
+        if(_preventReverseOtherApp)
         {
+            int64_t sourcepid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);				
+            if (sourcepid!=0) {
+                preventBecauseComingFromOtherApp=YES;
+            }
+        }
+        
+        if (!(preventBecauseOfMagicNumber||preventBecauseComingFromOtherApp))
+        {
+            
             BOOL allow=YES;
             switch (source)
             {
@@ -167,6 +181,8 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
 {
 	if(self.active)
 		return;
+    
+    _preventReverseOtherApp=[[NSUserDefaults standardUserDefaults] boolForKey:@"ReverseOnlyRawInput"];
 
     // should we hook gesture events
     const BOOL touchAvailable=[NSEvent instancesRespondToSelector:@selector(touchesMatchingPhase:inView:)];
