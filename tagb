@@ -19,7 +19,7 @@ ver_num=`agvtool vers -terse`
 git commit -am "Commit agv bump to $ver_num"
 
 full_text="$ver_string ($ver_num)"
-git tag -m $full_text ver_string
+git tag -m "$full_text" $ver_string
 
 git push
 git push --tags
