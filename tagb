@@ -1,6 +1,6 @@
 #!/bin/bash
 ver_string=$1
-if [ "$ver_string" == ""]
+if [ "$ver_string" == "" ]
 	then
 	echo "No tag string supplied."
 	exit
