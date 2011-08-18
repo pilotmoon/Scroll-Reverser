@@ -22,5 +22,5 @@ full_text="$ver_string ($ver_num)"
 git tag -m $full_text ver_string
 
 git push
-pit push --tags
+git push --tags
 
