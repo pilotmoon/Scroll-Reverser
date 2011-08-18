@@ -1,0 +1,26 @@
+#!/bin/bash
+ver_string=$1
+if [$ver_string eq ""]
+	then
+	echo "No tag string supplied."
+	exit
+fi
+
+echo "Running bump+tag script."
+
+#should check ver string is non-null
+#should check rep has no uncommitted changes
+
+#bump agv
+agvtool bump -all
+ver_num=`agvtool vers -terse`
+
+#commit
+git commit -am "Commit agv bump to $ver_num"
+
+full_text="$ver_string ($ver_num)"
+git tag -m $full_text ver_string
+
+git push
+pit push --tags
+
