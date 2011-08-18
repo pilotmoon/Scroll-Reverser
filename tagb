@@ -18,7 +18,7 @@ ver_num=`agvtool vers -terse`
 #commit
 git commit -am "Commit agv bump to $ver_num"
 
-full_text="$ver_string ($ver_num)"
+full_text="Tag for version $ver_string / $ver_num"
 git tag -m "$full_text" $ver_string
 
 git push
