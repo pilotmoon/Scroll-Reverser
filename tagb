@@ -9,22 +9,22 @@ if [ "$ver_string" == "" ]
 fi
 
 if git diff-index --quiet HEAD; then
-	echo "No uncommitted changesl proceeding."
+	#nothing, I just don;t know how to do a not
 else
 	echo "There are uncommitted changes."
 	exit
 fi
 
 #bump agv
-#agvtool bump -all
+agvtool bump -all
 ver_num=`agvtool vers -terse`
 
 #commit
-#git commit -am "Commit agv bump to $ver_num"
+git commit -am "Commit agv bump to $ver_num"
 
 full_text="Tag for $ver_string ($ver_num)"
-#git tag -m "$full_text" $ver_string
+git tag -m "$full_text" $ver_string
 
-#git push
-#git push --tags
+git push
+git push --tags
 
