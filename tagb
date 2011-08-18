@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Running bump+tag script."
+
 ver_string=$1
 if [ "$ver_string" == "" ]
 	then
@@ -7,25 +9,22 @@ if [ "$ver_string" == "" ]
 fi
 
 if git diff-index --quiet HEAD; then
+	echo "No uncommitted changesl proceeding."
+else
 	echo "There are uncommitted changes."
 	exit
 fi
 
-echo "Running bump+tag script."
-
-#should check ver string is non-null
-#should check rep has no uncommitted changes
-
 #bump agv
-agvtool bump -all
+#agvtool bump -all
 ver_num=`agvtool vers -terse`
 
 #commit
-git commit -am "Commit agv bump to $ver_num"
+#git commit -am "Commit agv bump to $ver_num"
 
 full_text="Tag for $ver_string ($ver_num)"
-git tag -m "$full_text" $ver_string
+#git tag -m "$full_text" $ver_string
 
-git push
-git push --tags
+#git push
+#git push --tags
 
