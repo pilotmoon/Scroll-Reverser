@@ -95,6 +95,9 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
 	if(first) {
 		[self doWelcome];		
+        if (NSClassFromString(@"NSPopover")) { // it is lion
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsReverseHorizontal];
+        }
 	}
 	[tap start];
 }
