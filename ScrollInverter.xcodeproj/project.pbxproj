@@ -37,7 +37,6 @@
 		01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */; };
 		01B66480132539D500658B5C /* ScrollInverterStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B6647F132539D500658B5C /* ScrollInverterStatus.png */; };
 		01B66483132539EC00658B5C /* NSImage+CopySize.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B66482132539EC00658B5C /* NSImage+CopySize.m */; };
-		01BF87871419FC560045B4EA /* XIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0199D36B13255051000D8011 /* XIcon.png */; };
 		01E1E94513FC0C10007E8F1B /* insert_version.sh in Resources */ = {isa = PBXBuildFile; fileRef = 01E1E94413FC0C10007E8F1B /* insert_version.sh */; };
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
 		256AC3DA0F4B6AC300CF3369 /* ScrollInverterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */; };
@@ -366,7 +365,6 @@
 				27AF3F6D13F3CCF00034733F /* About.xib in Resources */,
 				01E1E94513FC0C10007E8F1B /* insert_version.sh in Resources */,
 				018C6C8C13FD22BC001DC44F /* About.xib in Resources */,
-				01BF87871419FC560045B4EA /* XIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
