@@ -37,6 +37,7 @@
 		01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */; };
 		01B66480132539D500658B5C /* ScrollInverterStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B6647F132539D500658B5C /* ScrollInverterStatus.png */; };
 		01B66483132539EC00658B5C /* NSImage+CopySize.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B66482132539EC00658B5C /* NSImage+CopySize.m */; };
+		01BF87871419FC560045B4EA /* XIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0199D36B13255051000D8011 /* XIcon.png */; };
 		01E1E94513FC0C10007E8F1B /* insert_version.sh in Resources */ = {isa = PBXBuildFile; fileRef = 01E1E94413FC0C10007E8F1B /* insert_version.sh */; };
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
 		256AC3DA0F4B6AC300CF3369 /* ScrollInverterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */; };
@@ -98,6 +99,7 @@
 		01B6647F132539D500658B5C /* ScrollInverterStatus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScrollInverterStatus.png; sourceTree = "<group>"; };
 		01B66481132539EC00658B5C /* NSImage+CopySize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CopySize.h"; sourceTree = "<group>"; };
 		01B66482132539EC00658B5C /* NSImage+CopySize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CopySize.m"; sourceTree = "<group>"; };
+		01BF87861419FC560045B4EA /* fr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = fr; path = resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01E1E94413FC0C10007E8F1B /* insert_version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = insert_version.sh; path = "gist-1151287/insert_version.sh"; sourceTree = "<group>"; };
 		01EB78C21324D574005390BD /* MouseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseTap.m; sourceTree = "<group>"; };
 		01EB78C31324D574005390BD /* MouseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseTap.h; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				27AF3F6D13F3CCF00034733F /* About.xib in Resources */,
 				01E1E94513FC0C10007E8F1B /* insert_version.sh in Resources */,
 				018C6C8C13FD22BC001DC44F /* About.xib in Resources */,
+				01BF87871419FC560045B4EA /* XIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +431,7 @@
 				01B1F4041368A62400BB9A3A /* el */,
 				27AF3F6C13F3CCF00034733F /* it */,
 				018C6C8B13FD22BC001DC44F /* es */,
+				01BF87861419FC560045B4EA /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

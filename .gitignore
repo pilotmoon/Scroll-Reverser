@@ -2,5 +2,6 @@
 *~.nib
 build/
 buildAS/
-*.xcodeproj/
 InfoPlist.h
+*.xcodeproj/xcuserdata/*
+*.xcodeproj/project.xcworkspace/*
