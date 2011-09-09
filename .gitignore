@@ -5,3 +5,5 @@ buildAS/
 InfoPlist.h
 *.xcodeproj/xcuserdata/*
 *.xcodeproj/project.xcworkspace/*
+*.xcodeproj/*.pbxuser
+*.xcodeproj/*.mode1v3
