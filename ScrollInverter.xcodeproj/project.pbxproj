@@ -12,7 +12,6 @@
 		012EDE8B142B924300B8C627 /* ScrollInverterStatusWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 012EDE88142B924300B8C627 /* ScrollInverterStatusWhite.png */; };
 		01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01587306134DD1E200CD9CC4 /* Localizable.strings */; };
 		01587313134DD1FA00CD9CC4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0158730B134DD1FA00CD9CC4 /* InfoPlist.strings */; };
-		01587354134DD2B300CD9CC4 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0158734E134DD2B300CD9CC4 /* About.xib */; };
 		01587355134DD2B300CD9CC4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01587350134DD2B300CD9CC4 /* MainMenu.xib */; };
 		0158735813265EDD00100E4C /* StatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0158735513265EDD00100E4C /* StatusItemController.m */; };
 		0199D2DB13254E9B000D8011 /* ScrollInverterIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */; };
@@ -22,7 +21,6 @@
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
 		01FD049D142B6F7900F3BDCB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01587306134DD1E200CD9CC4 /* Localizable.strings */; };
 		256AC3DA0F4B6AC300CF3369 /* ScrollInverterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */; };
-		27AF3F6D13F3CCF00034733F /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0158734E134DD2B300CD9CC4 /* About.xib */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -227,9 +225,7 @@
 				0199D2DB13254E9B000D8011 /* ScrollInverterIcon.icns in Resources */,
 				01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */,
 				01587313134DD1FA00CD9CC4 /* InfoPlist.strings in Resources */,
-				01587354134DD2B300CD9CC4 /* About.xib in Resources */,
 				01587355134DD2B300CD9CC4 /* MainMenu.xib in Resources */,
-				27AF3F6D13F3CCF00034733F /* About.xib in Resources */,
 				01E1E94513FC0C10007E8F1B /* insert_version.sh in Resources */,
 				01FD049D142B6F7900F3BDCB /* Localizable.strings in Resources */,
 				012EDE89142B924300B8C627 /* ScrollInverterStatusBlack.png in Resources */,
@@ -294,14 +290,6 @@
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
-		};
-		0158734E134DD2B300CD9CC4 /* About.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-			);
-			name = About.xib;
-			path = /Users/nick/source/si;
-			sourceTree = "<absolute>";
 		};
 		01587350134DD2B300CD9CC4 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
