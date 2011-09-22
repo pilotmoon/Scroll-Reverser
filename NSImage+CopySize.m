@@ -1,13 +1,4 @@
-//
-//  NSImage+CopySize.m
-//  dc
-//
-//  Created by Work on 06/08/2010.
-//  Copyright 2010 Nicholas Moore. All rights reserved.
-//
-
 #import "NSImage+CopySize.h"
-
 
 @implementation NSImage(CopySize)
 
@@ -39,7 +30,6 @@
 {
 	return [self copyWithSize:size colorTo:nil];
 }
-
 
 + (NSImage *)newBlankBitmapOfSize:(NSSize)size;
 {

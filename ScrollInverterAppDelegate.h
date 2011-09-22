@@ -1,5 +1,5 @@
 #import <Cocoa/Cocoa.h>
-@class MouseTap, FCAboutController, DCWelcomeWindowController, DCStatusItemController;
+@class MouseTap, FCAboutController, DCWelcomeWindowController, StatusItemController;
 
 extern NSString *const PrefsReverseScrolling;
 extern NSString *const PrefsReverseHorizontal;
@@ -14,7 +14,7 @@ extern NSString *const PrefsHideIcon;
 	IBOutlet NSMenu *statusMenu;
 	FCAboutController *aboutController;
 	DCWelcomeWindowController *welcomeController;
-	DCStatusItemController *statusController;
+	StatusItemController *statusController;
 }
 - (IBAction)showAbout:(id)sender;
 @end

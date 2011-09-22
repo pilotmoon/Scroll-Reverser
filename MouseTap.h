@@ -1,6 +1,5 @@
 #import <Foundation/Foundation.h>
 
-
 typedef enum {
     ScrollEventSourceOther=0,  
     ScrollEventSourceTrackpad,

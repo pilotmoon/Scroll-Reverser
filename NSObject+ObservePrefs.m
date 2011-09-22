@@ -1,11 +1,3 @@
-//
-//  NSObject+ObservePrefs.m
-//  dc
-//
-//  Created by Work on 11/06/2010.
-//  Copyright 2010 Nicholas Moore. All rights reserved.
-//
-
 #import "NSObject+ObservePrefs.h"
 
 

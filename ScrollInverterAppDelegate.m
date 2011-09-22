@@ -1,10 +1,8 @@
 #import "ScrollInverterAppDelegate.h"
+#import "StatusItemController.h"
 #import "MouseTap.h"
 #import "NSObject+ObservePrefs.h"
 #import "NSImage+CopySize.h"
-#import "FCAboutController.h"
-#import "DCWelcomeWindowController.h"
-#import "DCStatusItemController.h"
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
 NSString *const PrefsReverseHorizontal=@"ReverseX";
@@ -48,7 +46,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	if (self) {
 		tap=[[MouseTap alloc] init];
 		[self updateTap];
-		statusController=[[DCStatusItemController alloc] init];
+		statusController=[[StatusItemController alloc] init];
         [self observePrefsKey:PrefsReverseScrolling];
         [self observePrefsKey:PrefsReverseHorizontal];
         [self observePrefsKey:PrefsReverseVertical];
@@ -60,20 +58,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	return self;
 }
 
-- (NSValue *)bubblePoint
-{
-	NSRect rect=[statusController statusItemRect];
-	NSScreen *screen=[[NSScreen screens] objectAtIndex:0];
-	if (screen) {
-		CGFloat maxSize=[screen frame].size.height-22;
-		if (rect.origin.y>maxSize) {
-			rect.origin.y=maxSize;
-		}
-	}
-	NSPoint pt=NSMakePoint(NSMidX(rect), NSMinY(rect)-0);
-	return [NSValue valueWithPoint:pt];
-}
-
 - (void)awakeFromNib
 {
 	NSLog(@"Awake");	
@@ -82,10 +66,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)doWelcome
 {
-	if (!welcomeController) {
-		welcomeController=[[DCWelcomeWindowController alloc] init];
-	}
-	[welcomeController doWelcome];
+    [statusController showAttachedMenu];
 }
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
@@ -105,10 +86,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (IBAction)showAbout:(id)sender
 {
 	[NSApp activateIgnoringOtherApps:YES];
-	if (!aboutController) {
-		aboutController=[[FCAboutController alloc] init];
-	}
-	[aboutController showWindow:self];
+    [NSApp orderFrontStandardAboutPanel:self];
 }
 
 - (void)handleHideIcon
@@ -129,6 +107,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 {
 	NSLog(@"reveal icon");
 	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsHideIcon];
+    [statusController showAttachedMenu];
 	return NO;
 }
 
