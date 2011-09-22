@@ -14,9 +14,9 @@ NSString *const PrefsHasRunBefore=@"HasRunBefore";
 NSString *const PrefsHideIcon=@"HideIcon";
 
 @implementation ScrollInverterAppDelegate
-@synthesize startAtLoginSeparator = startAtLoginSeparator;
-@synthesize startAtLoginMenu = startAtLoginMenu;
-@synthesize statusMenu=statusMenu;
+@synthesize startAtLoginSeparator = _startAtLoginSeparator;
+@synthesize startAtLoginMenu = _startAtLoginMenu;
+@synthesize statusMenu=_statusMenu;
 
 + (void)initialize
 {
@@ -36,25 +36,25 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)updateTap
 {
-	tap.inverting=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
-    tap.invertX=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal];
-    tap.invertY=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical];
-    tap.invertMultiTouch=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad];
-    tap.invertTablet=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTablet];
-    tap.invertOther=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse];
+	_tap.inverting=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
+    _tap.invertX=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal];
+    _tap.invertY=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical];
+    _tap.invertMultiTouch=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad];
+    _tap.invertTablet=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTablet];
+    _tap.invertOther=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse];
 }
 
 - (id)init
 {
 	self=[super init];
 	if (self) {
-		tap=[[MouseTap alloc] init];
+		_tap=[[MouseTap alloc] init];
 		[self updateTap];
-		statusController=[[StatusItemController alloc] init];
+		_statusController=[[StatusItemController alloc] init];
         
         // if leopard or above
         if ([NSStatusItem instancesRespondToSelector:@selector(view)]) {
-            loginItemsController=[[LoginItemsController alloc] init];
+            _loginItemsController=[[LoginItemsController alloc] init];
         }
         
         [self observePrefsKey:PrefsReverseScrolling];
@@ -70,13 +70,13 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)awakeFromNib
 {
-	[statusController attachMenu:statusMenu];
-    if (loginItemsController) {
-        [loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
+	[_statusController attachMenu:_statusMenu];
+    if (_loginItemsController) {
+        [_loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
     }
     else {
-        [startAtLoginMenu setHidden:YES];
-        [startAtLoginSeparator setHidden:YES];
+        [_startAtLoginMenu setHidden:YES];
+        [_startAtLoginSeparator setHidden:YES];
     }
 }
 	
@@ -89,7 +89,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsReverseHorizontal];
         }
 	}
-	[tap start];
+	[_tap start];
 }
 
 - (IBAction)showAbout:(id)sender
@@ -100,10 +100,10 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (IBAction)startAtLoginClicked:(id)sender
 {
-    if (loginItemsController) {
-        const BOOL newState=![loginItemsController startAtLogin];
-        [loginItemsController setStartAtLogin:newState];
-        [startAtLoginMenu setState:newState];
+    if (_loginItemsController) {
+        const BOOL newState=![_loginItemsController startAtLogin];
+        [_loginItemsController setStartAtLogin:newState];
+        [_startAtLoginMenu setState:newState];
     }
 }
 
@@ -131,8 +131,8 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (object==loginItemsController) {
-        [startAtLoginMenu setState:[loginItemsController startAtLogin]];
+    if (object==_loginItemsController) {
+        [_startAtLoginMenu setState:[_loginItemsController startAtLogin]];
     }
     else if ([keyPath hasSuffix:@"HideIcon"]) {
         // run it asynchronously, because we shouldn't change the pref back inside the observer
