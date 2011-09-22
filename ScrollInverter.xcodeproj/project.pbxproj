@@ -319,10 +319,16 @@
 					APPSTORE,
 					DEBUG_BUILD,
 				);
+				GCC_VERSION = 4.2;
+				"GCC_VERSION[sdk=macosx10.4][arch=*]" = 4.0;
 				INFOPLIST_FILE = "Scroll_Inverter-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				"MACOSX_DEPLOYMENT_TARGET[arch=ppc]" = 10.4;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Scroll Reverser";
+				SDKROOT = macosx10.6;
+				"SDKROOT[arch=ppc]" = macosx10.4;
 				STRIP_INSTALLED_PRODUCT = NO;
 				VALID_ARCHS = "i386 ppc ppc64 ppc7400 ppc970 x86_64";
 			};
@@ -344,10 +350,16 @@
 					NS_BLOCK_ASSERTIONS,
 					NDEBUG,
 				);
+				GCC_VERSION = 4.2;
+				"GCC_VERSION[sdk=macosx10.4][arch=*]" = 4.0;
 				INFOPLIST_FILE = "Scroll_Inverter-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				"MACOSX_DEPLOYMENT_TARGET[arch=ppc]" = 10.4;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Scroll Reverser";
+				SDKROOT = macosx10.6;
+				"SDKROOT[arch=ppc]" = macosx10.4;
 				STRIP_INSTALLED_PRODUCT = YES;
 				VALID_ARCHS = "i386 ppc ppc64 ppc7400 ppc970 x86_64";
 			};
