@@ -82,7 +82,6 @@
 
 - (void)attachMenu:(NSMenu *)menu
 {
-    NSLog(@"attach %@ %@", menu, _statusItem);
     _theMenu=menu;
 	[_theMenu setDelegate:self];
     [_statusItem setMenu:_theMenu];
