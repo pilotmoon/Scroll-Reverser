@@ -39,6 +39,7 @@
 		01B66483132539EC00658B5C /* NSImage+CopySize.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B66482132539EC00658B5C /* NSImage+CopySize.m */; };
 		01E1E94513FC0C10007E8F1B /* insert_version.sh in Resources */ = {isa = PBXBuildFile; fileRef = 01E1E94413FC0C10007E8F1B /* insert_version.sh */; };
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
+		01FD049D142B6F7900F3BDCB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01587306134DD1E200CD9CC4 /* Localizable.strings */; };
 		256AC3DA0F4B6AC300CF3369 /* ScrollInverterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */; };
 		27AF3F6D13F3CCF00034733F /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0158734E134DD2B300CD9CC4 /* About.xib */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -103,6 +104,7 @@
 		01EB78C21324D574005390BD /* MouseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseTap.m; sourceTree = "<group>"; };
 		01EB78C31324D574005390BD /* MouseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseTap.h; sourceTree = "<group>"; };
 		01EFD5AC134E2ED900798678 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01FD049C142B6F7900F3BDCB /* ro */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ro; path = resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		256AC3D80F4B6AC300CF3369 /* ScrollInverterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollInverterAppDelegate.h; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				el,
 				it,
 				es,
+				ro,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -365,6 +368,7 @@
 				27AF3F6D13F3CCF00034733F /* About.xib in Resources */,
 				01E1E94513FC0C10007E8F1B /* insert_version.sh in Resources */,
 				018C6C8C13FD22BC001DC44F /* About.xib in Resources */,
+				01FD049D142B6F7900F3BDCB /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +434,7 @@
 				27AF3F6C13F3CCF00034733F /* it */,
 				018C6C8B13FD22BC001DC44F /* es */,
 				01BF87861419FC560045B4EA /* fr */,
+				01FD049C142B6F7900F3BDCB /* ro */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
