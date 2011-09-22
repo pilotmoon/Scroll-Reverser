@@ -321,6 +321,7 @@
 				);
 				INFOPLIST_FILE = "Scroll_Inverter-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Scroll Reverser";
 				STRIP_INSTALLED_PRODUCT = NO;
 				VALID_ARCHS = "i386 ppc ppc64 ppc7400 ppc970 x86_64";
