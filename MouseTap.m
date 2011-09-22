@@ -1,10 +1,9 @@
 #import "MouseTap.h"
 
-#define NEGATE_FIELD (type) CGEventSetIntegerValueField(event, type, -CGEventGetIntegerValueField(event, type))
-#define MAGIC_NUMBER (0x7363726F726576)
-// "scrorev" in hex
+#define MAGIC_NUMBER (0x7363726F726576) // "scrorev" in hex
 
 static BOOL _preventReverseOtherApp;
+static BOOL _wacomMode=NO;
 
 static NSString *_bundleIdForPID(const pid_t pid)
 {
@@ -12,13 +11,13 @@ static NSString *_bundleIdForPID(const pid_t pid)
 	OSStatus status=GetProcessForPID(pid, &psn);
 	if (status==noErr)
 	{
-		return [(NSDictionary *)NSMakeCollectable(ProcessInformationCopyDictionary(&psn, kProcessDictionaryIncludeAllInformationMask)) objectForKey:(NSString *)kCFBundleIdentifierKey];
+        CFDictionaryRef dict=ProcessInformationCopyDictionary(&psn, kProcessDictionaryIncludeAllInformationMask);
+		NSString *result=[(NSDictionary *)dict objectForKey:(NSString *)kCFBundleIdentifierKey];
+        CFRelease(dict);
+        return result;
 	}
 	return nil;
 }
-
-
-static BOOL _wacomMode=NO;
 
 static BOOL _pidIsTablet(const pid_t pid)
 {
@@ -27,7 +26,6 @@ static BOOL _pidIsTablet(const pid_t pid)
     // check last know value (faster)
     if (pid==lastKnownTabletPid)
     {
-        NSLog(@"lastknown");
         return YES;
     }
     
@@ -44,13 +42,12 @@ static BOOL _pidIsTablet(const pid_t pid)
 }
 
 // This is called every time there is a scroll event. It has to be efficient.
-static CGEventRef eventTapCallback (CGEventTapProxy proxy,
+static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 							 CGEventType type,
 							 CGEventRef event,
 							 void *userInfo)
 {    
 	MouseTap *tap=(MouseTap *)userInfo;
-    
     
     if (type==kCGEventTabletProximity) 
     {
@@ -61,7 +58,6 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
         }
         else
         {
-            NSLog(@"not wacom mode");
             tap->tabletProx=!!CGEventGetIntegerValueField(event, kCGTabletProximityEventEnterProximity);   
         }
     }
@@ -79,8 +75,6 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
         // has proximity changed
         const BOOL tabletProxOverrideChanged=(tap->lastTabletProxOverride!=tap->tabletProxOverride);
         tap->lastTabletProxOverride=tap->tabletProxOverride;
-        
-        NSLog(@"tabletprox changed? %d", tabletProxOverrideChanged);
         
         // cached trackpad state so we invert the momentum
         const UInt32 tickCount=TickCount();
@@ -141,8 +135,8 @@ static CGEventRef eventTapCallback (CGEventTapProxy proxy,
                 // First get the line and pixel delta values.
                 int64_t line_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
                 int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
-                double fixedpt_axis1 = CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1);
-                double fixedpt_axis2 = CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2);
+                double fixedpt_axis1=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1);
+                double fixedpt_axis2=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2);
                 int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
                 int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
                 

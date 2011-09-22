@@ -1,45 +1,40 @@
 #import "StatusItemController.h"
 #import "ScrollInverterAppDelegate.h"
-#import "NSImage+CopySize.h"
 #import "NSObject+ObservePrefs.h"
 
-static NSSize _iconSize;
-#define ICON_PADDING 4
-
 @implementation StatusItemController
-@synthesize statusItem, menuIsOpen;
 
 - (void)updateItems
 {
-	if (menuIsOpen) {
-		[statusItem setImage:statusImageInverse];
+	if (_menuIsOpen) {
+		[_statusItem setImage:_statusImageInverse];
 	}
 	else {
 		if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]) {
-			[statusItem setImage:statusImage];
+			[_statusItem setImage:_statusImage];
 		}
 		else {
-			[statusItem setImage:statusImageDisabled];
+			[_statusItem setImage:_statusImageDisabled];
 		}					
 	}
 }
 
 - (void)addStatusIcon
 {
-	if (!statusItem) {
-		const float width = _iconSize.width+ICON_PADDING;
-		statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:width] retain];
+	if (!_statusItem) {
+		_statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:[_statusImage size].width+4] retain];
+        [_statusItem setMenu:_theMenu];
+        [_statusItem setHighlightMode:YES];
 		[self updateItems];
-		[[statusItem view] display];			
 	}
 }
 
 - (void)removeStatusIcon
 {
-	if (statusItem) {
-		[[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
-		[statusItem release];
-		statusItem=nil;
+	if (_statusItem) {
+		[[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
+		[_statusItem release];
+		_statusItem=nil;
 	}
 }
 
@@ -57,71 +52,40 @@ static NSSize _iconSize;
 {
 	self = [super init];
 	
-	_iconSize=NSMakeSize(14, 17);
-	
-	// Loadup status icons.
-	NSImage *original=[NSImage imageNamed:@"ScrollInverterStatus"];
-	
-	statusImage=[original copyWithSize:_iconSize];
-	statusImageInverse=[original copyWithSize:_iconSize colorTo:[NSColor whiteColor]];
-    
-	/* Gray icon needs coloring before sizing due to aliasing effects. */
-	NSImage *grayTemp=[[original copyWithSize:[original size] colorTo:[NSColor colorWithDeviceRed:0.6 green:0.6 blue:0.6 alpha: 1.0]] autorelease]; 
-	statusImageDisabled=[grayTemp copyWithSize:_iconSize];	
-	
-	[self displayStatusIcon];
-	
-    /* Observe prefs keys that can affect the icon */
+	_statusImage=[[NSImage imageNamed:@"ScrollInverterStatusBlack"] retain];
+	_statusImageInverse=[[NSImage imageNamed:@"ScrollInverterStatusWhite"] retain];
+	_statusImageDisabled=[[NSImage imageNamed:@"ScrollInverterStatusGrey"] retain];
 	[self observePrefsKey:PrefsReverseScrolling];
-	[self observePrefsKey:PrefsHideIcon];
-	
-	canOpenMenu=YES;
+	[self observePrefsKey:PrefsHideIcon];	
+	[self displayStatusIcon];
 	
 	return self;
 }
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-	menuIsOpen=YES;
-	canOpenMenu=NO;
+	_menuIsOpen=YES;
 	[self updateItems];
-}
-
-- (void)allowOpen
-{
-	canOpenMenu=YES;
 }
 
 - (void)menuDidClose:(NSMenu *)menu
 {
-	menuIsOpen=NO;
+	_menuIsOpen=NO;
 	[self updateItems];	
-	[self performSelector:@selector(allowOpen) withObject:nil afterDelay:0.3];
-}
-
-- (void)attachMenu:(NSMenu *)menu
-{
-	theMenu=menu;
-	[menu setDelegate:self];
-}
-
-- (void)showAttachedMenu:(BOOL)force
-{
-	if (force || (!menuIsOpen && canOpenMenu))
-    {
-		[statusItem popUpStatusItemMenu:theMenu];
-	}
-}
-
-- (void)showAttachedMenu
-{
-	[self showAttachedMenu:NO];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	[self displayStatusIcon];
 	[self updateItems];
+}
+
+- (void)attachMenu:(NSMenu *)menu
+{
+    NSLog(@"attach %@ %@", menu, _statusItem);
+    _theMenu=menu;
+	[_theMenu setDelegate:self];
+    [_statusItem setMenu:_theMenu];
 }
 
 @end

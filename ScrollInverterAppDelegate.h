@@ -1,5 +1,5 @@
 #import <Cocoa/Cocoa.h>
-@class MouseTap, FCAboutController, DCWelcomeWindowController, StatusItemController;
+@class MouseTap, StatusItemController;
 
 extern NSString *const PrefsReverseScrolling;
 extern NSString *const PrefsReverseHorizontal;
@@ -10,11 +10,11 @@ extern NSString *const PrefsReverseTablet;
 extern NSString *const PrefsHideIcon;
 
 @interface ScrollInverterAppDelegate : NSObject {
-	MouseTap *tap;
-	IBOutlet NSMenu *statusMenu;
-	FCAboutController *aboutController;
-	DCWelcomeWindowController *welcomeController;
-	StatusItemController *statusController;
+	MouseTap *_tap;
+	StatusItemController *_statusController;
+    NSMenu *_statusMenu;
 }
+@property (assign) IBOutlet NSMenu *statusMenu;
 - (IBAction)showAbout:(id)sender;
+
 @end
