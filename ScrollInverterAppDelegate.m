@@ -14,9 +14,6 @@ NSString *const PrefsHasRunBefore=@"HasRunBefore";
 NSString *const PrefsHideIcon=@"HideIcon";
 
 @implementation ScrollInverterAppDelegate
-@synthesize startAtLoginSeparator = _startAtLoginSeparator;
-@synthesize startAtLoginMenu = _startAtLoginMenu;
-@synthesize statusMenu=_statusMenu;
 
 + (void)initialize
 {
@@ -36,25 +33,25 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)updateTap
 {
-	_tap.inverting=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
-    _tap.invertX=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal];
-    _tap.invertY=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical];
-    _tap.invertMultiTouch=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad];
-    _tap.invertTablet=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTablet];
-    _tap.invertOther=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse];
+	tap->inverting=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
+    tap->invertX=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal];
+    tap->invertY=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical];
+    tap->invertMultiTouch=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad];
+    tap->invertTablet=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTablet];
+    tap->invertOther=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse];
 }
 
 - (id)init
 {
 	self=[super init];
 	if (self) {
-		_tap=[[MouseTap alloc] init];
+		tap=[[MouseTap alloc] init];
 		[self updateTap];
-		_statusController=[[StatusItemController alloc] init];
+		statusController=[[StatusItemController alloc] init];
         
         // if leopard or above
         if ([NSStatusItem instancesRespondToSelector:@selector(view)]) {
-            _loginItemsController=[[LoginItemsController alloc] init];
+            loginItemsController=[[LoginItemsController alloc] init];
         }
         
         [self observePrefsKey:PrefsReverseScrolling];
@@ -70,13 +67,12 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)awakeFromNib
 {
-	[_statusController attachMenu:_statusMenu];
-    if (_loginItemsController) {
-        [_loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
+	[statusController attachMenu:statusMenu];
+    if (loginItemsController) {
+        [loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
     }
     else {
-        [_startAtLoginMenu setHidden:YES];
-        [_startAtLoginSeparator setHidden:YES];
+        [startAtLoginMenu setEnabled:NO];
     }
 }
 	
@@ -89,7 +85,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsReverseHorizontal];
         }
 	}
-	[_tap start];
+	[tap start];
 }
 
 - (IBAction)showAbout:(id)sender
@@ -100,10 +96,10 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (IBAction)startAtLoginClicked:(id)sender
 {
-    if (_loginItemsController) {
-        const BOOL newState=![_loginItemsController startAtLogin];
-        [_loginItemsController setStartAtLogin:newState];
-        [_startAtLoginMenu setState:newState];
+    if (loginItemsController) {
+        const BOOL newState=![loginItemsController startAtLogin];
+        [loginItemsController setStartAtLogin:newState];
+        [startAtLoginMenu setState:newState];
     }
 }
 
@@ -131,8 +127,8 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (object==_loginItemsController) {
-        [_startAtLoginMenu setState:[_loginItemsController startAtLogin]];
+    if (object==loginItemsController) {
+        [startAtLoginMenu setState:[loginItemsController startAtLogin]];
     }
     else if ([keyPath hasSuffix:@"HideIcon"]) {
         // run it asynchronously, because we shouldn't change the pref back inside the observer

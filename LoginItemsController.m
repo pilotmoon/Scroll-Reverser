@@ -74,7 +74,9 @@ static LoginItemsController *sharedInstance=nil;
 	Boolean foundIt=false;
 	UInt32 seed = 0U;
 	NSArray *currentLoginItems = [NSMakeCollectable(LSSharedFileListCopySnapshot(loginItems, &seed)) autorelease];
-	for (id itemObject in currentLoginItems) {
+
+	for (unsigned i=0; i<[currentLoginItems count]; i++) {
+		id itemObject=[currentLoginItems objectAtIndex:i];
 		LSSharedFileListItemRef item = (LSSharedFileListItemRef)itemObject;
 		
 		UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
@@ -98,7 +100,9 @@ static LoginItemsController *sharedInstance=nil;
 
 	UInt32 seed = 0U;
 	NSArray *currentLoginItems = [NSMakeCollectable(LSSharedFileListCopySnapshot(loginItems, &seed)) autorelease];
-	for (id itemObject in currentLoginItems) {
+	for (unsigned i=0; i<[currentLoginItems count]; i++) {
+		id itemObject=[currentLoginItems objectAtIndex:i];
+
 		LSSharedFileListItemRef item = (LSSharedFileListItemRef)itemObject;
 		
 		UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;

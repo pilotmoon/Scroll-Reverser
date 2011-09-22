@@ -27,16 +27,7 @@ typedef enum {
     BOOL invertMultiTouch;
     BOOL invertTablet;
     BOOL invertOther;
-
-    
 }
-@property (readonly, getter=isActive) BOOL active;
-@property (getter=isInverting) BOOL inverting;
-@property (getter=isInvertX) BOOL invertX;
-@property (getter=isInvertY) BOOL invertY;
-@property (getter=isInvertMultiTouch) BOOL invertMultiTouch;
-@property (getter=isInvertTablet) BOOL invertTablet;
-@property (getter=isInvertOther) BOOL invertOther;
 - (void)start;
 - (void)stop;
 - (void)enableTap:(BOOL)state;

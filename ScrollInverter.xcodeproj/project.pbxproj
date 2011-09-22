@@ -328,7 +328,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Scroll Reverser";
 				SDKROOT = macosx10.6;
-				"SDKROOT[arch=ppc]" = macosx10.4;
+				"SDKROOT[arch=ppc]" = macosx10.6;
 				STRIP_INSTALLED_PRODUCT = NO;
 				VALID_ARCHS = "i386 ppc ppc64 ppc7400 ppc970 x86_64";
 			};

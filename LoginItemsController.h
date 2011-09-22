@@ -1,11 +1,8 @@
 #import <Foundation/Foundation.h>
 
 @interface LoginItemsController : NSObject {
-	__strong LSSharedFileListRef loginItems;
+	LSSharedFileListRef loginItems;
 }
-
-// "Start at Login" property to be bound to by prefs checkbox.
-@property BOOL startAtLogin;
 
 + (LoginItemsController *)sharedInstance;
 - (void)cleanup;

@@ -164,7 +164,6 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 }
 
 @implementation MouseTap
-@synthesize inverting, invertX, invertY, invertMultiTouch, invertOther, invertTablet;
 
 - (BOOL)isActive
 {
@@ -173,7 +172,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 
 - (void)start
 {
-	if(self.active)
+	if([self isActive])
 		return;
     
     _preventReverseOtherApp=[[NSUserDefaults standardUserDefaults] boolForKey:@"ReverseOnlyRawInput"];
@@ -197,7 +196,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 
 - (void)stop
 {
-	if (!self.active)
+	if (![self isActive])
 		return;
 	
 	CFRunLoopRemoveSource(CFRunLoopGetMain(), source, kCFRunLoopCommonModes);
