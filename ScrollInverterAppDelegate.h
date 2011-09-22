@@ -10,16 +10,17 @@ extern NSString *const PrefsReverseTablet;
 extern NSString *const PrefsHideIcon;
 
 @interface ScrollInverterAppDelegate : NSObject {
-	MouseTap *_tap;
-	StatusItemController *_statusController;
-    LoginItemsController *_loginItemsController;
-    NSMenu *_statusMenu;
-    NSMenuItem *_startAtLoginMenu;
-    NSMenuItem *_startAtLoginSeparator;
+	MouseTap *tap;
+	StatusItemController *statusController;
+    LoginItemsController *loginItemsController;
+    NSMenu *statusMenu;
+    NSMenuItem *startAtLoginMenu;
+    NSMenuItem *startAtLoginSeparator;
 }
 @property (assign) IBOutlet NSMenu *statusMenu;
 @property (assign) IBOutlet NSMenuItem *startAtLoginMenu;
-@property (assign) IBOutlet NSMenuItem *startAtLoginSeparator;- (IBAction)showAbout:(id)sender;
+@property (assign) IBOutlet NSMenuItem *startAtLoginSeparator;
+- (IBAction)showAbout:(id)sender;
 - (IBAction)startAtLoginClicked:(id)sender;
 
 
