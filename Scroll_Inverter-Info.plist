@@ -29,7 +29,7 @@
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.5</string>
+	<string>10.4</string>
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
