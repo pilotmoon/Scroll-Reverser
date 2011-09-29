@@ -91,7 +91,10 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (IBAction)showAbout:(id)sender
 {
 	[NSApp activateIgnoringOtherApps:YES];
-    [NSApp orderFrontStandardAboutPanel:self];
+    NSDictionary *dict=[NSDictionary dictionaryWithObjectsAndKeys:
+                        @"Scroll Reverser", @"ApplicationName",
+                        nil];
+    [NSApp orderFrontStandardAboutPanelWithOptions:dict];
 }
 
 - (IBAction)startAtLoginClicked:(id)sender
