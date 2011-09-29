@@ -13,9 +13,9 @@ extern NSString *const PrefsHideIcon;
 	MouseTap *tap;
 	StatusItemController *statusController;
     LoginItemsController *loginItemsController;
-    NSMenu *statusMenu;
-    NSMenuItem *startAtLoginMenu;
-    NSMenuItem *startAtLoginSeparator;
+    IBOutlet NSMenu *statusMenu;
+    IBOutlet NSMenuItem *startAtLoginMenu;
+	BOOL startAtLoginEnabled;
 }
 - (IBAction)showAbout:(id)sender;
 - (IBAction)startAtLoginClicked:(id)sender;

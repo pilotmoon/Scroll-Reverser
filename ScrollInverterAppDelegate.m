@@ -45,6 +45,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 {
 	self=[super init];
 	if (self) {
+		startAtLoginEnabled=NO;
 		tap=[[MouseTap alloc] init];
 		[self updateTap];
 		statusController=[[StatusItemController alloc] init];
@@ -67,12 +68,16 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)awakeFromNib
 {
+	[self willChangeValueForKey:@"startAtLoginEnabled"];
 	[statusController attachMenu:statusMenu];
 #ifndef TIGER_BUILD
 	[loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
+	startAtLoginEnabled=YES;
 #else
-	[startAtLoginMenu setEnabled:NO];
+	NSLog(@"Set enabled no!!");
+	startAtLoginEnabled=NO;
 #endif
+	[self didChangeValueForKey:@"startAtLoginEnabled"];
 }
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification

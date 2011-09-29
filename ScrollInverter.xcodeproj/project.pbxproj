@@ -334,7 +334,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				"MACOSX_DEPLOYMENT_TARGET[arch=ppc]" = 10.4;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Scroll Reverser";
 				SDKROOT = macosx10.6;
 				"SDKROOT[arch=ppc]" = macosx10.4;
