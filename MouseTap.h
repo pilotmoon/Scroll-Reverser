@@ -18,7 +18,7 @@ typedef enum {
     BOOL tabletProx;
     BOOL tabletProxOverride;
     BOOL lastTabletProxOverride;
-    NSUInteger fingers;
+    unsigned long fingers;
     BOOL cachedIsTrackpad;
     UInt32 lastScrollEventTick;
 	BOOL inverting;

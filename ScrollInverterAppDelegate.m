@@ -50,9 +50,9 @@ NSString *const PrefsHideIcon=@"HideIcon";
 		statusController=[[StatusItemController alloc] init];
         
         // if leopard or above
-        if ([NSStatusItem instancesRespondToSelector:@selector(view)]) {
-            loginItemsController=[[LoginItemsController alloc] init];
-        }
+#ifndef TIGER_BUILD
+		loginItemsController=[[LoginItemsController alloc] init];
+#endif
         
         [self observePrefsKey:PrefsReverseScrolling];
         [self observePrefsKey:PrefsReverseHorizontal];
@@ -68,12 +68,11 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (void)awakeFromNib
 {
 	[statusController attachMenu:statusMenu];
-    if (loginItemsController) {
-        [loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
-    }
-    else {
-        [startAtLoginMenu setEnabled:NO];
-    }
+#ifndef TIGER_BUILD
+	[loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
+#else
+	[startAtLoginMenu setEnabled:NO];
+#endif
 }
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -99,11 +98,13 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (IBAction)startAtLoginClicked:(id)sender
 {
+#ifndef TIGER_BUILD
     if (loginItemsController) {
         const BOOL newState=![loginItemsController startAtLogin];
         [loginItemsController setStartAtLogin:newState];
         [startAtLoginMenu setState:newState];
     }
+#endif
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
@@ -121,7 +122,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
                                      alternateButton:NSLocalizedString(@"Restore Now",nil)
                                          otherButton:nil
                            informativeTextWithFormat:NSLocalizedString(@"MENU_HIDDEN_TEXT", @"text shown when the menu bar icon is hidden")];
-        const NSInteger button=[alert runModal];
+        const unsigned long button=[alert runModal];
         if (button==NSAlertAlternateReturn) {
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsHideIcon];
         }
@@ -131,7 +132,9 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (object==loginItemsController) {
+#ifndef TIGER_BUILD
         [startAtLoginMenu setState:[loginItemsController startAtLogin]];
+#endif
     }
     else if ([keyPath hasSuffix:@"HideIcon"]) {
         // run it asynchronously, because we shouldn't change the pref back inside the observer

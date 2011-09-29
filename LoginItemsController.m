@@ -1,3 +1,4 @@
+#ifndef TIGER_BUILD
 #import "LoginItemsController.h"
 
 // Login items change callback.
@@ -140,3 +141,4 @@ static LoginItemsController *sharedInstance=nil;
 }
 
 @end
+#endif

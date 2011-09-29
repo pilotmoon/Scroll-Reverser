@@ -1,4 +1,9 @@
 #import "MouseTap.h"
+#import "CoreFoundation/CoreFoundation.h"
+
+#ifdef TIGER_BUILD
+extern CFRunLoopRef CFRunLoopGetMain(void);
+#endif
 
 #define MAGIC_NUMBER (0x7363726F726576) // "scrorev" in hex
 
@@ -61,11 +66,13 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             tap->tabletProx=!!CGEventGetIntegerValueField(event, kCGTabletProximityEventEnterProximity);   
         }
     }
+#ifndef TIGER_BUILD
     else if (type==NSEventTypeGesture)
     {
         // how many fingers on the pad
         tap->fingers=[[[NSEvent eventWithCGEvent:event] touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];		
     }
+#endif
     else if (type==kCGEventScrollWheel)
     {
         // check for tablet override
@@ -135,20 +142,22 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
                 // First get the line and pixel delta values.
                 int64_t line_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
                 int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
+#ifndef TIGER_BUILD
                 double fixedpt_axis1=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1);
                 double fixedpt_axis2=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2);
                 int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
                 int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
-                
+#endif
                 /* Now negate them all. It's worth noting we have to set them in this order (lines then pixels) 
                  or we lose smooth scrolling. */
                 if (tap->invertY) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -line_axis1);	
                 if (tap->invertX) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -line_axis2);
+#ifndef TIGER_BUILD
                 if (tap->invertY) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1, -1 * fixedpt_axis1);
                 if (tap->invertX) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2, -1 * fixedpt_axis2);
                 if (tap->invertY) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);		
                 if (tap->invertX) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
-                
+#endif
                 // set user data
                 CGEventSetIntegerValueField(event, kCGEventSourceUserData, MAGIC_NUMBER);				
             }
@@ -177,14 +186,17 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
     
     _preventReverseOtherApp=[[NSUserDefaults standardUserDefaults] boolForKey:@"ReverseOnlyRawInput"];
 
+#ifndef TIGER_BUILD
     // should we hook gesture events
     const BOOL touchAvailable=[NSEvent instancesRespondToSelector:@selector(touchesMatchingPhase:inView:)];
     const CGEventMask touchMask=touchAvailable?NSEventMaskGesture:0;
-    
+#else
+	const CGEventMask touchMask=0;
+#endif
 	// create mach port
 	port = (CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
 										   kCGTailAppendEventTap,
-										   kCGEventTapOptionDefault,
+										   0, //kCGEventTapOptionDefault
 										   CGEventMaskBit(kCGEventScrollWheel)|CGEventMaskBit(kCGEventTabletProximity)|touchMask,
 										   eventTapCallback,
 										   self);
