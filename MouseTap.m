@@ -16,10 +16,8 @@ static NSString *_bundleIdForPID(const pid_t pid)
 	OSStatus status=GetProcessForPID(pid, &psn);
 	if (status==noErr)
 	{
-        CFDictionaryRef dict=ProcessInformationCopyDictionary(&psn, kProcessDictionaryIncludeAllInformationMask);
-		NSString *result=[(NSDictionary *)dict objectForKey:(NSString *)kCFBundleIdentifierKey];
-        CFRelease(dict);
-        return result;
+        NSDictionary * dict=[(NSDictionary *)ProcessInformationCopyDictionary(&psn, kProcessDictionaryIncludeAllInformationMask) autorelease];
+		return [dict objectForKey:(NSString *)kCFBundleIdentifierKey];
 	}
 	return nil;
 }

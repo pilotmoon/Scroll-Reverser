@@ -74,7 +74,7 @@ static LoginItemsController *sharedInstance=nil;
 {
 	Boolean foundIt=false;
 	UInt32 seed = 0U;
-	NSArray *currentLoginItems = [NSMakeCollectable(LSSharedFileListCopySnapshot(loginItems, &seed)) autorelease];
+	NSArray *currentLoginItems = [(NSArray *)LSSharedFileListCopySnapshot(loginItems, &seed) autorelease];
 
 	for (unsigned i=0; i<[currentLoginItems count]; i++) {
 		id itemObject=[currentLoginItems objectAtIndex:i];
@@ -100,7 +100,7 @@ static LoginItemsController *sharedInstance=nil;
 	LSSharedFileListItemRef existingItem = NULL;
 
 	UInt32 seed = 0U;
-	NSArray *currentLoginItems = [NSMakeCollectable(LSSharedFileListCopySnapshot(loginItems, &seed)) autorelease];
+	NSArray *currentLoginItems = [(NSArray *)LSSharedFileListCopySnapshot(loginItems, &seed) autorelease];
 	for (unsigned i=0; i<[currentLoginItems count]; i++) {
 		id itemObject=[currentLoginItems objectAtIndex:i];
 
