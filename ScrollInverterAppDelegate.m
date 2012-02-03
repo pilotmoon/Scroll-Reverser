@@ -45,8 +45,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
 {
 	self=[super init];
 	if (self) {
-		yes=YES;
-		startAtLoginEnabled=NO;
 		tap=[[MouseTap alloc] init];
 		[self updateTap];
 		statusController=[[StatusItemController alloc] init];
@@ -67,16 +65,40 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	return self;
 }
 
+-(IBAction) menuItemClicked:(id)sender
+{
+	NSLog(@"MIC");
+	switch ([sender tag]) {
+		case 31:
+		{		
+			[NSApp activateIgnoringOtherApps:YES];
+			NSAlert *alert=[NSAlert alertWithMessageText:NSLocalizedString(@"Start At Login",nil)
+										   defaultButton:NSLocalizedString(@"OK",nil)
+										 alternateButton:nil
+											 otherButton:nil
+							   informativeTextWithFormat:NSLocalizedString(@"To start Scroll Reverser at login, add it to Login Items within the Accounts pane of System Preferences.", nil)];
+			[alert runModal];
+		}
+			break;
+			
+		default:
+			break;
+	}
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+{
+	NSLog(@"VALIDATE");
+	return YES;
+}
+
 - (void)awakeFromNib
 {
 	[self willChangeValueForKey:@"startAtLoginEnabled"];
+	[statusMenu setAutoenablesItems:YES];
 	[statusController attachMenu:statusMenu];
 #ifndef TIGER_BUILD
 	[loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
-	startAtLoginEnabled=YES;
-#else
-	NSLog(@"Set enabled no!!");
-	startAtLoginEnabled=NO;
 #endif
 	[self didChangeValueForKey:@"startAtLoginEnabled"];
 }
@@ -123,6 +145,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon])
     {
+		[NSApp activateIgnoringOtherApps:YES];
         NSAlert *alert=[NSAlert alertWithMessageText:NSLocalizedString(@"Status Icon Hidden",nil)
                                        defaultButton:NSLocalizedString(@"OK",nil)
                                      alternateButton:NSLocalizedString(@"Restore Now",nil)

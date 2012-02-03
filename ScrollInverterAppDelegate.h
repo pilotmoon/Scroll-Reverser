@@ -15,12 +15,10 @@ extern NSString *const PrefsHideIcon;
     LoginItemsController *loginItemsController;
     IBOutlet NSMenu *statusMenu;
     IBOutlet NSMenuItem *startAtLoginMenu;
-	BOOL startAtLoginEnabled;
-	BOOL yes;
 }
 - (IBAction)showAbout:(id)sender;
 - (IBAction)startAtLoginClicked:(id)sender;
-
+- (IBAction)menuItemClicked:(id)sender;
 
 
 @end

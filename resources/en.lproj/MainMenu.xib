@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="565"/>
+			<integer value="533"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -58,6 +58,7 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">NSMenuMixedState</string>
 						</object>
+						<int key="NSTag">1</int>
 					</object>
 					<object class="NSMenuItem" id="167870631">
 						<reference key="NSMenu" ref="552230148"/>
@@ -88,6 +89,7 @@
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
+									<int key="NSTag">11</int>
 								</object>
 								<object class="NSMenuItem" id="692805086">
 									<reference key="NSMenu" ref="427852243"/>
@@ -96,6 +98,7 @@
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
+									<int key="NSTag">12</int>
 								</object>
 								<object class="NSMenuItem" id="412512856">
 									<reference key="NSMenu" ref="427852243"/>
@@ -114,6 +117,7 @@
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
+									<int key="NSTag">21</int>
 								</object>
 								<object class="NSMenuItem" id="571108470">
 									<reference key="NSMenu" ref="427852243"/>
@@ -122,6 +126,7 @@
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
+									<int key="NSTag">22</int>
 								</object>
 								<object class="NSMenuItem" id="890263706">
 									<reference key="NSMenu" ref="427852243"/>
@@ -130,6 +135,7 @@
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
+									<int key="NSTag">23</int>
 								</object>
 								<object class="NSMenuItem" id="954595759">
 									<reference key="NSMenu" ref="427852243"/>
@@ -148,6 +154,7 @@
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
+									<int key="NSTag">31</int>
 								</object>
 								<object class="NSMenuItem" id="476379081">
 									<reference key="NSMenu" ref="427852243"/>
@@ -166,6 +173,7 @@
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="598029772"/>
 									<reference key="NSMixedImage" ref="960309333"/>
+									<int key="NSTag">41</int>
 								</object>
 							</object>
 						</object>
@@ -530,38 +538,6 @@
 					<int key="connectionID">622</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">startAtLoginClicked:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="647625113"/>
-					</object>
-					<int key="connectionID">624</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">showAbout:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="476379081"/>
-					</object>
-					<int key="connectionID">626</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: startAtLoginEnabled</string>
-						<reference key="source" ref="647625113"/>
-						<reference key="destination" ref="976324537"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="647625113"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">enabled: startAtLoginEnabled</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">startAtLoginEnabled</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">629</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">startAtLoginMenu</string>
 						<reference key="source" ref="976324537"/>
@@ -570,68 +546,68 @@
 					<int key="connectionID">630</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: yes</string>
-						<reference key="source" ref="962185928"/>
-						<reference key="destination" ref="976324537"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="962185928"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">enabled: yes</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">yes</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
+					<object class="IBActionConnection" key="connection">
+						<string key="label">menuItemClicked:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="962185928"/>
 					</object>
-					<int key="connectionID">632</int>
+					<int key="connectionID">641</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: yes</string>
-						<reference key="source" ref="128657237"/>
-						<reference key="destination" ref="976324537"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="128657237"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">enabled: yes</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">yes</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
+					<object class="IBActionConnection" key="connection">
+						<string key="label">menuItemClicked:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="128657237"/>
 					</object>
-					<int key="connectionID">634</int>
+					<int key="connectionID">642</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: yes</string>
-						<reference key="source" ref="692805086"/>
-						<reference key="destination" ref="976324537"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="692805086"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">enabled: yes</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">yes</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
+					<object class="IBActionConnection" key="connection">
+						<string key="label">menuItemClicked:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="692805086"/>
 					</object>
-					<int key="connectionID">636</int>
+					<int key="connectionID">643</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: yes</string>
-						<reference key="source" ref="794862054"/>
-						<reference key="destination" ref="976324537"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="794862054"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">enabled: yes</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">yes</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
+					<object class="IBActionConnection" key="connection">
+						<string key="label">menuItemClicked:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="647625113"/>
 					</object>
-					<int key="connectionID">638</int>
+					<int key="connectionID">644</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">menuItemClicked:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="794862054"/>
+					</object>
+					<int key="connectionID">645</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">menuItemClicked:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="953333715"/>
+					</object>
+					<int key="connectionID">646</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">menuItemClicked:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="571108470"/>
+					</object>
+					<int key="connectionID">647</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">menuItemClicked:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="890263706"/>
+					</object>
+					<int key="connectionID">648</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -865,7 +841,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">638</int>
+			<int key="maxID">648</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -884,11 +860,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>menuItemClicked:</string>
 							<string>showAbout:</string>
 							<string>startAtLoginClicked:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -897,11 +875,16 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>menuItemClicked:</string>
 							<string>showAbout:</string>
 							<string>startAtLoginClicked:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">menuItemClicked:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">showAbout:</string>
 								<string key="candidateClassName">id</string>
