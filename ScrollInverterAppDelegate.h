@@ -16,6 +16,7 @@ extern NSString *const PrefsHideIcon;
     IBOutlet NSMenu *statusMenu;
     IBOutlet NSMenuItem *startAtLoginMenu;
 	BOOL startAtLoginEnabled;
+	BOOL yes;
 }
 - (IBAction)showAbout:(id)sender;
 - (IBAction)startAtLoginClicked:(id)sender;

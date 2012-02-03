@@ -45,6 +45,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 {
 	self=[super init];
 	if (self) {
+		yes=YES;
 		startAtLoginEnabled=NO;
 		tap=[[MouseTap alloc] init];
 		[self updateTap];
