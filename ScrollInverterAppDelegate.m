@@ -69,17 +69,27 @@ NSString *const PrefsHideIcon=@"HideIcon";
 {
 	NSLog(@"MIC");
 	switch ([sender tag]) {
+				
 		case 31:
 		{		
+#ifdef TIGER_BUILD	
 			[NSApp activateIgnoringOtherApps:YES];
 			NSAlert *alert=[NSAlert alertWithMessageText:NSLocalizedString(@"Start At Login",nil)
 										   defaultButton:NSLocalizedString(@"OK",nil)
 										 alternateButton:nil
 											 otherButton:nil
-							   informativeTextWithFormat:NSLocalizedString(@"To start Scroll Reverser at login, add it to Login Items within the Accounts pane of System Preferences.", nil)];
+							   informativeTextWithFormat:NSLocalizedString(@"To change startup settings, please go to Login Items within the Accounts pane of System Preferences.", nil)];
 			[alert runModal];
+#else
+			if (loginItemsController) {
+				const BOOL newState=![loginItemsController startAtLogin];
+				[loginItemsController setStartAtLogin:newState];
+				[startAtLoginMenu setState:newState];
+			}
+#endif		
 		}
 			break;
+	
 			
 		default:
 			break;
@@ -88,8 +98,15 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 {
-	NSLog(@"VALIDATE");
-	return YES;
+	switch ([menuItem tag]) {
+#ifdef TIGER_BUILD			
+		case 21:
+			return NO;			
+#endif
+			
+		default:
+			return YES;
+	}
 }
 
 - (void)awakeFromNib
@@ -122,17 +139,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
                         @"Scroll Reverser", @"ApplicationName",
                         nil];
     [NSApp orderFrontStandardAboutPanelWithOptions:dict];
-}
-
-- (IBAction)startAtLoginClicked:(id)sender
-{
-#ifndef TIGER_BUILD
-    if (loginItemsController) {
-        const BOOL newState=![loginItemsController startAtLogin];
-        [loginItemsController setStartAtLogin:newState];
-        [startAtLoginMenu setState:newState];
-    }
-#endif
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
