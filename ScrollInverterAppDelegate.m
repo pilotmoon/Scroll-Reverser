@@ -68,28 +68,19 @@ NSString *const PrefsHideIcon=@"HideIcon";
 -(IBAction) menuItemClicked:(id)sender
 {
 	NSLog(@"MIC");
-	switch ([sender tag]) {
-				
+	switch ([sender tag])
+	{
+
+#ifndef TIGER_BUILD	
 		case 31:
-		{		
-#ifdef TIGER_BUILD	
-			[NSApp activateIgnoringOtherApps:YES];
-			NSAlert *alert=[NSAlert alertWithMessageText:NSLocalizedString(@"Start At Login",nil)
-										   defaultButton:NSLocalizedString(@"OK",nil)
-										 alternateButton:nil
-											 otherButton:nil
-							   informativeTextWithFormat:NSLocalizedString(@"To change startup settings, please go to Login Items within the Accounts pane of System Preferences.", nil)];
-			[alert runModal];
-#else
+
 			if (loginItemsController) {
 				const BOOL newState=![loginItemsController startAtLogin];
 				[loginItemsController setStartAtLogin:newState];
 				[startAtLoginMenu setState:newState];
 			}
-#endif		
-		}
-			break;
-	
+		break;
+#endif			
 			
 		default:
 			break;
@@ -98,15 +89,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 {
-	switch ([menuItem tag]) {
-#ifdef TIGER_BUILD			
-		case 21:
-			return NO;			
-#endif
-			
-		default:
-			return YES;
-	}
+	return YES;
 }
 
 - (void)awakeFromNib
@@ -116,6 +99,10 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	[statusController attachMenu:statusMenu];
 #ifndef TIGER_BUILD
 	[loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
+#else
+	[prefsMenu removeItem:startAtLoginMenu];
+	[prefsMenu removeItem:startAtLoginSeparator];
+	[prefsMenu removeItem:trackpadItemMenu];
 #endif
 	[self didChangeValueForKey:@"startAtLoginEnabled"];
 }

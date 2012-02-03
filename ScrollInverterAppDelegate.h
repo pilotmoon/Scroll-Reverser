@@ -14,10 +14,12 @@ extern NSString *const PrefsHideIcon;
 	StatusItemController *statusController;
     LoginItemsController *loginItemsController;
     IBOutlet NSMenu *statusMenu;
+    IBOutlet NSMenu *prefsMenu;
+    IBOutlet NSMenuItem *trackpadItemMenu;
     IBOutlet NSMenuItem *startAtLoginMenu;
+	IBOutlet NSMenuItem *startAtLoginSeparator;	
 }
 - (IBAction)showAbout:(id)sender;
 - (IBAction)menuItemClicked:(id)sender;
-
 
 @end
