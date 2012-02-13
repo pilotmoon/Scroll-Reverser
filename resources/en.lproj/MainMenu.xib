@@ -36,7 +36,7 @@
 			<object class="NSCustomObject" id="1050">
 				<string key="NSClassName">NSApplication</string>
 			</object>
-			<object class="NSCustomObject" id="1049028712">
+			<object class="NSCustomObject" id="972787713">
 				<string key="NSClassName">SUUpdater</string>
 			</object>
 			<object class="NSCustomObject" id="976324537">
@@ -74,7 +74,8 @@
 					<object class="NSMenuItem" id="552625487">
 						<reference key="NSMenu" ref="552230148"/>
 						<string key="NSTitle">PREFERENCES</string>
-						<string key="NSKeyEquiv"/>
+						<string key="NSKeyEquiv">`</string>
+						<int key="NSKeyEquivModMask">1048576</int>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="598029772"/>
 						<reference key="NSMixedImage" ref="960309333"/>
@@ -187,7 +188,7 @@
 						<reference key="NSOnImage" ref="598029772"/>
 						<reference key="NSMixedImage" ref="960309333"/>
 					</object>
-					<object class="NSMenuItem" id="560743940">
+					<object class="NSMenuItem" id="544360632">
 						<reference key="NSMenu" ref="552230148"/>
 						<string key="NSTitle">CHECKUPD</string>
 						<string key="NSKeyEquiv"/>
@@ -645,10 +646,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">title: menuStringCU</string>
-						<reference key="source" ref="560743940"/>
+						<reference key="source" ref="544360632"/>
 						<reference key="destination" ref="976324537"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="560743940"/>
+							<reference key="NSSource" ref="544360632"/>
 							<reference key="NSDestination" ref="976324537"/>
 							<string key="NSLabel">title: menuStringCU</string>
 							<string key="NSBinding">title</string>
@@ -661,8 +662,8 @@
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">checkForUpdates:</string>
-						<reference key="source" ref="1049028712"/>
-						<reference key="destination" ref="560743940"/>
+						<reference key="source" ref="972787713"/>
+						<reference key="destination" ref="544360632"/>
 					</object>
 					<int key="connectionID">672</int>
 				</object>
@@ -712,7 +713,7 @@
 							<reference ref="445893040"/>
 							<reference ref="580350203"/>
 							<reference ref="552625487"/>
-							<reference ref="560743940"/>
+							<reference ref="544360632"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Status Menu</string>
@@ -825,14 +826,14 @@
 						<reference key="parent" ref="552230148"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">665</int>
-						<reference key="object" ref="560743940"/>
-						<reference key="parent" ref="552230148"/>
+						<int key="objectID">671</int>
+						<reference key="object" ref="972787713"/>
+						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">671</int>
-						<reference key="object" ref="1049028712"/>
-						<reference key="parent" ref="0"/>
+						<int key="objectID">665</int>
+						<reference key="object" ref="544360632"/>
+						<reference key="parent" ref="552230148"/>
 					</object>
 				</object>
 			</object>
@@ -907,7 +908,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">672</int>
+			<int key="maxID">685</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -211,6 +211,9 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (NSString *)menuStringCU {
 	return NSLocalizedString(@"Check for Updates", nil);
 }
+- (NSString *)menuStringACU {
+	return NSLocalizedString(@"Automatically Check for Updates", nil);
+}
 
 @end
 
