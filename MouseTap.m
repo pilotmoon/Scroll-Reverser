@@ -50,6 +50,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 							 CGEventRef event,
 							 void *userInfo)
 {    
+    NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
 	MouseTap *tap=(MouseTap *)userInfo;
     
     if (type==kCGEventTabletProximity) 
@@ -167,6 +168,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         [tap enableTap:TRUE]; // Just re-enable it.
     }	
     
+    [pool drain];
 	return event;
 }
 
