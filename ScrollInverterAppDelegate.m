@@ -3,6 +3,7 @@
 #import "LoginItemsController.h"
 #import "MouseTap.h"
 #import "NSObject+ObservePrefs.h"
+#import <Sparkle/SUUpdater.h>
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
 NSString *const PrefsReverseHorizontal=@"ReverseX";
@@ -41,12 +42,19 @@ NSString *const PrefsHideIcon=@"HideIcon";
     tap->invertOther=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse];
 }
 
+- (BOOL)updaterShouldPromptForPermissionToCheckForUpdates:(SUUpdater *)bundle
+{
+    return NO;
+}
+
 - (id)init
 {
 	self=[super init];
 	if (self) {
-		tap=[[MouseTap alloc] init];
+		[[SUUpdater sharedUpdater] setDelegate:self];
+        tap=[[MouseTap alloc] init];
 		[self updateTap];
+        
 		statusController=[[StatusItemController alloc] init];
         
         // if leopard or above
@@ -199,6 +207,9 @@ NSString *const PrefsHideIcon=@"HideIcon";
 }
 - (NSString *)menuStringTablet {
 	return NSLocalizedString(@"Reverse Tablet", nil);
+}
+- (NSString *)menuStringCU {
+	return NSLocalizedString(@"Check for Updates", nil);
 }
 
 @end

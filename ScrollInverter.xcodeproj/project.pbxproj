@@ -10,6 +10,8 @@
 		012EDE89142B924300B8C627 /* ScrollInverterStatusBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 012EDE86142B924300B8C627 /* ScrollInverterStatusBlack.png */; };
 		012EDE8A142B924300B8C627 /* ScrollInverterStatusGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 012EDE87142B924300B8C627 /* ScrollInverterStatusGrey.png */; };
 		012EDE8B142B924300B8C627 /* ScrollInverterStatusWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 012EDE88142B924300B8C627 /* ScrollInverterStatusWhite.png */; };
+		013C9C6214E94B9900A757F5 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013C9C6114E94B9900A757F5 /* Sparkle.framework */; };
+		013C9C6314E94BCC00A757F5 /* Sparkle.framework in Resources */ = {isa = PBXBuildFile; fileRef = 013C9C6114E94B9900A757F5 /* Sparkle.framework */; };
 		01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01587306134DD1E200CD9CC4 /* Localizable.strings */; };
 		01587313134DD1FA00CD9CC4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0158730B134DD1FA00CD9CC4 /* InfoPlist.strings */; };
 		01587355134DD2B300CD9CC4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01587350134DD2B300CD9CC4 /* MainMenu.xib */; };
@@ -35,6 +37,7 @@
 		012EDE86142B924300B8C627 /* ScrollInverterStatusBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScrollInverterStatusBlack.png; sourceTree = "<group>"; };
 		012EDE87142B924300B8C627 /* ScrollInverterStatusGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScrollInverterStatusGrey.png; sourceTree = "<group>"; };
 		012EDE88142B924300B8C627 /* ScrollInverterStatusWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScrollInverterStatusWhite.png; sourceTree = "<group>"; };
+		013C9C6114E94B9900A757F5 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		0158730C134DD1FA00CD9CC4 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0158730D134DD1FA00CD9CC4 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01587351134DD2B300CD9CC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = resources/en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -78,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				013C9C6214E94B9900A757F5 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +108,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				013C9C6114E94B9900A757F5 /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -255,6 +260,7 @@
 				01BE745014DC5F7F0050DD8A /* insert_version.sh in Resources */,
 				01BE745114DC5F7F0050DD8A /* rnotes.erb in Resources */,
 				01BE747914DC63500050DD8A /* ReleaseNotes.md in Resources */,
+				013C9C6314E94BCC00A757F5 /* Sparkle.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +340,10 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 61;
 				DEPLOYMENT_POSTPROCESSING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -348,7 +358,7 @@
 					DEBUG_BUILD,
 					APPSTORE,
 				);
-				GCC_VERSION = 4.2;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				"GCC_VERSION[sdk=macosx10.4][arch=*]" = 4.0;
 				INFOPLIST_FILE = "Scroll_Inverter-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -371,6 +381,10 @@
 				CURRENT_PROJECT_VERSION = 61;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Scroll_Inverter_Prefix.pch;
@@ -385,7 +399,7 @@
 					NS_BLOCK_ASSERTIONS,
 					APPSTORE,
 				);
-				GCC_VERSION = 4.2;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				"GCC_VERSION[sdk=macosx10.4][arch=*]" = 4.0;
 				INFOPLIST_FILE = "Scroll_Inverter-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";

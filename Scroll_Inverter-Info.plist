@@ -44,5 +44,13 @@
 	<array/>
 	<key>UTImportedTypeDeclarations</key>
 	<array/>
+	<key>SUFeedURL</key>
+	<string>http://softwareupdate.pilotmoon.com/update/scrollreverser/appcast.xml</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>scrollreverser_dsa_pub.pem</string>
+	<key>SUScheduledCheckInterval</key>
+	<integer>86400</integer>
+	<key>SUAllowsAutomaticUpdates</key>
+	<false/>
 </dict>
 </plist>
