@@ -3,7 +3,6 @@
 #import "LoginItemsController.h"
 #import "MouseTap.h"
 #import "NSObject+ObservePrefs.h"
-#import <Sparkle/SUUpdater.h>
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
 NSString *const PrefsReverseHorizontal=@"ReverseX";
@@ -42,16 +41,10 @@ NSString *const PrefsHideIcon=@"HideIcon";
     tap->invertOther=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse];
 }
 
-- (BOOL)updaterShouldPromptForPermissionToCheckForUpdates:(SUUpdater *)bundle
-{
-    return NO;
-}
-
 - (id)init
 {
 	self=[super init];
 	if (self) {
-		[[SUUpdater sharedUpdater] setDelegate:self];
         tap=[[MouseTap alloc] init];
 		[self updateTap];
         
@@ -75,7 +68,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 -(IBAction) menuItemClicked:(id)sender
 {
-	NSLog(@"MIC");
 	switch ([sender tag])
 	{
 

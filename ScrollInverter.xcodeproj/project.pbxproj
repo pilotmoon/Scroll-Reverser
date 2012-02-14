@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0129A89414E9505900B0B84D /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 013C9C6114E94B9900A757F5 /* Sparkle.framework */; };
 		012EDE89142B924300B8C627 /* ScrollInverterStatusBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 012EDE86142B924300B8C627 /* ScrollInverterStatusBlack.png */; };
 		012EDE8A142B924300B8C627 /* ScrollInverterStatusGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 012EDE87142B924300B8C627 /* ScrollInverterStatusGrey.png */; };
 		012EDE8B142B924300B8C627 /* ScrollInverterStatusWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 012EDE88142B924300B8C627 /* ScrollInverterStatusWhite.png */; };
-		013C9C6214E94B9900A757F5 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013C9C6114E94B9900A757F5 /* Sparkle.framework */; };
 		01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01587306134DD1E200CD9CC4 /* Localizable.strings */; };
 		01587313134DD1FA00CD9CC4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0158730B134DD1FA00CD9CC4 /* InfoPlist.strings */; };
 		01587355134DD2B300CD9CC4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01587350134DD2B300CD9CC4 /* MainMenu.xib */; };
@@ -33,24 +31,10 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		0129A89E14E9506900B0B84D /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0129A89414E9505900B0B84D /* Sparkle.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		012EDE86142B924300B8C627 /* ScrollInverterStatusBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScrollInverterStatusBlack.png; sourceTree = "<group>"; };
 		012EDE87142B924300B8C627 /* ScrollInverterStatusGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScrollInverterStatusGrey.png; sourceTree = "<group>"; };
 		012EDE88142B924300B8C627 /* ScrollInverterStatusWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScrollInverterStatusWhite.png; sourceTree = "<group>"; };
-		013C9C6114E94B9900A757F5 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		0158730C134DD1FA00CD9CC4 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0158730D134DD1FA00CD9CC4 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01587351134DD2B300CD9CC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = resources/en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -94,7 +78,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				013C9C6214E94B9900A757F5 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +104,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				013C9C6114E94B9900A757F5 /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -204,7 +186,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Scroll Reverser" */;
 			buildPhases = (
-				0129A89E14E9506900B0B84D /* CopyFiles */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,

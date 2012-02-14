@@ -36,9 +36,6 @@
 			<object class="NSCustomObject" id="1050">
 				<string key="NSClassName">NSApplication</string>
 			</object>
-			<object class="NSCustomObject" id="716882799">
-				<string key="NSClassName">SUUpdater</string>
-			</object>
 			<object class="NSCustomObject" id="976324537">
 				<string key="NSClassName">ScrollInverterAppDelegate</string>
 			</object>
@@ -182,14 +179,6 @@
 					<object class="NSMenuItem" id="840178010">
 						<reference key="NSMenu" ref="552230148"/>
 						<string key="NSTitle">ABOUT</string>
-						<string key="NSKeyEquiv"/>
-						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="598029772"/>
-						<reference key="NSMixedImage" ref="960309333"/>
-					</object>
-					<object class="NSMenuItem" id="309925565">
-						<reference key="NSMenu" ref="552230148"/>
-						<string key="NSTitle">CHECKUPD</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="598029772"/>
@@ -642,30 +631,6 @@
 					</object>
 					<int key="connectionID">613</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">title: menuStringCU</string>
-						<reference key="source" ref="309925565"/>
-						<reference key="destination" ref="976324537"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="309925565"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">title: menuStringCU</string>
-							<string key="NSBinding">title</string>
-							<string key="NSKeyPath">menuStringCU</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">668</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">checkForUpdates:</string>
-						<reference key="source" ref="716882799"/>
-						<reference key="destination" ref="309925565"/>
-					</object>
-					<int key="connectionID">672</int>
-				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -712,7 +677,6 @@
 							<reference ref="445893040"/>
 							<reference ref="580350203"/>
 							<reference ref="552625487"/>
-							<reference ref="309925565"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Status Menu</string>
@@ -824,16 +788,6 @@
 						<reference key="object" ref="962185928"/>
 						<reference key="parent" ref="552230148"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">671</int>
-						<reference key="object" ref="716882799"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">665</int>
-						<reference key="object" ref="309925565"/>
-						<reference key="parent" ref="552230148"/>
-					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -863,13 +817,9 @@
 					<string>596.IBPluginDependency</string>
 					<string>604.IBPluginDependency</string>
 					<string>608.IBPluginDependency</string>
-					<string>665.IBPluginDependency</string>
-					<string>671.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -912,36 +862,6 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="IBPartialClassDescription">
-					<string key="className">SUUpdater</string>
-					<string key="superclassName">NSObject</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">checkForUpdates:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">checkForUpdates:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">checkForUpdates:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">delegate</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">delegate</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">delegate</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/SUUpdater.h</string>
-					</object>
-				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">ScrollInverterAppDelegate</string>
 					<string key="superclassName">NSObject</string>
