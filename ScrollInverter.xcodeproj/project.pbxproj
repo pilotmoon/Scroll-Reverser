@@ -18,12 +18,6 @@
 		0199D2DB13254E9B000D8011 /* ScrollInverterIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */; };
 		01B662D513250CA800658B5C /* LoginItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B662D413250CA800658B5C /* LoginItemsController.m */; };
 		01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */; };
-		01BE744D14DC5F7F0050DD8A /* build_release_notes.sh in Resources */ = {isa = PBXBuildFile; fileRef = 01BE744814DC5F7F0050DD8A /* build_release_notes.sh */; };
-		01BE744E14DC5F7F0050DD8A /* create_zip.sh in Resources */ = {isa = PBXBuildFile; fileRef = 01BE744914DC5F7F0050DD8A /* create_zip.sh */; };
-		01BE744F14DC5F7F0050DD8A /* fix_standalone_version.sh in Resources */ = {isa = PBXBuildFile; fileRef = 01BE744A14DC5F7F0050DD8A /* fix_standalone_version.sh */; };
-		01BE745014DC5F7F0050DD8A /* insert_version.sh in Resources */ = {isa = PBXBuildFile; fileRef = 01BE744B14DC5F7F0050DD8A /* insert_version.sh */; };
-		01BE745114DC5F7F0050DD8A /* rnotes.erb in Resources */ = {isa = PBXBuildFile; fileRef = 01BE744C14DC5F7F0050DD8A /* rnotes.erb */; };
-		01BE747914DC63500050DD8A /* ReleaseNotes.md in Resources */ = {isa = PBXBuildFile; fileRef = 01BE747814DC63500050DD8A /* ReleaseNotes.md */; };
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
 		01FD049D142B6F7900F3BDCB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01587306134DD1E200CD9CC4 /* Localizable.strings */; };
 		256AC3DA0F4B6AC300CF3369 /* ScrollInverterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */; };
@@ -249,12 +243,6 @@
 				012EDE8A142B924300B8C627 /* ScrollInverterStatusGrey.png in Resources */,
 				012EDE8B142B924300B8C627 /* ScrollInverterStatusWhite.png in Resources */,
 				0180FF461434A548005BBDA1 /* Credits.html in Resources */,
-				01BE744D14DC5F7F0050DD8A /* build_release_notes.sh in Resources */,
-				01BE744E14DC5F7F0050DD8A /* create_zip.sh in Resources */,
-				01BE744F14DC5F7F0050DD8A /* fix_standalone_version.sh in Resources */,
-				01BE745014DC5F7F0050DD8A /* insert_version.sh in Resources */,
-				01BE745114DC5F7F0050DD8A /* rnotes.erb in Resources */,
-				01BE747914DC63500050DD8A /* ReleaseNotes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
