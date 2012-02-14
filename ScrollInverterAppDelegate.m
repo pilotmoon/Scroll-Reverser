@@ -180,6 +180,9 @@ NSString *const PrefsHideIcon=@"HideIcon";
     }
 }
 
+- (NSString *)menuStringOK {
+	return NSLocalizedString(@"OK", nil);
+}
 - (NSString *)menuStringReverseScrolling {
 	return NSLocalizedString(@"Reverse Scrolling", nil);
 }
@@ -218,7 +221,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	return NSLocalizedString(@"Reverse Tablet", nil);
 }
 - (NSString *)menuStringWelcomeText {
-	return NSLocalizedString(@"Your scrolling is now reversed!", nil);
+	return NSLocalizedString(@"Scroll Reverser is now running!", nil);
 }
 - (NSString *)menuStringWelcomeIconHelp {
 	return NSLocalizedString(@"For settings, click the icon in the menu bar.", nil);
