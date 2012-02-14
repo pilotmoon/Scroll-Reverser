@@ -55,6 +55,13 @@
 	_statusImage=[[NSImage imageNamed:@"ScrollInverterStatusBlack"] retain];
 	_statusImageInverse=[[NSImage imageNamed:@"ScrollInverterStatusWhite"] retain];
 	_statusImageDisabled=[[NSImage imageNamed:@"ScrollInverterStatusGrey"] retain];
+
+    NSSize iconSize=NSMakeSize(14, 17);    
+    [_statusImage setSize:iconSize];
+    [_statusImageInverse setSize:iconSize];
+    [_statusImageDisabled setSize:iconSize];
+    
+    NSLog(@"img %@", _statusImageDisabled);
 	[self observePrefsKey:PrefsReverseScrolling];
 	[self observePrefsKey:PrefsHideIcon];	
 	[self displayStatusIcon];
