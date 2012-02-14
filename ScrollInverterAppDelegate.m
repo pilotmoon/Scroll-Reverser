@@ -3,6 +3,7 @@
 #import "LoginItemsController.h"
 #import "MouseTap.h"
 #import "NSObject+ObservePrefs.h"
+#import "WelcomeWindowController.h"
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
 NSString *const PrefsReverseHorizontal=@"ReverseX";
@@ -87,11 +88,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	}
 }
 
-- (IBAction)closeWelcomeWindow:(id)sender
-{
-    [welcomeWindow close];
-}
-
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 {
 	return YES;
@@ -117,12 +113,8 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	const BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
 	if(first) {
-        // show welcome
-        [[[NSNib alloc] initWithNibNamed:@"WelcomeWindow" bundle:nil] instantiateNibWithOwner:self topLevelObjects:nil];
-        [NSApp activateIgnoringOtherApps:YES];
-        [welcomeWindow setLevel:NSFloatingWindowLevel];
-        [welcomeWindow center];
-        [welcomeWindow makeKeyAndOrderFront:self];
+        welcomeWindowController=[[WelcomeWindowController alloc] initWithWindowNibName:@"WelcomeWindow"];
+        [welcomeWindowController showWindow:self];
         
         // adjust default prefs
         if (NSClassFromString(@"NSPopover")) { // it is lion
@@ -180,9 +172,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
     }
 }
 
-- (NSString *)menuStringOK {
-	return NSLocalizedString(@"OK", nil);
-}
 - (NSString *)menuStringReverseScrolling {
 	return NSLocalizedString(@"Reverse Scrolling", nil);
 }
@@ -219,12 +208,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
 }
 - (NSString *)menuStringTablet {
 	return NSLocalizedString(@"Reverse Tablet", nil);
-}
-- (NSString *)menuStringWelcomeText {
-	return NSLocalizedString(@"Scroll Reverser is now running!", nil);
-}
-- (NSString *)menuStringWelcomeIconHelp {
-	return NSLocalizedString(@"For settings, click the icon in the menu bar.", nil);
 }
 
 @end

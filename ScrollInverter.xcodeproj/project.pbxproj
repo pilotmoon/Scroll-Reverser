@@ -16,6 +16,7 @@
 		0158735813265EDD00100E4C /* StatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0158735513265EDD00100E4C /* StatusItemController.m */; };
 		0180FF461434A548005BBDA1 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 0180FF451434A548005BBDA1 /* Credits.html */; };
 		0199D2DB13254E9B000D8011 /* ScrollInverterIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */; };
+		019FB05A14EB1A9100FA225A /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019FB05914EB1A9100FA225A /* WelcomeWindowController.m */; };
 		01B662D513250CA800658B5C /* LoginItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B662D413250CA800658B5C /* LoginItemsController.m */; };
 		01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */; };
 		01CEC48314EAC6A60064570D /* IntroShotArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC48214EAC6A60064570D /* IntroShotArrow.png */; };
@@ -40,6 +41,8 @@
 		0180FF451434A548005BBDA1 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		018C6C8B13FD22BC001DC44F /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0199D2DA13254E9B000D8011 /* ScrollInverterIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ScrollInverterIcon.icns; sourceTree = "<group>"; };
+		019FB05814EB1A9100FA225A /* WelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeWindowController.h; sourceTree = "<group>"; };
+		019FB05914EB1A9100FA225A /* WelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeWindowController.m; sourceTree = "<group>"; };
 		01B1F4041368A62400BB9A3A /* el */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = el; path = resources/el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01B662D313250CA800658B5C /* LoginItemsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemsController.h; sourceTree = "<group>"; };
 		01B662D413250CA800658B5C /* LoginItemsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemsController.m; sourceTree = "<group>"; };
@@ -87,6 +90,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				019FB05814EB1A9100FA225A /* WelcomeWindowController.h */,
+				019FB05914EB1A9100FA225A /* WelcomeWindowController.m */,
 				01B66449132528A000658B5C /* NSObject+ObservePrefs.h */,
 				01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */,
 				0158735413265EDD00100E4C /* StatusItemController.h */,
@@ -287,6 +292,7 @@
 				01B662D513250CA800658B5C /* LoginItemsController.m in Sources */,
 				01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */,
 				0158735813265EDD00100E4C /* StatusItemController.m in Sources */,
+				019FB05A14EB1A9100FA225A /* WelcomeWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

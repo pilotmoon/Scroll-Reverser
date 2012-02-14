@@ -61,7 +61,6 @@
     [_statusImageInverse setSize:iconSize];
     [_statusImageDisabled setSize:iconSize];
     
-    NSLog(@"img %@", _statusImageDisabled);
 	[self observePrefsKey:PrefsReverseScrolling];
 	[self observePrefsKey:PrefsHideIcon];	
 	[self displayStatusIcon];
