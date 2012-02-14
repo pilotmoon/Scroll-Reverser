@@ -3,6 +3,7 @@
 #import "LoginItemsController.h"
 #import "MouseTap.h"
 #import "NSObject+ObservePrefs.h"
+#import "PFMoveApplication.h"
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
 NSString *const PrefsReverseHorizontal=@"ReverseX";
@@ -114,6 +115,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    PFMoveToApplicationsFolderIfNecessary();
 	const BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
 	if(first) {
