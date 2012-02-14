@@ -195,7 +195,11 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	return NSLocalizedString(@"Reverse Trackpad", nil);
 }
 - (NSString *)menuStringMouse {
+#ifdef TIGER_BUILD
+	return NSLocalizedString(@"Reverse Mouse/Trackpad", nil);
+#else
 	return NSLocalizedString(@"Reverse Mouse", nil);
+#endif
 }
 - (NSString *)menuStringTablet {
 	return NSLocalizedString(@"Reverse Tablet", nil);
