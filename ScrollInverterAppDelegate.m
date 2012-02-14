@@ -87,6 +87,11 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	}
 }
 
+- (IBAction)closeWelcomeWindow:(id)sender
+{
+    [welcomeWindow close];
+}
+
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 {
 	return YES;
@@ -112,6 +117,14 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	const BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
 	if(first) {
+        // show welcome
+        [[[NSNib alloc] initWithNibNamed:@"WelcomeWindow" bundle:nil] instantiateNibWithOwner:self topLevelObjects:nil];
+        [NSApp activateIgnoringOtherApps:YES];
+        [welcomeWindow setLevel:NSFloatingWindowLevel];
+        [welcomeWindow center];
+        [welcomeWindow makeKeyAndOrderFront:self];
+        
+        // adjust default prefs
         if (NSClassFromString(@"NSPopover")) { // it is lion
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsReverseHorizontal];
         }
@@ -204,11 +217,11 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (NSString *)menuStringTablet {
 	return NSLocalizedString(@"Reverse Tablet", nil);
 }
-- (NSString *)menuStringCU {
-	return NSLocalizedString(@"Check for Updates", nil);
+- (NSString *)menuStringWelcomeText {
+	return NSLocalizedString(@"Your scrolling is now reversed!", nil);
 }
-- (NSString *)menuStringACU {
-	return NSLocalizedString(@"Automatically Check for Updates", nil);
+- (NSString *)menuStringWelcomeIconHelp {
+	return NSLocalizedString(@"For settings, click the icon in the menu bar.", nil);
 }
 
 @end

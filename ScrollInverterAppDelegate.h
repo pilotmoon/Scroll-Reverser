@@ -13,6 +13,7 @@ extern NSString *const PrefsHideIcon;
 	MouseTap *tap;
 	StatusItemController *statusController;
     LoginItemsController *loginItemsController;
+    IBOutlet NSWindow *welcomeWindow;
     IBOutlet NSMenu *statusMenu;
     IBOutlet NSMenu *prefsMenu;
     IBOutlet NSMenuItem *trackpadItemMenu;
@@ -21,5 +22,6 @@ extern NSString *const PrefsHideIcon;
 }
 - (IBAction)showAbout:(id)sender;
 - (IBAction)menuItemClicked:(id)sender;
+- (IBAction)closeWelcomeWindow:(id)sender;
 
 @end
