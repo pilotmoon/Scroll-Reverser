@@ -33,7 +33,9 @@ static BOOL _pidIsTablet(const pid_t pid)
     }
     
     // look it up
-    const BOOL pidIsTablet=[[_bundleIdForPID(pid) lowercaseString] rangeOfString:@"wacom"].length>0;
+    NSString *bid=[_bundleIdForPID(pid) lowercaseString];
+    NSLog(@"bid %@", bid);
+    const BOOL pidIsTablet=[bid rangeOfString:@"wacom"].length>0;
     if (pidIsTablet)
     {
         lastKnownTabletPid=pid;
@@ -55,6 +57,8 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
     
     if (type==kCGEventTabletProximity) 
     {
+        NSEvent *ev=[NSEvent eventWithCGEvent:event];
+        NSLog(@"event %@", ev);
         // is the pen next to the tablet?
         if(_wacomMode) 
         {
@@ -69,14 +73,22 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
     else if (type==NSEventTypeGesture)
     {
         // how many fingers on the pad
-        tap->fingers=[[[NSEvent eventWithCGEvent:event] touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];		
+        NSEvent *ev=[NSEvent eventWithCGEvent:event];
+        NSLog(@"event %@", ev);
+        tap->fingers=[[ev touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];		
+        NSLog(@"fingers %lu", tap->fingers);
     }
 #endif
     else if (type==kCGEventScrollWheel)
     {
-        // check for tablet override
+        NSEvent *ev=[NSEvent eventWithCGEvent:event];
+        NSLog(@"event %@", ev);
+        NSLog(@"scroll"); // check for tablet override
         const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
         tap->tabletProxOverride=pid&&_pidIsTablet(pid);
+        if (tap->tabletProxOverride) {
+            tap->fingers=0;
+        }
         
         // has proximity changed
         const BOOL tabletProxOverrideChanged=(tap->lastTabletProxOverride!=tap->tabletProxOverride);
@@ -87,10 +99,15 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         const UInt32 ticksElapsed=tickCount-tap->lastScrollEventTick;
         tap->lastScrollEventTick=tickCount;
         const BOOL newScrollEvent=tabletProxOverrideChanged||ticksElapsed>20; // ticks are about 1/60 of second
+        NSLog(@"ticks %u", ticksElapsed);
         if (newScrollEvent) 
         {
+            NSLog(@"newscrollevent fingers %lu", tap->fingers);
             tap->cachedIsTrackpad=tap->fingers>0;
         }
+        
+        
+        NSLog(@"cachedt %d prox %d proxover %d", tap->cachedIsTrackpad, tap->tabletProx, tap->tabletProxOverride);
         
         // determine source
         ScrollEventSource source=ScrollEventSourceOther;
@@ -102,6 +119,8 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         {
             source=ScrollEventSourceTablet;
         }
+        
+        NSLog(@"source %i", source);
         
         // don't reverse scrolling we have already reversed
         const int64_t ud=CGEventGetIntegerValueField(event, kCGEventSourceUserData);
