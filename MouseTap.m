@@ -94,13 +94,17 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 
         NSUInteger momentumPhase=0;
         NSUInteger phase=0;
+        NSUInteger scrollPhase=0;		
         if ([ev respondsToSelector:@selector(momentumPhase)]) {
             momentumPhase=(NSUInteger)[ev performSelector:@selector(momentumPhase)];
         }
         if ([ev respondsToSelector:@selector(phase)]) {
             phase=(NSUInteger)[ev performSelector:@selector(phase)];
         }
-        NSLog(@"MPHASE %lu PH %lu", momentumPhase, phase);
+        if ([ev respondsToSelector:@selector(_scrollPhase)]) {
+            scrollPhase=(NSUInteger)[ev performSelector:@selector(_scrollPhase)];
+        }		
+        NSLog(@"MPHASE %lu PH %lu SCP %lu", momentumPhase, phase, scrollPhase);
         NSLog(@"event %@", ev);
 #endif
         NSLog(@"scroll"); // check for tablet override
