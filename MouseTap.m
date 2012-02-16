@@ -8,8 +8,13 @@ extern CFRunLoopRef CFRunLoopGetMain(void);
 #define MAGIC_NUMBER (0x7363726F726576) // "scrorev" in hex
 
 static BOOL _preventReverseOtherApp;
+
+// this is set when a known wacom tablet is detected
 static BOOL _wacomMode=NO;
 
+/*
+ Get the bundle identifier for the given pid.
+ */
 static NSString *_bundleIdForPID(const pid_t pid)
 {
 	ProcessSerialNumber psn={0, 0};
@@ -22,13 +27,14 @@ static NSString *_bundleIdForPID(const pid_t pid)
 	return nil;
 }
 
-static BOOL _pidIsTablet(const pid_t pid)
+
+/*
+ Is the pid a wacom tablet?
+ */
+static BOOL _pidIsWacomTablet(const pid_t pid)
 {
     static pid_t lastKnownTabletPid=0;
-    
-    // check last know value (faster)
-    if (pid==lastKnownTabletPid)
-    {
+    if (pid==lastKnownTabletPid) {
         return YES;
     }
     
@@ -82,10 +88,21 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
     else if (type==kCGEventScrollWheel)
     {
         NSEvent *ev=[NSEvent eventWithCGEvent:event];
+
+        NSUInteger momentumPhase=0;
+        NSUInteger phase=0;
+        if ([ev respondsToSelector:@selector(momentumPhase)]) {
+            momentumPhase=(NSUInteger)[ev performSelector:@selector(momentumPhase)];
+        }
+        if ([ev respondsToSelector:@selector(phase)]) {
+            phase=(NSUInteger)[ev performSelector:@selector(phase)];
+        }
+        NSLog(@"MPHASE %lu PH %lu", momentumPhase, phase);
+        
         NSLog(@"event %@", ev);
         NSLog(@"scroll"); // check for tablet override
         const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
-        tap->tabletProxOverride=pid&&_pidIsTablet(pid);
+        tap->tabletProxOverride=pid&&_pidIsWacomTablet(pid);
         if (tap->tabletProxOverride) {
             tap->fingers=0;
         }
