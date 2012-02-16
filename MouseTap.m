@@ -9,9 +9,6 @@ extern CFRunLoopRef CFRunLoopGetMain(void);
 
 static BOOL _preventReverseOtherApp;
 
-// this is set when a known wacom tablet is detected
-static BOOL _wacomMode=NO;
-
 /*
  Get the bundle identifier for the given pid.
  */
@@ -33,6 +30,7 @@ static NSString *_bundleIdForPID(const pid_t pid)
  */
 static BOOL _pidIsWacomTablet(const pid_t pid)
 {
+    // short cut
     static pid_t lastKnownTabletPid=0;
     if (pid==lastKnownTabletPid) {
         return YES;
@@ -40,16 +38,73 @@ static BOOL _pidIsWacomTablet(const pid_t pid)
     
     // look it up
     NSString *bid=[_bundleIdForPID(pid) lowercaseString];
-    NSLog(@"bid %@", bid);
     const BOOL pidIsTablet=[bid rangeOfString:@"wacom"].length>0;
     if (pidIsTablet)
     {
         lastKnownTabletPid=pid;
-        _wacomMode=YES;
         return YES;
     }
     
     return NO;
+}
+
+
+/* 
+ Work out the scrolling phase (work on 10.6 and 10.7)
+ */
+typedef enum {
+    ScrollPhaseNormal=0,
+    ScrollPhaseMomentum,
+    ScrollPhaseEnd
+} ScrollPhase;
+
+static ScrollPhase _MomentumPhaseForEvent(CGEventRef event)
+{
+    ScrollPhase result=ScrollPhaseNormal;
+#ifndef TIGER_BUILD		
+    NSEvent *ev=[NSEvent eventWithCGEvent:event];
+    NSUInteger momentumPhase=0;
+    NSUInteger scrollPhase=0;		
+    if ([ev respondsToSelector:@selector(momentumPhase)]) { // 10.7
+        momentumPhase=(NSUInteger)[ev performSelector:@selector(momentumPhase)];
+    }
+    if ([ev respondsToSelector:@selector(_scrollPhase)]) { // 10.6 (private method)
+        scrollPhase=(NSUInteger)[ev performSelector:@selector(_scrollPhase)];
+    }		
+    if (momentumPhase==4||scrollPhase==2) {
+        result=ScrollPhaseMomentum;
+    }
+    else if (momentumPhase==8||scrollPhase==3) {
+        result=ScrollPhaseEnd;
+    }
+#endif
+    return result;
+}
+
+
+static void _DoReversal(MouseTap *tap, CGEventRef event)
+{
+    // First get the line and pixel delta values.
+    int64_t line_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
+    int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
+#ifndef TIGER_BUILD
+    double fixedpt_axis1=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1);
+    double fixedpt_axis2=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2);
+    int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
+    int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
+#endif
+    /* Now negate them all. It's worth noting we have to set them in this order (lines then pixels) 
+     or we lose smooth scrolling. */
+    if (tap->invertY) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -line_axis1);	
+    if (tap->invertX) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -line_axis2);
+#ifndef TIGER_BUILD
+    if (tap->invertY) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1, -1 * fixedpt_axis1);
+    if (tap->invertX) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2, -1 * fixedpt_axis2);
+    if (tap->invertY) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);		
+    if (tap->invertX) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
+#endif
+    // set user data
+    CGEventSetIntegerValueField(event, kCGEventSourceUserData, MAGIC_NUMBER);		
 }
 
 // This is called every time there is a scroll event. It has to be efficient.
@@ -61,90 +116,58 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
     NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
 	MouseTap *tap=(MouseTap *)userInfo;
     
-    if (type==kCGEventTabletProximity) 
+    if (type==NSEventTypeGesture)
     {
-#ifndef TIGER_BUILD
-        NSEvent *ev=[NSEvent eventWithCGEvent:event];
-        NSLog(@"event %@", ev);
-#endif
-        // is the pen next to the tablet?
-        if(_wacomMode) 
-        {
-            tap->tabletProx=NO;           
-        }
-        else
-        {
-            tap->tabletProx=!!CGEventGetIntegerValueField(event, kCGTabletProximityEventEnterProximity);   
-        }
-    }
-#ifndef TIGER_BUILD
-    else if (type==NSEventTypeGesture)
-    {
+#ifndef TIGER_BUILD    
         // how many fingers on the pad
         NSEvent *ev=[NSEvent eventWithCGEvent:event];
-        NSLog(@"event %@", ev);
         tap->fingers=[[ev touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];		
         NSLog(@"fingers %lu", tap->fingers);
-    }
 #endif
+    }
     else if (type==kCGEventScrollWheel)
     {
-#ifndef TIGER_BUILD		
-        NSEvent *ev=[NSEvent eventWithCGEvent:event];
-
-        NSUInteger momentumPhase=0;
-        NSUInteger phase=0;
-        NSUInteger scrollPhase=0;		
-        if ([ev respondsToSelector:@selector(momentumPhase)]) {
-            momentumPhase=(NSUInteger)[ev performSelector:@selector(momentumPhase)];
-        }
-        if ([ev respondsToSelector:@selector(phase)]) {
-            phase=(NSUInteger)[ev performSelector:@selector(phase)];
-        }
-        if ([ev respondsToSelector:@selector(_scrollPhase)]) {
-            scrollPhase=(NSUInteger)[ev performSelector:@selector(_scrollPhase)];
-        }		
-        NSLog(@"MPHASE %lu PH %lu SCP %lu", momentumPhase, phase, scrollPhase);
-        NSLog(@"event %@", ev);
-#endif
-        NSLog(@"scroll"); // check for tablet override
-        const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
-        tap->tabletProxOverride=pid&&_pidIsWacomTablet(pid);
-        if (tap->tabletProxOverride) {
-            tap->fingers=0;
-        }
-        
-        // has proximity changed
-        const BOOL tabletProxOverrideChanged=(tap->lastTabletProxOverride!=tap->tabletProxOverride);
-        tap->lastTabletProxOverride=tap->tabletProxOverride;
-        
-        // cached trackpad state so we invert the momentum
-        const UInt32 tickCount=TickCount();
-        const UInt32 ticksElapsed=tickCount-tap->lastScrollEventTick;
-        tap->lastScrollEventTick=tickCount;
-        const BOOL newScrollEvent=tabletProxOverrideChanged||ticksElapsed>20; // ticks are about 1/60 of second
-        NSLog(@"ticks %u", ticksElapsed);
-        if (newScrollEvent) 
-        {
-            NSLog(@"newscrollevent fingers %lu", tap->fingers);
-            tap->cachedIsTrackpad=tap->fingers>0;
-        }
-        
-        
-        NSLog(@"cachedt %d prox %d proxover %d", tap->cachedIsTrackpad, tap->tabletProx, tap->tabletProxOverride);
-        
         // determine source
         ScrollEventSource source=ScrollEventSourceOther;
-        if (tap->cachedIsTrackpad)
-        {
-            source=ScrollEventSourceTrackpad;
-        }
-        else if (tap->tabletProxOverride||tap->tabletProx)
+
+        // check if tablet
+        const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
+        if (pid&&_pidIsWacomTablet(pid))
         {
             source=ScrollEventSourceTablet;
         }
+        else
+        {
+            const ScrollPhase phase=_MomentumPhaseForEvent(event);        
+            const UInt32 ticks=TickCount(); // about 1/60 of a sec
+            const UInt32 ticksElapsed=ticks-tap->lastScrollTicks;
+
+            NSLog(@"scroll %i", phase);
+            
+            if (phase==ScrollPhaseNormal&&(tap->lastPhase!=ScrollPhaseNormal||tap->sampledFingers==0||tap->zeroCount>2||ticksElapsed>20))
+            {
+                tap->sampledFingers=tap->fingers;
+                NSLog(@"Sampled %lu fingers", tap->sampledFingers);
+            }
+             
+            if (tap->fingers>0) {
+                tap->zeroCount=0;
+            }
+            else {
+                tap->zeroCount+=1;
+            }
+
+            tap->lastPhase=phase;     
+            tap->lastScrollTicks=TickCount();
+            
+            if (tap->sampledFingers>0)
+            {
+                source=ScrollEventSourceTrackpad;
+            }
+        }
         
-        NSLog(@"source %i", source);
+        NSLog(@"source %i", source);        
+        
         
         // don't reverse scrolling we have already reversed
         const int64_t ud=CGEventGetIntegerValueField(event, kCGEventSourceUserData);
@@ -155,53 +178,33 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         if(_preventReverseOtherApp)
         {
             int64_t sourcepid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);				
-            if (sourcepid!=0) {
+            if (sourcepid!=0)
+            {
                 preventBecauseComingFromOtherApp=YES;
             }
         }
         
         if (tap->inverting&&!(preventBecauseOfMagicNumber||preventBecauseComingFromOtherApp))
         {
-            
-            BOOL allow=YES;
+            BOOL invert=YES;
             switch (source)
             {
                 case ScrollEventSourceTrackpad:
-                    allow=tap->invertMultiTouch;
+                    invert=tap->invertMultiTouch;
                     break;
                     
                 case ScrollEventSourceTablet:
-                    allow=tap->invertTablet;
+                    invert=tap->invertTablet;
                     break;
                     
                 case ScrollEventSourceOther:
                 default:
-                    allow=tap->invertOther;
+                    invert=tap->invertOther;
                     break;
             }
-            if (allow) // now reverse the scrolling
+            if (invert)
             {
-                // First get the line and pixel delta values.
-                int64_t line_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
-                int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
-#ifndef TIGER_BUILD
-                double fixedpt_axis1=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1);
-                double fixedpt_axis2=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2);
-                int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
-                int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
-#endif
-                /* Now negate them all. It's worth noting we have to set them in this order (lines then pixels) 
-                 or we lose smooth scrolling. */
-                if (tap->invertY) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -line_axis1);	
-                if (tap->invertX) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -line_axis2);
-#ifndef TIGER_BUILD
-                if (tap->invertY) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1, -1 * fixedpt_axis1);
-                if (tap->invertX) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2, -1 * fixedpt_axis2);
-                if (tap->invertY) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);		
-                if (tap->invertX) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
-#endif
-                // set user data
-                CGEventSetIntegerValueField(event, kCGEventSourceUserData, MAGIC_NUMBER);				
+                _DoReversal(tap, event);
             }
         }
     }
