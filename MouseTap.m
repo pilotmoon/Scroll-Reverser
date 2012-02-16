@@ -63,8 +63,10 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
     
     if (type==kCGEventTabletProximity) 
     {
+#ifndef TIGER_BUILD
         NSEvent *ev=[NSEvent eventWithCGEvent:event];
         NSLog(@"event %@", ev);
+#endif
         // is the pen next to the tablet?
         if(_wacomMode) 
         {
@@ -87,6 +89,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 #endif
     else if (type==kCGEventScrollWheel)
     {
+#ifndef TIGER_BUILD		
         NSEvent *ev=[NSEvent eventWithCGEvent:event];
 
         NSUInteger momentumPhase=0;
@@ -98,8 +101,8 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             phase=(NSUInteger)[ev performSelector:@selector(phase)];
         }
         NSLog(@"MPHASE %lu PH %lu", momentumPhase, phase);
-        
         NSLog(@"event %@", ev);
+#endif
         NSLog(@"scroll"); // check for tablet override
         const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
         tap->tabletProxOverride=pid&&_pidIsWacomTablet(pid);
