@@ -8,6 +8,8 @@ extern CFRunLoopRef CFRunLoopGetMain(void);
 #define MAGIC_NUMBER (0x7363726F726576) // "scrorev" in hex
 
 static BOOL _preventReverseOtherApp;
+static unsigned long _minZeros;
+static unsigned long _minFingers;
 
 /*
  Get the bundle identifier for the given pid.
@@ -23,7 +25,6 @@ static NSString *_bundleIdForPID(const pid_t pid)
 	}
 	return nil;
 }
-
 
 /*
  Is the pid a wacom tablet?
@@ -47,7 +48,6 @@ static BOOL _pidIsWacomTablet(const pid_t pid)
     
     return NO;
 }
-
 
 /* 
  Work out the scrolling phase (work on 10.6 and 10.7)
@@ -144,13 +144,13 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 
             NSLog(@"scroll %i", phase);
             
-            if (phase==ScrollPhaseNormal&&(tap->lastPhase!=ScrollPhaseNormal||tap->sampledFingers==0||tap->zeroCount>2||ticksElapsed>20))
+            if (phase==ScrollPhaseNormal&&(tap->lastPhase!=ScrollPhaseNormal||tap->sampledFingers<_minFingers||tap->zeroCount>_minZeros||ticksElapsed>20))
             {
                 tap->sampledFingers=tap->fingers;
                 NSLog(@"Sampled %lu fingers", tap->sampledFingers);
             }
              
-            if (tap->fingers>0) {
+            if (tap->fingers>=_minFingers) {
                 tap->zeroCount=0;
             }
             else {
@@ -160,7 +160,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             tap->lastPhase=phase;     
             tap->lastScrollTicks=TickCount();
             
-            if (tap->sampledFingers>0)
+            if (tap->sampledFingers>=_minFingers)
             {
                 source=ScrollEventSourceTrackpad;
             }
@@ -231,7 +231,9 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 		return;
     
     _preventReverseOtherApp=[[NSUserDefaults standardUserDefaults] boolForKey:@"ReverseOnlyRawInput"];
-
+    _minZeros=[[NSUserDefaults standardUserDefaults] integerForKey:@"MinZeros"];
+    _minFingers=[[NSUserDefaults standardUserDefaults] integerForKey:@"MinFingers"];
+    
 #ifndef TIGER_BUILD
     // should we hook gesture events
     const BOOL touchAvailable=[NSEvent instancesRespondToSelector:@selector(touchesMatchingPhase:inView:)];
