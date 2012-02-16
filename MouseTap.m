@@ -116,7 +116,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
     NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
 	MouseTap *tap=(MouseTap *)userInfo;
     
-    if (type==NSEventTypeGesture)
+    if (type==29 /*NSEventTypeGesture*/)
     {
 #ifndef TIGER_BUILD    
         // how many fingers on the pad

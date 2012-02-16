@@ -19,7 +19,7 @@ typedef enum {
     unsigned long sampledFingers;
     unsigned long zeroCount;
     UInt32 lastScrollTicks;
-    NSUInteger lastPhase;
+    unsigned long lastPhase;
 	BOOL inverting;
     BOOL invertX;
     BOOL invertY;
