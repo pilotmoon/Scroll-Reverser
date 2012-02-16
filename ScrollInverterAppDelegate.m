@@ -28,8 +28,8 @@ NSString *const PrefsHideIcon=@"HideIcon";
           [NSNumber numberWithBool:YES], PrefsReverseTrackpad,
           [NSNumber numberWithBool:YES], PrefsReverseMouse,
           [NSNumber numberWithBool:YES], PrefsReverseTablet,
-          [NSNumber numberWithInteger:2], @"MinZeros",
-          [NSNumber numberWithInteger:2], @"MinFingers",
+          [NSNumber numberWithInt:2], @"MinZeros",
+          [NSNumber numberWithInt:2], @"MinFingers",
           nil]];		
 	}
 }
