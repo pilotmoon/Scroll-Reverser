@@ -39,6 +39,7 @@ static BOOL _pidIsWacomTablet(const pid_t pid)
     
     // look it up
     NSString *bid=[_bundleIdForPID(pid) lowercaseString];
+    NSLog(@"Tablet BID %@", bid);
     const BOOL pidIsTablet=[bid rangeOfString:@"wacom"].length>0;
     if (pidIsTablet)
     {
@@ -122,7 +123,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         // how many fingers on the pad
         NSEvent *ev=[NSEvent eventWithCGEvent:event];
         tap->fingers=[[ev touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];		
-        NSLog(@"fingers %lu", tap->fingers);
+        //NSLog(@"fingers %lu", tap->fingers);
 #endif
     }
     else if (type==kCGEventScrollWheel)
@@ -142,12 +143,12 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             const UInt32 ticks=TickCount(); // about 1/60 of a sec
             const UInt32 ticksElapsed=ticks-tap->lastScrollTicks;
 
-            NSLog(@"scroll %i", phase);
+            //NSLog(@"scroll %i", phase);
             
             if (phase==ScrollPhaseNormal&&(tap->lastPhase!=ScrollPhaseNormal||tap->sampledFingers<_minFingers||tap->zeroCount>_minZeros||ticksElapsed>20))
             {
                 tap->sampledFingers=tap->fingers;
-                NSLog(@"Sampled %lu fingers", tap->sampledFingers);
+                //NSLog(@"Sampled %lu fingers", tap->sampledFingers);
             }
              
             if (tap->fingers>=_minFingers) {
@@ -166,7 +167,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             }
         }
         
-        NSLog(@"source %i", source);        
+        //NSLog(@"source %i", source);        
         
         
         // don't reverse scrolling we have already reversed

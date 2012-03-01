@@ -22,7 +22,6 @@
 		01CEC48314EAC6A60064570D /* IntroShotArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC48214EAC6A60064570D /* IntroShotArrow.png */; };
 		01CEC48514EAC6B50064570D /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC48414EAC6B50064570D /* WelcomeWindow.xib */; };
 		01CEC48714EAC8F70064570D /* IntroShot.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC48614EAC8F70064570D /* IntroShot.png */; };
-		01E16F1414F6607300F81640 /* IntroShot.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC48614EAC8F70064570D /* IntroShot.png */; };
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
 		01FD049D142B6F7900F3BDCB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01587306134DD1E200CD9CC4 /* Localizable.strings */; };
 		256AC3DA0F4B6AC300CF3369 /* ScrollInverterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */; };
@@ -59,7 +58,7 @@
 		01CEC48214EAC6A60064570D /* IntroShotArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroShotArrow.png; sourceTree = "<group>"; };
 		01CEC48414EAC6B50064570D /* WelcomeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeWindow.xib; sourceTree = "<group>"; };
 		01CEC48614EAC8F70064570D /* IntroShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroShot.png; sourceTree = "<group>"; };
-		01E16F1314F6607300F81640 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01E16F1314F6607300F81640 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01EB78C21324D574005390BD /* MouseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseTap.m; sourceTree = "<group>"; };
 		01EB78C31324D574005390BD /* MouseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseTap.h; sourceTree = "<group>"; };
 		01EFD5AC134E2ED900798678 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -263,7 +262,6 @@
 				01CEC48314EAC6A60064570D /* IntroShotArrow.png in Resources */,
 				01CEC48514EAC6B50064570D /* WelcomeWindow.xib in Resources */,
 				01CEC48714EAC8F70064570D /* IntroShot.png in Resources */,
-				01E16F1414F6607300F81640 /* IntroShot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
