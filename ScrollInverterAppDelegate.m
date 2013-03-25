@@ -1,3 +1,9 @@
+/*
+ Hello and welcome to the code. Some of this stuff might look antiquated. That's because
+ it was originally built compile against the 10.4 SDK. Which is ancient. Now though
+ things can be modernised to 10.7+, where possible.
+ */
+
 #import "ScrollInverterAppDelegate.h"
 #import "StatusItemController.h"
 #import "LoginItemsController.h"
@@ -20,17 +26,15 @@ NSString *const PrefsHideIcon=@"HideIcon";
 {
 	if ([self class]==[ScrollInverterAppDelegate class])
     {
-		[[NSUserDefaults standardUserDefaults] registerDefaults:
-		 [NSDictionary dictionaryWithObjectsAndKeys:
-		  [NSNumber numberWithBool:YES], PrefsReverseScrolling,
-		  [NSNumber numberWithBool:YES], PrefsReverseHorizontal,
-          [NSNumber numberWithBool:YES], PrefsReverseVertical,
-          [NSNumber numberWithBool:YES], PrefsReverseTrackpad,
-          [NSNumber numberWithBool:YES], PrefsReverseMouse,
-          [NSNumber numberWithBool:YES], PrefsReverseTablet,
-          [NSNumber numberWithInt:2], @"MinZeros",
-          [NSNumber numberWithInt:2], @"MinFingers",
-          nil]];		
+		[[NSUserDefaults standardUserDefaults] registerDefaults:@{
+        PrefsReverseScrolling: @(YES),
+        PrefsReverseHorizontal: @(NO),
+        PrefsReverseVertical: @(YES),
+        PrefsReverseTrackpad: @(YES),
+        PrefsReverseMouse: @(YES),
+        PrefsReverseTablet: @(YES),
+        @"MinZeros": @2,
+        @"MinFingers": @2}];
 	}
 }
 
@@ -104,11 +108,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	if(first) {
         welcomeWindowController=[[WelcomeWindowController alloc] initWithWindowNibName:@"WelcomeWindow"];
         [welcomeWindowController showWindow:self];
-        
-        // adjust default prefs
-        if (NSClassFromString(@"NSPopover")) { // it is lion
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsReverseHorizontal];
-        }
 	}
 	[tap start];
 }
