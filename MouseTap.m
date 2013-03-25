@@ -47,7 +47,7 @@ static BOOL _pidIsWacomTablet(const pid_t pid)
 }
 
 /* 
- Work out the scrolling phase (work on 10.6 and 10.7)
+ Work out the scrolling phase
  */
 typedef enum {
     ScrollPhaseNormal=0,
@@ -55,7 +55,7 @@ typedef enum {
     ScrollPhaseEnd
 } ScrollPhase;
 
-static ScrollPhase _MomentumPhaseForEvent(CGEventRef event)
+static ScrollPhase _momentumPhaseForEvent(CGEventRef event)
 {
     ScrollPhase result=ScrollPhaseNormal;
 
@@ -72,7 +72,7 @@ static ScrollPhase _MomentumPhaseForEvent(CGEventRef event)
 }
 
 
-static void _DoReversal(MouseTap *tap, CGEventRef event)
+static void _doReversal(MouseTap *tap, CGEventRef event)
 {
     // First get the line and pixel delta values.
     int64_t line_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
@@ -104,14 +104,14 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
     NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
 	MouseTap *tap=(MouseTap *)userInfo;
     
-    if (type==29 /*NSEventTypeGesture*/)
+    if (type==NSEventTypeGesture)
     {
         // how many fingers on the pad
         NSEvent *ev=[NSEvent eventWithCGEvent:event];
         tap->fingers=[[ev touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];		
         //NSLog(@"fingers %lu", tap->fingers);
     }
-    else if (type==kCGEventScrollWheel)
+    else if (type==NSScrollWheel)
     {
         // determine source
         ScrollEventSource source=ScrollEventSourceOther;
@@ -124,7 +124,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         }
         else
         {
-            const ScrollPhase phase=_MomentumPhaseForEvent(event);        
+            const ScrollPhase phase=_momentumPhaseForEvent(event);
             const UInt32 ticks=TickCount(); // about 1/60 of a sec
             const UInt32 ticksElapsed=ticks-tap->lastScrollTicks;
 
@@ -153,8 +153,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         }
         
         //NSLog(@"source %i", source);        
-        
-        
+                
         // don't reverse scrolling we have already reversed
         const int64_t ud=CGEventGetIntegerValueField(event, kCGEventSourceUserData);
         const BOOL preventBecauseOfMagicNumber=ud==MAGIC_NUMBER;
@@ -190,7 +189,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             }
             if (invert)
             {
-                _DoReversal(tap, event);
+                _doReversal(tap, event);
             }
         }
     }
@@ -227,7 +226,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 	// create mach port
 	port = (CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
 										   kCGTailAppendEventTap,
-										   0, //kCGEventTapOptionDefault
+										   kCGEventTapOptionDefault,
 										   CGEventMaskBit(kCGEventScrollWheel)|CGEventMaskBit(kCGEventTabletProximity)|touchMask,
 										   eventTapCallback,
 										   self);
