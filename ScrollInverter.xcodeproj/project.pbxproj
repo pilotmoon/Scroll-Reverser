@@ -279,7 +279,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/BuildScripts/insert_version.sh noclean\n${SRCROOT}/BuildScripts/create_zip.sh $debug\n${SRCROOT}/BuildScripts/build_release_notes.sh";
+			shellScript = "${SRCROOT}/BuildScripts/insert_version.sh noclean\n${SRCROOT}/BuildScripts/create_zip.sh $debug";
 		};
 /* End PBXShellScriptBuildPhase section */
 
