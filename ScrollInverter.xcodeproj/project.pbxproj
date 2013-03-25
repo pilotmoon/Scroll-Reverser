@@ -348,31 +348,19 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Scroll_Inverter_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					APPSTORE,
-					DEBUG_BUILD,
-				);
-				"GCC_PREPROCESSOR_DEFINITIONS[sdk=macosx10.4][arch=*]" = (
-					TIGER_BUILD,
-					DEBUG_BUILD,
-					APPSTORE,
-				);
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				"GCC_VERSION[sdk=macosx10.4][arch=*]" = 4.0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG_BUILD;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "Scroll_Inverter-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				"MACOSX_DEPLOYMENT_TARGET[arch=ppc]" = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Scroll Reverser";
-				SDKROOT = macosx10.6;
-				"SDKROOT[arch=ppc]" = macosx10.4;
+				SDKROOT = macosx10.7;
 				STRIP_INSTALLED_PRODUCT = NO;
-				VALID_ARCHS = "i386 ppc ppc64 ppc7400 ppc970 x86_64";
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -388,32 +376,21 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Scroll_Inverter_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					APPSTORE,
 					NS_BLOCK_ASSERTIONS,
 					NDEBUG,
 				);
-				"GCC_PREPROCESSOR_DEFINITIONS[sdk=macosx10.4][arch=*]" = (
-					TIGER_BUILD,
-					NDEBUG,
-					NS_BLOCK_ASSERTIONS,
-					APPSTORE,
-				);
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				"GCC_VERSION[sdk=macosx10.4][arch=*]" = 4.0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "Scroll_Inverter-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				"MACOSX_DEPLOYMENT_TARGET[arch=ppc]" = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Scroll Reverser";
-				SDKROOT = macosx10.6;
-				"SDKROOT[arch=ppc]" = macosx10.4;
+				SDKROOT = macosx10.7;
 				STRIP_INSTALLED_PRODUCT = YES;
-				VALID_ARCHS = "i386 ppc ppc64 ppc7400 ppc970 x86_64";
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};

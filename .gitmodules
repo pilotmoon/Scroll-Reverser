@@ -1,3 +1,0 @@
-[submodule "BuildScripts"]
-	path = BuildScripts
-	url = git@github.com:invariant/BuildScripts.git
