@@ -22,7 +22,7 @@
 - (void)addStatusIcon
 {
 	if (!_statusItem) {
-		_statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:[_statusImage size].width+4] retain];
+		_statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:[_statusImage size].width+4];
         [_statusItem setMenu:_theMenu];
         [_statusItem setHighlightMode:YES];
 		[self updateItems];
@@ -33,7 +33,6 @@
 {
 	if (_statusItem) {
 		[[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
-		[_statusItem release];
 		_statusItem=nil;
 	}
 }
@@ -52,9 +51,9 @@
 {
 	self = [super init];
 	
-	_statusImage=[[NSImage imageNamed:@"ScrollInverterStatusBlack"] retain];
-	_statusImageInverse=[[NSImage imageNamed:@"ScrollInverterStatusWhite"] retain];
-	_statusImageDisabled=[[NSImage imageNamed:@"ScrollInverterStatusGrey"] retain];
+	_statusImage=[NSImage imageNamed:@"ScrollInverterStatusBlack"];
+	_statusImageInverse=[NSImage imageNamed:@"ScrollInverterStatusWhite"];
+	_statusImageDisabled=[NSImage imageNamed:@"ScrollInverterStatusGrey"];
 
     NSSize iconSize=NSMakeSize(14, 17);    
     [_statusImage setSize:iconSize];

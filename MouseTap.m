@@ -16,7 +16,7 @@ static NSString *_bundleIdForPID(const pid_t pid)
 	OSStatus status=GetProcessForPID(pid, &psn);
 	if (status==noErr)
 	{
-        NSDictionary * dict=[(NSDictionary *)ProcessInformationCopyDictionary(&psn, kProcessDictionaryIncludeAllInformationMask) autorelease];
+        NSDictionary * dict=(NSDictionary *)CFBridgingRelease(ProcessInformationCopyDictionary(&psn, kProcessDictionaryIncludeAllInformationMask));
 		return [dict objectForKey:(NSString *)kCFBundleIdentifierKey];
 	}
 	return nil;
@@ -101,8 +101,8 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 							 CGEventRef event,
 							 void *userInfo)
 {    
-    NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
-	MouseTap *tap=(MouseTap *)userInfo;
+    @autoreleasepool {
+		MouseTap *tap=(__bridge MouseTap *)userInfo;
     
     if (type==NSEventTypeGesture)
     {
@@ -199,8 +199,8 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         [tap enableTap:TRUE]; // Just re-enable it.
     }	
     
-    [pool drain];
-	return event;
+		return event;
+	}
 }
 
 @implementation MouseTap
@@ -229,7 +229,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 										   kCGEventTapOptionDefault,
 										   CGEventMaskBit(kCGEventScrollWheel)|CGEventMaskBit(kCGEventTabletProximity)|touchMask,
 										   eventTapCallback,
-										   self);
+										   (__bridge void *)(self));
 
 	// create source and add to tun loop
 	source = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, port, 0);

@@ -3,7 +3,7 @@
 // Login items change callback.
 static void _loginItemsChanged(LSSharedFileListRef listRef, void *context)
 {
-    LoginItemsController *controller=context;
+    LoginItemsController *controller=(__bridge LoginItemsController *)(context);
     [controller willChangeValueForKey:@"startAtLogin"];
     [controller didChangeValueForKey:@"startAtLogin"];
 }
@@ -17,7 +17,7 @@ static void _loginItemsChanged(LSSharedFileListRef listRef, void *context)
 
 + (id)alloc
 {
-	return [[self sharedInstance] retain];
+	return [self sharedInstance];
 }
 
 static LoginItemsController *sharedInstance=nil;
@@ -48,7 +48,7 @@ static LoginItemsController *sharedInstance=nil;
 										CFRunLoopGetMain(),
 										kCFRunLoopCommonModes,
 										_loginItemsChanged,
-										self);
+										(__bridge void *)(self));
 			
 			// Add cleanup routine for application termination.
 			[[NSNotificationCenter defaultCenter] addObserver:self
@@ -66,24 +66,24 @@ static LoginItemsController *sharedInstance=nil;
 								   CFRunLoopGetMain(),
 								   kCFRunLoopCommonModes,
 								   _loginItemsChanged,
-								   self);
+								   (__bridge void *)(self));
 }
 
 - (BOOL)startAtLoginWithURL:(NSURL *)itemURL;
 {
 	Boolean foundIt=false;
 	UInt32 seed = 0U;
-	NSArray *currentLoginItems = [(NSArray *)LSSharedFileListCopySnapshot(loginItems, &seed) autorelease];
+	NSArray *currentLoginItems = (NSArray *)CFBridgingRelease(LSSharedFileListCopySnapshot(loginItems, &seed));
 
 	for (unsigned i=0; i<[currentLoginItems count]; i++) {
 		id itemObject=[currentLoginItems objectAtIndex:i];
-		LSSharedFileListItemRef item = (LSSharedFileListItemRef)itemObject;
+		LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)itemObject;
 		
 		UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
 		CFURLRef URL = NULL;
 		OSStatus err = LSSharedFileListItemResolve(item, resolutionFlags, &URL, /*outRef*/ NULL);
 		if (err == noErr) {
-			foundIt = CFEqual(URL, itemURL);
+			foundIt = CFEqual(URL, (__bridge CFTypeRef)(itemURL));
 			CFRelease(URL);
 			
 			if (foundIt)
@@ -99,17 +99,17 @@ static LoginItemsController *sharedInstance=nil;
 	LSSharedFileListItemRef existingItem = NULL;
 
 	UInt32 seed = 0U;
-	NSArray *currentLoginItems = [(NSArray *)LSSharedFileListCopySnapshot(loginItems, &seed) autorelease];
+	NSArray *currentLoginItems = (NSArray *)CFBridgingRelease(LSSharedFileListCopySnapshot(loginItems, &seed));
 	for (unsigned i=0; i<[currentLoginItems count]; i++) {
 		id itemObject=[currentLoginItems objectAtIndex:i];
 
-		LSSharedFileListItemRef item = (LSSharedFileListItemRef)itemObject;
+		LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)itemObject;
 		
 		UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
 		CFURLRef URL = NULL;
 		OSStatus err = LSSharedFileListItemResolve(item, resolutionFlags, &URL, /*outRef*/ NULL);
 		if (err == noErr) {
-			Boolean foundIt = CFEqual(URL, itemURL);
+			Boolean foundIt = CFEqual(URL, (__bridge CFTypeRef)(itemURL));
 			CFRelease(URL);
 			
 			if (foundIt) {
@@ -121,7 +121,7 @@ static LoginItemsController *sharedInstance=nil;
 	
 	if (enabled && (existingItem == NULL)) {
 		LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst,
-									  NULL, NULL, (CFURLRef)itemURL, NULL, NULL);
+									  NULL, NULL, (__bridge CFURLRef)itemURL, NULL, NULL);
 	
 	} else if (!enabled && (existingItem != NULL)) {
 		LSSharedFileListItemRemove(loginItems, existingItem);
