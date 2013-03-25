@@ -52,11 +52,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 		[self updateTap];
         
 		statusController=[[StatusItemController alloc] init];
-        
-        // if leopard or above
-#ifndef TIGER_BUILD
 		loginItemsController=[[LoginItemsController alloc] init];
-#endif
         
         [self observePrefsKey:PrefsReverseScrolling];
         [self observePrefsKey:PrefsReverseHorizontal];
@@ -73,17 +69,13 @@ NSString *const PrefsHideIcon=@"HideIcon";
 {
 	switch ([sender tag])
 	{
-
-#ifndef TIGER_BUILD	
 		case 31:
-
 			if (loginItemsController) {
 				const BOOL newState=![loginItemsController startAtLogin];
 				[loginItemsController setStartAtLogin:newState];
 				[startAtLoginMenu setState:newState];
 			}
 		break;
-#endif			
 			
 		default:
 			break;
@@ -100,13 +92,8 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	[self willChangeValueForKey:@"startAtLoginEnabled"];
 	[statusMenu setAutoenablesItems:YES];
 	[statusController attachMenu:statusMenu];
-#ifndef TIGER_BUILD
 	[loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
-#else
-	[prefsMenu removeItem:startAtLoginMenu];
-	[prefsMenu removeItem:startAtLoginSeparator];
-	[prefsMenu removeItem:trackpadItemMenu];
-#endif
+
 	[self didChangeValueForKey:@"startAtLoginEnabled"];
 }
 	
@@ -161,9 +148,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (object==loginItemsController) {
-#ifndef TIGER_BUILD
         [startAtLoginMenu setState:[loginItemsController startAtLogin]];
-#endif
     }
     else if ([keyPath hasSuffix:@"HideIcon"]) {
         // run it asynchronously, because we shouldn't change the pref back inside the observer
@@ -202,11 +187,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	return NSLocalizedString(@"Reverse Trackpad", nil);
 }
 - (NSString *)menuStringMouse {
-#ifdef TIGER_BUILD
-	return NSLocalizedString(@"Reverse Mouse/Trackpad", nil);
-#else
 	return NSLocalizedString(@"Reverse Mouse", nil);
-#endif
 }
 - (NSString *)menuStringTablet {
 	return NSLocalizedString(@"Reverse Tablet", nil);

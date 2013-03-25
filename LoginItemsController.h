@@ -1,4 +1,3 @@
-#ifndef TIGER_BUILD
 #import <Foundation/Foundation.h>
 
 @interface LoginItemsController : NSObject {
@@ -13,4 +12,3 @@
 - (void)setStartAtLogin:(BOOL)enabled;
 
 @end
-#endif

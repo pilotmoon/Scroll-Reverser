@@ -1,6 +1,5 @@
 #import "NSObject+ObservePrefs.h"
 
-
 @implementation NSObject (ObservePrefs)
 
 - (void)observePrefsKey:(NSString *)key
