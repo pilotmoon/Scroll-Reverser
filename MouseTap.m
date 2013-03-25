@@ -58,20 +58,13 @@ typedef enum {
 static ScrollPhase _MomentumPhaseForEvent(CGEventRef event)
 {
     ScrollPhase result=ScrollPhaseNormal;
+
+    const NSEventPhase momentumPhase=[[NSEvent eventWithCGEvent:event] momentumPhase];
     
-    NSEvent *ev=[NSEvent eventWithCGEvent:event];
-    NSUInteger momentumPhase=0;
-    NSUInteger scrollPhase=0;		
-    if ([ev respondsToSelector:@selector(momentumPhase)]) { // 10.7
-        momentumPhase=(NSUInteger)[ev performSelector:@selector(momentumPhase)];
-    }
-    if ([ev respondsToSelector:@selector(_scrollPhase)]) { // 10.6 (private method)
-        scrollPhase=(NSUInteger)[ev performSelector:@selector(_scrollPhase)];
-    }		
-    if (momentumPhase==4||scrollPhase==2) {
+    if (momentumPhase==4) {
         result=ScrollPhaseMomentum;
     }
-    else if (momentumPhase==8||scrollPhase==3) {
+    else if (momentumPhase==8) {
         result=ScrollPhaseEnd;
     }
 
