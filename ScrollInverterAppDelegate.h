@@ -21,6 +21,5 @@ extern NSString *const PrefsHideIcon;
 	IBOutlet NSMenuItem *startAtLoginSeparator;	
 }
 - (IBAction)showAbout:(id)sender;
-- (IBAction)menuItemClicked:(id)sender;
 
 @end

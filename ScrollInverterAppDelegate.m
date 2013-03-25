@@ -1,9 +1,3 @@
-/*
- Hello and welcome to the code. Some of this stuff might look antiquated. That's because
- it was originally built compile against the 10.4 SDK. Which is ancient. Now though
- things can be modernised to 10.7+, where possible.
- */
-
 #import "ScrollInverterAppDelegate.h"
 #import "StatusItemController.h"
 #import "LoginItemsController.h"
@@ -69,21 +63,10 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	return self;
 }
 
--(IBAction) menuItemClicked:(id)sender
-{
-	switch ([sender tag])
-	{
-		case 31:
-			if (loginItemsController) {
-				const BOOL newState=![loginItemsController startAtLogin];
-				[loginItemsController setStartAtLogin:newState];
-				[startAtLoginMenu setState:newState];
-			}
-		break;
-			
-		default:
-			break;
-	}
+- (IBAction)startAtLoginClicked:(id)sender {
+    const BOOL newState=![loginItemsController startAtLogin];
+    [loginItemsController setStartAtLogin:newState];
+    [startAtLoginMenu setState:newState];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
