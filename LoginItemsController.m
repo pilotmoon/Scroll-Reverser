@@ -76,7 +76,7 @@ static LoginItemsController *sharedInstance=nil;
 	NSArray *currentLoginItems = (NSArray *)CFBridgingRelease(LSSharedFileListCopySnapshot(loginItems, &seed));
 
 	for (unsigned i=0; i<[currentLoginItems count]; i++) {
-		id itemObject=[currentLoginItems objectAtIndex:i];
+		id itemObject=currentLoginItems[i];
 		LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)itemObject;
 		
 		UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
@@ -101,7 +101,7 @@ static LoginItemsController *sharedInstance=nil;
 	UInt32 seed = 0U;
 	NSArray *currentLoginItems = (NSArray *)CFBridgingRelease(LSSharedFileListCopySnapshot(loginItems, &seed));
 	for (unsigned i=0; i<[currentLoginItems count]; i++) {
-		id itemObject=[currentLoginItems objectAtIndex:i];
+		id itemObject=currentLoginItems[i];
 
 		LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)itemObject;
 		

@@ -17,7 +17,7 @@ static NSString *_bundleIdForPID(const pid_t pid)
 	if (status==noErr)
 	{
         NSDictionary * dict=(NSDictionary *)CFBridgingRelease(ProcessInformationCopyDictionary(&psn, kProcessDictionaryIncludeAllInformationMask));
-		return [dict objectForKey:(NSString *)kCFBundleIdentifierKey];
+		return dict[(NSString *)kCFBundleIdentifierKey];
 	}
 	return nil;
 }
