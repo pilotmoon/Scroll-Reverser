@@ -63,25 +63,17 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	return self;
 }
 
-- (IBAction)startAtLoginClicked:(id)sender {
+- (IBAction)startAtLoginClicked:(id)sender
+{
     const BOOL newState=![loginItemsController startAtLogin];
     [loginItemsController setStartAtLogin:newState];
     [startAtLoginMenu setState:newState];
 }
 
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
-{
-	return YES;
-}
-
 - (void)awakeFromNib
 {
-	[self willChangeValueForKey:@"startAtLoginEnabled"];
-	[statusMenu setAutoenablesItems:YES];
 	[statusController attachMenu:statusMenu];
 	[loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
-
-	[self didChangeValueForKey:@"startAtLoginEnabled"];
 }
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification

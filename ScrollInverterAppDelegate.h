@@ -15,10 +15,7 @@ extern NSString *const PrefsHideIcon;
     LoginItemsController *loginItemsController;
     WelcomeWindowController *welcomeWindowController;
     IBOutlet NSMenu *statusMenu;
-    IBOutlet NSMenu *prefsMenu;
-    IBOutlet NSMenuItem *trackpadItemMenu;
     IBOutlet NSMenuItem *startAtLoginMenu;
-	IBOutlet NSMenuItem *startAtLoginSeparator;	
 }
 - (IBAction)showAbout:(id)sender;
 
