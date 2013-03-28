@@ -123,36 +123,11 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             }
             else
             {
-                const ScrollPhase phase=_momentumPhaseForEvent(event);
-                const UInt32 ticks=TickCount(); // about 1/60 of a sec
-                const UInt32 ticksElapsed=ticks-tap->lastScrollTicks;
-                
-                //NSLog(@"scroll %i", phase);
-                
-                // Should we sample the number of fingers now?
-                // The whole point of this is to only sample fingers when user is actually scrolling, not during the momentum phase.
-                // Unfortunately the system cannot be relied upon to alwayts send correct finger signals (four finger swipes for example
-                // will mess things up) so we use some timing and other indicators. Still room for improvement here.
-                if (phase==ScrollPhaseNormal&&(tap->lastPhase!=ScrollPhaseNormal||tap->sampledFingers<_minFingers||tap->zeroCount>_minZeros||ticksElapsed>20))
-                {
-                    tap->sampledFingers=tap->fingers;
-                    //NSLog(@"Sampled %lu fingers", tap->sampledFingers);
-                }
-                
-                // Count of how many times we have seen no fingers on the pad.
-                if (tap->fingers>=_minFingers) {
-                    tap->zeroCount=0;
-                }
-                else {
-                    tap->zeroCount+=1;
-                }
-                
-                tap->lastPhase=phase;
-                tap->lastScrollTicks=TickCount();
-                
-                // Assume Trackpad source when the required number of fingers is seen on the pad.
-                if (tap->sampledFingers>=_minFingers)
-                {
+                // make a pretty bold assumption here:
+                // trackpad events are continuous and pixel-based
+                // whereas mouse scroll events are discontinuous and line-based
+                const uint64_t scrollEventIsContinuous = CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous);
+                if(scrollEventIsContinuous) {
                     source=ScrollEventSourceTrackpad;
                 }
             }
