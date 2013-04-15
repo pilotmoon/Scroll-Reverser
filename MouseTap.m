@@ -150,8 +150,12 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
                 tap->lastPhase=phase;
                 tap->lastScrollTicks=TickCount();
                 
+                // assume non-continuous events are never from a trackpad
+                const uint64_t scrollEventIsContinuous = CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous);
+                //NSLog(@"continuous? %llu", scrollEventIsContinuous);
+
                 // Assume Trackpad source when the required number of fingers is seen on the pad.
-                if (tap->sampledFingers>=_minFingers)
+                if (tap->sampledFingers>=_minFingers && scrollEventIsContinuous)
                 {
                     source=ScrollEventSourceTrackpad;
                 }
