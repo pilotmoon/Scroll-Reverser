@@ -24,5 +24,8 @@
 - (NSString *)menuStringOK {
 	return NSLocalizedString(@"OK", nil);
 }
+- (NSString *)menuStringCheckForUpdates {
+	return NSLocalizedString(@"Check For Updates", nil);
+}
 
 @end
