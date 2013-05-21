@@ -18,5 +18,6 @@ extern NSString *const PrefsHideIcon;
     IBOutlet NSMenuItem *startAtLoginMenu;
 }
 - (IBAction)showAbout:(id)sender;
+- (IBAction)checkForUpdatesClicked:(id)sender;
 
 @end

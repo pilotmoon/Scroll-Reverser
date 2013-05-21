@@ -25,10 +25,26 @@
 		01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */; };
 		01CEC48514EAC6B50064570D /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CEC48414EAC6B50064570D /* WelcomeWindow.xib */; };
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
+		01F66862174B5E43001727DE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F66861174B5E43001727DE /* Sparkle.framework */; };
+		01F66865174B5E77001727DE /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 01F66861174B5E43001727DE /* Sparkle.framework */; };
+		01F6686E174B741E001727DE /* scrollreverser_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 01F6686D174B741E001727DE /* scrollreverser_dsa_pub.pem */; };
 		256AC3DA0F4B6AC300CF3369 /* ScrollInverterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		01F66864174B5E6D001727DE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				01F66865174B5E77001727DE /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0158730C134DD1FA00CD9CC4 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -61,6 +77,8 @@
 		01EB78C21324D574005390BD /* MouseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseTap.m; sourceTree = "<group>"; };
 		01EB78C31324D574005390BD /* MouseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseTap.h; sourceTree = "<group>"; };
 		01EFD5AC134E2ED900798678 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01F66861174B5E43001727DE /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		01F6686D174B741E001727DE /* scrollreverser_dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scrollreverser_dsa_pub.pem; sourceTree = "<group>"; };
 		01FD049C142B6F7900F3BDCB /* ro */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ro; path = resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -81,6 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				01F66862174B5E43001727DE /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +190,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				01F6686D174B741E001727DE /* scrollreverser_dsa_pub.pem */,
 				01B5ABC91700D25700FF6F6A /* Graphics */,
 				01BE744914DC5F7F0050DD8A /* create_zip.sh */,
 				01BE744B14DC5F7F0050DD8A /* insert_version.sh */,
@@ -187,6 +207,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				01F66861174B5E43001727DE /* Sparkle.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -203,6 +224,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				01F66864174B5E6D001727DE /* CopyFiles */,
 				01E1E94713FC0C26007E8F1B /* ShellScript */,
 			);
 			buildRules = (
@@ -268,6 +290,7 @@
 				01B5ABDD1700D50600FF6F6A /* ScrollInverterStatusBlack@2x.png in Resources */,
 				01B5ABDE1700D50600FF6F6A /* ScrollInverterStatusGrey@2x.png in Resources */,
 				01B5ABDF1700D50600FF6F6A /* ScrollInverterStatusWhite@2x.png in Resources */,
+				01F6686E174B741E001727DE /* scrollreverser_dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,6 +4,7 @@
 #import "MouseTap.h"
 #import "NSObject+ObservePrefs.h"
 #import "WelcomeWindowController.h"
+#import <Sparkle/SUUpdater.h>
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
 NSString *const PrefsReverseHorizontal=@"ReverseX";
@@ -59,6 +60,8 @@ NSString *const PrefsHideIcon=@"HideIcon";
         [self observePrefsKey:PrefsReverseMouse];
         [self observePrefsKey:PrefsReverseTablet];
         [self observePrefsKey:PrefsHideIcon];
+        
+        [[SUUpdater sharedUpdater] setDelegate:self];
     }
 	return self;
 }
@@ -92,6 +95,17 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	[NSApp activateIgnoringOtherApps:YES];
     NSDictionary *dict=@{@"ApplicationName": @"Scroll Reverser"};
     [NSApp orderFrontStandardAboutPanelWithOptions:dict];
+}
+
+- (IBAction)checkForUpdatesClicked:(id)sender
+{
+    // check for updates whenever the Check For Updates is set to 'on'.
+    // do it asynchronously to allow menu item state to change.
+    dispatch_async(dispatch_get_current_queue(), ^{
+        if ([sender state]==NSOnState) {
+            [[SUUpdater sharedUpdater] checkForUpdatesInBackground];
+        }        
+    });
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
@@ -131,6 +145,16 @@ NSString *const PrefsHideIcon=@"HideIcon";
     }
 }
 
+#pragma mark Sparkle delegate methods
+
+- (NSArray *)feedParametersForUpdater:(SUUpdater *)updater sendingSystemProfile:(BOOL)sendingProfile
+{
+    NSLog(@"Checking for updates");
+    return [NSArray array];
+}
+
+#pragma mark Strings
+
 - (NSString *)menuStringReverseScrolling {
 	return NSLocalizedString(@"Reverse Scrolling", nil);
 }
@@ -139,6 +163,12 @@ NSString *const PrefsHideIcon=@"HideIcon";
 }
 - (NSString *)menuStringPreferences {
 	return NSLocalizedString(@"Preferences", nil);
+}
+- (NSString *)menuStringCheckForUpdates {
+	return NSLocalizedString(@"Check For Updates", nil);
+}
+- (NSString *)menuStringCheckNow {
+	return NSLocalizedString(@"Check Now...", nil);
 }
 - (NSString *)menuStringQuit {
 	return NSLocalizedString(@"Quit Scroll Reverser", nil);
