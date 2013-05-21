@@ -308,7 +308,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/BuildScripts/insert_version.sh noclean\nif [ ${CONFIGURATION} == 'Release' ]\nthen\n  echo \"Signing with Developer ID\"\n  codesign -f -v -s \"Developer ID Application: Nicholas Moore\" \"$CODESIGNING_FOLDER_PATH\"\nfi\n${SRCROOT}/BuildScripts/create_zip.sh $debug";
+			shellScript = "# insert the version string from git into the app\n${SRCROOT}/BuildScripts/insert_version.sh noclean\nif [ ${CONFIGURATION} == 'Release' ]\nthen\n# release build: sign and create distribition zip file + appcast\n  echo \"Signing with Developer ID\"\n  codesign -f -v -s \"Developer ID Application: Nicholas Moore\" \"$CODESIGNING_FOLDER_PATH\"\n  ${SRCROOT}/BuildScripts/create_zip.sh $debug\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
