@@ -225,7 +225,7 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				01F66864174B5E6D001727DE /* CopyFiles */,
-				01E1E94713FC0C26007E8F1B /* ShellScript */,
+				01F668AD174B9A65001727DE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -297,7 +297,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		01E1E94713FC0C26007E8F1B /* ShellScript */ = {
+		01F668AD174B9A65001727DE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -308,7 +308,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/BuildScripts/insert_version.sh noclean\n${SRCROOT}/BuildScripts/create_zip.sh $debug";
+			shellScript = "${SRCROOT}/BuildScripts/insert_version.sh noclean\nif [ ${CONFIGURATION} == 'Release' ]\nthen\n  echo \"Signing with Developer ID\"\n  codesign -f -v -s \"Developer ID Application: Nicholas Moore\" \"$CODESIGNING_FOLDER_PATH\"\nfi\n${SRCROOT}/BuildScripts/create_zip.sh $debug";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -402,7 +402,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Nicholas Moore";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 10003;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -423,7 +423,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Scroll Reverser";
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = YES;
 				VALID_ARCHS = x86_64;
