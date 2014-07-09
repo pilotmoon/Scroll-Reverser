@@ -4,28 +4,18 @@
 
 @implementation StatusItemController
 
-- (void)updateItems
-{
-	if (_menuIsOpen) {
-		[_statusItem setImage:_statusImageInverse];
-	}
-	else {
-		if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]) {
-			[_statusItem setImage:_statusImage];
-		}
-		else {
-			[_statusItem setImage:_statusImageDisabled];
-		}					
-	}
-}
-
 - (void)addStatusIcon
 {
 	if (!_statusItem) {
-		_statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:[_statusImage size].width+4];
+        _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
         [_statusItem setMenu:_theMenu];
         [_statusItem setHighlightMode:YES];
-		[self updateItems];
+
+    	_statusImage = [NSImage imageNamed:@"ScrollInverterStatusBlack"];
+        [_statusImage setTemplate:YES];
+        NSSize iconSize=NSMakeSize(14, 17);
+        [_statusImage setSize:iconSize];
+        [_statusItem setImage:_statusImage];
 	}
 }
 
@@ -34,6 +24,7 @@
 	if (_statusItem) {
 		[[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
 		_statusItem=nil;
+        _statusImage=nil;
 	}
 }
 
@@ -50,45 +41,21 @@
 - (id)init
 {
 	self = [super init];
-	
-	_statusImage=[NSImage imageNamed:@"ScrollInverterStatusBlack"];
-	_statusImageInverse=[NSImage imageNamed:@"ScrollInverterStatusWhite"];
-	_statusImageDisabled=[NSImage imageNamed:@"ScrollInverterStatusGrey"];
 
-    NSSize iconSize=NSMakeSize(14, 17);    
-    [_statusImage setSize:iconSize];
-    [_statusImageInverse setSize:iconSize];
-    [_statusImageDisabled setSize:iconSize];
-    
-	[self observePrefsKey:PrefsReverseScrolling];
-	[self observePrefsKey:PrefsHideIcon];	
+	[self observePrefsKey:PrefsHideIcon];
 	[self displayStatusIcon];
 	
 	return self;
 }
 
-- (void)menuWillOpen:(NSMenu *)menu
-{
-	_menuIsOpen=YES;
-	[self updateItems];
-}
-
-- (void)menuDidClose:(NSMenu *)menu
-{
-	_menuIsOpen=NO;
-	[self updateItems];	
-}
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	[self displayStatusIcon];
-	[self updateItems];
 }
 
 - (void)attachMenu:(NSMenu *)menu
 {
     _theMenu=menu;
-	[_theMenu setDelegate:self];
     [_statusItem setMenu:_theMenu];
 }
 
