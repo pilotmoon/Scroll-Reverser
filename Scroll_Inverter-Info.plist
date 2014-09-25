@@ -30,10 +30,8 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>scrollreverser_dsa_pub.pem</string>
 	<key>SUFeedURL</key>
-	<string>http://softwareupdate.pilotmoon.com/update/scrollreverser/appcast.xml</string>
+	<string>https://softwareupdate.pilotmoon.com/update/scrollreverser/appcast.xml</string>
 	<key>SUAllowsAutomaticUpdates</key>
 	<false/>
 	<key>SUEnableSystemProfiling</key>
