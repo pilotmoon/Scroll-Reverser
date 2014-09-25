@@ -35,7 +35,6 @@ static BOOL _pidIsWacomTablet(const pid_t pid)
     
     // look it up
     NSString *bid=[_bundleIdForPID(pid) lowercaseString];
-    NSLog(@"Tablet BID %@", bid);
     const BOOL pidIsTablet=[bid rangeOfString:@"wacom"].length>0;
     if (pidIsTablet)
     {
