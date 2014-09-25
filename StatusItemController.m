@@ -4,17 +4,48 @@
 
 @implementation StatusItemController
 
++ (NSSize)statusImageSize
+{
+    return NSMakeSize(14, 17);
+}
+
++ (NSImage *)statusImageWithColor:(NSColor *)color
+{
+    // make buffer image
+    NSImage *const templateImage=[NSImage imageNamed:@"ScrollInverterStatusIcon"];
+    
+    // create blank image to draw into
+    NSImage *const statusImage=[[NSImage alloc] init];
+    [statusImage setSize:[self statusImageSize]];
+    [statusImage lockFocus];
+    
+    // draw base black image
+    const NSRect dstRect=NSMakeRect(0, 0, [self statusImageSize].width, [self statusImageSize].height);
+    [templateImage drawInRect:dstRect
+                     fromRect:NSZeroRect
+                    operation:NSCompositeSourceOver
+                     fraction:1.0];
+    
+    // fill with color
+    [color set];
+    NSRectFillUsingOperation(dstRect, NSCompositeSourceIn);
+    
+    // finished drawing
+    [statusImage unlockFocus];
+    return statusImage;
+}
+
 - (void)updateItems
 {
 	if (_menuIsOpen) {
-		[_statusItem setImage:_statusImageInverse];
+		[_statusItem setImage:[StatusItemController statusImageWithColor:[NSColor whiteColor]]];
 	}
 	else {
 		if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]) {
-			[_statusItem setImage:_statusImage];
+			[_statusItem setImage:[StatusItemController statusImageWithColor:[NSColor blackColor]]];
 		}
 		else {
-			[_statusItem setImage:_statusImageDisabled];
+			[_statusItem setImage:[StatusItemController statusImageWithColor:[NSColor grayColor]]];
 		}					
 	}
 }
@@ -22,7 +53,7 @@
 - (void)addStatusIcon
 {
 	if (!_statusItem) {
-		_statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:[_statusImage size].width+4];
+		_statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
         [_statusItem setMenu:_theMenu];
         [_statusItem setHighlightMode:YES];
 		[self updateItems];
@@ -50,15 +81,6 @@
 - (id)init
 {
 	self = [super init];
-	
-	_statusImage=[NSImage imageNamed:@"ScrollInverterStatusBlack"];
-	_statusImageInverse=[NSImage imageNamed:@"ScrollInverterStatusWhite"];
-	_statusImageDisabled=[NSImage imageNamed:@"ScrollInverterStatusGrey"];
-
-    NSSize iconSize=NSMakeSize(14, 17);    
-    [_statusImage setSize:iconSize];
-    [_statusImageInverse setSize:iconSize];
-    [_statusImageDisabled setSize:iconSize];
     
 	[self observePrefsKey:PrefsReverseScrolling];
 	[self observePrefsKey:PrefsHideIcon];	
