@@ -1,6 +1,7 @@
 ### v1.6.1 (25 Sep 2014)
 
 * Updated for OS X Yosemite. (Specifically, the menu bar icon now supports Dark Mode.)
+* Smaller file size.
 
 ### v1.6 (21 May 2013)
 

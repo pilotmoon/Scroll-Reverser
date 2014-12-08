@@ -24,7 +24,6 @@
 
 + (NSImage *)statusImageWithColor:(NSColor *)color
 {
-    // make buffer image
     NSImage *const templateImage=[NSImage imageNamed:@"ScrollInverterStatusIcon"];
     
     // create blank image to draw into
