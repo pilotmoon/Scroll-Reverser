@@ -4,7 +4,6 @@
 	LSSharedFileListRef loginItems;
 }
 
-+ (LoginItemsController *)sharedInstance;
 - (void)cleanup;
 - (BOOL)startAtLoginWithURL:(NSURL *)bundleUrl;
 - (void)setStartAtLogin:(BOOL)enabled withURL:(NSURL *)bundleUrl;

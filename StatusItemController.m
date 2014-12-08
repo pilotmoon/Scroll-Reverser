@@ -4,19 +4,6 @@
 
 @implementation StatusItemController
 
-// a bit silly to do things this way, but it builds nicely on 10.9
-- (NSInvocation *)appearsDisabledInvocation
-{
-	static NSInvocation *invocation=nil;
-    NSMethodSignature *const signature=[NSClassFromString(@"NSStatusBarButton") instanceMethodSignatureForSelector:@selector(setAppearsDisabled:)];
-    if (signature&&!invocation) {
-        invocation=[NSInvocation invocationWithMethodSignature:signature];
-        [invocation setTarget:[_statusItem performSelector:@selector(button)]];
-        [invocation setSelector:@selector(setAppearsDisabled:)];
-	}
-	return invocation;
-}
-
 + (NSSize)statusImageSize
 {
     return NSMakeSize(14, 17);
@@ -49,10 +36,8 @@
 
 - (void)updateItems
 {
-	if ([self appearsDisabledInvocation]) {
-		BOOL state=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
-		[[self appearsDisabledInvocation] setArgument:&state atIndex:2];
-		[[self appearsDisabledInvocation] invoke];
+	if ([_statusItem respondsToSelector:@selector(button)]) {
+        [_statusItem button].appearsDisabled=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
 	}
 	else {
         if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]) {
@@ -76,7 +61,7 @@
         [_statusItem setMenu:_theMenu];
         [_statusItem setHighlightMode:YES];
 
-        if ([self appearsDisabledInvocation]) {
+        if ([_statusItem respondsToSelector:@selector(button)]) {
 			// on yosemite, set up the template image here
             NSImage *const statusImage=[StatusItemController statusImageWithColor:[NSColor blackColor]];
             [statusImage setTemplate:YES];
@@ -139,6 +124,13 @@
     _theMenu=menu;
 	[_theMenu setDelegate:self];
     [_statusItem setMenu:_theMenu];
+}
+
+- (void)openMenu
+{
+    if (_theMenu) {
+        [_statusItem popUpStatusItemMenu:_theMenu];
+    }
 }
 
 @end

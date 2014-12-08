@@ -34,6 +34,8 @@
 	<string>https://softwareupdate.pilotmoon.com/update/scrollreverser/appcast.xml</string>
 	<key>SUAllowsAutomaticUpdates</key>
 	<false/>
+	<key>SUEnableAutomaticChecks</key>
+	<false/>
 	<key>SUEnableSystemProfiling</key>
 	<false/>
 </dict>

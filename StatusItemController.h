@@ -7,5 +7,6 @@
 }
 
 - (void)attachMenu:(NSMenu *)menu;
+- (void)openMenu;
 
 @end

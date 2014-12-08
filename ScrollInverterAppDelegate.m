@@ -4,6 +4,7 @@
 #import "MouseTap.h"
 #import "NSObject+ObservePrefs.h"
 #import "WelcomeWindowController.h"
+#import "PrefsWindowController.h"
 #import <Sparkle/SUUpdater.h>
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
@@ -90,27 +91,27 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	[tap start];
 }
 
+- (IBAction)showPrefs:(id)sender
+{
+    [NSApp activateIgnoringOtherApps:YES];
+    if(!prefsWindowController) {
+        prefsWindowController=[[PrefsWindowController alloc] initWithWindowNibName:@"PrefsWindow"];
+    }
+    [prefsWindowController showWindow:self];
+}
+
 - (IBAction)showAbout:(id)sender
 {
+    [prefsWindowController close];
 	[NSApp activateIgnoringOtherApps:YES];
     NSDictionary *dict=@{@"ApplicationName": @"Scroll Reverser"};
     [NSApp orderFrontStandardAboutPanelWithOptions:dict];
 }
 
-- (IBAction)checkForUpdatesClicked:(id)sender
-{
-    // check for updates whenever the Check For Updates is set to 'on'.
-    // do it asynchronously to allow menu item state to change.
-    dispatch_async(dispatch_get_current_queue(), ^{
-        if ([sender state]==NSOnState) {
-            [[SUUpdater sharedUpdater] checkForUpdatesInBackground];
-        }        
-    });
-}
-
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 {
 	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsHideIcon];
+    [statusController openMenu];
 	return NO;
 }
 
@@ -121,13 +122,10 @@ NSString *const PrefsHideIcon=@"HideIcon";
 		[NSApp activateIgnoringOtherApps:YES];
         NSAlert *alert=[NSAlert alertWithMessageText:NSLocalizedString(@"Status Icon Hidden",nil)
                                        defaultButton:NSLocalizedString(@"OK",nil)
-                                     alternateButton:NSLocalizedString(@"Restore Now",nil)
+                                     alternateButton:nil
                                          otherButton:nil
                            informativeTextWithFormat:NSLocalizedString(@"MENU_HIDDEN_TEXT", @"text shown when the menu bar icon is hidden")];
-        const unsigned long button=[alert runModal];
-        if (button==NSAlertAlternateReturn) {
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsHideIcon];
-        }
+        [alert runModal];
     }    
 }
 
@@ -162,37 +160,10 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	return NSLocalizedString(@"About", nil);
 }
 - (NSString *)menuStringPreferences {
-	return NSLocalizedString(@"Preferences", nil);
-}
-- (NSString *)menuStringCheckForUpdates {
-	return NSLocalizedString(@"Check For Updates", nil);
-}
-- (NSString *)menuStringCheckNow {
-	return NSLocalizedString(@"Check Now...", nil);
+	return NSLocalizedString(@"Preferences…", nil);
 }
 - (NSString *)menuStringQuit {
-	return NSLocalizedString(@"Quit Scroll Reverser", nil);
-}
-- (NSString *)menuStringStartAtLogin {
-	return NSLocalizedString(@"Start at Login", nil);
-}
-- (NSString *)menuStringShowInMenuBar {
-	return NSLocalizedString(@"Show in Menu Bar", nil);
-}
-- (NSString *)menuStringHorizontal {
-	return NSLocalizedString(@"Reverse Horizontal", nil);
-}
-- (NSString *)menuStringVertical {
-	return NSLocalizedString(@"Reverse Vertical", nil);
-}
-- (NSString *)menuStringTrackpad {
-	return NSLocalizedString(@"Reverse Trackpad", nil);
-}
-- (NSString *)menuStringMouse {
-	return NSLocalizedString(@"Reverse Mouse", nil);
-}
-- (NSString *)menuStringTablet {
-	return NSLocalizedString(@"Reverse Tablet", nil);
+    return NSLocalizedString(@"Quit Scroll Reverser", nil);
 }
 
 @end

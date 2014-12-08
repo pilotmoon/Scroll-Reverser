@@ -10,54 +10,26 @@ static void _loginItemsChanged(LSSharedFileListRef listRef, void *context)
 
 @implementation LoginItemsController
 
-+ (id)hiddenAlloc
-{
-	return [super alloc];
-}
-
-+ (id)alloc
-{
-	return [self sharedInstance];
-}
-
-static LoginItemsController *sharedInstance=nil;
-
-+ (LoginItemsController *)sharedInstance
-{        
-	if (!sharedInstance) {
-		sharedInstance=[[super alloc] init];
-	}
-	return sharedInstance;
-}
-
-+ (BOOL)sharedInstanceExists
-{
-	return (nil != sharedInstance);
-}
-
 - (id)init
 {
-	if(![LoginItemsController sharedInstanceExists]) // allow only to be called once
-	{
-		self = [super init];
-		if (self) {
-			loginItems=LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-			
-			// Add an observer so we can update the UI if changed externally.
-			LSSharedFileListAddObserver(loginItems,
-										CFRunLoopGetMain(),
-										kCFRunLoopCommonModes,
-										_loginItemsChanged,
-										(__bridge void *)(self));
-			
-			// Add cleanup routine for application termination.
-			[[NSNotificationCenter defaultCenter] addObserver:self
-													 selector:@selector(cleanup)
-														 name:NSApplicationWillTerminateNotification
-													   object:nil];
-		}
-	}
-	return self;
+    self = [super init];
+    if (self) {
+        loginItems=LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+        
+        // Add an observer so we can update the UI if changed externally.
+        LSSharedFileListAddObserver(loginItems,
+                                    CFRunLoopGetMain(),
+                                    kCFRunLoopCommonModes,
+                                    _loginItemsChanged,
+                                    (__bridge void *)(self));
+        
+        // Add cleanup routine for application termination.
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(cleanup)
+                                                     name:NSApplicationWillTerminateNotification
+                                                   object:nil];
+    }
+    return self;
 }
 
 - (void)cleanup
