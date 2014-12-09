@@ -36,5 +36,24 @@
 	<false/>
 	<key>SUEnableSystemProfiling</key>
 	<false/>
+    <key>PrefsWidthAdjust</key>
+    <dict>
+        <key>de</key>
+        <integer>0</integer>
+        <key>el</key>
+        <integer>0</integer>
+        <key>en</key>
+        <integer>0</integer>
+        <key>es</key>
+        <integer>0</integer>
+        <key>fr</key>
+        <integer>75</integer>
+        <key>it</key>
+        <integer>0</integer>
+        <key>pt</key>
+        <integer>0</integer>
+        <key>ro</key>
+        <integer>20</integer>
+    </dict>
 </dict>
 </plist>

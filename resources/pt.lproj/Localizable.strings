@@ -1,5 +1,5 @@
-/* No comment provided by engineer. */
-"About" = "";
+/* text shown when the menu bar icon is hidden */
+"MENU_HIDDEN_TEXT" = "O ícone de status foi escondido. Para tê-lo de volta clique em  Scroll Reverser pela Dock ou clique duplo pelo Finder.";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -8,5 +8,11 @@
 "Preferences" = "Preferências";
 
 /* No comment provided by engineer. */
-"Quit Scroll Reverser" = "Fechar";
+"Quit Scroll Reverser" = "Fechar Scroll Reverser";
+
+/* No comment provided by engineer. */
+"Reverse Scrolling" = "Rolando Inversamente";
+
+/* No comment provided by engineer. */
+"Status Icon Hidden" = "Ícone de Status Escondido";
 

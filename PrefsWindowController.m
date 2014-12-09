@@ -29,9 +29,22 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 
 @implementation PrefsWindowController
 
++ (CGFloat)widthAdjustment
+{
+    NSArray *preferredLocalizations=[[NSBundle mainBundle] preferredLocalizations];
+    if ([preferredLocalizations count]>0) {
+        NSNumber *num=[[NSBundle mainBundle] objectForInfoDictionaryKey:@"PrefsWidthAdjust"][[preferredLocalizations firstObject]];
+        if ([num isKindOfClass:[NSNumber class]]) {
+            NSLog(@"num %@", num);
+            return [num floatValue];
+        }
+    }
+    return 0;
+}
+
 + (CGFloat)prefsWindowWidth
 {
-    return 380;
+    return 380+[self widthAdjustment];
 }
 
 - (void)windowDidLoad
@@ -256,11 +269,11 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 }
 
 - (NSString *)menuStringStartAtLogin {
-    return NSLocalizedString(@"Start at Login", nil);
+    return NSLocalizedString(@"Start at login", nil);
 }
 
 - (NSString *)menuStringShowInMenuBar {
-    return NSLocalizedString(@"Show in Menu Bar", nil);
+    return NSLocalizedString(@"Show in menu bar", nil);
 }
 
 - (NSString *)menuStringCheckNow {
