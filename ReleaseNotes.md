@@ -1,3 +1,9 @@
+### v1.7 (TBA)
+
+* Brand new preferences window to replace the clunky old menu.
+* Important fixes for compatability with Yosemite update 10.10.2.
+* Adds AppleScript support for turning Scroll Reverser on and off.
+
 ### v1.6.1 (25 Sep 2014)
 
 * Updated for OS X Yosemite. (Specifically, the menu bar icon now supports Dark Mode.)
