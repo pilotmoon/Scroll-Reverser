@@ -165,7 +165,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 #pragma mark App info
 
 - (NSString *)appName {
-    return NSLocalizedString(@"Scroll Reverser", nil);
+    return @"Scroll Reverser";
 }
 
 - (NSString *)appVersion {
@@ -173,7 +173,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 }
 
 - (NSString *)appCredit {
-    return NSLocalizedString(@"by Nick Moore", nil);
+    return [NSString stringWithFormat:NSLocalizedString(@"by %@", nil), @"Nick Moore"];
 }
 
 - (NSURL *)appLink {
