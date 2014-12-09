@@ -25,27 +25,10 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 @property NSTabView *tabView;
 @property NSToolbar *toolbar;
 @property NSDictionary *panels;
+@property CGFloat width;
 @end
 
 @implementation PrefsWindowController
-
-+ (CGFloat)widthAdjustment
-{
-    NSArray *preferredLocalizations=[[NSBundle mainBundle] preferredLocalizations];
-    if ([preferredLocalizations count]>0) {
-        NSNumber *num=[[NSBundle mainBundle] objectForInfoDictionaryKey:@"PrefsWidthAdjust"][[preferredLocalizations firstObject]];
-        if ([num isKindOfClass:[NSNumber class]]) {
-            NSLog(@"num %@", num);
-            return [num floatValue];
-        }
-    }
-    return 0;
-}
-
-+ (CGFloat)prefsWindowWidth
-{
-    return 380+[self widthAdjustment];
-}
 
 - (void)windowDidLoad
 {
@@ -82,6 +65,10 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
         
         // save to panels dict
         panelData[kKeyViewHeight] = @([view frame].size.height);
+        const NSSize size=[view fittingSize];
+        self.width=MAX(self.width, size.width);
+        //NSLog(@"fs %@", NSStringFromSize(size));
+        //NSLog(@" s %@", NSStringFromSize([view frame].size));
         ((NSMutableDictionary *)self.panels)[key] = panelData;
         
         // add to tab bar
@@ -152,7 +139,7 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
     const CGFloat diff=height+toolbarHeight-contentRect.size.height;
     contentRect.size.height+=diff;
     contentRect.origin.y-=diff;
-    contentRect.size.width=[[self class] prefsWindowWidth];
+    contentRect.size.width=self.width;
     
     // set window to new size
     [self.window setFrame:[NSWindow frameRectForContentRect:contentRect
