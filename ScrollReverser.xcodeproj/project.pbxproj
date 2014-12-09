@@ -14,6 +14,8 @@
 		017347661A35DA2600A0A1BE /* PrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 017347651A35DA2600A0A1BE /* PrefsWindowController.m */; };
 		0183EE6F1A37943500A260E0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0183EE6D1A37943500A260E0 /* MainMenu.xib */; };
 		0183EE701A37943500A260E0 /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0183EE6E1A37943500A260E0 /* WelcomeWindow.xib */; };
+		0183EE731A37947E00A260E0 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 0183EE721A37947E00A260E0 /* Application.m */; };
+		0183EE781A3794F800A260E0 /* ScrollReverser.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 0183EE771A3794F800A260E0 /* ScrollReverser.sdef */; };
 		019FB05A14EB1A9100FA225A /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019FB05914EB1A9100FA225A /* WelcomeWindowController.m */; };
 		01B5ABCD1700D26200FF6F6A /* ScrollReverserStatusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */; };
 		01B5ABD31700D26C00FF6F6A /* ScrollReverserIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABD21700D26C00FF6F6A /* ScrollReverserIcon.icns */; };
@@ -55,6 +57,9 @@
 		017347651A35DA2600A0A1BE /* PrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsWindowController.m; sourceTree = "<group>"; };
 		0183EE6D1A37943500A260E0 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		0183EE6E1A37943500A260E0 /* WelcomeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeWindow.xib; sourceTree = "<group>"; };
+		0183EE711A37947E00A260E0 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		0183EE721A37947E00A260E0 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
+		0183EE771A3794F800A260E0 /* ScrollReverser.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScrollReverser.sdef; sourceTree = "<group>"; };
 		018C6C8B13FD22BC001DC44F /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		019FB05814EB1A9100FA225A /* WelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeWindowController.h; sourceTree = "<group>"; };
 		019FB05914EB1A9100FA225A /* WelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeWindowController.m; sourceTree = "<group>"; };
@@ -132,6 +137,8 @@
 				01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */,
 				01ED37DD1A375EB9001B3094 /* LinkView.h */,
 				01ED37DE1A375EB9001B3094 /* LinkView.m */,
+				0183EE711A37947E00A260E0 /* Application.h */,
+				0183EE721A37947E00A260E0 /* Application.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -196,6 +203,7 @@
 				017347621A35D9C100A0A1BE /* PrefsWindow.xib */,
 				01587306134DD1E200CD9CC4 /* Localizable.strings */,
 				8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */,
+				0183EE771A3794F800A260E0 /* ScrollReverser.sdef */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -286,6 +294,7 @@
 				01B5ABDD1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png in Resources */,
 				0183EE6F1A37943500A260E0 /* MainMenu.xib in Resources */,
 				0183EE701A37943500A260E0 /* WelcomeWindow.xib in Resources */,
+				0183EE781A3794F800A260E0 /* ScrollReverser.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +329,7 @@
 				01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */,
 				0158735813265EDD00100E4C /* StatusItemController.m in Sources */,
 				017347661A35DA2600A0A1BE /* PrefsWindowController.m in Sources */,
+				0183EE731A37947E00A260E0 /* Application.m in Sources */,
 				019FB05A14EB1A9100FA225A /* WelcomeWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+
+
+<!-- declare the namespace for using XInclude so we can include the standard suite -->
+<dictionary xmlns:xi="http://www.w3.org/2003/XInclude">
+    
+    
+    <!-- use XInclude to include the standard suite -->
+    <xi:include href="file:///System/Library/ScriptingDefinitions/CocoaStandard.sdef" xpointer="xpointer(/dictionary/suite)"/>
+    
+    
+    <!-- our special scripting suite -->
+    <suite name="Scroll Reverser Suite" code="SRSR"
+        description="Scroll Reverser application specific scripting facilities.">
+        
+        
+        <!-- any additions to the application class are done here.  note that
+         we have specified that we inherit all of the properties from the standard
+         application class definition, and we use the same four character code from
+         that definition (see the application class definition above).  -->
+        <class name="application" code="capp"
+            description="Scroll Reverser application." inherits="application">
+            
+            <!-- the name of the Cocoa class where we have provided the
+             various accessor methods for our application class.  -->
+            <cocoa class="NSApplication"/>
+            
+            <property name="enabled" code="SRen" type="boolean" description="Set whether Scroll Reverser is on or off."/>
+        </class>
+
+        
+    </suite>
+    
+    
+</dictionary>

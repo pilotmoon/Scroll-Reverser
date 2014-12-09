@@ -19,17 +19,21 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>10006</string>
+	<string>AUTO</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.7</string>
 	<key>LSUIElement</key>
+	<true/>
+	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>© Pilotmoon Software</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>Application</string>
+	<key>OSAScriptingDefinition</key>
+	<string>ScrollReverser.sdef</string>
 	<key>SUAllowsAutomaticUpdates</key>
 	<false/>
 	<key>SUEnableAutomaticChecks</key>
