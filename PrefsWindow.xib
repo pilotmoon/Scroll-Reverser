@@ -151,14 +151,14 @@
                 <constraint firstItem="uso-mW-twu" firstAttribute="top" secondItem="X8x-9H-QTO" secondAttribute="bottom" constant="14" id="fdX-xC-y49"/>
                 <constraint firstItem="X8x-9H-QTO" firstAttribute="top" secondItem="Ly3-tV-h1E" secondAttribute="top" constant="18" id="gpj-EH-gdz"/>
             </constraints>
-            <point key="canvasLocation" x="66" y="-916"/>
+            <point key="canvasLocation" x="106" y="-1183"/>
         </view>
         <view id="95B-NO-Ezk">
             <rect key="frame" x="0.0" y="0.0" width="502" height="198"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <button horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NsF-ix-ASS">
-                    <rect key="frame" x="158" y="143" width="186" height="18"/>
+                <button horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NsF-ix-ASS">
+                    <rect key="frame" x="103" y="143" width="296" height="18"/>
                     <buttonCell key="cell" type="check" title="SHOW IN THE MENU BAR" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="b7A-yE-pR0">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -172,9 +172,9 @@
                         </binding>
                     </connections>
                 </button>
-                <button horizontalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="beY-z2-omo">
-                    <rect key="frame" x="158" y="164" width="186" height="18"/>
-                    <buttonCell key="cell" type="check" title="START AT LOGIN PLEASE" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="q5A-6U-1E7">
+                <button horizontalHuggingPriority="749" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="beY-z2-omo">
+                    <rect key="frame" x="103" y="164" width="296" height="18"/>
+                    <buttonCell key="cell" type="check" title="START AT LOGIN PLEASE, YES PLEASE DO" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="q5A-6U-1E7">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -301,7 +301,7 @@
                 <constraint firstItem="wwe-DG-Ll5" firstAttribute="top" secondItem="NsF-ix-ASS" secondAttribute="bottom" constant="18" id="tiM-ao-AYJ"/>
                 <constraint firstItem="TBz-Cg-SZN" firstAttribute="leading" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="uVa-Y2-gGT"/>
             </constraints>
-            <point key="canvasLocation" x="169" y="-1331"/>
+            <point key="canvasLocation" x="106" y="-1451"/>
         </view>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="AZe-s0-Mkk">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
