@@ -154,11 +154,11 @@
             <point key="canvasLocation" x="66" y="-916"/>
         </view>
         <view id="95B-NO-Ezk">
-            <rect key="frame" x="0.0" y="0.0" width="502" height="201"/>
+            <rect key="frame" x="0.0" y="0.0" width="502" height="198"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <button horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NsF-ix-ASS">
-                    <rect key="frame" x="158" y="146" width="186" height="18"/>
+                    <rect key="frame" x="158" y="143" width="186" height="18"/>
                     <buttonCell key="cell" type="check" title="SHOW IN THE MENU BAR" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="b7A-yE-pR0">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -173,7 +173,7 @@
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="beY-z2-omo">
-                    <rect key="frame" x="158" y="167" width="186" height="18"/>
+                    <rect key="frame" x="158" y="164" width="186" height="18"/>
                     <buttonCell key="cell" type="check" title="START AT LOGIN PLEASE" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="q5A-6U-1E7">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -184,7 +184,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kFb-gM-jgJ">
-                    <rect key="frame" x="18" y="79" width="466" height="14"/>
+                    <rect key="frame" x="18" y="80" width="466" height="14"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="VER" id="neI-To-vYW">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -195,7 +195,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TBz-Cg-SZN">
-                    <rect key="frame" x="18" y="65" width="466" height="14"/>
+                    <rect key="frame" x="18" y="66" width="466" height="14"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="CREDIT" id="Knh-UW-BgC">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -206,7 +206,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AqZ-5L-KAS" customClass="LinkView">
-                    <rect key="frame" x="234" y="51" width="34" height="14"/>
+                    <rect key="frame" x="234" y="52" width="34" height="14"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="LINK" id="zJt-dO-TtO">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
@@ -217,7 +217,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VHc-31-bRc">
-                    <rect key="frame" x="18" y="93" width="466" height="14"/>
+                    <rect key="frame" x="18" y="94" width="466" height="14"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="NAME OF THE APP" id="zIC-pY-OnZ">
                         <font key="font" metaFont="smallSystemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -228,13 +228,13 @@
                     </connections>
                 </textField>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="wwe-DG-Ll5">
-                    <rect key="frame" x="20" y="125" width="462" height="5"/>
+                    <rect key="frame" x="20" y="124" width="462" height="5"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
                 <box autoresizesSubviews="NO" horizontalHuggingPriority="750" transparent="YES" title="Box" boxType="custom" borderType="none" translatesAutoresizingMaskIntoConstraints="NO" id="t3b-LW-dUy">
-                    <rect key="frame" x="94" y="13" width="315" height="34"/>
+                    <rect key="frame" x="94" y="14" width="315" height="34"/>
                     <view key="contentView">
                         <rect key="frame" x="0.0" y="0.0" width="315" height="34"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -285,7 +285,7 @@
                 <constraint firstAttribute="trailing" secondItem="kFb-gM-jgJ" secondAttribute="trailing" constant="20" id="6Bn-Ll-fnu"/>
                 <constraint firstItem="wwe-DG-Ll5" firstAttribute="leading" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="9uh-gi-jcY"/>
                 <constraint firstItem="NsF-ix-ASS" firstAttribute="top" secondItem="beY-z2-omo" secondAttribute="bottom" constant="7" id="Bdq-VB-ard"/>
-                <constraint firstItem="VHc-31-bRc" firstAttribute="top" secondItem="wwe-DG-Ll5" secondAttribute="bottom" constant="20" id="Czk-4M-eHF"/>
+                <constraint firstItem="VHc-31-bRc" firstAttribute="top" secondItem="wwe-DG-Ll5" secondAttribute="bottom" priority="1" constant="18" id="Czk-4M-eHF"/>
                 <constraint firstAttribute="centerX" secondItem="AqZ-5L-KAS" secondAttribute="centerX" id="Gom-xM-n8e"/>
                 <constraint firstAttribute="centerX" secondItem="AqZ-5L-KAS" secondAttribute="centerX" id="Jn2-BE-nrd"/>
                 <constraint firstItem="kFb-gM-jgJ" firstAttribute="leading" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="K7D-zx-H0i"/>
@@ -298,10 +298,10 @@
                 <constraint firstItem="AqZ-5L-KAS" firstAttribute="top" secondItem="TBz-Cg-SZN" secondAttribute="bottom" id="mu8-pZ-pMf"/>
                 <constraint firstItem="beY-z2-omo" firstAttribute="width" secondItem="NsF-ix-ASS" secondAttribute="width" id="pyC-Ow-sdC"/>
                 <constraint firstItem="VHc-31-bRc" firstAttribute="leading" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="tcd-ma-7BT"/>
-                <constraint firstItem="wwe-DG-Ll5" firstAttribute="top" secondItem="NsF-ix-ASS" secondAttribute="bottom" constant="20" id="tiM-ao-AYJ"/>
+                <constraint firstItem="wwe-DG-Ll5" firstAttribute="top" secondItem="NsF-ix-ASS" secondAttribute="bottom" constant="18" id="tiM-ao-AYJ"/>
                 <constraint firstItem="TBz-Cg-SZN" firstAttribute="leading" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="uVa-Y2-gGT"/>
             </constraints>
-            <point key="canvasLocation" x="61" y="-1169.5"/>
+            <point key="canvasLocation" x="169" y="-1331"/>
         </view>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="AZe-s0-Mkk">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
