@@ -173,7 +173,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 }
 
 - (NSString *)appCredit {
-    return [NSString stringWithFormat:NSLocalizedString(@"by %@", nil), @"Nick Moore"];
+    return [NSString stringWithFormat:NSLocalizedString(@"by %@", @"credits in About screen; 'by Nick Moore'"), @"Nick Moore"];
 }
 
 - (NSURL *)appLink {
