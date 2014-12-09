@@ -7,7 +7,7 @@
 //
 
 #import "PrefsWindowController.h"
-#import "ScrollInverterAppDelegate.h"
+#import "AppDelegate.h"
 #import "LinkView.h"
 
 static NSString *const kPanelScrolling=@"scrolling";
@@ -204,7 +204,7 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 
 #pragma mark Bindings
 
-- (ScrollInverterAppDelegate *)appDelegate
+- (AppDelegate *)appDelegate
 {
     return [[NSApplication sharedApplication] delegate];
 }

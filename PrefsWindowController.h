@@ -5,13 +5,13 @@
 //  Created by Nicholas Moore on 08/12/2014.
 //
 //
-@class ScrollInverterAppDelegate, LinkView;
+@class AppDelegate, LinkView;
 
 #import <Cocoa/Cocoa.h>
 
 @interface PrefsWindowController : NSWindowController <NSTabViewDelegate, NSToolbarDelegate>
 
-@property (readonly) ScrollInverterAppDelegate *appDelegate;
+@property (readonly) AppDelegate *appDelegate;
 
 @property (weak) IBOutlet NSView *scrollingSettings;
 @property (weak) IBOutlet NSView *appSettings;

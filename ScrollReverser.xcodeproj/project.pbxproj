@@ -8,25 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		011A628B19D4A748003CE6DC /* IntroShot.png in Resources */ = {isa = PBXBuildFile; fileRef = 011A628919D4A748003CE6DC /* IntroShot.png */; };
-		011A628D19D4A9E0003CE6DC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01587350134DD2B300CD9CC4 /* MainMenu.xib */; };
-		011A629019D4AABE003CE6DC /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011A628E19D4AABE003CE6DC /* WelcomeWindow.xib */; };
 		01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01587306134DD1E200CD9CC4 /* Localizable.strings */; };
-		01587313134DD1FA00CD9CC4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0158730B134DD1FA00CD9CC4 /* InfoPlist.strings */; };
 		0158735813265EDD00100E4C /* StatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0158735513265EDD00100E4C /* StatusItemController.m */; };
 		017347631A35D9C100A0A1BE /* PrefsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017347621A35D9C100A0A1BE /* PrefsWindow.xib */; };
 		017347661A35DA2600A0A1BE /* PrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 017347651A35DA2600A0A1BE /* PrefsWindowController.m */; };
-		0180FF461434A548005BBDA1 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 0180FF451434A548005BBDA1 /* Credits.html */; };
+		0183EE6F1A37943500A260E0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0183EE6D1A37943500A260E0 /* MainMenu.xib */; };
+		0183EE701A37943500A260E0 /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0183EE6E1A37943500A260E0 /* WelcomeWindow.xib */; };
 		019FB05A14EB1A9100FA225A /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019FB05914EB1A9100FA225A /* WelcomeWindowController.m */; };
-		01B5ABCD1700D26200FF6F6A /* ScrollInverterStatusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABCA1700D26200FF6F6A /* ScrollInverterStatusIcon.png */; };
-		01B5ABD31700D26C00FF6F6A /* ScrollInverterIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABD21700D26C00FF6F6A /* ScrollInverterIcon.icns */; };
-		01B5ABDD1700D50600FF6F6A /* ScrollInverterStatusIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABDA1700D50600FF6F6A /* ScrollInverterStatusIcon@2x.png */; };
+		01B5ABCD1700D26200FF6F6A /* ScrollReverserStatusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */; };
+		01B5ABD31700D26C00FF6F6A /* ScrollReverserIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABD21700D26C00FF6F6A /* ScrollReverserIcon.icns */; };
+		01B5ABDD1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */; };
 		01B662D513250CA800658B5C /* LoginItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B662D413250CA800658B5C /* LoginItemsController.m */; };
 		01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */; };
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
 		01ED37DF1A375EB9001B3094 /* LinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01ED37DE1A375EB9001B3094 /* LinkView.m */; };
 		01F66862174B5E43001727DE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F66861174B5E43001727DE /* Sparkle.framework */; };
 		01F66865174B5E77001727DE /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 01F66861174B5E43001727DE /* Sparkle.framework */; };
-		256AC3DA0F4B6AC300CF3369 /* ScrollInverterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */; };
+		256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* AppDelegate.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -49,23 +47,21 @@
 		011A628519D49AB7003CE6DC /* insert_version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = insert_version.sh; path = BuildScripts/insert_version.sh; sourceTree = "<group>"; };
 		011A628619D49B69003CE6DC /* ReleaseNotes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReleaseNotes.md; sourceTree = "<group>"; };
 		011A628919D4A748003CE6DC /* IntroShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IntroShot.png; path = Graphics/IntroShot.png; sourceTree = "<group>"; };
-		011A628F19D4AABE003CE6DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = resources/en.lproj/WelcomeWindow.xib; sourceTree = "<group>"; };
-		0158730C134DD1FA00CD9CC4 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0158730D134DD1FA00CD9CC4 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01587351134DD2B300CD9CC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = resources/en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		0158735413265EDD00100E4C /* StatusItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusItemController.h; sourceTree = "<group>"; };
 		0158735513265EDD00100E4C /* StatusItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItemController.m; sourceTree = "<group>"; };
 		017347621A35D9C100A0A1BE /* PrefsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsWindow.xib; sourceTree = "<group>"; };
 		017347641A35DA2600A0A1BE /* PrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsWindowController.h; sourceTree = "<group>"; };
 		017347651A35DA2600A0A1BE /* PrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsWindowController.m; sourceTree = "<group>"; };
-		0180FF451434A548005BBDA1 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		0183EE6D1A37943500A260E0 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		0183EE6E1A37943500A260E0 /* WelcomeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeWindow.xib; sourceTree = "<group>"; };
 		018C6C8B13FD22BC001DC44F /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		019FB05814EB1A9100FA225A /* WelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeWindowController.h; sourceTree = "<group>"; };
 		019FB05914EB1A9100FA225A /* WelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeWindowController.m; sourceTree = "<group>"; };
 		01B1F4041368A62400BB9A3A /* el */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = el; path = resources/el.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01B5ABCA1700D26200FF6F6A /* ScrollInverterStatusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScrollInverterStatusIcon.png; path = Graphics/ScrollInverterStatusIcon.png; sourceTree = "<group>"; };
-		01B5ABD21700D26C00FF6F6A /* ScrollInverterIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = ScrollInverterIcon.icns; path = Graphics/ScrollInverterIcon.icns; sourceTree = "<group>"; };
-		01B5ABDA1700D50600FF6F6A /* ScrollInverterStatusIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ScrollInverterStatusIcon@2x.png"; path = "Graphics/ScrollInverterStatusIcon@2x.png"; sourceTree = "<group>"; };
+		01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScrollReverserStatusIcon.png; path = Graphics/ScrollReverserStatusIcon.png; sourceTree = "<group>"; };
+		01B5ABD21700D26C00FF6F6A /* ScrollReverserIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = ScrollReverserIcon.icns; path = Graphics/ScrollReverserIcon.icns; sourceTree = "<group>"; };
+		01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ScrollReverserStatusIcon@2x.png"; path = "Graphics/ScrollReverserStatusIcon@2x.png"; sourceTree = "<group>"; };
 		01B662D313250CA800658B5C /* LoginItemsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemsController.h; sourceTree = "<group>"; };
 		01B662D413250CA800658B5C /* LoginItemsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemsController.m; sourceTree = "<group>"; };
 		01B66449132528A000658B5C /* NSObject+ObservePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ObservePrefs.h"; sourceTree = "<group>"; };
@@ -82,14 +78,14 @@
 		01FD049C142B6F7900F3BDCB /* ro */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ro; path = resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		256AC3D80F4B6AC300CF3369 /* ScrollInverterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollInverterAppDelegate.h; sourceTree = "<group>"; };
-		256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollInverterAppDelegate.m; sourceTree = "<group>"; };
+		256AC3D80F4B6AC300CF3369 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		256AC3D90F4B6AC300CF3369 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* Scroll_Inverter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scroll_Inverter_Prefix.pch; sourceTree = "<group>"; };
 		27AF3F6C13F3CCF00034733F /* it */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = it; path = resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		8D1107310486CEB800E47090 /* Scroll_Inverter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Scroll_Inverter-Info.plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ScrollReverser-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Scroll Reverser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scroll Reverser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -110,9 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				011A628919D4A748003CE6DC /* IntroShot.png */,
-				01B5ABCA1700D26200FF6F6A /* ScrollInverterStatusIcon.png */,
-				01B5ABDA1700D50600FF6F6A /* ScrollInverterStatusIcon@2x.png */,
-				01B5ABD21700D26C00FF6F6A /* ScrollInverterIcon.icns */,
+				01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */,
+				01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */,
+				01B5ABD21700D26C00FF6F6A /* ScrollReverserIcon.icns */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";
@@ -128,8 +124,8 @@
 				0158735513265EDD00100E4C /* StatusItemController.m */,
 				01B662D313250CA800658B5C /* LoginItemsController.h */,
 				01B662D413250CA800658B5C /* LoginItemsController.m */,
-				256AC3D80F4B6AC300CF3369 /* ScrollInverterAppDelegate.h */,
-				256AC3D90F4B6AC300CF3369 /* ScrollInverterAppDelegate.m */,
+				256AC3D80F4B6AC300CF3369 /* AppDelegate.h */,
+				256AC3D90F4B6AC300CF3369 /* AppDelegate.m */,
 				01EB78C21324D574005390BD /* MouseTap.m */,
 				01EB78C31324D574005390BD /* MouseTap.h */,
 				01B66449132528A000658B5C /* NSObject+ObservePrefs.h */,
@@ -195,13 +191,11 @@
 				011A628419D49AB7003CE6DC /* create_zip_and_appcast.sh */,
 				011A628619D49B69003CE6DC /* ReleaseNotes.md */,
 				011A628519D49AB7003CE6DC /* insert_version.sh */,
-				01587350134DD2B300CD9CC4 /* MainMenu.xib */,
-				011A628E19D4AABE003CE6DC /* WelcomeWindow.xib */,
+				0183EE6D1A37943500A260E0 /* MainMenu.xib */,
+				0183EE6E1A37943500A260E0 /* WelcomeWindow.xib */,
 				017347621A35D9C100A0A1BE /* PrefsWindow.xib */,
-				0158730B134DD1FA00CD9CC4 /* InfoPlist.strings */,
 				01587306134DD1E200CD9CC4 /* Localizable.strings */,
-				8D1107310486CEB800E47090 /* Scroll_Inverter-Info.plist */,
-				0180FF451434A548005BBDA1 /* Credits.html */,
+				8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -252,7 +246,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ScrollInverter" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ScrollReverser" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -285,15 +279,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */,
-				01587313134DD1FA00CD9CC4 /* InfoPlist.strings in Resources */,
-				011A628D19D4A9E0003CE6DC /* MainMenu.xib in Resources */,
-				011A629019D4AABE003CE6DC /* WelcomeWindow.xib in Resources */,
-				0180FF461434A548005BBDA1 /* Credits.html in Resources */,
-				01B5ABD31700D26C00FF6F6A /* ScrollInverterIcon.icns in Resources */,
+				01B5ABD31700D26C00FF6F6A /* ScrollReverserIcon.icns in Resources */,
 				011A628B19D4A748003CE6DC /* IntroShot.png in Resources */,
-				01B5ABCD1700D26200FF6F6A /* ScrollInverterStatusIcon.png in Resources */,
+				01B5ABCD1700D26200FF6F6A /* ScrollReverserStatusIcon.png in Resources */,
 				017347631A35D9C100A0A1BE /* PrefsWindow.xib in Resources */,
-				01B5ABDD1700D50600FF6F6A /* ScrollInverterStatusIcon@2x.png in Resources */,
+				01B5ABDD1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png in Resources */,
+				0183EE6F1A37943500A260E0 /* MainMenu.xib in Resources */,
+				0183EE701A37943500A260E0 /* WelcomeWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				256AC3DA0F4B6AC300CF3369 /* ScrollInverterAppDelegate.m in Sources */,
+				256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */,
 				01ED37DF1A375EB9001B3094 /* LinkView.m in Sources */,
 				01EB78C41324D574005390BD /* MouseTap.m in Sources */,
 				01B662D513250CA800658B5C /* LoginItemsController.m in Sources */,
@@ -335,14 +327,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		011A628E19D4AABE003CE6DC /* WelcomeWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				011A628F19D4AABE003CE6DC /* en */,
-			);
-			name = WelcomeWindow.xib;
-			sourceTree = "<group>";
-		};
 		01587306134DD1E200CD9CC4 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -356,22 +340,6 @@
 				01E16F1314F6607300F81640 /* de */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		0158730B134DD1FA00CD9CC4 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0158730C134DD1FA00CD9CC4 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		01587350134DD2B300CD9CC4 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01587351134DD2B300CD9CC4 /* en */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -397,7 +365,7 @@
 				GCC_PREFIX_HEADER = Scroll_Inverter_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG_BUILD;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "Scroll_Inverter-Info.plist";
+				INFOPLIST_FILE = "ScrollReverser-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -430,7 +398,7 @@
 					NDEBUG,
 				);
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "Scroll_Inverter-Info.plist";
+				INFOPLIST_FILE = "ScrollReverser-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -485,7 +453,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ScrollInverter" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ScrollReverser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

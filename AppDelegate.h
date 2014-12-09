@@ -9,7 +9,7 @@ extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsReverseTablet;
 extern NSString *const PrefsHideIcon;
 
-@interface ScrollInverterAppDelegate : NSObject {
+@interface AppDelegate : NSObject {
 	MouseTap *tap;
 	StatusItemController *statusController;
     LoginItemsController *loginItemsController;

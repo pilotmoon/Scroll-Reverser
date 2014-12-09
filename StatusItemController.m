@@ -1,5 +1,5 @@
 #import "StatusItemController.h"
-#import "ScrollInverterAppDelegate.h"
+#import "AppDelegate.h"
 #import "NSObject+ObservePrefs.h"
 
 @implementation StatusItemController
@@ -11,7 +11,7 @@
 
 + (NSImage *)statusImageWithColor:(NSColor *)color
 {
-    NSImage *const templateImage=[NSImage imageNamed:@"ScrollInverterStatusIcon"];
+    NSImage *const templateImage=[NSImage imageNamed:@"ScrollReverserStatusIcon"];
     
     // create blank image to draw into
     NSImage *const statusImage=[[NSImage alloc] init];

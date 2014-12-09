@@ -1,4 +1,4 @@
-#import "ScrollInverterAppDelegate.h"
+#import "AppDelegate.h"
 #import "StatusItemController.h"
 #import "LoginItemsController.h"
 #import "MouseTap.h"
@@ -16,11 +16,11 @@ NSString *const PrefsReverseTablet=@"ReverseTablet";
 NSString *const PrefsHasRunBefore=@"HasRunBefore";
 NSString *const PrefsHideIcon=@"HideIcon";
 
-@implementation ScrollInverterAppDelegate
+@implementation AppDelegate
 
 + (void)initialize
 {
-	if ([self class]==[ScrollInverterAppDelegate class])
+	if ([self class]==[AppDelegate class])
     {
 		[[NSUserDefaults standardUserDefaults] registerDefaults:@{
         PrefsReverseScrolling: @(YES),

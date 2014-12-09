@@ -17,7 +17,7 @@
                      BlueprintIdentifier = "8D1107260486CEB800E47090"
                      BuildableName = "Scroll Reverser.app"
                      BlueprintName = "Scroll Reverser"
-                     ReferencedContainer = "container:ScrollInverter.xcodeproj">
+                     ReferencedContainer = "container:ScrollReverser.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "8D1107260486CEB800E47090"
                BuildableName = "Scroll Reverser.app"
                BlueprintName = "Scroll Reverser"
-               ReferencedContainer = "container:ScrollInverter.xcodeproj">
+               ReferencedContainer = "container:ScrollReverser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -53,7 +53,7 @@
             BlueprintIdentifier = "8D1107260486CEB800E47090"
             BuildableName = "Scroll Reverser.app"
             BlueprintName = "Scroll Reverser"
-            ReferencedContainer = "container:ScrollInverter.xcodeproj">
+            ReferencedContainer = "container:ScrollReverser.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -72,7 +72,7 @@
             BlueprintIdentifier = "8D1107260486CEB800E47090"
             BuildableName = "Scroll Reverser.app"
             BlueprintName = "Scroll Reverser"
-            ReferencedContainer = "container:ScrollInverter.xcodeproj">
+            ReferencedContainer = "container:ScrollReverser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -90,7 +90,7 @@
             BlueprintIdentifier = "8D1107260486CEB800E47090"
             BuildableName = "Scroll Reverser.app"
             BlueprintName = "Scroll Reverser"
-            ReferencedContainer = "container:ScrollInverter.xcodeproj">
+            ReferencedContainer = "container:ScrollReverser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
