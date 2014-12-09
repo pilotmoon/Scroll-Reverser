@@ -101,7 +101,7 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
     [self updateHeightForIdentifier:startingIdentifier];
     
     // other set-up
-    self.linkView.url=[NSURL URLWithString:@"https://pilotmoon.com/link/scrollreverser"];
+    self.linkView.url=self.appDelegate.appLink;
 }
 
 - (void)showWindow:(id)sender
@@ -211,27 +211,12 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 
 - (NSString *)menuStringReverseScrolling
 {
-    return [[self appDelegate] menuStringReverseScrolling];
+    return self.appDelegate.menuStringReverseScrolling;
 }
 
-- (NSString *)menuStringAppVersion
+- (NSString *)menuStringPreferencesTitle
 {
-    NSString *versionString=[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-    return [NSString stringWithFormat:@"%@", versionString];
-}
-
-- (NSString *)menuStringAppCredit
-{
-    return NSLocalizedString(@"by Nick Moore", nil);
-}
-
-- (NSString *)menuStringAppLink
-{
-    return @"pilotmoon.com/scrollreverser";
-}
-
-- (NSString *)menuStringPreferencesTitle {
-    return self.appDelegate.menuStringAppName;
+    return self.appDelegate.appName;
 }
 
 - (NSString *)menuStringAppSettings {
@@ -248,22 +233,6 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 
 - (NSString *)menuStringScrollingDevices {
     return NSLocalizedString(@"Scrolling Devices", nil);
-}
-
-- (NSString *)menuStringCheckNow {
-    return NSLocalizedString(@"Check for updates", nil);
-}
-
-- (NSString *)menuStringCheckForUpdates {
-    return NSLocalizedString(@"Automatically", @"check box next to the 'Check for updates' button");
-}
-
-- (NSString *)menuStringStartAtLogin {
-    return NSLocalizedString(@"Start at Login", nil);
-}
-
-- (NSString *)menuStringShowInMenuBar {
-    return NSLocalizedString(@"Show in Menu Bar", nil);
 }
 
 - (NSString *)menuStringHorizontal {
@@ -284,6 +253,22 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 
 - (NSString *)menuStringTablet {
     return NSLocalizedString(@"Reverse Tablet", nil);
+}
+
+- (NSString *)menuStringStartAtLogin {
+    return NSLocalizedString(@"Start at Login", nil);
+}
+
+- (NSString *)menuStringShowInMenuBar {
+    return NSLocalizedString(@"Show in Menu Bar", nil);
+}
+
+- (NSString *)menuStringCheckNow {
+    return NSLocalizedString(@"Check for updates", nil);
+}
+
+- (NSString *)menuStringCheckForUpdates {
+    return NSLocalizedString(@"Automatically", @"check box next to the 'Check for updates' button");
 }
 
 @end

@@ -44,6 +44,16 @@ NSString *const PrefsHideIcon=@"HideIcon";
     tap->invertOther=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse];
 }
 
+- (NSURL *)feedURL
+{
+    if ([[self.appVersion componentsSeparatedByString:@"-"] count]>1) { // if version string has a dash, it's a beta
+        return [NSURL URLWithString:@"https://rink.hockeyapp.net/api/2/apps/4eb70fe73a84cb8cd252855a6d7b1bb3"];
+    }
+    else {
+        return [NSURL URLWithString:@"https://softwareupdate.pilotmoon.com/update/scrollreverser/appcast.xml"];
+    }
+}
+
 - (id)init
 {
 	self=[super init];
@@ -53,6 +63,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
         
 		statusController=[[StatusItemController alloc] init];
 		loginItemsController=[[LoginItemsController alloc] init];
+        [loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
         
         [self observePrefsKey:PrefsReverseScrolling];
         [self observePrefsKey:PrefsReverseHorizontal];
@@ -63,6 +74,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
         [self observePrefsKey:PrefsHideIcon];
         
         [[SUUpdater sharedUpdater] setDelegate:self];
+        [[SUUpdater sharedUpdater] setFeedURL:[self feedURL]];
     }
 	return self;
 }
@@ -77,7 +89,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (void)awakeFromNib
 {
 	[statusController attachMenu:statusMenu];
-	[loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
 }
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -147,15 +158,34 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (NSArray *)feedParametersForUpdater:(SUUpdater *)updater sendingSystemProfile:(BOOL)sendingProfile
 {
-    NSLog(@"Checking for updates");
+    NSLog(@"Checking for updates at %@", [updater feedURL]);
     return [NSArray array];
+}
+
+#pragma mark App info
+
+- (NSString *)appName {
+    return NSLocalizedString(@"Scroll Reverser", nil);
+}
+
+- (NSString *)appVersion {
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+}
+
+- (NSString *)appCredit {
+    return NSLocalizedString(@"by Nick Moore", nil);
+}
+
+- (NSURL *)appLink {
+    return [NSURL URLWithString:@"https://pilotmoon.com/link/scrollreverser"];
+}
+
+- (NSString *)appDisplayLink {
+    return @"pilotmoon.com/scrollreverser";
 }
 
 #pragma mark Strings
 
-- (NSString *)menuStringAppName {
-    return NSLocalizedString(@"Scroll Reverser", nil);
-}
 - (NSString *)menuStringReverseScrolling {
 	return NSLocalizedString(@"Reverse Scrolling", nil);
 }

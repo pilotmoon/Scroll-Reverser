@@ -191,7 +191,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.menuStringAppVersion" id="abG-aT-DKi"/>
+                        <binding destination="-2" name="value" keyPath="self.appDelegate.appVersion" id="Kh6-Yl-xtT"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TBz-Cg-SZN">
@@ -202,7 +202,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.menuStringAppCredit" id="ccY-wL-MvT"/>
+                        <binding destination="-2" name="value" keyPath="self.appDelegate.appCredit" id="xK3-dG-AiZ"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AqZ-5L-KAS" customClass="LinkView">
@@ -213,7 +213,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.menuStringAppLink" id="vn5-IX-WtE"/>
+                        <binding destination="-2" name="value" keyPath="self.appDelegate.appDisplayLink" id="h96-gE-SK5"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VHc-31-bRc">
@@ -224,7 +224,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.appDelegate.menuStringAppName" id="x6p-GI-ODR"/>
+                        <binding destination="-2" name="value" keyPath="self.appDelegate.appName" id="IHq-bc-ltY"/>
                     </connections>
                 </textField>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="wwe-DG-Ll5">

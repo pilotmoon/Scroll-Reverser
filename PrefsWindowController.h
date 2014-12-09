@@ -18,9 +18,6 @@
 @property (weak) IBOutlet LinkView *linkView;
 
 @property (readonly) NSString *menuStringReverseScrolling;
-@property (readonly) NSString *menuStringAppVersion;
-@property (readonly) NSString *menuStringAppCredit;
-@property (readonly) NSString *menuStringAppLink;
 @property (readonly) NSString *menuStringPreferencesTitle;
 @property (readonly) NSString *menuStringScrollingSettings;
 @property (readonly) NSString *menuStringAppSettings;
