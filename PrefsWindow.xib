@@ -7,239 +7,316 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PrefsWindowController">
             <connections>
-                <outlet property="window" destination="QvC-M9-y7g" id="A82-1p-6M1"/>
+                <outlet property="appSettings" destination="95B-NO-Ezk" id="JRd-nF-sP3"/>
+                <outlet property="linkView" destination="AqZ-5L-KAS" id="n8u-ZL-GCR"/>
+                <outlet property="scrollingSettings" destination="Ly3-tV-h1E" id="UQT-NQ-A8D"/>
+                <outlet property="window" destination="AZe-s0-Mkk" id="tPG-Rk-lLL"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="420" height="260"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
-            <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="420" height="260"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <userGuides>
-                    <userLayoutGuide location="20" affinity="minX"/>
-                    <userLayoutGuide location="400" affinity="minX"/>
-                </userGuides>
-                <subviews>
-                    <box autoresizesSubviews="NO" misplaced="YES" title="DEM AXES" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Ohg-0n-48V">
-                        <rect key="frame" x="17" y="138" width="190" height="74"/>
-                        <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="188" height="58"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <button translatesAutoresizingMaskIntoConstraints="NO" id="5vn-uT-jr4">
-                                    <rect key="frame" x="16" y="32" width="73" height="18"/>
-                                    <buttonCell key="cell" type="check" title="PLEASE" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="SIb-gI-p30">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                        <connections>
-                                            <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="v8l-Do-sWJ"/>
-                                        </connections>
-                                    </buttonCell>
-                                    <connections>
-                                        <binding destination="-2" name="title" keyPath="self.menuStringVertical" id="TGZ-8e-CX2"/>
-                                        <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="h1f-d0-uUT"/>
-                                        <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseY" id="vZQ-T8-jkh"/>
-                                    </connections>
-                                </button>
-                                <button translatesAutoresizingMaskIntoConstraints="NO" id="jap-mI-Tvu">
-                                    <rect key="frame" x="16" y="12" width="112" height="18"/>
-                                    <buttonCell key="cell" type="check" title="AUTOLAYOUT" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="I4A-Jm-TEL">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <binding destination="-2" name="title" keyPath="self.menuStringHorizontal" id="e0E-6e-CkU"/>
-                                        <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="KMw-we-aon"/>
-                                        <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseX" id="3Yg-pK-sE3"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                        </view>
-                        <constraints>
-                            <constraint firstItem="jap-mI-Tvu" firstAttribute="leading" secondItem="Ohg-0n-48V" secondAttribute="leading" constant="16" id="1Pr-2P-FDp"/>
-                            <constraint firstItem="5vn-uT-jr4" firstAttribute="top" secondItem="Ohg-0n-48V" secondAttribute="top" constant="25" id="7cl-XV-BFs"/>
-                            <constraint firstItem="jap-mI-Tvu" firstAttribute="top" secondItem="5vn-uT-jr4" secondAttribute="bottom" constant="6" symbolic="YES" id="9b3-iy-TuH"/>
-                            <constraint firstAttribute="bottom" secondItem="jap-mI-Tvu" secondAttribute="bottom" constant="11" id="A9I-fz-cXd"/>
-                            <constraint firstItem="5vn-uT-jr4" firstAttribute="leading" secondItem="Ohg-0n-48V" secondAttribute="leading" constant="16" id="Fuz-6W-YG7"/>
-                        </constraints>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <binding destination="-2" name="title" keyPath="self.menuStringScrollingAxes" id="rNG-dI-cKr"/>
-                        </connections>
-                    </box>
-                    <box autoresizesSubviews="NO" misplaced="YES" title="DEM DEVICES" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="4Gb-8v-3Cg">
-                        <rect key="frame" x="213" y="118" width="190" height="94"/>
-                        <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="188" height="78"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <button translatesAutoresizingMaskIntoConstraints="NO" id="EfG-4T-QIE">
-                                    <rect key="frame" x="16" y="32" width="53" height="18"/>
-                                    <buttonCell key="cell" type="check" title="THIS" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MES-ls-Hf7">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <binding destination="-2" name="title" keyPath="self.menuStringMouse" id="6NV-LZ-K6f"/>
-                                        <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="sty-hZ-m2b"/>
-                                        <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseMouse" id="FuO-Wq-UO5"/>
-                                    </connections>
-                                </button>
-                                <button translatesAutoresizingMaskIntoConstraints="NO" id="Ba0-5g-aCJ">
-                                    <rect key="frame" x="16" y="52" width="64" height="18"/>
-                                    <buttonCell key="cell" type="check" title="WORK" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="dur-Lw-a5r">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <binding destination="-2" name="title" keyPath="self.menuStringTrackpad" id="dgX-gJ-DLn"/>
-                                        <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="irh-7k-JOG"/>
-                                        <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseTrackpad" id="NnQ-NX-ahR"/>
-                                    </connections>
-                                </button>
-                                <button translatesAutoresizingMaskIntoConstraints="NO" id="1mQ-tY-tFo">
-                                    <rect key="frame" x="16" y="12" width="54" height="18"/>
-                                    <buttonCell key="cell" type="check" title="TIME" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="oZJ-kb-G7t">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <binding destination="-2" name="title" keyPath="self.menuStringTablet" id="LnB-RO-7b5"/>
-                                        <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="ECp-Uo-egW"/>
-                                        <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseTablet" id="ciA-Tj-qNU"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                        </view>
-                        <constraints>
-                            <constraint firstItem="1mQ-tY-tFo" firstAttribute="top" secondItem="EfG-4T-QIE" secondAttribute="bottom" constant="6" symbolic="YES" id="3d0-pG-P6s"/>
-                            <constraint firstItem="1mQ-tY-tFo" firstAttribute="leading" secondItem="4Gb-8v-3Cg" secondAttribute="leading" constant="16" id="DPe-7c-n8l"/>
-                            <constraint firstItem="EfG-4T-QIE" firstAttribute="top" secondItem="Ba0-5g-aCJ" secondAttribute="bottom" constant="6" symbolic="YES" id="RpZ-Q1-Yjc"/>
-                            <constraint firstItem="Ba0-5g-aCJ" firstAttribute="leading" secondItem="4Gb-8v-3Cg" secondAttribute="leading" constant="16" id="Sgu-aD-rBy"/>
-                            <constraint firstAttribute="bottom" secondItem="1mQ-tY-tFo" secondAttribute="bottom" constant="11" id="kLG-aX-vmh"/>
-                            <constraint firstItem="EfG-4T-QIE" firstAttribute="leading" secondItem="4Gb-8v-3Cg" secondAttribute="leading" constant="16" id="uVp-II-M4A"/>
-                            <constraint firstItem="Ba0-5g-aCJ" firstAttribute="top" secondItem="4Gb-8v-3Cg" secondAttribute="top" constant="25" id="wfa-qV-tYO"/>
-                        </constraints>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <binding destination="-2" name="title" keyPath="self.menuStringScrollingDevices" id="QQ1-Jk-Y5Q"/>
-                        </connections>
-                    </box>
-                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tei-VY-Z6O">
-                        <rect key="frame" x="162" y="226" width="96" height="18"/>
-                        <buttonCell key="cell" type="check" title="ON OR OFF" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="gLC-SR-d45">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <binding destination="-2" name="title" keyPath="self.menuStringReverseScrolling" id="Bio-jd-ieI"/>
-                            <binding destination="9eJ-Lx-koC" name="value" keyPath="values.InvertScrollingOn" id="abS-4l-uDI"/>
-                        </connections>
-                    </button>
-                    <box autoresizesSubviews="NO" misplaced="YES" title="DEM SETTINGS" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Nwb-Qq-UGz">
-                        <rect key="frame" x="17" y="16" width="386" height="98"/>
-                        <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="384" height="82"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ORE-9u-GdU">
-                                    <rect key="frame" x="16" y="34" width="183" height="18"/>
-                                    <buttonCell key="cell" type="check" title="CHECK THOSE UPDATES" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="nyd-1s-nqL">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <binding destination="VQJ-Ng-zSD" name="value" keyPath="self.automaticallyChecksForUpdates" id="e7H-yl-PSb"/>
-                                        <binding destination="-2" name="title" keyPath="self.menuStringCheckForUpdates" id="8lF-MA-4yv"/>
-                                    </connections>
-                                </button>
-                                <button translatesAutoresizingMaskIntoConstraints="NO" id="tHO-we-mOD">
-                                    <rect key="frame" x="16" y="12" width="186" height="18"/>
-                                    <buttonCell key="cell" type="check" title="SHOW IN THE MENU BAR" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Jdm-Ne-28V">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <binding destination="-2" name="title" keyPath="self.menuStringShowInMenuBar" id="MPn-3f-FdW"/>
-                                        <binding destination="9eJ-Lx-koC" name="value" keyPath="values.HideIcon" id="laa-3j-BFm">
-                                            <dictionary key="options">
-                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                            </dictionary>
-                                        </binding>
-                                    </connections>
-                                </button>
-                                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BF6-eM-wfG">
-                                    <rect key="frame" x="16" y="54" width="183" height="20"/>
-                                    <buttonCell key="cell" type="check" title="START AT LOGIN PLEASE" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AsS-Tq-Xem">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <binding destination="-2" name="title" keyPath="self.menuStringStartAtLogin" id="yyv-dj-H5E"/>
-                                        <binding destination="-2" name="value" keyPath="self.appDelegate.loginItemsController.startAtLogin" id="dAl-Sa-f5j"/>
-                                    </connections>
-                                </button>
-                                <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WMy-N6-Iet">
-                                    <rect key="frame" x="225" y="28" width="146" height="28"/>
-                                    <buttonCell key="cell" type="push" title="CHECK NOW WILL YA" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="E90-xb-fTB">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="smallSystem"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="checkForUpdates:" target="VQJ-Ng-zSD" id="885-m6-xkQ"/>
-                                        <binding destination="-2" name="title" keyPath="self.menuStringCheckNow" id="tGQ-8Y-lGp"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                        </view>
-                        <constraints>
-                            <constraint firstItem="ORE-9u-GdU" firstAttribute="leading" secondItem="Nwb-Qq-UGz" secondAttribute="leading" constant="16" id="3eX-ZA-Rn9"/>
-                            <constraint firstAttribute="bottom" secondItem="tHO-we-mOD" secondAttribute="bottom" constant="11" id="Jfb-Qy-vpu"/>
-                            <constraint firstAttribute="trailing" secondItem="WMy-N6-Iet" secondAttribute="trailing" constant="16" id="QFA-rK-IKo"/>
-                            <constraint firstItem="tHO-we-mOD" firstAttribute="top" secondItem="ORE-9u-GdU" secondAttribute="bottom" constant="7" id="bxk-yu-cbK"/>
-                            <constraint firstItem="BF6-eM-wfG" firstAttribute="top" secondItem="Nwb-Qq-UGz" secondAttribute="top" constant="25" id="fTt-Jh-QuI"/>
-                            <constraint firstItem="ORE-9u-GdU" firstAttribute="top" secondItem="BF6-eM-wfG" secondAttribute="bottom" constant="7" id="hmD-y7-Mbs"/>
-                            <constraint firstItem="WMy-N6-Iet" firstAttribute="leading" secondItem="ORE-9u-GdU" secondAttribute="trailing" priority="50" constant="33" placeholder="YES" id="qYJ-fK-htN"/>
-                            <constraint firstItem="ORE-9u-GdU" firstAttribute="centerX" secondItem="WMy-N6-Iet" secondAttribute="centerX" id="rJj-m5-Zrw"/>
-                            <constraint firstItem="tHO-we-mOD" firstAttribute="leading" secondItem="Nwb-Qq-UGz" secondAttribute="leading" constant="16" id="shV-Cy-Og4"/>
-                            <constraint firstItem="BF6-eM-wfG" firstAttribute="leading" secondItem="Nwb-Qq-UGz" secondAttribute="leading" constant="16" id="ylW-uN-cwA"/>
-                        </constraints>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <binding destination="-2" name="title" keyPath="self.menuStringAppSettings" id="q4X-zC-mwH"/>
-                        </connections>
-                    </box>
-                </subviews>
-                <constraints>
-                    <constraint firstAttribute="centerX" secondItem="Tei-VY-Z6O" secondAttribute="centerX" id="8Ii-uO-u1U"/>
-                    <constraint firstItem="Ohg-0n-48V" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="8jk-Vo-gwc"/>
-                    <constraint firstAttribute="bottom" secondItem="Nwb-Qq-UGz" secondAttribute="bottom" constant="20" id="BFa-JC-CTZ"/>
-                    <constraint firstItem="Nwb-Qq-UGz" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="D1f-ba-tly"/>
-                    <constraint firstItem="Nwb-Qq-UGz" firstAttribute="top" secondItem="4Gb-8v-3Cg" secondAttribute="bottom" constant="8" id="LZc-hZ-J0o"/>
-                    <constraint firstAttribute="trailing" secondItem="4Gb-8v-3Cg" secondAttribute="trailing" constant="20" id="NXv-Jf-8rw"/>
-                    <constraint firstAttribute="trailing" secondItem="Nwb-Qq-UGz" secondAttribute="trailing" constant="20" id="RD4-Iq-JBc"/>
-                    <constraint firstItem="4Gb-8v-3Cg" firstAttribute="leading" secondItem="Ohg-0n-48V" secondAttribute="trailing" constant="12" id="RtO-IB-qOz"/>
-                    <constraint firstItem="Ohg-0n-48V" firstAttribute="top" secondItem="Tei-VY-Z6O" secondAttribute="bottom" constant="14" id="Y5b-g8-NUC"/>
-                    <constraint firstItem="4Gb-8v-3Cg" firstAttribute="top" secondItem="Tei-VY-Z6O" secondAttribute="bottom" constant="14" id="cSX-Sl-3hB"/>
-                    <constraint firstItem="4Gb-8v-3Cg" firstAttribute="top" secondItem="Ohg-0n-48V" secondAttribute="top" id="kpE-jZ-Gbz"/>
-                    <constraint firstItem="4Gb-8v-3Cg" firstAttribute="width" secondItem="Ohg-0n-48V" secondAttribute="width" id="oOE-LQ-ciL"/>
-                    <constraint firstItem="Tei-VY-Z6O" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="vUP-Xm-Voh"/>
-                </constraints>
-            </view>
-            <connections>
-                <binding destination="-2" name="title" keyPath="self.menuStringSRPreferences" id="Cgj-GV-cVu"/>
-            </connections>
-            <point key="canvasLocation" x="-864" y="-894"/>
-        </window>
         <customObject id="VQJ-Ng-zSD" customClass="SUUpdater"/>
         <userDefaultsController representsSharedInstance="YES" id="9eJ-Lx-koC"/>
+        <view id="Ly3-tV-h1E">
+            <rect key="frame" x="0.0" y="0.0" width="420" height="156"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <box autoresizesSubviews="NO" title="DEM AXES" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="XNk-AX-zB1">
+                    <rect key="frame" x="17" y="36" width="190" height="74"/>
+                    <view key="contentView">
+                        <rect key="frame" x="1" y="1" width="188" height="58"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="oZg-t9-Uad">
+                                <rect key="frame" x="16" y="32" width="73" height="18"/>
+                                <buttonCell key="cell" type="check" title="PLEASE" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="6Lc-hG-Rhg">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="0Xz-ir-4bn"/>
+                                    </connections>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="dyI-ts-gSb"/>
+                                    <binding destination="-2" name="title" keyPath="self.menuStringVertical" id="elz-8v-zf5"/>
+                                    <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseY" id="Gqq-sh-4uU"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Qp4-Ow-UFs">
+                                <rect key="frame" x="16" y="12" width="112" height="18"/>
+                                <buttonCell key="cell" type="check" title="AUTOLAYOUT" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XdD-QC-5fU">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="bRU-97-jpi"/>
+                                    <binding destination="-2" name="title" keyPath="self.menuStringHorizontal" id="sze-na-RNs"/>
+                                    <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseX" id="XOx-Yh-UkK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <constraints>
+                        <constraint firstItem="oZg-t9-Uad" firstAttribute="top" secondItem="XNk-AX-zB1" secondAttribute="top" constant="25" id="Eqf-Lf-mzs"/>
+                        <constraint firstItem="Qp4-Ow-UFs" firstAttribute="leading" secondItem="XNk-AX-zB1" secondAttribute="leading" constant="16" id="edN-YH-lBw"/>
+                        <constraint firstAttribute="bottom" secondItem="Qp4-Ow-UFs" secondAttribute="bottom" constant="11" id="g7Z-f5-YAs"/>
+                        <constraint firstItem="oZg-t9-Uad" firstAttribute="leading" secondItem="XNk-AX-zB1" secondAttribute="leading" constant="16" id="oHc-4C-kdb"/>
+                        <constraint firstItem="Qp4-Ow-UFs" firstAttribute="top" secondItem="oZg-t9-Uad" secondAttribute="bottom" constant="6" symbolic="YES" id="y0e-r2-JzG"/>
+                    </constraints>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <binding destination="-2" name="title" keyPath="self.menuStringScrollingAxes" id="0X9-i8-4aA"/>
+                    </connections>
+                </box>
+                <box autoresizesSubviews="NO" title="DEM DEVICES" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="uso-mW-twu">
+                    <rect key="frame" x="213" y="16" width="190" height="94"/>
+                    <view key="contentView">
+                        <rect key="frame" x="1" y="1" width="188" height="78"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Zt9-ei-f3O">
+                                <rect key="frame" x="16" y="32" width="53" height="18"/>
+                                <buttonCell key="cell" type="check" title="THIS" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XLC-CO-CHb">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="8W8-bu-CAf"/>
+                                    <binding destination="-2" name="title" keyPath="self.menuStringMouse" id="uIO-WR-HVa"/>
+                                    <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseMouse" id="Ztf-mb-Kxf"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="2Vi-H4-SvI">
+                                <rect key="frame" x="16" y="52" width="64" height="18"/>
+                                <buttonCell key="cell" type="check" title="WORK" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XUx-yL-Qdv">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="2bh-O4-vya"/>
+                                    <binding destination="-2" name="title" keyPath="self.menuStringTrackpad" id="CfI-yc-e90"/>
+                                    <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseTrackpad" id="w6t-XF-Nah"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="hGO-s4-EYv">
+                                <rect key="frame" x="16" y="12" width="54" height="18"/>
+                                <buttonCell key="cell" type="check" title="TIME" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="UCm-It-n8u">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="vwz-Kq-0OS"/>
+                                    <binding destination="-2" name="title" keyPath="self.menuStringTablet" id="P29-oW-ACJ"/>
+                                    <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseTablet" id="03h-I3-uKS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="hGO-s4-EYv" secondAttribute="bottom" constant="11" id="3dB-tm-DVz"/>
+                        <constraint firstItem="2Vi-H4-SvI" firstAttribute="top" secondItem="uso-mW-twu" secondAttribute="top" constant="25" id="NPN-jT-XH6"/>
+                        <constraint firstItem="hGO-s4-EYv" firstAttribute="leading" secondItem="uso-mW-twu" secondAttribute="leading" constant="16" id="Si2-nl-4dV"/>
+                        <constraint firstItem="hGO-s4-EYv" firstAttribute="top" secondItem="Zt9-ei-f3O" secondAttribute="bottom" constant="6" symbolic="YES" id="T9O-Qe-7R5"/>
+                        <constraint firstItem="Zt9-ei-f3O" firstAttribute="top" secondItem="2Vi-H4-SvI" secondAttribute="bottom" constant="6" symbolic="YES" id="U9w-ZA-XPT"/>
+                        <constraint firstItem="2Vi-H4-SvI" firstAttribute="leading" secondItem="uso-mW-twu" secondAttribute="leading" constant="16" id="b95-U0-NaT"/>
+                        <constraint firstItem="Zt9-ei-f3O" firstAttribute="leading" secondItem="uso-mW-twu" secondAttribute="leading" constant="16" id="htA-5G-h6q"/>
+                    </constraints>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <binding destination="-2" name="title" keyPath="self.menuStringScrollingDevices" id="dVl-Vb-NXv"/>
+                    </connections>
+                </box>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="X8x-9H-QTO">
+                    <rect key="frame" x="162" y="122" width="96" height="18"/>
+                    <buttonCell key="cell" type="check" title="ON OR OFF" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="dpQ-7R-OJ2">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="title" keyPath="self.menuStringReverseScrolling" id="x82-Fw-ic2"/>
+                        <binding destination="9eJ-Lx-koC" name="value" keyPath="values.InvertScrollingOn" id="TLe-z0-GRD"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="XNk-AX-zB1" firstAttribute="leading" secondItem="Ly3-tV-h1E" secondAttribute="leading" constant="20" id="7y3-9P-uR1"/>
+                <constraint firstItem="uso-mW-twu" firstAttribute="width" secondItem="XNk-AX-zB1" secondAttribute="width" id="9T7-xn-6Qy"/>
+                <constraint firstAttribute="trailing" secondItem="uso-mW-twu" secondAttribute="trailing" constant="20" id="BSA-rO-XRd"/>
+                <constraint firstItem="uso-mW-twu" firstAttribute="leading" secondItem="XNk-AX-zB1" secondAttribute="trailing" constant="12" id="Blq-AF-xIX"/>
+                <constraint firstAttribute="centerX" secondItem="X8x-9H-QTO" secondAttribute="centerX" id="G23-yb-8ks"/>
+                <constraint firstItem="uso-mW-twu" firstAttribute="top" secondItem="XNk-AX-zB1" secondAttribute="top" id="Lyc-Xk-Pd4"/>
+                <constraint firstItem="XNk-AX-zB1" firstAttribute="top" secondItem="X8x-9H-QTO" secondAttribute="bottom" constant="14" id="Nrx-Qt-ec7"/>
+                <constraint firstItem="uso-mW-twu" firstAttribute="top" secondItem="X8x-9H-QTO" secondAttribute="bottom" constant="14" id="fdX-xC-y49"/>
+                <constraint firstItem="X8x-9H-QTO" firstAttribute="top" secondItem="Ly3-tV-h1E" secondAttribute="top" constant="18" id="gpj-EH-gdz"/>
+            </constraints>
+            <point key="canvasLocation" x="66" y="-916"/>
+        </view>
+        <view id="95B-NO-Ezk">
+            <rect key="frame" x="0.0" y="0.0" width="502" height="201"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <button horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NsF-ix-ASS">
+                    <rect key="frame" x="158" y="146" width="186" height="18"/>
+                    <buttonCell key="cell" type="check" title="SHOW IN THE MENU BAR" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="b7A-yE-pR0">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="title" keyPath="self.menuStringShowInMenuBar" id="LWv-sH-NwL"/>
+                        <binding destination="9eJ-Lx-koC" name="value" keyPath="values.HideIcon" id="mHp-7q-hNf">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
+                <button horizontalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="beY-z2-omo">
+                    <rect key="frame" x="158" y="167" width="186" height="18"/>
+                    <buttonCell key="cell" type="check" title="START AT LOGIN PLEASE" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="q5A-6U-1E7">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="title" keyPath="self.menuStringStartAtLogin" id="Lqj-q5-X3r"/>
+                        <binding destination="-2" name="value" keyPath="self.appDelegate.loginItemsController.startAtLogin" id="xfd-yK-Xt2"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kFb-gM-jgJ">
+                    <rect key="frame" x="18" y="79" width="466" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="VER" id="neI-To-vYW">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.menuStringAppVersion" id="abG-aT-DKi"/>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TBz-Cg-SZN">
+                    <rect key="frame" x="18" y="65" width="466" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="CREDIT" id="Knh-UW-BgC">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.menuStringAppCredit" id="ccY-wL-MvT"/>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AqZ-5L-KAS" customClass="LinkView">
+                    <rect key="frame" x="234" y="51" width="34" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="LINK" id="zJt-dO-TtO">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.menuStringAppLink" id="vn5-IX-WtE"/>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VHc-31-bRc">
+                    <rect key="frame" x="18" y="93" width="466" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="NAME OF THE APP" id="zIC-pY-OnZ">
+                        <font key="font" metaFont="smallSystemBold"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.appDelegate.menuStringAppName" id="x6p-GI-ODR"/>
+                    </connections>
+                </textField>
+                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="wwe-DG-Ll5">
+                    <rect key="frame" x="20" y="125" width="462" height="5"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <box autoresizesSubviews="NO" horizontalHuggingPriority="750" transparent="YES" title="Box" boxType="custom" borderType="none" translatesAutoresizingMaskIntoConstraints="NO" id="t3b-LW-dUy">
+                    <rect key="frame" x="94" y="13" width="315" height="34"/>
+                    <view key="contentView">
+                        <rect key="frame" x="0.0" y="0.0" width="315" height="34"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="qYc-uM-EUY">
+                                <rect key="frame" x="149" y="5" width="160" height="24"/>
+                                <buttonCell key="cell" type="check" title="CHECK THOSE UPDATES" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Hop-aI-Lb9">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="title" keyPath="self.menuStringCheckForUpdates" id="Uq0-w9-ixT"/>
+                                    <binding destination="VQJ-Ng-zSD" name="value" keyPath="self.automaticallyChecksForUpdates" id="6uh-1J-PuV"/>
+                                </connections>
+                            </button>
+                            <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tD5-NU-mBS">
+                                <rect key="frame" x="3" y="2" width="146" height="28"/>
+                                <buttonCell key="cell" type="push" title="CHECK NOW WILL YA" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oUq-ql-y2Z">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="checkForUpdates:" target="VQJ-Ng-zSD" id="b3S-yJ-8CI"/>
+                                    <binding destination="-2" name="title" keyPath="self.menuStringCheckNow" id="uWe-dn-5Wh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="tD5-NU-mBS" secondAttribute="bottom" constant="8" id="5by-rX-eZK"/>
+                        <constraint firstItem="tD5-NU-mBS" firstAttribute="leading" secondItem="t3b-LW-dUy" secondAttribute="leading" constant="8" id="E6O-X6-vOx"/>
+                        <constraint firstItem="qYc-uM-EUY" firstAttribute="leading" secondItem="tD5-NU-mBS" secondAttribute="trailing" constant="8" id="JWH-qN-ZNU"/>
+                        <constraint firstItem="tD5-NU-mBS" firstAttribute="top" secondItem="t3b-LW-dUy" secondAttribute="top" constant="8" id="Js3-iJ-XIQ"/>
+                        <constraint firstItem="qYc-uM-EUY" firstAttribute="top" secondItem="t3b-LW-dUy" secondAttribute="top" constant="8" id="i17-bs-IHF"/>
+                        <constraint firstAttribute="trailing" secondItem="qYc-uM-EUY" secondAttribute="trailing" constant="8" id="rtg-sY-siX"/>
+                        <constraint firstItem="qYc-uM-EUY" firstAttribute="leading" secondItem="tD5-NU-mBS" secondAttribute="trailing" constant="8" id="tbJ-mz-cRb"/>
+                        <constraint firstAttribute="bottom" secondItem="qYc-uM-EUY" secondAttribute="bottom" constant="8" id="ycX-Et-AwX"/>
+                    </constraints>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="beY-z2-omo" firstAttribute="top" secondItem="95B-NO-Ezk" secondAttribute="top" constant="18" id="15L-UR-FlN"/>
+                <constraint firstAttribute="centerX" secondItem="NsF-ix-ASS" secondAttribute="centerX" id="3j9-p0-U2h"/>
+                <constraint firstAttribute="centerX" secondItem="beY-z2-omo" secondAttribute="centerX" id="3uK-XA-B9o"/>
+                <constraint firstAttribute="trailing" secondItem="wwe-DG-Ll5" secondAttribute="trailing" constant="20" id="4Gr-hh-twc"/>
+                <constraint firstAttribute="trailing" secondItem="kFb-gM-jgJ" secondAttribute="trailing" constant="20" id="6Bn-Ll-fnu"/>
+                <constraint firstItem="wwe-DG-Ll5" firstAttribute="leading" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="9uh-gi-jcY"/>
+                <constraint firstItem="NsF-ix-ASS" firstAttribute="top" secondItem="beY-z2-omo" secondAttribute="bottom" constant="7" id="Bdq-VB-ard"/>
+                <constraint firstItem="VHc-31-bRc" firstAttribute="top" secondItem="wwe-DG-Ll5" secondAttribute="bottom" constant="20" id="Czk-4M-eHF"/>
+                <constraint firstAttribute="centerX" secondItem="AqZ-5L-KAS" secondAttribute="centerX" id="Gom-xM-n8e"/>
+                <constraint firstAttribute="centerX" secondItem="AqZ-5L-KAS" secondAttribute="centerX" id="Jn2-BE-nrd"/>
+                <constraint firstItem="kFb-gM-jgJ" firstAttribute="leading" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="K7D-zx-H0i"/>
+                <constraint firstAttribute="trailing" secondItem="VHc-31-bRc" secondAttribute="trailing" constant="20" id="LCE-ks-PHQ"/>
+                <constraint firstItem="t3b-LW-dUy" firstAttribute="top" secondItem="AqZ-5L-KAS" secondAttribute="bottom" constant="4" id="N17-OW-HmO"/>
+                <constraint firstItem="kFb-gM-jgJ" firstAttribute="top" secondItem="VHc-31-bRc" secondAttribute="bottom" id="S0S-HR-Z7v"/>
+                <constraint firstItem="TBz-Cg-SZN" firstAttribute="top" secondItem="kFb-gM-jgJ" secondAttribute="bottom" id="SPf-w7-gq0"/>
+                <constraint firstAttribute="centerX" secondItem="t3b-LW-dUy" secondAttribute="centerX" id="TGk-AQ-f8h"/>
+                <constraint firstAttribute="trailing" secondItem="TBz-Cg-SZN" secondAttribute="trailing" constant="20" id="Yvp-W0-14U"/>
+                <constraint firstItem="AqZ-5L-KAS" firstAttribute="top" secondItem="TBz-Cg-SZN" secondAttribute="bottom" id="mu8-pZ-pMf"/>
+                <constraint firstItem="beY-z2-omo" firstAttribute="width" secondItem="NsF-ix-ASS" secondAttribute="width" id="pyC-Ow-sdC"/>
+                <constraint firstItem="VHc-31-bRc" firstAttribute="leading" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="tcd-ma-7BT"/>
+                <constraint firstItem="wwe-DG-Ll5" firstAttribute="top" secondItem="NsF-ix-ASS" secondAttribute="bottom" constant="20" id="tiM-ao-AYJ"/>
+                <constraint firstItem="TBz-Cg-SZN" firstAttribute="leading" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="uVa-Y2-gGT"/>
+            </constraints>
+            <point key="canvasLocation" x="61" y="-1169.5"/>
+        </view>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="AZe-s0-Mkk">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <view key="contentView" id="btu-gi-R0W">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
+            <connections>
+                <binding destination="-2" name="title" keyPath="self.menuStringPreferencesTitle" id="mMj-DS-crz"/>
+                <outlet property="delegate" destination="-2" id="6fI-K1-rnS"/>
+            </connections>
+            <point key="canvasLocation" x="187" y="-1157"/>
+        </window>
     </objects>
 </document>

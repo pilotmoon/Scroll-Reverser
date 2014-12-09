@@ -19,6 +19,7 @@ extern NSString *const PrefsHideIcon;
     IBOutlet NSMenu *statusMenu;
     IBOutlet NSMenuItem *startAtLoginMenu;
 }
+@property (readonly) NSString *menuStringAppName;
 @property (readonly) NSString *menuStringReverseScrolling;
 @property (readonly) NSString *menuStringAbout;
 @property (readonly) NSString *menuStringPreferences;

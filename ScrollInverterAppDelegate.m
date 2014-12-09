@@ -153,6 +153,9 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 #pragma mark Strings
 
+- (NSString *)menuStringAppName {
+    return NSLocalizedString(@"Scroll Reverser", nil);
+}
 - (NSString *)menuStringReverseScrolling {
 	return NSLocalizedString(@"Reverse Scrolling", nil);
 }
@@ -160,7 +163,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	return NSLocalizedString(@"About", nil);
 }
 - (NSString *)menuStringPreferences {
-	return NSLocalizedString(@"Preferences…", nil);
+    return [NSLocalizedString(@"Preferences", nil) stringByAppendingString:@"..."];
 }
 - (NSString *)menuStringQuit {
     return NSLocalizedString(@"Quit Scroll Reverser", nil);

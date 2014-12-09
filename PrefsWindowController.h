@@ -5,17 +5,27 @@
 //  Created by Nicholas Moore on 08/12/2014.
 //
 //
-@class ScrollInverterAppDelegate;
+@class ScrollInverterAppDelegate, LinkView;
 
 #import <Cocoa/Cocoa.h>
 
-@interface PrefsWindowController : NSWindowController
+@interface PrefsWindowController : NSWindowController <NSTabViewDelegate, NSToolbarDelegate>
+
 @property (readonly) ScrollInverterAppDelegate *appDelegate;
+
+@property (weak) IBOutlet NSView *scrollingSettings;
+@property (weak) IBOutlet NSView *appSettings;
+@property (weak) IBOutlet LinkView *linkView;
+
 @property (readonly) NSString *menuStringReverseScrolling;
-@property (readonly) NSString *menuStringSRPreferences;
+@property (readonly) NSString *menuStringAppVersion;
+@property (readonly) NSString *menuStringAppCredit;
+@property (readonly) NSString *menuStringAppLink;
+@property (readonly) NSString *menuStringPreferencesTitle;
+@property (readonly) NSString *menuStringScrollingSettings;
+@property (readonly) NSString *menuStringAppSettings;
 @property (readonly) NSString *menuStringScrollingAxes;
 @property (readonly) NSString *menuStringScrollingDevices;
-@property (readonly) NSString *menuStringAppSettings;
 @property (readonly) NSString *menuStringCheckForUpdates;
 @property (readonly) NSString *menuStringCheckNow;
 @property (readonly) NSString *menuStringStartAtLogin;
