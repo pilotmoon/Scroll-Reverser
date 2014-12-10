@@ -1,4 +1,4 @@
-### v1.7 (9 Dec 2014)
+### v1.7 (TBA)
 
 * Brand new preferences window to replace the clunky old menu.
 * Important fixes for compatibility with Yosemite update 10.10.2.

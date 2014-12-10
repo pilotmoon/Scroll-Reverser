@@ -28,9 +28,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
         PrefsReverseVertical: @(YES),
         PrefsReverseTrackpad: @(YES),
         PrefsReverseMouse: @(YES),
-        PrefsReverseTablet: @(YES),
-        @"MinZeros": @2,
-        @"MinFingers": @2}];
+        PrefsReverseTablet: @(YES)}];
 	}
 }
 
