@@ -134,7 +134,16 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
             if (pid&&_pidIsWacomTablet(pid))
             {
-                source=ScrollEventSourceTablet;
+                // detect the wacom mouse, which seems to scroll in multiples of 25
+                // the tablet scrolls in smaller numbers unless
+                // false positives seem unlikely
+                const int64_t dy=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
+                const int64_t dx=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
+                const BOOL wacomMouse=dx%25==0&&dy%25==0;
+                // NSLog(@"dx %@ dy %@ mouse? %@", @(dx), @(dy), @(wacomMouse));
+                if (!wacomMouse) {
+                    source=ScrollEventSourceTablet;
+                }
             }
             else
             {
