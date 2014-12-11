@@ -60,10 +60,9 @@
 		0183EE711A37947E00A260E0 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		0183EE721A37947E00A260E0 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
 		0183EE771A3794F800A260E0 /* ScrollReverser.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScrollReverser.sdef; sourceTree = "<group>"; };
-		018C6C8B13FD22BC001DC44F /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		019FB05814EB1A9100FA225A /* WelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeWindowController.h; sourceTree = "<group>"; };
 		019FB05914EB1A9100FA225A /* WelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeWindowController.m; sourceTree = "<group>"; };
-		01B1F4041368A62400BB9A3A /* el */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = el; path = resources/el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01A1ED6B1A3A3E1900CFC6C5 /* ja */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ja; path = resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScrollReverserStatusIcon.png; path = Graphics/ScrollReverserStatusIcon.png; sourceTree = "<group>"; };
 		01B5ABD21700D26C00FF6F6A /* ScrollReverserIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = ScrollReverserIcon.icns; path = Graphics/ScrollReverserIcon.icns; sourceTree = "<group>"; };
 		01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ScrollReverserStatusIcon@2x.png"; path = "Graphics/ScrollReverserStatusIcon@2x.png"; sourceTree = "<group>"; };
@@ -72,21 +71,16 @@
 		01B66449132528A000658B5C /* NSObject+ObservePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ObservePrefs.h"; sourceTree = "<group>"; };
 		01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ObservePrefs.m"; sourceTree = "<group>"; };
 		01BE744B14DC5F7F0050DD8A /* insert_version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = insert_version.sh; path = BuildScripts/insert_version.sh; sourceTree = "<group>"; };
-		01BF87861419FC560045B4EA /* fr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = fr; path = resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01E16F1314F6607300F81640 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01EB78C21324D574005390BD /* MouseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseTap.m; sourceTree = "<group>"; };
 		01EB78C31324D574005390BD /* MouseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseTap.h; sourceTree = "<group>"; };
 		01ED37DD1A375EB9001B3094 /* LinkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkView.h; sourceTree = "<group>"; };
 		01ED37DE1A375EB9001B3094 /* LinkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkView.m; sourceTree = "<group>"; };
-		01EFD5AC134E2ED900798678 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01F66861174B5E43001727DE /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
-		01FD049C142B6F7900F3BDCB /* ro */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ro; path = resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		256AC3D80F4B6AC300CF3369 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* Scroll_Inverter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scroll_Inverter_Prefix.pch; sourceTree = "<group>"; };
-		27AF3F6C13F3CCF00034733F /* it */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = it; path = resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -341,13 +335,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0158730D134DD1FA00CD9CC4 /* en */,
-				01EFD5AC134E2ED900798678 /* pt */,
-				01B1F4041368A62400BB9A3A /* el */,
-				27AF3F6C13F3CCF00034733F /* it */,
-				018C6C8B13FD22BC001DC44F /* es */,
-				01BF87861419FC560045B4EA /* fr */,
-				01FD049C142B6F7900F3BDCB /* ro */,
-				01E16F1314F6607300F81640 /* de */,
+				01A1ED6B1A3A3E1900CFC6C5 /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -37,8 +37,8 @@
                                     </connections>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="dyI-ts-gSb"/>
                                     <binding destination="-2" name="title" keyPath="self.menuStringVertical" id="elz-8v-zf5"/>
+                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="dyI-ts-gSb"/>
                                     <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseY" id="Gqq-sh-4uU"/>
                                 </connections>
                             </button>
@@ -49,8 +49,8 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="bRU-97-jpi"/>
                                     <binding destination="-2" name="title" keyPath="self.menuStringHorizontal" id="sze-na-RNs"/>
+                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="bRU-97-jpi"/>
                                     <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseX" id="XOx-Yh-UkK"/>
                                 </connections>
                             </button>
@@ -84,20 +84,20 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="8W8-bu-CAf"/>
                                     <binding destination="-2" name="title" keyPath="self.menuStringMouse" id="uIO-WR-HVa"/>
+                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="8W8-bu-CAf"/>
                                     <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseMouse" id="Ztf-mb-Kxf"/>
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="2Vi-H4-SvI">
-                                <rect key="frame" x="16" y="52" width="156" height="18"/>
+                                <rect key="frame" x="16" y="52" width="64" height="18"/>
                                 <buttonCell key="cell" type="check" title="WORK" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XUx-yL-Qdv">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="2bh-O4-vya"/>
                                     <binding destination="-2" name="title" keyPath="self.menuStringTrackpad" id="CfI-yc-e90"/>
+                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="2bh-O4-vya"/>
                                     <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseTrackpad" id="w6t-XF-Nah"/>
                                 </connections>
                             </button>
@@ -108,8 +108,8 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="vwz-Kq-0OS"/>
                                     <binding destination="-2" name="title" keyPath="self.menuStringTablet" id="P29-oW-ACJ"/>
+                                    <binding destination="9eJ-Lx-koC" name="enabled" keyPath="values.InvertScrollingOn" id="vwz-Kq-0OS"/>
                                     <binding destination="9eJ-Lx-koC" name="value" keyPath="values.ReverseTablet" id="03h-I3-uKS"/>
                                 </connections>
                             </button>
@@ -121,7 +121,7 @@
                         <constraint firstItem="hGO-s4-EYv" firstAttribute="leading" secondItem="uso-mW-twu" secondAttribute="leading" constant="16" id="Si2-nl-4dV"/>
                         <constraint firstItem="hGO-s4-EYv" firstAttribute="top" secondItem="Zt9-ei-f3O" secondAttribute="bottom" constant="6" symbolic="YES" id="T9O-Qe-7R5"/>
                         <constraint firstItem="Zt9-ei-f3O" firstAttribute="top" secondItem="2Vi-H4-SvI" secondAttribute="bottom" constant="6" symbolic="YES" id="U9w-ZA-XPT"/>
-                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="2Vi-H4-SvI" secondAttribute="trailing" constant="16" id="Udv-H4-Bmp"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2Vi-H4-SvI" secondAttribute="trailing" constant="16" id="Udv-H4-Bmp"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Zt9-ei-f3O" secondAttribute="trailing" constant="16" id="WtD-1h-LB6"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hGO-s4-EYv" secondAttribute="trailing" constant="16" id="Zy0-rZ-dDe"/>
                         <constraint firstItem="2Vi-H4-SvI" firstAttribute="leading" secondItem="uso-mW-twu" secondAttribute="leading" constant="16" id="b95-U0-NaT"/>
@@ -229,8 +229,8 @@
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="-2" name="title" keyPath="self.menuStringCheckForUpdates" id="Uq0-w9-ixT"/>
                                     <binding destination="VQJ-Ng-zSD" name="value" keyPath="self.automaticallyChecksForUpdates" id="6uh-1J-PuV"/>
+                                    <binding destination="-2" name="title" keyPath="self.menuStringCheckForUpdates" id="Uq0-w9-ixT"/>
                                 </connections>
                             </button>
                             <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tD5-NU-mBS">
@@ -287,8 +287,8 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="-2" name="title" keyPath="self.menuStringStartAtLogin" id="Lqj-q5-X3r"/>
                                     <binding destination="-2" name="value" keyPath="self.appDelegate.loginItemsController.startAtLogin" id="xfd-yK-Xt2"/>
+                                    <binding destination="-2" name="title" keyPath="self.menuStringStartAtLogin" id="Lqj-q5-X3r"/>
                                 </connections>
                             </button>
                         </subviews>
