@@ -1,0 +1,63 @@
+﻿/* No comment provided by engineer. */
+"App" = "Εφαρμογή";
+
+/* check box next to the 'Check for updates' button */
+"Automatically" = "Αυτόματα";
+
+/* No comment provided by engineer. */
+"Check for updates" = "Έλεγχος για αναβαθμίσεις";
+
+/* No comment provided by engineer. */
+"For settings, click the icon in the menu bar" = "Για τις προτιμήσεις κλικάτερε στο εικονίδιο που βρίσκεται στη γραμμή μενού";
+
+/* text shown when the menu bar icon is hidden */
+"MENU_HIDDEN_TEXT" = "Το εικονίδιο του Scroll Reverser έχει αφαιρεθεί από την γραμμή μενού. Για να το επαναφέρετε , εκκινήστε ξανά το Scroll Reverser από τον Finder.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Preferences" = "Προτιμήσεις";
+
+/* No comment provided by engineer. */
+"Quit Scroll Reverser" = "Τερματισμός Scroll Reverser";
+
+/* No comment provided by engineer. */
+"Reverse Horizontal" = "Οριζόντια Αντιστροφή";
+
+/* No comment provided by engineer. */
+"Reverse Mouse" = "Αντιστροφή στο Mouse";
+
+/* No comment provided by engineer. */
+"Reverse Scrolling" = "Αντιστροφή στην Κύλιση";
+
+/* No comment provided by engineer. */
+"Reverse Tablet" = "Αντίστροφή στο Tablet";
+
+/* No comment provided by engineer. */
+"Reverse Trackpad" = "Αντιστροφή στο Trackpad";
+
+/* No comment provided by engineer. */
+"Reverse Vertical" = "Κάθετη Αντιστροφή";
+
+/* No comment provided by engineer. */
+"Scroll Reverser is now running!" = "Το Scroll Reverser είναι ενεργό!";
+
+/* No comment provided by engineer. */
+"Scrolling" = "Κύλιση";
+
+/* No comment provided by engineer. */
+"Scrolling Axes" = "Άξονες Κύλισης";
+
+/* No comment provided by engineer. */
+"Scrolling Devices" = "Συσκευές Κύλισης";
+
+/* No comment provided by engineer. */
+"Start at login" = "Εκκίνηση κατά την είσοδο";
+
+/* No comment provided by engineer. */
+"Status Icon Hidden" = "Το εικονίδιο κατάστασης κρύφτηκε";
+
+/* No comment provided by engineer. */
+"Show in menu bar" = "Εμφάνιση στη γραμμή μενού";
+

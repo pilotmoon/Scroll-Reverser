@@ -1,0 +1,63 @@
+﻿/* No comment provided by engineer. */
+"App" = "App";
+
+/* check box next to the 'Check for updates' button */
+"Automatically" = "Automaticamente";
+
+/* No comment provided by engineer. */
+"Check for updates" = "Verifica aggiornamenti";
+
+/* No comment provided by engineer. */
+"For settings, click the icon in the menu bar" = "Per le impostazioni, fai clic sull'icona nella barra dei menu";
+
+/* text shown when the menu bar icon is hidden */
+"MENU_HIDDEN_TEXT" = "L'icona Scroll Reverser è stata rimossa dalla barra dei menu. Per ripristinarla in qualsiasi momento, avvia nuovamente Scroll Reverser dal Finder.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Preferences" = "Preferenze";
+
+/* No comment provided by engineer. */
+"Quit Scroll Reverser" = "Esci da Scroll Reverser";
+
+/* No comment provided by engineer. */
+"Reverse Horizontal" = "Inverti orizzontale";
+
+/* No comment provided by engineer. */
+"Reverse Mouse" = "Inverti mouse";
+
+/* No comment provided by engineer. */
+"Reverse Scrolling" = "Scorrimento inverso";
+
+/* No comment provided by engineer. */
+"Reverse Tablet" = "Inverti tavoletta";
+
+/* No comment provided by engineer. */
+"Reverse Trackpad" = "Inverti trackpad";
+
+/* No comment provided by engineer. */
+"Reverse Vertical" = "Inverti verticale";
+
+/* No comment provided by engineer. */
+"Scroll Reverser is now running!" = "Scroll Reverser è ora in esecuzione!";
+
+/* No comment provided by engineer. */
+"Scrolling" = "Scorrimento";
+
+/* No comment provided by engineer. */
+"Scrolling Axes" = "Scorrimento assi";
+
+/* No comment provided by engineer. */
+"Scrolling Devices" = "Scorrimento dispositivi";
+
+/* No comment provided by engineer. */
+"Start at login" = "Avvia al login";
+
+/* No comment provided by engineer. */
+"Status Icon Hidden" = "Icona di stato nascosta";
+
+/* No comment provided by engineer. */
+"Show in menu bar" = "Mostra nella barra dei menu";
+

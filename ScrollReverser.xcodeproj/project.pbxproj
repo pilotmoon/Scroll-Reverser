@@ -71,6 +71,9 @@
 		01B66449132528A000658B5C /* NSObject+ObservePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ObservePrefs.h"; sourceTree = "<group>"; };
 		01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ObservePrefs.m"; sourceTree = "<group>"; };
 		01BE744B14DC5F7F0050DD8A /* insert_version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = insert_version.sh; path = BuildScripts/insert_version.sh; sourceTree = "<group>"; };
+		01E6A6C51A3EF6E300C1FB2A /* it */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = it; path = resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01E6A6C61A3EF6E600C1FB2A /* el */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = el; path = resources/el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01E6A6CB1A3EF6FA00C1FB2A /* pt-BR */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "resources/pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		01EB78C21324D574005390BD /* MouseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseTap.m; sourceTree = "<group>"; };
 		01EB78C31324D574005390BD /* MouseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseTap.h; sourceTree = "<group>"; };
 		01ED37DD1A375EB9001B3094 /* LinkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkView.h; sourceTree = "<group>"; };
@@ -265,6 +268,7 @@
 				es,
 				ro,
 				de,
+				"pt-BR",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -336,6 +340,9 @@
 			children = (
 				0158730D134DD1FA00CD9CC4 /* en */,
 				01A1ED6B1A3A3E1900CFC6C5 /* ja */,
+				01E6A6C51A3EF6E300C1FB2A /* it */,
+				01E6A6C61A3EF6E600C1FB2A /* el */,
+				01E6A6CB1A3EF6FA00C1FB2A /* pt-BR */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
