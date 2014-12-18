@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>ScrollReverserIcon</string>
+	<string>ScrollReverser</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.pilotmoon.scroll-reverser</string>
 	<key>CFBundleInfoDictionaryVersion</key>
