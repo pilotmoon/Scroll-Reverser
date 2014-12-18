@@ -318,7 +318,6 @@
                 <constraint firstItem="5Q6-Xi-MG0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="FTg-14-hXQ"/>
                 <constraint firstAttribute="centerX" secondItem="AqZ-5L-KAS" secondAttribute="centerX" id="Gom-xM-n8e"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AqZ-5L-KAS" secondAttribute="trailing" constant="20" id="H7v-dq-Sb9"/>
-                <constraint firstAttribute="centerX" secondItem="AqZ-5L-KAS" secondAttribute="centerX" id="Jn2-BE-nrd"/>
                 <constraint firstItem="kFb-gM-jgJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="K7D-zx-H0i"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VHc-31-bRc" secondAttribute="trailing" constant="20" id="LCE-ks-PHQ"/>
                 <constraint firstItem="t3b-LW-dUy" firstAttribute="top" secondItem="AqZ-5L-KAS" secondAttribute="bottom" constant="4" id="N17-OW-HmO"/>
@@ -343,7 +342,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="163" y="199" width="480" height="270"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
             <view key="contentView" id="btu-gi-R0W">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
