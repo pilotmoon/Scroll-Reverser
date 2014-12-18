@@ -3,7 +3,7 @@
 * Brand new preferences window to replace the clunky old menu.
 * Important fixes for compatibility with the upcoming Yosemite update 10.10.2.
 * Adds AppleScript support for turning Scroll Reverser on and off.
-* Now treats a a Wacom mouse's scrolling as coming from a mouse, rather than a tablet.
+* Now treats a Wacom mouse's scrolling as coming from a mouse, rather than a tablet.
 * Gave the app icon a freshen up.
 * Localized in Brazilian Portuguese, German, Greek, Italian, and Japanese. (Thanks, Humberto, Peter, Nikos, Vincenzo and Fu-sen.)
 
@@ -55,7 +55,7 @@
 ### v1.4 (11 August 2011)
 
 * Added independent settings for horizontal and vertical scrolling.
-* Added independent settings for scrolling with trackpad, mouse and tablet (e.g. Wacom).
+* Added independent settings for scrolling with trackpad, mouse and Wacom tablet.
 * Fixed a Firefox compatibility problem.
 * Dropped PowerPC and Intel 32-bit support (by mistake).
 * Added Italian localization. (Thanks, Vincenzo.)
