@@ -1,8 +1,11 @@
 ### v1.7 (TBA)
 
 * Brand new preferences window to replace the clunky old menu.
-* Important fixes for compatibility with Yosemite update 10.10.2.
+* Important fixes for compatibility with the upcoming Yosemite update 10.10.2.
 * Adds AppleScript support for turning Scroll Reverser on and off.
+* Now treats a a Wacom mouse's scrolling as coming from a mouse, rather than a tablet.
+* Gave the app icon a freshen up.
+* Localized in Brazilian Portuguese, German, Greek, Italian, and Japanese. (Thanks, Humberto, Peter, Nikos, Vincenzo and Fu-sen.)
 
 ### v1.6.1 (25 Sep 2014)
 
