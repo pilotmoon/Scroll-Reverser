@@ -86,12 +86,24 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             
             // count fingers currently on the pad
             NSSet *touching=[ev touchesMatchingPhase:NSTouchPhaseTouching inView:nil];
-            if ([touching count]>0) {
+            NSLog(@"touching count %@", @([touching count]));
+            if ([touching count]==0) {
+                if (tap->rawZeroCount<3) {
+                    tap->rawZeroCount+=1;
+                }
+                else {
+                    NSLog(@"removing touches");
+                    [tap->touches removeAllObjects]; // avoid stale data
+                }
+            }
+            else {
+                tap->rawZeroCount=0;
                 [tap->touches removeAllObjects]; // avoid stale data
                 for (NSTouch *touch in touching) {
                     [tap->touches addObject:[touch identity]];
                 }
             }
+            NSLog(@"rzc %@", @(tap->rawZeroCount));
             
             // subtract fingers removed from the pad
             NSSet *ended=[ev touchesMatchingPhase:NSTouchPhaseEnded|NSTouchPhaseCancelled inView:nil];

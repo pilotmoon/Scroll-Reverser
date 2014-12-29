@@ -18,6 +18,7 @@ typedef enum {
     NSMutableSet *touches;
     unsigned long fingers;
     unsigned long sampledFingers;
+    unsigned long rawZeroCount;
     unsigned long zeroCount;
     UInt32 lastScrollTicks;
     unsigned long lastPhase;
