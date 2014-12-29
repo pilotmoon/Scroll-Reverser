@@ -77,6 +77,11 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
     @autoreleasepool {
 		MouseTap *tap=(__bridge MouseTap *)userInfo;
         
+        void(^clearTouches)(void)=^{
+            NSLog(@"* clearing touches *");
+            [tap->touches removeAllObjects];
+        };
+        
         if (type==NSEventTypeGesture)
         {
             /* How many fingers on the trackpad? Starting from a certain 10.10.2 preview,
@@ -88,19 +93,19 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             NSSet *touching=[ev touchesMatchingPhase:NSTouchPhaseTouching inView:nil];
             if ([touching count]==0) {
                 if (tap->rawZeroCount<5) {
-                    // count how many times touchesMatchingPhase reported zero touches.
+                    // count how many times touchesMatchingPhase reported zero touches even when there really are touches.
                     // I have observed runs of 3 in tests on 10.10.2 preview, but no more.
                     // allowing 5 here in case of future awkwardness.
                     tap->rawZeroCount+=1;
                 }
                 else {
                     // sometimes we miss the 'touch ended' and touches get stuck in our cache. so we clear them out.
-                    [tap->touches removeAllObjects];
+                    clearTouches();
                 }
             }
             else {
                 tap->rawZeroCount=0;
-                [tap->touches removeAllObjects]; // avoid stale data
+                clearTouches();
                 
                 for (NSTouch *touch in touching) {
                     [tap->touches addObject:[touch identity]];
@@ -152,8 +157,8 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
                     const UInt32 ticksElapsed=ticks-tap->lastScrollTicks;
                     
                     if (phase==ScrollPhaseMomentum) {
-                        // during momentum phase we can assume less tahn 2 touches on pad. it's probably a good idea to clear the cache here.
-                        [tap->touches removeAllObjects];
+                        // during momentum phase we can assume less than 2 touches on pad. it's probably a good idea to clear the cache here.
+                        clearTouches();
                     }
                     
                     /* Should we sample the number of fingers now? The whole point of this is to only sample fingers when user is actually
