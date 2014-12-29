@@ -84,9 +84,10 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         
         if (type==NSEventTypeGesture)
         {
+            NSLog(@"gesture");
             /* How many fingers on the trackpad? Starting from a certain 10.10.2 preview,
              OS X started inserting extra events with no touches, in between events with touches. So
-             This bit had to get a but more complicates so as to ignore the rogue 'zero touches' events. */
+             This bit had to get a but more complicated so as to ignore the rogue 'zero touches' events. */
             NSEvent *ev=[NSEvent eventWithCGEvent:event];
             
             // count fingers currently on the pad
@@ -122,6 +123,8 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         }
         else if (type==NSScrollWheel)
         {
+            NSLog(@"scroll");
+            
             // get the scrolling deltas
             const int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
             const int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
