@@ -86,24 +86,26 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             
             // count fingers currently on the pad
             NSSet *touching=[ev touchesMatchingPhase:NSTouchPhaseTouching inView:nil];
-            NSLog(@"touching count %@", @([touching count]));
             if ([touching count]==0) {
-                if (tap->rawZeroCount<3) {
+                if (tap->rawZeroCount<5) {
+                    // count how many times touchesMatchingPhase reported zero touches.
+                    // I have observed runs of 3 in tests on 10.10.2 preview, but no more.
+                    // allowing 5 here in case of future awkwardness.
                     tap->rawZeroCount+=1;
                 }
                 else {
-                    NSLog(@"removing touches");
-                    [tap->touches removeAllObjects]; // avoid stale data
+                    // sometimes we miss the 'touch ended' and touches get stuck in our cache. so we clear them out.
+                    [tap->touches removeAllObjects];
                 }
             }
             else {
                 tap->rawZeroCount=0;
                 [tap->touches removeAllObjects]; // avoid stale data
+                
                 for (NSTouch *touch in touching) {
                     [tap->touches addObject:[touch identity]];
                 }
             }
-            NSLog(@"rzc %@", @(tap->rawZeroCount));
             
             // subtract fingers removed from the pad
             NSSet *ended=[ev touchesMatchingPhase:NSTouchPhaseEnded|NSTouchPhaseCancelled inView:nil];
@@ -148,6 +150,11 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
                     const ScrollPhase phase=_momentumPhaseForEvent(event);
                     const UInt32 ticks=TickCount(); // about 1/60 of a sec
                     const UInt32 ticksElapsed=ticks-tap->lastScrollTicks;
+                    
+                    if (phase==ScrollPhaseMomentum) {
+                        // during momentum phase we can assume less tahn 2 touches on pad. it's probably a good idea to clear the cache here.
+                        [tap->touches removeAllObjects];
+                    }
                     
                     /* Should we sample the number of fingers now? The whole point of this is to only sample fingers when user is actually
                      * scrolling, not during the momentum phase. Unfortunately the system cannot be relied upon to always send correct
