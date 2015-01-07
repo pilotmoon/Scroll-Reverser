@@ -1,0 +1,62 @@
+﻿/* No comment provided by engineer. */
+"App" = "App";
+
+/* check box next to the 'Check for updates' button */
+"Automatically" = "Automat";
+
+/* No comment provided by engineer. */
+"Check for updates" = "Verifică pentru actualizări";
+
+/* No comment provided by engineer. */
+"For settings, click the icon in the menu bar" = "Pentru setări, faceți clic pe pictograma din bara de meniu";
+
+/* text shown when the menu bar icon is hidden */
+"MENU_HIDDEN_TEXT" = "Icoana Scroll Reverser a fost eliminata din bara de meniu. Pentru a o restaura în orice moment, lansați Scroll Reverser din Finder.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Preferences" = "Preferințe";
+
+/* No comment provided by engineer. */
+"Quit Scroll Reverser" = "Închide Scroll Reverser";
+
+/* No comment provided by engineer. */
+"Reverse Horizontal" = "Inversează Horizontal";
+
+/* No comment provided by engineer. */
+"Reverse Mouse" = "Inversează mouse-ul";
+
+/* No comment provided by engineer. */
+"Reverse Scrolling" = "Inversează defilarea";
+
+/* No comment provided by engineer. */
+"Reverse Tablet" = "Inversează tableta";
+
+/* No comment provided by engineer. */
+"Reverse Trackpad" = "Inversează Trackpad";
+
+/* No comment provided by engineer. */
+"Reverse Vertical" = "Inversează Vertical";
+
+/* No comment provided by engineer. */
+"Scroll Reverser is now running!" = "Scroll Reverser este pornit!";
+
+/* No comment provided by engineer. */
+"Scrolling" = "Derularea";
+
+/* No comment provided by engineer. */
+"Scrolling Axes" = "Axele de derulare";
+
+/* No comment provided by engineer. */
+"Scrolling Devices" = "Dispozitive de derulare";
+
+/* No comment provided by engineer. */
+"Start at login" = "Start la login";
+
+/* No comment provided by engineer. */
+"Status Icon Hidden" = "Icoana de Status Ascunsă";
+
+/* No comment provided by engineer. */
+"Show in menu bar" = "Arată in bara de meniu";

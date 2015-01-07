@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		011A628B19D4A748003CE6DC /* IntroShot.png in Resources */ = {isa = PBXBuildFile; fileRef = 011A628919D4A748003CE6DC /* IntroShot.png */; };
+		012A2B181A5D2A3A009DF434 /* ScrollReverser-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */; };
 		01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01587306134DD1E200CD9CC4 /* Localizable.strings */; };
 		0158735813265EDD00100E4C /* StatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0158735513265EDD00100E4C /* StatusItemController.m */; };
 		017347631A35D9C100A0A1BE /* PrefsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017347621A35D9C100A0A1BE /* PrefsWindow.xib */; };
@@ -49,6 +50,7 @@
 		011A628519D49AB7003CE6DC /* insert_version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = insert_version.sh; path = BuildScripts/insert_version.sh; sourceTree = "<group>"; };
 		011A628619D49B69003CE6DC /* ReleaseNotes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReleaseNotes.md; sourceTree = "<group>"; };
 		011A628919D4A748003CE6DC /* IntroShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IntroShot.png; path = Graphics/IntroShot.png; sourceTree = "<group>"; };
+		012A2B171A5D2A3A009DF434 /* ro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ro; path = resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0158730D134DD1FA00CD9CC4 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0158735413265EDD00100E4C /* StatusItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusItemController.h; sourceTree = "<group>"; };
 		0158735513265EDD00100E4C /* StatusItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItemController.m; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				011A628B19D4A748003CE6DC /* IntroShot.png in Resources */,
 				01B5ABCD1700D26200FF6F6A /* ScrollReverserStatusIcon.png in Resources */,
 				017347631A35D9C100A0A1BE /* PrefsWindow.xib in Resources */,
+				012A2B181A5D2A3A009DF434 /* ScrollReverser-Info.plist in Resources */,
 				01B5ABDD1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png in Resources */,
 				0183EE6F1A37943500A260E0 /* MainMenu.xib in Resources */,
 				0183EE701A37943500A260E0 /* WelcomeWindow.xib in Resources */,
@@ -345,6 +348,7 @@
 				01E6A6C61A3EF6E600C1FB2A /* el */,
 				01E6A6CB1A3EF6FA00C1FB2A /* pt-BR */,
 				01E6A6D01A42F3E200C1FB2A /* de */,
+				012A2B171A5D2A3A009DF434 /* ro */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
