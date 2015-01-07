@@ -1,3 +1,8 @@
+### v1.7.1 (7 Jan 2015)
+
+* Fixed bug (introduced in v1.7, sorry!) where Scroll Reverser would sometimes stop working after using it for a while.
+* Added Romanian translation. (Thanks, Gabriel.)
+
 ### v1.7 (18 Dec 2014)
 
 * Brand new preferences window to replace the clunky old menu.
