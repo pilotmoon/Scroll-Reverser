@@ -1,0 +1,63 @@
+﻿/* No comment provided by engineer. */
+"App" = "Program";
+
+/* check box next to the 'Check for updates' button */
+"Automatically" = "Automaticky";
+
+/* No comment provided by engineer. */
+"Check for updates" = "Skontrolovať aktualizácie";
+
+/* No comment provided by engineer. */
+"For settings, click the icon in the menu bar" = "Kliknite na ikonu v menu lište pre nastavenia";
+
+/* text shown when the menu bar icon is hidden */
+"MENU_HIDDEN_TEXT" = "Ikona programu Scroll Reverser bola odstránená z menu lišty. Ak ju chcete vrátiť, spustite program Scroll Reverser zonova z Findera.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Preferences" = "Nastavenia";
+
+/* No comment provided by engineer. */
+"Quit Scroll Reverser" = "Ukončiť Scroll Reverser";
+
+/* No comment provided by engineer. */
+"Reverse Horizontal" = "Otočiť Horizontálne";
+
+/* No comment provided by engineer. */
+"Reverse Mouse" = "Otočiť Myš";
+
+/* No comment provided by engineer. */
+"Reverse Scrolling" = "Otočiť Rolovanie";
+
+/* No comment provided by engineer. */
+"Reverse Tablet" = "Otočiť Tablet";
+
+/* No comment provided by engineer. */
+"Reverse Trackpad" = "Otočiť Trackpad";
+
+/* No comment provided by engineer. */
+"Reverse Vertical" = "Otočiť Vertikálne";
+
+/* No comment provided by engineer. */
+"Scroll Reverser is now running!" = "Scroll Reverser je teraz spustený!";
+
+/* No comment provided by engineer. */
+"Scrolling" = "Rolovanie";
+
+/* No comment provided by engineer. */
+"Scrolling Axes" = "Osi Rolovania";
+
+/* No comment provided by engineer. */
+"Scrolling Devices" = "Rolovacie Zariadenia";
+
+/* No comment provided by engineer. */
+"Start at login" = "Spustiť pri štarte";
+
+/* No comment provided by engineer. */
+"Status Icon Hidden" = "Ikona statusu je skrytá";
+
+/* No comment provided by engineer. */
+"Show in menu bar" = "Ukázať v menu lište";
+
