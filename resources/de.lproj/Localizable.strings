@@ -12,7 +12,7 @@
 "For settings, click the icon in the menu bar" = "Das Icon in der Menüleiste führt zu den Einstellungen.";
 
 /* text shown when the menu bar icon is hidden */
-"MENU_HIDDEN_TEXT" = "Das Scroll Reverser Icon wurde von der Menüleiste entfernt. Um es wiederherzustellen, starten Sie bitte Scroll Reverser vom Finder.";
+"MENU_HIDDEN_TEXT" = "Das Scroll Reverser Icon wurde aus der Menüleiste entfernt. Um es wiederherzustellen, starten Sie bitte Scroll Reverser aus dem Finder.";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -42,7 +42,7 @@
 "Reverse Vertical" = "Vertikal umkehren";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser lauft!";
+"Scroll Reverser is now running!" = "Scroll Reverser läuft!";
 
 /* No comment provided by engineer. */
 "Scrolling" = "Scrolling";
