@@ -91,6 +91,8 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [NSApp setMainMenu:self.theMainMenu];
+    
 	const BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
 	if(first) {

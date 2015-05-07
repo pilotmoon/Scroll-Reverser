@@ -10,4 +10,7 @@
 
 @interface DebugWindowController : NSWindowController
 
+@property (readonly) NSString *uiStringDebugConsole;
+@property (readonly) NSString *uiStringClear;
+
 @end

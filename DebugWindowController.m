@@ -20,4 +20,23 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
+- (void)showWindow:(id)sender
+{
+    [[self window] setLevel:NSFloatingWindowLevel];
+    [[self window] center];
+    [NSApp activateIgnoringOtherApps:YES];
+    // small delay to prevent flash of window drawing
+    dispatch_after(0.05, dispatch_get_main_queue(), ^{
+        [super showWindow:sender];
+    });
+}
+
+- (NSString *)uiStringDebugConsole {
+    return @"Scroll Reverser Debug Console";
+}
+- (NSString *)uiStringClear {
+    return @"Clear";
+}
+
 @end
+

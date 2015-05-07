@@ -20,6 +20,8 @@ extern NSString *const PrefsHideIcon;
     IBOutlet NSMenu *statusMenu;
 }
 
+@property (weak) IBOutlet NSMenu *theMainMenu;
+
 @property (readonly) NSString *appName;
 @property (readonly) NSString *appVersion;
 @property (readonly) NSString *appCredit;
