@@ -27,9 +27,11 @@ NSString *const LoggerKeyText=@"text";
     return self;
 }
 
-- (void)append:(NSString *)str {
+- (void)append:(NSString *)str color:(NSColor *)color {
     [self willChangeValueForKey:LoggerKeyText];
-    [self.logArray addObject:str];
+    NSDictionary *attrs=color?@{NSForegroundColorAttributeName: color}:@{};
+    NSAttributedString *as=[[NSAttributedString alloc] initWithString:str attributes:attrs];
+    [self.logArray addObject:as];
     while ([self.logArray count]>self.limit) {
         [self.logArray removeObjectAtIndex:0];
     }
@@ -43,16 +45,32 @@ NSString *const LoggerKeyText=@"text";
     [self didChangeValueForKey:LoggerKeyText];
 }
 
-- (void)logString:(NSString *)str
+- (void)logString:(NSString *)str color:(NSColor *)color force:(BOOL)force 
 {
-    if (self.enabled && [str isKindOfClass:[NSString class]])  {
-        [self append:[str stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]]];
+    if ((force||self.enabled) && [str isKindOfClass:[NSString class]])  {
+        [self append:[str stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]] color:color];
     }
 }
 
-- (NSString *)text
+- (void)logString:(NSString *)str color:(NSColor *)color
 {
-    return [self.logArray componentsJoinedByString:@"\n"];
+    [self logString:str color:color force:NO];
+}
+
+- (void)logString:(NSString *)str
+{
+    [self logString:str color:nil force:NO];
+}
+
+- (NSAttributedString *)text
+{
+    NSMutableAttributedString *text=[[NSMutableAttributedString alloc] init];
+    for (NSAttributedString *s in self.logArray) {
+    [text appendAttributedString:s];
+    [text.mutableString appendString:@"\n"];
+    
+    }
+    return text;
 }
 
 @end

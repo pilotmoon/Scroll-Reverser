@@ -52,23 +52,21 @@
     });
 }
 
-
-
 - (IBAction)clearLog:(id)sender {
     [self.logger clear];
 }
 
 - (void)updateConsole
 {
-    NSString *const text=self.logger.text;
-    self.consoleTextView.string=text;
+    NSAttributedString *text=self.logger.text;
+    [self.consoleTextView.textStorage setAttributedString:text];
     [self.consoleTextView scrollRangeToVisible:NSMakeRange([text length], 0)];
 }
 
 - (void)updateConsoleNeeded
 {
     if (![self.refreshTimer isValid]) {
-        self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateConsole) userInfo:nil repeats:NO];
+        self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(updateConsole) userInfo:nil repeats:NO];
     }
 }
 
@@ -80,19 +78,20 @@
     else if (object==self && [keyPath isEqualToString:@"paused"]) {
         self.consoleScrollView.scrollingAllowed=self.paused;
         self.consoleScrollView.hasVerticalScroller=self.paused;
+        [self.logger logString:self.paused?@"Logging Stopped":@"Logging Started" color:[NSColor blueColor] force:YES];
     }
 }
 
 - (NSString *)uiStringDebugConsole {
-    return NSLocalizedString(@"Scroll Reverser Debug Console", nil);
+    return @"Scroll Reverser Debug Console";
 }
 
 - (NSString *)uiStringClear {
-    return NSLocalizedString(@"Clear", nil);
+    return @"Clear";
 }
 
 - (NSString *)uiStringPause {
-    return NSLocalizedString(@"Pause", nil);
+    return @"Pause";
 }
 
 @end
