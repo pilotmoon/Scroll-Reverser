@@ -30,8 +30,9 @@ NSString *const PrefsHideIcon=@"HideIcon";
         PrefsReverseVertical: @(YES),
         PrefsReverseTrackpad: @(YES),
         PrefsReverseMouse: @(YES),
-        PrefsReverseTablet: @(YES)}];
-        
+        PrefsReverseTablet: @(YES),
+        LoggerMaxLines: @(2000),
+        }];
 	}
 }
 

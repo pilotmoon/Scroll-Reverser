@@ -13,6 +13,7 @@ NSString *const LoggerMaxLines=@"LoggerMaxLines";
 
 @interface Logger ()
 @property NSMutableArray *logArray;
+@property NSDateFormatter *df;
 @end
 
 @implementation Logger
@@ -24,14 +25,27 @@ NSString *const LoggerMaxLines=@"LoggerMaxLines";
         self.logArray=[NSMutableArray array];
         self.limit=[[NSUserDefaults standardUserDefaults] integerForKey:LoggerMaxLines];
         self.enabled=YES;
+        self.df=[[NSDateFormatter alloc] init];
+        self.df.dateFormat=@"yyyy-MM-dd HH:mm:ss";
     }
     return self;
 }
 
-- (void)append:(NSString *)str color:(NSColor *)color {
+- (void)append:(NSString *)str color:(NSColor *)color
+{
+    // date string
+    NSAttributedString *const datestr=[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ ", [self.df stringFromDate:[NSDate date]]] attributes:@{NSForegroundColorAttributeName: [NSColor grayColor]}];
+    
+    // coloured string to log
+    NSAttributedString *const astr=[[NSAttributedString alloc] initWithString:str
+                                                                   attributes:color?@{NSForegroundColorAttributeName: color}:@{}];
+    
+    // final log string
+    NSMutableAttributedString *const logstr=[datestr mutableCopy];
+    [logstr appendAttributedString:astr];
+    
     [self willChangeValueForKey:LoggerKeyText];
-    [self.logArray addObject:[[NSAttributedString alloc] initWithString:str
-                                                             attributes:color?@{NSForegroundColorAttributeName: color}:@{}]];
+    [self.logArray addObject:logstr];
     while (self.limit>0&&[self.logArray count]>self.limit) {
         [self.logArray removeObjectAtIndex:0];
     }
