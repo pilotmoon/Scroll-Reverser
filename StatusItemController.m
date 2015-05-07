@@ -58,8 +58,10 @@
 {
 	if (!_statusItem) {
 		_statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-        [_statusItem setMenu:_theMenu];
         [_statusItem setHighlightMode:YES];
+        [_statusItem setTarget:self];
+        [_statusItem setAction:@selector(statusButtonClicked:)];
+        [_statusItem sendActionOn:NSLeftMouseDownMask|NSRightMouseDownMask];
 
         if ([_statusItem respondsToSelector:@selector(button)]) {
 			// on yosemite, set up the template image here
@@ -122,14 +124,28 @@
 - (void)attachMenu:(NSMenu *)menu
 {
     _theMenu=menu;
-	[_theMenu setDelegate:self];
-    [_statusItem setMenu:_theMenu];
+    [_theMenu setDelegate:self];
 }
 
 - (void)openMenu
 {
     if (_theMenu) {
         [_statusItem popUpStatusItemMenu:_theMenu];
+    }
+}
+
+- (void)statusButtonClicked:(id)sender
+{
+    if ((([[NSApp currentEvent] modifierFlags] & NSControlKeyMask)==NSControlKeyMask) || [[NSApp currentEvent] type] == NSRightMouseDown)
+    {
+        [(AppDelegate *)[NSApp delegate] statusItemRightClicked];
+    }
+    else if (([[NSApp currentEvent] modifierFlags] & NSAlternateKeyMask)==NSAlternateKeyMask) {
+        [(AppDelegate *)[NSApp delegate] statusItemAltClicked];
+    }
+    else {
+        [(AppDelegate *)[NSApp delegate] statusItemClicked];
+        [self openMenu];
     }
 }
 

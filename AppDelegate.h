@@ -1,5 +1,5 @@
 #import <Cocoa/Cocoa.h>
-@class MouseTap, StatusItemController, LoginItemsController, WelcomeWindowController, PrefsWindowController;
+@class MouseTap, StatusItemController, LoginItemsController, WelcomeWindowController, PrefsWindowController, DebugWindowController;
 
 extern NSString *const PrefsReverseScrolling;
 extern NSString *const PrefsReverseHorizontal;
@@ -15,9 +15,9 @@ extern NSString *const PrefsHideIcon;
     LoginItemsController *loginItemsController;
     WelcomeWindowController *welcomeWindowController;
     PrefsWindowController *prefsWindowController;
+    DebugWindowController *debugWindowController;
 
     IBOutlet NSMenu *statusMenu;
-    IBOutlet NSMenuItem *startAtLoginMenu;
 }
 
 @property (readonly) NSString *appName;
@@ -33,4 +33,9 @@ extern NSString *const PrefsHideIcon;
 
 - (IBAction)showPrefs:(id)sender;
 - (IBAction)showAbout:(id)sender;
+
+- (void)statusItemClicked;
+- (void)statusItemRightClicked;
+- (void)statusItemAltClicked;
+
 @end

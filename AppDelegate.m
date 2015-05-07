@@ -5,6 +5,7 @@
 #import "NSObject+ObservePrefs.h"
 #import "WelcomeWindowController.h"
 #import "PrefsWindowController.h"
+#import "DebugWindowController.h"
 #import <Sparkle/SUUpdater.h>
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
@@ -77,11 +78,10 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	return self;
 }
 
-- (IBAction)startAtLoginClicked:(id)sender
+- (void)toggleReversing
 {
-    const BOOL newState=![loginItemsController startAtLogin];
-    [loginItemsController setStartAtLogin:newState];
-    [startAtLoginMenu setState:newState];
+    const BOOL state=[[NSUserDefaults standardUserDefaults]  boolForKey:PrefsReverseScrolling];
+    [[NSUserDefaults standardUserDefaults] setBool:!state forKey:PrefsReverseScrolling];
 }
 
 - (void)awakeFromNib
@@ -98,6 +98,15 @@ NSString *const PrefsHideIcon=@"HideIcon";
         [welcomeWindowController showWindow:self];
 	}
 	[tap start];
+}
+
+- (IBAction)showDebug:(id)sender
+{
+    [NSApp activateIgnoringOtherApps:YES];
+    if(!debugWindowController) {
+        debugWindowController=[[DebugWindowController alloc] initWithWindowNibName:@"DebugWindow"];
+    }
+    [debugWindowController showWindow:self];
 }
 
 - (IBAction)showPrefs:(id)sender
@@ -140,16 +149,30 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (object==loginItemsController) {
-        [startAtLoginMenu setState:[loginItemsController startAtLogin]];
-    }
-    else if ([keyPath hasSuffix:@"HideIcon"]) {
+    if ([keyPath hasSuffix:@"HideIcon"]) {
         // run it asynchronously, because we shouldn't change the pref back inside the observer
         [self performSelector:@selector(handleHideIconChange) withObject:nil afterDelay:0.001];
     }
     else {
         [self updateTap];
     }
+}
+
+#pragma mark Status item handling
+
+- (void)statusItemClicked
+{
+    // do nothing
+}
+
+- (void)statusItemRightClicked
+{
+    [self toggleReversing];
+}
+
+- (void)statusItemAltClicked
+{
+    [self showDebug:self];
 }
 
 #pragma mark Sparkle delegate methods
