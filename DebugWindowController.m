@@ -9,6 +9,7 @@
 #import "DebugWindowController.h"
 #import "Logger.h"
 #import "LoggerScrollView.h"
+#import "AppDelegate.h"
 
 @interface DebugWindowController ()
 @property NSTimer *refreshTimer;
@@ -39,6 +40,7 @@
     self.consoleTextView.textContainer.widthTracksTextView=NO;
     self.consoleTextView.textContainer.containerSize=NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX);
     [self addObserver:self forKeyPath:@"paused" options:NSKeyValueObservingOptionInitial context:nil];
+    [self updateConsole];
 }
 
 - (void)showWindow:(id)sender
@@ -54,6 +56,7 @@
 
 - (IBAction)clearLog:(id)sender {
     [self.logger clear];
+    [(AppDelegate *)[NSApp delegate] logAppEvent:@"Log Cleared"];
 }
 
 - (void)updateConsole
@@ -65,7 +68,7 @@
 
 - (void)updateConsoleNeeded
 {
-    if (![self.refreshTimer isValid]) {
+    if (self.window.isVisible && ![self.refreshTimer isValid]) {
         self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateConsole) userInfo:nil repeats:NO];
     }
 }
@@ -78,9 +81,11 @@
     else if (object==self && [keyPath isEqualToString:@"paused"]) {
         self.consoleScrollView.scrollingAllowed=self.paused;
         self.consoleScrollView.hasVerticalScroller=self.paused;
-        [self.logger logString:self.paused?@"Logging Paused":@"Logging Started" color:[NSColor blueColor] force:YES];
+        [(AppDelegate *)[NSApp delegate] logAppEvent:self.paused?@"Log Paused":@"Log Started"];
     }
 }
+
+
 
 - (NSString *)uiStringDebugConsole {
     return @"Scroll Reverser Debug Console";

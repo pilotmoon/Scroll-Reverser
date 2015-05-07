@@ -41,4 +41,6 @@ extern NSString *const PrefsHideIcon;
 - (void)statusItemRightClicked;
 - (void)statusItemAltClicked;
 
+- (void)logAppEvent:(NSString *)str;
+
 @end

@@ -81,6 +81,29 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	return self;
 }
 
+- (NSString *)settingsSummary
+{
+    NSString *(^yn)(NSString *, BOOL) = ^(NSString *label, BOOL state) {
+        return [NSString stringWithFormat:@"[%@ %@]", label, state?@"YES":@"NO"];
+    };
+    NSString *temp=yn(@"Reversing", tap->inverting);
+    if (tap->inverting) {
+        temp=[temp stringByAppendingString:yn(@"Vert", tap->invertY)];
+        temp=[temp stringByAppendingString:yn(@"Horiz", tap->invertX)];
+        temp=[temp stringByAppendingString:yn(@"Trackpad", tap->invertMultiTouch)];
+        temp=[temp stringByAppendingString:yn(@"Tablet", tap->invertTablet)];
+        temp=[temp stringByAppendingString:yn(@"Mouse/Other", tap->invertOther)];
+    }
+    return temp;
+}
+
+- (void)logAppEvent:(NSString *)str
+{
+    [logger logString:[NSString stringWithFormat:@"%@ %@", str, [self settingsSummary]]
+                color:[NSColor blueColor]
+                force:YES];
+}
+
 - (void)toggleReversing
 {
     const BOOL state=[[NSUserDefaults standardUserDefaults]  boolForKey:PrefsReverseScrolling];
@@ -169,6 +192,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
     }
     else {
         [self updateTap];
+        [self logAppEvent:@"Settings Changed"];
     }
 }
 
