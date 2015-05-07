@@ -210,9 +210,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (NSString *)menuStringReverseScrolling {
 	return NSLocalizedString(@"Reverse Scrolling", nil);
 }
-- (NSString *)menuStringAbout {
-	return NSLocalizedString(@"About", nil);
-}
 - (NSString *)menuStringPreferences {
     return [NSLocalizedString(@"Preferences", nil) stringByAppendingString:@"..."];
 }
