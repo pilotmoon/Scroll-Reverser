@@ -66,7 +66,7 @@
 - (void)updateConsoleNeeded
 {
     if (![self.refreshTimer isValid]) {
-        self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(updateConsole) userInfo:nil repeats:NO];
+        self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateConsole) userInfo:nil repeats:NO];
     }
 }
 
@@ -78,7 +78,7 @@
     else if (object==self && [keyPath isEqualToString:@"paused"]) {
         self.consoleScrollView.scrollingAllowed=self.paused;
         self.consoleScrollView.hasVerticalScroller=self.paused;
-        [self.logger logString:self.paused?@"Logging Stopped":@"Logging Started" color:[NSColor blueColor] force:YES];
+        [self.logger logString:self.paused?@"Logging Paused":@"Logging Started" color:[NSColor blueColor] force:YES];
     }
 }
 

@@ -9,6 +9,7 @@
 #import "Logger.h"
 
 NSString *const LoggerKeyText=@"text";
+NSString *const LoggerMaxLines=@"LoggerMaxLines";
 
 @interface Logger ()
 @property NSMutableArray *logArray;
@@ -21,7 +22,7 @@ NSString *const LoggerKeyText=@"text";
     self=[super init];
     if (self) {
         self.logArray=[NSMutableArray array];
-        self.limit=50000; // default
+        self.limit=[[NSUserDefaults standardUserDefaults] integerForKey:LoggerMaxLines];
         self.enabled=YES;
     }
     return self;
@@ -29,10 +30,9 @@ NSString *const LoggerKeyText=@"text";
 
 - (void)append:(NSString *)str color:(NSColor *)color {
     [self willChangeValueForKey:LoggerKeyText];
-    NSDictionary *attrs=color?@{NSForegroundColorAttributeName: color}:@{};
-    NSAttributedString *as=[[NSAttributedString alloc] initWithString:str attributes:attrs];
-    [self.logArray addObject:as];
-    while ([self.logArray count]>self.limit) {
+    [self.logArray addObject:[[NSAttributedString alloc] initWithString:str
+                                                             attributes:color?@{NSForegroundColorAttributeName: color}:@{}]];
+    while (self.limit>0&&[self.logArray count]>self.limit) {
         [self.logArray removeObjectAtIndex:0];
     }
     [self didChangeValueForKey:LoggerKeyText];
@@ -45,10 +45,10 @@ NSString *const LoggerKeyText=@"text";
     [self didChangeValueForKey:LoggerKeyText];
 }
 
-- (void)logString:(NSString *)str color:(NSColor *)color force:(BOOL)force 
+- (void)logString:(NSString *)str color:(NSColor *)color force:(BOOL)force
 {
     if ((force||self.enabled) && [str isKindOfClass:[NSString class]])  {
-        [self append:[str stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]] color:color];
+        [self append:[[str stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]] stringByAppendingString:@"\n"] color:color];
     }
 }
 
@@ -66,9 +66,7 @@ NSString *const LoggerKeyText=@"text";
 {
     NSMutableAttributedString *text=[[NSMutableAttributedString alloc] init];
     for (NSAttributedString *s in self.logArray) {
-    [text appendAttributedString:s];
-    [text.mutableString appendString:@"\n"];
-    
+        [text appendAttributedString:s];
     }
     return text;
 }

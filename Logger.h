@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *const LoggerKeyText;
+extern NSString *const LoggerMaxLines;
 
 @interface Logger : NSObject
 @property NSUInteger limit;
