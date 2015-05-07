@@ -7,7 +7,7 @@ typedef enum {
     ScrollEventSourceMax 
 } ScrollEventSource;
 
-@class MouseTap;
+@class MouseTap, Logger;
 @interface MouseTap : NSObject {
 	CGEventMask mask;
 	CFMachPortRef port;
@@ -28,6 +28,7 @@ typedef enum {
     BOOL invertMultiTouch;
     BOOL invertTablet;
     BOOL invertOther;
+    __weak Logger *logger;
 }
 - (void)start;
 - (void)stop;

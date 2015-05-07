@@ -1,5 +1,6 @@
 #import "MouseTap.h"
 #import "CoreFoundation/CoreFoundation.h"
+#import "Logger.h"
 
 #define MAGIC_NUMBER (0x7363726F726576) // "scrorev" in hex
 
@@ -239,8 +240,9 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
                 CGEventSetIntegerValueField(event, kCGEventSourceUserData, MAGIC_NUMBER);
             }
 
-            NSLog(@"pid %@ cont %@ dy %@ dx %@ wDevice %@ wMouse %@ fingers %@ sampled %@ source %@ invert %@",
-                  @(pid), @(continuous), @(pixel_axis1), @(pixel_axis2), @(wacomDevice), @(wacomMouse), @(tap->fingers), @(tap->sampledFingers), @(source), @(invert));
+            NSString *logstr=[NSString stringWithFormat:@"pid %@ cont %@ dy %@ dx %@ wDevice %@ wMouse %@ fingers %@ sampled %@ source %@ invert %@",
+                  @(pid), @(continuous), @(pixel_axis1), @(pixel_axis2), @(wacomDevice), @(wacomMouse), @(tap->fingers), @(tap->sampledFingers), @(source), @(invert)];
+            [tap->logger logString:logstr];
 
         }
         else if(type==kCGEventTapDisabledByTimeout)

@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DebugWindowController">
             <connections>
+                <outlet property="consoleTextView" destination="MOT-fe-Q8c" id="cOu-U7-fI5"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -54,6 +55,9 @@
                         <buttonCell key="cell" type="push" title="ClEaR BuTtOn" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cfU-ZK-ru1">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
+                            <connections>
+                                <action selector="clearLog:" target="-2" id="tDV-7B-kFq"/>
+                            </connections>
                         </buttonCell>
                         <connections>
                             <binding destination="-2" name="title" keyPath="self.uiStringClear" id="ZsT-zX-u7M"/>

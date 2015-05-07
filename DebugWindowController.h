@@ -7,10 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class Logger;
 
 @interface DebugWindowController : NSWindowController
 
+@property (unsafe_unretained) IBOutlet NSTextView *consoleTextView;
+@property (weak, nonatomic) Logger *logger;
+
 @property (readonly) NSString *uiStringDebugConsole;
 @property (readonly) NSString *uiStringClear;
+
+- (IBAction)clearLog:(id)sender;
 
 @end

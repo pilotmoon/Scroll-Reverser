@@ -6,6 +6,7 @@
 #import "WelcomeWindowController.h"
 #import "PrefsWindowController.h"
 #import "DebugWindowController.h"
+#import "Logger.h"
 #import <Sparkle/SUUpdater.h>
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
@@ -102,11 +103,20 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	[tap start];
 }
 
+- (Logger *)startLogging
+{
+    if (!logger) {
+        tap->logger=logger=[[Logger alloc] init];
+    }
+    return logger;
+}
+
 - (IBAction)showDebug:(id)sender
 {
     [NSApp activateIgnoringOtherApps:YES];
     if(!debugWindowController) {
         debugWindowController=[[DebugWindowController alloc] initWithWindowNibName:@"DebugWindow"];
+        debugWindowController.logger=[self startLogging];
     }
     [debugWindowController showWindow:self];
 }

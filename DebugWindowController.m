@@ -7,12 +7,29 @@
 //
 
 #import "DebugWindowController.h"
+#import "Logger.h"
 
 @interface DebugWindowController ()
-
+@property NSTimer *refreshTimer;
 @end
 
 @implementation DebugWindowController
+
+- (void)setLogger:(Logger *)logger
+{
+    if (_logger) {
+        [_logger removeObserver:self forKeyPath:LoggerKeyText];
+    }
+    if (logger) {
+        [logger addObserver:self forKeyPath:LoggerKeyText options:NSKeyValueObservingOptionInitial context:nil];
+    }
+   _logger=logger;
+}
+
+- (void)dealloc
+{
+    self.logger=nil;
+}
 
 - (void)windowDidLoad {
     [super windowDidLoad];
@@ -34,8 +51,32 @@
 - (NSString *)uiStringDebugConsole {
     return @"Scroll Reverser Debug Console";
 }
+
 - (NSString *)uiStringClear {
     return @"Clear";
+}
+
+- (IBAction)clearLog:(id)sender {
+    [self.logger clear];
+}
+
+- (void)updateConsole
+{
+    self.consoleTextView.string=self.logger.text;
+}
+
+- (void)updateConsoleNeeded
+{
+    if (![self.refreshTimer isValid]) {
+        self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateConsole) userInfo:nil repeats:NO];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (object==self.logger && [keyPath isEqualToString:LoggerKeyText]) {
+        [self updateConsoleNeeded];
+    }
 }
 
 @end

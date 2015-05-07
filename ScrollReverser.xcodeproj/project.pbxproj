@@ -10,6 +10,7 @@
 		011A628B19D4A748003CE6DC /* IntroShot.png in Resources */ = {isa = PBXBuildFile; fileRef = 011A628919D4A748003CE6DC /* IntroShot.png */; };
 		01438E601AFB467100C5C857 /* DebugWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01438E5E1AFB467100C5C857 /* DebugWindowController.m */; };
 		01438E611AFB467100C5C857 /* DebugWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01438E5F1AFB467100C5C857 /* DebugWindow.xib */; };
+		01438E901AFB640400C5C857 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 01438E8F1AFB640400C5C857 /* Logger.m */; };
 		01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01587306134DD1E200CD9CC4 /* Localizable.strings */; };
 		0158735813265EDD00100E4C /* StatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0158735513265EDD00100E4C /* StatusItemController.m */; };
 		017347631A35D9C100A0A1BE /* PrefsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017347621A35D9C100A0A1BE /* PrefsWindow.xib */; };
@@ -55,6 +56,8 @@
 		01438E5D1AFB467100C5C857 /* DebugWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugWindowController.h; sourceTree = "<group>"; };
 		01438E5E1AFB467100C5C857 /* DebugWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugWindowController.m; sourceTree = "<group>"; };
 		01438E5F1AFB467100C5C857 /* DebugWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugWindow.xib; sourceTree = "<group>"; };
+		01438E8E1AFB640400C5C857 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		01438E8F1AFB640400C5C857 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		014EAC481A7F665C009E2315 /* ru */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ru; path = resources/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		014EAC491A7F6675009E2315 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = resources/ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0158730D134DD1FA00CD9CC4 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 				01ED37DE1A375EB9001B3094 /* LinkView.m */,
 				0183EE711A37947E00A260E0 /* Application.h */,
 				0183EE721A37947E00A260E0 /* Application.m */,
+				01438E8E1AFB640400C5C857 /* Logger.h */,
+				01438E8F1AFB640400C5C857 /* Logger.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 				01B662D513250CA800658B5C /* LoginItemsController.m in Sources */,
 				01438E601AFB467100C5C857 /* DebugWindowController.m in Sources */,
 				01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */,
+				01438E901AFB640400C5C857 /* Logger.m in Sources */,
 				0158735813265EDD00100E4C /* StatusItemController.m in Sources */,
 				017347661A35DA2600A0A1BE /* PrefsWindowController.m in Sources */,
 				0183EE731A37947E00A260E0 /* Application.m in Sources */,
