@@ -22,6 +22,7 @@ NSString *const LoggerKeyText=@"text";
     if (self) {
         self.logArray=[NSMutableArray array];
         self.limit=50000; // default
+        self.enabled=YES;
     }
     return self;
 }
@@ -44,7 +45,7 @@ NSString *const LoggerKeyText=@"text";
 
 - (void)logString:(NSString *)str
 {
-    if ([str isKindOfClass:[NSString class]]) {
+    if (self.enabled && [str isKindOfClass:[NSString class]])  {
         [self append:[str stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]]];
     }
 }

@@ -8,6 +8,7 @@
 
 #import "DebugWindowController.h"
 #import "Logger.h"
+#import "LoggerScrollView.h"
 
 @interface DebugWindowController ()
 @property NSTimer *refreshTimer;
@@ -19,9 +20,11 @@
 {
     if (_logger) {
         [_logger removeObserver:self forKeyPath:LoggerKeyText];
+        [_logger unbind:@"enabled"];
     }
     if (logger) {
         [logger addObserver:self forKeyPath:LoggerKeyText options:NSKeyValueObservingOptionInitial context:nil];
+        [logger bind:@"enabled" toObject:self withKeyPath:@"paused" options:@{NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
     }
    _logger=logger;
 }
@@ -33,8 +36,9 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    self.consoleTextView.textContainer.widthTracksTextView=NO;
+    self.consoleTextView.textContainer.containerSize=NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX);
+    [self addObserver:self forKeyPath:@"paused" options:NSKeyValueObservingOptionInitial context:nil];
 }
 
 - (void)showWindow:(id)sender
@@ -48,13 +52,7 @@
     });
 }
 
-- (NSString *)uiStringDebugConsole {
-    return @"Scroll Reverser Debug Console";
-}
 
-- (NSString *)uiStringClear {
-    return @"Clear";
-}
 
 - (IBAction)clearLog:(id)sender {
     [self.logger clear];
@@ -62,13 +60,15 @@
 
 - (void)updateConsole
 {
-    self.consoleTextView.string=self.logger.text;
+    NSString *const text=self.logger.text;
+    self.consoleTextView.string=text;
+    [self.consoleTextView scrollRangeToVisible:NSMakeRange([text length], 0)];
 }
 
 - (void)updateConsoleNeeded
 {
     if (![self.refreshTimer isValid]) {
-        self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateConsole) userInfo:nil repeats:NO];
+        self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateConsole) userInfo:nil repeats:NO];
     }
 }
 
@@ -77,6 +77,22 @@
     if (object==self.logger && [keyPath isEqualToString:LoggerKeyText]) {
         [self updateConsoleNeeded];
     }
+    else if (object==self && [keyPath isEqualToString:@"paused"]) {
+        self.consoleScrollView.scrollingAllowed=self.paused;
+        self.consoleScrollView.hasVerticalScroller=self.paused;
+    }
+}
+
+- (NSString *)uiStringDebugConsole {
+    return NSLocalizedString(@"Scroll Reverser Debug Console", nil);
+}
+
+- (NSString *)uiStringClear {
+    return NSLocalizedString(@"Clear", nil);
+}
+
+- (NSString *)uiStringPause {
+    return NSLocalizedString(@"Pause", nil);
 }
 
 @end
