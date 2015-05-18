@@ -93,6 +93,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		5B4056241ADE048B000D12C3 /* zh-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-TW"; path = "resources/zh-TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ScrollReverser-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Scroll Reverser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scroll Reverser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -278,6 +279,7 @@
 				sk,
 				ko,
 				ru,
+				"zh-TW",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -358,6 +360,7 @@
 				01CEC73C1A5E8BCF0086DDEC /* sk */,
 				014EAC481A7F665C009E2315 /* ru */,
 				014EAC491A7F6675009E2315 /* ko */,
+				5B4056241ADE048B000D12C3 /* zh-TW */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
