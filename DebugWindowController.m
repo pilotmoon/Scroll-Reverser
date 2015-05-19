@@ -119,17 +119,24 @@
     }
 }
 
-- (NSString *)uiStringDebugConsole {
-    return @"Scroll Reverser Debug Console";
+#pragma mark pasteboard copy
+
+- (void)copy:(id)sender
+{
+    NSMutableString *str=[@"" mutableCopy];
+    [[self.consoleTableView selectedRowIndexes] enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+        [str appendString:[[self formatEntry:[self.logger entryAtIndex:idx]] string]];
+        [str appendString:@"\n"];
+    }];
+    
+    if ([str length]>0) {
+        NSPasteboard *const pb = [NSPasteboard generalPasteboard];
+        [pb clearContents];
+        [pb writeObjects:@[str]];
+    }
+    
 }
 
-- (NSString *)uiStringClear {
-    return @"Clear";
-}
-
-- (NSString *)uiStringPause {
-    return @"Pause";
-}
 
 #pragma mark Table view delegate/datasource
 
@@ -178,6 +185,19 @@
     return self.paused?proposedSelectionIndexes:nil;
 }
 
+#pragma mark Strings
+
+- (NSString *)uiStringDebugConsole {
+    return @"Scroll Reverser Debug Console";
+}
+
+- (NSString *)uiStringClear {
+    return @"Clear";
+}
+
+- (NSString *)uiStringPause {
+    return @"Pause";
+}
 
 @end
 
