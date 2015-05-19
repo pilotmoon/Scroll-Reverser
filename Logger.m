@@ -9,7 +9,6 @@
 #import "Logger.h"
 
 NSString *const LoggerEntriesChanged=@"LoggerEntriesChanged";
-NSString *const LoggerEntriesNewIndexes=@"LoggerEntriesNewIndexes";
 NSString *const LoggerMaxLines=@"LoggerMaxLines";
 
 NSString *const LoggerKeyTimestamp=@"timestamp";
@@ -18,8 +17,6 @@ NSString *const LoggerKeyType=@"type";
 
 NSString *const LoggerTypeNormal=@"normal";
 NSString *const LoggerTypeSpecial=@"special";
-
-
 
 @interface Logger ()
 @property NSMutableArray *logArray;
@@ -42,12 +39,15 @@ NSString *const LoggerTypeSpecial=@"special";
 - (void)append:(NSDictionary *)entry
 {
     const NSUInteger addedRowIndex=self.logArray.count;
-    [self.logArray addObject:entry];
-    while (self.limit>0&&[self.logArray count]>self.limit) {
-        [self.logArray removeObjectAtIndex:0];
-        self.removedRowCount+=1;
+    if (addedRowIndex>self.limit) {
+        return;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:LoggerEntriesChanged object:self userInfo:@{LoggerEntriesNewIndexes:[NSIndexSet indexSetWithIndex:addedRowIndex]}];
+    if (addedRowIndex==self.limit) {
+        entry=@{LoggerKeyMessage: @"Log full. Clear to resume logging."};
+    }
+    
+    [self.logArray addObject:entry];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LoggerEntriesChanged object:self];
 }
 
 - (void)clear

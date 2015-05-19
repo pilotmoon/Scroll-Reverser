@@ -13,7 +13,6 @@
 
 @interface DebugWindowController ()
 @property NSTimer *refreshTimer;
-@property NSMutableIndexSet *addedIndexes;
 @property NSDateFormatter *df;
 @end
 
@@ -40,7 +39,6 @@
     [super windowDidLoad];
     self.df=[[NSDateFormatter alloc] init];
     self.df.dateFormat=@"yyyy-MM-dd HH:mm:ss";
-    self.addedIndexes=[NSMutableIndexSet indexSet];
     self.consoleTableView.dataSource=self;
     self.consoleTableView.delegate=self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeLogEntriesChange:) name:LoggerEntriesChanged object:nil];
@@ -50,11 +48,12 @@
 
 - (void)observeLogEntriesChange:(NSNotification *)note
 {
-    NSIndexSet *const changedIndexes=[note userInfo][LoggerEntriesNewIndexes];
-    if (changedIndexes) {
-        [self.addedIndexes addIndexes:changedIndexes];
+    if (self.consoleTableView.numberOfRows<self.logger.entryCount) {
+        [self updateConsoleNeeded];
     }
-    [self updateConsoleNeeded];
+    else {
+        [self updateConsole];
+    }
 }
 
 - (void)showWindow:(id)sender
@@ -75,9 +74,8 @@
 
 - (void)updateConsole
 {
-    if ([self.addedIndexes count]>0) {
-        [self.consoleTableView insertRowsAtIndexes:self.addedIndexes withAnimation:NSTableViewAnimationEffectNone];
-        [self.addedIndexes removeAllIndexes];
+    if (self.consoleTableView.numberOfRows<self.logger.entryCount) {
+        [self.consoleTableView insertRowsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.consoleTableView.numberOfRows, (self.logger.entryCount-self.consoleTableView.numberOfRows))] withAnimation:NSTableViewAnimationEffectNone];
     }
     else {
         [self.consoleTableView reloadData];
