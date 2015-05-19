@@ -43,7 +43,7 @@ NSString *const LoggerTypeSpecial=@"special";
         return;
     }
     if (addedRowIndex==self.limit) {
-        entry=@{LoggerKeyMessage: @"Log full. Clear to resume logging."};
+        entry=@{LoggerKeyMessage: [NSString stringWithFormat:@"Log full (%@ entries). Clear to resume logging.", @(self.limit)]};
     }
     
     [self.logArray addObject:entry];
