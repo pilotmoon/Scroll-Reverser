@@ -37,8 +37,8 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    self.consoleTextView.textContainer.widthTracksTextView=NO;
-    self.consoleTextView.textContainer.containerSize=NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX);
+    self.consoleTableView.dataSource=self;
+    self.consoleTableView.delegate=self;
     [self addObserver:self forKeyPath:@"paused" options:NSKeyValueObservingOptionInitial context:nil];
     [self updateConsole];
 }
@@ -61,9 +61,8 @@
 
 - (void)updateConsole
 {
-    NSAttributedString *text=self.logger.text;
-    [self.consoleTextView.textStorage setAttributedString:text];
-    [self.consoleTextView scrollRangeToVisible:NSMakeRange([text length], 0)];
+    [self.consoleTableView reloadData];
+    [self scrollToBottom];
 }
 
 - (void)updateConsoleNeeded
@@ -71,6 +70,22 @@
     if (self.window.isVisible && ![self.refreshTimer isValid]) {
         self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateConsole) userInfo:nil repeats:NO];
     }
+}
+
+- (void)scrollToBottom
+{
+    NSPoint newScrollOrigin;
+    
+    // assume that the scrollview is an existing variable
+    if ([[self.consoleScrollView documentView] isFlipped]) {
+        newScrollOrigin=NSMakePoint(0.0,NSMaxY([[self.consoleScrollView documentView] frame])
+                                    -NSHeight([[self.consoleScrollView contentView] bounds]));
+    } else {
+        newScrollOrigin=NSMakePoint(0.0,0.0);
+    }
+    
+    [[self.consoleScrollView documentView] scrollPoint:newScrollOrigin];
+    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -85,8 +100,6 @@
     }
 }
 
-
-
 - (NSString *)uiStringDebugConsole {
     return @"Scroll Reverser Debug Console";
 }
@@ -98,6 +111,30 @@
 - (NSString *)uiStringPause {
     return @"Pause";
 }
+
+#pragma mark Table view delegate/datasource
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+    return self.logger.entries;
+}
+
+- (NSView *)tableView:(NSTableView *)tableView
+   viewForTableColumn:(NSTableColumn *)tableColumn
+                  row:(NSInteger)row
+{
+    NSTableCellView *result = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+    NSAttributedString *as=[self.logger entryAtIndex:row];
+    result.textField.attributedStringValue=as;
+    
+    return result;
+}
+
+- (NSIndexSet *)tableView:(NSTableView *)tableView selectionIndexesForProposedSelection:(NSIndexSet *)proposedSelectionIndexes
+{
+    return self.paused?proposedSelectionIndexes:nil;
+}
+
 
 @end
 

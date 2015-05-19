@@ -9,9 +9,9 @@
 #import <Cocoa/Cocoa.h>
 @class Logger, LoggerScrollView;
 
-@interface DebugWindowController : NSWindowController
+@interface DebugWindowController : NSWindowController  <NSTableViewDataSource, NSTableViewDelegate>
 
-@property (unsafe_unretained) IBOutlet NSTextView *consoleTextView;
+@property (weak) IBOutlet NSTableView *consoleTableView;
 @property (weak) IBOutlet LoggerScrollView *consoleScrollView;
 @property (weak, nonatomic) Logger *logger;
 @property BOOL paused;

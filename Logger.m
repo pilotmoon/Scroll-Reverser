@@ -61,7 +61,7 @@ NSString *const LoggerMaxLines=@"LoggerMaxLines";
 - (void)logString:(NSString *)str color:(NSColor *)color force:(BOOL)force
 {
     if ((force||self.enabled) && [str isKindOfClass:[NSString class]])  {
-        [self append:[[str stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]] stringByAppendingString:@"\n"] color:color];
+        [self append:[str stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]] color:color];
     }
 }
 
@@ -75,13 +75,19 @@ NSString *const LoggerMaxLines=@"LoggerMaxLines";
     [self logString:str color:nil force:NO];
 }
 
-- (NSAttributedString *)text
+- (NSUInteger)entries
 {
-    NSMutableAttributedString *text=[[NSMutableAttributedString alloc] init];
-    for (NSAttributedString *s in self.logArray) {
-        [text appendAttributedString:s];
+    return self.logArray.count;
+}
+
+- (NSAttributedString *)entryAtIndex:(NSUInteger)row
+{
+    if (row<self.logArray.count) {
+        return self.logArray[row];
     }
-    return text;
+    else {
+        return nil;
+    }
 }
 
 @end
