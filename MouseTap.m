@@ -242,7 +242,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 
             NSString *logstr=[NSString stringWithFormat:@"pid %@ cont %@ dy %@ dx %@ wDevice %@ wMouse %@ fingers %@ sampled %@ source %@ invert %@",
                   @(pid), @(continuous), @(pixel_axis1), @(pixel_axis2), @(wacomDevice), @(wacomMouse), @(tap->fingers), @(tap->sampledFingers), @(source), @(invert)];
-            [tap->logger logString:logstr];
+            [tap->logger logMessage:logstr];
 
         }
         else if(type==kCGEventTapDisabledByTimeout)

@@ -99,9 +99,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)logAppEvent:(NSString *)str
 {
-    [logger logString:[NSString stringWithFormat:@"%@ %@", str, [self settingsSummary]]
-                color:[NSColor blueColor]
-                force:YES];
+    [logger logMessage:[NSString stringWithFormat:@"%@ %@", str, [self settingsSummary]] special:YES];
 }
 
 - (void)toggleReversing

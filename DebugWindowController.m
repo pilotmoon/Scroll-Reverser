@@ -13,6 +13,8 @@
 
 @interface DebugWindowController ()
 @property NSTimer *refreshTimer;
+@property NSMutableIndexSet *addedIndexes;
+@property NSDateFormatter *df;
 @end
 
 @implementation DebugWindowController
@@ -36,14 +38,23 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    self.df=[[NSDateFormatter alloc] init];
+    self.df.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    self.addedIndexes=[NSMutableIndexSet indexSet];
     self.consoleTableView.dataSource=self;
     self.consoleTableView.delegate=self;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateConsoleNeeded)
-                                                 name:LoggerEntriesChanged
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeLogEntriesChange:) name:LoggerEntriesChanged object:nil];
     [self addObserver:self forKeyPath:@"paused" options:NSKeyValueObservingOptionInitial context:nil];
     [self updateConsole];
+}
+
+- (void)observeLogEntriesChange:(NSNotification *)note
+{
+    NSIndexSet *const changedIndexes=[note userInfo][LoggerEntriesNewIndexes];
+    if (changedIndexes) {
+        [self.addedIndexes addIndexes:changedIndexes];
+    }
+    [self updateConsoleNeeded];
 }
 
 - (void)showWindow:(id)sender
@@ -64,7 +75,13 @@
 
 - (void)updateConsole
 {
-    [self.consoleTableView reloadData];
+    if ([self.addedIndexes count]>0) {
+        [self.consoleTableView insertRowsAtIndexes:self.addedIndexes withAnimation:NSTableViewAnimationEffectNone];
+        [self.addedIndexes removeAllIndexes];
+    }
+    else {
+        [self.consoleTableView reloadData];
+    }
     [self scrollToBottom];
 }
 
@@ -123,14 +140,38 @@
     return self.logger.entryCount;
 }
 
+- (NSAttributedString *)formatEntry:(NSDictionary *)entry
+{
+    NSMutableAttributedString *result=[[NSMutableAttributedString alloc] initWithString:@""];
+    
+    // data to log
+    NSString *const messageString=entry[LoggerKeyMessage];
+    const BOOL special=[entry[LoggerKeyType] isEqualToString:LoggerTypeSpecial];
+    NSDate *const timestamp=entry[LoggerKeyTimestamp];
+    
+    if (timestamp) {
+        NSDictionary *const dateAttributes=@{NSForegroundColorAttributeName: [NSColor grayColor]};
+        NSString *const dateString=[[self.df stringFromDate:timestamp] stringByAppendingString:@" "];
+        [result appendAttributedString:[[NSAttributedString alloc] initWithString:dateString
+                                                                       attributes:dateAttributes]];
+        
+    }
+    
+    if (messageString) {
+        NSDictionary *const messageAttributes=special?@{NSForegroundColorAttributeName: [NSColor blueColor]}:@{};
+        [result appendAttributedString:[[NSAttributedString alloc] initWithString:messageString
+                                                                       attributes:messageAttributes]];
+    }
+    
+    return result;
+}
+
 - (NSView *)tableView:(NSTableView *)tableView
    viewForTableColumn:(NSTableColumn *)tableColumn
                   row:(NSInteger)row
 {
-    NSTableCellView *result = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-    NSAttributedString *as=[self.logger entryAtIndex:row];
-    result.textField.attributedStringValue=as;
-    
+    NSTableCellView *const result = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+    result.textField.attributedStringValue=[self formatEntry:[self.logger entryAtIndex:row]];
     return result;
 }
 

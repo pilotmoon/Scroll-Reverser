@@ -9,11 +9,21 @@
 #import "Logger.h"
 
 NSString *const LoggerEntriesChanged=@"LoggerEntriesChanged";
+NSString *const LoggerEntriesNewIndexes=@"LoggerEntriesNewIndexes";
 NSString *const LoggerMaxLines=@"LoggerMaxLines";
+
+NSString *const LoggerKeyTimestamp=@"timestamp";
+NSString *const LoggerKeyMessage=@"message";
+NSString *const LoggerKeyType=@"type";
+
+NSString *const LoggerTypeNormal=@"normal";
+NSString *const LoggerTypeSpecial=@"special";
+
+
 
 @interface Logger ()
 @property NSMutableArray *logArray;
-@property NSDateFormatter *df;
+@property NSUInteger removedRowCount;
 @end
 
 @implementation Logger
@@ -25,29 +35,19 @@ NSString *const LoggerMaxLines=@"LoggerMaxLines";
         self.logArray=[NSMutableArray array];
         self.limit=[[NSUserDefaults standardUserDefaults] integerForKey:LoggerMaxLines];
         self.enabled=YES;
-        self.df=[[NSDateFormatter alloc] init];
-        self.df.dateFormat=@"yyyy-MM-dd HH:mm:ss";
     }
     return self;
 }
 
-- (void)append:(NSString *)str color:(NSColor *)color
+- (void)append:(NSDictionary *)entry
 {
-    NSString *const rawDateString=[NSString stringWithFormat:@"%@ ", [self.df stringFromDate:[NSDate date]]];
-    NSDictionary *const dateAttributes=@{NSForegroundColorAttributeName: [NSColor grayColor]};
-    NSDictionary *const logAttributes=color?@{NSForegroundColorAttributeName: color}:@{};
-
-    // build string to log
-    NSMutableAttributedString *const logString=[[[NSAttributedString alloc] initWithString:rawDateString
-                                                                                attributes:dateAttributes] mutableCopy];
-    [logString appendAttributedString:[[NSAttributedString alloc] initWithString:str
-                                                                   attributes:logAttributes]];
-    
-    [self.logArray addObject:logString];
+    const NSUInteger addedRowIndex=self.logArray.count;
+    [self.logArray addObject:entry];
     while (self.limit>0&&[self.logArray count]>self.limit) {
         [self.logArray removeObjectAtIndex:0];
+        self.removedRowCount+=1;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:LoggerEntriesChanged object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LoggerEntriesChanged object:self userInfo:@{LoggerEntriesNewIndexes:[NSIndexSet indexSetWithIndex:addedRowIndex]}];
 }
 
 - (void)clear
@@ -56,36 +56,33 @@ NSString *const LoggerMaxLines=@"LoggerMaxLines";
     [[NSNotificationCenter defaultCenter] postNotificationName:LoggerEntriesChanged object:self];
 }
 
-- (void)logString:(NSString *)str color:(NSColor *)color force:(BOOL)force
+- (void)logMessage:(NSString *)str special:(BOOL)special;
 {
-    if ((force||self.enabled) && [str isKindOfClass:[NSString class]])  {
-        [self append:[str stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]] color:color];
+    if ((special||self.enabled) && [str isKindOfClass:[NSString class]])  {
+        [self append:@{LoggerKeyMessage:str, LoggerKeyTimestamp:[NSDate date], LoggerKeyType:special?LoggerTypeSpecial:LoggerTypeNormal}];
     }
 }
 
-- (void)logString:(NSString *)str color:(NSColor *)color
+- (void)logMessage:(NSString *)str;
 {
-    [self logString:str color:color force:NO];
-}
-
-- (void)logString:(NSString *)str
-{
-    [self logString:str color:nil force:NO];
+    [self logMessage:str special:NO];
 }
 
 - (NSUInteger)entryCount
 {
-    return self.logArray.count;
+    return self.logArray.count+self.removedRowCount;
 }
 
-- (NSAttributedString *)entryAtIndex:(NSUInteger)row
+- (NSDictionary *)entryAtIndex:(NSUInteger)row
 {
-    if (row<self.logArray.count) {
-        return self.logArray[row];
+    if (row>=self.removedRowCount) {
+        const NSUInteger adjustedRow=row-self.removedRowCount;
+        if (adjustedRow<self.logArray.count) {
+            return self.logArray[adjustedRow];
+        }
     }
-    else {
-        return nil;
-    }
+
+    return nil;
 }
 
 @end

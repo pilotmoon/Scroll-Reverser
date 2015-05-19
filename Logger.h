@@ -9,18 +9,25 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *const LoggerEntriesChanged;
+extern NSString *const LoggerEntriesNewIndexes;
 extern NSString *const LoggerMaxLines;
+
+extern NSString *const LoggerKeyTimestamp;
+extern NSString *const LoggerKeyMessage;
+extern NSString *const LoggerKeyType;
+
+extern NSString *const LoggerTypeNormal;
+extern NSString *const LoggerTypeSpecial;
 
 @interface Logger : NSObject
 @property NSUInteger limit;
 @property (readonly) NSUInteger entryCount;
 @property BOOL enabled;
 
-- (void)logString:(NSString *)str color:(NSColor *)color force:(BOOL)force;
-- (void)logString:(NSString *)str color:(NSColor *)color;
-- (void)logString:(NSString *)str;
+- (void)logMessage:(NSString *)str special:(BOOL)special;
+- (void)logMessage:(NSString *)str;
 - (void)clear;
 
-- (NSAttributedString *)entryAtIndex:(NSUInteger)row;
+- (NSDictionary *)entryAtIndex:(NSUInteger)row;
 
 @end
