@@ -115,6 +115,9 @@
         if (self.paused) {
             [self.consoleScrollView flashScrollers];
         }
+        else {
+            [self.consoleTableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
+        }
         [(AppDelegate *)[NSApp delegate] logAppEvent:self.paused?@"Log Paused":@"Log Started"];
     }
 }
