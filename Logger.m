@@ -8,7 +8,7 @@
 
 #import "Logger.h"
 
-NSString *const LoggerKeyText=@"text";
+NSString *const LoggerEntriesChanged=@"LoggerEntriesChanged";
 NSString *const LoggerMaxLines=@"LoggerMaxLines";
 
 @interface Logger ()
@@ -43,19 +43,17 @@ NSString *const LoggerMaxLines=@"LoggerMaxLines";
     [logString appendAttributedString:[[NSAttributedString alloc] initWithString:str
                                                                    attributes:logAttributes]];
     
-    [self willChangeValueForKey:LoggerKeyText];
     [self.logArray addObject:logString];
     while (self.limit>0&&[self.logArray count]>self.limit) {
         [self.logArray removeObjectAtIndex:0];
     }
-    [self didChangeValueForKey:LoggerKeyText];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LoggerEntriesChanged object:self];
 }
 
 - (void)clear
 {
-    [self willChangeValueForKey:LoggerKeyText];
     [self.logArray removeAllObjects];
-    [self didChangeValueForKey:LoggerKeyText];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LoggerEntriesChanged object:self];
 }
 
 - (void)logString:(NSString *)str color:(NSColor *)color force:(BOOL)force
@@ -75,7 +73,7 @@ NSString *const LoggerMaxLines=@"LoggerMaxLines";
     [self logString:str color:nil force:NO];
 }
 
-- (NSUInteger)entries
+- (NSUInteger)entryCount
 {
     return self.logArray.count;
 }

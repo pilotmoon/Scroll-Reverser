@@ -20,11 +20,9 @@
 - (void)setLogger:(Logger *)logger
 {
     if (_logger) {
-        [_logger removeObserver:self forKeyPath:LoggerKeyText];
         [_logger unbind:@"enabled"];
     }
     if (logger) {
-        [logger addObserver:self forKeyPath:LoggerKeyText options:NSKeyValueObservingOptionInitial context:nil];
         [logger bind:@"enabled" toObject:self withKeyPath:@"paused" options:@{NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
     }
    _logger=logger;
@@ -32,6 +30,7 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.logger=nil;
 }
 
@@ -39,6 +38,10 @@
     [super windowDidLoad];
     self.consoleTableView.dataSource=self;
     self.consoleTableView.delegate=self;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateConsoleNeeded)
+                                                 name:LoggerEntriesChanged
+                                               object:nil];
     [self addObserver:self forKeyPath:@"paused" options:NSKeyValueObservingOptionInitial context:nil];
     [self updateConsole];
 }
@@ -90,12 +93,13 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (object==self.logger && [keyPath isEqualToString:LoggerKeyText]) {
-        [self updateConsoleNeeded];
-    }
-    else if (object==self && [keyPath isEqualToString:@"paused"]) {
+    if (object==self && [keyPath isEqualToString:@"paused"]) {
         self.consoleScrollView.scrollingAllowed=self.paused;
         self.consoleScrollView.hasVerticalScroller=self.paused;
+        self.consoleScrollView.hasHorizontalScroller=NO;
+        if (self.paused) {
+            [self.consoleScrollView flashScrollers];
+        }
         [(AppDelegate *)[NSApp delegate] logAppEvent:self.paused?@"Log Paused":@"Log Started"];
     }
 }
@@ -116,7 +120,7 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
-    return self.logger.entries;
+    return self.logger.entryCount;
 }
 
 - (NSView *)tableView:(NSTableView *)tableView
