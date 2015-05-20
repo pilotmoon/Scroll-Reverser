@@ -18,6 +18,10 @@ NSString *const PrefsReverseTablet=@"ReverseTablet";
 NSString *const PrefsHasRunBefore=@"HasRunBefore";
 NSString *const PrefsHideIcon=@"HideIcon";
 
+@interface AppDelegate ()
+@property BOOL ready;
+@end
+
 @implementation AppDelegate
 
 + (void)initialize
@@ -123,7 +127,10 @@ NSString *const PrefsHideIcon=@"HideIcon";
         welcomeWindowController=[[WelcomeWindowController alloc] initWithWindowNibName:@"WelcomeWindow"];
         [welcomeWindowController showWindow:self];
 	}
-	[tap start];
+    self.ready=YES;
+    if (tap->inverting) {
+        [tap start];
+    }
 }
 
 - (Logger *)startLogging
@@ -184,12 +191,20 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath hasSuffix:@"HideIcon"]) {
+    if ([keyPath hasSuffix:PrefsHideIcon]) {
         // run it asynchronously, because we shouldn't change the pref back inside the observer
         [self performSelector:@selector(handleHideIconChange) withObject:nil afterDelay:0.001];
     }
     else {
         [self updateTap];
+        if ([keyPath hasSuffix:PrefsReverseScrolling]) {
+            if (self.ready && tap->inverting) {
+                [tap start];
+            }
+            else {
+                [tap stop];
+            }
+        }
         [self logAppEvent:@"Settings Changed"];
     }
 }
