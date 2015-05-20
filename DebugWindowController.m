@@ -44,6 +44,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeLogEntriesChange:) name:LoggerEntriesChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeLogUpdatesWaiting:) name:LoggerUpdatesWaiting object:nil];
     [self addObserver:self forKeyPath:@"paused" options:NSKeyValueObservingOptionInitial context:nil];
+    [self.consoleTableView reloadData];
     [self updateConsole];
 }
 

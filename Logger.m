@@ -70,6 +70,7 @@ NSString *const LoggerTypeSpecial=@"special";
         void (^block)(void)=obj;
         block();
     }];
+    [self.blockArray removeAllObjects];
 }
 
 - (void)clear
