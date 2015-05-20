@@ -74,7 +74,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             [tap->touches removeAllObjects];
         };
         
-        [tap->logger logEventType:type forKey:@"eventType"];
+        [tap->logger logEventType:type forKey:@"type"];
         
         if (type==NSEventTypeGesture)
         {
@@ -105,7 +105,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
                 for (NSTouch *touch in touching) {
                     const id identity=[touch identity];
                     [tap->touches addObject:identity];
-                    [tap->logger logObject:identity forCountedKey:@"+touch"];
+                    [tap->logger logObject:identity forCountedKey:@"+t"];
                 }
             }
             
@@ -114,16 +114,19 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             for (NSTouch *touch in ended) {
                 const id identity=[touch identity];
                 [tap->touches removeObject:[touch identity]];
-                [tap->logger logObject:identity forCountedKey:@"-touch"];
+                [tap->logger logObject:identity forCountedKey:@"-t"];
             }
             
             tap->fingers=[tap->touches count];
             
-            [tap->logger logUnsignedInteger:tap->rawZeroCount forKey:@"rawZeroCount"];
-            [tap->logger logUnsignedInteger:tap->fingers forKey:@"fingers"];
+            [tap->logger logUnsignedInteger:tap->rawZeroCount forKey:@"rzc"];
+            [tap->logger logUnsignedInteger:tap->fingers forKey:@"f"];
         }
         else if (type==NSScrollWheel)
         {
+            // default source is "Other" i.e. not a Trackpad, not a Tablet, but a Mouse.
+            ScrollEventSource source=ScrollEventSourceOther;
+            
             // get the scrolling deltas
             const int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
             const int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
@@ -139,23 +142,18 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             // detect the wacom mouse, which always seems to scroll in multiples of 25
             const BOOL wacomMouse=_detectWacomMouse?pixel_axis1%25==0&&pixel_axis2==0:NO;
             
-            // get the continuous flag
-            const BOOL continuous=CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous)!=0;
-
-            
             [tap->logger logSignedInteger:pixel_axis1 forKey:@"y_px"];
             [tap->logger logSignedInteger:pixel_axis2 forKey:@"x_px"];
             [tap->logger logSignedInteger:line_axis1 forKey:@"y_line"];
             [tap->logger logSignedInteger:line_axis1 forKey:@"x_line"];
             [tap->logger logDouble:fixedpt_axis1 forKey:@"y_fp"];
             [tap->logger logDouble:fixedpt_axis2 forKey:@"x_fp"];
-
             [tap->logger logIfYes:wacomDevice forKey:@"isWacomDevice"];
             [tap->logger logIfYes:wacomMouse forKey:@"isWacomMouse"];
-            [tap->logger logIfYes:continuous forKey:@"isContinuous"];
             
-            // default source is "Other" i.e. not a Trackpad, not a Tablet, but a Mouse.
-            ScrollEventSource source=ScrollEventSourceOther;
+            // get the continuous flag
+            const BOOL continuous=CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous)!=0;
+            [tap->logger logIfYes:!continuous forKey:@"nonContinuous"];
             
             // assume non-continuous events are never from a trackpad or tablet
             if (continuous)
@@ -172,8 +170,8 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
                     
                     [tap->logger logPhase:phase forKey:@"phase"];
                     [tap->logger logUnsignedInteger:ticksElapsed forKey:@"elapsed"];
-                    [tap->logger logUnsignedInteger:tap->sampledFingers forKey:@"sampledFingers"];
-                    [tap->logger logUnsignedInteger:tap->zeroCount forKey:@"zeroCount"];
+                    [tap->logger logUnsignedInteger:tap->sampledFingers forKey:@"sf"];
+                    [tap->logger logUnsignedInteger:tap->zeroCount forKey:@"zc"];
 
                     if (phase==ScrollPhaseMomentum) {
                         // during momentum phase we can assume less than 2 touches on pad. it's probably a good idea to clear the cache here.
