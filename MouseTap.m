@@ -262,6 +262,15 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 	return source&&port;
 }
 
+- (void)resetState
+{
+    touches=[NSMutableSet set];
+    fingers=sampledFingers=rawZeroCount=zeroCount=0;
+    lastScrollTicks=0;
+    lastPhase=0;
+    [logger logMessage:@"Tap state reset" special:YES];
+}
+
 - (void)start
 {
 	if([self isActive])
@@ -270,7 +279,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
     // initialise
     _preventReverseOtherApp=[[NSUserDefaults standardUserDefaults] boolForKey:@"ReverseOnlyRawInput"];
     _detectWacomMouse=![[NSUserDefaults standardUserDefaults] boolForKey:@"DisableWacomMouseDetection"];
-    touches=[NSMutableSet set];
+    [self resetState];
 
 	// create mach port
 	port=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,

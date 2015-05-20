@@ -197,6 +197,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
     }
     else {
         [self updateTap];
+        [self logAppEvent:@"Settings changed"];
         if ([keyPath hasSuffix:PrefsReverseScrolling]) {
             if (self.ready && tap->inverting) {
                 [tap start];
@@ -205,7 +206,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
                 [tap stop];
             }
         }
-        [self logAppEvent:@"Settings Changed"];
     }
 }
 
