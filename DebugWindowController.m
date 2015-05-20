@@ -90,6 +90,10 @@
     [(AppDelegate *)[NSApp delegate] logAppEvent:@"Log cleared"];
 }
 
+- (IBAction)logState:(id)sender {
+    [(AppDelegate *)[NSApp delegate] logAppEvent:@"State"];
+}
+
 - (void)updateConsole
 {
     [self.consoleTableView beginUpdates];
@@ -200,6 +204,11 @@
 - (NSString *)uiStringPause {
     return @"Pause";
 }
+
+- (NSString *)uiStringLogState {
+    return @"Log Current State";
+}
+
 
 @end
 

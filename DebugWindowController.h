@@ -19,7 +19,9 @@
 @property (readonly) NSString *uiStringDebugConsole;
 @property (readonly) NSString *uiStringClear;
 @property (readonly) NSString *uiStringPause;
+@property (readonly) NSString *uiStringLogState;
 
 - (IBAction)clearLog:(id)sender;
+- (IBAction)logState:(id)sender;
 
 @end
