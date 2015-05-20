@@ -88,22 +88,20 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (NSString *)settingsSummary
 {
     NSString *(^yn)(NSString *, BOOL) = ^(NSString *label, BOOL state) {
-        return [NSString stringWithFormat:@"[%@ %@]", label, state?@"YES":@"NO"];
+        return [NSString stringWithFormat:@"[%@ %@]", label, state?@"yes":@"no"];
     };
-    NSString *temp=yn(@"Reversing", tap->inverting);
-    if (tap->inverting) {
-        temp=[temp stringByAppendingString:yn(@"Vert", tap->invertY)];
-        temp=[temp stringByAppendingString:yn(@"Horiz", tap->invertX)];
-        temp=[temp stringByAppendingString:yn(@"Trackpad", tap->invertMultiTouch)];
-        temp=[temp stringByAppendingString:yn(@"Tablet", tap->invertTablet)];
-        temp=[temp stringByAppendingString:yn(@"Mouse/Other", tap->invertOther)];
-    }
+    NSString *temp=yn(@"on", tap->inverting);
+    temp=[temp stringByAppendingString:yn(@"v", tap->invertY)];
+    temp=[temp stringByAppendingString:yn(@"h", tap->invertX)];
+    temp=[temp stringByAppendingString:yn(@"trackpad", tap->invertMultiTouch)];
+    temp=[temp stringByAppendingString:yn(@"tablet", tap->invertTablet)];
+    temp=[temp stringByAppendingString:yn(@"mouse/other", tap->invertOther)];
     return temp;
 }
 
 - (void)logAppEvent:(NSString *)str
 {
-    [logger logMessage:[NSString stringWithFormat:@"%@ %@", str, [self settingsSummary]] special:YES];
+    [logger logMessage:[NSString stringWithFormat:@"%@ %@%@", str, [self settingsSummary], [tap stateString]] special:YES];
 }
 
 - (void)toggleReversing

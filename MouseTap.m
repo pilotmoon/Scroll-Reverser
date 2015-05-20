@@ -1,6 +1,7 @@
 #import "MouseTap.h"
 #import "CoreFoundation/CoreFoundation.h"
 #import "Logger.h"
+#import "AppDelegate.h"
 
 #define MAGIC_NUMBER (0x7363726F726576) // "scrorev" in hex
 
@@ -262,13 +263,31 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 	return source&&port;
 }
 
+- (NSString *)stateString
+{
+//    NSString *(^yn)(NSString *, BOOL) = ^(NSString *label, BOOL state) {
+//        return [NSString stringWithFormat:@"[%@ %@]", label, state?@"YES":@"NO"];
+//    };
+    NSString *(^val)(NSString *, unsigned long) = ^(NSString *label, unsigned long val) {
+        return [NSString stringWithFormat:@"[%@ %@]", label, @(val)];
+    };
+    NSString *temp=val(@"touches", [touches count]);
+    temp=[temp stringByAppendingString:val(@"f", fingers)];
+    temp=[temp stringByAppendingString:val(@"sf", sampledFingers)];
+    temp=[temp stringByAppendingString:val(@"rzc", rawZeroCount)];
+    temp=[temp stringByAppendingString:val(@"zc", zeroCount)];
+    temp=[temp stringByAppendingString:val(@"lst", lastScrollTicks)];
+    temp=[temp stringByAppendingString:val(@"lp", lastPhase)];
+    return temp;
+}
+
 - (void)resetState
 {
     touches=[NSMutableSet set];
     fingers=sampledFingers=rawZeroCount=zeroCount=0;
     lastScrollTicks=0;
     lastPhase=0;
-    [logger logMessage:@"Tap state reset" special:YES];
+    [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap state reset"];
 }
 
 - (void)start

@@ -33,6 +33,8 @@ typedef enum {
 - (void)start;
 - (void)stop;
 - (void)enableTap:(BOOL)state;
+- (NSString *)stateString;
+- (void)resetState;
 @end
 
 

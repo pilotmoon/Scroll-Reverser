@@ -100,16 +100,8 @@
 
 - (void)scrollToBottom
 {
-    NSPoint newScrollOrigin;
-    
-    // assume that the scrollview is an existing variable
-    if ([[self.consoleScrollView documentView] isFlipped]) {
-        newScrollOrigin=NSMakePoint(0.0,NSMaxY([[self.consoleScrollView documentView] frame])
-                                    -NSHeight([[self.consoleScrollView contentView] bounds]));
-    } else {
-        newScrollOrigin=NSMakePoint(0.0,0.0);
-    }
-    
+    const NSPoint newScrollOrigin=NSMakePoint(0.0,NSMaxY([[self.consoleScrollView documentView] frame])
+                                              -NSHeight([[self.consoleScrollView contentView] bounds]));
     [[self.consoleScrollView documentView] scrollPoint:newScrollOrigin];
     
 }
@@ -119,7 +111,7 @@
     if (object==self && [keyPath isEqualToString:@"paused"]) {
         self.consoleScrollView.scrollingAllowed=self.paused;
         self.consoleScrollView.hasVerticalScroller=self.paused;
-        self.consoleScrollView.hasHorizontalScroller=NO;
+        self.consoleScrollView.hasHorizontalScroller=self.paused;
         if (self.paused) {
             [self.consoleScrollView flashScrollers];
         }
