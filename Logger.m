@@ -8,8 +8,11 @@
 
 #import "Logger.h"
 
+NSString *const LoggerUpdatesWaiting=@"LoggerUpdatesWaiting";
 NSString *const LoggerEntriesChanged=@"LoggerEntriesChanged";
-NSString *const LoggerMaxLines=@"LoggerMaxLines";
+NSString *const LoggerEntriesAppended=@"LoggerEntriesAppended";
+NSString *const LoggerEntriesRemoved=@"LoggerEntriesRemoved";
+NSString *const LoggerMaxEntries=@"LoggerMaxEntries";
 
 NSString *const LoggerKeyTimestamp=@"timestamp";
 NSString *const LoggerKeyMessage=@"message";
@@ -20,7 +23,7 @@ NSString *const LoggerTypeSpecial=@"special";
 
 @interface Logger ()
 @property NSMutableArray *logArray;
-@property NSUInteger removedRowCount;
+@property NSMutableArray *blockArray;
 @end
 
 @implementation Logger
@@ -30,7 +33,8 @@ NSString *const LoggerTypeSpecial=@"special";
     self=[super init];
     if (self) {
         self.logArray=[NSMutableArray array];
-        self.limit=[[NSUserDefaults standardUserDefaults] integerForKey:LoggerMaxLines];
+        self.blockArray=[NSMutableArray array];
+        self.limit=[[NSUserDefaults standardUserDefaults] integerForKey:LoggerMaxEntries];
         self.enabled=YES;
     }
     return self;
@@ -38,16 +42,34 @@ NSString *const LoggerTypeSpecial=@"special";
 
 - (void)append:(NSDictionary *)entry
 {
-    const NSUInteger addedRowIndex=self.logArray.count;
-    if (addedRowIndex>self.limit) {
-        return;
-    }
-    if (addedRowIndex==self.limit) {
-        entry=@{LoggerKeyMessage: [NSString stringWithFormat:@"Log full (%@ entries). Clear to resume logging.", @(self.limit)]};
+    if (self.limit>0) {
+        while (self.logArray.count>=self.limit) {
+            [self.logArray removeObjectAtIndex:0];
+            [[NSNotificationCenter defaultCenter] postNotificationName:LoggerEntriesChanged object:self userInfo:@{LoggerEntriesRemoved: [NSIndexSet indexSetWithIndex:0]}];
+        }
     }
     
+    const NSUInteger indexToAdd=self.logArray.count;
     [self.logArray addObject:entry];
-    [[NSNotificationCenter defaultCenter] postNotificationName:LoggerEntriesChanged object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LoggerEntriesChanged object:self userInfo:@{LoggerEntriesAppended: [NSIndexSet indexSetWithIndex:indexToAdd]}];
+}
+
+- (void)appendDeferred:(NSDictionary *)entry
+{
+    // append action to array for later processing (so log updates can be batched up in a timer)
+    __weak Logger *welf=self;
+    [self.blockArray addObject:[^{
+        [welf append:entry];
+    } copy]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LoggerUpdatesWaiting object:self];
+}
+
+- (void)process
+{
+    [self.blockArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        void (^block)(void)=obj;
+        block();
+    }];
 }
 
 - (void)clear
@@ -59,7 +81,7 @@ NSString *const LoggerTypeSpecial=@"special";
 - (void)logMessage:(NSString *)str special:(BOOL)special;
 {
     if ((special||self.enabled) && [str isKindOfClass:[NSString class]])  {
-        [self append:@{LoggerKeyMessage:str, LoggerKeyTimestamp:[NSDate date], LoggerKeyType:special?LoggerTypeSpecial:LoggerTypeNormal}];
+        [self appendDeferred:@{LoggerKeyMessage:str, LoggerKeyTimestamp:[NSDate date], LoggerKeyType:special?LoggerTypeSpecial:LoggerTypeNormal}];
     }
 }
 
@@ -70,19 +92,12 @@ NSString *const LoggerTypeSpecial=@"special";
 
 - (NSUInteger)entryCount
 {
-    return self.logArray.count+self.removedRowCount;
+    return self.logArray.count;
 }
 
 - (NSDictionary *)entryAtIndex:(NSUInteger)row
 {
-    if (row>=self.removedRowCount) {
-        const NSUInteger adjustedRow=row-self.removedRowCount;
-        if (adjustedRow<self.logArray.count) {
-            return self.logArray[adjustedRow];
-        }
-    }
-
-    return nil;
+    return (row<self.logArray.count) ? self.logArray[row] : nil;
 }
 
 @end

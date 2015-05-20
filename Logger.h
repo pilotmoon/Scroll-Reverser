@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const LoggerUpdatesWaiting;
 extern NSString *const LoggerEntriesChanged;
-extern NSString *const LoggerMaxLines;
+extern NSString *const LoggerEntriesAppended;
+extern NSString *const LoggerEntriesRemoved;
+extern NSString *const LoggerMaxEntries;
 
 extern NSString *const LoggerKeyTimestamp;
 extern NSString *const LoggerKeyMessage;
@@ -28,5 +31,7 @@ extern NSString *const LoggerTypeSpecial;
 - (void)clear;
 
 - (NSDictionary *)entryAtIndex:(NSUInteger)row;
+
+- (void)process;
 
 @end

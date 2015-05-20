@@ -12,8 +12,8 @@
 #import "AppDelegate.h"
 
 @interface DebugWindowController ()
-@property NSTimer *refreshTimer;
 @property NSDateFormatter *df;
+@property NSTimer *refreshTimer;
 @end
 
 @implementation DebugWindowController
@@ -42,17 +42,31 @@
     self.consoleTableView.dataSource=self;
     self.consoleTableView.delegate=self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeLogEntriesChange:) name:LoggerEntriesChanged object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeLogUpdatesWaiting:) name:LoggerUpdatesWaiting object:nil];
     [self addObserver:self forKeyPath:@"paused" options:NSKeyValueObservingOptionInitial context:nil];
     [self updateConsole];
 }
 
 - (void)observeLogEntriesChange:(NSNotification *)note
 {
-    if (self.consoleTableView.numberOfRows<self.logger.entryCount) {
-        [self updateConsoleNeeded];
+    NSIndexSet *const appendedIndexes=[note userInfo][LoggerEntriesAppended];
+    NSIndexSet *const removedIndexes=[note userInfo][LoggerEntriesRemoved];
+
+    if (removedIndexes) {
+        [self.consoleTableView removeRowsAtIndexes:removedIndexes withAnimation:NSTableViewAnimationEffectNone];
+    }
+    else if (appendedIndexes) {
+        [self.consoleTableView insertRowsAtIndexes:appendedIndexes withAnimation:NSTableViewAnimationEffectNone];
     }
     else {
-        [self updateConsole];
+         [self.consoleTableView reloadData];
+    }
+}
+
+- (void)observeLogUpdatesWaiting:(NSNotification *)note
+{
+    if (self.window.isVisible && ![self.refreshTimer isValid]) {
+        self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateConsole) userInfo:nil repeats:NO];
     }
 }
 
@@ -74,20 +88,10 @@
 
 - (void)updateConsole
 {
-    if (self.consoleTableView.numberOfRows<self.logger.entryCount) {
-        [self.consoleTableView insertRowsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.consoleTableView.numberOfRows, (self.logger.entryCount-self.consoleTableView.numberOfRows))] withAnimation:NSTableViewAnimationEffectNone];
-    }
-    else {
-        [self.consoleTableView reloadData];
-    }
+    [self.consoleTableView beginUpdates];
+    [self.logger process];
+    [self.consoleTableView endUpdates];
     [self scrollToBottom];
-}
-
-- (void)updateConsoleNeeded
-{
-    if (self.window.isVisible && ![self.refreshTimer isValid]) {
-        self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateConsole) userInfo:nil repeats:NO];
-    }
 }
 
 - (void)scrollToBottom
@@ -139,7 +143,6 @@
     }
     
 }
-
 
 #pragma mark Table view delegate/datasource
 
