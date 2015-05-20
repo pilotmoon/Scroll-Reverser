@@ -6,7 +6,7 @@
 #import "WelcomeWindowController.h"
 #import "PrefsWindowController.h"
 #import "DebugWindowController.h"
-#import "Logger.h"
+#import "TapLogger.h"
 #import <Sparkle/SUUpdater.h>
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
@@ -134,7 +134,8 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (Logger *)startLogging
 {
     if (!logger) {
-        tap->logger=logger=[[Logger alloc] init];
+        logger=[[TapLogger alloc] init];
+        tap->logger=logger;
     }
     return logger;
 }

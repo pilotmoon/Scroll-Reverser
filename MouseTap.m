@@ -1,6 +1,6 @@
 #import "MouseTap.h"
 #import "CoreFoundation/CoreFoundation.h"
-#import "Logger.h"
+#import "TapLogger.h"
 #import "AppDelegate.h"
 
 #define MAGIC_NUMBER (0x7363726F726576) // "scrorev" in hex
@@ -78,15 +78,15 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 {
     @autoreleasepool {
 		MouseTap *tap=(__bridge MouseTap *)userInfo;
-        
         void(^clearTouches)(void)=^{
-            NSLog(@"* clearing touches *");
+            [tap->logger logBool:YES forKey:@"touchesCleared"];
             [tap->touches removeAllObjects];
         };
         
+        [tap->logger logUnsignedInteger:type forKey:@"eventType"];
+        
         if (type==NSEventTypeGesture)
         {
-            NSLog(@"gesture");
             /* How many fingers on the trackpad? Starting from a certain 10.10.2 preview,
              OS X started inserting extra events with no touches, in between events with touches. So
              This bit had to get a but more complicated so as to ignore the rogue 'zero touches' events. */
@@ -94,6 +94,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             
             // count fingers currently on the pad
             NSSet *touching=[ev touchesMatchingPhase:NSTouchPhaseTouching inView:nil];
+            [tap->logger logCount:touching forKey:@"touching"];
             if ([touching count]==0) {
                 if (tap->rawZeroCount<5) {
                     // count how many times touchesMatchingPhase reported zero touches even when there really are touches.
@@ -111,22 +112,27 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
                 clearTouches();
                 
                 for (NSTouch *touch in touching) {
-                    [tap->touches addObject:[touch identity]];
+                    const id identity=[touch identity];
+                    [tap->touches addObject:identity];
+                    [tap->logger logObject:identity forCountedKey:@"+touch"];
                 }
             }
             
             // subtract fingers removed from the pad
             NSSet *ended=[ev touchesMatchingPhase:NSTouchPhaseEnded|NSTouchPhaseCancelled inView:nil];
             for (NSTouch *touch in ended) {
+                const id identity=[touch identity];
                 [tap->touches removeObject:[touch identity]];
+                [tap->logger logObject:identity forCountedKey:@"-touch"];
             }
             
             tap->fingers=[tap->touches count];
+            
+            [tap->logger logUnsignedInteger:tap->rawZeroCount forKey:@"rawZeroCount"];
+            [tap->logger logUnsignedInteger:tap->fingers forKey:@"fingers"];
         }
         else if (type==NSScrollWheel)
         {
-            NSLog(@"scroll");
-            
             // get the scrolling deltas
             const int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
             const int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
@@ -241,9 +247,9 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
                 CGEventSetIntegerValueField(event, kCGEventSourceUserData, MAGIC_NUMBER);
             }
 
-            NSString *logstr=[NSString stringWithFormat:@"pid %@ cont %@ dy %@ dx %@ wDevice %@ wMouse %@ fingers %@ sampled %@ source %@ invert %@",
-                  @(pid), @(continuous), @(pixel_axis1), @(pixel_axis2), @(wacomDevice), @(wacomMouse), @(tap->fingers), @(tap->sampledFingers), @(source), @(invert)];
-            [tap->logger logMessage:logstr];
+//            NSString *logstr=[NSString stringWithFormat:@"pid %@ cont %@ dy %@ dx %@ wDevice %@ wMouse %@ fingers %@ sampled %@ source %@ invert %@",
+//                  @(pid), @(continuous), @(pixel_axis1), @(pixel_axis2), @(wacomDevice), @(wacomMouse), @(tap->fingers), @(tap->sampledFingers), @(source), @(invert)];
+//            [tap->logger logMessage:logstr];
 
         }
         else if(type==kCGEventTapDisabledByTimeout)
@@ -252,6 +258,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             [tap enableTap:TRUE]; // Just re-enable it.
         }	
         
+        [tap->logger logParams];
 		return event;
 	}
 }
@@ -265,9 +272,6 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 
 - (NSString *)stateString
 {
-//    NSString *(^yn)(NSString *, BOOL) = ^(NSString *label, BOOL state) {
-//        return [NSString stringWithFormat:@"[%@ %@]", label, state?@"YES":@"NO"];
-//    };
     NSString *(^val)(NSString *, unsigned long) = ^(NSString *label, unsigned long val) {
         return [NSString stringWithFormat:@"[%@ %@]", label, @(val)];
     };
@@ -304,7 +308,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 	port=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
 										   kCGTailAppendEventTap,
 										   kCGEventTapOptionDefault,
-										   CGEventMaskBit(kCGEventScrollWheel)|CGEventMaskBit(kCGEventTabletProximity)|NSEventMaskGesture,
+										   NSScrollWheelMask|NSTabletProximityMask|NSEventMaskGesture,
 										   eventTapCallback,
 										   (__bridge void *)(self));
 

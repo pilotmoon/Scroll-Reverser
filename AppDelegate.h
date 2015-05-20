@@ -1,5 +1,5 @@
 #import <Cocoa/Cocoa.h>
-@class MouseTap, StatusItemController, LoginItemsController, WelcomeWindowController, PrefsWindowController, DebugWindowController, Logger;
+@class MouseTap, StatusItemController, LoginItemsController, WelcomeWindowController, PrefsWindowController, DebugWindowController, TapLogger;
 
 extern NSString *const PrefsReverseScrolling;
 extern NSString *const PrefsReverseHorizontal;
@@ -16,7 +16,7 @@ extern NSString *const PrefsHideIcon;
     WelcomeWindowController *welcomeWindowController;
     PrefsWindowController *prefsWindowController;
     DebugWindowController *debugWindowController;
-    Logger *logger;
+    TapLogger *logger;
     
     IBOutlet NSMenu *statusMenu;
 }

@@ -38,7 +38,7 @@
 - (void)windowDidLoad {
     [super windowDidLoad];
     self.df=[[NSDateFormatter alloc] init];
-    self.df.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    self.df.dateFormat=@"HH:mm:ss.S";
     self.consoleTableView.dataSource=self;
     self.consoleTableView.delegate=self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeLogEntriesChange:) name:LoggerEntriesChanged object:nil];
