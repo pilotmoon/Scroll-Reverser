@@ -7,6 +7,15 @@ typedef enum {
     ScrollEventSourceMax 
 } ScrollEventSource;
 
+/*
+ We abstract the system defined scrolling phases into these possibilities.
+ */
+typedef enum {
+    ScrollPhaseNormal=0, // fingers on pad
+    ScrollPhaseMomentum, // fingers off pad, but scrolling with momentum
+    ScrollPhaseEnd       // scrolling ended
+} ScrollPhase;
+
 @class MouseTap, TapLogger;
 @interface MouseTap : NSObject {
 	CGEventMask mask;

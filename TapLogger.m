@@ -52,7 +52,24 @@
     [self logObject:val?@"yes":@"no" forKey:key];
 }
 
+- (void)logIfYes:(BOOL)val forKey:(NSString *)key
+{
+    if (val) {
+        [self logBool:val forKey:key];
+    }
+}
+
+- (void)logSignedInteger:(NSInteger)val forKey:(NSString *)key
+{
+    [self logObject:@(val) forKey:key];
+}
+
 - (void)logUnsignedInteger:(NSUInteger)val forKey:(NSString *)key
+{
+    [self logObject:@(val) forKey:key];
+}
+
+- (void)logDouble:(double)val forKey:(NSString *)key
 {
     [self logObject:@(val) forKey:key];
 }
@@ -60,6 +77,69 @@
 - (void)logCount:(id)obj forKey:(NSString *)key
 {
     [self logObject:@([obj count]) forKey:key];
+}
+
+- (void)logEventType:(CGEventType)type forKey:(NSString *)key
+{
+    NSString *str=@"unknown";
+    switch (type) {
+        case NSEventTypeGesture:
+            str=@"gesture";
+            break;
+            
+        case NSScrollWheel:
+            str=@"scroll";
+            break;
+            
+        case kCGEventTapDisabledByTimeout:
+            str=@"timeout";
+            break;
+            
+        default:
+            break;
+    }
+    [self logObject:str forKey:key];
+}
+
+
+- (void)logSource:(ScrollEventSource)source forKey:(NSString *)key
+{
+    NSString *str=@"unknown";
+    switch (source) {
+        case ScrollEventSourceOther:
+            str=@"mouse/other";
+            break;
+            
+        case ScrollEventSourceTrackpad:
+            str=@"trackpad";
+            break;
+            
+        case ScrollEventSourceTablet:
+            str=@"tablet";
+            break;
+            
+        default:
+            break;
+    }
+    [self logObject:str forKey:key];
+}
+
+- (void)logPhase:(ScrollPhase)phase forKey:(NSString *)key
+{
+    NSString *str=@"unknown";
+    switch (phase) {
+        case ScrollPhaseNormal:
+            str=@"normal";
+            break;
+            
+        case ScrollPhaseMomentum:
+            str=@"momentum";
+            break;
+            
+        default:
+            break;
+    }
+    [self logObject:str forKey:key];
 }
 
 - (void)logParams
