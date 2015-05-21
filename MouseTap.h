@@ -19,9 +19,11 @@ typedef enum {
 
 @class MouseTap, TapLogger;
 @interface MouseTap : NSObject {
-	CGEventMask mask;
-	CFMachPortRef port;
-	CFRunLoopSourceRef source;
+	CFMachPortRef activeTapPort;
+	CFRunLoopSourceRef activeTapSource;
+    CFMachPortRef passiveTapPort;
+    CFRunLoopSourceRef passiveTapSource;
+
 @public
 	/* This is public so that the tap function doesn't have to invoke a method to get to it.
 	 Maybe over-optimizing here but it's all pretty straightforward. */
@@ -42,7 +44,7 @@ typedef enum {
 }
 - (void)start;
 - (void)stop;
-- (void)enableTap:(BOOL)state;
+- (void)enableTaps:(BOOL)state;
 - (void)resetState;
 @end
 

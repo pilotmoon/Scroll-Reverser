@@ -63,21 +63,22 @@ static ScrollPhase _momentumPhaseForEvent(CGEventRef event)
     }
 }
 
-// This is called every time there is a scroll event. It has to be efficient.
-static CGEventRef eventTapCallback(CGEventTapProxy proxy,
-                                   CGEventType type,
-                                   CGEventRef event,
-                                   void *userInfo)
+static void clearTouches(MouseTap *const tap)
 {
-    @autoreleasepool {
-		MouseTap *tap=(__bridge MouseTap *)userInfo;
-        void(^clearTouches)(void)=^{
-            [tap->logger logBool:YES forKey:@"touchesCleared"];
-            [tap->touches removeAllObjects];
-        };
-        
-        [tap->logger logEventType:type forKey:@"type"];
+    [tap->touches removeAllObjects];
+    [tap->logger logBool:YES forKey:@"touchesCleared"];
+}
 
+static CGEventRef gestureCallback(CGEventTapProxy proxy,
+                                  CGEventType type,
+                                  CGEventRef event,
+                                  void *userInfo)
+{
+    @autoreleasepool
+    {
+        MouseTap *const tap=(__bridge MouseTap *)userInfo;
+        [tap->logger logEventType:type forKey:@"type"];
+        
         if (type==NSEventTypeGesture)
         {
             /* How many fingers on the trackpad? Starting from a certain 10.10.2 preview,
@@ -99,12 +100,12 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
                 }
                 else {
                     // sometimes we miss the 'touch ended' and touches get stuck in our cache. so we clear them out.
-                    clearTouches();
+                    clearTouches(tap);
                 }
             }
             else {
                 tap->rawZeroCount=0;
-                clearTouches();
+                clearTouches(tap);
                 
                 for (NSTouch *touch in touching) {
                     const id identity=[touch identity];
@@ -126,7 +127,26 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             [tap->logger logUnsignedInteger:tap->rawZeroCount forKey:@"rzc"];
             [tap->logger logUnsignedInteger:tap->fingers forKey:@"f"];
         }
-        else if (type==NSScrollWheel)
+        else if(type==kCGEventTapDisabledByTimeout)
+        {
+            [tap enableTaps:TRUE];
+        }
+        [tap->logger logParams];
+    }
+    return NULL;
+}
+
+static CGEventRef scrollCallback(CGEventTapProxy proxy,
+                                 CGEventType type,
+                                 CGEventRef event,
+                                 void *userInfo)
+{
+    @autoreleasepool
+    {
+        MouseTap *const tap=(__bridge MouseTap *)userInfo;
+        [tap->logger logEventType:type forKey:@"type"];
+        
+        if (type==NSScrollWheel)
         {
             // get source pid
             const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
@@ -186,7 +206,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
                 {
                     /* during momentum phase we can assume less than 2 touches on pad.
                     it's probably a good idea to clear the cache here. */
-                    clearTouches();
+                    clearTouches(tap);
                 }
                 
                 /* Should we sample the number of fingers now? The whole point of this is to only sample fingers when user is actually
@@ -271,8 +291,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         }
         else if(type==kCGEventTapDisabledByTimeout)
         {
-            // This can happen sometimes. (Not sure why.) 
-            [tap enableTap:TRUE]; // Just re-enable it.
+            [tap enableTaps:TRUE];
         }	
         
         [tap->logger logParams];
@@ -284,7 +303,7 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 
 - (BOOL)isActive
 {
-	return source&&port;
+	return activeTapSource&&passiveTapSource&&activeTapPort&&passiveTapPort;
 }
 
 - (void)resetState
@@ -306,17 +325,28 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
     _detectWacomMouse=![[NSUserDefaults standardUserDefaults] boolForKey:@"DisableWacomMouseDetection"];
     [self resetState];
 
-	// create mach port
-	port=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
+	// create active tap for scroll events (which we modify)
+	activeTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
 										   kCGTailAppendEventTap,
 										   kCGEventTapOptionDefault,
-										   NSScrollWheelMask|NSEventMaskGesture,
-										   eventTapCallback,
+										   NSScrollWheelMask,
+										   scrollCallback,
 										   (__bridge void *)(self));
 
-	// create source and add to tun loop
-	source = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, port, 0);
-	CFRunLoopAddSource(CFRunLoopGetMain(), source, kCFRunLoopCommonModes);
+    // create passive tap for gesture events. we do this because installing
+    // an active tap seems to mess with the system 3-finger tap gesture.
+    passiveTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
+                                                  kCGTailAppendEventTap,
+                                                  kCGEventTapOptionListenOnly,
+                                                  NSEventMaskGesture,
+                                                  gestureCallback,
+                                                  (__bridge void *)(self));
+
+	// create sources and add to run loop
+	activeTapSource = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, activeTapPort, 0);
+	passiveTapSource = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, passiveTapPort, 0);
+    CFRunLoopAddSource(CFRunLoopGetMain(), activeTapSource, kCFRunLoopCommonModes);
+    CFRunLoopAddSource(CFRunLoopGetMain(), passiveTapSource, kCFRunLoopCommonModes);
 }
 
 - (void)stop
@@ -324,18 +354,27 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 	if (![self isActive])
 		return;
 	
-	CFRunLoopRemoveSource(CFRunLoopGetMain(), source, kCFRunLoopCommonModes);
-	CFMachPortInvalidate(port);
-	CFRelease(source);
-	CFRelease(port);
-	source=nil;
-	port=nil;
+	CFRunLoopRemoveSource(CFRunLoopGetMain(), activeTapSource, kCFRunLoopCommonModes);
+	CFRunLoopRemoveSource(CFRunLoopGetMain(), passiveTapSource, kCFRunLoopCommonModes);
+    
+    CFMachPortInvalidate(activeTapPort);
+	CFMachPortInvalidate(passiveTapPort);
+    
+	CFRelease(activeTapSource);
+    CFRelease(passiveTapSource);
+	activeTapSource=passiveTapSource=nil;
+    
+    CFRelease(activeTapPort);
+    CFRelease(passiveTapPort);
+	activeTapPort=passiveTapPort=nil;
+    
     touches=nil;
 }
 
-- (void)enableTap:(BOOL)state
+- (void)enableTaps:(BOOL)state
 {
-	CGEventTapEnable(port, state);
+	CGEventTapEnable(activeTapPort, state);
+	CGEventTapEnable(passiveTapPort, state);
 }
 
 @end
