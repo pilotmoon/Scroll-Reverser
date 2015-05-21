@@ -92,7 +92,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
                 [NSApp terminate:nil];
             });
         }
-        else {        
+        else {
             tap=[[MouseTap alloc] init];
             [self updateTap];
             

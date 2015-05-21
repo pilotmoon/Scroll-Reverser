@@ -136,6 +136,10 @@
             str=@"momentum";
             break;
             
+        case ScrollPhaseEnd:
+            str=@"end";
+            break;
+            
         default:
             break;
     }

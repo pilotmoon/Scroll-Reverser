@@ -28,6 +28,11 @@ static NSString *_bundleIdForPID(const pid_t pid)
  */
 static BOOL _pidIsWacomTablet(const pid_t pid)
 {
+    // zero is the common case
+    if (pid==0) {
+        return NO;
+    }
+    
     // short cut
     static pid_t lastKnownTabletPid=0;
     if (pid==lastKnownTabletPid) {
@@ -48,17 +53,14 @@ static BOOL _pidIsWacomTablet(const pid_t pid)
 
 static ScrollPhase _momentumPhaseForEvent(CGEventRef event)
 {
-    ScrollPhase result=ScrollPhaseNormal;
-    
-    const NSEventPhase momentumPhase=[[NSEvent eventWithCGEvent:event] momentumPhase];
-    
-    if (momentumPhase==NSTouchPhaseStationary) {
-        result=ScrollPhaseMomentum;
+    switch ([[NSEvent eventWithCGEvent:event] momentumPhase]) {
+        case NSTouchPhaseStationary:
+            return ScrollPhaseMomentum;
+        case NSTouchPhaseEnded:
+            return ScrollPhaseEnd;
+        default:
+            return ScrollPhaseNormal;
     }
-    else if (momentumPhase==NSTouchPhaseEnded) {
-        result=ScrollPhaseEnd;
-    }
-    return result;
 }
 
 // This is called every time there is a scroll event. It has to be efficient.
@@ -75,13 +77,15 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         };
         
         [tap->logger logEventType:type forKey:@"type"];
-        
+
         if (type==NSEventTypeGesture)
         {
             /* How many fingers on the trackpad? Starting from a certain 10.10.2 preview,
              OS X started inserting extra events with no touches, in between events with touches. So
              This bit had to get a but more complicated so as to ignore the rogue 'zero touches' events. */
             NSEvent *ev=[NSEvent eventWithCGEvent:event];
+            //[tap->logger logObject:ev forKey:@"ev"];
+            //[tap->logger logUnsignedInteger:[ev subtype] forKey:@"subtype"];
             
             // count fingers currently on the pad
             NSSet *touching=[ev touchesMatchingPhase:NSTouchPhaseTouching inView:nil];
@@ -124,8 +128,9 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
         }
         else if (type==NSScrollWheel)
         {
-            // default source is "Other" i.e. not a Trackpad, not a Tablet, but a Mouse.
-            ScrollEventSource source=ScrollEventSourceOther;
+            // get source pid
+            const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
+            [tap->logger logUnsignedInteger:pid forKey:@"pid"];
             
             // get the scrolling deltas
             const int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
@@ -134,80 +139,87 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
             const int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
             const double fixedpt_axis1=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1);
             const double fixedpt_axis2=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2);
-            
-            // check if wacom device
-            const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
-            const BOOL wacomDevice=pid&&_pidIsWacomTablet(pid);
 
-            // detect the wacom mouse, which always seems to scroll in multiples of 25
-            const BOOL wacomMouse=_detectWacomMouse?pixel_axis1%25==0&&pixel_axis2==0:NO;
-            
             [tap->logger logSignedInteger:pixel_axis1 forKey:@"y_px"];
             [tap->logger logSignedInteger:pixel_axis2 forKey:@"x_px"];
-            [tap->logger logSignedInteger:line_axis1 forKey:@"y_line"];
-            [tap->logger logSignedInteger:line_axis1 forKey:@"x_line"];
-            [tap->logger logDouble:fixedpt_axis1 forKey:@"y_fp"];
-            [tap->logger logDouble:fixedpt_axis2 forKey:@"x_fp"];
-            [tap->logger logIfYes:wacomDevice forKey:@"isWacomDevice"];
-            [tap->logger logIfYes:wacomMouse forKey:@"isWacomMouse"];
+            // [tap->logger logSignedInteger:line_axis1 forKey:@"y_line"];
+            // [tap->logger logSignedInteger:line_axis1 forKey:@"x_line"];
+            // [tap->logger logDouble:fixedpt_axis1 forKey:@"y_fp"];
+            // [tap->logger logDouble:fixedpt_axis2 forKey:@"x_fp"];
             
-            // get the continuous flag
-            const BOOL continuous=CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous)!=0;
-            [tap->logger logIfYes:!continuous forKey:@"nonContinuous"];
-            
-            // assume non-continuous events are never from a trackpad or tablet
-            if (continuous)
+            // default source is "Other" i.e. not a Trackpad, not a Tablet, but a Mouse.
+            ScrollEventSource source=ScrollEventSourceOther;
+            do
             {
-                if (wacomDevice&&!wacomMouse)
-                {
-                    source=ScrollEventSourceTablet;
+                // assume non-continuous events are never from a trackpad or tablet
+                if (CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous)==0) {
+                    [tap->logger logBool:YES forKey:@"notContinuous"];
+                    break;
                 }
-                else // detect trackpad
+                
+                // check if wacom device, which could be tablet or mouse
+                if (_pidIsWacomTablet(pid))
                 {
-                    const ScrollPhase phase=_momentumPhaseForEvent(event);
-                    const UInt32 ticks=TickCount(); // about 1/60 of a sec
-                    const UInt32 ticksElapsed=TickCount()-tap->lastScrollTicks;
-                    
-                    [tap->logger logPhase:phase forKey:@"phase"];
-                    [tap->logger logUnsignedInteger:ticksElapsed forKey:@"elapsed"];
-                    [tap->logger logUnsignedInteger:tap->sampledFingers forKey:@"sf"];
-                    [tap->logger logUnsignedInteger:tap->zeroCount forKey:@"zc"];
-
-                    if (phase==ScrollPhaseMomentum) {
-                        // during momentum phase we can assume less than 2 touches on pad. it's probably a good idea to clear the cache here.
-                        clearTouches();
+                    // detect the wacom mouse, which always seems to scroll in multiples of 25
+                    const BOOL wacomMouse=_detectWacomMouse?pixel_axis1!=0&&pixel_axis1%25==0&&pixel_axis2==0:NO;
+                    if (!wacomMouse) {
+                        source=ScrollEventSourceTablet;
                     }
                     
-                    /* Should we sample the number of fingers now? The whole point of this is to only sample fingers when user is actually
-                     * scrolling, not during the momentum phase. Unfortunately the system cannot be relied upon to always send correct
-                     * finger signals (four finger swipes for example can mess things up, although this seems fixed on Yosemite) so we
-                     * use some timing and other indicators. Still room for improvement here. */
-                    if (phase==ScrollPhaseNormal&&(tap->lastPhase!=ScrollPhaseNormal||tap->sampledFingers<2||tap->zeroCount>2||ticksElapsed>20))
-                    {
-                        [tap->logger logBool:YES forKey:@"sampling"];
-                        tap->sampledFingers=tap->fingers;
-                    }
-                    
-                    // Assume Trackpad source when 2 fingers are seen on the pad.
-                    if (tap->sampledFingers>=2)
-                    {
-                        source=ScrollEventSourceTrackpad;
-                    }
-                    
-                    // Count of how many times we have seen no fingers on the pad.
-                    if (tap->fingers>=2)
-                    {
-                        tap->zeroCount=0;
-                    }
-                    else
-                    {
-                        tap->zeroCount+=1;
-                    }
-                    
-                    tap->lastPhase=phase;
-                    tap->lastScrollTicks=ticks;
+                    [tap->logger logBool:YES forKey:@"wacomDevice"];
+                    [tap->logger logBool:wacomMouse forKey:@"wacomMouse"];
+                    break;
                 }
-            }
+                
+                // now do the bit where we work out if it is a trackpad or not
+                const ScrollPhase phase=_momentumPhaseForEvent(event);
+                const UInt32 ticks=TickCount(); // about 1/60 of a sec
+                const UInt32 ticksElapsed=TickCount()-tap->lastScrollTicks;
+                
+                [tap->logger logPhase:phase forKey:@"phase"];
+                [tap->logger logUnsignedInteger:ticksElapsed forKey:@"elapsed"];
+                [tap->logger logUnsignedInteger:tap->fingers forKey:@"f"];
+                [tap->logger logUnsignedInteger:tap->sampledFingers forKey:@"sf"];
+                [tap->logger logUnsignedInteger:tap->zeroCount forKey:@"zc"];
+                
+                if (phase==ScrollPhaseMomentum)
+                {
+                    /* during momentum phase we can assume less than 2 touches on pad.
+                    it's probably a good idea to clear the cache here. */
+                    clearTouches();
+                }
+                
+                /* Should we sample the number of fingers now? The whole point of this is to only sample fingers when user is actually
+                 * scrolling, not during the momentum phase. Unfortunately the system cannot be relied upon to always send correct
+                 * finger signals (four finger swipes for example can mess things up, although this seems fixed on Yosemite) so we
+                 * use some timing and other indicators. Still room for improvement here. */
+                if (phase==ScrollPhaseNormal&&(tap->lastPhase!=ScrollPhaseNormal||tap->sampledFingers<2||tap->zeroCount>2||ticksElapsed>20))
+                {
+                    [tap->logger logBool:YES forKey:@"sampling"];
+                    tap->sampledFingers=tap->fingers;
+                }
+                
+                // Assume Trackpad source when 2 fingers are seen on the pad.
+                if (tap->sampledFingers>=2)
+                {
+                    source=ScrollEventSourceTrackpad;
+                }
+                
+                // Count of how many times we have seen no fingers on the pad.
+                if (tap->fingers>=2)
+                {
+                    tap->zeroCount=0;
+                }
+                else
+                {
+                    tap->zeroCount+=1;
+                }
+                
+                tap->lastPhase=phase;
+                tap->lastScrollTicks=ticks;
+                
+                
+            } while(0);
             
             [tap->logger logSource:source forKey:@"source"];
             
@@ -273,21 +285,6 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy,
 - (BOOL)isActive
 {
 	return source&&port;
-}
-
-- (NSString *)stateString
-{
-    NSString *(^val)(NSString *, unsigned long) = ^(NSString *label, unsigned long val) {
-        return [NSString stringWithFormat:@"[%@ %@]", label, @(val)];
-    };
-    NSString *temp=val(@"touches", [touches count]);
-    temp=[temp stringByAppendingString:val(@"f", fingers)];
-    temp=[temp stringByAppendingString:val(@"sf", sampledFingers)];
-    temp=[temp stringByAppendingString:val(@"rzc", rawZeroCount)];
-    temp=[temp stringByAppendingString:val(@"zc", zeroCount)];
-    temp=[temp stringByAppendingString:val(@"lst", lastScrollTicks)];
-    temp=[temp stringByAppendingString:val(@"lp", lastPhase)];
-    return temp;
 }
 
 - (void)resetState

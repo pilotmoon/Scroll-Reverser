@@ -13,7 +13,8 @@ typedef enum {
 typedef enum {
     ScrollPhaseNormal=0, // fingers on pad
     ScrollPhaseMomentum, // fingers off pad, but scrolling with momentum
-    ScrollPhaseEnd       // scrolling ended
+    ScrollPhaseEnd,       // scrolling ended
+    ScrollPhaseMax
 } ScrollPhase;
 
 @class MouseTap, TapLogger;
@@ -42,7 +43,6 @@ typedef enum {
 - (void)start;
 - (void)stop;
 - (void)enableTap:(BOOL)state;
-- (NSString *)stateString;
 - (void)resetState;
 @end
 
