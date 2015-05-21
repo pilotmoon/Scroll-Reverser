@@ -19,34 +19,35 @@
     const int n=256;
     const CGFloat side=16;
     
-    return [NSImage imageWithSize:NSMakeSize(n*side, n*side) flipped:NO drawingHandler:^BOOL(NSRect rect) {
-        NSDictionary *const p=@{@0: [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0],
-                                @1: [NSColor colorWithCalibratedRed:0.803922 green:0.87451 blue:0.905882 alpha:1.0],
-                                @2: [NSColor colorWithCalibratedRed:0.313725 green:0.670588 blue:0.74902 alpha:1.0],
-                                @3: [NSColor colorWithCalibratedRed:0.0196078 green:0.203922 blue:0.345098 alpha:1.0],
-                                @4: [NSColor colorWithCalibratedRed:0.894118 green:0.643137 blue:0.172549 alpha:1.0],
-                                };
-        
-        NSArray *const c=@[p[@0], p[@0], p[@0], p[@1], p[@1], p[@2], p[@1], p[@3], p[@3], p[@4]];
-        
-        NSColor *(^tileColor)(void) = ^{
-            return c[random()%[c count]];
-        };
-        
-        NSRect(^tileRect)(int, int) = ^(int row, int col) {
-            return NSMakeRect(col*side, row*side, side, side);
-        };
-        
-        srandom(seed);
-        for (int j=0; j<n; j+=1) {
-            for (int i=0; i<n; i+=1) {
-                [tileColor() set];
-                NSRectFill(tileRect(i,j));
-            }
-        }
-        
-        return YES;
-    }];
+    return [NSImage imageNamed:@"ScrollReverser"];
+ //    return [NSImage imageWithSize:NSMakeSize(n*side, n*side) flipped:NO drawingHandler:^BOOL(NSRect rect) {
+//        NSDictionary *const p=@{@0: [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0],
+//                                @1: [NSColor colorWithCalibratedRed:0.803922 green:0.87451 blue:0.905882 alpha:1.0],
+//                                @2: [NSColor colorWithCalibratedRed:0.313725 green:0.670588 blue:0.74902 alpha:1.0],
+//                                @3: [NSColor colorWithCalibratedRed:0.0196078 green:0.203922 blue:0.345098 alpha:1.0],
+//                                @4: [NSColor colorWithCalibratedRed:0.894118 green:0.643137 blue:0.172549 alpha:1.0],
+//                                };
+//        
+//        NSArray *const c=@[p[@0], p[@0], p[@0], p[@1], p[@1], p[@2], p[@1], p[@3], p[@3], p[@4]];
+//        
+//        NSColor *(^tileColor)(void) = ^{
+//            return c[random()%[c count]];
+//        };
+//        
+//        NSRect(^tileRect)(int, int) = ^(int row, int col) {
+//            return NSMakeRect(col*side, row*side, side, side);
+//        };
+//        
+//        srandom(seed);
+//        for (int j=0; j<n; j+=1) {
+//            for (int i=0; i<n; i+=1) {
+//                [tileColor() set];
+//                NSRectFill(tileRect(i,j));
+//            }
+//        }
+//        
+//        return YES;
+//    }];
 }
 
 - (void)windowDidLoad {

@@ -231,7 +231,8 @@ static CGEventRef callback(CGEventTapProxy proxy,
     lastEventTime=0;
     lastSeenFingersTime=0;
     lastSeenFingers=0;
-    sampledFingers=0;
+//    sampledFingers=0;
+    //TODO
     [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap state reset"];
 }
 
