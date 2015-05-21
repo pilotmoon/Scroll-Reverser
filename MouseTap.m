@@ -150,8 +150,6 @@ static CGEventRef callback(CGEventTapProxy proxy,
                     return ScrollEventSourceTrackpad;
                 }
                 
-
-                
                 if (phase==ScrollPhaseNormal && touchElapsed>(MILLISECOND*333))
                 {
                     [tap->logger logBool:YES forKey:@"usingTouchElapsed"];
@@ -254,24 +252,15 @@ static CGEventRef callback(CGEventTapProxy proxy,
     _detectWacomMouse=![[NSUserDefaults standardUserDefaults] boolForKey:@"DisableWacomMouseDetection"];
     [self resetState];
     
-    CGEventMask eventTypeMask = 0;
-    for (NSEventType type = NSLeftMouseDown; type <= NSEventTypeGesture; ++type) {
-        switch (type) {
-            case NSKeyDown:
-            case NSKeyUp:
-            case NSFlagsChanged:
-                break;
-            default:
-                eventTypeMask |= NSEventMaskFromType(type);
-        }
-    }
+    CGEventMask activeEventMask=NSEventMaskGesture|NSScrollWheelMask;
+    CGEventMask passiveEventMask=0;
 
     // create passive tap for gesture events. we do this because installing
-    // an active tap seems to mess with the system 3-finger tap gesture.
+    // an active tap on gestures seems to mess with the system 3-finger tap gesture.
     passiveTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
                                                    kCGTailAppendEventTap,
                                                    kCGEventTapOptionListenOnly,
-                                                   0,
+                                                   passiveEventMask,
                                                    callback,
                                                    (__bridge void *)(self));
     
@@ -279,11 +268,9 @@ static CGEventRef callback(CGEventTapProxy proxy,
 	activeTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
 										   kCGTailAppendEventTap,
 										   kCGEventTapOptionDefault,
-										   eventTypeMask,
+										   activeEventMask,
 										   callback,
 										   (__bridge void *)(self));
-
-
 
 	// create sources and add to run loop
 	passiveTapSource = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, passiveTapPort, 0);
