@@ -18,9 +18,7 @@ NSString *const PrefsReverseTablet=@"ReverseTablet";
 NSString *const PrefsHasRunBefore=@"HasRunBefore";
 NSString *const PrefsHideIcon=@"HideIcon";
 
-@interface AppDelegate ()
-@property BOOL ready;
-@end
+
 
 @implementation AppDelegate
 
@@ -40,9 +38,33 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	}
 }
 
+- (BOOL)alreadyRunning
+{
+    const BOOL alreadyRunning=^BOOL {
+        for (NSRunningApplication *app in [[NSWorkspace sharedWorkspace] runningApplications]) {
+            if (![app isEqual:[NSRunningApplication currentApplication]]) {
+                if ([app.bundleIdentifier isEqualToString:[NSRunningApplication currentApplication].bundleIdentifier]) {
+                    return YES;
+                }
+            }
+        }
+        return NO;
+    }();
+    
+    if (alreadyRunning) {
+        [[NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"%@ is already running.", nil), self.appName]
+                         defaultButton:NSLocalizedString(@"Quit", nil)
+                       alternateButton:nil
+                           otherButton:nil
+             informativeTextWithFormat:NSLocalizedString(@"%@ cannot start while another copy is running.", nil), self.appName] runModal];
+    }
+    
+    return alreadyRunning;
+}
+
 - (void)updateTap
 {
-	tap->inverting=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
+    tap->inverting=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
     tap->invertX=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal];
     tap->invertY=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical];
     tap->invertMultiTouch=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad];
@@ -62,27 +84,60 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (id)init
 {
-	self=[super init];
-	if (self) {
-        tap=[[MouseTap alloc] init];
-		[self updateTap];
-        
-		statusController=[[StatusItemController alloc] init];
-		loginItemsController=[[LoginItemsController alloc] init];
-        [loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
-        
-        [self observePrefsKey:PrefsReverseScrolling];
-        [self observePrefsKey:PrefsReverseHorizontal];
-        [self observePrefsKey:PrefsReverseVertical];
-        [self observePrefsKey:PrefsReverseTrackpad];
-        [self observePrefsKey:PrefsReverseMouse];
-        [self observePrefsKey:PrefsReverseTablet];
-        [self observePrefsKey:PrefsHideIcon];
-        
-        [[SUUpdater sharedUpdater] setDelegate:self];
-        [[SUUpdater sharedUpdater] setFeedURL:[self feedURL]];
+    self=[super init];
+    if (self) {
+        if([self alreadyRunning]) {
+            quitting=YES;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [NSApp terminate:nil];
+            });
+        }
+        else {        
+            tap=[[MouseTap alloc] init];
+            [self updateTap];
+            
+            statusController=[[StatusItemController alloc] init];
+            loginItemsController=[[LoginItemsController alloc] init];
+            [loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
+            
+            [self observePrefsKey:PrefsReverseScrolling];
+            [self observePrefsKey:PrefsReverseHorizontal];
+            [self observePrefsKey:PrefsReverseVertical];
+            [self observePrefsKey:PrefsReverseTrackpad];
+            [self observePrefsKey:PrefsReverseMouse];
+            [self observePrefsKey:PrefsReverseTablet];
+            [self observePrefsKey:PrefsHideIcon];
+            
+            [[SUUpdater sharedUpdater] setDelegate:self];
+            [[SUUpdater sharedUpdater] setFeedURL:[self feedURL]];
+        }
     }
-	return self;
+    return self;
+}
+
+- (void)awakeFromNib
+{
+    if(quitting) return;
+	[statusController attachMenu:statusMenu];
+}
+	
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    if(quitting) return;
+    
+    [NSApp setMainMenu:self.theMainMenu];
+    
+	const BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
+	if(first) {
+        welcomeWindowController=[[WelcomeWindowController alloc] initWithWindowNibName:@"WelcomeWindow"];
+        [welcomeWindowController showWindow:self];
+	}
+    
+    ready=YES;
+    if (tap->inverting) {
+        [tap start];
+    }
 }
 
 - (NSString *)settingsSummary
@@ -101,34 +156,13 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)logAppEvent:(NSString *)str
 {
-    [logger logMessage:[NSString stringWithFormat:@"%@ %@%@", str, [self settingsSummary], [tap stateString]] special:YES];
+    [logger logMessage:[NSString stringWithFormat:@"%@ %@", str, [self settingsSummary]] special:YES];
 }
 
 - (void)toggleReversing
 {
     const BOOL state=[[NSUserDefaults standardUserDefaults]  boolForKey:PrefsReverseScrolling];
     [[NSUserDefaults standardUserDefaults] setBool:!state forKey:PrefsReverseScrolling];
-}
-
-- (void)awakeFromNib
-{
-	[statusController attachMenu:statusMenu];
-}
-	
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-    [NSApp setMainMenu:self.theMainMenu];
-    
-	const BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
-	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
-	if(first) {
-        welcomeWindowController=[[WelcomeWindowController alloc] initWithWindowNibName:@"WelcomeWindow"];
-        [welcomeWindowController showWindow:self];
-	}
-    self.ready=YES;
-    if (tap->inverting) {
-        [tap start];
-    }
 }
 
 - (Logger *)startLogging
@@ -198,7 +232,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
         [self updateTap];
         [self logAppEvent:@"Settings changed"];
         if ([keyPath hasSuffix:PrefsReverseScrolling]) {
-            if (self.ready && tap->inverting) {
+            if (ready && tap->inverting) {
                 [tap start];
             }
             else {
