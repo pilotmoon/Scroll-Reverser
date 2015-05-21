@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+// The possible sources of scrolling events.
 typedef enum {
     ScrollEventSourceMouse=0,
     ScrollEventSourceTrackpad,
@@ -7,14 +8,12 @@ typedef enum {
     ScrollEventSourceMax 
 } ScrollEventSource;
 
-/*
- We abstract the system defined scrolling phases into these possibilities.
- */
+// We abstract the system defined scrolling phases into these possibilities.
 typedef enum {
-    ScrollPhaseStart=0, // fingers on pad
+    ScrollPhaseStart=0,
     ScrollPhaseNormal, // fingers on pad
     ScrollPhaseMomentum, // fingers off pad, but scrolling with momentum
-    ScrollPhaseEnd,       // scrolling ended
+    ScrollPhaseEnd,      // scrolling ended
     ScrollPhaseMax
 } ScrollPhase;
 
@@ -26,12 +25,8 @@ typedef enum {
     CFRunLoopSourceRef passiveTapSource;
 
 @public
-    uint64_t lastEventTime;
-    uint64_t lastSeenFingersTime;
-    uint64_t lastSeenFingers;
-
-    CGEventType lastEventType;
-    ScrollPhase lastPhase;
+    NSUInteger touching;
+    uint64_t lastTouchTime;
     ScrollEventSource lastSource;
     
 	BOOL inverting;
