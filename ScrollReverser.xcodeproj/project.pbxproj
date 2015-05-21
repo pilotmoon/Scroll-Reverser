@@ -423,6 +423,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Scroll_Inverter_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG_BUILD;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "ScrollReverser-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -456,6 +457,7 @@
 					NS_BLOCK_ASSERTIONS,
 					NDEBUG,
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "ScrollReverser-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";

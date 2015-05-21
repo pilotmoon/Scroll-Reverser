@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    ScrollEventSourceOther=0,  
+    ScrollEventSourceOther=0,
     ScrollEventSourceTrackpad,
     ScrollEventSourceTablet,
     ScrollEventSourceMax 
@@ -11,7 +11,8 @@ typedef enum {
  We abstract the system defined scrolling phases into these possibilities.
  */
 typedef enum {
-    ScrollPhaseNormal=0, // fingers on pad
+    ScrollPhaseStart=0, // fingers on pad
+    ScrollPhaseNormal, // fingers on pad
     ScrollPhaseMomentum, // fingers off pad, but scrolling with momentum
     ScrollPhaseEnd,       // scrolling ended
     ScrollPhaseMax
@@ -25,22 +26,21 @@ typedef enum {
     CFRunLoopSourceRef passiveTapSource;
 
 @public
-	/* This is public so that the tap function doesn't have to invoke a method to get to it.
-	 Maybe over-optimizing here but it's all pretty straightforward. */
-    NSMutableSet *touches;
-    unsigned long fingers;
-    unsigned long sampledFingers;
-    unsigned long rawZeroCount;
-    unsigned long zeroCount;
-    UInt32 lastScrollTicks;
-    UInt32 lastGestureTicks;
-    unsigned long lastPhase;
+    uint64_t lastEventTime;
+    uint64_t lastSeenFingersTime;
+    uint64_t lastSeenFingers;
+
+    CGEventType lastEventType;
+    ScrollPhase lastPhase;
+    ScrollEventSource lastSource;
+    
 	BOOL inverting;
     BOOL invertX;
     BOOL invertY;
     BOOL invertMultiTouch;
     BOOL invertTablet;
     BOOL invertOther;
+    
     __weak TapLogger *logger;
 }
 - (void)start;

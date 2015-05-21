@@ -19,6 +19,7 @@
 
 - (void)logUnsignedInteger:(NSUInteger)val forKey:(NSString *)key;
 - (void)logDouble:(double)val forKey:(NSString *)key;
+- (void)logNanoseconds:(uint64_t)ns forKey:(NSString *)key;
 - (void)logCount:(id)obj forKey:(NSString *)key;
 
 - (void)logEventType:(CGEventType)source forKey:(NSString *)key;

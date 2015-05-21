@@ -74,6 +74,11 @@
     [self logObject:@(val) forKey:key];
 }
 
+- (void)logNanoseconds:(uint64_t)ns forKey:(NSString *)key
+{
+    [self logObject:@(ns/1000000) forKey:key];
+}
+
 - (void)logCount:(id)obj forKey:(NSString *)key
 {
     [self logObject:@([obj count]) forKey:key];
@@ -128,6 +133,10 @@
 {
     NSString *str=@"unknown";
     switch (phase) {
+        case ScrollPhaseStart:
+            str=@"start";
+            break;
+        
         case ScrollPhaseNormal:
             str=@"normal";
             break;

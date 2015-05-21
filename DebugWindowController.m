@@ -74,6 +74,7 @@
 - (void)showWindow:(id)sender
 {
     [[self window] setLevel:NSFloatingWindowLevel];
+    [[self window] setFrameAutosaveName:@"DebugWindow"];
     [[self window] center];
     [NSApp activateIgnoringOtherApps:YES];
     // small delay to prevent flash of window drawing

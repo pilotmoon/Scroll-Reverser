@@ -2,11 +2,12 @@
 #import "CoreFoundation/CoreFoundation.h"
 #import "TapLogger.h"
 #import "AppDelegate.h"
-
-#define MAGIC_NUMBER (0x7363726F726576) // "scrorev" in hex
+#import <mach/mach_time.h>
 
 static BOOL _preventReverseOtherApp;
 static BOOL _detectWacomMouse;
+
+#define MILLISECOND ((uint64_t)1000000)
 
 /*
  Get the bundle identifier for the given pid.
@@ -57,113 +58,50 @@ static ScrollPhase _momentumPhaseForEvent(CGEventRef event)
         case NSTouchPhaseStationary:
             return ScrollPhaseMomentum;
         case NSTouchPhaseEnded:
+        case NSTouchPhaseCancelled:
             return ScrollPhaseEnd;
         default:
             return ScrollPhaseNormal;
     }
 }
 
-static void clearTouches(MouseTap *const tap)
+uint64_t nanoseconds(void)
 {
-    [tap->touches removeAllObjects];
-    [tap->logger logBool:YES forKey:@"touchesCleared"];
+    const uint64_t abstime = mach_absolute_time();
+    const Nanoseconds nanotime = AbsoluteToNanoseconds( *(AbsoluteTime *) &abstime );
+    return * (uint64_t *) &nanotime;
 }
 
-static CGEventRef gestureCallback(CGEventTapProxy proxy,
-                                  CGEventType type,
-                                  CGEventRef event,
-                                  void *userInfo)
+static CGEventRef callback(CGEventTapProxy proxy,
+                           CGEventType type,
+                           CGEventRef event,
+                           void *userInfo)
 {
     @autoreleasepool
     {
         MouseTap *const tap=(__bridge MouseTap *)userInfo;
         [tap->logger logEventType:type forKey:@"type"];
         
-        const UInt32 ticks=TickCount();
-        const UInt32 ticksElapsed=ticks-tap->lastGestureTicks;
-        tap->lastGestureTicks=ticks;
-        [tap->logger logUnsignedInteger:ticksElapsed forKey:@"elapsed"];
+        const uint64_t time=nanoseconds();
+        const uint64_t elapsed=(time-tap->lastEventTime);
+        tap->lastEventTime=time;
+        [tap->logger logNanoseconds:elapsed forKey:@"elapsed"];
         
         if (type==NSEventTypeGesture)
         {
-            /* How many fingers on the trackpad? Starting from a certain 10.10.2 preview,
-             OS X started inserting extra events with no touches, in between events with touches. So
-             This bit had to get a but more complicated so as to ignore the rogue 'zero touches' events. */
-            NSEvent *ev=[NSEvent eventWithCGEvent:event];
-            //[tap->logger logObject:ev forKey:@"ev"];
-            //[tap->logger logUnsignedInteger:[ev subtype] forKey:@"subtype"];
-            
-            // count fingers currently on the pad
-            NSSet *touching=[ev touchesMatchingPhase:NSTouchPhaseTouching inView:nil];
-            [tap->logger logCount:touching forKey:@"touching"];
-            if ([touching count]==0) {
-                if (tap->rawZeroCount<5) {
-                    // count how many times touchesMatchingPhase reported zero touches even when there really are touches.
-                    // I have observed runs of 3 in tests on 10.10.2 preview, but no more.
-                    // allowing 5 here in case of future awkwardness.
-                    tap->rawZeroCount+=1;
-                }
-                else {
-                    // sometimes we miss the 'touch ended' and touches get stuck in our cache. so we clear them out.
-                    clearTouches(tap);
-                }
+            // record the current tick count if there are any fingers reported
+            // (we get a lot of reports of 0 fingers so ignore those completely)
+            const NSUInteger touching=[[[NSEvent eventWithCGEvent:event] touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];
+            if (touching>0) {
+                [tap->logger logUnsignedInteger:touching forKey:@"touching"];
+                tap->lastSeenFingers=touching;
+                tap->lastSeenFingersTime=time;
             }
-            else {
-                tap->rawZeroCount=0;
-                clearTouches(tap);
-                
-                for (NSTouch *touch in touching) {
-                    const id identity=[touch identity];
-                    [tap->touches addObject:identity];
-                    [tap->logger logObject:identity forCountedKey:@"+t"];
-                }
-            }
-            
-            // subtract fingers removed from the pad
-            NSSet *ended=[ev touchesMatchingPhase:NSTouchPhaseEnded|NSTouchPhaseCancelled inView:nil];
-            for (NSTouch *touch in ended) {
-                const id identity=[touch identity];
-                [tap->touches removeObject:[touch identity]];
-                [tap->logger logObject:identity forCountedKey:@"-t"];
-            }
-            
-            tap->fingers=[tap->touches count];
-            
-            [tap->logger logUnsignedInteger:tap->rawZeroCount forKey:@"rzc"];
-            [tap->logger logUnsignedInteger:tap->fingers forKey:@"f"];
         }
-        else if(type==kCGEventTapDisabledByTimeout)
-        {
-            [tap enableTaps];
-        }
-        
-        [tap->logger logParams];
-    }
-    
-    return NULL;
-}
-
-static CGEventRef scrollCallback(CGEventTapProxy proxy,
-                                 CGEventType type,
-                                 CGEventRef event,
-                                 void *userInfo)
-{
-    @autoreleasepool
-    {
-        MouseTap *const tap=(__bridge MouseTap *)userInfo;
-        [tap->logger logEventType:type forKey:@"type"];
-        
-        const UInt32 ticks=TickCount(); // about 1/60 of a sec
-        const UInt32 ticksElapsed=ticks-tap->lastScrollTicks;
-        tap->lastScrollTicks=ticks;
-        
-        [tap->logger logUnsignedInteger:ticksElapsed forKey:@"elapsed"];
-        
-        if (type==NSScrollWheel)
+        else if (type==NSScrollWheel)
         {
             // get source pid
             const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
-            [tap->logger logUnsignedInteger:pid forKey:@"pid"];
             
             // get the scrolling deltas
             const int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
@@ -173,21 +111,20 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
             const double fixedpt_axis1=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1);
             const double fixedpt_axis2=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2);
 
-            [tap->logger logSignedInteger:pixel_axis1 forKey:@"y_px"];
-            [tap->logger logSignedInteger:pixel_axis2 forKey:@"x_px"];
-            // [tap->logger logSignedInteger:line_axis1 forKey:@"y_line"];
-            // [tap->logger logSignedInteger:line_axis1 forKey:@"x_line"];
-            // [tap->logger logDouble:fixedpt_axis1 forKey:@"y_fp"];
-            // [tap->logger logDouble:fixedpt_axis2 forKey:@"x_fp"];
+            // now do the bit where we work out if it is a trackpad or not
+            const ScrollPhase phase=_momentumPhaseForEvent(event);
+            const ScrollPhase lastPhase=tap->lastPhase;
+            tap->lastPhase=phase;
+            [tap->logger logPhase:phase forKey:@"phase"];
+            [tap->logger logPhase:tap->lastPhase forKey:@"lastPhase"];
             
             // default source is "Other" i.e. not a Trackpad, not a Tablet, but a Mouse.
-            ScrollEventSource source=ScrollEventSourceOther;
-            do
-            {
+            const ScrollEventSource source=(^{
                 // assume non-continuous events are never from a trackpad or tablet
-                if (CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous)==0) {
+                if (CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous)==0)
+                {
                     [tap->logger logBool:YES forKey:@"notContinuous"];
-                    break;
+                    return ScrollEventSourceOther;
                 }
                 
                 // check if wacom device, which could be tablet or mouse
@@ -195,74 +132,50 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
                 {
                     // detect the wacom mouse, which always seems to scroll in multiples of 25
                     const BOOL wacomMouse=_detectWacomMouse?pixel_axis1!=0&&pixel_axis1%25==0&&pixel_axis2==0:NO;
-                    if (!wacomMouse) {
-                        source=ScrollEventSourceTablet;
-                    }
-                    
                     [tap->logger logBool:YES forKey:@"wacomDevice"];
                     [tap->logger logBool:wacomMouse forKey:@"wacomMouse"];
-                    break;
+                    
+                    return wacomMouse?ScrollEventSourceOther:ScrollEventSourceTablet;
                 }
                 
-                // now do the bit where we work out if it is a trackpad or not
-                const ScrollPhase phase=_momentumPhaseForEvent(event);
-                
-                [tap->logger logPhase:phase forKey:@"phase"];
-                [tap->logger logUnsignedInteger:tap->fingers forKey:@"f"];
-                [tap->logger logUnsignedInteger:tap->sampledFingers forKey:@"sf"];
-                [tap->logger logUnsignedInteger:tap->zeroCount forKey:@"zc"];
-                
-                if (phase==ScrollPhaseMomentum)
+                // only sample fingers when newly in normal phase
+                if (phase==ScrollPhaseNormal && (lastPhase!=ScrollPhaseNormal || elapsed<200*MILLISECOND))
                 {
-                    /* during momentum phase we can assume less than 2 touches on pad.
-                    it's probably a good idea to clear the cache here. */
-                    clearTouches(tap);
-                }
+                    // only trust fingers number if it came in "very recently"
+                    const uint64_t fingersElapsed=time-tap->lastSeenFingersTime;
+                    const BOOL fingersValid=fingersElapsed<(MILLISECOND*500);
+                    const uint64_t currentFingers=fingersValid?tap->lastSeenFingers:0;
+
+                    [tap->logger logUnsignedInteger:tap->lastSeenFingers forKey:@"lastSeenFingers"];
+                    [tap->logger logNanoseconds:tap->lastSeenFingersTime forKey:@"lastSeenFingersTime"];
+                    [tap->logger logNanoseconds:fingersElapsed forKey:@"fingersElapsed"];
+                    [tap->logger logBool:fingersValid forKey:@"valid"];
+                    [tap->logger logUnsignedInteger:currentFingers forKey:@"currentFingers"];
                 
-                /* Should we sample the number of fingers now? The whole point of this is to only sample fingers when user is actually
-                 * scrolling, not during the momentum phase. Unfortunately the system cannot be relied upon to always send correct
-                 * finger signals (four finger swipes for example can mess things up, although this seems fixed on Yosemite) so we
-                 * use some timing and other indicators. Still room for improvement here. */
-                if (phase==ScrollPhaseNormal&&(tap->lastPhase!=ScrollPhaseNormal||tap->sampledFingers<2||tap->zeroCount>2||ticksElapsed>20))
-                {
-                    [tap->logger logBool:YES forKey:@"sampling"];
-                    tap->sampledFingers=tap->fingers;
+                    return currentFingers>=2?ScrollEventSourceTrackpad:ScrollEventSourceOther;
                 }
-                
-                // Assume Trackpad source when 2 fingers are seen on the pad.
-                if (tap->sampledFingers>=2)
-                {
-                    source=ScrollEventSourceTrackpad;
+                else {
+                    return tap->lastSource;
                 }
-                
-                // Count of how many times we have seen no fingers on the pad.
-                if (tap->fingers>=2)
-                {
-                    tap->zeroCount=0;
-                }
-                else
-                {
-                    tap->zeroCount+=1;
-                }
-                
-                tap->lastPhase=phase;
-                
-            } while(0);
+            })();
             
+            // now we have the final source
+            tap->lastSource=source;
+            
+            [tap->logger logUnsignedInteger:pid forKey:@"pid"];
+            [tap->logger logSignedInteger:pixel_axis1 forKey:@"y_px"];
+            [tap->logger logSignedInteger:pixel_axis2 forKey:@"x_px"];
             [tap->logger logSource:source forKey:@"source"];
             
-            // don't reverse scrolling we have already reversed
-            const int64_t ud=CGEventGetIntegerValueField(event, kCGEventSourceUserData);
-            const BOOL preventBecauseOfMagicNumber=ud==MAGIC_NUMBER;
-            
             /* Don't reverse scrolling coming from another app (if that setting is on).
-             * This is useful if Scroll Reverser is running inside a remote desktop, to ignore scrolling coming from
-             * the controlling host but still reverse local scrolling. */
+             This is useful if Scroll Reverser is running inside a remote desktop, to ignore
+             scrolling coming from the controlling host but still reverse local scrolling.
+             */
             const BOOL preventBecauseComingFromOtherApp=_preventReverseOtherApp?pid!=0:NO;
             
             // finally, do we reverse the scroll or not?
             BOOL invert=NO;
-            if (tap->inverting&&!(preventBecauseOfMagicNumber||preventBecauseComingFromOtherApp))
+            if (tap->inverting&&!preventBecauseComingFromOtherApp)
             {
                 switch (source)
                 {
@@ -280,8 +193,7 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
                         break;
                 }
             }
-
-            [tap->logger logBool:invert forKey:@"outcome"];
+            
             if (invert)
             {
                 /* Do the actual reversing. It's worth noting we have to set them in this order (lines then pixels)
@@ -292,10 +204,9 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
                 if (tap->invertX) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2, -1 * fixedpt_axis2);
                 if (tap->invertY) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);
                 if (tap->invertX) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
-                
-                // set out user data flag
-                CGEventSetIntegerValueField(event, kCGEventSourceUserData, MAGIC_NUMBER);
             }
+            
+            [tap->logger logBool:invert forKey:@"reversing"];
         }
         else if(type==kCGEventTapDisabledByTimeout)
         {
@@ -317,10 +228,10 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
 
 - (void)resetState
 {
-    touches=[NSMutableSet set];
-    fingers=sampledFingers=rawZeroCount=zeroCount=0;
-    lastScrollTicks=0;
-    lastPhase=0;
+    lastEventTime=0;
+    lastSeenFingersTime=0;
+    lastSeenFingers=0;
+    sampledFingers=0;
     [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap state reset"];
 }
 
@@ -339,7 +250,7 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
 										   kCGTailAppendEventTap,
 										   kCGEventTapOptionDefault,
 										   NSScrollWheelMask,
-										   scrollCallback,
+										   callback,
 										   (__bridge void *)(self));
 
     // create passive tap for gesture events. we do this because installing
@@ -348,7 +259,7 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
                                                   kCGTailAppendEventTap,
                                                   kCGEventTapOptionListenOnly,
                                                   NSEventMaskGesture,
-                                                  gestureCallback,
+                                                  callback,
                                                   (__bridge void *)(self));
 
 	// create sources and add to run loop
@@ -377,7 +288,7 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
     CFRelease(passiveTapPort);
 	activeTapPort=passiveTapPort=nil;
     
-    touches=nil;
+    // TODO touches=nil;
 }
 
 - (void)enableTaps

@@ -135,6 +135,10 @@ NSString *const PrefsHideIcon=@"HideIcon";
         [welcomeWindowController showWindow:self];
 	}
     
+    // TODO remove
+    [self showDebug:self];
+    [self showTestWindow:self];
+    
     ready=YES;
     if (tap->inverting) {
         [tap start];
