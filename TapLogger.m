@@ -111,8 +111,8 @@
 {
     NSString *str=@"unknown";
     switch (source) {
-        case ScrollEventSourceOther:
-            str=@"mouse/other";
+        case ScrollEventSourceMouse:
+            str=@"mouse";
             break;
             
         case ScrollEventSourceTrackpad:
@@ -163,7 +163,7 @@
         [paramString appendFormat:@"[%@ %@]", label, obj];
     };
     
-    for (NSString *key in self.keyOrder) {
+    for (NSString *key in [self.keyOrder reverseObjectEnumerator]) {
         p(key, self.params[key]);
     }
     

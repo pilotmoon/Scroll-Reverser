@@ -27,7 +27,7 @@ static NSString *_bundleIdForPID(const pid_t pid)
 /*
  Is the pid a wacom tablet? Crude method.
  */
-static BOOL _pidIsWacomTablet(const pid_t pid)
+static BOOL _pidIsWacom(const pid_t pid)
 {
     // zero is the common case
     if (pid==0) {
@@ -35,21 +35,18 @@ static BOOL _pidIsWacomTablet(const pid_t pid)
     }
     
     // short cut
-    static pid_t lastKnownTabletPid=0;
-    if (pid==lastKnownTabletPid) {
+    static pid_t lastKnownWacomPid=0;
+    if (pid==lastKnownWacomPid) {
         return YES;
     }
     
     // look it up
-    NSString *bid=[_bundleIdForPID(pid) lowercaseString];
-    const BOOL pidIsTablet=[bid rangeOfString:@"wacom"].length>0;
-    if (pidIsTablet)
+    const BOOL pidIsWacom=[[_bundleIdForPID(pid) lowercaseString] rangeOfString:@"wacom"].length>0;
+    if (pidIsWacom)
     {
-        lastKnownTabletPid=pid;
-        return YES;
+        lastKnownWacomPid=pid;
     }
-    
-    return NO;
+    return pidIsWacom;
 }
 
 static ScrollPhase _momentumPhaseForEvent(CGEventRef event)
@@ -80,12 +77,11 @@ static CGEventRef callback(CGEventTapProxy proxy,
     @autoreleasepool
     {
         MouseTap *const tap=(__bridge MouseTap *)userInfo;
-        [tap->logger logEventType:type forKey:@"type"];
         
         const uint64_t time=nanoseconds();
         const uint64_t elapsed=(time-tap->lastEventTime);
         tap->lastEventTime=time;
-        [tap->logger logNanoseconds:elapsed forKey:@"elapsed"];
+        [tap->logger logNanoseconds:elapsed forKey:@"elapsed"];        
         
         if (type==NSEventTypeGesture)
         {
@@ -102,6 +98,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
         {
             // get source pid
             const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
+            [tap->logger logUnsignedInteger:pid forKey:@"pid"];
             
             // get the scrolling deltas
             const int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
@@ -110,94 +107,93 @@ static CGEventRef callback(CGEventTapProxy proxy,
             const int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
             const double fixedpt_axis1=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1);
             const double fixedpt_axis2=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2);
+            [tap->logger logSignedInteger:pixel_axis1 forKey:@"y_px"];
+            [tap->logger logSignedInteger:pixel_axis2 forKey:@"x_px"];
 
             // now do the bit where we work out if it is a trackpad or not
-            const ScrollPhase phase=_momentumPhaseForEvent(event);
             const ScrollPhase lastPhase=tap->lastPhase;
+            const ScrollPhase phase=_momentumPhaseForEvent(event);
             tap->lastPhase=phase;
+            [tap->logger logPhase:lastPhase forKey:@"lastPhase"];
             [tap->logger logPhase:phase forKey:@"phase"];
-            [tap->logger logPhase:tap->lastPhase forKey:@"lastPhase"];
             
-            // default source is "Other" i.e. not a Trackpad, not a Tablet, but a Mouse.
+            // work out the event source (the tricky bit!)
+            const ScrollEventSource lastSource=tap->lastSource;
             const ScrollEventSource source=(^{
-                // assume non-continuous events are never from a trackpad or tablet
                 if (CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous)==0)
                 {
                     [tap->logger logBool:YES forKey:@"notContinuous"];
-                    return ScrollEventSourceOther;
+                    return ScrollEventSourceMouse; // assume anything not-continuous is a mouse
                 }
-                
-                // check if wacom device, which could be tablet or mouse
-                if (_pidIsWacomTablet(pid))
+                else if (_pidIsWacom(pid))
                 {
                     // detect the wacom mouse, which always seems to scroll in multiples of 25
                     const BOOL wacomMouse=_detectWacomMouse?pixel_axis1!=0&&pixel_axis1%25==0&&pixel_axis2==0:NO;
                     [tap->logger logBool:YES forKey:@"wacomDevice"];
                     [tap->logger logBool:wacomMouse forKey:@"wacomMouse"];
                     
-                    return wacomMouse?ScrollEventSourceOther:ScrollEventSourceTablet;
+                    return wacomMouse?ScrollEventSourceMouse:ScrollEventSourceTablet;
                 }
-                
-                // only sample fingers when newly in normal phase
-                if (phase==ScrollPhaseNormal && (lastPhase!=ScrollPhaseNormal || elapsed<200*MILLISECOND))
+                else if ((fixedpt_axis1!=0||fixedpt_axis2!=0)
+                         && phase==ScrollPhaseNormal
+                         && (lastPhase!=ScrollPhaseNormal || elapsed<200*MILLISECOND)
+                         )
                 {
-                    // only trust fingers number if it came in "very recently"
+                    // only trust fingers number if it came in very recently
                     const uint64_t fingersElapsed=time-tap->lastSeenFingersTime;
-                    const BOOL fingersValid=fingersElapsed<(MILLISECOND*500);
-                    const uint64_t currentFingers=fingersValid?tap->lastSeenFingers:0;
+                    const uint64_t currentFingers=fingersElapsed<(MILLISECOND*200)?tap->lastSeenFingers:0;
 
                     [tap->logger logUnsignedInteger:tap->lastSeenFingers forKey:@"lastSeenFingers"];
                     [tap->logger logNanoseconds:tap->lastSeenFingersTime forKey:@"lastSeenFingersTime"];
                     [tap->logger logNanoseconds:fingersElapsed forKey:@"fingersElapsed"];
-                    [tap->logger logBool:fingersValid forKey:@"valid"];
                     [tap->logger logUnsignedInteger:currentFingers forKey:@"currentFingers"];
                 
-                    return currentFingers>=2?ScrollEventSourceTrackpad:ScrollEventSourceOther;
+                    return currentFingers>=2?ScrollEventSourceTrackpad:ScrollEventSourceMouse;
                 }
                 else {
+                    // not enough information to decide. assume the same as last time. ha!
                     return tap->lastSource;
                 }
             })();
-            
-            // now we have the final source
             tap->lastSource=source;
             
-            [tap->logger logUnsignedInteger:pid forKey:@"pid"];
-            [tap->logger logSignedInteger:pixel_axis1 forKey:@"y_px"];
-            [tap->logger logSignedInteger:pixel_axis2 forKey:@"x_px"];
-            [tap->logger logSource:source forKey:@"source"];
-            
-            /* Don't reverse scrolling coming from another app (if that setting is on).
-             This is useful if Scroll Reverser is running inside a remote desktop, to ignore
-             scrolling coming from the controlling host but still reverse local scrolling.
-             */
-            const BOOL preventBecauseComingFromOtherApp=_preventReverseOtherApp?pid!=0:NO;
-            
             // finally, do we reverse the scroll or not?
-            BOOL invert=NO;
-            if (tap->inverting&&!preventBecauseComingFromOtherApp)
-            {
-                switch (source)
+            const BOOL invert=(^BOOL {
+                
+                /* Don't reverse scrolling coming from another app (if that setting is on).
+                 This is useful if Scroll Reverser is running inside a remote desktop, to ignore
+                 scrolling coming from the controlling host but still reverse local scrolling.
+                 */
+                const BOOL preventBecauseComingFromOtherApp=_preventReverseOtherApp?pid!=0:NO;
+                
+                if (tap->inverting&&!preventBecauseComingFromOtherApp)
                 {
-                    case ScrollEventSourceTrackpad:
-                        invert=tap->invertMultiTouch;
-                        break;
-                        
-                    case ScrollEventSourceTablet:
-                        invert=tap->invertTablet;
-                        break;
-                        
-                    case ScrollEventSourceOther:
-                    default:
-                        invert=tap->invertOther;
-                        break;
+                    switch (source)
+                    {
+                        case ScrollEventSourceTrackpad:
+                            return tap->invertMultiTouch;
+                            
+                        case ScrollEventSourceTablet:
+                            return tap->invertTablet;
+                            
+                        case ScrollEventSourceMouse:
+                        default:
+                            return tap->invertOther;
+                    }
                 }
-            }
+                else {
+                    return NO;
+                }
+            })();
             
+            [tap->logger logBool:invert forKey:@"reversing"];
+            [tap->logger logSource:lastSource forKey:@"lastSource"];
+            [tap->logger logSource:source forKey:@"source"];
+
+            /* Do the actual reversing. It's worth noting we have to set them in this order (lines then pixels)
+             or we lose smooth scrolling. */
             if (invert)
             {
-                /* Do the actual reversing. It's worth noting we have to set them in this order (lines then pixels)
-                 or we lose smooth scrolling. */
                 if (tap->invertY) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -line_axis1);
                 if (tap->invertX) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -line_axis2);
                 if (tap->invertY) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1, -1 * fixedpt_axis1);
@@ -205,14 +201,13 @@ static CGEventRef callback(CGEventTapProxy proxy,
                 if (tap->invertY) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);
                 if (tap->invertX) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
             }
-            
-            [tap->logger logBool:invert forKey:@"reversing"];
         }
         else if(type==kCGEventTapDisabledByTimeout)
         {
             [tap enableTaps];
-        }	
-
+        }
+    
+        [tap->logger logEventType:type forKey:@"type"];
         [tap->logger logParams];
 	}
     
