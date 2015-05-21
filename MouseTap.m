@@ -79,6 +79,11 @@ static CGEventRef gestureCallback(CGEventTapProxy proxy,
         MouseTap *const tap=(__bridge MouseTap *)userInfo;
         [tap->logger logEventType:type forKey:@"type"];
         
+        const UInt32 ticks=TickCount();
+        const UInt32 ticksElapsed=ticks-tap->lastGestureTicks;
+        tap->lastGestureTicks=ticks;
+        [tap->logger logUnsignedInteger:ticksElapsed forKey:@"elapsed"];
+        
         if (type==NSEventTypeGesture)
         {
             /* How many fingers on the trackpad? Starting from a certain 10.10.2 preview,
@@ -131,8 +136,10 @@ static CGEventRef gestureCallback(CGEventTapProxy proxy,
         {
             [tap enableTaps];
         }
+        
         [tap->logger logParams];
     }
+    
     return NULL;
 }
 
@@ -145,6 +152,12 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
     {
         MouseTap *const tap=(__bridge MouseTap *)userInfo;
         [tap->logger logEventType:type forKey:@"type"];
+        
+        const UInt32 ticks=TickCount(); // about 1/60 of a sec
+        const UInt32 ticksElapsed=ticks-tap->lastScrollTicks;
+        tap->lastScrollTicks=ticks;
+        
+        [tap->logger logUnsignedInteger:ticksElapsed forKey:@"elapsed"];
         
         if (type==NSScrollWheel)
         {
@@ -193,11 +206,8 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
                 
                 // now do the bit where we work out if it is a trackpad or not
                 const ScrollPhase phase=_momentumPhaseForEvent(event);
-                const UInt32 ticks=TickCount(); // about 1/60 of a sec
-                const UInt32 ticksElapsed=TickCount()-tap->lastScrollTicks;
                 
                 [tap->logger logPhase:phase forKey:@"phase"];
-                [tap->logger logUnsignedInteger:ticksElapsed forKey:@"elapsed"];
                 [tap->logger logUnsignedInteger:tap->fingers forKey:@"f"];
                 [tap->logger logUnsignedInteger:tap->sampledFingers forKey:@"sf"];
                 [tap->logger logUnsignedInteger:tap->zeroCount forKey:@"zc"];
@@ -236,8 +246,6 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
                 }
                 
                 tap->lastPhase=phase;
-                tap->lastScrollTicks=ticks;
-                
                 
             } while(0);
             
@@ -295,8 +303,9 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
         }	
 
         [tap->logger logParams];
-		return event;
 	}
+    
+    return event;
 }
 
 @implementation MouseTap

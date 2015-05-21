@@ -33,6 +33,7 @@ typedef enum {
     unsigned long rawZeroCount;
     unsigned long zeroCount;
     UInt32 lastScrollTicks;
+    UInt32 lastGestureTicks;
     unsigned long lastPhase;
 	BOOL inverting;
     BOOL invertX;
