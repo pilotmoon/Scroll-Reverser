@@ -129,7 +129,7 @@ static CGEventRef gestureCallback(CGEventTapProxy proxy,
         }
         else if(type==kCGEventTapDisabledByTimeout)
         {
-            [tap enableTaps:TRUE];
+            [tap enableTaps];
         }
         [tap->logger logParams];
     }
@@ -291,9 +291,9 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
         }
         else if(type==kCGEventTapDisabledByTimeout)
         {
-            [tap enableTaps:TRUE];
+            [tap enableTaps];
         }	
-        
+
         [tap->logger logParams];
 		return event;
 	}
@@ -371,10 +371,14 @@ static CGEventRef scrollCallback(CGEventTapProxy proxy,
     touches=nil;
 }
 
-- (void)enableTaps:(BOOL)state
+- (void)enableTaps
 {
-	CGEventTapEnable(activeTapPort, state);
-	CGEventTapEnable(passiveTapPort, state);
+    if (!CGEventTapIsEnabled(activeTapPort)) {
+        CGEventTapEnable(activeTapPort, YES);
+    }
+    if (!CGEventTapIsEnabled(passiveTapPort)) {
+        CGEventTapEnable(passiveTapPort, YES);
+    }
 }
 
 @end

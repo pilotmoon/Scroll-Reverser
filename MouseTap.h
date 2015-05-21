@@ -44,7 +44,7 @@ typedef enum {
 }
 - (void)start;
 - (void)stop;
-- (void)enableTaps:(BOOL)state;
+- (void)enableTaps;
 - (void)resetState;
 @end
 
