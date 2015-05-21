@@ -22,6 +22,8 @@
 		0183EE781A3794F800A260E0 /* ScrollReverser.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 0183EE771A3794F800A260E0 /* ScrollReverser.sdef */; };
 		019FB05A14EB1A9100FA225A /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019FB05914EB1A9100FA225A /* WelcomeWindowController.m */; };
 		01AF54C91B0CB87C0028A26A /* TapLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AF54C81B0CB87C0028A26A /* TapLogger.m */; };
+		01AF54D31B0E11150028A26A /* TestWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AF54D11B0E11150028A26A /* TestWindowController.m */; };
+		01AF54D41B0E11150028A26A /* TestWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AF54D21B0E11150028A26A /* TestWindow.xib */; };
 		01B5ABCD1700D26200FF6F6A /* ScrollReverserStatusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */; };
 		01B5ABDD1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */; };
 		01B662D513250CA800658B5C /* LoginItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B662D413250CA800658B5C /* LoginItemsController.m */; };
@@ -80,6 +82,9 @@
 		01A1ED6B1A3A3E1900CFC6C5 /* ja */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ja; path = resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01AF54C71B0CB87C0028A26A /* TapLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapLogger.h; sourceTree = "<group>"; };
 		01AF54C81B0CB87C0028A26A /* TapLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapLogger.m; sourceTree = "<group>"; };
+		01AF54D01B0E11150028A26A /* TestWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestWindowController.h; sourceTree = "<group>"; };
+		01AF54D11B0E11150028A26A /* TestWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestWindowController.m; sourceTree = "<group>"; };
+		01AF54D21B0E11150028A26A /* TestWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestWindow.xib; sourceTree = "<group>"; };
 		01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScrollReverserStatusIcon.png; path = Graphics/ScrollReverserStatusIcon.png; sourceTree = "<group>"; };
 		01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ScrollReverserStatusIcon@2x.png"; path = "Graphics/ScrollReverserStatusIcon@2x.png"; sourceTree = "<group>"; };
 		01B662D313250CA800658B5C /* LoginItemsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemsController.h; sourceTree = "<group>"; };
@@ -164,6 +169,9 @@
 				01AF54C81B0CB87C0028A26A /* TapLogger.m */,
 				01438E911AFB7BC100C5C857 /* LoggerScrollView.h */,
 				01438E921AFB7BC100C5C857 /* LoggerScrollView.m */,
+				01AF54D01B0E11150028A26A /* TestWindowController.h */,
+				01AF54D11B0E11150028A26A /* TestWindowController.m */,
+				01AF54D21B0E11150028A26A /* TestWindow.xib */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -317,6 +325,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01AF54D41B0E11150028A26A /* TestWindow.xib in Resources */,
 				01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */,
 				01E6A6CF1A42E6BF00C1FB2A /* ScrollReverser.iconset in Resources */,
 				011A628B19D4A748003CE6DC /* IntroShot.png in Resources */,
@@ -364,6 +373,7 @@
 				01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */,
 				01438E901AFB640400C5C857 /* Logger.m in Sources */,
 				0158735813265EDD00100E4C /* StatusItemController.m in Sources */,
+				01AF54D31B0E11150028A26A /* TestWindowController.m in Sources */,
 				017347661A35DA2600A0A1BE /* PrefsWindowController.m in Sources */,
 				0183EE731A37947E00A260E0 /* Application.m in Sources */,
 				019FB05A14EB1A9100FA225A /* WelcomeWindowController.m in Sources */,

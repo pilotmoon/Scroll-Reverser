@@ -74,9 +74,6 @@
 - (void)showWindow:(id)sender
 {
     [[self window] setLevel:NSFloatingWindowLevel];
-    NSRect frame=[[self window] frame];
-    frame.size.width=1000;
-    [[self window] setFrame:frame display:NO];
     [[self window] center];
     [NSApp activateIgnoringOtherApps:YES];
     // small delay to prevent flash of window drawing
@@ -87,11 +84,15 @@
 
 - (IBAction)clearLog:(id)sender {
     [self.logger clear];
-    [(AppDelegate *)[NSApp delegate] logAppEvent:@"Log cleared"];
+    [self.appDelegate logAppEvent:@"Log cleared"];
 }
 
 - (IBAction)logState:(id)sender {
-    [(AppDelegate *)[NSApp delegate] logAppEvent:@"State"];
+    [self.appDelegate logAppEvent:@"Settings"];
+}
+
+- (IBAction)showDemoWindow:(id)sender {
+    [self.appDelegate showTestWindow:sender];
 }
 
 - (void)updateConsole
@@ -122,8 +123,12 @@
         else {
             [self.consoleTableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
         }
-        [(AppDelegate *)[NSApp delegate] logAppEvent:self.paused?@"Log paused":@"Log started"];
+        [self.appDelegate logAppEvent:self.paused?@"Log paused":@"Log started"];
     }
+}
+
+- (AppDelegate *)appDelegate {
+    return (AppDelegate *)[NSApp delegate];
 }
 
 #pragma mark pasteboard copy
@@ -206,7 +211,11 @@
 }
 
 - (NSString *)uiStringLogState {
-    return @"Log Current State";
+    return @"Log Current Settings";
+}
+
+- (NSString *)uiStringShowTestWindow {
+    return @"Show Test Window";
 }
 
 

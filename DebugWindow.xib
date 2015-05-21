@@ -36,17 +36,6 @@
                             <binding destination="-2" name="title" keyPath="self.uiStringClear" id="ZsT-zX-u7M"/>
                         </connections>
                     </button>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="0A6-a9-kie">
-                        <rect key="frame" x="107" y="4" width="97" height="18"/>
-                        <buttonCell key="cell" type="check" title="PaUsE ChEcK" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="glK-kM-q6Q">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <binding destination="-2" name="value" keyPath="self.paused" id="1oC-Nn-gkr"/>
-                            <binding destination="-2" name="title" keyPath="self.uiStringPause" id="NHU-Ru-zra"/>
-                        </connections>
-                    </button>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEd-Zk-KHO" customClass="LoggerScrollView">
                         <rect key="frame" x="-1" y="28" width="802" height="249"/>
                         <clipView key="contentView" drawsBackground="NO" id="yjC-zB-3s8">
@@ -111,36 +100,47 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f1q-pi-bau">
-                        <rect key="frame" x="673" y="-1" width="125" height="28"/>
-                        <buttonCell key="cell" type="push" title="LoG sTaTe BuTtOn" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cxc-EU-NJt">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bQl-0n-R49">
+                        <rect key="frame" x="653" y="-1" width="145" height="28"/>
+                        <buttonCell key="cell" type="push" title="DeMoWiNodW bUtTon" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="L1c-Uq-pVJ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
-                            <action selector="logState:" target="-2" id="YaM-qy-4nO"/>
-                            <binding destination="-2" name="title" keyPath="self.uiStringLogState" id="jNZ-CS-psk"/>
+                            <action selector="showDemoWindow:" target="-2" id="rdt-TN-XPA"/>
+                            <binding destination="-2" name="title" keyPath="self.uiStringShowTestWindow" id="Der-IU-u70"/>
+                        </connections>
+                    </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="0A6-a9-kie">
+                        <rect key="frame" x="103" y="5" width="97" height="18"/>
+                        <buttonCell key="cell" type="check" title="PaUsE ChEcK" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="glK-kM-q6Q">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="self.paused" id="1oC-Nn-gkr"/>
+                            <binding destination="-2" name="title" keyPath="self.uiStringPause" id="NHU-Ru-zra"/>
                         </connections>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="0A6-a9-kie" secondAttribute="bottom" constant="7" id="5q8-oj-EHZ"/>
-                    <constraint firstItem="0A6-a9-kie" firstAttribute="leading" secondItem="8Ug-Kt-WlC" secondAttribute="trailing" constant="10" id="Eln-NY-ZZM"/>
+                    <constraint firstAttribute="trailing" secondItem="bQl-0n-R49" secondAttribute="trailing" constant="7" id="3sJ-sc-ffO"/>
+                    <constraint firstAttribute="bottom" secondItem="0A6-a9-kie" secondAttribute="bottom" constant="8" id="5q8-oj-EHZ"/>
+                    <constraint firstItem="0A6-a9-kie" firstAttribute="leading" secondItem="8Ug-Kt-WlC" secondAttribute="trailing" constant="6" id="Eln-NY-ZZM"/>
                     <constraint firstItem="8Ug-Kt-WlC" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="7" id="Tml-zQ-cGe"/>
                     <constraint firstItem="tEd-Zk-KHO" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="-1" id="Ttz-yB-qQ5"/>
                     <constraint firstAttribute="bottom" secondItem="8Ug-Kt-WlC" secondAttribute="bottom" constant="5" id="Uas-eC-LOk"/>
-                    <constraint firstItem="f1q-pi-bau" firstAttribute="top" secondItem="tEd-Zk-KHO" secondAttribute="bottom" constant="5" id="aHi-Ow-vRc"/>
-                    <constraint firstItem="8Ug-Kt-WlC" firstAttribute="top" secondItem="tEd-Zk-KHO" secondAttribute="bottom" constant="5" id="cca-bS-u9m"/>
                     <constraint firstAttribute="trailing" secondItem="tEd-Zk-KHO" secondAttribute="trailing" constant="-1" id="mtU-tS-6tU"/>
+                    <constraint firstAttribute="bottom" secondItem="bQl-0n-R49" secondAttribute="bottom" constant="5" id="rv1-Pi-Lrt"/>
                     <constraint firstItem="tEd-Zk-KHO" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="-1" id="t1z-ES-4Yt"/>
-                    <constraint firstAttribute="trailing" secondItem="f1q-pi-bau" secondAttribute="trailing" constant="7" id="tzE-1d-JLr"/>
+                    <constraint firstItem="8Ug-Kt-WlC" firstAttribute="top" secondItem="tEd-Zk-KHO" secondAttribute="bottom" constant="5" id="u9I-e9-sTm"/>
                 </constraints>
             </view>
             <connections>
                 <binding destination="-2" name="title" keyPath="self.uiStringDebugConsole" id="6Vx-2S-Mc4"/>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="146" y="-236.5"/>
+            <point key="canvasLocation" x="-77" y="-517"/>
         </window>
     </objects>
 </document>

@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class Logger, LoggerScrollView;
+@class Logger, LoggerScrollView, AppDelegate;
 
 @interface DebugWindowController : NSWindowController  <NSTableViewDataSource, NSTableViewDelegate>
 
@@ -20,8 +20,12 @@
 @property (readonly) NSString *uiStringClear;
 @property (readonly) NSString *uiStringPause;
 @property (readonly) NSString *uiStringLogState;
+@property (readonly) NSString *uiStringShowTestWindow;
+
+@property (readonly) AppDelegate *appDelegate;
 
 - (IBAction)clearLog:(id)sender;
 - (IBAction)logState:(id)sender;
+- (IBAction)showDemoWindow:(id)sender;
 
 @end

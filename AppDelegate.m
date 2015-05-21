@@ -6,6 +6,7 @@
 #import "WelcomeWindowController.h"
 #import "PrefsWindowController.h"
 #import "DebugWindowController.h"
+#import "TestWindowController.h"
 #import "TapLogger.h"
 #import <Sparkle/SUUpdater.h>
 
@@ -199,6 +200,15 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	[NSApp activateIgnoringOtherApps:YES];
     NSDictionary *dict=@{@"ApplicationName": @"Scroll Reverser"};
     [NSApp orderFrontStandardAboutPanelWithOptions:dict];
+}
+
+- (IBAction)showTestWindow:(id)sender
+{
+    [NSApp activateIgnoringOtherApps:YES];
+    if(!testWindowController) {
+        testWindowController=[[TestWindowController alloc] initWithWindowNibName:@"TestWindow"];
+    }
+    [testWindowController showWindow:self];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
