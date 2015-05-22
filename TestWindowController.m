@@ -26,10 +26,9 @@
                                 @1: [NSColor colorWithCalibratedRed:0.803922 green:0.87451 blue:0.905882 alpha:1.0],
                                 @2: [NSColor colorWithCalibratedRed:0.313725 green:0.670588 blue:0.74902 alpha:1.0],
                                 @3: [NSColor colorWithCalibratedRed:0.0196078 green:0.203922 blue:0.345098 alpha:1.0],
-                                @4: [NSColor redColor],
                                 };
         
-        NSArray *const c=@[p[@0], p[@0], p[@0], p[@1], p[@1], p[@2], p[@1], p[@3], p[@3], p[@4]];
+        NSArray *const c=@[p[@0], p[@0], p[@0], p[@1], p[@1], p[@2], p[@1], p[@3], p[@3]];
         
         NSColor *(^tileColor)(void) = ^{
             return c[random()%[c count]];
