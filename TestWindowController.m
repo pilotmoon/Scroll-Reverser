@@ -22,11 +22,11 @@
     // draw the image
     [image lockFocus];
     {
-        NSDictionary *const p=@{@0: [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0],
+        NSDictionary *const p=@{@0: [NSColor whiteColor],
                                 @1: [NSColor colorWithCalibratedRed:0.803922 green:0.87451 blue:0.905882 alpha:1.0],
                                 @2: [NSColor colorWithCalibratedRed:0.313725 green:0.670588 blue:0.74902 alpha:1.0],
                                 @3: [NSColor colorWithCalibratedRed:0.0196078 green:0.203922 blue:0.345098 alpha:1.0],
-                                @4: [NSColor colorWithCalibratedRed:0.894118 green:0.643137 blue:0.172549 alpha:1.0],
+                                @4: [NSColor redColor],
                                 };
         
         NSArray *const c=@[p[@0], p[@0], p[@0], p[@1], p[@1], p[@2], p[@1], p[@3], p[@3], p[@4]];
