@@ -143,10 +143,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(appDidWake:) name:NSWorkspaceDidWakeNotification object:nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(appWillSleep:) name:NSWorkspaceWillSleepNotification object:nil];
     
-    // TODO remove
-    [self showDebug:self];
-    [self showTestWindow:self];
-    
     ready=YES;
     if (tap->inverting) {
         [tap start];
