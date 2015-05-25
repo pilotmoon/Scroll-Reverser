@@ -12,7 +12,7 @@ static BOOL _detectWacomMouse;
 /*
  Get the bundle identifier for the given pid.
  */
-static NSString *_bundleIdForPID(const pid_t pid)
+static NSString *bundleIdForPID(const pid_t pid)
 {
 	ProcessSerialNumber psn={0, 0};
 	OSStatus status=GetProcessForPID(pid, &psn);
@@ -27,7 +27,7 @@ static NSString *_bundleIdForPID(const pid_t pid)
 /*
  Is the pid a wacom tablet? Crude method.
  */
-static BOOL _pidIsWacom(const pid_t pid)
+static BOOL pidIsWacom(const pid_t pid, MouseTap *const tap)
 {
     // zero is the common case
     if (pid==0) {
@@ -40,8 +40,12 @@ static BOOL _pidIsWacom(const pid_t pid)
         return YES;
     }
     
-    // look it up
-    const BOOL pidIsWacom=[[_bundleIdForPID(pid) lowercaseString] rangeOfString:@"wacom"].length>0;
+    // get bid
+    NSString *const bid=bundleIdForPID(pid);
+    [tap->logger logObject:bid forKey:@"bid"];
+    
+    // is it wacom?
+    const BOOL pidIsWacom=[[bid lowercaseString] rangeOfString:@"wacom"].length>0;
     if (pidIsWacom)
     {
         lastKnownWacomPid=pid;
@@ -49,7 +53,7 @@ static BOOL _pidIsWacom(const pid_t pid)
     return pidIsWacom;
 }
 
-static ScrollPhase _momentumPhaseForEvent(CGEventRef event)
+static ScrollPhase momentumPhaseForEvent(CGEventRef event)
 {
     switch ([[NSEvent eventWithCGEvent:event] momentumPhase]) {
         case NSTouchPhaseBegan:
@@ -64,7 +68,7 @@ static ScrollPhase _momentumPhaseForEvent(CGEventRef event)
     }
 }
 
-uint64_t nanoseconds(void)
+static uint64_t nanoseconds(void)
 {
     const uint64_t abstime = mach_absolute_time();
     const Nanoseconds nanotime = AbsoluteToNanoseconds( *(AbsoluteTime *) &abstime );
@@ -121,7 +125,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
             tap->touching=0;
 
             // get phase
-            const ScrollPhase phase=_momentumPhaseForEvent(event);
+            const ScrollPhase phase=momentumPhaseForEvent(event);
             [tap->logger logPhase:phase forKey:@"phase"];
             
             // work out the event source
@@ -134,7 +138,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
                     return ScrollEventSourceMouse; // assume anything not-continuous is a mouse
                 }
                 
-                if (_pidIsWacom(pid))
+                if (pidIsWacom(pid, tap))
                 {
                     // detect the wacom mouse, which always seems to scroll in multiples of 25
                     const BOOL wacomMouse=_detectWacomMouse?pixel_axis1!=0&&pixel_axis1%25==0&&pixel_axis2==0:NO;
