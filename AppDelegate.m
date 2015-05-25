@@ -116,6 +116,11 @@ NSString *const PrefsHideIcon=@"HideIcon";
     return self;
 }
 
+- (void)dealloc
+{
+    [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+}
+
 - (void)awakeFromNib
 {
     if(quitting) return;
@@ -135,6 +140,9 @@ NSString *const PrefsHideIcon=@"HideIcon";
         [welcomeWindowController showWindow:self];
 	}
     
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(appDidWake:) name:NSWorkspaceDidWakeNotification object:nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(appWillSleep:) name:NSWorkspaceWillSleepNotification object:nil];
+    
     // TODO remove
     [self showDebug:self];
     [self showTestWindow:self];
@@ -143,6 +151,17 @@ NSString *const PrefsHideIcon=@"HideIcon";
     if (tap->inverting) {
         [tap start];
     }
+}
+
+- (void)appDidWake:(NSNotification *)note
+{
+    [self logAppEvent:@"OS woke from sleep"];
+    [tap resetTap];
+}
+
+- (void)appWillSleep:(NSNotification *)note
+{
+    [self logAppEvent:@"OS is going to sleep"];
 }
 
 - (NSString *)settingsSummary

@@ -140,7 +140,7 @@
                 <binding destination="-2" name="title" keyPath="self.uiStringDebugConsole" id="6Vx-2S-Mc4"/>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="-77" y="-517"/>
+            <point key="canvasLocation" x="-118" y="-519"/>
         </window>
     </objects>
 </document>
