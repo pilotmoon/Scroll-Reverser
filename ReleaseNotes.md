@@ -1,3 +1,11 @@
+### v1.7.2 (26 May 2015)
+
+* Fixes for bug where Scroll Reverser would sometimes stop working, requiting app restart. (Now it should hopefully not stop working, and if it does you can just toggle Scroll Reverser off/on to reset it.)
+* You can now right-click (or control-click) the menu bar icon to toggle Scroll Reverser on/off.
+* New algorithm to (hopefully) distinguish more accurately between trackpad and mouse.
+* Added a debug console to help with fault-finding. To show the debug window, option-click (⌥-click) the Scroll Reverser menu bar icon.
+* Added Korean, Russian, Slovak and Traditional Chinese translations. (Thanks Josef, Byungkook Jang, Dmitry, and Johnny.)
+
 ### v1.7.1 (7 Jan 2015)
 
 * Fixed bug (introduced in v1.7) where Scroll Reverser would sometimes stop working after using it for a while.
