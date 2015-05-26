@@ -1,6 +1,6 @@
 ### v1.7.2 (26 May 2015)
 
-* Fixes for bug where Scroll Reverser would sometimes stop working, requiting app restart. (Now it should hopefully not stop working, and if it does you can just toggle Scroll Reverser off/on to reset it.)
+* Fixes for bug where Scroll Reverser would sometimes stop working, requiring app restart. (Now it should hopefully not stop working, and if it does you can just toggle Scroll Reverser off/on to reset it.)
 * You can now right-click (or control-click) the menu bar icon to toggle Scroll Reverser on/off.
 * New algorithm to (hopefully) distinguish more accurately between trackpad and mouse.
 * Added a debug console to help with fault-finding. To show the debug window, option-click (⌥-click) the Scroll Reverser menu bar icon.
@@ -31,7 +31,7 @@
 * Better accuracy detecting traditional wheel mice from trackpads. (No change to Magic and Mighty mouse detection.)
 * Added the option to automatically check for updates.
 * Fix minor bug which casused a console warning about 'scrollPhase is deprecated...'.
-* Requires OS X 10.7 Lion and above. (Version 1.5.1 still supports 10.4 and above.)
+* Requires OS X 10.7 Lion and above. (Version/Users/nick/Library/Developer/Xcode/DerivedData/ScrollReverser-gayujkhdywuxfmgzvvshrydjjkcn/Build/Products/Release/ScrollReverser-1.7.2.zip 1.5.1 still supports 10.4 and above.)
 
 ### v1.5.1 (12 March 2012)
 
