@@ -287,6 +287,7 @@
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = 6W6K75YWQ9;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -417,6 +418,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10006;
 				DEPLOYMENT_POSTPROCESSING = NO;
+				DEVELOPMENT_TEAM = 6W6K75YWQ9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -450,6 +452,7 @@
 				CURRENT_PROJECT_VERSION = 10006;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = 6W6K75YWQ9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
