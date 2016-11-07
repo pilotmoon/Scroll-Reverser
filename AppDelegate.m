@@ -144,6 +144,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(appWillSleep:) name:NSWorkspaceWillSleepNotification object:nil];
     
     ready=YES;
+    NSLog(@"Scroll Reverser ready. Option-click the Scroll Reverser menu bar icon to show the debug console.");
     if (tap->inverting) {
         [tap start];
     }
