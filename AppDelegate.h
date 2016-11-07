@@ -12,6 +12,7 @@ extern NSString *const PrefsHideIcon;
 @interface AppDelegate : NSObject {
     BOOL ready;
     BOOL quitting;
+    BOOL iconHidden;
 	MouseTap *tap;
 	StatusItemController *statusController;
     LoginItemsController *loginItemsController;

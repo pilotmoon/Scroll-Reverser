@@ -107,6 +107,8 @@ NSString *const PrefsHideIcon=@"HideIcon";
             [self observePrefsKey:PrefsReverseTrackpad];
             [self observePrefsKey:PrefsReverseMouse];
             [self observePrefsKey:PrefsReverseTablet];
+            
+            iconHidden=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon];
             [self observePrefsKey:PrefsHideIcon];
             
             [[SUUpdater sharedUpdater] setDelegate:self];
@@ -240,7 +242,13 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)handleHideIconChange
 {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon])
+    /* detect actual change (on Sierra, observeValueForKeyPath can get called multiple times for the
+     same prefs change, resulting in multiple notifications) */
+    const BOOL state=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon];
+    const BOOL wasHidden=state&&!iconHidden;
+    iconHidden=state;
+    
+    if (wasHidden)
     {
 		[NSApp activateIgnoringOtherApps:YES];
         NSAlert *alert=[NSAlert alertWithMessageText:NSLocalizedString(@"Status Icon Hidden",nil)
