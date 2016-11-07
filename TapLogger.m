@@ -87,7 +87,7 @@
 - (void)logEventType:(CGEventType)type forKey:(NSString *)key
 {
     NSString *str=@"unknown";
-    switch (type) {
+    switch ((NSUInteger)type) {
         case NSEventTypeGesture:
             str=@"gesture";
             break;

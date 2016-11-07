@@ -86,7 +86,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
         MouseTap *const tap=(__bridge MouseTap *)userInfo;
         const uint64_t time=nanoseconds();
         
-        if (type==NSEventTypeGesture)
+        if (type==(CGEventType)NSEventTypeGesture)
         {
             const NSUInteger touching=[[[NSEvent eventWithCGEvent:event] touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];
         
@@ -99,7 +99,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
                 return event; // totally ignore zero or one touch events
             }
         }
-        else if (type==NSScrollWheel)
+        else if (type==(CGEventType)NSScrollWheel)
         {
             // get the scrolling deltas
             const int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
@@ -138,7 +138,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
                     return ScrollEventSourceMouse; // assume anything not-continuous is a mouse
                 }
                 
-                if (pidIsWacom(pid, tap))
+                if (pidIsWacom((pid_t)pid, tap))
                 {
                     // detect the wacom mouse, which always seems to scroll in multiples of 25
                     const BOOL wacomMouse=_detectWacomMouse?pixel_axis1!=0&&pixel_axis1%25==0&&pixel_axis2==0:NO;
