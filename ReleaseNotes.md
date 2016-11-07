@@ -1,3 +1,9 @@
+### v1.7.3 (7 Nov 2016)
+
+* Scroll Reverser now silently relaunches itself when your Mac wakes from sleep. (This is because of the ongoing problem where macOS sometimes stops sending gesture events to Scroll Reverser after awaking from sleep, preventing it from telling the difference between trackpad and mouse. Hopefully, this will help.)
+* Added Hungarian and Polish translations. (Thanks, Léki and Artur.)
+* Fixed a bug where, on unchecking "Show in menu bar", the "Icon Hidden" message would appear multiple times.
+
 ### v1.7.2 (26 May 2015)
 
 * Fixes for bug where Scroll Reverser would sometimes stop working, requiring app restart. (Now it should hopefully not stop working, and if it does you can just toggle Scroll Reverser off/on to reset it.)
