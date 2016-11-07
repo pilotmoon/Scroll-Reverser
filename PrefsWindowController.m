@@ -67,8 +67,6 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
         panelData[kKeyViewHeight] = @([view frame].size.height);
         const NSSize size=[view fittingSize];
         self.width=MAX(self.width, size.width);
-        //NSLog(@"fs %@", NSStringFromSize(size));
-        //NSLog(@" s %@", NSStringFromSize([view frame].size));
         ((NSMutableDictionary *)self.panels)[key] = panelData;
         
         // add to tab bar
