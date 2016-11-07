@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "Application.h"
 #import "StatusItemController.h"
 #import "LoginItemsController.h"
 #import "MouseTap.h"
@@ -37,6 +38,16 @@ NSString *const PrefsHideIcon=@"HideIcon";
         LoggerMaxEntries: @(50000),
         }];
 	}
+}
+
+- (void)relaunch
+{
+    // based on https://gist.github.com/cdfmr/2204627
+    NSTask *const task=[[NSTask alloc] init];
+    [task setLaunchPath:@"/bin/sh"];
+    [task setArguments:@[@"-c", [NSString stringWithFormat:@"sleep 0.2; open \"%@\"", [[NSBundle mainBundle] bundlePath]]]];
+    [task launch];
+    [NSApp terminate:nil];
 }
 
 - (BOOL)alreadyRunning
@@ -155,7 +166,8 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (void)appDidWake:(NSNotification *)note
 {
     [self logAppEvent:@"OS woke from sleep"];
-    [tap resetTap];
+    NSLog(@"Scroll Reverser will relaunch itself because the OS woke from sleep.");
+    [self relaunch];
 }
 
 - (void)appWillSleep:(NSNotification *)note
