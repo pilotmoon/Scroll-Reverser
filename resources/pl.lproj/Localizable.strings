@@ -1,5 +1,5 @@
 ﻿/* No comment provided by engineer. */
-"%@ cannot start while another copy is running." = "Nie można uruchomić %@ ponieważ jest już uruchomiona.";
+"%@ cannot start while another copy is running." = "Nie można uruchomić %@, podczas gdy działa jego inna kopia.";
 
 /* No comment provided by engineer. */
 "%@ is already running." = "%@ jest już uruchomiona.";
