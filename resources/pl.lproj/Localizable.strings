@@ -1,0 +1,71 @@
+﻿/* No comment provided by engineer. */
+"%@ cannot start while another copy is running." = "Nie można uruchomić %@ ponieważ jest już uruchomiona.";
+
+/* No comment provided by engineer. */
+"%@ is already running." = "%@ jest już uruchomiona.";
+
+/* No comment provided by engineer. */
+"App" = "Aplikacja";
+
+/* check box next to the 'Check for updates' button */
+"Automatically" = "Automatycznie";
+
+/* No comment provided by engineer. */
+"Check for updates" = "Sprawdź aktualizacje";
+
+/* No comment provided by engineer. */
+"For settings, click the icon in the menu bar" = "Aby zobaczyć ustawienia kliknij ikonkę na pasku";
+
+/* text shown when the menu bar icon is hidden */
+"MENU_HIDDEN_TEXT" = "Ikona została usunięta z paska, aby ją pokazać uruchom aplikację.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Preferences" = "Ustawienia";
+
+/* No comment provided by engineer. */
+"Quit" = "Wyjście";
+
+/* No comment provided by engineer. */
+"Quit Scroll Reverser" = "Wyłącz Scroll Reverser";
+
+/* No comment provided by engineer. */
+"Reverse Horizontal" = "Odwróć w poziomie";
+
+/* No comment provided by engineer. */
+"Reverse Mouse" = "Odwrócona mysz";
+
+/* No comment provided by engineer. */
+"Reverse Scrolling" = "Odwrócone przewijanie";
+
+/* No comment provided by engineer. */
+"Reverse Tablet" = "Odwrócony tablet";
+
+/* No comment provided by engineer. */
+"Reverse Trackpad" = "Odwrócony gładzik";
+
+/* No comment provided by engineer. */
+"Reverse Vertical" = "Odwróć w pioniel";
+
+/* No comment provided by engineer. */
+"Scroll Reverser is now running!" = "Scroll Reverser został uruchomiony!";
+
+/* No comment provided by engineer. */
+"Scrolling" = "Przewijanie";
+
+/* No comment provided by engineer. */
+"Scrolling Axes" = "Osie przewijania";
+
+/* No comment provided by engineer. */
+"Scrolling Devices" = "Urządzenia przewijające";
+
+/* No comment provided by engineer. */
+"Show in menu bar" = "Pokazuj na pasku";
+
+/* No comment provided by engineer. */
+"Start at login" = "Uruchamiaj automatycznie";
+
+/* No comment provided by engineer. */
+"Status Icon Hidden" = "Ikona została ukryta";
