@@ -43,9 +43,11 @@ NSString *const PrefsHideIcon=@"HideIcon";
 - (void)relaunch
 {
     // based on https://gist.github.com/cdfmr/2204627
+    NSProcessInfo *processInfo = [NSProcessInfo processInfo];
+    int processID = [processInfo processIdentifier];
     NSTask *const task=[[NSTask alloc] init];
     [task setLaunchPath:@"/bin/sh"];
-    [task setArguments:@[@"-c", [NSString stringWithFormat:@"sleep 0.2; open \"%@\"", [[NSBundle mainBundle] bundlePath]]]];
+    [task setArguments:@[@"-c", [NSString stringWithFormat:@"logger \"waiting for pid %1$d\"; while kill -0 %1$d >/dev/null 2>&1; do sleep 0.01; done; logger \"restarting Scroll Reverser\"; open \"%2$@\"", processID, [[NSBundle mainBundle] bundlePath]]]];
     [task launch];
     [NSApp terminate:nil];
 }
