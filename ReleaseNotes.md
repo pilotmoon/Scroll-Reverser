@@ -1,3 +1,8 @@
+### 1.7.4 (11 Nov 2016)
+
+* The relaunch-on-wake implementation is now more robust.
+* A small correction to the Polish translation.
+
 ### v1.7.3 (7 Nov 2016)
 
 * Scroll Reverser now silently relaunches itself when your Mac wakes from sleep. (This is because of the ongoing problem where macOS sometimes stops sending gesture events to Scroll Reverser after awaking from sleep, preventing it from telling the difference between trackpad and mouse. Hopefully, this will help.)
