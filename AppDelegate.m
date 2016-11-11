@@ -1,5 +1,4 @@
 #import "AppDelegate.h"
-#import "Application.h"
 #import "StatusItemController.h"
 #import "LoginItemsController.h"
 #import "MouseTap.h"
