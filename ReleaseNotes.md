@@ -1,4 +1,4 @@
-### 1.7.4 (11 Nov 2016)
+### v1.7.4 (11 Nov 2016)
 
 * The relaunch-on-wake implementation is now more robust.
 * A small correction to the Polish translation.
