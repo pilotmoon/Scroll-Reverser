@@ -1,3 +1,7 @@
+### v? (?)
+
+* Added Dutch tanslation. (Thanks, Erik.)
+
 ### v1.7.4 (11 Nov 2016)
 
 * The relaunch-on-wake implementation is now more robust.
