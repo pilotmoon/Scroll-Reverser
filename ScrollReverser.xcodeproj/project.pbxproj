@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		011A628B19D4A748003CE6DC /* IntroShot.png in Resources */ = {isa = PBXBuildFile; fileRef = 011A628919D4A748003CE6DC /* IntroShot.png */; };
+		013E4E411DD7C50F00DCC144 /* ScrollReverser-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */; };
 		01438E601AFB467100C5C857 /* DebugWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01438E5E1AFB467100C5C857 /* DebugWindowController.m */; };
 		01438E611AFB467100C5C857 /* DebugWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01438E5F1AFB467100C5C857 /* DebugWindow.xib */; };
 		01438E901AFB640400C5C857 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 01438E8F1AFB640400C5C857 /* Logger.m */; };
@@ -57,6 +58,7 @@
 		011A628619D49B69003CE6DC /* ReleaseNotes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReleaseNotes.md; sourceTree = "<group>"; };
 		011A628919D4A748003CE6DC /* IntroShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IntroShot.png; path = Graphics/IntroShot.png; sourceTree = "<group>"; };
 		012A2B171A5D2A3A009DF434 /* ro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ro; path = resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		013E4E401DD7C50F00DCC144 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = resources/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01438E5D1AFB467100C5C857 /* DebugWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugWindowController.h; sourceTree = "<group>"; };
 		01438E5E1AFB467100C5C857 /* DebugWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugWindowController.m; sourceTree = "<group>"; };
 		01438E5F1AFB467100C5C857 /* DebugWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugWindow.xib; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				"zh-TW",
 				hu,
 				pl,
+				nl,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -328,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01AF54D41B0E11150028A26A /* TestWindow.xib in Resources */,
+				013E4E411DD7C50F00DCC144 /* ScrollReverser-Info.plist in Resources */,
 				01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */,
 				01E6A6CF1A42E6BF00C1FB2A /* ScrollReverser.iconset in Resources */,
 				011A628B19D4A748003CE6DC /* IntroShot.png in Resources */,
@@ -401,6 +405,7 @@
 				5B4056241ADE048B000D12C3 /* zh-TW */,
 				01FD192E1B1C81D000489C3F /* hu */,
 				0146E33F1DD07AA50089F864 /* pl */,
+				013E4E401DD7C50F00DCC144 /* nl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
