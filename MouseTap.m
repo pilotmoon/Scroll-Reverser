@@ -1,5 +1,5 @@
 // This file is part of Scroll Reverser <https://pilotmoon.com/scrollreverser/>
-// (c) Nicholas Moore. Licensed under Apache License v2.0 (see LICENSE).
+// Licensed under Apache License v2.0 <http://www.apache.org/licenses/LICENSE-2.0>
 
 #import "MouseTap.h"
 #import "CoreFoundation/CoreFoundation.h"
