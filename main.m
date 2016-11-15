@@ -1,10 +1,5 @@
-//
-//  main.m
-//  Scroll Inverter
-//
-//  Created by Work on 07/03/2011.
-//  Copyright 2011 Nicholas Moore. All rights reserved.
-//
+// This file is part of Scroll Reverser <https://pilotmoon.com/scrollreverser/>
+// (c) Nicholas Moore. Licensed under Apache License v2.0 (see LICENSE).
 
 #import <Cocoa/Cocoa.h>
 

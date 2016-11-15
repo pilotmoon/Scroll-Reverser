@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'Scroll Inverter' target in the 'Scroll Inverter' project
+// Prefix header for all source files of the 'ScrollReverser' target in the 'ScrollReverser' project
 //
 
 #ifdef __OBJC__

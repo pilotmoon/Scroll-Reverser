@@ -1,13 +1,15 @@
 Scroll Reverser
 ===============
 
-Reverse the direction of scrolling on Mac OS X. 
+Reverse the direction of scrolling on macOS. 
 
 The 'master' branch build targets OS X 10.7 and higher.
 
 Older code targeting 10.4+ is in the 'tiger' branch.
 
 Home page: http://pilotmoon.com/scrollreverser/
+
+Licensed under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 Notes on the code
 -----------------
