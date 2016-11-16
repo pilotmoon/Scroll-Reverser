@@ -1,7 +1,7 @@
 Scroll Reverser
 ===============
 
-**Please fill in the [Scroll Reverser survey](https://goo.gl/forms/RjEd4HNbZV6qxJVs1)!**
+**>>> PLEASE FILL IN THE [Scroll Reverser Survey](https://goo.gl/forms/RjEd4HNbZV6qxJVs1)! <<<**
 
 Reverse the direction of scrolling on macOS. 
 
