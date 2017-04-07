@@ -1,8 +1,6 @@
 Scroll Reverser
 ===============
 
-**>>> PLEASE FILL IN THE [Scroll Reverser Survey](https://goo.gl/forms/RjEd4HNbZV6qxJVs1)! <<<**
-
 Reverse the direction of scrolling on macOS. 
 
 The 'master' branch build targets  10.7 and higher.
