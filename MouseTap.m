@@ -251,7 +251,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
     lastSource=0;
     
     // passive tap
-    CGEventMask passiveEventMask=0;
+    CGEventMask passiveEventMask=NSEventMaskGesture;
     passiveTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
                                                    kCGTailAppendEventTap,
                                                    kCGEventTapOptionListenOnly,
@@ -262,7 +262,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
     CFRunLoopAddSource(CFRunLoopGetMain(), passiveTapSource, kCFRunLoopCommonModes);
     
     // active tap
-    CGEventMask activeEventMask=NSEventMaskGesture|NSScrollWheelMask;
+    CGEventMask activeEventMask=NSEventMaskScrollWheel;
     activeTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
 										   kCGTailAppendEventTap,
 										   kCGEventTapOptionDefault,
