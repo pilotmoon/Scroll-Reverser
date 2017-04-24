@@ -29,6 +29,7 @@
 		01B662D513250CA800658B5C /* LoginItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B662D413250CA800658B5C /* LoginItemsController.m */; };
 		01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */; };
 		01E6A6CF1A42E6BF00C1FB2A /* ScrollReverser.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 01E6A6CE1A42E6BF00C1FB2A /* ScrollReverser.iconset */; };
+		01E6F8F61EAE022100636423 /* ScrollReverser-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */; };
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
 		01ED37DF1A375EB9001B3094 /* LinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01ED37DE1A375EB9001B3094 /* LinkView.m */; };
 		01F66862174B5E43001727DE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F66861174B5E43001727DE /* Sparkle.framework */; };
@@ -100,6 +101,7 @@
 		01E6A6CB1A3EF6FA00C1FB2A /* pt-BR */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "resources/pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		01E6A6CE1A42E6BF00C1FB2A /* ScrollReverser.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = ScrollReverser.iconset; path = Graphics/ScrollReverser.iconset; sourceTree = "<group>"; };
 		01E6A6D01A42F3E200C1FB2A /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01E6F8F51EAE022100636423 /* zh-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-CN"; path = "resources/zh-CN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		01EB78C21324D574005390BD /* MouseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseTap.m; sourceTree = "<group>"; };
 		01EB78C31324D574005390BD /* MouseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseTap.h; sourceTree = "<group>"; };
 		01ED37DD1A375EB9001B3094 /* LinkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkView.h; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				hu,
 				pl,
 				nl,
+				"zh-CN",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -330,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01AF54D41B0E11150028A26A /* TestWindow.xib in Resources */,
+				01E6F8F61EAE022100636423 /* ScrollReverser-Info.plist in Resources */,
 				01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */,
 				01E6A6CF1A42E6BF00C1FB2A /* ScrollReverser.iconset in Resources */,
 				011A628B19D4A748003CE6DC /* IntroShot.png in Resources */,
@@ -404,6 +408,7 @@
 				01FD192E1B1C81D000489C3F /* hu */,
 				0146E33F1DD07AA50089F864 /* pl */,
 				013E4E401DD7C50F00DCC144 /* nl */,
+				01E6F8F51EAE022100636423 /* zh-CN */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
