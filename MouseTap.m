@@ -250,7 +250,11 @@ static CGEventRef callback(CGEventTapProxy proxy,
     lastTouchTime=0;
     lastSource=0;
     
-    // passive tap
+    /* We use a separate passive tap to monitor gesture events, because using an
+     active tap to do so causes various problems:
+        - Triggers additional permissons dialogs when interacting with authorization services dialogs
+        - Interferes with "shake to locate cursor" (when using Trackpad)
+        = Interferes with the 2-finger "show notificaton center" gesture */
     CGEventMask passiveEventMask=NSEventMaskGesture;
     passiveTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
                                                    kCGTailAppendEventTap,
@@ -261,7 +265,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
 	passiveTapSource = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, passiveTapPort, 0);
     CFRunLoopAddSource(CFRunLoopGetMain(), passiveTapSource, kCFRunLoopCommonModes);
     
-    // active tap
+    // active tap, for modifying scroll events
     CGEventMask activeEventMask=NSEventMaskScrollWheel;
     activeTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
 										   kCGTailAppendEventTap,
