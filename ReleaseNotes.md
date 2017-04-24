@@ -1,6 +1,11 @@
-### v? (?)
+### v1.7.5 (24 Apr 2017)
 
-* Added Dutch tanslation. (Thanks, Erik.)
+* Fixes the following problems:
+    * Presence of Scroll Reverser triggering additional security dialogs (for example, in Keychain permissions dialogs); 
+    * "Shake to locate cursor" not working with Trackpad while Scroll Reverser is running;
+    * Notification center getting stuck half-open while Scroll Reverser is running.
+* Added Simplified Chinese (zh-CN) translation. (Thanks, Ruocheng Wang.)
+* Added Dutch translation. (Thanks, Erik.)
 
 ### v1.7.4 (11 Nov 2016)
 
@@ -19,7 +24,7 @@
 * You can now right-click (or control-click) the menu bar icon to toggle Scroll Reverser on/off.
 * New algorithm to (hopefully) distinguish more accurately between trackpad and mouse.
 * Added a debug console to help with fault-finding. To show the debug window, option-click (⌥-click) the Scroll Reverser menu bar icon.
-* Added Korean, Russian, Slovak and Traditional Chinese translations. (Thanks Josef, Byungkook Jang, Dmitry, and Johnny.)
+* Added Korean, Russian, Slovak and Traditional Chinese (zh-TW) translations. (Thanks Josef, Byungkook Jang, Dmitry, and Johnny.)
 
 ### v1.7.1 (7 Jan 2015)
 
