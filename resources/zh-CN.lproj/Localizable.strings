@@ -1,0 +1,63 @@
+﻿/* No comment provided by engineer. */
+"App" = "软件";
+
+/* check box next to the 'Check for updates' button */
+"Automatically" = "自动更新";
+
+/* No comment provided by engineer. */
+"Check for updates" = "自动检查更新";
+
+/* No comment provided by engineer. */
+"For settings, click the icon in the menu bar" = "请点击菜单栏的图标来修改设置";
+
+/* text shown when the menu bar icon is hidden */
+"MENU_HIDDEN_TEXT" = "Scroll Reverser 在菜单栏的图标已经隐藏，如需重新显示，再次从Finder运行Scroll Reverser。";
+
+/* No comment provided by engineer. */
+"OK" = "确定";
+
+/* No comment provided by engineer. */
+"Preferences" = "设置";
+
+/* No comment provided by engineer. */
+"Quit Scroll Reverser" = "退出 Scroll Reverser";
+
+/* No comment provided by engineer. */
+"Reverse Horizontal" = "翻转水平滚动 (Reverse Horizontal)";
+
+/* No comment provided by engineer. */
+"Reverse Mouse" = "翻转鼠标";
+
+/* No comment provided by engineer. */
+"Reverse Scrolling" = "翻转滚动 (Reverse Scrolling)";
+
+/* No comment provided by engineer. */
+"Reverse Tablet" = "翻转手写板";
+
+/* No comment provided by engineer. */
+"Reverse Trackpad" = "翻转触摸板";
+
+/* No comment provided by engineer. */
+"Reverse Vertical" = "翻转垂直滚动 (Reverse Vertical)";
+
+/* No comment provided by engineer. */
+"Scroll Reverser is now running!" = "Scroll Reverser 已经在运行";
+
+/* No comment provided by engineer. */
+"Scrolling" = "滚动";
+
+/* No comment provided by engineer. */
+"Scrolling Axes" = "滚动方向";
+
+/* No comment provided by engineer. */
+"Scrolling Devices" = "输入设备";
+
+/* No comment provided by engineer. */
+"Start at login" = "开机时启动";
+
+/* No comment provided by engineer. */
+"Status Icon Hidden" = "隐藏菜单栏图标";
+
+/* No comment provided by engineer. */
+"Show in menu bar" = "显示菜单栏图标";
+
