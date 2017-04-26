@@ -1,4 +1,10 @@
 ﻿/* No comment provided by engineer. */
+"%@ cannot start while another copy is running." = "%@ nedá sa spustiť, keď je spustená iná kópia.";
+
+/* No comment provided by engineer. */
+"%@ is already running." = "%@ je už spustený.";
+
+/* No comment provided by engineer. */
 "App" = "Program";
 
 /* check box next to the 'Check for updates' button */
@@ -11,7 +17,7 @@
 "For settings, click the icon in the menu bar" = "Kliknite na ikonu v menu lište pre nastavenia";
 
 /* text shown when the menu bar icon is hidden */
-"MENU_HIDDEN_TEXT" = "Ikona programu Scroll Reverser bola odstránená z menu lišty. Ak ju chcete vrátiť, spustite program Scroll Reverser zonova z Findera.";
+"MENU_HIDDEN_TEXT" = "Ikona programu Scroll Reverser bola odstránená z menu lišty. Ak ju chcete vrátiť, spustite program Scroll Reverser znova z Findera.";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -20,25 +26,28 @@
 "Preferences" = "Nastavenia";
 
 /* No comment provided by engineer. */
+"Quit" = "Ukončiť";
+
+/* No comment provided by engineer. */
 "Quit Scroll Reverser" = "Ukončiť Scroll Reverser";
 
 /* No comment provided by engineer. */
-"Reverse Horizontal" = "Otočiť Horizontálne";
+"Reverse Horizontal" = "Otočiť horizontálne";
 
 /* No comment provided by engineer. */
-"Reverse Mouse" = "Otočiť Myš";
+"Reverse Mouse" = "Otočiť myš";
 
 /* No comment provided by engineer. */
-"Reverse Scrolling" = "Otočiť Rolovanie";
+"Reverse Scrolling" = "Otočiť rolovanie";
 
 /* No comment provided by engineer. */
-"Reverse Tablet" = "Otočiť Tablet";
+"Reverse Tablet" = "Otočiť tablet";
 
 /* No comment provided by engineer. */
-"Reverse Trackpad" = "Otočiť Trackpad";
+"Reverse Trackpad" = "Otočiť trackpad";
 
 /* No comment provided by engineer. */
-"Reverse Vertical" = "Otočiť Vertikálne";
+"Reverse Vertical" = "Otočiť vertikálne";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser je teraz spustený!";
@@ -47,10 +56,13 @@
 "Scrolling" = "Rolovanie";
 
 /* No comment provided by engineer. */
-"Scrolling Axes" = "Osi Rolovania";
+"Scrolling Axes" = "Osi rolovania";
 
 /* No comment provided by engineer. */
-"Scrolling Devices" = "Rolovacie Zariadenia";
+"Scrolling Devices" = "Rolovacie zariadenia";
+
+/* No comment provided by engineer. */
+"Show in menu bar" = "Ukázať v menu lište";
 
 /* No comment provided by engineer. */
 "Start at login" = "Spustiť pri štarte";
@@ -58,6 +70,4 @@
 /* No comment provided by engineer. */
 "Status Icon Hidden" = "Ikona statusu je skrytá";
 
-/* No comment provided by engineer. */
-"Show in menu bar" = "Ukázať v menu lište";
 
