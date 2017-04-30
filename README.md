@@ -1,18 +1,18 @@
-Scroll Reverser
-===============
+# Scroll Reverser
 
-Reverse the direction of scrolling on macOS. 
-
-The 'master' branch build targets  10.7 and higher.
-
-Older code targeting 10.4+ is in the 'tiger' branch.
+Reverse the direction of scrolling on macOS.
 
 Home page: http://pilotmoon.com/scrollreverser/
 
+## License
+
 Licensed under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
-Notes on the code
------------------
+## Notes on the code
+
+The 'master' branch build targets 10.7 and higher.
+
+Older code targeting 10.4+ is in the 'tiger' branch.
 
 The real guts of the code is in MouseTap.m. Everything else is just user interface rigging.
 
