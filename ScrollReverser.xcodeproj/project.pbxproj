@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0118CC8B1EC4BACB00DA75D5 /* ScrollReverser-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */; };
 		011A628B19D4A748003CE6DC /* IntroShot.png in Resources */ = {isa = PBXBuildFile; fileRef = 011A628919D4A748003CE6DC /* IntroShot.png */; };
 		01438E601AFB467100C5C857 /* DebugWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01438E5E1AFB467100C5C857 /* DebugWindowController.m */; };
 		01438E611AFB467100C5C857 /* DebugWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01438E5F1AFB467100C5C857 /* DebugWindow.xib */; };
@@ -51,6 +52,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0118CC8A1EC4BACB00DA75D5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = resources/nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		011A628419D49AB7003CE6DC /* create_zip_and_appcast.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = create_zip_and_appcast.sh; path = BuildScripts/create_zip_and_appcast.sh; sourceTree = "<group>"; };
 		011A628519D49AB7003CE6DC /* insert_version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = insert_version.sh; path = BuildScripts/insert_version.sh; sourceTree = "<group>"; };
 		011A628619D49B69003CE6DC /* ReleaseNotes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReleaseNotes.md; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				pl,
 				nl,
 				"zh-CN",
+				nb,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -327,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01AF54D41B0E11150028A26A /* TestWindow.xib in Resources */,
+				0118CC8B1EC4BACB00DA75D5 /* ScrollReverser-Info.plist in Resources */,
 				01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */,
 				01E6A6CF1A42E6BF00C1FB2A /* ScrollReverser.iconset in Resources */,
 				011A628B19D4A748003CE6DC /* IntroShot.png in Resources */,
@@ -401,6 +405,7 @@
 				0146E33F1DD07AA50089F864 /* pl */,
 				013E4E401DD7C50F00DCC144 /* nl */,
 				01E6F8F51EAE022100636423 /* zh-CN */,
+				0118CC8A1EC4BACB00DA75D5 /* nb */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

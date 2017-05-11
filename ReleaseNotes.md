@@ -1,3 +1,8 @@
+### v1.7.6 (11 May 2017)
+
+* Some internal changes to the way preferences are loaded. (As part of investigating [Issue #38: Scroll reverser preferences randomly change](https://github.com/pilotmoon/Scroll-Reverser/issues/38).)
+* Translation updates, including a new Norwegian translation (thanks, Patrick).
+
 ### v1.7.5 (24 Apr 2017)
 
 * Fixes the following problems:
