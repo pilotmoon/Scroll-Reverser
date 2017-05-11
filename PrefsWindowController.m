@@ -199,7 +199,7 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 
 - (AppDelegate *)appDelegate
 {
-    return [[NSApplication sharedApplication] delegate];
+    return (AppDelegate *)[[NSApplication sharedApplication] delegate];
 }
 
 - (NSString *)menuStringReverseScrolling
