@@ -178,19 +178,19 @@ static CGEventRef callback(CGEventTapProxy proxy,
                  */
                 const BOOL preventBecauseComingFromOtherApp=_preventReverseOtherApp?pid!=0:NO;
                 
-                if (tap->inverting&&!preventBecauseComingFromOtherApp)
+                if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]&&!preventBecauseComingFromOtherApp)
                 {
                     switch (source)
                     {
                         case ScrollEventSourceTrackpad:
-                            return tap->invertMultiTouch;
+                            return [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad];
                             
                         case ScrollEventSourceTablet:
-                            return tap->invertTablet;
+                            return [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTablet];
                             
                         case ScrollEventSourceMouse:
                         default:
-                            return tap->invertOther;
+                            return [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse];
                     }
                 }
                 else {
@@ -209,12 +209,14 @@ static CGEventRef callback(CGEventTapProxy proxy,
              or we lose smooth scrolling. */
             if (invert)
             {
-                if (tap->invertY) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -line_axis1);
-                if (tap->invertX) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -line_axis2);
-                if (tap->invertY) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1, -1 * fixedpt_axis1);
-                if (tap->invertX) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2, -1 * fixedpt_axis2);
-                if (tap->invertY) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);
-                if (tap->invertX) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
+                const BOOL reverseX=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal];
+                const BOOL reverseY=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical];
+                if (reverseY) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -line_axis1);
+                if (reverseX) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -line_axis2);
+                if (reverseY) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1, -1 * fixedpt_axis1);
+                if (reverseX) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2, -1 * fixedpt_axis2);
+                if (reverseY) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);
+                if (reverseX) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
             }
         }
         else

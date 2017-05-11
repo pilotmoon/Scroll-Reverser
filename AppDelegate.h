@@ -2,7 +2,8 @@
 // Licensed under Apache License v2.0 <http://www.apache.org/licenses/LICENSE-2.0>
 
 #import <Cocoa/Cocoa.h>
-@class MouseTap, StatusItemController, LoginItemsController, WelcomeWindowController, PrefsWindowController, DebugWindowController, TapLogger, TestWindowController;
+#import "StatusItemController.h"
+@class MouseTap, LoginItemsController, WelcomeWindowController, PrefsWindowController, DebugWindowController, TapLogger, TestWindowController;
 
 extern NSString *const PrefsReverseScrolling;
 extern NSString *const PrefsReverseHorizontal;
@@ -12,10 +13,8 @@ extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsReverseTablet;
 extern NSString *const PrefsHideIcon;
 
-@interface AppDelegate : NSObject {
-    BOOL ready;
+@interface AppDelegate : NSObject <StatusItemControllerDelegate> {
     BOOL quitting;
-    BOOL iconHidden;
 	MouseTap *tap;
 	StatusItemController *statusController;
     LoginItemsController *loginItemsController;

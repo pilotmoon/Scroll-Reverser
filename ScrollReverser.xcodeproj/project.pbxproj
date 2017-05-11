@@ -27,9 +27,7 @@
 		01B5ABCD1700D26200FF6F6A /* ScrollReverserStatusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */; };
 		01B5ABDD1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */; };
 		01B662D513250CA800658B5C /* LoginItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B662D413250CA800658B5C /* LoginItemsController.m */; };
-		01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */; };
 		01E6A6CF1A42E6BF00C1FB2A /* ScrollReverser.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 01E6A6CE1A42E6BF00C1FB2A /* ScrollReverser.iconset */; };
-		01E6F8F61EAE022100636423 /* ScrollReverser-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */; };
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
 		01ED37DF1A375EB9001B3094 /* LinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01ED37DE1A375EB9001B3094 /* LinkView.m */; };
 		01F66862174B5E43001727DE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F66861174B5E43001727DE /* Sparkle.framework */; };
@@ -92,8 +90,6 @@
 		01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ScrollReverserStatusIcon@2x.png"; path = "Graphics/ScrollReverserStatusIcon@2x.png"; sourceTree = "<group>"; };
 		01B662D313250CA800658B5C /* LoginItemsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemsController.h; sourceTree = "<group>"; };
 		01B662D413250CA800658B5C /* LoginItemsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemsController.m; sourceTree = "<group>"; };
-		01B66449132528A000658B5C /* NSObject+ObservePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ObservePrefs.h"; sourceTree = "<group>"; };
-		01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ObservePrefs.m"; sourceTree = "<group>"; };
 		01BE744B14DC5F7F0050DD8A /* insert_version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = insert_version.sh; path = BuildScripts/insert_version.sh; sourceTree = "<group>"; };
 		01CEC73C1A5E8BCF0086DDEC /* sk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = sk; path = resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01E6A6C51A3EF6E300C1FB2A /* it */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = it; path = resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -162,8 +158,6 @@
 				256AC3D90F4B6AC300CF3369 /* AppDelegate.m */,
 				01EB78C21324D574005390BD /* MouseTap.m */,
 				01EB78C31324D574005390BD /* MouseTap.h */,
-				01B66449132528A000658B5C /* NSObject+ObservePrefs.h */,
-				01B6644A132528A000658B5C /* NSObject+ObservePrefs.m */,
 				01ED37DD1A375EB9001B3094 /* LinkView.h */,
 				01ED37DE1A375EB9001B3094 /* LinkView.m */,
 				0183EE711A37947E00A260E0 /* Application.h */,
@@ -176,7 +170,6 @@
 				01438E921AFB7BC100C5C857 /* LoggerScrollView.m */,
 				01AF54D01B0E11150028A26A /* TestWindowController.h */,
 				01AF54D11B0E11150028A26A /* TestWindowController.m */,
-				01AF54D21B0E11150028A26A /* TestWindow.xib */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -236,6 +229,7 @@
 				011A628419D49AB7003CE6DC /* create_zip_and_appcast.sh */,
 				011A628619D49B69003CE6DC /* ReleaseNotes.md */,
 				011A628519D49AB7003CE6DC /* insert_version.sh */,
+				01AF54D21B0E11150028A26A /* TestWindow.xib */,
 				0183EE6D1A37943500A260E0 /* MainMenu.xib */,
 				01438E5F1AFB467100C5C857 /* DebugWindow.xib */,
 				0183EE6E1A37943500A260E0 /* WelcomeWindow.xib */,
@@ -333,7 +327,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				01AF54D41B0E11150028A26A /* TestWindow.xib in Resources */,
-				01E6F8F61EAE022100636423 /* ScrollReverser-Info.plist in Resources */,
 				01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */,
 				01E6A6CF1A42E6BF00C1FB2A /* ScrollReverser.iconset in Resources */,
 				011A628B19D4A748003CE6DC /* IntroShot.png in Resources */,
@@ -378,7 +371,6 @@
 				01B662D513250CA800658B5C /* LoginItemsController.m in Sources */,
 				01438E931AFB7BC100C5C857 /* LoggerScrollView.m in Sources */,
 				01438E601AFB467100C5C857 /* DebugWindowController.m in Sources */,
-				01B6644B132528A000658B5C /* NSObject+ObservePrefs.m in Sources */,
 				01438E901AFB640400C5C857 /* Logger.m in Sources */,
 				0158735813265EDD00100E4C /* StatusItemController.m in Sources */,
 				01AF54D31B0E11150028A26A /* TestWindowController.m in Sources */,

@@ -5,7 +5,6 @@
 #import "StatusItemController.h"
 #import "LoginItemsController.h"
 #import "MouseTap.h"
-#import "NSObject+ObservePrefs.h"
 #import "WelcomeWindowController.h"
 #import "PrefsWindowController.h"
 #import "DebugWindowController.h"
@@ -22,7 +21,8 @@ NSString *const PrefsReverseTablet=@"ReverseTablet";
 NSString *const PrefsHasRunBefore=@"HasRunBefore";
 NSString *const PrefsHideIcon=@"HideIcon";
 
-
+void *kContextHideIcon=&kContextHideIcon;
+void *kContextReverseScrolling=&kContextReverseScrolling;
 
 @implementation AppDelegate
 
@@ -31,13 +31,13 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	if ([self class]==[AppDelegate class])
     {
 		[[NSUserDefaults standardUserDefaults] registerDefaults:@{
-        PrefsReverseScrolling: @(YES),
-        PrefsReverseHorizontal: @(NO),
-        PrefsReverseVertical: @(YES),
-        PrefsReverseTrackpad: @(YES),
-        PrefsReverseMouse: @(YES),
-        PrefsReverseTablet: @(YES),
-        LoggerMaxEntries: @(50000),
+            PrefsReverseScrolling: @(YES),
+            PrefsReverseHorizontal: @(NO),
+            PrefsReverseVertical: @(YES),
+            PrefsReverseTrackpad: @(YES),
+            PrefsReverseMouse: @(YES),
+            PrefsReverseTablet: @(YES),
+            LoggerMaxEntries: @(50000),
         }];
 	}
 }
@@ -79,16 +79,6 @@ NSString *const PrefsHideIcon=@"HideIcon";
     return alreadyRunning;
 }
 
-- (void)updateTap
-{
-    tap->inverting=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
-    tap->invertX=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal];
-    tap->invertY=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical];
-    tap->invertMultiTouch=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad];
-    tap->invertTablet=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTablet];
-    tap->invertOther=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse];
-}
-
 - (NSURL *)feedURL
 {
     if ([[self.appVersion componentsSeparatedByString:@"-"] count]>1) { // if version string has a dash, it's a beta
@@ -111,21 +101,12 @@ NSString *const PrefsHideIcon=@"HideIcon";
         }
         else {
             tap=[[MouseTap alloc] init];
-            [self updateTap];
             
-            statusController=[[StatusItemController alloc] init];
             loginItemsController=[[LoginItemsController alloc] init];
-            [loginItemsController addObserver:self forKeyPath:@"startAtLogin" options:NSKeyValueObservingOptionInitial context:nil];
-            
-            [self observePrefsKey:PrefsReverseScrolling];
-            [self observePrefsKey:PrefsReverseHorizontal];
-            [self observePrefsKey:PrefsReverseVertical];
-            [self observePrefsKey:PrefsReverseTrackpad];
-            [self observePrefsKey:PrefsReverseMouse];
-            [self observePrefsKey:PrefsReverseTablet];
-            
-            iconHidden=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon];
-            [self observePrefsKey:PrefsHideIcon];
+            statusController=[[StatusItemController alloc] init];
+            statusController.statusItemDelegate=self;
+            statusController.visible=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon];
+            [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:PrefsHideIcon options:0 context:kContextHideIcon];
             
             [[SUUpdater sharedUpdater] setDelegate:self];
             [[SUUpdater sharedUpdater] setFeedURL:[self feedURL]];
@@ -161,11 +142,10 @@ NSString *const PrefsHideIcon=@"HideIcon";
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(appDidWake:) name:NSWorkspaceDidWakeNotification object:nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(appWillSleep:) name:NSWorkspaceWillSleepNotification object:nil];
     
-    ready=YES;
     NSLog(@"Scroll Reverser ready. Option-click the Scroll Reverser menu bar icon to show the debug console.");
-    if (tap->inverting) {
-        [tap start];
-    }
+    
+    // this will kick off the mouse tap if already enables
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:PrefsReverseScrolling options:NSKeyValueObservingOptionInitial context:kContextReverseScrolling];
 }
 
 - (void)appDidWake:(NSNotification *)note
@@ -185,12 +165,12 @@ NSString *const PrefsHideIcon=@"HideIcon";
     NSString *(^yn)(NSString *, BOOL) = ^(NSString *label, BOOL state) {
         return [NSString stringWithFormat:@"[%@ %@]", label, state?@"yes":@"no"];
     };
-    NSString *temp=yn(@"on", tap->inverting);
-    temp=[temp stringByAppendingString:yn(@"v", tap->invertY)];
-    temp=[temp stringByAppendingString:yn(@"h", tap->invertX)];
-    temp=[temp stringByAppendingString:yn(@"trackpad", tap->invertMultiTouch)];
-    temp=[temp stringByAppendingString:yn(@"tablet", tap->invertTablet)];
-    temp=[temp stringByAppendingString:yn(@"mouse/other", tap->invertOther)];
+    NSString *temp=yn(@"on", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]);
+    temp=[temp stringByAppendingString:yn(@"v", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical])];
+    temp=[temp stringByAppendingString:yn(@"h", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal])];
+    temp=[temp stringByAppendingString:yn(@"trackpad", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad])];
+    temp=[temp stringByAppendingString:yn(@"tablet", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTablet])];
+    temp=[temp stringByAppendingString:yn(@"mouse/other", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse])];
     return temp;
 }
 
@@ -201,7 +181,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 
 - (void)toggleReversing
 {
-    const BOOL state=[[NSUserDefaults standardUserDefaults]  boolForKey:PrefsReverseScrolling];
+    const BOOL state=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
     [[NSUserDefaults standardUserDefaults] setBool:!state forKey:PrefsReverseScrolling];
 }
 
@@ -257,42 +237,30 @@ NSString *const PrefsHideIcon=@"HideIcon";
 	return NO;
 }
 
-- (void)handleHideIconChange
-{
-    /* detect actual change (on Sierra, observeValueForKeyPath can get called multiple times for the
-     same prefs change, resulting in multiple notifications) */
-    const BOOL state=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon];
-    const BOOL wasHidden=state&&!iconHidden;
-    iconHidden=state;
-    
-    if (wasHidden)
-    {
-		[NSApp activateIgnoringOtherApps:YES];
-        NSAlert *alert=[NSAlert alertWithMessageText:NSLocalizedString(@"Status Icon Hidden",nil)
-                                       defaultButton:NSLocalizedString(@"OK",nil)
-                                     alternateButton:nil
-                                         otherButton:nil
-                           informativeTextWithFormat:NSLocalizedString(@"MENU_HIDDEN_TEXT", @"text shown when the menu bar icon is hidden")];
-        [alert runModal];
-    }    
-}
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath hasSuffix:PrefsHideIcon]) {
-        // run it asynchronously, because we shouldn't change the pref back inside the observer
-        [self performSelector:@selector(handleHideIconChange) withObject:nil afterDelay:0.001];
+    if (context==kContextHideIcon) {
+        BOOL wasVisible=statusController.visible;
+        statusController.visible=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon];;
+        if (wasVisible&&!statusController.visible)
+        {
+            [NSApp activateIgnoringOtherApps:YES];
+            NSAlert *alert=[NSAlert alertWithMessageText:NSLocalizedString(@"Status Icon Hidden",nil)
+                                           defaultButton:NSLocalizedString(@"OK",nil)
+                                         alternateButton:nil
+                                             otherButton:nil
+                               informativeTextWithFormat:NSLocalizedString(@"MENU_HIDDEN_TEXT", @"text shown when the menu bar icon is hidden")];
+            [alert runModal];
+        }
     }
-    else {
-        [self updateTap];
-        [self logAppEvent:@"Settings changed"];
-        if ([keyPath hasSuffix:PrefsReverseScrolling]) {
-            if (ready && tap->inverting) {
-                [tap start];
-            }
-            else {
-                [tap stop];
-            }
+    else if (context==kContextReverseScrolling) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]) {
+            statusController.enabled=YES;
+            [tap start];
+        }
+        else {
+            statusController.enabled=NO;
+            [tap stop];
         }
     }
 }

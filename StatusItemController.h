@@ -3,11 +3,22 @@
 
 #import <Cocoa/Cocoa.h>
 
+@protocol StatusItemControllerDelegate <NSObject>
+@required
+- (void) statusItemRightClicked;
+- (void) statusItemAltClicked;
+- (void) statusItemClicked;
+@end
+
 @interface StatusItemController : NSWindowController <NSMenuDelegate> {
 	NSStatusItem *_statusItem;
     NSMenu *_theMenu;
 	BOOL _menuIsOpen;
 }
+
+@property id<StatusItemControllerDelegate> statusItemDelegate;
+@property (getter=isEnabled) BOOL enabled;
+@property (getter=isVisible) BOOL visible;
 
 - (void)attachMenu:(NSMenu *)menu;
 - (void)openMenu;

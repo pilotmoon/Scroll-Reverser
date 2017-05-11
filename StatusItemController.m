@@ -2,8 +2,6 @@
 // Licensed under Apache License v2.0 <http://www.apache.org/licenses/LICENSE-2.0>
 
 #import "StatusItemController.h"
-#import "AppDelegate.h"
-#import "NSObject+ObservePrefs.h"
 
 @implementation StatusItemController
 
@@ -39,11 +37,11 @@
 
 - (void)updateItems
 {
-	if ([_statusItem respondsToSelector:@selector(button)]) {
-        [_statusItem button].appearsDisabled=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
-	}
-	else {
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]) {
+    if ([_statusItem respondsToSelector:@selector(button)]) {
+        [_statusItem button].appearsDisabled=!self.enabled;
+    }
+    else {
+        if (self.enabled) {
             if (_menuIsOpen) {
                 [_statusItem setImage:[StatusItemController statusImageWithColor:[NSColor whiteColor]]];
             }
@@ -54,7 +52,7 @@
         else {
             [_statusItem setImage:[StatusItemController statusImageWithColor:[NSColor grayColor]]];
         }
-	}
+    }
 }
 
 - (void)addStatusIcon
@@ -72,8 +70,6 @@
             [statusImage setTemplate:YES];
             [_statusItem setImage:statusImage];
         }
-
-		[self updateItems];
 	}
 }
 
@@ -87,22 +83,23 @@
 
 - (void)displayStatusIcon
 {
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon]) {
-		[self removeStatusIcon];
+	if (self.visible) {
+        [self addStatusIcon];
+        [self updateItems];
 	}
 	else {
-		[self addStatusIcon];
+		[self removeStatusIcon];
 	}
 }
 
 - (id)init
 {
 	self = [super init];
-    
-	[self observePrefsKey:PrefsReverseScrolling];
-	[self observePrefsKey:PrefsHideIcon];	
-	[self displayStatusIcon];
-	
+    if (self) {
+        [self addObserver:self forKeyPath:@"enabled" options:0 context:0];
+        [self addObserver:self forKeyPath:@"visible" options:0 context:0];
+        [self displayStatusIcon];
+    }
 	return self;
 }
 
@@ -121,7 +118,6 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	[self displayStatusIcon];
-	[self updateItems];
 }
 
 - (void)attachMenu:(NSMenu *)menu
@@ -141,13 +137,13 @@
 {
     if ((([[NSApp currentEvent] modifierFlags] & NSControlKeyMask)==NSControlKeyMask) || [[NSApp currentEvent] type] == NSRightMouseDown)
     {
-        [(AppDelegate *)[NSApp delegate] statusItemRightClicked];
+        [_statusItemDelegate statusItemRightClicked];
     }
     else if (([[NSApp currentEvent] modifierFlags] & NSAlternateKeyMask)==NSAlternateKeyMask) {
-        [(AppDelegate *)[NSApp delegate] statusItemAltClicked];
+        [_statusItemDelegate statusItemAltClicked];
     }
     else {
-        [(AppDelegate *)[NSApp delegate] statusItemClicked];
+        [_statusItemDelegate statusItemClicked];
         [self openMenu];
     }
 }

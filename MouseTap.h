@@ -32,13 +32,6 @@ typedef enum {
     uint64_t lastTouchTime;
     ScrollEventSource lastSource;
     
-	BOOL inverting;
-    BOOL invertX;
-    BOOL invertY;
-    BOOL invertMultiTouch;
-    BOOL invertTablet;
-    BOOL invertOther;
-    
     __weak TapLogger *logger;
 }
 - (void)start;
