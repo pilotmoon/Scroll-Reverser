@@ -11,7 +11,7 @@
 "For settings, click the icon in the menu bar" = "请点击菜单栏的图标来修改设置";
 
 /* text shown when the menu bar icon is hidden */
-"MENU_HIDDEN_TEXT" = "Scroll Reverser 在菜单栏的图标已经隐藏，如需重新显示，再次从Finder运行Scroll Reverser。";
+"MENU_HIDDEN_TEXT" = "Scroll Reverser 在菜单栏的图标已经隐藏，如需重新显示，再次从 Finder 运行 Scroll Reverser。";
 
 /* No comment provided by engineer. */
 "OK" = "确定";
