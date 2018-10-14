@@ -32,6 +32,8 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>Application</string>
+	<key>NSRequiresAquaSystemAppearance</key>
+	<false/>
 	<key>OSAScriptingDefinition</key>
 	<string>ScrollReverser.sdef</string>
 	<key>SUAllowsAutomaticUpdates</key>
