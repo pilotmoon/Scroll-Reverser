@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0118CC8B1EC4BACB00DA75D5 /* ScrollReverser-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */; };
 		011A628B19D4A748003CE6DC /* IntroShot.png in Resources */ = {isa = PBXBuildFile; fileRef = 011A628919D4A748003CE6DC /* IntroShot.png */; };
 		01438E601AFB467100C5C857 /* DebugWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01438E5E1AFB467100C5C857 /* DebugWindowController.m */; };
 		01438E611AFB467100C5C857 /* DebugWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01438E5F1AFB467100C5C857 /* DebugWindow.xib */; };
@@ -282,7 +281,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1010;
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = 6W6K75YWQ9;
@@ -330,7 +329,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				01AF54D41B0E11150028A26A /* TestWindow.xib in Resources */,
-				0118CC8B1EC4BACB00DA75D5 /* ScrollReverser-Info.plist in Resources */,
 				01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */,
 				01E6A6CF1A42E6BF00C1FB2A /* ScrollReverser.iconset in Resources */,
 				011A628B19D4A748003CE6DC /* IntroShot.png in Resources */,
@@ -358,7 +356,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# insert the version string from git into the app\n${SRCROOT}/BuildScripts/insert_version.sh noclean 10000\n\nNM_FRAMEWORKS_PATH=\"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH\"\necho \"Frameworks path is $NM_FRAMEWORKS_PATH\"\n\n# shrink sparkle\nSPARKLE_PATH=\"$NM_FRAMEWORKS_PATH/Sparkle.framework\"\necho \"Removing spurious files from $SPARKLE_PATH\"\nrm -rf \"$SPARKLE_PATH/Headers\"\nrm -rf \"$SPARKLE_PATH/Versions/Current/Headers\"\nrm -rf \"$SPARKLE_PATH/Resources/ca.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/cs.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/cy.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/da.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/el.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/fi.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/fr_CA.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/he.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/hu.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/id.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/is.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/nl.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/no.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/pl.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/ro.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/sk.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/sl.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/sv.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/th.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/tr.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/uk.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/ar.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/de.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/es.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/fr.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/it.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/ja.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/ko.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/pt.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/pt_BR.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/pt_PT.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/ru.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/zh_CN.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/zh_TW.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/Sparkle.icns\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/ca.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/cs.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/cy.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/da.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/el.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/fi.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/he.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/hu.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/id.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/is.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/nl.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/no.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/pl.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/ro.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/sk.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/sl.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/sv.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/th.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/tr.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/uk.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/ar.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/de.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/es.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/fr.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/it.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/ja.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/ko.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/pt.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/pt_BR.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/pt_PT.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/ru.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/zh_CN.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/zh_TW.lproj\"\n\necho \"Finished removing files\"\n\n# sign everything\ncodesign -f -v -s \"Developer ID Application: Nicholas Moore\" \"$SPARKLE_PATH/Resources/finish_installation.app\"\ncodesign -f -v -s \"Developer ID Application: Nicholas Moore\" \"$SPARKLE_PATH/Versions/A\"";
+			shellScript = "# insert the version string from git into the app\n${SRCROOT}/BuildScripts/insert_version.sh noclean 10000\n\nNM_FRAMEWORKS_PATH=\"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH\"\necho \"Frameworks path is $NM_FRAMEWORKS_PATH\"\n\n# shrink sparkle\nSPARKLE_PATH=\"$NM_FRAMEWORKS_PATH/Sparkle.framework\"\necho \"Removing spurious files from $SPARKLE_PATH\"\nrm -rf \"$SPARKLE_PATH/Headers\"\nrm -rf \"$SPARKLE_PATH/Versions/Current/Headers\"\nrm -rf \"$SPARKLE_PATH/Resources/ca.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/cs.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/cy.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/da.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/el.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/fi.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/fr_CA.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/he.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/hu.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/id.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/is.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/nl.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/no.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/pl.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/ro.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/sk.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/sl.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/sv.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/th.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/tr.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/uk.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/ar.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/de.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/es.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/fr.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/it.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/ja.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/ko.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/pt.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/pt_BR.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/pt_PT.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/ru.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/zh_CN.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/zh_TW.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/Sparkle.icns\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/ca.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/cs.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/cy.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/da.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/el.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/fi.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/he.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/hu.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/id.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/is.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/nl.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/no.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/pl.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/ro.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/sk.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/sl.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/sv.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/th.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/tr.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/uk.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/ar.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/de.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/es.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/fr.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/it.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/ja.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/ko.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/pt.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/pt_BR.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/pt_PT.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/ru.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/zh_CN.lproj\"\nrm -rf \"$SPARKLE_PATH/Resources/finish_installation.app/Contents/Resources/zh_TW.lproj\"\n\necho \"Finished removing files\"\n\n# sign everything\ncodesign -f -v -s \"Developer ID Application: Nicholas Moore\" \"$SPARKLE_PATH/Resources/finish_installation.app\"\ncodesign -f -v -s \"Developer ID Application: Nicholas Moore\" \"$SPARKLE_PATH/Versions/A\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -418,7 +416,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10006;
@@ -453,7 +451,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 10006;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -488,12 +486,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -521,12 +527,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
