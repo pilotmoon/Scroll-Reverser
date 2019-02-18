@@ -93,6 +93,7 @@
 		01B662D413250CA800658B5C /* LoginItemsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemsController.m; sourceTree = "<group>"; };
 		01BE744B14DC5F7F0050DD8A /* insert_version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = insert_version.sh; path = BuildScripts/insert_version.sh; sourceTree = "<group>"; };
 		01CEC73C1A5E8BCF0086DDEC /* sk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = sk; path = resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01DE5B63221B1E220045826E /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01E6A6C51A3EF6E300C1FB2A /* it */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = it; path = resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01E6A6C61A3EF6E600C1FB2A /* el */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = el; path = resources/el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01E6A6CB1A3EF6FA00C1FB2A /* pt-BR */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "resources/pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -313,6 +314,7 @@
 				nl,
 				"zh-CN",
 				nb,
+				sv,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -404,6 +406,7 @@
 				013E4E401DD7C50F00DCC144 /* nl */,
 				01E6F8F51EAE022100636423 /* zh-CN */,
 				0118CC8A1EC4BACB00DA75D5 /* nb */,
+				01DE5B63221B1E220045826E /* sv */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
