@@ -23,12 +23,12 @@
     const NSRect dstRect=NSMakeRect(0, 0, [self statusImageSize].width, [self statusImageSize].height);
     [templateImage drawInRect:dstRect
                      fromRect:NSZeroRect
-                    operation:NSCompositeSourceOver
+                    operation:NSCompositingOperationSourceOver
                      fraction:1.0];
     
     // fill with color
     [color set];
-    NSRectFillUsingOperation(dstRect, NSCompositeSourceIn);
+    NSRectFillUsingOperation(dstRect, NSCompositingOperationSourceIn);
     
     // finished drawing
     [statusImage unlockFocus];
@@ -62,7 +62,7 @@
         [_statusItem setHighlightMode:YES];
         [_statusItem setTarget:self];
         [_statusItem setAction:@selector(statusButtonClicked:)];
-        [_statusItem sendActionOn:NSLeftMouseDownMask|NSRightMouseDownMask];
+        [_statusItem sendActionOn:NSEventMaskLeftMouseDown|NSEventMaskRightMouseDown];
 
         if ([_statusItem respondsToSelector:@selector(button)]) {
 			// on yosemite, set up the template image here
@@ -135,11 +135,12 @@
 
 - (void)statusButtonClicked:(id)sender
 {
-    if ((([[NSApp currentEvent] modifierFlags] & NSControlKeyMask)==NSControlKeyMask) || [[NSApp currentEvent] type] == NSRightMouseDown)
+    if ((([[NSApp currentEvent] modifierFlags] & NSEventModifierFlagControl)==NSEventModifierFlagControl) ||
+        [[NSApp currentEvent] type]==NSEventTypeRightMouseDown)
     {
         [_statusItemDelegate statusItemRightClicked];
     }
-    else if (([[NSApp currentEvent] modifierFlags] & NSAlternateKeyMask)==NSAlternateKeyMask) {
+    else if (([[NSApp currentEvent] modifierFlags] & NSEventModifierFlagOption)==NSEventModifierFlagOption) {
         [_statusItemDelegate statusItemAltClicked];
     }
     else {

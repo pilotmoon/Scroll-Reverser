@@ -10,6 +10,9 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "設定はメニューバーにあるアイコンをクリックして下さい";
 
+/* No comment provided by engineer. */
+"Enable Scroll Reverser" = "Enable Scroll Reverser";
+
 /* text shown when the menu bar icon is hidden */
 "MENU_HIDDEN_TEXT" = "Scroll Reverser アイコンをメニューバーから削除しました。復旧はいつでも可能です。Finder から Scroll Reverser を起動して下さい。";
 

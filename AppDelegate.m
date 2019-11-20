@@ -3,7 +3,6 @@
 
 #import "AppDelegate.h"
 #import "StatusItemController.h"
-#import "LoginItemsController.h"
 #import "MouseTap.h"
 #import "WelcomeWindowController.h"
 #import "PrefsWindowController.h"
@@ -17,12 +16,13 @@ NSString *const PrefsReverseHorizontal=@"ReverseX";
 NSString *const PrefsReverseVertical=@"ReverseY";
 NSString *const PrefsReverseTrackpad=@"ReverseTrackpad";
 NSString *const PrefsReverseMouse=@"ReverseMouse";
-NSString *const PrefsReverseTablet=@"ReverseTablet";
 NSString *const PrefsHasRunBefore=@"HasRunBefore";
 NSString *const PrefsHideIcon=@"HideIcon";
+NSString *const PrefsBetaUpdates=@"BetaUpdates";
 
-void *kContextHideIcon=&kContextHideIcon;
-void *kContextReverseScrolling=&kContextReverseScrolling;
+static void *_contextHideIcon=&_contextHideIcon;
+static void *_contextEnabled=&_contextEnabled;
+static void *_contextPermissions=&_contextPermissions;
 
 @implementation AppDelegate
 
@@ -31,12 +31,11 @@ void *kContextReverseScrolling=&kContextReverseScrolling;
 	if ([self class]==[AppDelegate class])
     {
 		[[NSUserDefaults standardUserDefaults] registerDefaults:@{
-            PrefsReverseScrolling: @(YES),
+            PrefsReverseScrolling: @(NO),
             PrefsReverseHorizontal: @(NO),
             PrefsReverseVertical: @(YES),
             PrefsReverseTrackpad: @(YES),
             PrefsReverseMouse: @(YES),
-            PrefsReverseTablet: @(YES),
             LoggerMaxEntries: @(50000),
         }];
 	}
@@ -69,11 +68,11 @@ void *kContextReverseScrolling=&kContextReverseScrolling;
     }();
     
     if (alreadyRunning) {
-        [[NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"%@ is already running.", nil), self.appName]
-                         defaultButton:NSLocalizedString(@"Quit", nil)
-                       alternateButton:nil
-                           otherButton:nil
-             informativeTextWithFormat:NSLocalizedString(@"%@ cannot start while another copy is running.", nil), self.appName] runModal];
+        NSAlert *alert=[[NSAlert alloc] init];
+        alert.messageText=[NSString stringWithFormat:NSLocalizedString(@"%@ is already running.", nil), self.appName];
+        alert.informativeText=[NSString stringWithFormat:NSLocalizedString(@"%@ cannot start while another copy is running.", nil), self.appName];
+        [alert addButtonWithTitle:NSLocalizedString(@"Quit", nil)];
+        [alert runModal];
     }
     
     return alreadyRunning;
@@ -81,12 +80,17 @@ void *kContextReverseScrolling=&kContextReverseScrolling;
 
 - (NSURL *)feedURL
 {
-    if ([[self.appVersion componentsSeparatedByString:@"-"] count]>1) { // if version string has a dash, it's a beta
-        return [NSURL URLWithString:@"https://rink.hockeyapp.net/api/2/apps/4eb70fe73a84cb8cd252855a6d7b1bb3"];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsBetaUpdates]) { // if version string has a dash, it's a beta
+        return [NSURL URLWithString:@"https://softwareupdate.pilotmoon.com/update/scrollreverser/appcast-beta.xml"];
     }
     else {
         return [NSURL URLWithString:@"https://softwareupdate.pilotmoon.com/update/scrollreverser/appcast.xml"];
     }
+}
+
+- (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key
+{
+    return [key isEqualToString:@"enabled"];
 }
 
 - (id)init
@@ -102,12 +106,13 @@ void *kContextReverseScrolling=&kContextReverseScrolling;
         else {
             tap=[[MouseTap alloc] init];
             
-            loginItemsController=[[LoginItemsController alloc] init];
             statusController=[[StatusItemController alloc] init];
             statusController.statusItemDelegate=self;
             statusController.visible=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon];
-            [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:PrefsHideIcon options:0 context:kContextHideIcon];
-            
+            [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:PrefsHideIcon options:0 context:_contextHideIcon];
+
+            _permissionsManager=[[PermissionsManager alloc] init];
+
             [[SUUpdater sharedUpdater] setDelegate:self];
             [[SUUpdater sharedUpdater] setFeedURL:[self feedURL]];
         }
@@ -131,6 +136,7 @@ void *kContextReverseScrolling=&kContextReverseScrolling;
     if(quitting) return;
     
     [NSApp setMainMenu:self.theMainMenu];
+
     
 	const BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
@@ -144,8 +150,17 @@ void *kContextReverseScrolling=&kContextReverseScrolling;
     
     NSLog(@"Scroll Reverser ready. Option-click the Scroll Reverser menu bar icon to show the debug console.");
     
-    // this will kick off the mouse tap if already enables
-    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:PrefsReverseScrolling options:NSKeyValueObservingOptionInitial context:kContextReverseScrolling];
+    // observe permissions
+    [self.permissionsManager addObserver:self
+                         forKeyPath:PermissionsManagerKeyHasAllRequiredPermissions
+                            options:NSKeyValueObservingOptionInitial
+                            context:_contextPermissions];
+
+    // kick things off
+    BOOL enabledInPrefs=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
+    [self addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionInitial context:_contextEnabled];
+    NSLog(@"Setting enable to %d", enabledInPrefs);
+    self.enabled=enabledInPrefs;
 }
 
 - (void)appDidWake:(NSNotification *)note
@@ -168,8 +183,7 @@ void *kContextReverseScrolling=&kContextReverseScrolling;
     NSString *temp=yn(@"on", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]);
     temp=[temp stringByAppendingString:yn(@"v", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical])];
     temp=[temp stringByAppendingString:yn(@"h", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal])];
-    temp=[temp stringByAppendingString:yn(@"trackpad", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad])];
-    temp=[temp stringByAppendingString:yn(@"tablet", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTablet])];
+    temp=[temp stringByAppendingString:yn(@"trackpad", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad])];    
     temp=[temp stringByAppendingString:yn(@"mouse/other", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse])];
     return temp;
 }
@@ -239,30 +253,53 @@ void *kContextReverseScrolling=&kContextReverseScrolling;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context==kContextHideIcon) {
+    if (context==_contextHideIcon) {
         BOOL wasVisible=statusController.visible;
         statusController.visible=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon];;
         if (wasVisible&&!statusController.visible)
         {
             [NSApp activateIgnoringOtherApps:YES];
-            NSAlert *alert=[NSAlert alertWithMessageText:NSLocalizedString(@"Status Icon Hidden",nil)
-                                           defaultButton:NSLocalizedString(@"OK",nil)
-                                         alternateButton:nil
-                                             otherButton:nil
-                               informativeTextWithFormat:NSLocalizedString(@"MENU_HIDDEN_TEXT", @"text shown when the menu bar icon is hidden")];
+
+            NSAlert *alert=[[NSAlert alloc] init];
+            alert.messageText=NSLocalizedString(@"Status Icon Hidden",nil);
+            alert.informativeText=[NSString stringWithFormat:NSLocalizedString(@"MENU_HIDDEN_TEXT", @"text shown when the menu bar icon is hidden")];
             [alert runModal];
         }
     }
-    else if (context==kContextReverseScrolling) {
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]) {
-            statusController.enabled=YES;
-            [tap start];
-        }
-        else {
-            statusController.enabled=NO;
-            [tap stop];
+    else if (context==_contextEnabled) {
+        statusController.enabled=self.enabled;
+        [[NSUserDefaults standardUserDefaults] setBool:self.enabled forKey:PrefsReverseScrolling];
+    }
+    else if (context==_contextPermissions) {
+        if(!self.permissionsManager.hasAllRequiredPermissions) {
+            self.enabled=NO;
         }
     }
+}
+
+#pragma mark Enabled
+
+- (void)setEnabled:(BOOL)enabled
+{
+    tap.active=enabled;
+    // in case changing active state fails, force refresh of the triggering button
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self willChangeValueForKey:@"enabled"];
+        [self didChangeValueForKey:@"enabled"];
+        if (enabled&&!self.enabled) {
+            // failed to enable
+            [self showPermissionsUI];
+        }
+    });
+}
+
+- (BOOL)isEnabled
+{
+    return tap.active;
+}
+
++ (NSSet *)keyPathsForValuesAffectingEnabled {
+    return [NSSet setWithObject:@"tap.active"];
 }
 
 #pragma mark Status item handling
@@ -280,6 +317,19 @@ void *kContextReverseScrolling=&kContextReverseScrolling;
 - (void)statusItemAltClicked
 {
     [self showDebug:self];
+}
+
+#pragma mark Permissions
+
+- (void)refreshPermissions
+{
+    [self.permissionsManager refresh];
+}
+
+- (void)showPermissionsUI
+{
+    [self showPrefs:self];
+    [prefsWindowController showPermissionsSheet:self];
 }
 
 #pragma mark Sparkle delegate methods
@@ -312,10 +362,15 @@ void *kContextReverseScrolling=&kContextReverseScrolling;
     return @"pilotmoon.com/scrollreverser";
 }
 
+- (NSURL *)appPermissionsHelpLink {
+    return [NSURL URLWithString:@"https://pilotmoon.com/link/scrollreverser/help/permissions"];
+}
+
+
 #pragma mark Strings
 
 - (NSString *)menuStringReverseScrolling {
-	return NSLocalizedString(@"Reverse Scrolling", nil);
+	return NSLocalizedString(@"Enable Scroll Reverser", nil);
 }
 - (NSString *)menuStringPreferences {
     return [NSLocalizedString(@"Preferences", nil) stringByAppendingString:@"..."];

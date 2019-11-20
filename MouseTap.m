@@ -8,53 +8,10 @@
 #import <mach/mach_time.h>
 
 static BOOL _preventReverseOtherApp;
-static BOOL _detectWacomMouse;
+
+static NSString *const kKeyActive=@"active";
 
 #define MILLISECOND ((uint64_t)1000000)
-
-/*
- Get the bundle identifier for the given pid.
- */
-static NSString *bundleIdForPID(const pid_t pid)
-{
-	ProcessSerialNumber psn={0, 0};
-	OSStatus status=GetProcessForPID(pid, &psn);
-	if (status==noErr)
-	{
-        NSDictionary * dict=(NSDictionary *)CFBridgingRelease(ProcessInformationCopyDictionary(&psn, kProcessDictionaryIncludeAllInformationMask));
-		return dict[(NSString *)kCFBundleIdentifierKey];
-	}
-	return nil;
-}
-
-/*
- Is the pid a wacom tablet? Crude method.
- */
-static BOOL pidIsWacom(const pid_t pid, MouseTap *const tap)
-{
-    // zero is the common case
-    if (pid==0) {
-        return NO;
-    }
-    
-    // short cut
-    static pid_t lastKnownWacomPid=0;
-    if (pid==lastKnownWacomPid) {
-        return YES;
-    }
-    
-    // get bid
-    NSString *const bid=bundleIdForPID(pid);
-    [tap->logger logObject:bid forKey:@"bid"];
-    
-    // is it wacom?
-    const BOOL pidIsWacom=[[bid lowercaseString] rangeOfString:@"wacom"].length>0;
-    if (pidIsWacom)
-    {
-        lastKnownWacomPid=pid;
-    }
-    return pidIsWacom;
-}
 
 static ScrollPhase momentumPhaseForEvent(CGEventRef event)
 {
@@ -73,9 +30,17 @@ static ScrollPhase momentumPhaseForEvent(CGEventRef event)
 
 static uint64_t nanoseconds(void)
 {
-    const uint64_t abstime = mach_absolute_time();
-    const Nanoseconds nanotime = AbsoluteToNanoseconds( *(AbsoluteTime *) &abstime );
-    return * (uint64_t *) &nanotime;
+    static mach_timebase_info_data_t info={0};
+    if (info.denom==0) {
+        mach_timebase_info(&info);
+    }
+
+    // convert to nanoseconds
+    uint64_t time = mach_absolute_time();
+    time *= info.numer;
+    time /= info.denom;
+
+    return * (uint64_t *) &time;
 }
 
 
@@ -88,6 +53,8 @@ static CGEventRef callback(CGEventTapProxy proxy,
     {
         MouseTap *const tap=(__bridge MouseTap *)userInfo;
         const uint64_t time=nanoseconds();
+
+        [(AppDelegate *)[NSApp delegate] refreshPermissions];
         
         if (type==(CGEventType)NSEventTypeGesture)
         {
@@ -102,7 +69,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
                 return event; // totally ignore zero or one touch events
             }
         }
-        else if (type==(CGEventType)NSScrollWheel)
+        else if (type==(CGEventType)NSEventTypeScrollWheel)
         {
             // get the scrolling deltas
             const int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
@@ -141,16 +108,6 @@ static CGEventRef callback(CGEventTapProxy proxy,
                     return ScrollEventSourceMouse; // assume anything not-continuous is a mouse
                 }
                 
-                if (pidIsWacom((pid_t)pid, tap))
-                {
-                    // detect the wacom mouse, which always seems to scroll in multiples of 25
-                    const BOOL wacomMouse=_detectWacomMouse?pixel_axis1!=0&&pixel_axis1%25==0&&pixel_axis2==0:NO;
-                    [tap->logger logBool:YES forKey:@"wacomDevice"];
-                    [tap->logger logBool:wacomMouse forKey:@"wacomMouse"];
-                    
-                    return wacomMouse?ScrollEventSourceMouse:ScrollEventSourceTablet;
-                }
-                
                 if (touching>=2 && touchElapsed<(MILLISECOND*222))
                 {
                     [tap->logger logBool:YES forKey:@"usingTouches"];
@@ -184,9 +141,6 @@ static CGEventRef callback(CGEventTapProxy proxy,
                     {
                         case ScrollEventSourceTrackpad:
                             return [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad];
-                            
-                        case ScrollEventSourceTablet:
-                            return [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTablet];
                             
                         case ScrollEventSourceMouse:
                         default:
@@ -231,11 +185,28 @@ static CGEventRef callback(CGEventTapProxy proxy,
     return event;
 }
 
+@interface MouseTap ()
+@property CFMachPortRef activeTapPort;
+@property CFRunLoopSourceRef activeTapSource;
+@property CFMachPortRef passiveTapPort;
+@property CFRunLoopSourceRef passiveTapSource;
+@end
+
 @implementation MouseTap
+
+- (void)setActive:(BOOL)state
+{
+    if (state) {
+        [self start];
+    }
+    else {
+        [self stop];
+    }
+}
 
 - (BOOL)isActive
 {
-	return activeTapSource&&passiveTapSource&&activeTapPort&&passiveTapPort;
+	return self.activeTapSource&&self.passiveTapSource&&self.activeTapPort&&self.passiveTapPort;
 }
 
 - (void)start
@@ -243,81 +214,106 @@ static CGEventRef callback(CGEventTapProxy proxy,
 	if([self isActive])
 		return;
 
+    [self willChangeValueForKey:kKeyActive];
+
     // initialise
     _preventReverseOtherApp=[[NSUserDefaults standardUserDefaults] boolForKey:@"ReverseOnlyRawInput"];
-    _detectWacomMouse=![[NSUserDefaults standardUserDefaults] boolForKey:@"DisableWacomMouseDetection"];
 
     // clear state
     touching=0;
     lastTouchTime=0;
-    lastSource=0;
+    lastSource=0;    
     
     /* We use a separate passive tap to monitor gesture events, because using an
      active tap to do so causes various problems:
         - Triggers additional permissons dialogs when interacting with authorization services dialogs
         - Interferes with "shake to locate cursor" (when using Trackpad)
         = Interferes with the 2-finger "show notificaton center" gesture */
-    CGEventMask passiveEventMask=NSEventMaskGesture;
-    passiveTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
+    self.passiveTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
                                                    kCGTailAppendEventTap,
                                                    kCGEventTapOptionListenOnly,
-                                                   passiveEventMask,
+                                                   NSEventMaskGesture,
                                                    callback,
                                                    (__bridge void *)(self));
-	passiveTapSource = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, passiveTapPort, 0);
-    CFRunLoopAddSource(CFRunLoopGetMain(), passiveTapSource, kCFRunLoopCommonModes);
-    
-    // active tap, for modifying scroll events
-    CGEventMask activeEventMask=NSEventMaskScrollWheel;
-    activeTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
-										   kCGTailAppendEventTap,
-										   kCGEventTapOptionDefault,
-										   activeEventMask,
-										   callback,
-										   (__bridge void *)(self));
-	activeTapSource = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, activeTapPort, 0);
-    CFRunLoopAddSource(CFRunLoopGetMain(), activeTapSource, kCFRunLoopCommonModes);
+    NSLog(@"passive tap port %p", self.passiveTapPort);
 
-    [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap started"];
+    // active tap, for modifying scroll events
+    // this one requires user privacy permissions
+    self.activeTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
+                                           kCGTailAppendEventTap,
+                                           kCGEventTapOptionDefault,
+                                           NSEventMaskScrollWheel,
+                                           callback,
+                                           (__bridge void *)(self));
+    NSLog(@"active tap port %p", self.activeTapPort);
+
+    // now create sources and add to run loop
+    if (self.passiveTapPort && self.activeTapPort) {
+        NSLog(@"Got ports");
+        self.passiveTapSource = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, self.passiveTapPort, 0);
+        CFRunLoopAddSource(CFRunLoopGetMain(), self.passiveTapSource, kCFRunLoopCommonModes);
+        self.activeTapSource = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, self.activeTapPort, 0);
+        CFRunLoopAddSource(CFRunLoopGetMain(), self.activeTapSource, kCFRunLoopCommonModes);
+    }
+    else {
+        NSLog(@"Didn't get ports");
+        [self stop];
+    }
+
+    [self didChangeValueForKey:kKeyActive];
+
+    // todo move to app delegate
+//    if ([self isActive]) {
+//        [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap started"];
+//    }
+//    else {
+//        [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap failed to start"];
+//    }
 }
 
 - (void)stop
 {
-	if (![self isActive])
-		return;
-	
-	CFRunLoopRemoveSource(CFRunLoopGetMain(), activeTapSource, kCFRunLoopCommonModes);
-    CFMachPortInvalidate(activeTapPort);
-    CFRelease(activeTapSource);
-    activeTapSource=nil;
-    CFRelease(activeTapPort);
-    activeTapPort=nil;
-    
-    CFRunLoopRemoveSource(CFRunLoopGetMain(), passiveTapSource, kCFRunLoopCommonModes);
-    CFMachPortInvalidate(passiveTapPort);
-    CFRelease(passiveTapSource);
-    passiveTapSource=nil;
-    CFRelease(passiveTapPort);
-	passiveTapPort=nil;
-    
-    [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap stopped"];
+    [self willChangeValueForKey:kKeyActive];
+
+    if (self.activeTapSource) {
+        CFRunLoopRemoveSource(CFRunLoopGetMain(), self.activeTapSource, kCFRunLoopCommonModes);
+        CFRelease(self.activeTapSource);
+        self.activeTapSource=nil;
+    }
+
+    if (self.activeTapPort) {
+        CFMachPortInvalidate(self.activeTapPort);
+        CFRelease(self.activeTapPort);
+        self.activeTapPort=nil;
+    }
+
+    if (self.passiveTapSource) {
+        CFRunLoopRemoveSource(CFRunLoopGetMain(), self.passiveTapSource, kCFRunLoopCommonModes);
+        CFRelease(self.passiveTapSource);
+        self.passiveTapSource=nil;
+    }
+
+    if (self.passiveTapPort) {
+        CFMachPortInvalidate(self.passiveTapPort);
+        CFRelease(self.passiveTapPort);
+        self.passiveTapPort=nil;
+    }
+
+    [self didChangeValueForKey:kKeyActive];
+
+    // TODO move to app delegate [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap stopped"];
 }
 
+// called to re-enable the tap if it has become disabled for some reason
 - (void)enableTap
 {
-    if (!CGEventTapIsEnabled(activeTapPort)) {
-        CGEventTapEnable(activeTapPort, YES);
+    if (self.activeTapPort&&!CGEventTapIsEnabled(self.activeTapPort)) {
+        CGEventTapEnable(self.activeTapPort, YES);
     }
-    if (!CGEventTapIsEnabled(passiveTapPort)) {
-        CGEventTapEnable(passiveTapPort, YES);
+    if (self.passiveTapPort&&!CGEventTapIsEnabled(self.passiveTapPort)) {
+        CGEventTapEnable(self.passiveTapPort, YES);
     }
 }
 
-- (void)resetTap
-{
-    [self stop];
-    [self start];
-    [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap reset"];
-}
 
 @end

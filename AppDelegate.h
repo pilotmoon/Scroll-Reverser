@@ -3,21 +3,21 @@
 
 #import <Cocoa/Cocoa.h>
 #import "StatusItemController.h"
-@class MouseTap, LoginItemsController, WelcomeWindowController, PrefsWindowController, DebugWindowController, TapLogger, TestWindowController;
+#import "PermissionsManager.h"
+
+@class MouseTap, WelcomeWindowController, PrefsWindowController, DebugWindowController, TapLogger, TestWindowController;
 
 extern NSString *const PrefsReverseScrolling;
 extern NSString *const PrefsReverseHorizontal;
 extern NSString *const PrefsReverseVertical;
 extern NSString *const PrefsReverseTrackpad;
 extern NSString *const PrefsReverseMouse;
-extern NSString *const PrefsReverseTablet;
 extern NSString *const PrefsHideIcon;
 
 @interface AppDelegate : NSObject <StatusItemControllerDelegate> {
     BOOL quitting;
 	MouseTap *tap;
 	StatusItemController *statusController;
-    LoginItemsController *loginItemsController;
     WelcomeWindowController *welcomeWindowController;
     PrefsWindowController *prefsWindowController;
     DebugWindowController *debugWindowController;
@@ -27,6 +27,7 @@ extern NSString *const PrefsHideIcon;
     IBOutlet NSMenu *statusMenu;
 }
 
+@property (readonly) PermissionsManager *permissionsManager;
 @property (weak) IBOutlet NSMenu *theMainMenu;
 
 @property (readonly) NSString *appName;
@@ -34,11 +35,14 @@ extern NSString *const PrefsHideIcon;
 @property (readonly) NSString *appCredit;
 @property (readonly) NSURL *appLink;
 @property (readonly) NSString *appDisplayLink;
+@property (readonly) NSURL *appPermissionsHelpLink;
 
 @property (readonly) NSString *menuStringReverseScrolling;
 @property (readonly) NSString *menuStringAbout;
 @property (readonly) NSString *menuStringPreferences;
 @property (readonly) NSString *menuStringQuit;
+
+@property (getter=isEnabled) BOOL enabled;
 
 - (IBAction)showDebug:(id)sender;
 - (IBAction)showPrefs:(id)sender;
@@ -48,6 +52,8 @@ extern NSString *const PrefsHideIcon;
 - (void)statusItemClicked;
 - (void)statusItemRightClicked;
 - (void)statusItemAltClicked;
+
+- (void)refreshPermissions;
 
 - (void)logAppEvent:(NSString *)str;
 

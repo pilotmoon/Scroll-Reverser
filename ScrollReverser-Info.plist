@@ -21,7 +21,7 @@
 	<key>CFBundleVersion</key>
 	<string>AUTO</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.7</string>
+	<string>10.12</string>
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSAppleScriptEnabled</key>
@@ -31,7 +31,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>Application</string>
+	<string>NSApplication</string>
 	<key>OSAScriptingDefinition</key>
 	<string>ScrollReverser.sdef</string>
 	<key>SUAllowsAutomaticUpdates</key>

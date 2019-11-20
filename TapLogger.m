@@ -87,7 +87,7 @@
             str=@"gesture";
             break;
             
-        case NSScrollWheel:
+        case NSEventTypeScrollWheel:
             str=@"scroll";
             break;
             
@@ -112,10 +112,6 @@
             
         case ScrollEventSourceTrackpad:
             str=@"trackpad";
-            break;
-            
-        case ScrollEventSourceTablet:
-            str=@"tablet";
             break;
             
         default:

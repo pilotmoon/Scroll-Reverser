@@ -7,7 +7,6 @@
 typedef enum {
     ScrollEventSourceMouse=0,
     ScrollEventSourceTrackpad,
-    ScrollEventSourceTablet,
     ScrollEventSourceMax 
 } ScrollEventSource;
 
@@ -20,24 +19,18 @@ typedef enum {
     ScrollPhaseMax
 } ScrollPhase;
 
-@class MouseTap, TapLogger;
+@class MouseTap, TapLogger, AppDelegate;
 @interface MouseTap : NSObject {
-	CFMachPortRef activeTapPort;
-	CFRunLoopSourceRef activeTapSource;
-    CFMachPortRef passiveTapPort;
-    CFRunLoopSourceRef passiveTapSource;
-
 @public
     NSUInteger touching;
     uint64_t lastTouchTime;
     ScrollEventSource lastSource;
     
-    __weak TapLogger *logger;
+    __weak TapLogger *logger;    
 }
-- (void)start;
-- (void)stop;
+
+@property (getter=isActive) BOOL active;
 - (void)enableTap;
-- (void)resetTap;
 
 @end
 
