@@ -1,4 +1,10 @@
-﻿/* No comment provided by engineer. */
+/* No comment provided by engineer. */
+"%@ cannot start while another copy is running." = "Impossibile avviare %@ mentre un'altra copia è in esecuzione.";
+
+/* No comment provided by engineer. */
+"%@ is already running." = "%@ è già in esecuzione.";
+
+/* No comment provided by engineer. */
 "App" = "App";
 
 /* check box next to the 'Check for updates' button */
@@ -18,6 +24,9 @@
 
 /* No comment provided by engineer. */
 "Preferences" = "Preferenze";
+
+/* No comment provided by engineer. */
+"Quit" = "Esci";
 
 /* No comment provided by engineer. */
 "Quit Scroll Reverser" = "Esci da Scroll Reverser";
@@ -53,11 +62,10 @@
 "Scrolling Devices" = "Scorrimento dispositivi";
 
 /* No comment provided by engineer. */
+"Show in menu bar" = "Mostra nella barra dei menu";
+
+/* No comment provided by engineer. */
 "Start at login" = "Avvia al login";
 
 /* No comment provided by engineer. */
 "Status Icon Hidden" = "Icona di stato nascosta";
-
-/* No comment provided by engineer. */
-"Show in menu bar" = "Mostra nella barra dei menu";
-
