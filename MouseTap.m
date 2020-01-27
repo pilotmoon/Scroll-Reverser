@@ -117,7 +117,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
                 if (phase==ScrollPhaseNormal && touchElapsed>(MILLISECOND*333))
                 {
                     [tap->logger logBool:YES forKey:@"usingTouchElapsed"];
-                    return ScrollEventSourceMouse;
+                    return ScrollEventSourceTrackpad;
                 }
                 
                 // not enough information to decide. assume the same as last time. ha!
