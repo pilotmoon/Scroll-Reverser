@@ -118,6 +118,7 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		5B4056241ADE048B000D12C3 /* zh-TW */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "zh-TW"; path = "resources/zh-TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88AC80572405185D00063181 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ScrollReverser-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Scroll Reverser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scroll Reverser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -320,6 +321,7 @@
 				ja,
 				fr,
 				Base,
+				es,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -412,6 +414,7 @@
 				01E6F8F51EAE022100636423 /* zh-CN */,
 				0118CC8A1EC4BACB00DA75D5 /* nb */,
 				01DE5B63221B1E220045826E /* sv */,
+				88AC80572405185D00063181 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
