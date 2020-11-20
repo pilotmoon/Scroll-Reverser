@@ -16,7 +16,7 @@ $BuildScripts/build/process_sparkle $BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/
 
 # tag with build number if Beta or Production
 if [[ $channel == $channel_beta || $channel == $channel_prod ]]; then
-  git tag "build-$version_num" || truest
+  git tag "build-$version_num" || true
 fi
 
 saybye $0
