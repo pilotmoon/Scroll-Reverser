@@ -9,7 +9,6 @@
 #import "DebugWindowController.h"
 #import "TestWindowController.h"
 #import "TapLogger.h"
-#import <Sparkle/SUUpdater.h>
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
 NSString *const PrefsReverseHorizontal=@"ReverseX";

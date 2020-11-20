@@ -4,6 +4,7 @@
 #import <Cocoa/Cocoa.h>
 #import "StatusItemController.h"
 #import "PermissionsManager.h"
+#import <Sparkle/Sparkle.h>
 
 @class MouseTap, WelcomeWindowController, PrefsWindowController, DebugWindowController, TapLogger, TestWindowController;
 
@@ -14,7 +15,7 @@ extern NSString *const PrefsReverseTrackpad;
 extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsHideIcon;
 
-@interface AppDelegate : NSObject <StatusItemControllerDelegate> {
+@interface AppDelegate : NSObject <StatusItemControllerDelegate, SUUpdaterDelegate> {
     BOOL quitting;
 	MouseTap *tap;
 	StatusItemController *statusController;

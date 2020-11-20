@@ -1,0 +1,22 @@
+#!/bin/zsh
+set -eu; here=${0:a:h}; root=$here/..; BuildScripts=$root/BuildScripts; source $BuildScripts/common; sayhi $0
+memo_vars vars_build_sa # save shell vars to temp file to aid debugging script
+
+source $BuildScripts/build/constants
+source $BuildScripts/build/build_utils
+source $BuildScripts/build/labels 10000
+
+# insert version numbers to Info.plists
+$BuildScripts/build/insert_version ${BUILT_PRODUCTS_DIR} ${FULL_PRODUCT_NAME}
+
+# slim down sparkle
+export signing_identity="Developer ID Application"
+export allowed_languages=$(list_langs $root/resources)
+$BuildScripts/build/process_sparkle $BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/Sparkle.framework
+
+# tag with build number if Beta or Production
+if [[ $channel == $channel_beta || $channel == $channel_prod ]]; then
+  git tag "build-$version_num" || truest
+fi
+
+saybye $0

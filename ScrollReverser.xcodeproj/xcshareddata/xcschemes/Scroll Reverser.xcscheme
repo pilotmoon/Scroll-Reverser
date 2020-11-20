@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1120"
+   LastUpgradeVersion = "1220"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -101,5 +101,24 @@
    <ArchiveAction
       buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "source ${PROJECT_DIR}/BuildScripts/common&#10;memo_vars vars_archive&#10;"
+               shellToInvoke = "/bin/zsh">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "8D1107260486CEB800E47090"
+                     BuildableName = "Scroll Reverser.app"
+                     BlueprintName = "Scroll Reverser"
+                     ReferencedContainer = "container:ScrollReverser.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
    </ArchiveAction>
 </Scheme>

@@ -2,11 +2,15 @@
 
 Reverse the direction of scrolling on macOS.
 
-Home page: http://pilotmoon.com/scrollreverser/
+Home page: https://pilotmoon.com/scrollreverser/
 
 ## License
 
 Licensed under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+## Building
+
+After cloning this repo, you'll need to `git submodule update --init` to check out the BuildScripts submodule.
 
 ## Notes on the code
 
