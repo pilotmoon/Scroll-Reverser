@@ -40,41 +40,31 @@ static void *_contextPermissions=&_contextPermissions;
 	}
 }
 
-- (void)relaunch
++ (void)terminateOthers; // there can be only one scroll reverser
 {
-    // based on https://gist.github.com/cdfmr/2204627
-    const int processID=[[NSProcessInfo processInfo] processIdentifier];
-    NSString *const command=[NSString stringWithFormat:@"logger \"waiting for pid %1$d\"; while kill -0 %1$d >/dev/null 2>&1; do sleep 0.01; done; logger \"restarting Scroll Reverser\"; open \"%2$@\"", processID, [[NSBundle mainBundle] bundlePath]];
-    NSLog(@"[%@]", command);
-    NSTask *const task=[[NSTask alloc] init];
-    [task setLaunchPath:@"/bin/sh"];
-    [task setArguments:@[@"-c", command]];
-    [task launch];
-    [NSApp terminate:nil];
-}
-
-- (BOOL)alreadyRunning
-{
-    const BOOL alreadyRunning=^BOOL {
-        for (NSRunningApplication *app in [[NSWorkspace sharedWorkspace] runningApplications]) {
-            if (![app isEqual:[NSRunningApplication currentApplication]]) {
-                if ([app.bundleIdentifier isEqualToString:[NSRunningApplication currentApplication].bundleIdentifier]) {
-                    return YES;
-                }
+    NSRunningApplication *app=nil;
+    for (app in [[NSWorkspace sharedWorkspace] runningApplications]) {
+        if (![app isEqual:[NSRunningApplication currentApplication]]) {
+            if ([[app.bundleIdentifier lowercaseString] isEqualToString:[[NSRunningApplication currentApplication].bundleIdentifier lowercaseString]]) {
+                [app terminate];
             }
         }
-        return NO;
-    }();
-    
-    if (alreadyRunning) {
-        NSAlert *alert=[[NSAlert alloc] init];
-        alert.messageText=[NSString stringWithFormat:NSLocalizedString(@"%@ is already running.", nil), self.appName];
-        alert.informativeText=[NSString stringWithFormat:NSLocalizedString(@"%@ cannot start while another copy is running.", nil), self.appName];
-        [alert addButtonWithTitle:NSLocalizedString(@"Quit", nil)];
-        [alert runModal];
     }
-    
-    return alreadyRunning;
+}
+
+- (void)relaunch
+{
+    // should probably check for successful lauch here
+    NSError *error=nil;
+    [[NSWorkspace sharedWorkspace] launchApplicationAtURL:[NSBundle mainBundle].bundleURL
+                                                  options:NSWorkspaceLaunchAsync|NSWorkspaceLaunchNewInstance
+                                            configuration:@{}
+                                                    error:&error];
+
+    // terminate self (async for a modicum of cleanliness)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [NSApp terminate:nil];
+    });
 }
 
 - (NSURL *)feedURL
@@ -96,25 +86,19 @@ static void *_contextPermissions=&_contextPermissions;
 {
     self=[super init];
     if (self) {
-        if([self alreadyRunning]) {
-            quitting=YES;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [NSApp terminate:nil];
-            });
-        }
-        else {
-            tap=[[MouseTap alloc] init];
-            
-            statusController=[[StatusItemController alloc] init];
-            statusController.statusItemDelegate=self;
-            statusController.visible=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon];
-            [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:PrefsHideIcon options:0 context:_contextHideIcon];
+        [[self class] terminateOthers];
 
-            _permissionsManager=[[PermissionsManager alloc] init];
+        tap=[[MouseTap alloc] init];
 
-            [[SUUpdater sharedUpdater] setDelegate:self];
-            [[SUUpdater sharedUpdater] setFeedURL:[self feedURL]];
-        }
+        statusController=[[StatusItemController alloc] init];
+        statusController.statusItemDelegate=self;
+        statusController.visible=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon];
+        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:PrefsHideIcon options:0 context:_contextHideIcon];
+
+        _permissionsManager=[[PermissionsManager alloc] init];
+
+        [[SUUpdater sharedUpdater] setDelegate:self];
+        [[SUUpdater sharedUpdater] setFeedURL:[self feedURL]];
     }
     return self;
 }
@@ -126,14 +110,11 @@ static void *_contextPermissions=&_contextPermissions;
 
 - (void)awakeFromNib
 {
-    if(quitting) return;
-	[statusController attachMenu:statusMenu];
+    [statusController attachMenu:statusMenu];
 }
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    if(quitting) return;
-    
     [NSApp setMainMenu:self.theMainMenu];
 
     
@@ -327,8 +308,8 @@ static void *_contextPermissions=&_contextPermissions;
 
 - (void)showPermissionsUI
 {
+    NSLog(@"show permissions UI");
     [self showPrefs:self];
-    [prefsWindowController showPermissionsSheet:self];
 }
 
 #pragma mark Sparkle delegate methods

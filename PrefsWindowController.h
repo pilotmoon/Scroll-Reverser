@@ -5,15 +5,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PrefsWindowController : NSWindowController <NSTabViewDelegate, NSToolbarDelegate, NSTableViewDelegate, NSTableViewDataSource, NSWindowDelegate>
+@interface PrefsWindowController : NSWindowController <NSTabViewDelegate, NSToolbarDelegate, NSWindowDelegate>
 
 @property (readonly) AppDelegate *appDelegate;
 
 @property (weak) IBOutlet NSView *scrollingSettings;
 @property (weak) IBOutlet NSView *appSettings;
 @property (weak) IBOutlet LinkView *linkView;
-@property (weak) IBOutlet NSWindow *permissionsSheet;
-@property (weak) IBOutlet NSTableView *permissionsTableView;
 
 @property (readonly) NSString *menuStringReverseScrolling;
 @property (readonly) NSString *menuStringPreferencesTitle;
@@ -29,13 +27,8 @@
 @property (readonly) NSString *menuStringVertical;
 @property (readonly) NSString *menuStringTrackpad;
 @property (readonly) NSString *menuStringMouse;
-@property (readonly) NSString *menuStringTablet;
-@property (readonly) NSString *menuStringPermissionsTableHeader;
 @property (readonly) NSString *menuStringClose;
 
-
-- (IBAction)showPermissionsSheet:(id)sender;
-- (IBAction)closePermissionsSheet:(id)sender;
 - (IBAction)buttonPermissionsHelpClicked:(id)sender;
 
 @end

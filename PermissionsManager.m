@@ -53,7 +53,7 @@ NSString *const PermissionsManagerKeyHasAllRequiredPermissions=@"hasAllRequiredP
 - (BOOL)checkInputMonitoringWithPrompt:(BOOL)prompt
 {
     if (@available(macOS 10.15, *)) {
-        static const IOHIDRequestType accessType=kIOHIDRequestTypePostEvent; // ??
+        static const IOHIDRequestType accessType=kIOHIDRequestTypeListenEvent;
         if (prompt) {
             // this will block
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
@@ -114,7 +114,16 @@ NSString *const PermissionsManagerKeyHasAllRequiredPermissions=@"hasAllRequiredP
 
 - (BOOL)hasAllRequiredPermissions
 {
-    return self.accessibilityEnabled && self.inputMonitoringEnabled;
+    BOOL result=YES;
+    if (self.accessibilityRequired && !self.accessibilityEnabled) {
+        NSLog(@"missing required accessibility permission");
+        result=NO;
+    }
+    if (self.inputMonitoringRequired && !self.inputMonitoringEnabled) {
+        NSLog(@"missing required input monitoring permission");
+        result=NO;
+    }
+    return result;
 }
 
 + (NSURL *)securitySettingsUrlForKey:(NSString *)key
@@ -123,7 +132,7 @@ NSString *const PermissionsManagerKeyHasAllRequiredPermissions=@"hasAllRequiredP
 }
 - (void)requestAccessibilityPermission
 {
-    [[NSWorkspace sharedWorkspace] openURL:[[self class] securitySettingsUrlForKey:@"Privacy_Accessibility"]];
+    //[[NSWorkspace sharedWorkspace] openURL:[[self class] securitySettingsUrlForKey:@"Privacy_Accessibility"]];
     [self checkAccessibilityWithPrompt:YES];
 }
 
@@ -147,7 +156,7 @@ NSString *const PermissionsManagerKeyHasAllRequiredPermissions=@"hasAllRequiredP
 - (BOOL)isInputMonitoringRequired
 {
     if (@available(macOS 10.15, *)) {
-        return YES;
+        return NO; // I'm not even sure if it is actually needed?
     }
     else {
         return NO;

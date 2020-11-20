@@ -2,7 +2,6 @@
 // Licensed under Apache License v2.0 <http://www.apache.org/licenses/LICENSE-2.0>
 
 #import "PrefsWindowController.h"
-#import "PermissionsTableCellView.h"
 #import "AppDelegate.h"
 #import "LinkView.h"
 
@@ -100,10 +99,6 @@ static void *_contextRefresh=&_contextRefresh;
     // other set-up
     self.linkView.url=self.appDelegate.appLink;
 
-    // set up permissions table
-    self.permissionsTableView.delegate=self;
-    self.permissionsTableView.dataSource=self;
-
     [self.appDelegate.permissionsManager addObserver:self forKeyPath:@"accessibilityEnabled" options:0 context:_contextRefresh];
     [self.appDelegate.permissionsManager addObserver:self forKeyPath:@"inputMonitoringEnabled" options:0 context:_contextRefresh];
 }
@@ -111,16 +106,7 @@ static void *_contextRefresh=&_contextRefresh;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     if (context==_contextRefresh) {
-        [self.permissionsTableView reloadData];
-        if (self.appDelegate.permissionsManager.hasAllRequiredPermissions) {
-            // if we have all the permissions the close the sheet and set enabled
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (self.appDelegate.permissionsManager.hasAllRequiredPermissions) {
-                    self.appDelegate.enabled=YES;
-                    [self closePermissionsSheet:self];
-                }
-            });
-        }
+        NSLog(@"refresh observe");
     }
 }
 
@@ -175,15 +161,8 @@ static void *_contextRefresh=&_contextRefresh;
 
 #pragma mark Permissions sheet
 
-- (IBAction)showPermissionsSheet:(id)sender {
-    [self setPane:kPanelScrolling];
-    [self.window beginSheet:self.permissionsSheet completionHandler:^(NSModalResponse returnCode) {
-        NSLog(@"Completed permissions sheet");
-    }];
-}
-
-- (IBAction)closePermissionsSheet:(id)sender {
-    [self.window endSheet:self.permissionsSheet];
+- (IBAction)showPermissionsPane:(id)sender {
+    //[self setPane:kPanelScrolling];
 }
 
 - (IBAction)buttonPermissionsHelpClicked:(id)sender {
@@ -237,43 +216,6 @@ static void *_contextRefresh=&_contextRefresh;
 - (void)tabView:(NSTabView *)aTabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
     [self updateHeightForIdentifier:[tabViewItem identifier]];
-}
-
-#pragma mark Table View Delegate and Data Source
-
-- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSString *(^openInPrefs)(NSString *) = ^(NSString *section) {
-        return [NSString stringWithFormat:NSLocalizedString(@"Open \"%@\" settings", @"placeholder is for prefs secion to open e.g. Accessibility"), section];
-    };
-    PermissionsTableCellView *cellView = [tableView makeViewWithIdentifier:@"PermissionCell" owner:self];
-    NSInteger matchRow=0;
-    if ((!self.appDelegate.permissionsManager.accessibilityEnabled)&&row==matchRow++) {
-        NSLog(@"accessibility cell");
-        cellView.textField.stringValue=self.menuStringAccessibility;
-        cellView.permissionButton.title=openInPrefs(self.menuStringAccessibility);
-        cellView.permissionButton.target=self.appDelegate.permissionsManager;
-        cellView.permissionButton.action=@selector(requestAccessibilityPermission);
-    }
-    if ((!self.appDelegate.permissionsManager.inputMonitoringEnabled)&&row==matchRow++) {
-        NSLog(@"input monitorign cell");
-        cellView.textField.stringValue=self.menuStringInputMonitoring;
-        cellView.permissionButton.title=openInPrefs(self.menuStringInputMonitoring);
-        cellView.permissionButton.target=self.appDelegate.permissionsManager;
-        cellView.permissionButton.action=@selector(requestInputMonitoringPermission);
-    }
-    return cellView;
-}
-
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    NSInteger result=0;
-    if (!self.appDelegate.permissionsManager.accessibilityEnabled) {
-        result+=1;
-    }
-    if (!self.appDelegate.permissionsManager.inputMonitoringEnabled) {
-        result+=1;
-    }
-    NSLog(@"Number of rows %li", result);
-    return result;
 }
 
 #pragma mark Bindings
@@ -341,7 +283,7 @@ static void *_contextRefresh=&_contextRefresh;
     return NSLocalizedString(@"Automatically", @"check box next to the 'Check for updates' button");
 }
 
-- (NSString *)menuStringPermissionsTableHeader {
+- (NSString *)menuStringPermissionsHeader {
     return NSLocalizedString(@"Scroll Reverser needs these Privacy permissions:", nil);
 }
 
@@ -350,11 +292,11 @@ static void *_contextRefresh=&_contextRefresh;
 }
 
 - (NSString *)menuStringAccessibility {
-    return NSLocalizedString(@"Accessibility", @"corresponds to Accessibility in system Privacy settings, please match system translation");
+    return NSLocalizedString(@"Accessibility", @"corresponds to Accessibility in system Privacy settings - please match system translation");
 }
 
 - (NSString *)menuStringInputMonitoring {
-    return NSLocalizedString(@"Input Monitoring", @"corresponds to Input Monitoring in system Privacy settings, please match system translation");
+    return NSLocalizedString(@"Input Monitoring", @"corresponds to Input Monitoring in system Privacy settings - please match system translation");
 }
 
 @end

@@ -16,7 +16,6 @@ extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsHideIcon;
 
 @interface AppDelegate : NSObject <StatusItemControllerDelegate, SUUpdaterDelegate> {
-    BOOL quitting;
 	MouseTap *tap;
 	StatusItemController *statusController;
     WelcomeWindowController *welcomeWindowController;

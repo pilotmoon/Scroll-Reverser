@@ -262,13 +262,12 @@ static CGEventRef callback(CGEventTapProxy proxy,
 
     [self didChangeValueForKey:kKeyActive];
 
-    // todo move to app delegate
-//    if ([self isActive]) {
-//        [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap started"];
-//    }
-//    else {
-//        [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap failed to start"];
-//    }
+    if ([self isActive]) {
+        [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap started"];
+    }
+    else {
+        [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap failed to start"];
+    }
 }
 
 - (void)stop
@@ -301,7 +300,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
 
     [self didChangeValueForKey:kKeyActive];
 
-    // TODO move to app delegate [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap stopped"];
+    [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap stopped"];
 }
 
 // called to re-enable the tap if it has become disabled for some reason
