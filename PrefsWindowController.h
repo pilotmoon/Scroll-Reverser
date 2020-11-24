@@ -28,7 +28,15 @@
 @property (readonly) NSString *menuStringTrackpad;
 @property (readonly) NSString *menuStringMouse;
 @property (readonly) NSString *menuStringClose;
-
+@property (readonly) NSString *menuStringPermissionsHeader;
+@property (readonly) NSString *menuStringPermissionsAXDescription;
+@property (readonly) NSString *menuStringPermissionsIMDescription;
+@property (readonly) NSString *menuStringPermissionsAX;
+@property (readonly) NSString *menuStringPermissionsIM;
+@property (readonly) NSString *menuStringAXButtonLabel;
+@property (readonly) NSString *menuStringAXStatus;
+@property (readonly) NSString *menuStringIMButtonLabel;
+@property (readonly) NSString *menuStringIMStatus;
 - (IBAction)buttonPermissionsHelpClicked:(id)sender;
 
 @end

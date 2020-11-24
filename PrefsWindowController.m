@@ -17,6 +17,7 @@ static NSString *const kKeyImageName=@"image";
 static NSString *const kPrefsToolbarIdentifer=@"PrefsToolbar";
 static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 
+
 static void *_contextRefresh=&_contextRefresh;
 
 @interface PrefsWindowController ()
@@ -159,10 +160,29 @@ static void *_contextRefresh=&_contextRefresh;
     [self setWindowContentHeight:[self.panels[identifier][kKeyViewHeight] floatValue]];
 }
 
-#pragma mark Permissions sheet
+#pragma mark Permissions
 
 - (IBAction)showPermissionsPane:(id)sender {
+    // TODO
     //[self setPane:kPanelScrolling];
+}
+
+- (IBAction)buttonAXClicked:(id)sender {
+    if (self.appDelegate.permissionsManager.accessibilityRequested) {
+        [self.appDelegate.permissionsManager openAccessibilityPrefs];
+    }
+    else {
+        [self.appDelegate.permissionsManager requestAccessibilityPermission];
+    }
+}
+
+- (IBAction)buttonIMClicked:(id)sender {
+    if (self.appDelegate.permissionsManager.inputMonitoringRequested) {
+        [self.appDelegate.permissionsManager openInputMonitoringPrefs];
+    }
+    else {
+        [self.appDelegate.permissionsManager requestInputMonitoringPermission];
+    }
 }
 
 - (IBAction)buttonPermissionsHelpClicked:(id)sender {
@@ -216,6 +236,65 @@ static void *_contextRefresh=&_contextRefresh;
 - (void)tabView:(NSTabView *)aTabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
     [self updateHeightForIdentifier:[tabViewItem identifier]];
+}
+
+#pragma mark Dynamic labels
+
+- (NSString *)buttonLabel:(BOOL)open label:(NSString *)label
+{
+    if (open) {
+        return [NSString stringWithFormat: NSLocalizedString(@"Open %@ preferences", @"for example: Open Accessibilty preferences"), label];
+    }
+    else {
+        return [NSString stringWithFormat: NSLocalizedString(@"Request %@ permission", @"for example: Request Input Monitoring permission"), label];
+    }
+}
+
++ (NSSet *)keyPathsForValuesAffectingMenuStringAXButtonLabel
+{
+    return [NSSet setWithObject:@"appDelegate.permissionsManager.accessibilityRequested"];
+}
+
+- (NSString *)menuStringAXButtonLabel
+{
+    return [self buttonLabel:self.appDelegate.permissionsManager.accessibilityRequested label:self.menuStringPermissionsAX];
+}
+
++ (NSSet *)keyPathsForValuesAffectingMenuStringIMButtonLabel
+{
+    return [NSSet setWithObject:@"appDelegate.permissionsManager.inputMonitoringRequested"];
+}
+
+- (NSString *)menuStringIMButtonLabel
+{
+    return [self buttonLabel:self.appDelegate.permissionsManager.inputMonitoringRequested label:self.menuStringPermissionsIM];
+}
+
++ (NSSet *)keyPathsForValuesAffectingMenuStringAXStatus
+{
+    return [NSSet setWithObject:@"appDelegate.permissionsManager.accessibilityEnabled"];
+}
+
+- (NSString *)menuStringAXStatus
+{
+    return [self statusString:self.appDelegate.permissionsManager.accessibilityEnabled label:self.menuStringPermissionsAX];
+}
+
++ (NSSet *)keyPathsForValuesAffectingMenuStringIMStatus
+{
+    return [NSSet setWithObject:@"appDelegate.permissionsManager.inputMonitoringEnabled"];
+}
+
+- (NSString *)menuStringIMStatus
+{
+    return [self statusString:self.appDelegate.permissionsManager.inputMonitoringEnabled label:self.menuStringPermissionsIM];
+}
+
+- (NSString *)statusString:(BOOL)state label:(NSString *)label
+{
+    return [NSString stringWithFormat:NSLocalizedString(@"%@ permission: %@", nil), label, state ?
+            NSLocalizedString(@"✅ granted", nil) :
+            NSLocalizedString(@"⛔️ required", nil)];
 }
 
 #pragma mark Bindings
@@ -284,19 +363,23 @@ static void *_contextRefresh=&_contextRefresh;
 }
 
 - (NSString *)menuStringPermissionsHeader {
-    return NSLocalizedString(@"Scroll Reverser needs these Privacy permissions:", nil);
+    return NSLocalizedString(@"Permissions", nil);
 }
 
-- (NSString *)menuStringClose {
-    return NSLocalizedString(@"Close", nil);
+- (NSString *)menuStringPermissionsAXDescription {
+    return NSLocalizedString(@"Scroll Reverser needs Accessibility permission to modify your scrolling.", nil);
 }
 
-- (NSString *)menuStringAccessibility {
-    return NSLocalizedString(@"Accessibility", @"corresponds to Accessibility in system Privacy settings - please match system translation");
+- (NSString *)menuStringPermissionsIMDescription {
+    return NSLocalizedString(@"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.", nil);
 }
 
-- (NSString *)menuStringInputMonitoring {
-    return NSLocalizedString(@"Input Monitoring", @"corresponds to Input Monitoring in system Privacy settings - please match system translation");
+- (NSString *)menuStringPermissionsAX {
+    return NSLocalizedString(@"Accessibility", @"corresponds to Accessibility in system Privacy settings");
+}
+
+- (NSString *)menuStringPermissionsIM {
+    return NSLocalizedString(@"Input Monitoring", @"corresponds to Input Monitoring in system Privacy settings");
 }
 
 @end

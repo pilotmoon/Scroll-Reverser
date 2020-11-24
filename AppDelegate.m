@@ -56,7 +56,7 @@ static void *_contextPermissions=&_contextPermissions;
             PrefsReverseTrackpad: @(YES),
             PrefsReverseMouse: @(YES),
             LoggerMaxEntries: @(50000),
-            PrefsBetaUpdates: @([self appIsBeta])
+            PrefsBetaUpdates: @([self appIsBeta]),
         }];
 	}
 }

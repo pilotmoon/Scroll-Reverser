@@ -19,12 +19,16 @@ extern NSString *const PermissionsManagerKeyHasAllRequiredPermissions;
 @property (readonly) BOOL hasAllRequiredPermissions;
 
 - (void)requestAccessibilityPermission;
+- (void)openAccessibilityPrefs;
 @property (readonly, getter=isAccessibilityRequired) BOOL accessibilityRequired;
 @property (readonly, getter=isAccessibilityEnabled) BOOL accessibilityEnabled;
+@property (readonly, getter=isAccessibilityRequested) BOOL accessibilityRequested;
 
 - (void)requestInputMonitoringPermission;
+- (void)openInputMonitoringPrefs;
 @property (readonly, getter=isInputMonitoringRequired) BOOL inputMonitoringRequired;
 @property (readonly, getter=isInputMonitoringEnabled) BOOL inputMonitoringEnabled;
+@property (readonly, getter=isInputMonitoringRequested) BOOL inputMonitoringRequested;
 
 @end
 
