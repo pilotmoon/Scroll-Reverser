@@ -18,12 +18,32 @@ NSString *const PrefsReverseMouse=@"ReverseMouse";
 NSString *const PrefsHasRunBefore=@"HasRunBefore";
 NSString *const PrefsHideIcon=@"HideIcon";
 NSString *const PrefsBetaUpdates=@"BetaUpdates";
+NSString *const PrefsAppcastOverrideURL=@"AppcastOverrideURL";
 
 static void *_contextHideIcon=&_contextHideIcon;
 static void *_contextEnabled=&_contextEnabled;
 static void *_contextPermissions=&_contextPermissions;
 
 @implementation AppDelegate
+
++ (BOOL)appIsBeta
+{
+    return [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"PilotmoonReleaseChannel"] isEqualToString:@"Beta"];
+}
+
++ (NSURL *)sparkleFeedURL
+{
+    NSString *urlString=[[NSUserDefaults standardUserDefaults] stringForKey:PrefsAppcastOverrideURL];
+    if (!urlString) {
+        NSString *channel=[[NSBundle mainBundle] objectForInfoDictionaryKey:@"PilotmoonReleaseChannel"];
+        if([channel isEqualToString:@"Production"]||[channel isEqualToString:@"Beta"]) {
+            urlString=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsBetaUpdates] ?
+                 @"https://softwareupdate.pilotmoon.com/update/scrollreverser/appcast-beta.xml":
+                 @"https://softwareupdate.pilotmoon.com/update/scrollreverser/appcast.xml";
+        }
+    }
+    return [NSURL URLWithString:urlString?urlString:@"https://localhost/"];
+}
 
 + (void)initialize
 {
@@ -36,6 +56,7 @@ static void *_contextPermissions=&_contextPermissions;
             PrefsReverseTrackpad: @(YES),
             PrefsReverseMouse: @(YES),
             LoggerMaxEntries: @(50000),
+            PrefsBetaUpdates: @([self appIsBeta])
         }];
 	}
 }
@@ -67,16 +88,6 @@ static void *_contextPermissions=&_contextPermissions;
     });
 }
 
-- (NSURL *)feedURL
-{
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsBetaUpdates]) { // if version string has a dash, it's a beta
-        return [NSURL URLWithString:@"https://softwareupdate.pilotmoon.com/update/scrollreverser/appcast-beta.xml"];
-    }
-    else {
-        return [NSURL URLWithString:@"https://softwareupdate.pilotmoon.com/update/scrollreverser/appcast.xml"];
-    }
-}
-
 - (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key
 {
     return [key isEqualToString:@"enabled"];
@@ -98,7 +109,7 @@ static void *_contextPermissions=&_contextPermissions;
         _permissionsManager=[[PermissionsManager alloc] init];
 
         [[SUUpdater sharedUpdater] setDelegate:self];
-        [[SUUpdater sharedUpdater] setFeedURL:[self feedURL]];
+        [[SUUpdater sharedUpdater] setFeedURL:[[self class] sparkleFeedURL]];
     }
     return self;
 }
