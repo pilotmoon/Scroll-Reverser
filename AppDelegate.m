@@ -327,7 +327,9 @@ static void *_contextPermissions=&_contextPermissions;
 }
 
 - (NSString *)appVersion {
-    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    return [NSString stringWithFormat:@"%@ (%@)",
+            [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
+            [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
 }
 
 - (NSString *)appCredit {
