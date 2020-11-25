@@ -38,11 +38,14 @@ static void *_contextPermissions=&_contextPermissions;
 @implementation AppDelegate
 
 // note that there is a third category of build, "Development" (see BuildScripts)
++ (NSString *)releaseChannel {
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"PilotmoonReleaseChannel"];
+}
 + (BOOL)appIsProductionBuild {
-    return [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"PilotmoonReleaseChannel"] isEqualToString:@"Production"];
+    return [[self releaseChannel] isEqualToString:@"Production"];
 }
 + (BOOL)appIsBetaBuild {
-    return [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"PilotmoonReleaseChannel"] isEqualToString:@"Beta"];
+    return [[self releaseChannel] isEqualToString:@"Beta"];
 }
 
 + (NSURL *)sparkleFeedURL
