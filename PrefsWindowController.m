@@ -92,16 +92,17 @@ static void *_contextRefresh=&_contextRefresh;
         startingIdentifier=[toolbarDefinition firstObject];
     }
     
-    // select the initial pane
-    [self.tabView selectTabViewItemWithIdentifier:startingIdentifier];
-    [self.toolbar setSelectedItemIdentifier:startingIdentifier];
-    [self updateHeightForIdentifier:startingIdentifier];
-    
     // other set-up
     self.linkView.url=self.appDelegate.appLink;
 
     [self.appDelegate.permissionsManager addObserver:self forKeyPath:@"accessibilityEnabled" options:0 context:_contextRefresh];
     [self.appDelegate.permissionsManager addObserver:self forKeyPath:@"inputMonitoringEnabled" options:0 context:_contextRefresh];
+
+    // select the initial pane
+    [self.tabView selectTabViewItemWithIdentifier:startingIdentifier];
+    [self.toolbar setSelectedItemIdentifier:startingIdentifier];
+    [self updateHeightForIdentifier:startingIdentifier];
+    [self.window center];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
@@ -115,8 +116,12 @@ static void *_contextRefresh=&_contextRefresh;
 {
     self.window.delegate=self;
     self.window.level=NSNormalWindowLevel;
-    [self.window center];
-    [NSApp activateIgnoringOtherApps:YES];
+    if (![NSApp isActive]) {
+        [NSApp activateIgnoringOtherApps:YES];
+    }
+    if (!self.window.visible) {
+        [self.window center];
+    }
     [super showWindow:sender];
 }
 

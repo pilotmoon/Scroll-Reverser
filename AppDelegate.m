@@ -227,14 +227,21 @@ static void *_contextPermissions=&_contextPermissions;
     [self.debugWindowController showWindow:self];
 }
 
-- (IBAction)showPrefs:(id)sender
+- (void)showPrefsWithDefaultPane:(BOOL)showDefault
 {
     [NSApp activateIgnoringOtherApps:YES];
     if(!self.prefsWindowController) {
         self.prefsWindowController=[[PrefsWindowController alloc] initWithWindowNibName:@"PrefsWindow"];
     }
-    [self.prefsWindowController showPermissionsPane:self];
+    if (showDefault) {
+        [self.prefsWindowController showPermissionsPane:self];
+    }
     [self.prefsWindowController showWindow:self];
+}
+
+- (IBAction)showPrefs:(id)sender
+{
+    [self showPrefsWithDefaultPane:NO];
 }
 
 - (IBAction)showAbout:(id)sender
@@ -342,7 +349,7 @@ static void *_contextPermissions=&_contextPermissions;
 }
 
 - (void)showPermissionsUI {
-    [self showPrefs:self];
+    [self showPrefsWithDefaultPane:YES];
 }
 
 #pragma mark App info
