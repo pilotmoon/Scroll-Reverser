@@ -39,6 +39,7 @@
 @property (readonly) NSString *menuStringIMButtonLabel;
 @property (readonly) NSString *menuStringIMStatus;
 - (IBAction)buttonPermissionsHelpClicked:(id)sender;
-- (IBAction)showPermissionsPane:(id)sender;
+- (void)showPermissionsPane;
+- (void)callAttention;
 
 @end

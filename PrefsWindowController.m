@@ -29,6 +29,24 @@ static void *_contextRefresh=&_contextRefresh;
 
 @implementation PrefsWindowController
 
+// animate window frame to draw user's attention
+- (void)callAttention
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*0.05), dispatch_get_main_queue(), ^{
+        const NSRect frame = [self.window frame];
+        const float offset = 0.08 * frame.size.height;
+        [NSAnimationContext currentContext].duration = 0.08;
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
+            [[self.window animator] setFrame:NSMakeRect(frame.origin.x, frame.origin.y+offset, frame.size.width, frame.size.height)
+                                     display:NO];
+        } completionHandler:^{
+            [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
+                [[self.window animator] setFrame:frame display:NO];
+            }];
+        }];
+    });
+}
+
 - (void)windowDidLoad
 {
     [super windowDidLoad];
@@ -125,8 +143,6 @@ static void *_contextRefresh=&_contextRefresh;
     [super showWindow:sender];
 }
 
-#pragma mark Private methods
-
 - (void)setPane:(NSString *)identifier
 {
     // select the appropriate tab view item
@@ -167,7 +183,7 @@ static void *_contextRefresh=&_contextRefresh;
 
 #pragma mark Permissions
 
-- (IBAction)showPermissionsPane:(id)sender {
+- (void)showPermissionsPane {
     [self setPane:kPanelScrolling];
 }
 

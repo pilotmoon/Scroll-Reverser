@@ -213,6 +213,11 @@
                                                             </connections>
                                                         </buttonCell>
                                                         <connections>
+                                                            <binding destination="-2" name="enabled" keyPath="appDelegate.permissionsManager.accessibilityEnabled" id="wiV-T7-qa2">
+                                                                <dictionary key="options">
+                                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                                </dictionary>
+                                                            </binding>
                                                             <binding destination="-2" name="title" keyPath="self.menuStringAXButtonLabel" id="NB2-FF-Sly"/>
                                                         </connections>
                                                     </button>
@@ -238,6 +243,13 @@
                                                     <constraint firstItem="LnK-n0-8fK" firstAttribute="centerX" secondItem="dVb-AF-lrg" secondAttribute="centerX" id="vkU-hc-0eA"/>
                                                     <constraint firstAttribute="trailing" secondItem="eeb-3N-6R3" secondAttribute="trailing" id="zR4-Rv-TCu"/>
                                                 </constraints>
+                                                <connections>
+                                                    <binding destination="-2" name="hidden" keyPath="appDelegate.permissionsManager.accessibilityRequired" id="e6w-dD-x2v">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
                                             </customView>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="qJB-g1-rDl" userLabel="IM View">
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="61"/>
@@ -250,6 +262,11 @@
                                                         </buttonCell>
                                                         <connections>
                                                             <action selector="buttonIMClicked:" target="-2" id="Q2v-K2-Cjw"/>
+                                                            <binding destination="-2" name="enabled" keyPath="appDelegate.permissionsManager.inputMonitoringEnabled" id="aDp-Ix-Xis">
+                                                                <dictionary key="options">
+                                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                                </dictionary>
+                                                            </binding>
                                                             <binding destination="-2" name="title" keyPath="self.menuStringIMButtonLabel" id="LJA-hj-8v1"/>
                                                         </connections>
                                                     </button>
@@ -286,6 +303,13 @@
                                                     <constraint firstItem="C8m-w6-aqh" firstAttribute="top" secondItem="qJB-g1-rDl" secondAttribute="top" id="f8j-UW-A0F"/>
                                                     <constraint firstAttribute="bottom" secondItem="Ltk-EC-3w1" secondAttribute="bottom" id="ozM-iU-wef"/>
                                                 </constraints>
+                                                <connections>
+                                                    <binding destination="-2" name="hidden" keyPath="appDelegate.permissionsManager.inputMonitoringRequired" id="TWE-TH-CPe">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
                                             </customView>
                                         </subviews>
                                         <constraints>

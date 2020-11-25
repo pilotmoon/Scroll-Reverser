@@ -241,7 +241,10 @@ static void *_contextPermissions=&_contextPermissions;
         self.prefsWindowController=[[PrefsWindowController alloc] initWithWindowNibName:@"PrefsWindow"];
     }
     if (showDefault) {
-        [self.prefsWindowController showPermissionsPane:self];
+        [self.prefsWindowController showPermissionsPane];
+        if (self.prefsWindowController.window.visible) {
+            [self.prefsWindowController callAttention];
+        }
     }
     [self.prefsWindowController showWindow:self];
 }
