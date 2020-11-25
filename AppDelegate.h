@@ -16,19 +16,11 @@ extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsHideIcon;
 
 @interface AppDelegate : NSObject <StatusItemControllerDelegate, SUUpdaterDelegate> {
-	MouseTap *tap;
-	StatusItemController *statusController;
-    WelcomeWindowController *welcomeWindowController;
-    PrefsWindowController *prefsWindowController;
-    DebugWindowController *debugWindowController;
-    TestWindowController *testWindowController;
-    TapLogger *logger;
-    
-    IBOutlet NSMenu *statusMenu;
 }
 
 @property (readonly) PermissionsManager *permissionsManager;
 @property (weak) IBOutlet NSMenu *theMainMenu;
+@property (weak) IBOutlet NSMenu *statusMenu;
 
 @property (readonly) NSString *appName;
 @property (readonly) NSString *appVersion;
@@ -38,7 +30,6 @@ extern NSString *const PrefsHideIcon;
 @property (readonly) NSURL *appPermissionsHelpLink;
 
 @property (readonly) NSString *menuStringReverseScrolling;
-@property (readonly) NSString *menuStringAbout;
 @property (readonly) NSString *menuStringPreferences;
 @property (readonly) NSString *menuStringQuit;
 

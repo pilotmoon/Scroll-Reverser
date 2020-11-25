@@ -19,7 +19,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="VQJ-Ng-zSD" customClass="SUUpdater"/>
         <userDefaultsController representsSharedInstance="YES" id="9eJ-Lx-koC"/>
-        <view id="Ly3-tV-h1E">
+        <view id="Ly3-tV-h1E" userLabel="Scrolling Settings">
             <rect key="frame" x="0.0" y="0.0" width="429" height="334"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -30,11 +30,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="oZg-t9-Uad">
-                                <rect key="frame" x="14" y="30" width="55" height="18"/>
+                                <rect key="frame" x="14" y="30" width="84" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="AuE-TK-cvb"/>
                                 </constraints>
-                                <buttonCell key="cell" type="check" title="VERT" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="6Lc-hG-Rhg">
+                                <buttonCell key="cell" type="check" title="VERTICAL" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="6Lc-hG-Rhg">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <connections>
@@ -48,11 +48,11 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Qp4-Ow-UFs">
-                                <rect key="frame" x="14" y="10" width="62" height="18"/>
+                                <rect key="frame" x="14" y="10" width="98" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="Ieo-vD-aLx"/>
                                 </constraints>
-                                <buttonCell key="cell" type="check" title="HORIZ" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XdD-QC-5fU">
+                                <buttonCell key="cell" type="check" title="HORIZONAL" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XdD-QC-5fU">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -99,11 +99,11 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="2Vi-H4-SvI">
-                                <rect key="frame" x="14" y="29" width="65" height="19"/>
+                                <rect key="frame" x="14" y="29" width="91" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="zmV-ZY-01Y"/>
                                 </constraints>
-                                <buttonCell key="cell" type="check" title="TRACK" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XUx-yL-Qdv">
+                                <buttonCell key="cell" type="check" title="TRACKPAD" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XUx-yL-Qdv">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -172,8 +172,8 @@
                                                 </connections>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CI9-Bb-KbY">
-                                                <rect key="frame" x="140" y="-7" width="81" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gdp-aM-MIb">
+                                                <rect key="frame" x="123" y="-7" width="115" height="32"/>
+                                                <buttonCell key="cell" type="push" title="AX BUTTON" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gdp-aM-MIb">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                     <connections>
@@ -211,8 +211,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="61"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JHt-aM-wDh">
-                                                <rect key="frame" x="140" y="-7" width="81" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kwB-4Z-9IM">
+                                                <rect key="frame" x="125" y="-7" width="112" height="32"/>
+                                                <buttonCell key="cell" type="push" title="IM BUTTON" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kwB-4Z-9IM">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -282,6 +282,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <binding destination="-2" name="hidden" keyPath="appDelegate.enabled" id="sPd-dT-0BW"/>
                         <binding destination="-2" name="title" keyPath="self.menuStringPermissionsHeader" id="ENc-B2-l8f"/>
                     </connections>
                 </box>
@@ -300,9 +301,9 @@
                 <constraint firstAttribute="bottom" secondItem="VO7-c9-Av3" secondAttribute="bottom" constant="20" symbolic="YES" id="ct0-id-yUf"/>
                 <constraint firstItem="VO7-c9-Av3" firstAttribute="top" secondItem="XNk-AX-zB1" secondAttribute="bottom" constant="18" id="sgd-0m-1bR"/>
             </constraints>
-            <point key="canvasLocation" x="-895.5" y="-2997"/>
+            <point key="canvasLocation" x="-1282" y="-3254"/>
         </view>
-        <view id="95B-NO-Ezk">
+        <view id="95B-NO-Ezk" userLabel="App Settings">
             <rect key="frame" x="0.0" y="0.0" width="462" height="176"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -357,13 +358,13 @@
                     </constraints>
                 </box>
                 <box autoresizesSubviews="NO" horizontalHuggingPriority="750" boxType="custom" borderType="none" title="Box" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t3b-LW-dUy">
-                    <rect key="frame" x="78" y="13" width="306" height="34"/>
+                    <rect key="frame" x="90" y="13" width="283" height="34"/>
                     <view key="contentView" id="Yvi-jN-0Py">
-                        <rect key="frame" x="0.0" y="0.0" width="306" height="34"/>
+                        <rect key="frame" x="0.0" y="0.0" width="283" height="34"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="qYc-uM-EUY">
-                                <rect key="frame" x="145" y="5" width="155" height="24"/>
+                                <rect key="frame" x="122" y="5" width="155" height="24"/>
                                 <buttonCell key="cell" type="check" title="CHECK THOSE UPDATES" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Hop-aI-Lb9">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
@@ -374,8 +375,8 @@
                                 </connections>
                             </button>
                             <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tD5-NU-mBS">
-                                <rect key="frame" x="3" y="2" width="142" height="27"/>
-                                <buttonCell key="cell" type="push" title="CHECK NOW WILL YA" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oUq-ql-y2Z">
+                                <rect key="frame" x="3" y="2" width="119" height="27"/>
+                                <buttonCell key="cell" type="push" title="CHECK NOW PLZ" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oUq-ql-y2Z">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
@@ -440,9 +441,9 @@
                 <constraint firstItem="TBz-Cg-SZN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="uVa-Y2-gGT"/>
                 <constraint firstItem="t3b-LW-dUy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="12" id="unE-I6-2Nr"/>
             </constraints>
-            <point key="canvasLocation" x="-969" y="-2203"/>
+            <point key="canvasLocation" x="-1024" y="-2197"/>
         </view>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="AZe-s0-Mkk">
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="AZe-s0-Mkk" userLabel="Prefs Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="163" y="199" width="480" height="270"/>

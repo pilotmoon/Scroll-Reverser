@@ -163,12 +163,11 @@ static void *_contextRefresh=&_contextRefresh;
 #pragma mark Permissions
 
 - (IBAction)showPermissionsPane:(id)sender {
-    // TODO
-    //[self setPane:kPanelScrolling];
+    [self setPane:kPanelScrolling];
 }
 
 - (IBAction)buttonAXClicked:(id)sender {
-    if (self.appDelegate.permissionsManager.accessibilityRequested) {
+    if (self.appDelegate.permissionsManager.accessibilityEnabled) {
         [self.appDelegate.permissionsManager openAccessibilityPrefs];
     }
     else {
@@ -252,12 +251,12 @@ static void *_contextRefresh=&_contextRefresh;
 
 + (NSSet *)keyPathsForValuesAffectingMenuStringAXButtonLabel
 {
-    return [NSSet setWithObject:@"appDelegate.permissionsManager.accessibilityRequested"];
+    return [NSSet setWithObject:@"appDelegate.permissionsManager.accessibilityEnabled"];
 }
 
 - (NSString *)menuStringAXButtonLabel
 {
-    return [self buttonLabel:self.appDelegate.permissionsManager.accessibilityRequested label:self.menuStringPermissionsAX];
+    return [self buttonLabel:self.appDelegate.permissionsManager.accessibilityEnabled label:self.menuStringPermissionsAX];
 }
 
 + (NSSet *)keyPathsForValuesAffectingMenuStringIMButtonLabel
@@ -298,6 +297,7 @@ static void *_contextRefresh=&_contextRefresh;
 }
 
 #pragma mark Bindings
+// I'm sure there's a better way of doing this 😂
 
 - (AppDelegate *)appDelegate
 {

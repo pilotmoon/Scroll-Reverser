@@ -100,12 +100,9 @@ static NSString *const PrefsHasRequestedAccessibilityPermission=@"HasRequestedAc
     dispatch_async(dispatch_get_main_queue(), ^{
         self.refreshStarted=[NSDate date];
         if (!self.refreshTimer.valid) {
-            NSLog(@"Starting refresh timer");
-            self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.5 repeats:YES block:^(NSTimer * _Nonnull timer) {
-                NSLog(@"refresh");
+            self.refreshTimer=[NSTimer scheduledTimerWithTimeInterval:0.333 repeats:YES block:^(NSTimer * _Nonnull timer) {
                 [self checkState];
-                if ([[NSDate date] timeIntervalSinceDate:self.refreshStarted]>5) {
-                    NSLog(@"time elapsed, stopping refresh loop");
+                if ([[NSDate date] timeIntervalSinceDate:self.refreshStarted]>2.5) {
                     [self.refreshTimer invalidate];
                     self.refreshTimer=nil;
                 }
