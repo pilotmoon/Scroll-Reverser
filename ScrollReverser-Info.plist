@@ -42,5 +42,18 @@
 	<true/>
 	<key>SUEnableSystemProfiling</key>
 	<false/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>com.pilotmoon.scroll-reverser.url</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>x-scroll-reverser</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
