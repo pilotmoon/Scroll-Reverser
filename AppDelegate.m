@@ -33,6 +33,7 @@ static void *_contextPermissions=&_contextPermissions;
 @property DebugWindowController *debugWindowController;
 @property TestWindowController *testWindowController;
 @property PermissionsManager *permissionsManager;
+@property LauncherController *launcherController;
 @property TapLogger *logger;
 @end
 
@@ -123,6 +124,8 @@ static void *_contextPermissions=&_contextPermissions;
         [[self class] terminateOthers];
 
         self.tap=[[MouseTap alloc] init];
+
+        self.launcherController=[[LauncherController alloc] init];
 
         self.statusController=[[StatusItemController alloc] init];
         self.statusController.statusItemDelegate=self;

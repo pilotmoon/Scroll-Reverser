@@ -383,6 +383,7 @@
                             </buttonCell>
                             <connections>
                                 <binding destination="-2" name="title" keyPath="menuStringStartAtLogin" id="IIe-US-6DV"/>
+                                <binding destination="-2" name="value" keyPath="self.appDelegate.launcherController.startAtLogin" id="R91-D0-eNi"/>
                             </connections>
                         </button>
                         <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="NsF-ix-ASS">

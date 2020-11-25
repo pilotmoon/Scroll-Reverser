@@ -12,6 +12,8 @@
 		01145CDE256EC99300E0EFE5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01145CDC256EC99300E0EFE5 /* MainMenu.xib */; };
 		01145CE1256EC99300E0EFE5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01145CE0256EC99300E0EFE5 /* main.m */; };
 		01145CE8256ECE5000E0EFE5 /* Launcher.app in Copy Login Items */ = {isa = PBXBuildFile; fileRef = 01145CD5256EC99100E0EFE5 /* Launcher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		01145CF2256ED29000E0EFE5 /* LauncherController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01145CF1256ED29000E0EFE5 /* LauncherController.m */; };
+		01145CF6256ED93400E0EFE5 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01145CF5256ED93400E0EFE5 /* ServiceManagement.framework */; };
 		011A628B19D4A748003CE6DC /* IntroShot.png in Resources */ = {isa = PBXBuildFile; fileRef = 011A628919D4A748003CE6DC /* IntroShot.png */; };
 		01438E601AFB467100C5C857 /* DebugWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01438E5E1AFB467100C5C857 /* DebugWindowController.m */; };
 		01438E611AFB467100C5C857 /* DebugWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01438E5F1AFB467100C5C857 /* DebugWindow.xib */; };
@@ -76,6 +78,9 @@
 		01145CDF256EC99300E0EFE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01145CE0256EC99300E0EFE5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		01145CE2256EC99300E0EFE5 /* Launcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Launcher.entitlements; sourceTree = "<group>"; };
+		01145CF0256ED29000E0EFE5 /* LauncherController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LauncherController.h; sourceTree = "<group>"; };
+		01145CF1256ED29000E0EFE5 /* LauncherController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LauncherController.m; sourceTree = "<group>"; };
+		01145CF5256ED93400E0EFE5 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		0118CC8A1EC4BACB00DA75D5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = resources/nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		011A628619D49B69003CE6DC /* ReleaseNotes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReleaseNotes.md; sourceTree = "<group>"; };
 		011A628919D4A748003CE6DC /* IntroShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IntroShot.png; path = Graphics/IntroShot.png; sourceTree = "<group>"; };
@@ -155,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01145CF6256ED93400E0EFE5 /* ServiceManagement.framework in Frameworks */,
 				01D9F8962386E01C002F0EC0 /* IOKit.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				01F66862174B5E43001727DE /* Sparkle.framework in Frameworks */,
@@ -217,6 +223,8 @@
 				01438E921AFB7BC100C5C857 /* LoggerScrollView.m */,
 				01AF54D01B0E11150028A26A /* TestWindowController.h */,
 				01AF54D11B0E11150028A26A /* TestWindowController.m */,
+				01145CF0256ED29000E0EFE5 /* LauncherController.h */,
+				01145CF1256ED29000E0EFE5 /* LauncherController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -292,6 +300,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				01145CF5256ED93400E0EFE5 /* ServiceManagement.framework */,
 				01D9F8942386E013002F0EC0 /* IOKit.framework */,
 				01F66861174B5E43001727DE /* Sparkle.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
@@ -464,6 +473,7 @@
 				01438E901AFB640400C5C857 /* Logger.m in Sources */,
 				0158735813265EDD00100E4C /* StatusItemController.m in Sources */,
 				01AF54D31B0E11150028A26A /* TestWindowController.m in Sources */,
+				01145CF2256ED29000E0EFE5 /* LauncherController.m in Sources */,
 				017347661A35DA2600A0A1BE /* PrefsWindowController.m in Sources */,
 				019FB05A14EB1A9100FA225A /* WelcomeWindowController.m in Sources */,
 			);
@@ -545,7 +555,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pilotmoon.scroll-reverser.launcher";
@@ -588,7 +598,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pilotmoon.scroll-reverser.launcher";

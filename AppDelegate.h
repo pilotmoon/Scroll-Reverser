@@ -4,6 +4,7 @@
 #import <Cocoa/Cocoa.h>
 #import "StatusItemController.h"
 #import "PermissionsManager.h"
+#import "LauncherController.h"
 #import <Sparkle/Sparkle.h>
 
 @class MouseTap, WelcomeWindowController, PrefsWindowController, DebugWindowController, TapLogger, TestWindowController;
@@ -19,6 +20,8 @@ extern NSString *const PrefsHideIcon;
 }
 
 @property (readonly) PermissionsManager *permissionsManager;
+@property (readonly) LauncherController *launcherController;
+
 @property (weak) IBOutlet NSMenu *theMainMenu;
 @property (weak) IBOutlet NSMenu *statusMenu;
 
