@@ -137,9 +137,7 @@ static void *_contextRefresh=&_contextRefresh;
     if (![NSApp isActive]) {
         [NSApp activateIgnoringOtherApps:YES];
     }
-    if (!self.window.visible) {
-        [self.window center];
-    }
+    [self.window center];
     [super showWindow:sender];
 }
 
