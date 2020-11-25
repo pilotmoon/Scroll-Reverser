@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01145CD9256EC99200E0EFE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01145CD8256EC99200E0EFE5 /* AppDelegate.m */; };
+		01145CDB256EC99300E0EFE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01145CDA256EC99300E0EFE5 /* Assets.xcassets */; };
+		01145CDE256EC99300E0EFE5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01145CDC256EC99300E0EFE5 /* MainMenu.xib */; };
+		01145CE1256EC99300E0EFE5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01145CE0256EC99300E0EFE5 /* main.m */; };
+		01145CE8256ECE5000E0EFE5 /* Launcher.app in Copy Login Items */ = {isa = PBXBuildFile; fileRef = 01145CD5256EC99100E0EFE5 /* Launcher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		011A628B19D4A748003CE6DC /* IntroShot.png in Resources */ = {isa = PBXBuildFile; fileRef = 011A628919D4A748003CE6DC /* IntroShot.png */; };
 		01438E601AFB467100C5C857 /* DebugWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01438E5E1AFB467100C5C857 /* DebugWindowController.m */; };
 		01438E611AFB467100C5C857 /* DebugWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01438E5F1AFB467100C5C857 /* DebugWindow.xib */; };
@@ -31,26 +36,46 @@
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
 		01ED37DF1A375EB9001B3094 /* LinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01ED37DE1A375EB9001B3094 /* LinkView.m */; };
 		01F66862174B5E43001727DE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F66861174B5E43001727DE /* Sparkle.framework */; };
-		01F66865174B5E77001727DE /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 01F66861174B5E43001727DE /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		01F66865174B5E77001727DE /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 01F66861174B5E43001727DE /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* AppDelegate.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		01F66864174B5E6D001727DE /* CopyFiles */ = {
+		01145CE7256ECE3400E0EFE5 /* Copy Login Items */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				01145CE8256ECE5000E0EFE5 /* Launcher.app in Copy Login Items */,
+			);
+			name = "Copy Login Items";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01F66864174B5E6D001727DE /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				01F66865174B5E77001727DE /* Sparkle.framework in CopyFiles */,
+				01F66865174B5E77001727DE /* Sparkle.framework in Copy Frameworks */,
 			);
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01145CD5256EC99100E0EFE5 /* Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Launcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		01145CD7256EC99200E0EFE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		01145CD8256EC99200E0EFE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		01145CDA256EC99300E0EFE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		01145CDD256EC99300E0EFE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		01145CDF256EC99300E0EFE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01145CE0256EC99300E0EFE5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		01145CE2256EC99300E0EFE5 /* Launcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Launcher.entitlements; sourceTree = "<group>"; };
 		0118CC8A1EC4BACB00DA75D5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = resources/nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		011A628619D49B69003CE6DC /* ReleaseNotes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReleaseNotes.md; sourceTree = "<group>"; };
 		011A628919D4A748003CE6DC /* IntroShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IntroShot.png; path = Graphics/IntroShot.png; sourceTree = "<group>"; };
@@ -119,6 +144,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		01145CD2256EC99100E0EFE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -132,6 +164,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01145CD6256EC99200E0EFE5 /* Launcher */ = {
+			isa = PBXGroup;
+			children = (
+				01145CD7256EC99200E0EFE5 /* AppDelegate.h */,
+				01145CD8256EC99200E0EFE5 /* AppDelegate.m */,
+				01145CDA256EC99300E0EFE5 /* Assets.xcassets */,
+				01145CDC256EC99300E0EFE5 /* MainMenu.xib */,
+				01145CDF256EC99300E0EFE5 /* Info.plist */,
+				01145CE0256EC99300E0EFE5 /* main.m */,
+				01145CE2256EC99300E0EFE5 /* Launcher.entitlements */,
+			);
+			path = Launcher;
+			sourceTree = "<group>";
+		};
 		01B5ABC91700D25700FF6F6A /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Scroll Reverser.app */,
+				01145CD5256EC99100E0EFE5 /* Launcher.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,6 +256,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				01145CD6256EC99200E0EFE5 /* Launcher */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -255,6 +303,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		01145CD4256EC99100E0EFE5 /* Launcher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01145CE5256EC99300E0EFE5 /* Build configuration list for PBXNativeTarget "Launcher" */;
+			buildPhases = (
+				01145CD1256EC99100E0EFE5 /* Sources */,
+				01145CD2256EC99100E0EFE5 /* Frameworks */,
+				01145CD3256EC99100E0EFE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Launcher;
+			productName = Launcher;
+			productReference = 01145CD5256EC99100E0EFE5 /* Launcher.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8D1107260486CEB800E47090 /* Scroll Reverser */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Scroll Reverser" */;
@@ -262,7 +327,8 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				01F66864174B5E6D001727DE /* CopyFiles */,
+				01F66864174B5E6D001727DE /* Copy Frameworks */,
+				01145CE7256ECE3400E0EFE5 /* Copy Login Items */,
 				01F668AD174B9A65001727DE /* ShellScript */,
 			);
 			buildRules = (
@@ -282,6 +348,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					01145CD4256EC99100E0EFE5 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ScrollReverser" */;
 			compatibilityVersion = "Xcode 12.0";
@@ -313,11 +384,21 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Scroll Reverser */,
+				01145CD4256EC99100E0EFE5 /* Launcher */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		01145CD3256EC99100E0EFE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01145CDB256EC99300E0EFE5 /* Assets.xcassets in Resources */,
+				01145CDE256EC99300E0EFE5 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -359,6 +440,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		01145CD1256EC99100E0EFE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01145CE1256EC99300E0EFE5 /* main.m in Sources */,
+				01145CD9256EC99200E0EFE5 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -382,6 +472,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		01145CDC256EC99300E0EFE5 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01145CDD256EC99300E0EFE5 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		01587306134DD1E200CD9CC4 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -409,6 +507,96 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		01145CE3256EC99300E0EFE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Launcher/Launcher.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6W6K75YWQ9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = Launcher/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pilotmoon.scroll-reverser.launcher";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Debug;
+		};
+		01145CE4256EC99300E0EFE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Launcher/Launcher.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6W6K75YWQ9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = Launcher/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pilotmoon.scroll-reverser.launcher";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -567,6 +755,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		01145CE5256EC99300E0EFE5 /* Build configuration list for PBXNativeTarget "Launcher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01145CE3256EC99300E0EFE5 /* Debug */,
+				01145CE4256EC99300E0EFE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Scroll Reverser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

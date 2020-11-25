@@ -133,8 +133,25 @@ static void *_contextPermissions=&_contextPermissions;
 
         [[SUUpdater sharedUpdater] setDelegate:self];
         [[SUUpdater sharedUpdater] setFeedURL:[[self class] sparkleFeedURL]];
+
+        // event handler for url events (for launching)
+        [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
+                                                           andSelector:@selector(handleURLEvent:withReplyEvent:)
+                                                         forEventClass:kInternetEventClass
+                                                            andEventID:kAEGetURL];
     }
     return self;
+}
+
+- (void)handleURLEvent:(NSAppleEventDescriptor *)event withReplyEvent: (NSAppleEventDescriptor *)replyEvent
+{
+    NSURL* url = [NSURL URLWithString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
+    NSLog(@"Handling URL: %@", url);
+    if ([[url scheme] isEqualToString:@"x-scroll-reverser"]) {
+        if ([[url host] isEqualToString:@"launch"]) {
+            NSLog(@"Launch via URL");
+        }
+    }
 }
 
 - (void)dealloc {
