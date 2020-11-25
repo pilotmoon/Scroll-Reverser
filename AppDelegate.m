@@ -54,9 +54,13 @@ static void *_contextPermissions=&_contextPermissions;
     if (!urlString) {
         if([self appIsProductionBuild]||[self appIsBetaBuild])
         {
-            urlString=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsBetaUpdates] ?
-                 @"https://softwareupdate.pilotmoon.com/update/scrollreverser/appcast-beta.xml":
-                 @"https://softwareupdate.pilotmoon.com/update/scrollreverser/appcast.xml";
+            urlString=@"https://softwareupdate.pilotmoon.com/update/scrollreverser/";
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsBetaUpdates]) {
+                urlString=[urlString stringByAppendingString:@"appcast-beta.xml"];
+            }
+            else {
+                urlString=[urlString stringByAppendingString:@"appcast.xml"];
+            }
         }
     }
     return [NSURL URLWithString:urlString?urlString:@"https://localhost/"];

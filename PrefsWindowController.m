@@ -364,7 +364,11 @@ static void *_contextRefresh=&_contextRefresh;
 }
 
 - (NSString *)menuStringCheckForUpdates {
-    return NSLocalizedString(@"Automatically", @"check box next to the 'Check for updates' button");
+    return NSLocalizedString(@"Automatically", @"Check box next to the 'Check for updates' button");
+}
+
+- (NSString *)menuStringBetaUpdates {
+    return NSLocalizedString(@"Include beta versions", @"Check box: Include beta versionss of the app when checking for updates");
 }
 
 - (NSString *)menuStringPermissionsHeader {

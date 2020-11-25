@@ -19,7 +19,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="VQJ-Ng-zSD" customClass="SUUpdater"/>
         <userDefaultsController representsSharedInstance="YES" id="9eJ-Lx-koC"/>
-        <view id="Ly3-tV-h1E" userLabel="Scrolling Settings">
+        <view misplaced="YES" id="Ly3-tV-h1E" userLabel="Scrolling Settings">
             <rect key="frame" x="0.0" y="0.0" width="402" height="338"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -345,144 +345,212 @@
             <point key="canvasLocation" x="-1325" y="-3445"/>
         </view>
         <view id="95B-NO-Ezk" userLabel="App Settings">
-            <rect key="frame" x="0.0" y="0.0" width="462" height="176"/>
+            <rect key="frame" x="0.0" y="0.0" width="462" height="212"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kFb-gM-jgJ">
-                    <rect key="frame" x="216" y="79" width="30" height="14"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="VER" id="neI-To-vYW">
-                        <font key="font" metaFont="message" size="11"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.appDelegate.appVersion" id="Kh6-Yl-xtT"/>
-                    </connections>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TBz-Cg-SZN">
-                    <rect key="frame" x="207" y="65" width="48" height="14"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="CREDIT" id="Knh-UW-BgC">
-                        <font key="font" metaFont="message" size="11"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.appDelegate.appCredit" id="xK3-dG-AiZ"/>
-                    </connections>
-                </textField>
-                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AqZ-5L-KAS" customClass="LinkView">
-                    <rect key="frame" x="215" y="51" width="33" height="14"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="LINK" id="zJt-dO-TtO">
-                        <font key="font" metaFont="message" size="11"/>
-                        <color key="textColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.appDelegate.appDisplayLink" id="h96-gE-SK5"/>
-                    </connections>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VHc-31-bRc">
-                    <rect key="frame" x="175" y="93" width="112" height="14"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="NAME OF THE APP" id="zIC-pY-OnZ">
-                        <font key="font" metaFont="smallSystemBold"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.appDelegate.appName" id="IHq-bc-ltY"/>
-                    </connections>
-                </textField>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="6" horizontalStackHuggingPriority="750" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MTi-xc-Aqa" userLabel="Checkboxes Stack View">
+                    <rect key="frame" x="144" y="158" width="175" height="34"/>
+                    <subviews>
+                        <button horizontalHuggingPriority="749" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="LmC-Wh-ww0">
+                            <rect key="frame" x="-2" y="18" width="179" height="18"/>
+                            <buttonCell key="cell" type="check" title="START AT LOGIN" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="CWc-I4-io3">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <binding destination="-2" name="title" keyPath="menuStringStartAtLogin" id="IIe-US-6DV"/>
+                            </connections>
+                        </button>
+                        <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="NsF-ix-ASS">
+                            <rect key="frame" x="-2" y="-2" width="179" height="18"/>
+                            <buttonCell key="cell" type="check" title="SHOW IN THE MENU BAR" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="b7A-yE-pR0">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <binding destination="-2" name="title" keyPath="self.menuStringShowInMenuBar" id="LWv-sH-NwL"/>
+                                <binding destination="9eJ-Lx-koC" name="value" keyPath="values.HideIcon" id="mHp-7q-hNf">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="NsF-ix-ASS" secondAttribute="bottom" id="1va-V0-3lp"/>
+                        <constraint firstItem="NsF-ix-ASS" firstAttribute="top" secondItem="LmC-Wh-ww0" secondAttribute="bottom" constant="6" symbolic="YES" id="6m9-5i-AWL"/>
+                        <constraint firstItem="LmC-Wh-ww0" firstAttribute="top" secondItem="MTi-xc-Aqa" secondAttribute="top" id="E0M-ll-2Ch"/>
+                        <constraint firstItem="LmC-Wh-ww0" firstAttribute="leading" secondItem="NsF-ix-ASS" secondAttribute="leading" id="RBr-so-eAu"/>
+                    </constraints>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="wwe-DG-Ll5">
-                    <rect key="frame" x="20" y="121" width="422" height="5"/>
+                    <rect key="frame" x="20" y="139" width="422" height="5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="EOe-hE-W1J"/>
                     </constraints>
                 </box>
-                <box autoresizesSubviews="NO" horizontalHuggingPriority="750" boxType="custom" borderType="none" title="Box" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t3b-LW-dUy">
-                    <rect key="frame" x="90" y="13" width="283" height="34"/>
-                    <view key="contentView" id="Yvi-jN-0Py">
-                        <rect key="frame" x="0.0" y="0.0" width="283" height="34"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="qYc-uM-EUY">
-                                <rect key="frame" x="122" y="5" width="155" height="24"/>
-                                <buttonCell key="cell" type="check" title="CHECK THOSE UPDATES" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Hop-aI-Lb9">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="message" size="11"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="VQJ-Ng-zSD" name="value" keyPath="self.automaticallyChecksForUpdates" id="6uh-1J-PuV"/>
-                                    <binding destination="-2" name="title" keyPath="self.menuStringCheckForUpdates" id="Uq0-w9-ixT"/>
-                                </connections>
-                            </button>
-                            <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tD5-NU-mBS">
-                                <rect key="frame" x="3" y="2" width="119" height="27"/>
-                                <buttonCell key="cell" type="push" title="CHECK NOW PLZ" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oUq-ql-y2Z">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="message" size="11"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="checkForUpdates:" target="VQJ-Ng-zSD" id="b3S-yJ-8CI"/>
-                                    <binding destination="-2" name="title" keyPath="self.menuStringCheckNow" id="uWe-dn-5Wh"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                    </view>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="750" verticalStackHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f6z-pQ-wXZ" userLabel="Info Stack View">
+                    <rect key="frame" x="177" y="69" width="108" height="56"/>
+                    <subviews>
+                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VHc-31-bRc">
+                            <rect key="frame" x="-2" y="42" width="112" height="14"/>
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="NAME OF THE APP" id="zIC-pY-OnZ">
+                                <font key="font" metaFont="smallSystemBold"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.appDelegate.appName" id="IHq-bc-ltY"/>
+                            </connections>
+                        </textField>
+                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kFb-gM-jgJ">
+                            <rect key="frame" x="-2" y="28" width="112" height="14"/>
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="VER" id="neI-To-vYW">
+                                <font key="font" metaFont="message" size="11"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.appDelegate.appVersion" id="Kh6-Yl-xtT"/>
+                            </connections>
+                        </textField>
+                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TBz-Cg-SZN">
+                            <rect key="frame" x="-2" y="14" width="112" height="14"/>
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="CREDIT" id="Knh-UW-BgC">
+                                <font key="font" metaFont="message" size="11"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.appDelegate.appCredit" id="xK3-dG-AiZ"/>
+                            </connections>
+                        </textField>
+                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AqZ-5L-KAS" customClass="LinkView">
+                            <rect key="frame" x="-2" y="0.0" width="112" height="14"/>
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="LINK" id="zJt-dO-TtO">
+                                <font key="font" metaFont="message" size="11"/>
+                                <color key="textColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.appDelegate.appDisplayLink" id="h96-gE-SK5"/>
+                            </connections>
+                        </textField>
+                    </subviews>
                     <constraints>
-                        <constraint firstItem="qYc-uM-EUY" firstAttribute="top" secondItem="t3b-LW-dUy" secondAttribute="top" constant="8" id="5aM-D9-5wY"/>
-                        <constraint firstAttribute="trailing" secondItem="qYc-uM-EUY" secondAttribute="trailing" constant="8" id="ND4-Da-3w0"/>
-                        <constraint firstItem="qYc-uM-EUY" firstAttribute="leading" secondItem="tD5-NU-mBS" secondAttribute="trailing" constant="8" id="eQQ-xE-Ro5"/>
-                        <constraint firstAttribute="bottom" secondItem="qYc-uM-EUY" secondAttribute="bottom" constant="8" id="iaM-oi-eme"/>
-                        <constraint firstItem="tD5-NU-mBS" firstAttribute="top" secondItem="t3b-LW-dUy" secondAttribute="top" constant="8" id="kei-4v-HO2"/>
-                        <constraint firstAttribute="bottom" secondItem="tD5-NU-mBS" secondAttribute="bottom" constant="8" id="tAR-Zz-hgG"/>
-                        <constraint firstItem="tD5-NU-mBS" firstAttribute="leading" secondItem="t3b-LW-dUy" secondAttribute="leading" constant="8" id="usF-70-6IN"/>
-                        <constraint firstItem="qYc-uM-EUY" firstAttribute="leading" secondItem="tD5-NU-mBS" secondAttribute="trailing" constant="8" id="xhV-hj-b9V"/>
+                        <constraint firstAttribute="bottom" secondItem="AqZ-5L-KAS" secondAttribute="bottom" id="4zS-4d-60C"/>
+                        <constraint firstItem="VHc-31-bRc" firstAttribute="centerX" secondItem="f6z-pQ-wXZ" secondAttribute="centerX" id="EgV-mv-V15"/>
+                        <constraint firstItem="kFb-gM-jgJ" firstAttribute="top" secondItem="VHc-31-bRc" secondAttribute="bottom" id="EnE-na-Mlg"/>
+                        <constraint firstItem="kFb-gM-jgJ" firstAttribute="centerX" secondItem="f6z-pQ-wXZ" secondAttribute="centerX" id="WZY-c8-aCz"/>
+                        <constraint firstItem="AqZ-5L-KAS" firstAttribute="centerX" secondItem="f6z-pQ-wXZ" secondAttribute="centerX" id="f9a-Nd-GW4"/>
+                        <constraint firstItem="TBz-Cg-SZN" firstAttribute="top" secondItem="kFb-gM-jgJ" secondAttribute="bottom" id="hcn-XO-dzz"/>
+                        <constraint firstItem="VHc-31-bRc" firstAttribute="top" secondItem="f6z-pQ-wXZ" secondAttribute="top" id="nPG-6W-Q0k"/>
+                        <constraint firstItem="TBz-Cg-SZN" firstAttribute="centerX" secondItem="f6z-pQ-wXZ" secondAttribute="centerX" id="vMi-ta-wbR"/>
+                        <constraint firstItem="AqZ-5L-KAS" firstAttribute="top" secondItem="TBz-Cg-SZN" secondAttribute="bottom" id="wxf-G6-IsL"/>
                     </constraints>
-                </box>
-                <button horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="NsF-ix-ASS">
-                    <rect key="frame" x="142" y="142" width="179" height="18"/>
-                    <buttonCell key="cell" type="check" title="SHOW IN THE MENU BAR" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="b7A-yE-pR0">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="-2" name="title" keyPath="self.menuStringShowInMenuBar" id="LWv-sH-NwL"/>
-                        <binding destination="9eJ-Lx-koC" name="value" keyPath="values.HideIcon" id="mHp-7q-hNf">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </button>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="750" verticalStackHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nFf-j6-cRK" userLabel="Updates Stack View">
+                    <rect key="frame" x="98" y="20" width="267" height="33"/>
+                    <subviews>
+                        <button horizontalHuggingPriority="1000" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="tD5-NU-mBS">
+                            <rect key="frame" x="-5" y="9" width="119" height="27"/>
+                            <buttonCell key="cell" type="push" title="CHECK NOW PLZ" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oUq-ql-y2Z">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="message" size="11"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="checkForUpdates:" target="VQJ-Ng-zSD" id="b3S-yJ-8CI"/>
+                                <binding destination="-2" name="title" keyPath="self.menuStringCheckNow" id="uWe-dn-5Wh"/>
+                            </connections>
+                        </button>
+                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x77-YO-VXg">
+                            <rect key="frame" x="117" y="0.0" width="150" height="30"/>
+                            <subviews>
+                                <button horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="qYc-uM-EUY">
+                                    <rect key="frame" x="-3" y="15" width="155" height="18"/>
+                                    <buttonCell key="cell" type="check" title="CHECK THOSE UPDATES" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Hop-aI-Lb9">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="message" size="11"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="VQJ-Ng-zSD" name="value" keyPath="self.automaticallyChecksForUpdates" id="6uh-1J-PuV"/>
+                                        <binding destination="-2" name="title" keyPath="self.menuStringCheckForUpdates" id="Uq0-w9-ixT"/>
+                                    </connections>
+                                </button>
+                                <button horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="IWk-5a-l60">
+                                    <rect key="frame" x="-3" y="-3" width="103" height="18"/>
+                                    <buttonCell key="cell" type="check" title="BETA UPDATES" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Sut-5C-RLA">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="message" size="11"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="-2" name="title" keyPath="self.menuStringBetaUpdates" id="hfE-lk-Mnk"/>
+                                        <binding destination="9eJ-Lx-koC" name="value" keyPath="values.BetaUpdates" id="7UC-gM-K8H"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="IWk-5a-l60" firstAttribute="top" secondItem="qYc-uM-EUY" secondAttribute="bottom" constant="6" symbolic="YES" id="GiR-4n-F8q"/>
+                                <constraint firstItem="qYc-uM-EUY" firstAttribute="top" secondItem="x77-YO-VXg" secondAttribute="top" id="deC-PQ-WEH"/>
+                                <constraint firstAttribute="bottom" secondItem="IWk-5a-l60" secondAttribute="bottom" id="sOG-4h-bFu"/>
+                            </constraints>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="tD5-NU-mBS" firstAttribute="firstBaseline" secondItem="qYc-uM-EUY" secondAttribute="firstBaseline" id="E7f-Iz-GVi"/>
+                    </constraints>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
             </subviews>
             <constraints>
-                <constraint firstItem="NsF-ix-ASS" firstAttribute="centerX" secondItem="95B-NO-Ezk" secondAttribute="centerX" id="0QE-hZ-6b9"/>
+                <constraint firstItem="nFf-j6-cRK" firstAttribute="top" secondItem="f6z-pQ-wXZ" secondAttribute="bottom" constant="16" id="0fn-ch-Jvu"/>
                 <constraint firstAttribute="trailing" secondItem="wwe-DG-Ll5" secondAttribute="trailing" constant="20" id="4Gr-hh-twc"/>
-                <constraint firstItem="AqZ-5L-KAS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="5h0-4j-21l"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kFb-gM-jgJ" secondAttribute="trailing" constant="20" id="6Bn-Ll-fnu"/>
                 <constraint firstItem="wwe-DG-Ll5" firstAttribute="leading" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="9uh-gi-jcY"/>
-                <constraint firstItem="VHc-31-bRc" firstAttribute="top" secondItem="wwe-DG-Ll5" secondAttribute="bottom" priority="1" constant="16" id="Czk-4M-eHF"/>
-                <constraint firstAttribute="centerX" secondItem="VHc-31-bRc" secondAttribute="centerX" id="EGE-R6-zYl"/>
-                <constraint firstAttribute="centerX" secondItem="AqZ-5L-KAS" secondAttribute="centerX" id="Gom-xM-n8e"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AqZ-5L-KAS" secondAttribute="trailing" constant="20" id="H7v-dq-Sb9"/>
-                <constraint firstItem="kFb-gM-jgJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="K7D-zx-H0i"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VHc-31-bRc" secondAttribute="trailing" constant="20" id="LCE-ks-PHQ"/>
-                <constraint firstItem="t3b-LW-dUy" firstAttribute="top" secondItem="AqZ-5L-KAS" secondAttribute="bottom" constant="4" id="N17-OW-HmO"/>
-                <constraint firstItem="kFb-gM-jgJ" firstAttribute="top" secondItem="VHc-31-bRc" secondAttribute="bottom" id="S0S-HR-Z7v"/>
-                <constraint firstItem="TBz-Cg-SZN" firstAttribute="top" secondItem="kFb-gM-jgJ" secondAttribute="bottom" id="SPf-w7-gq0"/>
-                <constraint firstAttribute="centerX" secondItem="t3b-LW-dUy" secondAttribute="centerX" id="TGk-AQ-f8h"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TBz-Cg-SZN" secondAttribute="trailing" constant="20" id="Yvp-W0-14U"/>
-                <constraint firstAttribute="centerX" secondItem="TBz-Cg-SZN" secondAttribute="centerX" id="aay-RX-Kvi"/>
-                <constraint firstAttribute="bottom" secondItem="t3b-LW-dUy" secondAttribute="bottom" priority="750" constant="13" id="bfW-eQ-AO7"/>
-                <constraint firstAttribute="centerX" secondItem="kFb-gM-jgJ" secondAttribute="centerX" id="gsK-ky-Beo"/>
-                <constraint firstItem="AqZ-5L-KAS" firstAttribute="top" secondItem="TBz-Cg-SZN" secondAttribute="bottom" id="mu8-pZ-pMf"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="t3b-LW-dUy" secondAttribute="trailing" constant="12" id="o3L-Y5-5DA"/>
-                <constraint firstItem="NsF-ix-ASS" firstAttribute="top" secondItem="95B-NO-Ezk" secondAttribute="top" constant="18" id="qOQ-G3-dgm"/>
-                <constraint firstItem="VHc-31-bRc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="tcd-ma-7BT"/>
-                <constraint firstItem="TBz-Cg-SZN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="20" id="uVa-Y2-gGT"/>
-                <constraint firstItem="t3b-LW-dUy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="95B-NO-Ezk" secondAttribute="leading" constant="12" id="unE-I6-2Nr"/>
+                <constraint firstItem="nFf-j6-cRK" firstAttribute="centerX" secondItem="95B-NO-Ezk" secondAttribute="centerX" id="Ewu-el-EZU"/>
+                <constraint firstItem="MTi-xc-Aqa" firstAttribute="centerX" secondItem="95B-NO-Ezk" secondAttribute="centerX" id="Pcq-53-2YC"/>
+                <constraint firstItem="f6z-pQ-wXZ" firstAttribute="centerX" secondItem="95B-NO-Ezk" secondAttribute="centerX" id="UhR-gz-oby"/>
+                <constraint firstItem="MTi-xc-Aqa" firstAttribute="top" secondItem="95B-NO-Ezk" secondAttribute="top" constant="20" symbolic="YES" id="avi-ak-H5W"/>
+                <constraint firstItem="f6z-pQ-wXZ" firstAttribute="top" secondItem="wwe-DG-Ll5" secondAttribute="bottom" constant="16" id="eeA-uL-d5l"/>
+                <constraint firstAttribute="bottom" secondItem="nFf-j6-cRK" secondAttribute="bottom" priority="750" constant="20" symbolic="YES" id="h5l-Fg-mfY"/>
+                <constraint firstItem="wwe-DG-Ll5" firstAttribute="top" secondItem="MTi-xc-Aqa" secondAttribute="bottom" constant="16" id="sLz-0X-wJm"/>
             </constraints>
-            <point key="canvasLocation" x="-1024" y="-2197"/>
+            <point key="canvasLocation" x="-1024" y="-2146.5"/>
         </view>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="AZe-s0-Mkk" userLabel="Prefs Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>

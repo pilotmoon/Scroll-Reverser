@@ -20,6 +20,7 @@
 @property (readonly) NSString *menuStringScrollingAxes;
 @property (readonly) NSString *menuStringScrollingDevices;
 @property (readonly) NSString *menuStringCheckForUpdates;
+@property (readonly) NSString *menuStringBetaUpdates;
 @property (readonly) NSString *menuStringCheckNow;
 @property (readonly) NSString *menuStringStartAtLogin;
 @property (readonly) NSString *menuStringShowInMenuBar;
