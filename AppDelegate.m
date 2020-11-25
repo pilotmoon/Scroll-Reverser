@@ -19,6 +19,7 @@ NSString *const PrefsHasRunBefore=@"HasRunBefore";
 NSString *const PrefsHideIcon=@"HideIcon";
 NSString *const PrefsBetaUpdates=@"BetaUpdates";
 NSString *const PrefsAppcastOverrideURL=@"AppcastOverrideURL";
+NSString *const PrefsTerminatedWithPrefsWindowOpen=@"TerminatedWithPrefsWindowOpen";
 
 static void *_contextHideIcon=&_contextHideIcon;
 static void *_contextEnabled=&_contextEnabled;
@@ -176,6 +177,11 @@ static void *_contextPermissions=&_contextPermissions;
     BOOL enabledInPrefs=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
     [self addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionInitial context:_contextEnabled];
     self.enabled=enabledInPrefs;
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsTerminatedWithPrefsWindowOpen]) {
+        [self showPrefs:self];
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsTerminatedWithPrefsWindowOpen];
 }
 
 - (void)appDidWake:(NSNotification *)note
@@ -187,6 +193,14 @@ static void *_contextPermissions=&_contextPermissions;
 - (void)appWillSleep:(NSNotification *)note
 {
     [self logAppEvent:@"OS is going to sleep"];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+    [self logAppEvent:@"Scroll Reverser will terminate"];
+    if (self.prefsWindowController.window.visible) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsTerminatedWithPrefsWindowOpen];
+    }
 }
 
 - (NSString *)settingsSummary

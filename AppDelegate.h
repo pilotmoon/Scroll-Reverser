@@ -15,7 +15,7 @@ extern NSString *const PrefsReverseTrackpad;
 extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsHideIcon;
 
-@interface AppDelegate : NSObject <StatusItemControllerDelegate, SUUpdaterDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, StatusItemControllerDelegate, SUUpdaterDelegate> {
 }
 
 @property (readonly) PermissionsManager *permissionsManager;
