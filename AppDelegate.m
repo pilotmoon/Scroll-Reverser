@@ -50,7 +50,9 @@ static void *_contextPermissions=&_contextPermissions;
     return [[self releaseChannel] isEqualToString:@"Beta"];
 }
 
-+ (NSURL *)sparkleFeedURL
+#pragma mark Sparkle
+
++ (NSString *)sparkleFeedURLString
 {
     NSString *urlString=[[NSUserDefaults standardUserDefaults] stringForKey:PrefsAppcastOverrideURL];
     if (!urlString) {
@@ -65,8 +67,15 @@ static void *_contextPermissions=&_contextPermissions;
             }
         }
     }
-    return [NSURL URLWithString:urlString?urlString:@"https://localhost/"];
+    return urlString ? urlString : @"https://localhost/";
 }
+
+- (NSString *)feedURLStringForUpdater:(SUUpdater *)updater
+{
+    return [[self class] sparkleFeedURLString];
+}
+
+#pragma mark Launch, relaunch and termination
 
 // There can be only one scroll reverser
 + (void)terminateOthers
@@ -101,6 +110,19 @@ static void *_contextPermissions=&_contextPermissions;
     });
 }
 
+- (void)handleURLEvent:(NSAppleEventDescriptor *)event withReplyEvent: (NSAppleEventDescriptor *)replyEvent
+{
+    NSURL* url = [NSURL URLWithString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
+    NSLog(@"Handling URL: %@", url);
+    if ([[url scheme] isEqualToString:@"x-scroll-reverser"]) {
+        if ([[url host] isEqualToString:@"launch"]) {
+            NSLog(@"Launch via URL");
+        }
+    }
+}
+
+#pragma mark Inits
+
 + (void)initialize
 {
     if ([self class]==[AppDelegate class])
@@ -134,8 +156,8 @@ static void *_contextPermissions=&_contextPermissions;
 
         self.permissionsManager=[[PermissionsManager alloc] init];
 
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SUFeedURL"]; // might have been set before; clear it
         [[SUUpdater sharedUpdater] setDelegate:self];
-        [[SUUpdater sharedUpdater] setFeedURL:[[self class] sparkleFeedURL]];
 
         // event handler for url events (for launching)
         [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
@@ -146,24 +168,11 @@ static void *_contextPermissions=&_contextPermissions;
     return self;
 }
 
-- (void)handleURLEvent:(NSAppleEventDescriptor *)event withReplyEvent: (NSAppleEventDescriptor *)replyEvent
-{
-    NSURL* url = [NSURL URLWithString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
-    NSLog(@"Handling URL: %@", url);
-    if ([[url scheme] isEqualToString:@"x-scroll-reverser"]) {
-        if ([[url host] isEqualToString:@"launch"]) {
-            NSLog(@"Launch via URL");
-        }
-    }
-}
-
 - (void)dealloc {
     [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
 }
 
-- (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key { // For Applescript handling
-    return [key isEqualToString:@"enabled"];
-}
+#pragma mark Application events
 
 - (void)awakeFromNib {
     [self.statusController attachMenu:self.statusMenu];
@@ -223,6 +232,20 @@ static void *_contextPermissions=&_contextPermissions;
     }
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+{
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsHideIcon];
+    [self.statusController openMenu];
+    return NO;
+}
+
+- (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key // For Applescript handling
+{
+    return [key isEqualToString:@"enabled"];
+}
+
+#pragma mark Logging
+
 - (NSString *)settingsSummary
 {
     NSString *(^yn)(NSString *, BOOL) = ^(NSString *label, BOOL state) {
@@ -234,6 +257,15 @@ static void *_contextPermissions=&_contextPermissions;
     temp=[temp stringByAppendingString:yn(@"trackpad", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad])];    
     temp=[temp stringByAppendingString:yn(@"mouse", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse])];
     return temp;
+}
+
+- (Logger *)startLogging
+{
+    if (!self.logger) {
+        self.logger=[[TapLogger alloc] init];
+        self.tap->logger=self.logger;
+    }
+    return self.logger;
 }
 
 - (void)logAppEvent:(NSString *)str
@@ -249,14 +281,7 @@ static void *_contextPermissions=&_contextPermissions;
     [[NSUserDefaults standardUserDefaults] setBool:!state forKey:PrefsReverseScrolling];
 }
 
-- (Logger *)startLogging
-{
-    if (!self.logger) {
-        self.logger=[[TapLogger alloc] init];
-        self.tap->logger=self.logger;
-    }
-    return self.logger;
-}
+#pragma mark Showing windows
 
 - (IBAction)showDebug:(id)sender
 {
@@ -305,12 +330,7 @@ static void *_contextPermissions=&_contextPermissions;
     [self.testWindowController showWindow:self];
 }
 
-- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
-{
-	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsHideIcon];
-    [self.statusController openMenu];
-	return NO;
-}
+#pragma mark Observer
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -396,7 +416,7 @@ static void *_contextPermissions=&_contextPermissions;
     [self showPrefsWithDefaultPane:YES];
 }
 
-#pragma mark App info
+#pragma mark App info strings
 
 - (NSString *)appName {
     return @"Scroll Reverser";
@@ -424,16 +444,16 @@ static void *_contextPermissions=&_contextPermissions;
     return [NSURL URLWithString:@"https://pilotmoon.com/link/scrollreverser/help/permissions"];
 }
 
-#pragma mark Strings
+#pragma mark Other UI Strings
 
 - (NSString *)menuStringReverseScrolling {
-	return NSLocalizedString(@"Enable Scroll Reverser", nil);
+    return [NSString stringWithFormat:NSLocalizedString(@"Enable %1$@", @"1=name of app e.g. `Enable Scroll Reverser`"), self.appName];
 }
 - (NSString *)menuStringPreferences {
     return [NSLocalizedString(@"Preferences", nil) stringByAppendingString:@"..."];
 }
 - (NSString *)menuStringQuit {
-    return NSLocalizedString(@"Quit Scroll Reverser", nil);
+    return [NSString stringWithFormat:NSLocalizedString(@"Quit %1$@",@"1=name of app e.g. `Quit Scroll Reverser`"`), self.appName];
 }
 
 @end

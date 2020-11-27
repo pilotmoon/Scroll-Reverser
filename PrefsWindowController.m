@@ -261,10 +261,10 @@ static void *_contextRefresh=&_contextRefresh;
 - (NSString *)buttonLabel:(BOOL)open label:(NSString *)label
 {
     if (open) {
-        return [NSString stringWithFormat: NSLocalizedString(@"Open %@ preferences", @"for example: Open Accessibilty preferences"), label];
+        return [NSString stringWithFormat: NSLocalizedString(@"Open %1$@ preferences", @"1=`Input Monitoring` or `Accessibility`"), label];
     }
     else {
-        return [NSString stringWithFormat: NSLocalizedString(@"Request %@ permission", @"for example: Request Input Monitoring permission"), label];
+        return [NSString stringWithFormat: NSLocalizedString(@"Request %1$@ permission", @"1=`Input Monitoring` or `Accessibility`"), label];
     }
 }
 
@@ -334,47 +334,47 @@ static void *_contextRefresh=&_contextRefresh;
 }
 
 - (NSString *)menuStringAppSettings {
-    return NSLocalizedString(@"App", nil);
+    return NSLocalizedString(@"App", @"Preferences pane for `App` settings");
 }
 
 - (NSString *)menuStringScrollingSettings {
-    return NSLocalizedString(@"Scrolling", nil);
+    return NSLocalizedString(@"Scrolling", @"Preferences pane for `Scrolling` serttings");
 }
 
 - (NSString *)menuStringScrollingAxes {
-    return NSLocalizedString(@"Scrolling Axes", nil);
+    return NSLocalizedString(@"Scrolling Axes", @"Prefs section title");
 }
 
 - (NSString *)menuStringScrollingDevices {
-    return NSLocalizedString(@"Scrolling Devices", nil);
+    return NSLocalizedString(@"Scrolling Devices", @"Prefs section title");
 }
 
 - (NSString *)menuStringHorizontal {
-    return NSLocalizedString(@"Reverse Horizontal", nil);
+    return NSLocalizedString(@"Reverse Horizontal", @"Prefs check box");
 }
 
 - (NSString *)menuStringVertical {
-    return NSLocalizedString(@"Reverse Vertical", nil);
+    return NSLocalizedString(@"Reverse Vertical", @"Prefs check box");
 }
 
 - (NSString *)menuStringTrackpad {
-    return NSLocalizedString(@"Reverse Trackpad", nil);
+    return NSLocalizedString(@"Reverse Trackpad", @"Prefs check box");
 }
 
 - (NSString *)menuStringMouse {
-    return NSLocalizedString(@"Reverse Mouse", nil);
+    return NSLocalizedString(@"Reverse Mouse", @"Prefs check box");
 }
 
 - (NSString *)menuStringStartAtLogin {
-    return NSLocalizedString(@"Start at login", nil);
+    return NSLocalizedString(@"Start at login", @"Prefs check box");
 }
 
 - (NSString *)menuStringShowInMenuBar {
-    return NSLocalizedString(@"Show in menu bar", nil);
+    return NSLocalizedString(@"Show in menu bar", @"Prefs check box");
 }
 
 - (NSString *)menuStringCheckNow {
-    return NSLocalizedString(@"Check for updates", nil);
+    return NSLocalizedString(@"Check for updates", @"Button, when pressed, checks for updates now");
 }
 
 - (NSString *)menuStringCheckForUpdates {
@@ -386,7 +386,7 @@ static void *_contextRefresh=&_contextRefresh;
 }
 
 - (NSString *)menuStringPermissionsHeader {
-    return NSLocalizedString(@"Permissions", nil);
+    return NSLocalizedString(@"Permissions", @"Section title");
 }
 
 - (NSString *)menuStringPermissionsAXDescription {
