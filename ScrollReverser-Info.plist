@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>ScrollReverser</string>
+	<string>$(PLT_SR_ICON)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -18,6 +18,19 @@
 	<string>AUTO</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>$(PLT_SR_URL_ID)</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(PLT_SR_URL_SCHEME)</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>AUTO</string>
 	<key>LSApplicationCategoryType</key>
@@ -42,18 +55,5 @@
 	<true/>
 	<key>SUEnableSystemProfiling</key>
 	<false/>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>CFBundleURLName</key>
-			<string>com.pilotmoon.scroll-reverser.url</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>x-scroll-reverser</string>
-			</array>
-		</dict>
-	</array>
 </dict>
 </plist>

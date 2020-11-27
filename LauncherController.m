@@ -9,7 +9,7 @@
 #import <ServiceManagement/ServiceManagement.h>
 
 static NSString *const kPrefsStartAtLogin=@"StartAtLogin";
-static NSString *const kLauncherBundleID=@"com.pilotmoon.scroll-reverser.launcher";
+static NSString *const kLauncherBundleID=PLT_SR_LAUNCHER_BUNDLE_ID;
 
 @implementation LauncherController
 

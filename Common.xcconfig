@@ -1,0 +1,15 @@
+//
+//  Common.xcconfig
+//  ScrollReverser
+//
+//  Created by Nicholas Moore on 27/11/2020.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+PLT_SR_APP_BUNDLE_ID = com.pilotmoon.scroll-reverser
+PLT_SR_LAUNCHER_BUNDLE_ID = $(PLT_SR_APP_BUNDLE_ID).launcher
+PLT_SR_URL_ID = $(PLT_SR_APP_BUNDLE_ID).url
+PLT_SR_URL_SCHEME = x-pilotmoon-scroll-reverser
+PLT_SR_LAUNCH_HOST = launch

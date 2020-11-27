@@ -1,0 +1,17 @@
+//
+//  Development.xcconfig
+//  ScrollReverser
+//
+//  Created by Nicholas Moore on 27/11/2020.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// xcode settings
+PRODUCT_NAME = Scroll Reverser (Dev)
+PRODUCT_BUNDLE_IDENTIFIER = $(PLT_SR_APP_BUNDLE_ID)
+
+// custom settings
+PLT_SR_ICON = // no icon for dev build
+

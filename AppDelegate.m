@@ -114,7 +114,7 @@ static void *_contextPermissions=&_contextPermissions;
 {
     NSURL* url = [NSURL URLWithString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
     NSLog(@"Handling URL: %@", url);
-    if ([[url scheme] isEqualToString:@"x-scroll-reverser"]) {
+    if ([[url scheme] isEqualToString:PLT_SR_URL_SCHEME]) {
         if ([[url host] isEqualToString:@"launch"]) {
             NSLog(@"Launch via URL");
         }

@@ -9,8 +9,8 @@
 
 @implementation AppDelegate
 
-static NSString *const _bundleIdentifier=@"com.pilotmoon.scroll-reverser";
-static NSString *const _launchUrlString=@"x-scroll-reverser://launch";
+static NSString *const _bundleIdentifier=PLT_SR_APP_BUNDLE_ID;
+static NSString *const _launchUrlString=PLT_SR_URL_SCHEME @"://" PLT_SR_LAUNCH_HOST;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
