@@ -10,7 +10,6 @@
 
 // xcode settings
 PRODUCT_NAME = Scroll Reverser (Dev)
-PRODUCT_BUNDLE_IDENTIFIER = $(PLT_SR_APP_BUNDLE_ID)
 
 // custom settings
 PLT_SR_ICON = // no icon for dev build
