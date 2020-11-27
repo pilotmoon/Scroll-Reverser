@@ -207,7 +207,7 @@ static void *_contextPermissions=&_contextPermissions;
 - (void)appDidWake:(NSNotification *)note
 {
     [self logAppEvent:@"OS woke from sleep - will relaunch"];
-    [[self class] relaunch];
+    [self relaunch];
 }
 
 - (void)appWillSleep:(NSNotification *)note
