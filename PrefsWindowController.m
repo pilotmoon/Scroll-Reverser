@@ -34,7 +34,7 @@ static void *_contextRefresh=&_contextRefresh;
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*0.05), dispatch_get_main_queue(), ^{
         const NSRect frame = [self.window frame];
-        const float offset = 0.08 * frame.size.height;
+        const float offset = 0.04 * frame.size.height;
         [NSAnimationContext currentContext].duration = 0.08;
         [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
             [[self.window animator] setFrame:NSMakeRect(frame.origin.x, frame.origin.y+offset, frame.size.width, frame.size.height)
@@ -120,7 +120,6 @@ static void *_contextRefresh=&_contextRefresh;
     [self.tabView selectTabViewItemWithIdentifier:startingIdentifier];
     [self.toolbar setSelectedItemIdentifier:startingIdentifier];
     [self updateHeightForIdentifier:startingIdentifier];
-    [self.window center];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
@@ -137,7 +136,12 @@ static void *_contextRefresh=&_contextRefresh;
     if (![NSApp isActive]) {
         [NSApp activateIgnoringOtherApps:YES];
     }
-    [self.window center];
+    if (self.window.visible) {
+        [self callAttention];
+    }
+    else {
+        [self.window center];
+    }
     [super showWindow:sender];
 }
 

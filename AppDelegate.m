@@ -301,9 +301,6 @@ static void *_contextPermissions=&_contextPermissions;
     }
     if (showDefault) {
         [self.prefsWindowController showPermissionsPane];
-        if (self.prefsWindowController.window.visible) {
-            [self.prefsWindowController callAttention];
-        }
     }
     [self.prefsWindowController showWindow:self];
 }
