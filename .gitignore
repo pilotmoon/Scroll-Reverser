@@ -1,9 +1,5 @@
-*.swp
-*~.nib
-build/
-buildAS/
-InfoPlist.h
-*.xcodeproj/xcuserdata/*
-*.xcodeproj/project.xcworkspace/*
-*.xcodeproj/*.pbxuser
-*.xcodeproj/*.mode1v3
+# project specific ignore
+Version.xcconfig
+
+# Xcode ignore
+xcuserdata/
