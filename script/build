@@ -3,7 +3,7 @@ set -eu; here=${0:a:h}; root=$here/..; BuildScripts=$root/BuildScripts; source $
 memo_vars vars_build # save shell vars to temp file to aid debugging script
 
 # ensure version numbers have propagated
-[[ $PLT_SR_VERSION_NUM != 0 ]]
+[[ $PLT_SR_VERSION_NUM != 0 ]] || { print "version not set"; exit 1 }
 
 # slim down sparkle
 source $BuildScripts/build/build_utils

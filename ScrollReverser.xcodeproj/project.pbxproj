@@ -129,6 +129,7 @@
 		01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScrollReverserStatusIcon.png; path = Graphics/ScrollReverserStatusIcon.png; sourceTree = "<group>"; };
 		01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ScrollReverserStatusIcon@2x.png"; path = "Graphics/ScrollReverserStatusIcon@2x.png"; sourceTree = "<group>"; };
 		01CEC73C1A5E8BCF0086DDEC /* sk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = sk; path = resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01D6961D25783F9500A18D48 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		01D9F8912386D5C1002F0EC0 /* PermissionsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PermissionsManager.h; sourceTree = "<group>"; };
 		01D9F8922386D5C1002F0EC0 /* PermissionsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PermissionsManager.m; sourceTree = "<group>"; };
 		01D9F8942386E013002F0EC0 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -276,6 +277,7 @@
 				0148C7E2257195E00086B838 /* Common.xcconfig */,
 				015D94B02571810B00A685C8 /* Development.xcconfig */,
 				01F580282571848F00BACC0F /* Production.xcconfig */,
+				01D6961D25783F9500A18D48 /* Version.xcconfig */,
 				01E5C31E2567FF8800C10ABA /* BuildScripts */,
 				01E5C320256801B000C10ABA /* script */,
 				080E96DDFE201D6D7F000001 /* Classes */,
