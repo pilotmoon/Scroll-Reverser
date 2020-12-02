@@ -1,0 +1,10 @@
+#!/bin/zsh
+set -eu; here=${0:a:h}; root=$here/..; BuildScripts=$root/BuildScripts; source $BuildScripts/common; sayhi $0
+memo_vars vars_postbuild # save shell vars to temp file to aid debugging script
+pushd $PROJECT_DIR
+
+# make sure Version file doesn't hang around and get stale
+rm Version.xcconfig
+
+popd
+saybye $0

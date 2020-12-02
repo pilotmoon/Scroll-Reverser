@@ -1,0 +1,23 @@
+#!/bin/zsh
+set -eu; here=${0:a:h}; root=$here/..; BuildScripts=$root/BuildScripts; source $BuildScripts/common; sayhi $0
+memo_vars vars_prebuild # save shell vars to temp file to aid debugging script
+pushd $PROJECT_DIR
+
+source $BuildScripts/build/constants
+source $BuildScripts/build/labels 10000
+
+# write out version and release labels to xcconfig file
+cat <<END > Version.xcconfig
+PLT_SR_VERSION_NUM = $version_num
+PLT_SR_VERSION_STRING = $version_string
+PLT_SR_RELEASE_CHANNEL = $channel
+PLT_SR_RELEASE_EDITION = $edition
+END
+
+# tag repo with build number if Beta or Production
+if [[ $channel == $channel_beta || $channel == $channel_prod ]]; then
+  git tag "build-$version_num" || true
+fi
+
+popd
+saybye $0

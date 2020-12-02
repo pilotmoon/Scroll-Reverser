@@ -5,12 +5,32 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "rm ${PROJECT_DIR}/*.log&#10;exec &gt; ${PROJECT_DIR}/prebuild.log 2&gt;&amp;1&#10;echo &quot;pre-build script started&quot;&#10;${PROJECT_DIR}/script/prebuild&#10;"
+               shellToInvoke = "/bin/zsh">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "8D1107260486CEB800E47090"
+                     BuildableName = "Scroll Reverser.app"
+                     BlueprintName = "Scroll Reverser"
+                     ReferencedContainer = "container:ScrollReverser.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <PostActions>
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "exec &gt; /tmp/scrollreverser_post_action.txt 2&gt;&amp;1&#10;echo &quot;*** Post-action started.&quot;&#10;sh ${SRCROOT}/BuildScripts/create_zip_and_appcast.sh &quot;${SRCROOT}/ReleaseNotes.md&quot;&#10;echo &quot;*** Post-action finished.&quot;">
+               scriptText = "rm ${PROJECT_DIR}/*.log&#10;exec &gt; ${PROJECT_DIR}/prebuild.log 2&gt;&amp;1&#10;echo &quot;post-build script started&quot;&#10;${PROJECT_DIR}/script/postbuild&#10;&#10;"
+               shellToInvoke = "/bin/zsh">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -101,12 +121,31 @@
    <ArchiveAction
       buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "rm ${PROJECT_DIR}/*.log&#10;exec &gt; ${PROJECT_DIR}/prearchive.log 2&gt;&amp;1&#10;echo &quot;pre-archive script started&quot;&#10;${PROJECT_DIR}/script/prebuild&#10;"
+               shellToInvoke = "/bin/zsh">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "8D1107260486CEB800E47090"
+                     BuildableName = "Scroll Reverser.app"
+                     BlueprintName = "Scroll Reverser"
+                     ReferencedContainer = "container:ScrollReverser.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <PostActions>
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "source ${PROJECT_DIR}/BuildScripts/common&#10;memo_vars vars_archive&#10;"
+               scriptText = "exec &gt; ${PROJECT_DIR}/postarchive.log 2&gt;&amp;1&#10;echo &quot;post-archive script started&quot;&#10;${PROJECT_DIR}/script/postbuild&#10;${PROJECT_DIR}/script/postarchive&#10;"
                shellToInvoke = "/bin/zsh">
                <EnvironmentBuildable>
                   <BuildableReference

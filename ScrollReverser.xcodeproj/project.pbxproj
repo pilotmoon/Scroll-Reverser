@@ -44,6 +44,16 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		010EE39D257824EA00302E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01145CD4256EC99100E0EFE5;
+			remoteInfo = Launcher;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		01145CE7256ECE3400E0EFE5 /* Copy Login Items */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -350,6 +360,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				010EE39E257824EA00302E85 /* PBXTargetDependency */,
 			);
 			name = "Scroll Reverser";
 			productInstallPath = "$(HOME)/Applications";
@@ -444,8 +455,7 @@
 			files = (
 			);
 			inputPaths = (
-				"$(DWARF_DSYM_FOLDER_PATH)/$(DWARF_DSYM_FILE_NAME)/Contents/Info.plist",
-				"$(BUILT_PRODUCTS_DIR)/$(WRAPPER_NAME)/Contents/Info.plist",
+				$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/Sparkle.framework,
 			);
 			outputPaths = (
 			);
@@ -488,6 +498,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		010EE39E257824EA00302E85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01145CD4256EC99100E0EFE5 /* Launcher */;
+			targetProxy = 010EE39D257824EA00302E85 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		01145CDC256EC99300E0EFE5 /* MainMenu.xib */ = {
