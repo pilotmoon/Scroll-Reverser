@@ -10,7 +10,6 @@ static NSString *const kPanelScrolling=@"scrolling";
 static NSString *const kPanelApp=@"app";
 
 static NSString *const kKeyView=@"view";
-static NSString *const kKeyViewHeight=@"viewHeight";
 static NSString *const kKeyTitle=@"title";
 static NSString *const kKeyImageName=@"image";
 
@@ -81,8 +80,9 @@ static void *_contextRefresh=&_contextRefresh;
         [tabViewItem setView:view];
         
         // save to panels dict
-        panelData[kKeyViewHeight] = @([view frame].size.height);
         const NSSize size=[view fittingSize];
+
+        // set window width to largest view fitting width
         self.width=MAX(self.width, size.width);
         ((NSMutableDictionary *)self.panels)[key] = panelData;
         
@@ -119,7 +119,7 @@ static void *_contextRefresh=&_contextRefresh;
     // select the initial pane
     [self.tabView selectTabViewItemWithIdentifier:startingIdentifier];
     [self.toolbar setSelectedItemIdentifier:startingIdentifier];
-    [self updateHeightForIdentifier:startingIdentifier];
+    [self updateWindowForIdentifier:startingIdentifier];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
@@ -155,32 +155,17 @@ static void *_contextRefresh=&_contextRefresh;
     [[NSUserDefaults standardUserDefaults] setObject:identifier forKey:kPrefsLastUsedPanel];
 }
 
-// Futz about with the geometry to get the height right
-- (void)setWindowContentHeight:(CGFloat)height
+// Futz about with the geometry
+- (void)updateWindowForIdentifier:(NSString *)identifier
 {
-    // get the current content rect
+    // we simply set the width to out pre-stored width. autolayout will deal with the height.
     NSRect contentRect=[NSWindow contentRectForFrameRect:[self.window frame]
                                                styleMask:[self.window styleMask]];
-    
-    
-    // calculate new content rect
-    const CGFloat toolbarHeight=NSHeight(contentRect)-NSHeight([(NSView *)[[self window] contentView] frame]);
-    const CGFloat diff=height+toolbarHeight-contentRect.size.height;
-    contentRect.size.height+=diff;
-    contentRect.origin.y-=diff;
     contentRect.size.width=self.width;
-    
-    // set window to new size
     [self.window setFrame:[NSWindow frameRectForContentRect:contentRect
                                                   styleMask:[self.window styleMask]]
                   display:YES
                   animate:NO];
-}
-
-// Set the window to the previously stored height for the selected panel
-- (void)updateHeightForIdentifier:(NSString *)identifier
-{
-    [self setWindowContentHeight:[self.panels[identifier][kKeyViewHeight] floatValue]];
 }
 
 #pragma mark Permissions
@@ -257,7 +242,7 @@ static void *_contextRefresh=&_contextRefresh;
 
 - (void)tabView:(NSTabView *)aTabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
-    [self updateHeightForIdentifier:[tabViewItem identifier]];
+    [self updateWindowForIdentifier:[tabViewItem identifier]];
 }
 
 #pragma mark Dynamic labels
