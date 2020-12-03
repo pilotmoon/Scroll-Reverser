@@ -21,6 +21,9 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "설정을 변경하려면 메뉴바의 아이콘을 클릭해주세요";
 
+/* Alert box title */
+"Icon Hidden" = "Icon Hidden"; /* NEW */
+
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Include beta versions";
 
@@ -80,9 +83,6 @@
 
 /* Prefs check box */
 "Start at login" = "로그인할때 시작";
-
-/* Alert box title */
-"Status icon hidden" = "Status icon hidden";
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";

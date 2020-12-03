@@ -21,6 +21,9 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Voor voorkeuren, klik op het icoon in de menubalk";
 
+/* Alert box title */
+"Icon Hidden" = "Icon Hidden"; /* NEW */
+
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Include beta versions";
 
@@ -80,9 +83,6 @@
 
 /* Prefs check box */
 "Start at login" = "Starten na inloggen";
-
-/* Alert box title */
-"Status icon hidden" = "Status icon hidden";
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";

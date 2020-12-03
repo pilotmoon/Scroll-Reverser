@@ -333,7 +333,7 @@ static void *_contextPermissions=&_contextPermissions;
             [NSApp activateIgnoringOtherApps:YES];
 
             NSAlert *alert=[[NSAlert alloc] init];
-            alert.messageText=NSLocalizedString(@"Status icon hidden", @"Alert box title");
+            alert.messageText=NSLocalizedString(@"Icon Hidden", @"Alert box title");
             alert.informativeText=[NSString stringWithFormat:NSLocalizedString(@"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.", @"Alert box text. 1=name of app"), self.appName];
             [alert runModal];
         }
