@@ -275,12 +275,6 @@ static void *_contextPermissions=&_contextPermissions;
     [self.logger logMessage:message special:YES];
 }
 
-- (void)toggleReversing
-{
-    const BOOL state=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
-    [[NSUserDefaults standardUserDefaults] setBool:!state forKey:PrefsReverseScrolling];
-}
-
 #pragma mark Showing windows
 
 - (IBAction)showDebug:(id)sender
@@ -396,7 +390,7 @@ static void *_contextPermissions=&_contextPermissions;
 }
 
 - (void)statusItemRightClicked {
-    [self toggleReversing];
+    self.enabled=!self.enabled; // toggle
 }
 
 - (void)statusItemAltClicked {
