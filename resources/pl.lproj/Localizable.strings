@@ -1,74 +1,95 @@
-﻿/* No comment provided by engineer. */
-"%@ cannot start while another copy is running." = "Nie można uruchomić %@, podczas gdy działa jego inna kopia.";
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
 
-/* No comment provided by engineer. */
-"%@ is already running." = "%@ jest już uruchomiona.";
+/* for example: `Accessibility permission: ⛔️ required` */
+"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
 
-/* No comment provided by engineer. */
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "Accessibility";
+
+/* Preferences pane for `App` settings */
 "App" = "Aplikacja";
 
-/* check box next to the 'Check for updates' button */
+/* Check box next to the 'Check for updates' button */
 "Automatically" = "Automatycznie";
 
-/* No comment provided by engineer. */
+/* Button, when pressed, checks for updates now */
 "Check for updates" = "Sprawdź aktualizacje";
 
-/* No comment provided by engineer. */
-"Enable Scroll Reverser" = "Enable Scroll Reverser";
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "Enable %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Aby zobaczyć ustawienia kliknij ikonkę na pasku";
 
-/* text shown when the menu bar icon is hidden */
-"MENU_HIDDEN_TEXT" = "Ikona została usunięta z paska, aby ją pokazać uruchom aplikację.";
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "Include beta versions";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "Input Monitoring";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
+/* 1=`Input Monitoring` or `Accessibility` */
+"Open %1$@ preferences" = "Open %1$@ preferences";
+
+/* Section title */
+"Permissions" = "Permissions";
+
 /* No comment provided by engineer. */
 "Preferences" = "Ustawienia";
 
-/* No comment provided by engineer. */
-"Quit" = "Wyjście";
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "Quit %1$@";
 
-/* No comment provided by engineer. */
-"Quit Scroll Reverser" = "Wyłącz Scroll Reverser";
+/* 1=`Input Monitoring` or `Accessibility` */
+"Request %1$@ permission" = "Request %1$@ permission";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Horizontal" = "Odwróć w poziomie";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Mouse" = "Odwrócona mysz";
 
-/* No comment provided by engineer. */
-"Reverse Scrolling" = "Odwrócone przewijanie";
-
-/* No comment provided by engineer. */
-"Reverse Tablet" = "Odwrócony tablet";
-
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Trackpad" = "Odwrócony gładzik";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Vertical" = "Odwróć w pioniel";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser został uruchomiony!";
 
 /* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+
+/* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Przewijanie";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Axes" = "Osie przewijania";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Devices" = "Urządzenia przewijające";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Show in menu bar" = "Pokazuj na pasku";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Start at login" = "Uruchamiaj automatycznie";
 
+/* Alert box title */
+"Status icon hidden" = "Status icon hidden";
+
+/* Alert box text. 1=name of app */
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+
 /* No comment provided by engineer. */
-"Status Icon Hidden" = "Ikona została ukryta";
+"⛔️ required" = "⛔️ required";
+
+/* No comment provided by engineer. */
+"✅ granted" = "✅ granted";
+

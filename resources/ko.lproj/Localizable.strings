@@ -1,66 +1,95 @@
-﻿/* No comment provided by engineer. */
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
+
+/* for example: `Accessibility permission: ⛔️ required` */
+"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "Accessibility";
+
+/* Preferences pane for `App` settings */
 "App" = "앱";
 
-/* check box next to the 'Check for updates' button */
+/* Check box next to the 'Check for updates' button */
 "Automatically" = "자동 업데이트";
 
-/* No comment provided by engineer. */
+/* Button, when pressed, checks for updates now */
 "Check for updates" = "업데이트 확인";
 
-/* No comment provided by engineer. */
-"Enable Scroll Reverser" = "Enable Scroll Reverser";
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "Enable %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "설정을 변경하려면 메뉴바의 아이콘을 클릭해주세요";
 
-/* text shown when the menu bar icon is hidden */
-"MENU_HIDDEN_TEXT" = "Scroll Reverser 아이콘이 메뉴바에서 제거되었습니다. 복구하려면 언제든지 Finder에서 Scroll Reverser를 다시 실행해주세요.";
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "Include beta versions";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "Input Monitoring";
 
 /* No comment provided by engineer. */
 "OK" = "확인";
 
+/* 1=`Input Monitoring` or `Accessibility` */
+"Open %1$@ preferences" = "Open %1$@ preferences";
+
+/* Section title */
+"Permissions" = "Permissions";
+
 /* No comment provided by engineer. */
 "Preferences" = "환경설정";
 
-/* No comment provided by engineer. */
-"Quit Scroll Reverser" = "Scroll Reverser 종료";
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "Quit %1$@";
 
-/* No comment provided by engineer. */
+/* 1=`Input Monitoring` or `Accessibility` */
+"Request %1$@ permission" = "Request %1$@ permission";
+
+/* Prefs check box */
 "Reverse Horizontal" = "수평 반전";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Mouse" = "마우스 반전";
 
-/* No comment provided by engineer. */
-"Reverse Scrolling" = "스크롤 반전";
-
-/* No comment provided by engineer. */
-"Reverse Tablet" = "태블릿 반전";
-
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Trackpad" = "트랙패드 반전";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Vertical" = "수직 반전";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser가 현재 실행중입니다!";
 
 /* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+
+/* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "스크롤";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Axes" = "스크롤 방향";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Devices" = "스크롤 기기";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
+"Show in menu bar" = "메뉴바에 표시";
+
+/* Prefs check box */
 "Start at login" = "로그인할때 시작";
 
-/* No comment provided by engineer. */
-"Status Icon Hidden" = "상태 아이콘 숨기기";
+/* Alert box title */
+"Status icon hidden" = "Status icon hidden";
+
+/* Alert box text. 1=name of app */
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
 
 /* No comment provided by engineer. */
-"Show in menu bar" = "메뉴바에 표시";
+"⛔️ required" = "⛔️ required";
+
+/* No comment provided by engineer. */
+"✅ granted" = "✅ granted";
 

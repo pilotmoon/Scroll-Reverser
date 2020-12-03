@@ -1,65 +1,95 @@
-﻿/* No comment provided by engineer. */
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
+
+/* for example: `Accessibility permission: ⛔️ required` */
+"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "Accessibility";
+
+/* Preferences pane for `App` settings */
 "App" = "软件";
 
-/* check box next to the 'Check for updates' button */
+/* Check box next to the 'Check for updates' button */
 "Automatically" = "自动更新";
 
-/* No comment provided by engineer. */
+/* Button, when pressed, checks for updates now */
 "Check for updates" = "检查更新";
 
-/* No comment provided by engineer. */
-"Enable Scroll Reverser" = "启用 Scroll Reverser";
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "Enable %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "请点击菜单栏的图标来修改设置";
 
-/* text shown when the menu bar icon is hidden */
-"MENU_HIDDEN_TEXT" = "Scroll Reverser 在菜单栏的图标已经隐藏，再次从 Finder 运行 Scroll Reverser 可重新显示。";
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "Include beta versions";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "Input Monitoring";
 
 /* No comment provided by engineer. */
 "OK" = "确定";
 
+/* 1=`Input Monitoring` or `Accessibility` */
+"Open %1$@ preferences" = "Open %1$@ preferences";
+
+/* Section title */
+"Permissions" = "Permissions";
+
 /* No comment provided by engineer. */
 "Preferences" = "设置";
 
-/* No comment provided by engineer. */
-"Quit Scroll Reverser" = "退出 Scroll Reverser";
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "Quit %1$@";
 
-/* No comment provided by engineer. */
+/* 1=`Input Monitoring` or `Accessibility` */
+"Request %1$@ permission" = "Request %1$@ permission";
+
+/* Prefs check box */
 "Reverse Horizontal" = "翻转水平滚动 (Reverse Horizontal)";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Mouse" = "翻转鼠标";
 
-/* No comment provided by engineer. */
-"Reverse Scrolling" = "翻转滚动 (Reverse Scrolling)";
-
-/* No comment provided by engineer. */
-"Reverse Tablet" = "翻转手写板";
-
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Trackpad" = "翻转触摸板";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Vertical" = "翻转垂直滚动 (Reverse Vertical)";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser 已经在运行";
 
 /* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+
+/* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "滚动";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Axes" = "滚动方向";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Devices" = "输入设备";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
+"Show in menu bar" = "显示菜单栏图标";
+
+/* Prefs check box */
 "Start at login" = "用户登录时启动";
 
-/* No comment provided by engineer. */
-"Status Icon Hidden" = "隐藏菜单栏图标";
+/* Alert box title */
+"Status icon hidden" = "Status icon hidden";
+
+/* Alert box text. 1=name of app */
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
 
 /* No comment provided by engineer. */
-"Show in menu bar" = "显示菜单栏图标";
+"⛔️ required" = "⛔️ required";
+
+/* No comment provided by engineer. */
+"✅ granted" = "✅ granted";
+

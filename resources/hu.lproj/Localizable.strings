@@ -1,75 +1,95 @@
-﻿/* No comment provided by engineer. */
-"%@ cannot start while another copy is running." = "%@ nem tud elindulni, amíg egy másik példánya fut.";
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
 
-/* No comment provided by engineer. */
-"%@ is already running." = "%@ már fut.";
+/* for example: `Accessibility permission: ⛔️ required` */
+"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
 
-/* No comment provided by engineer. */
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "Accessibility";
+
+/* Preferences pane for `App` settings */
 "App" = "Alkalmazás";
 
-/* check box next to the 'Check for updates' button */
+/* Check box next to the 'Check for updates' button */
 "Automatically" = "Automatikusan";
 
-/* No comment provided by engineer. */
+/* Button, when pressed, checks for updates now */
 "Check for updates" = "Frissítések keresése";
 
-/* No comment provided by engineer. */
-"Enable Scroll Reverser" = "Enable Scroll Reverser";
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "Enable %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Beállításokért kattints a menüsorban lévő ikonra";
 
-/* text shown when the menu bar icon is hidden */
-"MENU_HIDDEN_TEXT" = "A Scroll Reverser ikonja el lett távolítva a menüsorból. A visszaállításához bármikor futtasd újra a Scroll Reverser-t a Finder-ből.";
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "Include beta versions";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "Input Monitoring";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
+/* 1=`Input Monitoring` or `Accessibility` */
+"Open %1$@ preferences" = "Open %1$@ preferences";
+
+/* Section title */
+"Permissions" = "Permissions";
+
 /* No comment provided by engineer. */
 "Preferences" = "Beállítások";
 
-/* No comment provided by engineer. */
-"Quit" = "Bezárás";
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "Quit %1$@";
 
-/* No comment provided by engineer. */
-"Quit Scroll Reverser" = "Scroll Reverser bezárása";
+/* 1=`Input Monitoring` or `Accessibility` */
+"Request %1$@ permission" = "Request %1$@ permission";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Horizontal" = "Vízszintes megfordítása";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Mouse" = "Egér megfordítása";
 
-/* No comment provided by engineer. */
-"Reverse Scrolling" = "Görgetés megfordítása";
-
-/* No comment provided by engineer. */
-"Reverse Tablet" = "Tábla megfordítása";
-
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Trackpad" = "Trackpad megfordítása";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Vertical" = "Függőleges megfordítása";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "A Scroll Reverser most már fut!";
 
 /* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+
+/* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Görgetés";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Axes" = "Görgetés tengelyei";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Devices" = "Görgető eszközök";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Show in menu bar" = "Mutasd a menüsorban";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Start at login" = "Indítás bejelentkezéskor";
 
+/* Alert box title */
+"Status icon hidden" = "Status icon hidden";
+
+/* Alert box text. 1=name of app */
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+
 /* No comment provided by engineer. */
-"Status Icon Hidden" = "Status Icon Hidden";
+"⛔️ required" = "⛔️ required";
+
+/* No comment provided by engineer. */
+"✅ granted" = "✅ granted";
 

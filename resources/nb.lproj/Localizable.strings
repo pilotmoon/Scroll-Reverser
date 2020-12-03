@@ -1,75 +1,95 @@
-﻿/* No comment provided by engineer. */
-"%@ cannot start while another copy is running." = "%@ kan ikke starte mens en annen kopi kjører.";
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
 
-/* No comment provided by engineer. */
-"%@ is already running." = "%@ kjører allerede.";
+/* for example: `Accessibility permission: ⛔️ required` */
+"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
 
-/* No comment provided by engineer. */
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "Accessibility";
+
+/* Preferences pane for `App` settings */
 "App" = "Program";
 
-/* check box next to the 'Check for updates' button */
+/* Check box next to the 'Check for updates' button */
 "Automatically" = "Automatisk";
 
-/* No comment provided by engineer. */
+/* Button, when pressed, checks for updates now */
 "Check for updates" = "Sjekk etter oppdateringer";
 
-/* No comment provided by engineer. */
-"Enable Scroll Reverser" = "Enable Scroll Reverser";
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "Enable %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "For innstillinger, ikonet i menylinjen";
 
-/* text shown when the menu bar icon is hidden */
-"MENU_HIDDEN_TEXT" = "Scroll Reverser-ikonet har blitt fjernet fra menylinjen. For å gjenopprette det når som helst, start Scroll Reverser igjen fra Finder.";
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "Include beta versions";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "Input Monitoring";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
+/* 1=`Input Monitoring` or `Accessibility` */
+"Open %1$@ preferences" = "Open %1$@ preferences";
+
+/* Section title */
+"Permissions" = "Permissions";
+
 /* No comment provided by engineer. */
 "Preferences" = "Valg";
 
-/* No comment provided by engineer. */
-"Quit" = "Avslutt";
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "Quit %1$@";
 
-/* No comment provided by engineer. */
-"Quit Scroll Reverser" = "Avslutt Scroll Reverser";
+/* 1=`Input Monitoring` or `Accessibility` */
+"Request %1$@ permission" = "Request %1$@ permission";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Horizontal" = "Reverser horisontalt";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Mouse" = "Reverser mus";
 
-/* No comment provided by engineer. */
-"Reverse Scrolling" = "Reverser rulling";
-
-/* No comment provided by engineer. */
-"Reverse Tablet" = "Reverser tegnebrett";
-
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Trackpad" = "Reverser styreflate";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Vertical" = "Reverser vertikalt";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser kjører nå!";
 
 /* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+
+/* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Rulling";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Axes" = "Rulleakser";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Devices" = "Rulleenheter";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Show in menu bar" = "Vis i menylinje";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Start at login" = "Start ved innlogging";
 
+/* Alert box title */
+"Status icon hidden" = "Status icon hidden";
+
+/* Alert box text. 1=name of app */
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+
 /* No comment provided by engineer. */
-"Status Icon Hidden" = "Statusikon skjult";
+"⛔️ required" = "⛔️ required";
+
+/* No comment provided by engineer. */
+"✅ granted" = "✅ granted";
 

@@ -299,7 +299,7 @@ static void *_contextRefresh=&_contextRefresh;
 
 - (NSString *)statusString:(BOOL)state label:(NSString *)label
 {
-    return [NSString stringWithFormat:NSLocalizedString(@"%1$@ permission: %2$@", nil), label, state ?
+    return [NSString stringWithFormat:NSLocalizedString(@"%1$@ permission: %2$@", "for example: `Accessibility permission: ⛔️ required`"), label, state ?
             NSLocalizedString(@"✅ granted", nil) :
             NSLocalizedString(@"⛔️ required", nil)];
 }

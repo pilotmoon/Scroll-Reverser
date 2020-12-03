@@ -1,66 +1,95 @@
-﻿/* No comment provided by engineer. */
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
+
+/* for example: `Accessibility permission: ⛔️ required` */
+"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "Accessibility";
+
+/* Preferences pane for `App` settings */
 "App" = "Εφαρμογή";
 
-/* check box next to the 'Check for updates' button */
+/* Check box next to the 'Check for updates' button */
 "Automatically" = "Αυτόματα";
 
-/* No comment provided by engineer. */
+/* Button, when pressed, checks for updates now */
 "Check for updates" = "Έλεγχος για αναβαθμίσεις";
 
-/* No comment provided by engineer. */
-"Enable Scroll Reverser" = "Enable Scroll Reverser";
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "Enable %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Για τις προτιμήσεις κλικάτερε στο εικονίδιο που βρίσκεται στη γραμμή μενού";
 
-/* text shown when the menu bar icon is hidden */
-"MENU_HIDDEN_TEXT" = "Το εικονίδιο του Scroll Reverser έχει αφαιρεθεί από την γραμμή μενού. Για να το επαναφέρετε , εκκινήστε ξανά το Scroll Reverser από τον Finder.";
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "Include beta versions";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "Input Monitoring";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
+/* 1=`Input Monitoring` or `Accessibility` */
+"Open %1$@ preferences" = "Open %1$@ preferences";
+
+/* Section title */
+"Permissions" = "Permissions";
+
 /* No comment provided by engineer. */
 "Preferences" = "Προτιμήσεις";
 
-/* No comment provided by engineer. */
-"Quit Scroll Reverser" = "Τερματισμός Scroll Reverser";
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "Quit %1$@";
 
-/* No comment provided by engineer. */
+/* 1=`Input Monitoring` or `Accessibility` */
+"Request %1$@ permission" = "Request %1$@ permission";
+
+/* Prefs check box */
 "Reverse Horizontal" = "Οριζόντια Αντιστροφή";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Mouse" = "Αντιστροφή στο Mouse";
 
-/* No comment provided by engineer. */
-"Reverse Scrolling" = "Αντιστροφή στην Κύλιση";
-
-/* No comment provided by engineer. */
-"Reverse Tablet" = "Αντίστροφή στο Tablet";
-
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Trackpad" = "Αντιστροφή στο Trackpad";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Vertical" = "Κάθετη Αντιστροφή";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Το Scroll Reverser είναι ενεργό!";
 
 /* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+
+/* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Κύλιση";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Axes" = "Άξονες Κύλισης";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Devices" = "Συσκευές Κύλισης";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
+"Show in menu bar" = "Εμφάνιση στη γραμμή μενού";
+
+/* Prefs check box */
 "Start at login" = "Εκκίνηση κατά την είσοδο";
 
-/* No comment provided by engineer. */
-"Status Icon Hidden" = "Το εικονίδιο κατάστασης κρύφτηκε";
+/* Alert box title */
+"Status icon hidden" = "Status icon hidden";
+
+/* Alert box text. 1=name of app */
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
 
 /* No comment provided by engineer. */
-"Show in menu bar" = "Εμφάνιση στη γραμμή μενού";
+"⛔️ required" = "⛔️ required";
+
+/* No comment provided by engineer. */
+"✅ granted" = "✅ granted";
 

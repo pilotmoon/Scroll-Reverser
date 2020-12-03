@@ -1,66 +1,95 @@
-﻿/* No comment provided by engineer. */
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
+
+/* for example: `Accessibility permission: ⛔️ required` */
+"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "Accessibility";
+
+/* Preferences pane for `App` settings */
 "App" = "App";
 
-/* check box next to the 'Check for updates' button */
+/* Check box next to the 'Check for updates' button */
 "Automatically" = "Автоматически";
 
-/* No comment provided by engineer. */
+/* Button, when pressed, checks for updates now */
 "Check for updates" = "Проверить обновления";
 
-/* No comment provided by engineer. */
-"Enable Scroll Reverser" = "Enable Scroll Reverser";
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "Enable %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Для настройки, нажмите на иконку в menu bar";
 
-/* text shown when the menu bar icon is hidden */
-"MENU_HIDDEN_TEXT" = "Иконка Scroll Reverser была удалена из menu bar. Для восстановления требуется перезапустить утилиту.";
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "Include beta versions";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "Input Monitoring";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
+/* 1=`Input Monitoring` or `Accessibility` */
+"Open %1$@ preferences" = "Open %1$@ preferences";
+
+/* Section title */
+"Permissions" = "Permissions";
+
 /* No comment provided by engineer. */
 "Preferences" = "Настройки";
 
-/* No comment provided by engineer. */
-"Quit Scroll Reverser" = "Отключить Scroll Reverser";
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "Quit %1$@";
 
-/* No comment provided by engineer. */
+/* 1=`Input Monitoring` or `Accessibility` */
+"Request %1$@ permission" = "Request %1$@ permission";
+
+/* Prefs check box */
 "Reverse Horizontal" = "Горизонтальный реверс";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Mouse" = "Реверс мыши";
 
-/* No comment provided by engineer. */
-"Reverse Scrolling" = "Реверс прокрутки";
-
-/* No comment provided by engineer. */
-"Reverse Tablet" = "Реверс Tablet";
-
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Trackpad" = "Реверс Trackpad";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Vertical" = "Вертикальный реверс";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser запущен!";
 
 /* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+
+/* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Прокрутка";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Axes" = "Оси прокрутки";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Devices" = "Устройства";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
+"Show in menu bar" = "Показать в menu bar";
+
+/* Prefs check box */
 "Start at login" = "Автозапуск";
 
-/* No comment provided by engineer. */
-"Status Icon Hidden" = "Скрыть иконку";
+/* Alert box title */
+"Status icon hidden" = "Status icon hidden";
+
+/* Alert box text. 1=name of app */
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
 
 /* No comment provided by engineer. */
-"Show in menu bar" = "Показать в menu bar";
+"⛔️ required" = "⛔️ required";
+
+/* No comment provided by engineer. */
+"✅ granted" = "✅ granted";
 

@@ -1,67 +1,95 @@
-﻿/* No comment provided by engineer. */
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
+
+/* for example: `Accessibility permission: ⛔️ required` */
+"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "Accessibility";
+
+/* Preferences pane for `App` settings */
 "App" = "Programm";
 
-/* check box next to the 'Check for updates' button */
+/* Check box next to the 'Check for updates' button */
 "Automatically" = "Automatisch prüfen";
 
-/* No comment provided by engineer. */
+/* Button, when pressed, checks for updates now */
 "Check for updates" = "Auf neue Programmversion prüfen";
 
-/* No comment provided by engineer. */
-"Enable Scroll Reverser" = "Enable Scroll Reverser";
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "Enable %1$@";
 
 /* No comment provided by engineer. */
-/*"For settings, click the icon in the menu bar" = "Um zu den Einstellungen zu gelangen, klicke in das Icon in der Menüleiste";*/
 "For settings, click the icon in the menu bar" = "Das Icon in der Menüleiste führt zu den Einstellungen.";
 
-/* text shown when the menu bar icon is hidden */
-"MENU_HIDDEN_TEXT" = "Das Scroll Reverser Icon wurde aus der Menüleiste entfernt. Um es wiederherzustellen, starten Sie bitte Scroll Reverser aus dem Finder.";
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "Include beta versions";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "Input Monitoring";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
+/* 1=`Input Monitoring` or `Accessibility` */
+"Open %1$@ preferences" = "Open %1$@ preferences";
+
+/* Section title */
+"Permissions" = "Permissions";
+
 /* No comment provided by engineer. */
 "Preferences" = "Einstellungen";
 
-/* No comment provided by engineer. */
-"Quit Scroll Reverser" = "Scroll Reverser beenden";
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "Quit %1$@";
 
-/* No comment provided by engineer. */
+/* 1=`Input Monitoring` or `Accessibility` */
+"Request %1$@ permission" = "Request %1$@ permission";
+
+/* Prefs check box */
 "Reverse Horizontal" = "Horizontal umkehren";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Mouse" = "Maus umkehren";
 
-/* No comment provided by engineer. */
-"Reverse Scrolling" = "Scrollrichtung umkehren";
-
-/* No comment provided by engineer. */
-"Reverse Tablet" = "Tablet umkehren";
-
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Trackpad" = "Trackpad umkehren";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
 "Reverse Vertical" = "Vertikal umkehren";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser läuft!";
 
 /* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+
+/* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Scrolling";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Axes" = "Scrollrichtungen";
 
-/* No comment provided by engineer. */
+/* Prefs section title */
 "Scrolling Devices" = "Geräte";
 
-/* No comment provided by engineer. */
+/* Prefs check box */
+"Show in menu bar" = "Scroll Reverser in der Menüleiste anzeigen";
+
+/* Prefs check box */
 "Start at login" = "Scroll Reverser beim Anmelden starten";
 
-/* No comment provided by engineer. */
-"Status Icon Hidden" = "Status Icon verbergen";
+/* Alert box title */
+"Status icon hidden" = "Status icon hidden";
+
+/* Alert box text. 1=name of app */
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
 
 /* No comment provided by engineer. */
-"Show in menu bar" = "Scroll Reverser in der Menüleiste anzeigen";
+"⛔️ required" = "⛔️ required";
+
+/* No comment provided by engineer. */
+"✅ granted" = "✅ granted";
 
