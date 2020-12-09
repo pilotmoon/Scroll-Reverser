@@ -2,13 +2,12 @@
 set -eu; here=${0:a:h}; root=$here/..; BuildScripts=$root/BuildScripts; source $BuildScripts/common; sayhi $0
 memo_vars vars_build # save shell vars to temp file to aid debugging script
 
-# ensure version numbers have propagated
-[[ $PLT_SR_VERSION_NUM != 0 ]] || { print "version not set"; exit 1 }
+# common processing
+allowed_languages=$(list_langs $root/resources)
+$BuildScripts/process/remove_langs $BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH $allowed_languages
 
-# slim down sparkle
-source $BuildScripts/build/build_utils
-export signing_identity="Developer ID Application"
-export allowed_languages=$(list_langs $root/resources)
-$BuildScripts/build/process_sparkle $BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/Sparkle.framework
+# sparkle
+signing_identity="Developer ID Application"
+$BuildScripts/process/process_sparkle $BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/Sparkle.framework $allowed_languages $signing_identity
 
 saybye $0

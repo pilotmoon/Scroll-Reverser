@@ -3,8 +3,7 @@ set -eu; here=${0:a:h}; root=$here/..; BuildScripts=$root/BuildScripts; source $
 memo_vars vars_prebuild # save shell vars to temp file to aid debugging script
 pushd $PROJECT_DIR
 
-source $BuildScripts/build/constants
-source $BuildScripts/build/labels 10000
+source $BuildScripts/pre/labels $PLT_SR_VERSION_OFFSET $PLT_SR_VERSION_DEV
 
 # write out version and release labels to xcconfig file
 cat <<END > Version.xcconfig
@@ -16,7 +15,7 @@ END
 
 # tag repo with build number if Beta or Production
 if [[ $channel == $channel_beta || $channel == $channel_prod ]]; then
-  git tag "build-$version_num" || true
+  git tag "b$version_num" || true
 fi
 
 popd
