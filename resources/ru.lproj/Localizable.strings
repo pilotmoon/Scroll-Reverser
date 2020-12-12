@@ -19,7 +19,7 @@
 "Enable %1$@" = "Включить %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Для настройки, нажмите на иконку в menu bar";
+"For settings, click the icon in the menu bar" = "Чтобы открыть настройки, нажмите на значок в строке меню";
 
 /* Alert box title */
 "Icon Hidden" = "Значок скрыт"; /* NEW */
