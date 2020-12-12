@@ -1,13 +1,13 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
 
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "Доступ к %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "Универсальный доступ";
 
 /* Preferences pane for `App` settings */
-"App" = "App";
+"App" = "Приложение";
 
 /* Check box next to the 'Check for updates' button */
 "Automatically" = "Автоматически";
@@ -16,37 +16,37 @@
 "Check for updates" = "Проверить обновления";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "Включить %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Для настройки, нажмите на иконку в menu bar";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden"; /* NEW */
+"Icon Hidden" = "Значок скрыт"; /* NEW */
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "Включая бета-версии";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "Мониторинг ввода";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+"Open %1$@ preferences" = "Открыть настройки: %1$@";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "Доступ";
 
 /* No comment provided by engineer. */
 "Preferences" = "Настройки";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "Закрыть %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
+"Request %1$@ permission" = "Запросить доступ к %1$@";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Горизонтальный реверс";
@@ -55,7 +55,7 @@
 "Reverse Mouse" = "Реверс мыши";
 
 /* Prefs check box */
-"Reverse Trackpad" = "Реверс Trackpad";
+"Reverse Trackpad" = "Реверс трекпада";
 
 /* Prefs check box */
 "Reverse Vertical" = "Вертикальный реверс";
@@ -64,10 +64,10 @@
 "Scroll Reverser is now running!" = "Scroll Reverser запущен!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Для изменения прокрутки Scroll Reverser необходимо разрешить Универсальный доступ.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser требуется доступ к Мониторингу ввода, чтобы распознавать пальцы на трекпаде.";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Прокрутка";
@@ -79,7 +79,7 @@
 "Scrolling Devices" = "Устройства";
 
 /* Prefs check box */
-"Show in menu bar" = "Показать в menu bar";
+"Show in menu bar" = "Показать в строке меню";
 
 /* Prefs check box */
 "Start at login" = "Автозапуск";
@@ -88,8 +88,7 @@
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔️ требуется доступ";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
-
+"✅ granted" = "✅ разрешено";
