@@ -1,10 +1,10 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
 
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "Δικαιώματα για %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "Προσβασιμότητα";
 
 /* Preferences pane for `App` settings */
 "App" = "Εφαρμογή";
@@ -16,37 +16,37 @@
 "Check for updates" = "Έλεγχος για αναβαθμίσεις";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "Ενεργοποίησε το %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Για τις προτιμήσεις κλικάτερε στο εικονίδιο που βρίσκεται στη γραμμή μενού";
+"For settings, click the icon in the menu bar" = "Για τις προτιμήσεις κλικάρετε στο εικονίδιο που βρίσκεται στη γραμμή μενού";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden"; /* NEW */
+"Icon Hidden" = "Το εικονίδιο κρύφτηκε"; /* NEW */
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "Περιέλαβε και τις δοκιμαστικές εκδόσεις";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "Παρακολούθηση συσκευής εισόδου";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+"Open %1$@ preferences" = "Άνοιξε τις ρυθμίσεις %1$@";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "Δικαιώματα";
 
 /* No comment provided by engineer. */
 "Preferences" = "Προτιμήσεις";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "Έξοδος %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
+"Request %1$@ permission" = "Αίτηση δικαιωμάτων για %1$@";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Οριζόντια Αντιστροφή";
@@ -64,10 +64,10 @@
 "Scroll Reverser is now running!" = "Το Scroll Reverser είναι ενεργό!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Το Scroll Reverser χρειάζεται δικαιώματα για να αλλάξει το σκρολάρισμα.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Το Scroll Reverser χρειάζεται δικαιώματα Παρακολούθησης Συσκευής Εισόδου για να δει αν τα δάχτυλά σας ακουμπούν το Trackpad.";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Κύλιση";
@@ -85,11 +85,11 @@
 "Start at login" = "Εκκίνηση κατά την είσοδο";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Το εικονίδιο %1$@ έχει αφαιρεθεί από τη μενού μπάρα. Για να το επαναφέρετε, τρέξτε το %1$@ ξανά από τον Finder.";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔️ απαιτείται";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
+"✅ granted" = "✅ εγκρίθηκε";
 
