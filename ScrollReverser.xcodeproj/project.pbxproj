@@ -117,6 +117,7 @@
 		0183EE6E1A37943500A260E0 /* WelcomeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeWindow.xib; sourceTree = "<group>"; };
 		0183EE711A37947E00A260E0 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		0183EE771A3794F800A260E0 /* ScrollReverser.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScrollReverser.sdef; sourceTree = "<group>"; };
+		0187E6D225925CED006D0130 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		019FB05814EB1A9100FA225A /* WelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeWindowController.h; sourceTree = "<group>"; };
 		019FB05914EB1A9100FA225A /* WelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeWindowController.m; sourceTree = "<group>"; };
 		01A1ED6B1A3A3E1900CFC6C5 /* ja */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ja; path = resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -376,7 +377,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					01145CD4256EC99100E0EFE5 = {
 						CreatedOnToolsVersion = 12.2;
@@ -542,6 +543,7 @@
 				01C69F6E2581437A00E2BE31 /* zh-Hans */,
 				01C69F6F2581438100E2BE31 /* zh-Hant */,
 				01C69F702581440E00E2BE31 /* nb */,
+				0187E6D225925CED006D0130 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
