@@ -84,7 +84,6 @@
 		01145CD7256EC99200E0EFE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		01145CD8256EC99200E0EFE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		01145CDA256EC99300E0EFE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		01145CDD256EC99300E0EFE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		01145CDF256EC99300E0EFE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01145CE0256EC99300E0EFE5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		01145CE2256EC99300E0EFE5 /* Launcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Launcher.entitlements; sourceTree = "<group>"; };
@@ -128,6 +127,8 @@
 		01AF54D21B0E11150028A26A /* TestWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestWindow.xib; sourceTree = "<group>"; };
 		01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScrollReverserStatusIcon.png; path = Graphics/ScrollReverserStatusIcon.png; sourceTree = "<group>"; };
 		01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ScrollReverserStatusIcon@2x.png"; path = "Graphics/ScrollReverserStatusIcon@2x.png"; sourceTree = "<group>"; };
+		01BC496025CC58E500EF8CC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		01BC496125CC597800EF8CC5 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = resources/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01C69F6E2581437A00E2BE31 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "resources/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		01C69F6F2581438100E2BE31 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "resources/zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		01C69F702581440E00E2BE31 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = resources/nb.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -398,20 +399,19 @@
 				sk,
 				ko,
 				ru,
-				"zh-TW",
 				hu,
 				pl,
 				nl,
-				"zh-CN",
 				nb,
 				sv,
 				ja,
 				fr,
-				Base,
 				es,
 				no,
 				"zh-Hans",
 				"zh-Hant",
+				Base,
+				uk,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -517,7 +517,7 @@
 		01145CDC256EC99300E0EFE5 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				01145CDD256EC99300E0EFE5 /* Base */,
+				01BC496025CC58E500EF8CC5 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -544,6 +544,7 @@
 				01C69F6F2581438100E2BE31 /* zh-Hant */,
 				01C69F702581440E00E2BE31 /* nb */,
 				0187E6D225925CED006D0130 /* fr */,
+				01BC496125CC597800EF8CC5 /* uk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -1,0 +1,94 @@
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
+
+/* for example: `Accessibility permission: ⛔️ required` */
+"%1$@ permission: %2$@" = "Доступ до %1$@: %2$@";
+
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "Спеціальні можливості";
+
+/* Preferences pane for `App` settings */
+"App" = "Додаток";
+
+/* Check box next to the 'Check for updates' button */
+"Automatically" = "Автоматично";
+
+/* Button, when pressed, checks for updates now */
+"Check for updates" = "Перевірити оновлення";
+
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "Увімкнути %1$@";
+
+/* No comment provided by engineer. */
+"For settings, click the icon in the menu bar" = "Щоб відкрити налаштування, натисніть на іконку у смузі меню";
+
+/* Alert box title */
+"Icon Hidden" = "Ікона прихована"; /* NEW */
+
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "Включити бета-версії";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "Моніторинг введення";
+
+/* No comment provided by engineer. */
+"OK" = "ОК";
+
+/* 1=`Input Monitoring` or `Accessibility` */
+"Open %1$@ preferences" = "Відкрити налаштування: %1$@";
+
+/* Section title */
+"Permissions" = "Дозволи";
+
+/* No comment provided by engineer. */
+"Preferences" = "Налаштування";
+
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "Закрити %1$@";
+
+/* 1=`Input Monitoring` or `Accessibility` */
+"Request %1$@ permission" = "Запит доступу до %1$@";
+
+/* Prefs check box */
+"Reverse Horizontal" = "Горизонтальний реверс";
+
+/* Prefs check box */
+"Reverse Mouse" = "Реверс миші";
+
+/* Prefs check box */
+"Reverse Trackpad" = "Реверс трекпеда";
+
+/* Prefs check box */
+"Reverse Vertical" = "Вертикальний реверс";
+
+/* No comment provided by engineer. */
+"Scroll Reverser is now running!" = "Scroll Reverser запущений!";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Для зміни прокрутки Scroll Reverser повинен мати доступ до Спеціальних можливостей.";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser потрібен доступ до Моніторингу введення, щоб розпізнавати пальці на трекпеді.";
+
+/* Preferences pane for `Scrolling` serttings */
+"Scrolling" = "Прокрутка";
+
+/* Prefs section title */
+"Scrolling Axes" = "Осі прокрутки";
+
+/* Prefs section title */
+"Scrolling Devices" = "Пристрої";
+
+/* Prefs check box */
+"Show in menu bar" = "Показати у смузі меню";
+
+/* Prefs check box */
+"Start at login" = "Автозапуск";
+
+/* Alert box text. 1=name of app */
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Іконку %1$@ приховано зі смуги меню. Щоб відновити його в будь-який час, знову запустіть %1$@ з Finder.";
+
+/* No comment provided by engineer. */
+"⛔️ required" = "⛔️ вимагається";
+
+/* No comment provided by engineer. */
+"✅ granted" = "✅ дозволено";
