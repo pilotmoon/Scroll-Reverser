@@ -129,6 +129,7 @@
 		01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ScrollReverserStatusIcon@2x.png"; path = "Graphics/ScrollReverserStatusIcon@2x.png"; sourceTree = "<group>"; };
 		01BC496025CC58E500EF8CC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		01BC496125CC597800EF8CC5 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = resources/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01BC496325CC5E3D00EF8CC5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01C69F6E2581437A00E2BE31 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "resources/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		01C69F6F2581438100E2BE31 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "resources/zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		01C69F702581440E00E2BE31 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = resources/nb.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -412,6 +413,7 @@
 				"zh-Hant",
 				Base,
 				uk,
+				tr,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -545,6 +547,7 @@
 				01C69F702581440E00E2BE31 /* nb */,
 				0187E6D225925CED006D0130 /* fr */,
 				01BC496125CC597800EF8CC5 /* uk */,
+				01BC496325CC5E3D00EF8CC5 /* tr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
