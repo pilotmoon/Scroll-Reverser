@@ -1,0 +1,94 @@
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
+
+/* for example: `Accessibility permission: ⛔️ required` */
+"%1$@ permission: %2$@" = "%1$@ izni: %2$@";
+
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "Erişilebilirlik";
+
+/* Preferences pane for `App` settings */
+"App" = "Uygulama";
+
+/* Check box next to the 'Check for updates' button */
+"Automatically" = "Otomatik olarak";
+
+/* Button, when pressed, checks for updates now */
+"Check for updates" = "Güncellemeleri denetle";
+
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "%1$@'ı Etkinleştir";
+
+/* No comment provided by engineer. */
+"For settings, click the icon in the menu bar" = "Ayarlar için menü çubuğundaki ikona tıklayın";
+
+/* Alert box title */
+"Icon Hidden" = "İkon Gizlendi"; /* NEW */
+
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "Beta versiyonları dahil et";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "Giriş İzleme";
+
+/* No comment provided by engineer. */
+"OK" = "Tamam";
+
+/* 1=`Input Monitoring` or `Accessibility` */
+"Open %1$@ preferences" = "%1$@ tercihlerini aç";
+
+/* Section title */
+"Permissions" = "İzinler";
+
+/* No comment provided by engineer. */
+"Preferences" = "Tercihler";
+
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "%1$@'ı Kapat";
+
+/* 1=`Input Monitoring` or `Accessibility` */
+"Request %1$@ permission" = "%1$@ iznini iste";
+
+/* Prefs check box */
+"Reverse Horizontal" = "Yatayda Tersine Çevir";
+
+/* Prefs check box */
+"Reverse Mouse" = "Fareyi Tersine Çevir";
+
+/* Prefs check box */
+"Reverse Trackpad" = "İzleme Dörtgenini Tersine Çevir";
+
+/* Prefs check box */
+"Reverse Vertical" = "Dikeyde Tersine Çevir";
+
+/* No comment provided by engineer. */
+"Scroll Reverser is now running!" = "Scroll Reverser şu anda çalışıyor!";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser kaydırmayı özelleştirebilmek için Erişilebilirlik iznine ihtiyaç duyuyor.";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser parmaklarınızın izleme dörtgenine temas ettiğini tespit edebilmek için Giriş İzleme iznine ihtyiaç duyuyor.";
+
+/* Preferences pane for `Scrolling` serttings */
+"Scrolling" = "Kaydırma";
+
+/* Prefs section title */
+"Scrolling Axes" = "Kaydırma Eksenleri";
+
+/* Prefs section title */
+"Scrolling Devices" = "Kaydırma Aygıtları";
+
+/* Prefs check box */
+"Show in menu bar" = "Menü çubuğunda göster";
+
+/* Prefs check box */
+"Start at login" = "Giriş yapıldığında başlat";
+
+/* Alert box text. 1=name of app */
+"%1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@ ikonu menü çubuğundan kaldırıldı. İstediğiniz zaman geri getirmek için Finder'dan %1$@'ı tekrardan başlatın.";
+
+/* No comment provided by engineer. */
+"⛔️ required" = "⛔️ gerekli";
+
+/* No comment provided by engineer. */
+"✅ granted" = "✅ verildi";
