@@ -1,6 +1,6 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-
 /* for example: `Accessibility permission: ⛔️ required` */
+
 "%1$@ permission: %2$@" = "%1$@ permission: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -22,7 +22,7 @@
 "For settings, click the icon in the menu bar" = "Das Icon in der Menüleiste führt zu den Einstellungen.";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden"; /* NEW */
+"Icon Hidden" = "Icon Hidden"; // NEW
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Include beta versions";
@@ -92,4 +92,3 @@
 
 /* No comment provided by engineer. */
 "✅ granted" = "✅ granted";
-

@@ -1,6 +1,6 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-
 /* for example: `Accessibility permission: ⛔️ required` */
+
 "%1$@ permission: %2$@" = "%1$@ permission: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -10,19 +10,19 @@
 "App" = "Program";
 
 /* Check box next to the 'Check for updates' button */
-"Automatically" = "Automaticky";
+"Automatically" = "Automatisk";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Skontrolovať aktualizácie";
+"Check for updates" = "Leta efter uppdateringar";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Enable %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Kliknite na ikonu v menu lište pre nastavenia";
+"For settings, click the icon in the menu bar" = "Klicka ikonen i menyraden för inställningar";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden"; /* NEW */
+"Icon Hidden" = "Icon Hidden"; // NEW
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Include beta versions";
@@ -40,7 +40,7 @@
 "Permissions" = "Permissions";
 
 /* No comment provided by engineer. */
-"Preferences" = "Nastavenia";
+"Preferences" = "Inställningar";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Quit %1$@";
@@ -49,19 +49,19 @@
 "Request %1$@ permission" = "Request %1$@ permission";
 
 /* Prefs check box */
-"Reverse Horizontal" = "Otočiť horizontálne";
+"Reverse Horizontal" = "Invertera horisontellt";
 
 /* Prefs check box */
-"Reverse Mouse" = "Otočiť myš";
+"Reverse Mouse" = "Invertera mus";
 
 /* Prefs check box */
-"Reverse Trackpad" = "Otočiť trackpad";
+"Reverse Trackpad" = "Invertera styrplatta";
 
 /* Prefs check box */
-"Reverse Vertical" = "Otočiť vertikálne";
+"Reverse Vertical" = "Reverser vertikalt";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser je teraz spustený!";
+"Scroll Reverser is now running!" = "Scroll Reverser körs nu!";
 
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
@@ -70,19 +70,19 @@
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
 
 /* Preferences pane for `Scrolling` serttings */
-"Scrolling" = "Rolovanie";
+"Scrolling" = "Rullning";
 
 /* Prefs section title */
-"Scrolling Axes" = "Osi rolovania";
+"Scrolling Axes" = "Rullningsaxlar";
 
 /* Prefs section title */
-"Scrolling Devices" = "Rolovacie zariadenia";
+"Scrolling Devices" = "Rullnings enheter";
 
 /* Prefs check box */
-"Show in menu bar" = "Ukázať v menu lište";
+"Show in menu bar" = "Visa i menyraden";
 
 /* Prefs check box */
-"Start at login" = "Spustiť pri štarte";
+"Start at login" = "Starta vid inloggning";
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
@@ -92,4 +92,3 @@
 
 /* No comment provided by engineer. */
 "✅ granted" = "✅ granted";
-

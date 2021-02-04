@@ -1,6 +1,6 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-
 /* for example: `Accessibility permission: ⛔️ required` */
+
 "%1$@ permission: %2$@" = "Δικαιώματα για %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -19,10 +19,10 @@
 "Enable %1$@" = "Ενεργοποίησε το %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Για τις προτιμήσεις κλικάρετε στο εικονίδιο που βρίσκεται στη γραμμή μενού";
+"For settings, click the icon in the menu bar" = "Για τις προτιμήσεις κλικάτερε στο εικονίδιο που βρίσκεται στη γραμμή μενού";
 
 /* Alert box title */
-"Icon Hidden" = "Το εικονίδιο κρύφτηκε"; /* NEW */
+"Icon Hidden" = "Το εικονίδιο κρύφτηκε"; // NEW
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Περιέλαβε και τις δοκιμαστικές εκδόσεις";
@@ -31,7 +31,7 @@
 "Input Monitoring" = "Παρακολούθηση συσκευής εισόδου";
 
 /* No comment provided by engineer. */
-"OK" = "OK";
+"OK" = "ΟΚ";
 
 /* 1=`Input Monitoring` or `Accessibility` */
 "Open %1$@ preferences" = "Άνοιξε τις ρυθμίσεις %1$@";
@@ -92,4 +92,3 @@
 
 /* No comment provided by engineer. */
 "✅ granted" = "✅ εγκρίθηκε";
-

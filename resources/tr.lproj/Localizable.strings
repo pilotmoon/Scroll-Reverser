@@ -1,6 +1,6 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-
 /* for example: `Accessibility permission: ⛔️ required` */
+
 "%1$@ permission: %2$@" = "%1$@ izni: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -22,7 +22,7 @@
 "For settings, click the icon in the menu bar" = "Ayarlar için menü çubuğundaki ikona tıklayın";
 
 /* Alert box title */
-"Icon Hidden" = "İkon Gizlendi"; /* NEW */
+"Icon Hidden" = "İkon Gizlendi"; // NEW
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Beta versiyonları dahil et";
@@ -85,7 +85,7 @@
 "Start at login" = "Giriş yapıldığında başlat";
 
 /* Alert box text. 1=name of app */
-"%1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@ ikonu menü çubuğundan kaldırıldı. İstediğiniz zaman geri getirmek için Finder'dan %1$@'ı tekrardan başlatın.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@ ikonu menü çubuğundan kaldırıldı. İstediğiniz zaman geri getirmek için Finder'dan %1$@'ı tekrardan başlatın.";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ gerekli";
