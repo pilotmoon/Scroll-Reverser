@@ -20,6 +20,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 NSString *const PrefsBetaUpdates=@"BetaUpdates";
 NSString *const PrefsAppcastOverrideURL=@"AppcastOverrideURL";
 NSString *const PrefsTerminatedWithPrefsWindowOpen=@"TerminatedWithPrefsWindowOpen";
+NSString *const PrefsDiscreteScrollStepSize=@"DiscreteScrollStepSize";
 
 static void *_contextHideIcon=&_contextHideIcon;
 static void *_contextEnabled=&_contextEnabled;
@@ -133,6 +134,7 @@ static void *_contextPermissions=&_contextPermissions;
             PrefsReverseVertical: @(YES),
             PrefsReverseTrackpad: @(YES),
             PrefsReverseMouse: @(YES),
+            PrefsDiscreteScrollStepSize: @(3),
             LoggerMaxEntries: @(50000),
             PrefsBetaUpdates: @([self appIsBetaBuild]),
         }];

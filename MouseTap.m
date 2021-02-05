@@ -43,6 +43,14 @@ static uint64_t nanoseconds(void)
     return * (uint64_t *) &time;
 }
 
+static uint64_t stepsize(void)
+{
+    const NSInteger max=12, min=1;
+    const NSInteger stepSize=[[NSUserDefaults standardUserDefaults] integerForKey:PrefsDiscreteScrollStepSize];
+    if (stepSize<min) return min;
+    if (stepSize>max) return max;
+    return stepSize;
+}
 
 static CGEventRef callback(CGEventTapProxy proxy,
                            CGEventType type,
@@ -171,19 +179,29 @@ static CGEventRef callback(CGEventTapProxy proxy,
                 [tap->logger logMessage:@"Source changed" special:YES];
             }
 
-            /* Do the actual reversing. It's worth noting we have to set them in this order, or we lose smooth scrolling.
+            /* Do the actual reversing. It's worth noting we have to set the point values second, or we lose smooth scrolling.
             This is because setting DeltaAxis causes macos to internally modify PointDeltaAxis (8x multiplier on DeltaAxis
              value) and FixedPtDeltaAxis (1x multiplier). */
             if (invert)
             {
-                const BOOL reverseX=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal];
-                const BOOL reverseY=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical];
-                if (reverseY) CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis1, -axis1);
-                if (reverseX) CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis2, -axis2);
-                if (reverseY) CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1, -fixedpt_axis1);
-                if (reverseX) CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2, -fixedpt_axis2);
-                if (reverseY) CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis1, -point_axis1);
-                if (reverseX) CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2, -point_axis2);
+                if([[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical]) {
+                    if (llabs(axis1)==1&&!continuous) { // discrete scroll wheel single step
+                        const uint64_t step=stepsize();
+                        CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis1, -axis1*step);
+                        [tap->logger logUnsignedInteger:step forKey:@"step"];
+                    }
+                    else {
+                        CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis1, -axis1);
+                        CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1, -fixedpt_axis1);
+                        CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis1, -point_axis1);
+                    }
+                }
+
+                if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal]) {
+                    CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis2, -axis2);
+                    CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2, -fixedpt_axis2);
+                    CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2, -point_axis2);
+                }
             }
         }
         else
