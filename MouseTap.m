@@ -46,19 +46,19 @@ static uint64_t nanoseconds(void)
 
 static CGEventRef callback(CGEventTapProxy proxy,
                            CGEventType type,
-                           CGEventRef event,
+                           CGEventRef eventRef,
                            void *userInfo)
 {
     @autoreleasepool
     {
         MouseTap *const tap=(__bridge MouseTap *)userInfo;
         const uint64_t time=nanoseconds();
-
+        NSEvent *const event=[NSEvent eventWithCGEvent:eventRef];
         [(AppDelegate *)[NSApp delegate] refreshPermissions];
-        
+
         if (type==(CGEventType)NSEventTypeGesture)
         {
-            const NSUInteger touching=[[[NSEvent eventWithCGEvent:event] touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];
+            const NSUInteger touching=[[event touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];
         
             if (touching>=2) {
                 [tap->logger logUnsignedInteger:touching forKey:@"touching"];
@@ -66,28 +66,40 @@ static CGEventRef callback(CGEventTapProxy proxy,
                 tap->touching=MAX(tap->touching, touching);
             }
             else {
-                return event; // totally ignore zero or one touch events
+                return eventRef; // totally ignore zero or one touch events
             }
         }
         else if (type==(CGEventType)NSEventTypeScrollWheel)
         {
+            // is inverted from device? (1=natural scrolling, 0=classic scrolling)
+            const BOOL invertedFromDevice=!![event isDirectionInvertedFromDevice];
+            [tap->logger logBool:invertedFromDevice forKey:@"ifd"];
+
+            // is continuous (magic mouse and magic trackpad scrolling is continuous)
+            const BOOL continuous=!!CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventIsContinuous);
+            [tap->logger logBool:continuous forKey:@"continuous"];
+
             // get the scrolling deltas
-            const int64_t pixel_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
-            const int64_t pixel_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
-            const int64_t line_axis1=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
-            const int64_t line_axis2=CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
-            const double fixedpt_axis1=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1);
-            const double fixedpt_axis2=CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2);
-            [tap->logger logSignedInteger:pixel_axis1 forKey:@"y"];
-            [tap->logger logSignedInteger:pixel_axis2 forKey:@"x"];
+            const int64_t axis1=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis1);
+            const int64_t axis2=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis2);
+            const int64_t point_axis1=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis1);
+            const int64_t point_axis2=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2);
+            const double fixedpt_axis1=CGEventGetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1);
+            const double fixedpt_axis2=CGEventGetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2);
+            [tap->logger logSignedInteger:axis1 forKey:@"y"];
+            [tap->logger logSignedInteger:axis2 forKey:@"x"];
+            [tap->logger logSignedInteger:point_axis1 forKey:@"y_pt"];
+            [tap->logger logSignedInteger:point_axis2 forKey:@"x_pt"];
+            [tap->logger logDouble:fixedpt_axis1 forKey:@"y_fp"];
+            [tap->logger logDouble:fixedpt_axis2 forKey:@"x_fp"];
          
             // get source pid
-            const uint64_t pid=CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
+            const uint64_t pid=CGEventGetIntegerValueField(eventRef, kCGEventSourceUnixProcessID);
             [tap->logger logUnsignedInteger:pid forKey:@"pid"];
             
             // calculate elapsed time since touch
             const uint64_t touchElapsed=(time-tap->lastTouchTime);
-            [tap->logger logNanoseconds:touchElapsed forKey:@"touchElapsed"];
+            [tap->logger logNanoseconds:touchElapsed forKey:@"elapsed"];
             
             // get and reset fingers touching
             const NSUInteger touching=tap->touching;
@@ -95,16 +107,16 @@ static CGEventRef callback(CGEventTapProxy proxy,
             tap->touching=0;
 
             // get phase
-            const ScrollPhase phase=momentumPhaseForEvent(event);
+            const ScrollPhase phase=momentumPhaseForEvent(eventRef);
             [tap->logger logPhase:phase forKey:@"phase"];
             
             // work out the event source
             const ScrollEventSource lastSource=tap->lastSource;
             const ScrollEventSource source=(^{
                 
-                if (CGEventGetIntegerValueField(event, kCGScrollWheelEventIsContinuous)==0)
+                if (!continuous)
                 {
-                    [tap->logger logBool:YES forKey:@"notContinuous"];
+                    [tap->logger logBool:YES forKey:@"usingNotContinuous"];
                     return ScrollEventSourceMouse; // assume anything not-continuous is a mouse
                 }
                 
@@ -159,18 +171,19 @@ static CGEventRef callback(CGEventTapProxy proxy,
                 [tap->logger logMessage:@"Source changed" special:YES];
             }
 
-            /* Do the actual reversing. It's worth noting we have to set them in this order (lines then pixels)
-             or we lose smooth scrolling. */
+            /* Do the actual reversing. It's worth noting we have to set them in this order, or we lose smooth scrolling.
+            This is because setting DeltaAxis causes macos to internally modify PointDeltaAxis (8x multiplier on DeltaAxis
+             value) and FixedPtDeltaAxis (1x multiplier). */
             if (invert)
             {
                 const BOOL reverseX=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal];
                 const BOOL reverseY=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical];
-                if (reverseY) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, -line_axis1);
-                if (reverseX) CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, -line_axis2);
-                if (reverseY) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1, -1 * fixedpt_axis1);
-                if (reverseX) CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2, -1 * fixedpt_axis2);
-                if (reverseY) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, -pixel_axis1);
-                if (reverseX) CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, -pixel_axis2);
+                if (reverseY) CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis1, -axis1);
+                if (reverseX) CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis2, -axis2);
+                if (reverseY) CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1, -fixedpt_axis1);
+                if (reverseX) CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2, -fixedpt_axis2);
+                if (reverseY) CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis1, -point_axis1);
+                if (reverseX) CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2, -point_axis2);
             }
         }
         else
@@ -182,7 +195,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
         [tap->logger logParams];
 	}
     
-    return event;
+    return eventRef;
 }
 
 @interface MouseTap ()
