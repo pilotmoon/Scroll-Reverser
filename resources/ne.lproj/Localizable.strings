@@ -1,0 +1,94 @@
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
+/* for example: `Accessibility permission: ⛔️ required` */
+
+"%1$@ permission: %2$@" = "%1$@को अनुमति: %2$@";
+
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "सहज प्रयोग";
+
+/* Preferences pane for `App` settings */
+"App" = "एप";
+
+/* Check box next to the 'Check for updates' button */
+"Automatically" = "स्वचालित";
+
+/* Button, when pressed, checks for updates now */
+"Check for updates" = "अपडेटको जाँच तरिका";
+
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "%1$@ सुचारू गर्नुहोस";
+
+/* No comment provided by engineer. */
+"For settings, click the icon in the menu bar" = "सेटिङ्गका लागि मेन्यु बारको आइकनमा थिच्नुहोस";
+
+/* Alert box title */
+"Icon Hidden" = "आइकन लुकेको छ"; // NEW
+
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "बेटा भर्जन पनि प्रयोग गर्नुहोस";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "इनपुट मनिटरिङ";
+
+/* No comment provided by engineer. */
+"OK" = "हुन्छ";
+
+/* 1=`Input Monitoring` or `Accessibility` */
+"Open %1$@ preferences" = "%1$@ प्राथमिकता खोल्नुहोस्";
+
+/* Section title */
+"Permissions" = "अनुमतिहरू";
+
+/* No comment provided by engineer. */
+"Preferences" = "प्राथमिकताहरू";
+
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "%1$@ बन्द गर्नुहोस";
+
+/* 1=`Input Monitoring` or `Accessibility` */
+"Request %1$@ permission" = "%1$@को अनुमति प्रदान गर्नुहोस";
+
+/* Prefs check box */
+"Reverse Horizontal" = "दायाँ-बाँया उल्टो गर्नुहोस";
+
+/* Prefs check box */
+"Reverse Mouse" = "माउस उल्टो गर्नुहोस";
+
+/* Prefs check box */
+"Reverse Trackpad" = "ट्रयाकप्याड उल्टो गर्नुहोस";
+
+/* Prefs check box */
+"Reverse Vertical" = "तल-माथि उल्टो गर्नुहोस";
+
+/* No comment provided by engineer. */
+"Scroll Reverser is now running!" = "स्क्रोल रिभर्सर अब चलिरहेको छ!";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "स्क्रोल रिभर्सरलाई हजुरको स्क्रोल परिवर्तन गर्न सहज प्रयोगको अनुमति चाहिन्छ।";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "स्क्रोल रिभर्सरलाई हजुरको औँलाले ट्रयाकप्याड छोएको छ भन्ने थाहा पाउन इनपुट मनिटरिङको अनुमति चाहिन्छ।";
+
+/* Preferences pane for `Scrolling` serttings */
+"Scrolling" = "स्क्रोलिङ";
+
+/* Prefs section title */
+"Scrolling Axes" = "स्क्रोलिङ अक्ष";
+
+/* Prefs section title */
+"Scrolling Devices" = "स्क्रोलिङ उपकरण";
+
+/* Prefs check box */
+"Show in menu bar" = "मेन्यु बारमा देखाउनुहोस्";
+
+/* Prefs check box */
+"Start at login" = "लग-इनमा सुचारू गर्नुहोस्";
+
+/* Alert box text. 1=name of app */
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@ आइकन मेन्यु बारबाट हटाइएको छ। कुनै पनि बेला फेरि त्यहाँ राख्नको लागि %1$@ फाइन्डरबाट खोल्नुहोस्।";
+
+/* No comment provided by engineer. */
+"⛔️ required" = "आवश्यक छ";
+
+/* No comment provided by engineer. */
+"✅ granted" = "प्रदान गरिएको छ";
