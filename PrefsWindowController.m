@@ -394,4 +394,24 @@ static void *_contextRefresh=&_contextRefresh;
     return NSLocalizedString(@"Input Monitoring", @"corresponds to Input Monitoring in system Privacy settings");
 }
 
+- (NSString *)menuStringMouseWheelHeader {
+    return NSLocalizedString(@"Mouse Wheel Step Size", @"Prefs section header");
+}
+
+- (NSString *)menuStringMouseWheelLevel0 {
+    return NSLocalizedString(@"Default", @"System default step size (small)");
+}
+
+- (NSString *)menuStringMouseWheelLevel1 {
+    return NSLocalizedString(@"Medium", @"Medium step size");
+}
+
+- (NSString *)menuStringMouseWheelLevel2 {
+    return NSLocalizedString(@"Large", @"Large step size");
+}
+
+- (NSString *)menuStringMouseWheelLevel3 {
+    return NSLocalizedString(@"X-Large", @"Extra large step size");
+}
+
 @end

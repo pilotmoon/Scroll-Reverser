@@ -190,6 +190,7 @@
                                         <rect key="frame" x="12" y="30" width="392" height="24"/>
                                         <sliderCell key="cell" state="on" alignment="left" identifier="Ste[p Size Slider" maxValue="3" tickMarkPosition="below" numberOfTickMarks="4" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Rqw-fS-BNI"/>
                                         <connections>
+                                            <binding destination="-2" name="enabled" keyPath="appDelegate.enabled" id="iAE-TA-dkZ"/>
                                             <binding destination="9eJ-Lx-koC" name="value" keyPath="values.DiscreteScrollStepSize" id="tea-Dq-Ee1"/>
                                         </connections>
                                     </slider>
@@ -203,30 +204,42 @@
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.menuStringMouseWheelLevel0" id="eLW-R7-cYD"/>
+                                                </connections>
                                             </textField>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H6w-ej-DEt">
-                                                <rect key="frame" x="239" y="0.0" width="53" height="14"/>
-                                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="center" title="LARGE" id="eeR-q0-DHZ">
+                                                <rect key="frame" x="47" y="0.0" width="53" height="14"/>
+                                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="center" title="LEVEL1" id="eeR-q0-DHZ">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.menuStringMouseWheelLevel1" id="uNB-Ll-4s5"/>
+                                                </connections>
                                             </textField>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qwh-Ej-1SB">
-                                                <rect key="frame" x="288" y="0.0" width="53" height="14"/>
-                                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="center" title="XL" id="ZdQ-Dx-Kg9">
+                                                <rect key="frame" x="96" y="0.0" width="53" height="14"/>
+                                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="center" title="LEVEL2" id="ZdQ-Dx-Kg9">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.menuStringMouseWheelLevel2" id="NA9-Yy-Xe3"/>
+                                                </connections>
                                             </textField>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="86Q-8M-37N">
                                                 <rect key="frame" x="337" y="0.0" width="53" height="14"/>
-                                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="right" title="XXL" id="aKv-Mx-sZs">
+                                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="right" title="LEVEL3" id="aKv-Mx-sZs">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
+                                                <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.menuStringMouseWheelLevel3" id="H4o-OG-6Bu"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -264,6 +277,14 @@
                                     <constraint firstAttribute="bottom" secondItem="9sg-s7-3fm" secondAttribute="bottom" constant="14" id="yxQ-qN-PaK"/>
                                 </constraints>
                             </view>
+                            <connections>
+                                <binding destination="-2" name="hidden" keyPath="appDelegate.permissionsManager.hasAllRequiredPermissions" id="Hx4-MQ-Um2">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="-2" name="title" keyPath="self.menuStringMouseWheelHeader" id="2tu-YA-VPD"/>
+                            </connections>
                         </box>
                         <box verticalHuggingPriority="249" title="PERMISSIONS" translatesAutoresizingMaskIntoConstraints="NO" id="NxL-q2-zhr">
                             <rect key="frame" x="-3" y="-4" width="422" height="184"/>

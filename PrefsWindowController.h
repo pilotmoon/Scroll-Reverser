@@ -38,6 +38,13 @@
 @property (readonly) NSString *menuStringAXStatus;
 @property (readonly) NSString *menuStringIMButtonLabel;
 @property (readonly) NSString *menuStringIMStatus;
+
+@property (readonly) NSString *menuStringMouseWheelHeader;
+@property (readonly) NSString *menuStringMouseWheelLevel0;
+@property (readonly) NSString *menuStringMouseWheelLevel1;
+@property (readonly) NSString *menuStringMouseWheelLevel2;
+@property (readonly) NSString *menuStringMouseWheelLevel3;
+
 - (IBAction)buttonPermissionsHelpClicked:(id)sender;
 - (void)showPermissionsPane;
 - (void)callAttention;

@@ -45,7 +45,7 @@ static uint64_t _nanoseconds(void)
 
 static NSInteger _stepsize(void)
 {
-    static const NSInteger lookup[]={0,3,12,30};
+    static const NSInteger lookup[]={0,3,9,27};
     NSInteger stepSize=[[NSUserDefaults standardUserDefaults] integerForKey:PrefsDiscreteScrollStepSize];
     if (stepSize<=0) stepSize=0;
     if (stepSize>=3) stepSize=3;
