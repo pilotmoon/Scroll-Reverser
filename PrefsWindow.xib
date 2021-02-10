@@ -189,6 +189,9 @@
                                     <slider identifier="sd" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ScX-KW-gxr">
                                         <rect key="frame" x="12" y="30" width="392" height="24"/>
                                         <sliderCell key="cell" state="on" alignment="left" identifier="Ste[p Size Slider" maxValue="3" tickMarkPosition="below" numberOfTickMarks="4" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Rqw-fS-BNI"/>
+                                        <connections>
+                                            <binding destination="9eJ-Lx-koC" name="value" keyPath="values.DiscreteScrollStepSize" id="tea-Dq-Ee1"/>
+                                        </connections>
                                     </slider>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="68" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9sg-s7-3fm">
                                         <rect key="frame" x="14" y="14" width="388" height="14"/>
@@ -202,7 +205,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H6w-ej-DEt">
-                                                <rect key="frame" x="47" y="0.0" width="53" height="14"/>
+                                                <rect key="frame" x="239" y="0.0" width="53" height="14"/>
                                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="center" title="LARGE" id="eeR-q0-DHZ">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -210,7 +213,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qwh-Ej-1SB">
-                                                <rect key="frame" x="96" y="0.0" width="53" height="14"/>
+                                                <rect key="frame" x="288" y="0.0" width="53" height="14"/>
                                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="center" title="XL" id="ZdQ-Dx-Kg9">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>

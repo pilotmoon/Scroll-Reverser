@@ -13,7 +13,7 @@ static NSString *const kKeyActive=@"active";
 
 #define MILLISECOND ((uint64_t)1000000)
 
-static ScrollPhase momentumPhaseForEvent(CGEventRef event)
+static ScrollPhase _momentumPhaseForEvent(CGEventRef event)
 {
     switch ([[NSEvent eventWithCGEvent:event] momentumPhase]) {
         case NSTouchPhaseBegan:
@@ -28,7 +28,7 @@ static ScrollPhase momentumPhaseForEvent(CGEventRef event)
     }
 }
 
-static uint64_t nanoseconds(void)
+static uint64_t _nanoseconds(void)
 {
     static mach_timebase_info_data_t info={0};
     if (info.denom==0) {
@@ -43,16 +43,16 @@ static uint64_t nanoseconds(void)
     return * (uint64_t *) &time;
 }
 
-static NSInteger stepsize(void)
+static NSInteger _stepsize(void)
 {
-    const NSInteger max=12, min=1;
-    const NSInteger stepSize=[[NSUserDefaults standardUserDefaults] integerForKey:PrefsDiscreteScrollStepSize];
-    if (stepSize<min) return min;
-    if (stepSize>max) return max;
-    return stepSize;
+    static const NSInteger lookup[]={0,3,12,30};
+    NSInteger stepSize=[[NSUserDefaults standardUserDefaults] integerForKey:PrefsDiscreteScrollStepSize];
+    if (stepSize<=0) stepSize=0;
+    if (stepSize>=3) stepSize=3;
+    return lookup[stepSize];
 }
 
-static CGEventRef callback(CGEventTapProxy proxy,
+static CGEventRef _callback(CGEventTapProxy proxy,
                            CGEventType type,
                            CGEventRef eventRef,
                            void *userInfo)
@@ -60,7 +60,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
     @autoreleasepool
     {
         MouseTap *const tap=(__bridge MouseTap *)userInfo;
-        const uint64_t time=nanoseconds();
+        const uint64_t time=_nanoseconds();
         NSEvent *const event=[NSEvent eventWithCGEvent:eventRef];
         [(AppDelegate *)[NSApp delegate] refreshPermissions];
 
@@ -115,7 +115,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
             tap->touching=0;
 
             // get phase
-            const ScrollPhase phase=momentumPhaseForEvent(eventRef);
+            const ScrollPhase phase=_momentumPhaseForEvent(eventRef);
             [tap->logger logPhase:phase forKey:@"phase"];
             
             // work out the event source
@@ -180,10 +180,9 @@ static CGEventRef callback(CGEventTapProxy proxy,
             }
 
             // Adjust discrete scroll wheel?
-            const BOOL discreteAdjust=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsDiscreteScrollAdjust] &&
-                llabs(axis1)==1 && // single step
-                !continuous; // not a continuous source
-            const NSInteger vstep=discreteAdjust?stepsize():1;
+            const NSInteger stepsize=_stepsize();
+            const BOOL discreteAdjust=stepsize>0&&llabs(axis1)==1&&!continuous;
+            const NSInteger vstep=discreteAdjust?stepsize:1;
             [tap->logger logSignedInteger:vstep forKey:@"vstep"];
 
             // Calculate signed multiplier to apply
@@ -266,7 +265,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
                                                    kCGTailAppendEventTap,
                                                    kCGEventTapOptionListenOnly,
                                                    NSEventMaskGesture,
-                                                   callback,
+                                                   _callback,
                                                    (__bridge void *)(self));
     NSLog(@"passive tap port %p", self.passiveTapPort);
 
@@ -276,7 +275,7 @@ static CGEventRef callback(CGEventTapProxy proxy,
                                            kCGTailAppendEventTap,
                                            kCGEventTapOptionDefault,
                                            NSEventMaskScrollWheel,
-                                           callback,
+                                           _callback,
                                            (__bridge void *)(self));
     NSLog(@"active tap port %p", self.activeTapPort);
 

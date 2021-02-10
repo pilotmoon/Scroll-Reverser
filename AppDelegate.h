@@ -16,7 +16,6 @@ extern NSString *const PrefsReverseTrackpad;
 extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsHideIcon;
 extern NSString *const PrefsDiscreteScrollStepSize;
-extern NSString *const PrefsDiscreteScrollAdjust;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, StatusItemControllerDelegate, SUUpdaterDelegate> {
 }
