@@ -40,6 +40,7 @@
 @property (readonly) NSString *menuStringIMStatus;
 
 @property (readonly) NSString *menuStringMouseWheelHeader;
+@property (readonly) NSString *menuStringMouseWheelStepSize;
 @property (readonly) NSString *menuStringMouseWheelLevel0;
 @property (readonly) NSString *menuStringMouseWheelLevel1;
 @property (readonly) NSString *menuStringMouseWheelLevel2;

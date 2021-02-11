@@ -45,11 +45,12 @@ static uint64_t _nanoseconds(void)
 
 static NSInteger _stepsize(void)
 {
-    static const NSInteger lookup[]={0,3,9,27};
-    NSInteger stepSize=[[NSUserDefaults standardUserDefaults] integerForKey:PrefsDiscreteScrollStepSize];
-    if (stepSize<=0) stepSize=0;
-    if (stepSize>=3) stepSize=3;
-    return lookup[stepSize];
+    double setting=[[NSUserDefaults standardUserDefaults] doubleForKey:PrefsDiscreteScrollStepSize];
+    if (setting<0.03) return 0;
+    if (setting<0.1) return 1;
+    const NSInteger result=lround(pow(2.5,(setting+0.1)*3.6));
+    NSLog(@"setting %@, step %@", @(setting), @(result));
+    return result;
 }
 
 static CGEventRef _callback(CGEventTapProxy proxy,
