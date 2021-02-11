@@ -1,6 +1,6 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
 
+/* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@ 권한: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -22,13 +22,16 @@
 "For settings, click the icon in the menu bar" = "설정을 변경하려면 메뉴바의 아이콘을 클릭해주세요";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden"; // NEW
+"Icon Hidden" = "Icon Hidden";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "베타버전 포함";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "입력 모니터링";
+
+/* Large step size */
+"Large" = "Large"; /* NEW */
 
 /* No comment provided by engineer. */
 "OK" = "확인";
@@ -69,6 +72,9 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser가 트랙패드에 손가락의 터치여부를 확인하기 위해 입력 모니터링 권한이 필요합니다.";
 
+/* Prefs section header */
+"Scroll Wheel" = "Scroll Wheel"; /* NEW */
+
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "스크롤";
 
@@ -81,8 +87,14 @@
 /* Prefs check box */
 "Show in menu bar" = "메뉴바에 표시";
 
+/* Small step size */
+"Small" = "Small"; /* NEW */
+
 /* Prefs check box */
 "Start at login" = "로그인할때 시작";
+
+/* Size of one step of the mouse scroll wheel */
+"Step size" = "Step size"; /* NEW */
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@ 아이콘이 메뉴 막대에서 제거되었습니다. 복구하기 위해서는, Finder에서 %1$@ 를 다시 실행해 주세요.";
@@ -92,3 +104,4 @@
 
 /* No comment provided by engineer. */
 "✅ granted" = "✅ 권한 허용됨";
+

@@ -1,6 +1,6 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
 
+/* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@ permission: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -22,13 +22,16 @@
 "For settings, click the icon in the menu bar" = "请点击菜单栏的图标来修改设置";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden"; // NEW
+"Icon Hidden" = "Icon Hidden";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Include beta versions";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Input Monitoring";
+
+/* Large step size */
+"Large" = "Large"; /* NEW */
 
 /* No comment provided by engineer. */
 "OK" = "确定";
@@ -69,6 +72,9 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
 
+/* Prefs section header */
+"Scroll Wheel" = "Scroll Wheel"; /* NEW */
+
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "滚动";
 
@@ -81,8 +87,14 @@
 /* Prefs check box */
 "Show in menu bar" = "显示菜单栏图标";
 
+/* Small step size */
+"Small" = "Small"; /* NEW */
+
 /* Prefs check box */
 "Start at login" = "用户登录时启动";
+
+/* Size of one step of the mouse scroll wheel */
+"Step size" = "Step size"; /* NEW */
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
@@ -92,3 +104,4 @@
 
 /* No comment provided by engineer. */
 "✅ granted" = "✅ granted";
+

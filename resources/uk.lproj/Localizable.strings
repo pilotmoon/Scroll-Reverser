@@ -1,6 +1,6 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
 
+/* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "Доступ до %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -22,13 +22,16 @@
 "For settings, click the icon in the menu bar" = "Щоб відкрити налаштування, натисніть на іконку у смузі меню";
 
 /* Alert box title */
-"Icon Hidden" = "Ікона прихована"; // NEW
+"Icon Hidden" = "Ікона прихована";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Включити бета-версії";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Моніторинг введення";
+
+/* Large step size */
+"Large" = "Large"; /* NEW */
 
 /* No comment provided by engineer. */
 "OK" = "ОК";
@@ -69,6 +72,9 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser потрібен доступ до Моніторингу введення, щоб розпізнавати пальці на трекпеді.";
 
+/* Prefs section header */
+"Scroll Wheel" = "Scroll Wheel"; /* NEW */
+
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Прокрутка";
 
@@ -81,8 +87,14 @@
 /* Prefs check box */
 "Show in menu bar" = "Показати у смузі меню";
 
+/* Small step size */
+"Small" = "Small"; /* NEW */
+
 /* Prefs check box */
 "Start at login" = "Автозапуск";
+
+/* Size of one step of the mouse scroll wheel */
+"Step size" = "Step size"; /* NEW */
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Іконку %1$@ приховано зі смуги меню. Щоб відновити його в будь-який час, знову запустіть %1$@ з Finder.";
@@ -92,3 +104,4 @@
 
 /* No comment provided by engineer. */
 "✅ granted" = "✅ дозволено";
+
