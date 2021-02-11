@@ -31,7 +31,7 @@
 "Input Monitoring" = "Monitoraggio ingresso";
 
 /* Large step size */
-"Large" = "Large"; /* NEW */
+"Large" = "Large"; 
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -73,7 +73,7 @@
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser necessita del permesso Monitoraggio ingresso per rilevare se le tue dita stanno toccando il trackpad.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel"; /* NEW */
+"Scroll Wheel" = "Scroll Wheel"; 
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Scorrimento";
@@ -88,13 +88,13 @@
 "Show in menu bar" = "Mostra nella barra dei menu";
 
 /* Small step size */
-"Small" = "Small"; /* NEW */
+"Small" = "Small"; 
 
 /* Prefs check box */
 "Start at login" = "Avvia al login";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size"; /* NEW */
+"Step size" = "Step size"; 
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "L'icona %1$@ è stata rimossa dalla barra dei menu. Per ripristinarla in qualsiasi momento, avvia nuovamente %1$@ dal Finder.";
