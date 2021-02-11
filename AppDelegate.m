@@ -134,7 +134,7 @@ static void *_contextPermissions=&_contextPermissions;
             PrefsReverseVertical: @(YES),
             PrefsReverseTrackpad: @(YES),
             PrefsReverseMouse: @(YES),
-            PrefsDiscreteScrollStepSize: @(0.2),
+            PrefsDiscreteScrollStepSize: @(3),
             LoggerMaxEntries: @(50000),
             PrefsBetaUpdates: @([self appIsBetaBuild]),
         }];

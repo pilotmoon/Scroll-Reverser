@@ -19,7 +19,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="VQJ-Ng-zSD" customClass="SUUpdater"/>
         <userDefaultsController representsSharedInstance="YES" id="9eJ-Lx-koC"/>
-        <view misplaced="YES" id="Ly3-tV-h1E" userLabel="Scrolling Settings">
+        <view id="Ly3-tV-h1E" userLabel="Scrolling Settings">
             <rect key="frame" x="0.0" y="0.0" width="456" height="424"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -191,7 +191,7 @@
                                         <sliderCell key="cell" state="on" alignment="left" identifier="Ste[p Size Slider" maxValue="1" tickMarkPosition="below" sliderType="linear" id="Rqw-fS-BNI"/>
                                         <connections>
                                             <binding destination="-2" name="enabled" keyPath="appDelegate.enabled" id="iAE-TA-dkZ"/>
-                                            <binding destination="9eJ-Lx-koC" name="value" keyPath="values.DiscreteScrollStepSize" id="tea-Dq-Ee1"/>
+                                            <binding destination="-2" name="value" keyPath="self.stepSizeSliderValue" id="DLo-7W-cST"/>
                                         </connections>
                                     </slider>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h0x-10-5sx">
@@ -444,7 +444,7 @@
                 <constraint firstAttribute="trailing" secondItem="7x2-oY-UOa" secondAttribute="trailing" constant="20" symbolic="YES" id="Gsh-qp-liQ"/>
                 <constraint firstItem="7x2-oY-UOa" firstAttribute="leading" secondItem="Ly3-tV-h1E" secondAttribute="leading" constant="20" symbolic="YES" id="SeS-8o-hYF"/>
             </constraints>
-            <point key="canvasLocation" x="-2077" y="-3407"/>
+            <point key="canvasLocation" x="-2058" y="-3500"/>
         </view>
         <view id="95B-NO-Ezk" userLabel="App Settings">
             <rect key="frame" x="0.0" y="0.0" width="462" height="212"/>

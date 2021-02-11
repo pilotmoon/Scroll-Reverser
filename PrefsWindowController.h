@@ -8,6 +8,7 @@
 @interface PrefsWindowController : NSWindowController <NSTabViewDelegate, NSToolbarDelegate, NSWindowDelegate>
 
 @property (readonly) AppDelegate *appDelegate;
+@property NSNumber *stepSizeSliderValue;
 
 @property (weak) IBOutlet NSView *scrollingSettings;
 @property (weak) IBOutlet NSView *appSettings;

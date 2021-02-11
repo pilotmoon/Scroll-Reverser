@@ -18,6 +18,8 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 
 
 static void *_contextRefresh=&_contextRefresh;
+static void *_contextPrefsStepSize=&_contextPrefsStepSize;
+
 
 @interface PrefsWindowController ()
 @property NSTabView *tabView;
@@ -27,6 +29,26 @@ static void *_contextRefresh=&_contextRefresh;
 @end
 
 @implementation PrefsWindowController
+
+static const double _offset=0.1;
+static const double _exponent=1.8;
+static const double _multiplier=25.0;
+
+- (NSNumber *)stepSizeSliderValue
+{
+    const NSInteger stepSize=[[NSUserDefaults standardUserDefaults] integerForKey:PrefsDiscreteScrollStepSize];
+    const double result=pow(stepSize/_multiplier,1.0/_exponent);
+    NSLog(@"read pref %@ from %@", @(result), @(stepSize));
+    return @(result-_offset);
+}
+
+- (void)setStepSizeSliderValue:(NSNumber *)stepSizeSliderValue
+{
+    const double sliderValue=[stepSizeSliderValue doubleValue]+_offset;
+    const NSInteger result=lround(pow(sliderValue,_exponent)*_multiplier);
+    NSLog(@"set pref %@ from %@", @(result), @(sliderValue));
+    [[NSUserDefaults standardUserDefaults] setInteger:result forKey:PrefsDiscreteScrollStepSize];
+}
 
 // animate window frame to draw user's attention
 - (void)callAttention
@@ -115,6 +137,7 @@ static void *_contextRefresh=&_contextRefresh;
 
     [self.appDelegate.permissionsManager addObserver:self forKeyPath:@"accessibilityEnabled" options:0 context:_contextRefresh];
     [self.appDelegate.permissionsManager addObserver:self forKeyPath:@"inputMonitoringEnabled" options:0 context:_contextRefresh];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:[@"values." stringByAppendingString:PrefsDiscreteScrollStepSize] options:NSKeyValueObservingOptionNew context:_contextPrefsStepSize];
 
     // select the initial pane
     [self.tabView selectTabViewItemWithIdentifier:startingIdentifier];
@@ -126,6 +149,9 @@ static void *_contextRefresh=&_contextRefresh;
 {
     if (context==_contextRefresh) {
         NSLog(@"refresh observe");
+    }
+    else if (context==_contextPrefsStepSize) {
+        NSLog(@"stepsize observe");
     }
 }
 
