@@ -41,10 +41,8 @@
 
 @property (readonly) NSString *menuStringMouseWheelHeader;
 @property (readonly) NSString *menuStringMouseWheelStepSize;
-@property (readonly) NSString *menuStringMouseWheelLevel0;
-@property (readonly) NSString *menuStringMouseWheelLevel1;
-@property (readonly) NSString *menuStringMouseWheelLevel2;
-@property (readonly) NSString *menuStringMouseWheelLevel3;
+@property (readonly) NSString *menuStringMouseWheelStepMin;
+@property (readonly) NSString *menuStringMouseWheelStepMax;
 
 - (IBAction)buttonPermissionsHelpClicked:(id)sender;
 - (void)showPermissionsPane;

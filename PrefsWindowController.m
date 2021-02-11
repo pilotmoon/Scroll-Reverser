@@ -402,20 +402,12 @@ static void *_contextRefresh=&_contextRefresh;
     return NSLocalizedString(@"Step size", @"Size of one step of the mouse scroll wheel");
 }
 
-- (NSString *)menuStringMouseWheelLevel0 {
-    return NSLocalizedString(@"Small", @"System default step size (small)");
+- (NSString *)menuStringMouseWheelStepMin {
+    return NSLocalizedString(@"Small", @"Small step size");
 }
 
-- (NSString *)menuStringMouseWheelLevel1 {
-    return NSLocalizedString(@"Medium", @"Medium step size");
-}
-
-- (NSString *)menuStringMouseWheelLevel2 {
+- (NSString *)menuStringMouseWheelStepMax {
     return NSLocalizedString(@"Large", @"Large step size");
-}
-
-- (NSString *)menuStringMouseWheelLevel3 {
-    return NSLocalizedString(@"Large", @"Extra large step size");
 }
 
 @end
