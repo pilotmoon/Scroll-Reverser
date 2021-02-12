@@ -1,8 +1,14 @@
 # Scroll Reverser
 
-Reverse the direction of scrolling on macOS.
+Reverses the direction of macOS scrolling, with independent settings for trackpads and mice.
 
-Home page: https://pilotmoon.com/scrollreverser/
+Web home page: [https://pilotmoon.com/scrollreverser/](https://pilotmoon.com/scrollreverser/)
+
+*Announcement: In a future update, Scroll Reverser will become a paid app. It will remain open source. You can read more about my decision [here](https://pilotmoon.com/blog/2020/12/09/scroll-reverser-1-8).*
+
+## Translations
+
+Translation updates in your language are appreciated either by pull request or using [CrowdIn](https://crowdin.com/project/pilotmoon-apps) platform.
 
 ## License
 
@@ -14,9 +20,9 @@ After cloning this repo, you'll need to `git submodule update --init` to check o
 
 ## Notes on the code
 
-The 'master' branch build targets 10.7 and higher.
+The master branch targets 10.12 and higher.
 
-Older code targeting 10.4+ is in the 'tiger' branch.
+Older code targeting 10.4+ is in the 'tiger' branch and 10.7+ is in the 'lion' branch.
 
 The real guts of the code is in MouseTap.m. Everything else is just user interface rigging.
 
