@@ -14,6 +14,8 @@ Translation updates in your language are appreciated either by pull request or u
 
 Licensed under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
+Please note, the name "Scroll Reverser" and the application icons are trademarks and may not be used by derivatve works.
+
 ## Building
 
 After cloning this repo, you'll need to `git submodule update --init` to check out the BuildScripts submodule.
