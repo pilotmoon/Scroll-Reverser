@@ -1,107 +1,106 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+
+"%1$@ permission: %2$@" = "הרשאת %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "נגישות";
 
 /* Preferences pane for `App` settings */
-"App" = "App";
+"App" = "אפליקציה";
 
 /* Check box next to the 'Check for updates' button */
-"Automatically" = "Automatically";
+"Automatically" = "באופן אוטומטי";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Check for updates";
+"Check for updates" = "בדוק אם קיימים עדכונים";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "אפשר %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "For settings, click the icon in the menu bar";
+"For settings, click the icon in the menu bar" = "להגדרות, לחץ על הסמל בשורת התפריטים";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "אייקון מוסתר";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "כלול גרסאות בטא";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "ניטור קלט";
 
 /* Large step size */
-"Large" = "Large"; 
+"Large" = "Large";
 
 /* No comment provided by engineer. */
-"OK" = "OK";
+"OK" = "אישור";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+"Open %1$@ preferences" = "בחר/י %1$@ בהעדפות המערכת";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "הרשאות";
 
 /* No comment provided by engineer. */
-"Preferences" = "Preferences";
+"Preferences" = "העדפות";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "צא/י מ- %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
+"Request %1$@ permission" = "בקש/י הרשאת %1$@";
 
 /* Prefs check box */
-"Reverse Horizontal" = "Reverse Horizontal";
+"Reverse Horizontal" = "הפוך אופקי";
 
 /* Prefs check box */
-"Reverse Mouse" = "Reverse Mouse";
+"Reverse Mouse" = "הפוך עכבר";
 
 /* Prefs check box */
-"Reverse Trackpad" = "Reverse Trackpad";
+"Reverse Trackpad" = "הפוך משטח נגיעה";
 
 /* Prefs check box */
-"Reverse Vertical" = "Reverse Vertical";
+"Reverse Vertical" = "הפוך אנכי";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser is now running!";
+"Scroll Reverser is now running!" = "Scroll Reverser רץ כרגע!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser צריך הרשאות נגישות כדי לשנות את הגדרות הגלילה שלך.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser צריך הרשאת ״ניטור קלט״ כדי לזהות נגיעה של האצבעות במשטח גלילה.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel"; 
+"Scroll Wheel" = "Scroll Wheel";
 
 /* Preferences pane for `Scrolling` serttings */
-"Scrolling" = "Scrolling";
+"Scrolling" = "גלילה";
 
 /* Prefs section title */
-"Scrolling Axes" = "Scrolling Axes";
+"Scrolling Axes" = "צירי גלילה";
 
 /* Prefs section title */
-"Scrolling Devices" = "Scrolling Devices";
+"Scrolling Devices" = "מכשירי גלילה";
 
 /* Prefs check box */
-"Show in menu bar" = "Show in menu bar";
+"Show in menu bar" = "הצגה בשורת התפריטים";
 
 /* Small step size */
-"Small" = "Small"; 
+"Small" = "Small";
 
 /* Prefs check box */
-"Start at login" = "Start at login";
+"Start at login" = "הפעל בעת ההתחברות";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size"; 
+"Step size" = "Step size";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "האייקון של %1$@ הוסר משורת התפריטים, כדי להחזיר אותו בכל זמן יש להריץ את %1$@ מה-Finder.";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔️ נדרש";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
-
+"✅ granted" = "✅ הוענק";
