@@ -1,6 +1,6 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
 
+/* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@ permission: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -10,16 +10,16 @@
 "App" = "App";
 
 /* Check box next to the 'Check for updates' button */
-"Automatically" = "Automáticamente";
+"Automatically" = "Automatically";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Buscar actualizaciones";
+"Check for updates" = "Check for updates";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Enable %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Para los ajustes, haga click en el icono de la barra de menú";
+"For settings, click the icon in the menu bar" = "For settings, click the icon in the menu bar";
 
 /* Alert box title */
 "Icon Hidden" = "Icon Hidden";
@@ -31,7 +31,7 @@
 "Input Monitoring" = "Input Monitoring";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "Large"; 
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -43,7 +43,7 @@
 "Permissions" = "Permissions";
 
 /* No comment provided by engineer. */
-"Preferences" = "Ajustes";
+"Preferences" = "Preferences";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Quit %1$@";
@@ -52,19 +52,19 @@
 "Request %1$@ permission" = "Request %1$@ permission";
 
 /* Prefs check box */
-"Reverse Horizontal" = "Invertir horizontalmente";
+"Reverse Horizontal" = "Reverse Horizontal";
 
 /* Prefs check box */
-"Reverse Mouse" = "Invertir ratón";
+"Reverse Mouse" = "Reverse Mouse";
 
 /* Prefs check box */
-"Reverse Trackpad" = "Invertir trackpad";
+"Reverse Trackpad" = "Reverse Trackpad";
 
 /* Prefs check box */
-"Reverse Vertical" = "Invertir verticalmente";
+"Reverse Vertical" = "Reverse Vertical";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "¡Scroll Reverser está en ejecución!";
+"Scroll Reverser is now running!" = "Scroll Reverser is now running!";
 
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
@@ -73,28 +73,28 @@
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Scroll Wheel"; 
 
 /* Preferences pane for `Scrolling` serttings */
-"Scrolling" = "Desplazamiento";
+"Scrolling" = "Scrolling";
 
 /* Prefs section title */
-"Scrolling Axes" = "Ejes de desplazamiento";
+"Scrolling Axes" = "Scrolling Axes";
 
 /* Prefs section title */
-"Scrolling Devices" = "Dispositivos de desplazamiento";
+"Scrolling Devices" = "Scrolling Devices";
 
 /* Prefs check box */
-"Show in menu bar" = "Mostrar en la barra de menú";
+"Show in menu bar" = "Show in menu bar";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "Small"; 
 
 /* Prefs check box */
-"Start at login" = "Arrancar en el login";
+"Start at login" = "Start at login";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Step size"; 
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
@@ -104,3 +104,4 @@
 
 /* No comment provided by engineer. */
 "✅ granted" = "✅ granted";
+

@@ -1,6 +1,6 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-
 /* for example: `Accessibility permission: ⛔️ required` */
+
 "%1$@ permission: %2$@" = "%1$@को अनुमति: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -31,7 +31,7 @@
 "Input Monitoring" = "इनपुट मनिटरिङ";
 
 /* Large step size */
-"Large" = "Large"; 
+"Large" = "Large";
 
 /* No comment provided by engineer. */
 "OK" = "हुन्छ";
@@ -73,7 +73,7 @@
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "स्क्रोल रिभर्सरलाई हजुरको औँलाले ट्रयाकप्याड छोएको छ भन्ने थाहा पाउन इनपुट मनिटरिङको अनुमति चाहिन्छ।";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel"; 
+"Scroll Wheel" = "Scroll Wheel";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "स्क्रोलिङ";
@@ -88,13 +88,13 @@
 "Show in menu bar" = "मेन्यु बारमा देखाउनुहोस्";
 
 /* Small step size */
-"Small" = "Small"; 
+"Small" = "Small";
 
 /* Prefs check box */
 "Start at login" = "लग-इनमा सुचारू गर्नुहोस्";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size"; 
+"Step size" = "Step size";
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@ आइकन मेन्यु बारबाट हटाइएको छ। कुनै पनि बेला फेरि त्यहाँ राख्नको लागि %1$@ फाइन्डरबाट खोल्नुहोस्।";
@@ -104,4 +104,3 @@
 
 /* No comment provided by engineer. */
 "✅ granted" = "प्रदान गरिएको छ";
-

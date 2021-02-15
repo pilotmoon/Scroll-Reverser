@@ -1,6 +1,6 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-
 /* for example: `Accessibility permission: ⛔️ required` */
+
 "%1$@ permission: %2$@" = "Δικαιώματα για %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -31,7 +31,7 @@
 "Input Monitoring" = "Παρακολούθηση συσκευής εισόδου";
 
 /* Large step size */
-"Large" = "Large"; 
+"Large" = "Large";
 
 /* No comment provided by engineer. */
 "OK" = "ΟΚ";
@@ -73,7 +73,7 @@
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Το Scroll Reverser χρειάζεται δικαιώματα Παρακολούθησης Συσκευής Εισόδου για να δει αν τα δάχτυλά σας ακουμπούν το Trackpad.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel"; 
+"Scroll Wheel" = "Scroll Wheel";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Κύλιση";
@@ -88,13 +88,13 @@
 "Show in menu bar" = "Εμφάνιση στη γραμμή μενού";
 
 /* Small step size */
-"Small" = "Small"; 
+"Small" = "Small";
 
 /* Prefs check box */
 "Start at login" = "Εκκίνηση κατά την είσοδο";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size"; 
+"Step size" = "Step size";
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Το εικονίδιο %1$@ έχει αφαιρεθεί από τη μενού μπάρα. Για να το επαναφέρετε, τρέξτε το %1$@ ξανά από τον Finder.";
@@ -104,4 +104,3 @@
 
 /* No comment provided by engineer. */
 "✅ granted" = "✅ εγκρίθηκε";
-
