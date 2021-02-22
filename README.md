@@ -6,6 +6,12 @@ Web home page: [https://pilotmoon.com/scrollreverser/](https://pilotmoon.com/scr
 
 *Announcement: In a future update, Scroll Reverser will become a paid app. It will remain open source. You can read more about my decision [here](https://pilotmoon.com/blog/2020/12/09/scroll-reverser-1-8).*
 
+## Install and run
+
+Download the [latest release](https://github.com/pilotmoon/Scroll-Reverser/releases), unzip, and place `Scroll Reverser.app` in your `/Applications` folder. Double-click to run.
+
+To uninsyall, simply quit and drag `Scroll Reverser.app` to trash.
+
 ## Translations
 
 Translation updates in your language are appreciated either by pull request or using [CrowdIn](https://crowdin.com/project/pilotmoon-apps) platform.
