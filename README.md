@@ -10,7 +10,7 @@ Web home page: [https://pilotmoon.com/scrollreverser/](https://pilotmoon.com/scr
 
 Download the [latest release](https://github.com/pilotmoon/Scroll-Reverser/releases/latest), unzip, and place `Scroll Reverser.app` in your `/Applications` folder. Double-click to run.
 
-To uninsyall, simply quit and drag `Scroll Reverser.app` to trash.
+To uninstall, simply quit the app and drag `Scroll Reverser.app` to trash.
 
 ## Translations
 
