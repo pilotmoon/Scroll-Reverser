@@ -1,10 +1,10 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
 /* for example: `Accessibility permission: ⛔️ required` */
 
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "%1$@取用授權：%2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "「輔助使用」";
 
 /* Preferences pane for `App` settings */
 "App" = "程式";
@@ -16,40 +16,40 @@
 "Check for updates" = "檢查更新";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "啟用%1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "請按工具列上的圖示來做設定";
+"For settings, click the icon in the menu bar" = "請按選單列上的圖示來做設定";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "圖示已隱藏";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "包含beta版本";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "「輸入監控」";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "較大";
 
 /* No comment provided by engineer. */
 "OK" = "確定";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+"Open %1$@ preferences" = "開啟%1$@偏好設定";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "取用授權";
 
 /* No comment provided by engineer. */
 "Preferences" = "設定";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "結束%1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
+"Request %1$@ permission" = "請求%1$@取用授權";
 
 /* Prefs check box */
 "Reverse Horizontal" = "反轉水平捲動 (Reverse Horizontal)";
@@ -67,13 +67,13 @@
 "Scroll Reverser is now running!" = "Scroll Reverser 正在運行";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser 須取得「輔助使用」的授權，方能變更您的滾輪設定。";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser 須取得「輸入監控」的授權，方能偵測您的手指是否放置於觸控式軌跡板上。";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "滾輪";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "捲動";
@@ -88,19 +88,19 @@
 "Show in menu bar" = "顯示圖示在工具列";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "較小";
 
 /* Prefs check box */
 "Start at login" = "登入時啟動";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "間距";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@的圖示已從您的選單列隱藏。您只要從Finder重新啟用%1$@，即可隨時復原此設定。";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔️待授權";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
+"✅ granted" = "✅已授權";
