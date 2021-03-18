@@ -2,9 +2,13 @@
 
 Reverses the direction of macOS scrolling, with independent settings for trackpads and mice.
 
-Web home page: [https://pilotmoon.com/scrollreverser/](https://pilotmoon.com/scrollreverser/)
+Web home page: [https://pilotmoon.com/scrollreverser/](https://pilotmoon.com/scrollreverser/) (Please note the home pages contains assitional content about the app, FAQ, changelog etc.)
 
 *Announcement: In a future update, Scroll Reverser will become a paid app. It will remain open source. You can read more about my decision [here](https://pilotmoon.com/blog/2020/12/09/scroll-reverser-1-8).*
+
+## Requirements
+
+The latest build of Scroll Reverser requires macOS 10.12.6 and above, and is a Univeral binary for both Intel and M1 Macs. Older versions are available for older OS  versions down to OS X 10.4. See the web home page for the downloads, or the respective labelled branches for the code.
 
 ## Install and run
 
@@ -14,14 +18,13 @@ To uninstall, simply quit the app and drag `Scroll Reverser.app` to trash.
 
 ## Translations
 
-Translation updates in your language are appreciated either by pull request or using [CrowdIn](https://crowdin.com/project/pilotmoon-apps) platform.
+Translation updates in your language are welcome either by pull request or using [CrowdIn](https://crowdin.com/project/pilotmoon-apps) platform.
 
 ## License
 
-Licensed under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+Published under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
-Please note, the name "Scroll Reverser" and the application icons are trademarks and
-may not be used by derivatve works.
+Please note, the name "Scroll Reverser", the application icon and the menu bar icon are trademarks and may not be used by derivatve works.
 
 ## Building
 
