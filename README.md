@@ -18,13 +18,13 @@ To uninstall, simply quit the app and drag `Scroll Reverser.app` to trash.
 
 ## Translations
 
-Translation updates in your language are welcome either by pull request or using [CrowdIn](https://crowdin.com/project/pilotmoon-apps) platform.
+Translation contributions in your language are welcome either by pull request or using the [CrowdIn](https://crowdin.com/project/pilotmoon-apps) platform.
 
 ## License
 
 Published under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
-Please note, the name "Scroll Reverser", the application icon and the menu bar icon are trademarks and may not be used by derivatve works.
+Please note, the name "Scroll Reverser" and the application icon are trademarks and may not be used by derivatve works (except as required to describe the origin of the work).
 
 ## Building
 
