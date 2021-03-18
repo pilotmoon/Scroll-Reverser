@@ -30,6 +30,8 @@ Please note, the name "Scroll Reverser" and the application icon are trademarks 
 
 After cloning this repo, you'll need to `git submodule update --init` to check out the BuildScripts submodule.
 
+You will get errors in the build script phase. That is because you need to replace out the part of the script which specifies my code signing key with the name of your own key. (If you don't have a code signing key, you'll need to Google that...)
+
 ## Notes on the code
 
 The master branch targets 10.12 and higher.
