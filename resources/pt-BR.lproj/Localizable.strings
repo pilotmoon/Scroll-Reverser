@@ -4,7 +4,7 @@
 "%1$@ permission: %2$@" = "%1$@ permission: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "Acessibilidade";
 
 /* Preferences pane for `App` settings */
 "App" = "App";
@@ -22,10 +22,10 @@
 "For settings, click the icon in the menu bar" = "Para os ajustes, clique no ícone da barra de menus";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "Ícone ocultado";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "Incluir versões beta";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Input Monitoring";
@@ -40,7 +40,7 @@
 "Open %1$@ preferences" = "Open %1$@ preferences";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "Permissões";
 
 /* No comment provided by engineer. */
 "Preferences" = "Preferências";
@@ -100,7 +100,7 @@
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔ obrigatório";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
+"✅ granted" = "✅ concedido";

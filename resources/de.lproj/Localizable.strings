@@ -1,10 +1,10 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
 /* for example: `Accessibility permission: ⛔️ required` */
 
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "%1$@ Berechtigung: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "Bedienungshilfen";
 
 /* Preferences pane for `App` settings */
 "App" = "Programm";
@@ -16,40 +16,40 @@
 "Check for updates" = "Auf neue Programmversion prüfen";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "Aktiviere %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Das Icon in der Menüleiste führt zu den Einstellungen.";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "Symbol verborgen";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "Beta-Versionen einbeziehen";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "Input-Monitoring";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "Große";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+"Open %1$@ preferences" = "%1$@ Einstellungen öffnen";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "Berechtigungen";
 
 /* No comment provided by engineer. */
 "Preferences" = "Einstellungen";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "%1$@ beenden";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
+"Request %1$@ permission" = "%1$@ Berechtigung anfordern";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Horizontal umkehren";
@@ -67,16 +67,16 @@
 "Scroll Reverser is now running!" = "Scroll Reverser läuft!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser benötigt Zugriffsrechte um Ihr Scrollen zu ändern.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser benötigt die Berechtigungen für das Input Monitoring, um festzustellen, ob die Finger das Trackpad berühren.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Scrollrad";
 
 /* Preferences pane for `Scrolling` serttings */
-"Scrolling" = "Scrolling";
+"Scrolling" = "Scrollen";
 
 /* Prefs section title */
 "Scrolling Axes" = "Scrollrichtungen";
@@ -88,19 +88,19 @@
 "Show in menu bar" = "Scroll Reverser in der Menüleiste anzeigen";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "Kleine";
 
 /* Prefs check box */
 "Start at login" = "Scroll Reverser beim Anmelden starten";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Schrittweite";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Das %1$@ -Symbol wurde aus der Menüleiste entfernt. Um es später wiederherzustellen, starten Sie %1$@ erneut vom Finder aus.";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔ erforderlich";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
+"✅ granted" = "✅ gewährt";

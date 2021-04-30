@@ -1,13 +1,13 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
 /* for example: `Accessibility permission: ⛔️ required` */
 
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "Permiso de %1$@ %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "Accesibilidad";
 
 /* Preferences pane for `App` settings */
-"App" = "App";
+"App" = "Aplicación";
 
 /* Check box next to the 'Check for updates' button */
 "Automatically" = "Automáticamente";
@@ -16,40 +16,40 @@
 "Check for updates" = "Buscar actualizaciones";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "Habilitar %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Para los ajustes, haga click en el icono de la barra de menú";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "Ícono oculto";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "Incluir versiones beta";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "Monitoreo de entrada";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "Grande";
 
 /* No comment provided by engineer. */
-"OK" = "OK";
+"OK" = "Aceptar";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+"Open %1$@ preferences" = "Abrir preferencias de %1$@";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "Permisos";
 
 /* No comment provided by engineer. */
 "Preferences" = "Ajustes";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "Cerrar %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
+"Request %1$@ permission" = "Solicitar permiso de %1$@";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Invertir horizontalmente";
@@ -67,13 +67,13 @@
 "Scroll Reverser is now running!" = "¡Scroll Reverser está en ejecución!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser necesita permiso de accesibilidad para modificar tu desplazamiento.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser necesita permiso de monitoreo de entradas para detectar si tus dedos están tocando tu trackpad.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Rueda de desplazamiento";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Desplazamiento";
@@ -88,19 +88,19 @@
 "Show in menu bar" = "Mostrar en la barra de menú";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "Pequeño";
 
 /* Prefs check box */
 "Start at login" = "Arrancar en el login";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Tamaño del paso";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "El icono %1$@ ha sido eliminado de la barra de menú. Para restaurarlo en cualquier momento, vuelve a iniciar %1$@ desde el Finder.";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔ necesario";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
+"✅ granted" = "✅ concedido";
