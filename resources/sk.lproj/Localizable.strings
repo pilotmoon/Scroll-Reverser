@@ -7,19 +7,19 @@
 "Accessibility" = "Accessibility";
 
 /* Preferences pane for `App` settings */
-"App" = "Program";
+"App" = "Aplikácia";
 
 /* Check box next to the 'Check for updates' button */
-"Automatically" = "Automatisk";
+"Automatically" = "Automaticky";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Leta efter uppdateringar";
+"Check for updates" = "Skontrolovať aktualizácie";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Enable %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Klicka ikonen i menyraden för inställningar";
+"For settings, click the icon in the menu bar" = "Kliknite na ikonu v menu lište pre nastavenia";
 
 /* Alert box title */
 "Icon Hidden" = "Icon Hidden";
@@ -43,7 +43,7 @@
 "Permissions" = "Permissions";
 
 /* No comment provided by engineer. */
-"Preferences" = "Inställningar";
+"Preferences" = "Nastavenia";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Quit %1$@";
@@ -52,19 +52,19 @@
 "Request %1$@ permission" = "Request %1$@ permission";
 
 /* Prefs check box */
-"Reverse Horizontal" = "Invertera horisontellt";
+"Reverse Horizontal" = "Otočiť horizontálne";
 
 /* Prefs check box */
-"Reverse Mouse" = "Invertera mus";
+"Reverse Mouse" = "Otočiť myš";
 
 /* Prefs check box */
-"Reverse Trackpad" = "Invertera styrplatta";
+"Reverse Trackpad" = "Otočiť trackpad";
 
 /* Prefs check box */
-"Reverse Vertical" = "Reverser vertikalt";
+"Reverse Vertical" = "Otočiť vertikálne";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser körs nu!";
+"Scroll Reverser is now running!" = "Scroll Reverser je teraz spustený!";
 
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
@@ -76,22 +76,22 @@
 "Scroll Wheel" = "Scroll Wheel";
 
 /* Preferences pane for `Scrolling` serttings */
-"Scrolling" = "Rullning";
+"Scrolling" = "Rolovanie";
 
 /* Prefs section title */
-"Scrolling Axes" = "Rullningsaxlar";
+"Scrolling Axes" = "Osi rolovania";
 
 /* Prefs section title */
-"Scrolling Devices" = "Rullnings enheter";
+"Scrolling Devices" = "Rolovacie zariadenia";
 
 /* Prefs check box */
-"Show in menu bar" = "Visa i menyraden";
+"Show in menu bar" = "Ukázať v menu lište";
 
 /* Small step size */
 "Small" = "Small";
 
 /* Prefs check box */
-"Start at login" = "Starta vid inloggning";
+"Start at login" = "Spustiť pri štarte";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Step size";
