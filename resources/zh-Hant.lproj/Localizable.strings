@@ -43,7 +43,7 @@
 "Permissions" = "取用授權";
 
 /* No comment provided by engineer. */
-"Preferences" = "設定";
+"Preferences" = "偏好設定";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "結束%1$@";
@@ -58,13 +58,13 @@
 "Reverse Mouse" = "滑鼠";
 
 /* Prefs check box */
-"Reverse Trackpad" = "觸控板";
+"Reverse Trackpad" = "觸控軌跡板";
 
 /* Prefs check box */
 "Reverse Vertical" = "反轉垂直捲動 (Reverse Vertical)";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser 正在運行";
+"Scroll Reverser is now running!" = "Scroll Reverser 正在執行";
 
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser 須取得「輔助使用」的授權，方能變更您的滾輪設定。";
@@ -82,10 +82,10 @@
 "Scrolling Axes" = "捲動方向";
 
 /* Prefs section title */
-"Scrolling Devices" = "接受的裝置";
+"Scrolling Devices" = "套用裝置";
 
 /* Prefs check box */
-"Show in menu bar" = "顯示圖示在工具列";
+"Show in menu bar" = "於選單列顯示圖示";
 
 /* Small step size */
 "Small" = "較小";
