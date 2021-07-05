@@ -1,10 +1,10 @@
 /* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
 /* for example: `Accessibility permission: ⛔️ required` */
 
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "Povolenie pre %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "Prístupnosť";
 
 /* Preferences pane for `App` settings */
 "App" = "Aplikácia";
@@ -16,40 +16,40 @@
 "Check for updates" = "Skontrolovať aktualizácie";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "Aktivovať %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Kliknite na ikonu v menu lište pre nastavenia";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "Ikona je skrytá";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "Zahrnúť beta verzie";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "Monitorovanie Vstupu";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "Veľká";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+"Open %1$@ preferences" = "Otvoriť nastavenia pre %1$@";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "Povolenia";
 
 /* No comment provided by engineer. */
 "Preferences" = "Nastavenia";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "Ukončiť %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
+"Request %1$@ permission" = "Požiadať o povolenie pre %1$@";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Otočiť horizontálne";
@@ -67,13 +67,13 @@
 "Scroll Reverser is now running!" = "Scroll Reverser je teraz spustený!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser potrebuje povolenie Prístupnosti na úpravu rolovania.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser potrebuje povolenie na Monitorovanie Vstupu na detegovanie, či sa Vaše prsty dotýkaju trackpadu.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Rolovacie Koliesko";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Rolovanie";
@@ -88,19 +88,19 @@
 "Show in menu bar" = "Ukázať v menu lište";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "Malá";
 
 /* Prefs check box */
 "Start at login" = "Spustiť pri štarte";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Veľkosť rolovania";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Ikona appky %1$@ bola odstránená z menu lišty. Pre jej obnovenie, spustite %1$@ znovu z Findera.";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔️ vyžadované";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
+"✅ granted" = "✅ udelené";

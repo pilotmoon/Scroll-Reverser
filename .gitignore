@@ -4,3 +4,6 @@ xcuserdata/
 # build script logfiles
 *.log
 
+# mac stuff
+.DS_Store
+
