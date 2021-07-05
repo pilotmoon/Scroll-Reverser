@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1240"
+   LastUpgradeVersion = "1250"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "rm ${PROJECT_DIR}/*.log&#10;exec &gt; ${PROJECT_DIR}/prebuild.log 2&gt;&amp;1&#10;echo &quot;pre-build script started&quot;&#10;${PROJECT_DIR}/script/prebuild&#10;"
+               scriptText = "${PROJECT_DIR}/BuildScripts/action prebuild&#10;"
                shellToInvoke = "/bin/zsh">
                <EnvironmentBuildable>
                   <BuildableReference
@@ -29,7 +29,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "rm ${PROJECT_DIR}/*.log&#10;exec &gt; ${PROJECT_DIR}/prebuild.log 2&gt;&amp;1&#10;echo &quot;post-build script started&quot;&#10;${PROJECT_DIR}/script/postbuild&#10;&#10;"
+               scriptText = "${PROJECT_DIR}/BuildScripts/action postbuild&#10;&#10;"
                shellToInvoke = "/bin/zsh">
                <EnvironmentBuildable>
                   <BuildableReference
@@ -126,7 +126,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "rm ${PROJECT_DIR}/*.log&#10;exec &gt; ${PROJECT_DIR}/prearchive.log 2&gt;&amp;1&#10;echo &quot;pre-archive script started&quot;&#10;${PROJECT_DIR}/script/prebuild&#10;"
+               scriptText = "${PROJECT_DIR}/BuildScripts/action prearchive&#10;"
                shellToInvoke = "/bin/zsh">
                <EnvironmentBuildable>
                   <BuildableReference
@@ -145,7 +145,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "exec &gt; ${PROJECT_DIR}/postarchive.log 2&gt;&amp;1&#10;echo &quot;post-archive script started&quot;&#10;${PROJECT_DIR}/script/postbuild&#10;${PROJECT_DIR}/script/postarchive&#10;"
+               scriptText = "${PROJECT_DIR}/BuildScripts/action postarchive&#10;"
                shellToInvoke = "/bin/zsh">
                <EnvironmentBuildable>
                   <BuildableReference

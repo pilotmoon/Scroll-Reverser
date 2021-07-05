@@ -17,15 +17,15 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(PLT_SR_VERSION_STRING)</string>
+	<string>$(BUILDSCRIPTS_VERSION_STRING)</string>
 	<key>CFBundleVersion</key>
-	<string>$(PLT_SR_VERSION_NUM)</string>
+	<string>$(BUILDSCRIPTS_VERSION_NUM)</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSBackgroundOnly</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
-	<string>$(PLT_SR_MINIMUM_SYSTEM_VERSION)</string>
+	<string>$(BUILDSCRIPTS_MINIMUM_SYSTEM_VERSION)</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

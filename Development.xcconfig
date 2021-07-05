@@ -12,5 +12,5 @@
 PRODUCT_NAME = Scroll Reverser (Dev)
 
 // custom settings
-PLT_SR_ICON = // no icon for dev build
+BUILDSCRIPTS_ICON = // no icon for dev build
 

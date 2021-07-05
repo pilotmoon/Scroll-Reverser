@@ -12,4 +12,4 @@
 PRODUCT_NAME = Scroll Reverser
 
 // custom settings
-PLT_SR_ICON = ScrollReverser
+BUILDSCRIPTS_ICON = ScrollReverser

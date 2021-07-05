@@ -9,7 +9,7 @@
 #import <ServiceManagement/ServiceManagement.h>
 
 static NSString *const kPrefsStartAtLogin=@"StartAtLogin";
-static NSString *const kLauncherBundleID=PLT_SR_LAUNCHER_BUNDLE_ID;
+static NSString *const kLauncherBundleID=BUILDSCRIPTS_LAUNCHER_BUNDLE_ID;
 
 @implementation LauncherController
 

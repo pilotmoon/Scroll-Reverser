@@ -1,9 +1,0 @@
-#!/bin/zsh
-set -eu; here=${0:a:h}; root=$here/..; BuildScripts=$root/BuildScripts; source $BuildScripts/common; sayhi $0
-memo_vars vars_archive # save shell vars to temp file to aid debugging script
-pushd $PROJECT_DIR
-
-# nothing
-
-popd
-saybye $0
