@@ -22,7 +22,7 @@
 "For settings, click the icon in the menu bar" = "להגדרות, לחץ על הסמל בשורת התפריטים";
 
 /* Alert box title */
-"Icon Hidden" = "אייקון מוסתר";
+"Icon Hidden" = "סמל מוסתר";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "כלול גרסאות בטא";
@@ -31,7 +31,7 @@
 "Input Monitoring" = "ניטור קלט";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "גדול";
 
 /* No comment provided by engineer. */
 "OK" = "אישור";
@@ -73,7 +73,7 @@
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser צריך הרשאת ״ניטור קלט״ כדי לזהות נגיעה של האצבעות במשטח גלילה.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "גלגלת עכבר";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "גלילה";
@@ -88,13 +88,13 @@
 "Show in menu bar" = "הצגה בשורת המצב";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "קטן";
 
 /* Prefs check box */
 "Start at login" = "הפעל בעת ההתחברות";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "מהירות הגלילה";
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "האייקון של %1$@ הוסר משורת התפריטים, כדי להחזיר אותו בכל זמן יש להריץ את %1$@ מה-Finder.";
