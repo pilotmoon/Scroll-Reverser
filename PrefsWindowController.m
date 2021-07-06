@@ -71,6 +71,7 @@ static const double _multiplier=25.0;
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    self.width=400; // minimum width to avoid toolbar collapse
     
     NSArray *const toolbarDefinition=@[kPanelScrolling, kPanelApp];
     NSDictionary *const panelsDefinition=@{kPanelScrolling: @{kKeyView: self.scrollingSettings,
