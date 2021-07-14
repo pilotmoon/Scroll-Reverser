@@ -31,7 +31,7 @@
 "Input Monitoring" = "Мониторинг ввода";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "Крупный";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -73,7 +73,7 @@
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser требуется доступ к Мониторингу ввода, чтобы распознавать пальцы на трекпаде.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Колесо прокрутки";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Прокрутка";
@@ -88,16 +88,16 @@
 "Show in menu bar" = "Показать в строке меню";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "Маленький";
 
 /* Prefs check box */
 "Start at login" = "Автозапуск";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Шаг";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Иконка %1$@ была удалена из строки меню. Чтобы восстановить её в любое время, запустите %1$@ снова из Finder.";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ требуется доступ";

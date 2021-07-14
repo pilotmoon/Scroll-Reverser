@@ -1,5 +1,6 @@
-/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
+/* %1$@ permission: %2$@
+Please note %1$@ is a variable and must be preserved in the translated text.
+for example: `Accessibility permission: ⛔️ required` */
 
 "%1$@ permission: %2$@" = "Доступ до %1$@: %2$@";
 
@@ -31,12 +32,14 @@
 "Input Monitoring" = "Моніторинг введення";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "Великий";
 
 /* No comment provided by engineer. */
 "OK" = "ОК";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Open %1$@ preferences
+Please note %1$@ is a variable and must remain in the translated text.
+Example: "Open Input Monitoring preferences" */
 "Open %1$@ preferences" = "Відкрити налаштування: %1$@";
 
 /* Section title */
@@ -48,7 +51,8 @@
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Закрити %1$@";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Request %1$@ permission
+Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
 "Request %1$@ permission" = "Запит доступу до %1$@";
 
 /* Prefs check box */
@@ -73,7 +77,7 @@
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser потрібен доступ до Моніторингу введення, щоб розпізнавати пальці на трекпеді.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Колесо прокрутки";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Прокрутка";
@@ -88,13 +92,13 @@
 "Show in menu bar" = "Показати у смузі меню";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "Малий";
 
 /* Prefs check box */
 "Start at login" = "Автозапуск";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Розмір кроку";
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Іконку %1$@ приховано зі смуги меню. Щоб відновити його в будь-який час, знову запустіть %1$@ з Finder.";

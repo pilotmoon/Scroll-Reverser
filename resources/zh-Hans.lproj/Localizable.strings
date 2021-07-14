@@ -1,10 +1,11 @@
-/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
+/* %1$@ permission: %2$@
+Please note %1$@ is a variable and must be preserved in the translated text.
+for example: `Accessibility permission: ⛔️ required` */
 
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "%1$@ 权限： %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "可访问性";
 
 /* Preferences pane for `App` settings */
 "App" = "软件";
@@ -16,40 +17,43 @@
 "Check for updates" = "检查更新";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "启用 %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "请点击菜单栏的图标来修改设置";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "图标已隐藏";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "允许测试版更新";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "输入监测";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "较大";
 
 /* No comment provided by engineer. */
 "OK" = "确定";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+/* Open %1$@ preferences
+Please note %1$@ is a variable and must remain in the translated text.
+Example: "Open Input Monitoring preferences" */
+"Open %1$@ preferences" = "打开%1$@设置";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "权限设置";
 
 /* No comment provided by engineer. */
 "Preferences" = "设置";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "退出 %1$@";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
+/* Request %1$@ permission
+Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+"Request %1$@ permission" = "请求 %1$@ 权限";
 
 /* Prefs check box */
 "Reverse Horizontal" = "翻转水平滚动 (Reverse Horizontal)";
@@ -67,13 +71,13 @@
 "Scroll Reverser is now running!" = "Scroll Reverser 已经在运行";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser 需要可访问性权限来修改滚动程序。";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser 需要输入监控权限以检测手指是否触碰到Trackpad。";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "滚动滚轮";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "滚动";
@@ -85,22 +89,22 @@
 "Scrolling Devices" = "输入设备";
 
 /* Prefs check box */
-"Show in menu bar" = "显示菜单栏图标";
+"Show in menu bar" = "在菜单栏中显示";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "较小";
 
 /* Prefs check box */
-"Start at login" = "用户登录时启动";
+"Start at login" = "登录时启动";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "单次长度";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@ 图标已从菜单栏中移除。要随时还原它，请从Finder再次启动 %1$@。";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔ 未授权";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
+"✅ granted" = "✅  已允许";

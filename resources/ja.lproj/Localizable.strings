@@ -1,10 +1,11 @@
-/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
+/* %1$@ permission: %2$@
+Please note %1$@ is a variable and must be preserved in the translated text.
+for example: `Accessibility permission: ⛔️ required` */
 
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "%1$@ の許可: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "アクセシビリティ";
 
 /* Preferences pane for `App` settings */
 "App" = "アプリ";
@@ -16,40 +17,43 @@
 "Check for updates" = "更新を確認";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "%1$@を動作させる";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "設定はメニューバーにあるアイコンをクリックして下さい";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "アイコンの非表示";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "ベータ版を含む";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "入力監視";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "大きい";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+/* Open %1$@ preferences
+Please note %1$@ is a variable and must remain in the translated text.
+Example: "Open Input Monitoring preferences" */
+"Open %1$@ preferences" = "%1$@ の環境設定を開く";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "権限";
 
 /* No comment provided by engineer. */
 "Preferences" = "設定";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "%1$@を終了する";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
+/* Request %1$@ permission
+Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+"Request %1$@ permission" = "%1$@ の許可をリクエストする";
 
 /* Prefs check box */
 "Reverse Horizontal" = "横方向を逆にする";
@@ -67,13 +71,13 @@
 "Scroll Reverser is now running!" = "Scroll Reverser は現在動作中です";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverserは、スクロールの変更にアクセシビリティの許可が必要です。";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverserでは、指がトラックパッドに触れているかどうかを検出するために、入力監視の許可が必要です。";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "ホイールスクロール";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "スクロール";
@@ -88,19 +92,20 @@
 "Show in menu bar" = "メニューバーに表示";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "小さい";
 
 /* Prefs check box */
 "Start at login" = "ログイン時に開始";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "ステップサイズ";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@のアイコンは、メニューバーから削除されました。
+リストアするには、Finderから%1$@を再度起動してください。";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "要求";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
+"✅ granted" = "許可する";

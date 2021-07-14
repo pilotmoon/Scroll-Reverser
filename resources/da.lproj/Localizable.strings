@@ -1,26 +1,25 @@
-/* %1$@ permission: %2$@
-Please note %1$@ is a variable and must be preserved in the translated text.
-for example: `Accessibility permission: ⛔️ required` */
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
+/* for example: `Accessibility permission: ⛔️ required` */
 
 "%1$@ permission: %2$@" = "%1$@ permission: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Toegankelijkheid";
+"Accessibility" = "Accessibility";
 
 /* Preferences pane for `App` settings */
 "App" = "App";
 
 /* Check box next to the 'Check for updates' button */
-"Automatically" = "Automatisch";
+"Automatically" = "Automatically";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Controleren op updates";
+"Check for updates" = "Check for updates";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Enable %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Voor voorkeuren, klik op het icoon in de menubalk";
+"For settings, click the icon in the menu bar" = "For settings, click the icon in the menu bar";
 
 /* Alert box title */
 "Icon Hidden" = "Icon Hidden";
@@ -32,43 +31,40 @@ for example: `Accessibility permission: ⛔️ required` */
 "Input Monitoring" = "Input Monitoring";
 
 /* Large step size */
-"Large" = "Groot";
+"Large" = "Large";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* Open %1$@ preferences
-Please note %1$@ is a variable and must remain in the translated text.
-Example: "Open Input Monitoring preferences" */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Open %1$@ preferences" = "Open %1$@ preferences";
 
 /* Section title */
-"Permissions" = "Toestemmingen";
+"Permissions" = "Permissions";
 
 /* No comment provided by engineer. */
-"Preferences" = "Voorkeuren";
+"Preferences" = "Preferences";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "%1$@ afsluiten";
+"Quit %1$@" = "Quit %1$@";
 
-/* Request %1$@ permission
-Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Request %1$@ permission" = "Request %1$@ permission";
 
 /* Prefs check box */
-"Reverse Horizontal" = "Horizontaal Omkeren";
+"Reverse Horizontal" = "Reverse Horizontal";
 
 /* Prefs check box */
-"Reverse Mouse" = "Muis Omkeren";
+"Reverse Mouse" = "Reverse Mouse";
 
 /* Prefs check box */
-"Reverse Trackpad" = "Trackpad Omkeren";
+"Reverse Trackpad" = "Reverse Trackpad";
 
 /* Prefs check box */
-"Reverse Vertical" = "Verticaal Omkeren";
+"Reverse Vertical" = "Reverse Vertical";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser is nu geactiveerd!";
+"Scroll Reverser is now running!" = "Scroll Reverser is now running!";
 
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
@@ -80,22 +76,22 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Scroll Wheel" = "Scroll Wheel";
 
 /* Preferences pane for `Scrolling` serttings */
-"Scrolling" = "Scrollen";
+"Scrolling" = "Scrolling";
 
 /* Prefs section title */
-"Scrolling Axes" = "Scrolrichtingen";
+"Scrolling Axes" = "Scrolling Axes";
 
 /* Prefs section title */
-"Scrolling Devices" = "Scrolapparaten";
+"Scrolling Devices" = "Scrolling Devices";
 
 /* Prefs check box */
-"Show in menu bar" = "Weergeven in menubalk";
+"Show in menu bar" = "Show in menu bar";
 
 /* Small step size */
-"Small" = "Klein";
+"Small" = "Small";
 
 /* Prefs check box */
-"Start at login" = "Starten na inloggen";
+"Start at login" = "Start at login";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Step size";
@@ -104,7 +100,7 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔ vereist";
+"⛔️ required" = "⛔️ required";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ toegestaan";
+"✅ granted" = "✅ granted";

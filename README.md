@@ -18,7 +18,7 @@ To uninstall, simply quit the app and drag `Scroll Reverser.app` to trash.
 
 ## Translations
 
-Translation contributions in your language are welcome either by pull request or using the [CrowdIn](https://crowdin.com/project/pilotmoon-apps) platform.
+Translation contributions in your language are welcome. Please submit transmations using the [CrowdIn](https://crowdin.com/project/pilotmoon-apps) platform. If you would like to open a new language, just send me an email.
 
 ## License
 

@@ -118,6 +118,7 @@
 		0183EE711A37947E00A260E0 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		0183EE771A3794F800A260E0 /* ScrollReverser.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScrollReverser.sdef; sourceTree = "<group>"; };
 		0187E6D225925CED006D0130 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01893897269F23A800DD6611 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = resources/da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		019FB05814EB1A9100FA225A /* WelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeWindowController.h; sourceTree = "<group>"; };
 		019FB05914EB1A9100FA225A /* WelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeWindowController.m; sourceTree = "<group>"; };
 		01A1ED6B1A3A3E1900CFC6C5 /* ja */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ja; path = resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -418,6 +419,7 @@
 				"pt-BR",
 				ne,
 				he,
+				da,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -554,6 +556,7 @@
 				01BC496525CD3B1B00EF8CC5 /* pt-BR */,
 				01BC496625CD3B6000EF8CC5 /* ne */,
 				01261C8C25DAD4C300927EA4 /* he */,
+				01893897269F23A800DD6611 /* da */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

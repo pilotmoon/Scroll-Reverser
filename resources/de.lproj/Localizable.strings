@@ -1,5 +1,6 @@
-/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
+/* %1$@ permission: %2$@
+Please note %1$@ is a variable and must be preserved in the translated text.
+for example: `Accessibility permission: ⛔️ required` */
 
 "%1$@ permission: %2$@" = "%1$@ Berechtigung: %2$@";
 
@@ -36,7 +37,9 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Open %1$@ preferences
+Please note %1$@ is a variable and must remain in the translated text.
+Example: "Open Input Monitoring preferences" */
 "Open %1$@ preferences" = "%1$@ Einstellungen öffnen";
 
 /* Section title */
@@ -48,7 +51,8 @@
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "%1$@ beenden";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Request %1$@ permission
+Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
 "Request %1$@ permission" = "%1$@ Berechtigung anfordern";
 
 /* Prefs check box */
@@ -85,19 +89,19 @@
 "Scrolling Devices" = "Geräte";
 
 /* Prefs check box */
-"Show in menu bar" = "Scroll Reverser in der Menüleiste anzeigen";
+"Show in menu bar" = "In der Menüleiste anzeigen";
 
 /* Small step size */
-"Small" = "Kleine";
+"Small" = "klein";
 
 /* Prefs check box */
-"Start at login" = "Scroll Reverser beim Anmelden starten";
+"Start at login" = "Beim Anmelden starten";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Schrittweite";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Das %1$@ -Symbol wurde aus der Menüleiste entfernt. Um es später wiederherzustellen, starten Sie %1$@ erneut vom Finder aus.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Das %1$@-Symbol wurde aus der Menüleiste entfernt. Um es später wiederherzustellen, starten Sie %1$@ erneut vom Finder aus.";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔ erforderlich";

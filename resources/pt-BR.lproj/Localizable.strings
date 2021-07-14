@@ -1,7 +1,8 @@
-/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
+/* %1$@ permission: %2$@
+Please note %1$@ is a variable and must be preserved in the translated text.
+for example: `Accessibility permission: ⛔️ required` */
 
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "Permissão de %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Acessibilidade";
@@ -16,7 +17,7 @@
 "Check for updates" = "Procurar por atualizações";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "Habilitar %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Para os ajustes, clique no ícone da barra de menus";
@@ -28,16 +29,18 @@
 "Include beta versions" = "Incluir versões beta";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "Monitoração de Entrada";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "Grande";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+/* Open %1$@ preferences
+Please note %1$@ is a variable and must remain in the translated text.
+Example: "Open Input Monitoring preferences" */
+"Open %1$@ preferences" = "Abrir preferências de %1$@";
 
 /* Section title */
 "Permissions" = "Permissões";
@@ -46,10 +49,11 @@
 "Preferences" = "Preferências";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "Encerrar o %1$@";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
+/* Request %1$@ permission
+Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+"Request %1$@ permission" = "Solicitar permissão de %1$@";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Reverter Horizontalmente";
@@ -67,13 +71,13 @@
 "Scroll Reverser is now running!" = "O Scroll Reverser está rodando!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser precisa de permissão de Acessibilidade para modificar o scroll.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser precisa da permissão de Monitoração de Entrada para detectar se seus dedos estão tocando o trackpad.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Roda de Scroll";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Rolando";
@@ -88,16 +92,16 @@
 "Show in menu bar" = "Mostrar na barra de menus";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "Pequeno";
 
 /* Prefs check box */
 "Start at login" = "Iniciar no login";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Tamanho do passo";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "O ícone do %1$@ foi removido da barra de menu. Para restaurá-lo a qualquer momento, execute %1$@ novamente.";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔ obrigatório";
