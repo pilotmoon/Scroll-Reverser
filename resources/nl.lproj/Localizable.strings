@@ -2,7 +2,7 @@
 Please note %1$@ is a variable and must be preserved in the translated text.
 for example: `Accessibility permission: ⛔️ required` */
 
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "%1$@ rechten: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Toegankelijkheid";
@@ -17,19 +17,19 @@ for example: `Accessibility permission: ⛔️ required` */
 "Check for updates" = "Controleren op updates";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "Schakel %1$@ in";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Voor voorkeuren, klik op het icoon in de menubalk";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "Icoon verborgen";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "Neem bèta-versies op";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "Invoer monitoren";
 
 /* Large step size */
 "Large" = "Groot";
@@ -40,7 +40,7 @@ for example: `Accessibility permission: ⛔️ required` */
 /* Open %1$@ preferences
 Please note %1$@ is a variable and must remain in the translated text.
 Example: "Open Input Monitoring preferences" */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+"Open %1$@ preferences" = "Open %1$@ voorkeuren";
 
 /* Section title */
 "Permissions" = "Toestemmingen";
@@ -53,7 +53,7 @@ Example: "Open Input Monitoring preferences" */
 
 /* Request %1$@ permission
 Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
-"Request %1$@ permission" = "Request %1$@ permission";
+"Request %1$@ permission" = "Vraag %1$@ rechten aan";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Horizontaal Omkeren";
@@ -71,13 +71,13 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Scroll Reverser is now running!" = "Scroll Reverser is nu geactiveerd!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser heeft toegangsrechten nodig om je scrolling aan te passen.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser heeft invoermonitoring rechten nodig om te detecteren of je vingers het trackpad aanraken.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Muiswiel";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Scrollen";
@@ -98,10 +98,10 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Start at login" = "Starten na inloggen";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Stapgrootte";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Het %1$@ icoon werd verwijdert uit de menubalk. Om het te herstellen op elk gewenst moment, start %1$@ opnieuw op vanuit Finder.";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔ vereist";
