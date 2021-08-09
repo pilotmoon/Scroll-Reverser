@@ -1,5 +1,6 @@
-/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
+/* %1$@ permission: %2$@
+Please note %1$@ is a variable and must be preserved in the translated text.
+for example: `Accessibility permission: ⛔️ required` */
 
 "%1$@ permission: %2$@" = "%1$@को अनुमति: %2$@";
 
@@ -10,33 +11,35 @@
 "App" = "एप";
 
 /* Check box next to the 'Check for updates' button */
-"Automatically" = "स्वचालित";
+"Automatically" = "स्वचालित रूपमा";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "अपडेटको जाँच तरिका";
+"Check for updates" = "अपडेटहरू खोज्नुहोस्";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "%1$@ सुचारू गर्नुहोस";
+"Enable %1$@" = "%1$@ सुचारू गर्नुहोस्";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "सेटिङ्गका लागि मेन्यु बारको आइकनमा थिच्नुहोस";
+"For settings, click the icon in the menu bar" = "सेटिङ्गका लागि मेन्यु बारको एप-चिह्नमा थिच्नुहोस्";
 
 /* Alert box title */
-"Icon Hidden" = "आइकन लुकेको छ";
+"Icon Hidden" = "एप-चिह्न लुकेको छ";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "बेटा भर्जन पनि प्रयोग गर्नुहोस";
+"Include beta versions" = "बेटा संस्करण समावेश गर्नुहोस्";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "इनपुट मनिटरिङ";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "ठूलो";
 
 /* No comment provided by engineer. */
 "OK" = "हुन्छ";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Open %1$@ preferences
+Please note %1$@ is a variable and must remain in the translated text.
+Example: "Open Input Monitoring preferences" */
 "Open %1$@ preferences" = "%1$@ प्राथमिकता खोल्नुहोस्";
 
 /* Section title */
@@ -46,22 +49,23 @@
 "Preferences" = "प्राथमिकताहरू";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "%1$@ बन्द गर्नुहोस";
+"Quit %1$@" = "%1$@ बन्द गर्नुहोस्";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "%1$@को अनुमति प्रदान गर्नुहोस";
-
-/* Prefs check box */
-"Reverse Horizontal" = "दायाँ-बाँया उल्टो गर्नुहोस";
+/* Request %1$@ permission
+Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+"Request %1$@ permission" = "%1$@को अनुमति प्रदान गर्नुहोस्";
 
 /* Prefs check box */
-"Reverse Mouse" = "माउस उल्टो गर्नुहोस";
+"Reverse Horizontal" = "दायाँ-बाँया उल्टो गर्नुहोस्";
 
 /* Prefs check box */
-"Reverse Trackpad" = "ट्रयाकप्याड उल्टो गर्नुहोस";
+"Reverse Mouse" = "माउस उल्टो गर्नुहोस्";
 
 /* Prefs check box */
-"Reverse Vertical" = "तल-माथि उल्टो गर्नुहोस";
+"Reverse Trackpad" = "ट्रयाकप्याड उल्टो गर्नुहोस्";
+
+/* Prefs check box */
+"Reverse Vertical" = "तल-माथि उल्टो गर्नुहोस्";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "स्क्रोल रिभर्सर अब चलिरहेको छ!";
@@ -73,7 +77,7 @@
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "स्क्रोल रिभर्सरलाई हजुरको औँलाले ट्रयाकप्याड छोएको छ भन्ने थाहा पाउन इनपुट मनिटरिङको अनुमति चाहिन्छ।";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "स्क्रोल चक्र";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "स्क्रोलिङ";
@@ -88,13 +92,13 @@
 "Show in menu bar" = "मेन्यु बारमा देखाउनुहोस्";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "सानो";
 
 /* Prefs check box */
 "Start at login" = "लग-इनमा सुचारू गर्नुहोस्";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "स्क्रोलको आकार";
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@ आइकन मेन्यु बारबाट हटाइएको छ। कुनै पनि बेला फेरि त्यहाँ राख्नको लागि %1$@ फाइन्डरबाट खोल्नुहोस्।";
