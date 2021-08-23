@@ -149,6 +149,8 @@
 		01E6A6C61A3EF6E600C1FB2A /* el */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = el; path = resources/el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01E6A6CE1A42E6BF00C1FB2A /* ScrollReverser.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = ScrollReverser.iconset; path = Graphics/ScrollReverser.iconset; sourceTree = "<group>"; };
 		01E6A6D01A42F3E200C1FB2A /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01E6BD5626D3981A00A70D3D /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = resources/vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01E6BD5726D3985500A70D3D /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = resources/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01EB78C21324D574005390BD /* MouseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseTap.m; sourceTree = "<group>"; };
 		01EB78C31324D574005390BD /* MouseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseTap.h; sourceTree = "<group>"; };
 		01ED37DD1A375EB9001B3094 /* LinkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkView.h; sourceTree = "<group>"; };
@@ -420,6 +422,8 @@
 				ne,
 				he,
 				da,
+				vi,
+				cs,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -557,6 +561,8 @@
 				01BC496625CD3B6000EF8CC5 /* ne */,
 				01261C8C25DAD4C300927EA4 /* he */,
 				01893897269F23A800DD6611 /* da */,
+				01E6BD5626D3981A00A70D3D /* vi */,
+				01E6BD5726D3985500A70D3D /* cs */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -56,7 +56,7 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Request %1$@ permission" = "%1$@को अनुमति प्रदान गर्नुहोस्";
 
 /* Prefs check box */
-"Reverse Horizontal" = "दायाँ-बाँया उल्टो गर्नुहोस्";
+"Reverse Horizontal" = "तेर्सो दिशा उल्टो गर्नुहोस्";
 
 /* Prefs check box */
 "Reverse Mouse" = "माउस उल्टो गर्नुहोस्";

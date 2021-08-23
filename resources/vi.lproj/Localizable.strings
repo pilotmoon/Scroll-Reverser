@@ -1,0 +1,110 @@
+/* %1$@ permission: %2$@
+Please note %1$@ is a variable and must be preserved in the translated text.
+for example: `Accessibility permission: ⛔️ required` */
+
+"%1$@ permission: %2$@" = "Quyền %1$@: %2$@";
+
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "Truy cập";
+
+/* Preferences pane for `App` settings */
+"App" = "Ứng dụng";
+
+/* Check box next to the 'Check for updates' button */
+"Automatically" = "Tự động";
+
+/* Button, when pressed, checks for updates now */
+"Check for updates" = "Kiểm tra bản cập nhật";
+
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "Bật %1$@";
+
+/* No comment provided by engineer. */
+"For settings, click the icon in the menu bar" = "Để cài đặt, hãy nhấn vào biểu tượng trên thanh công cụ";
+
+/* Alert box title */
+"Icon Hidden" = "Đã giấu biểu tượng";
+
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "Bao gồm các phiên bản thử nghiệm";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "Quản lý nhập liệu";
+
+/* Large step size */
+"Large" = "Lớn";
+
+/* No comment provided by engineer. */
+"OK" = "Đồng ý";
+
+/* Open %1$@ preferences
+Please note %1$@ is a variable and must remain in the translated text.
+Example: "Open Input Monitoring preferences" */
+"Open %1$@ preferences" = "Mở cài đặt %1$@";
+
+/* Section title */
+"Permissions" = "Quyền";
+
+/* No comment provided by engineer. */
+"Preferences" = "Cài đặt";
+
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "Thoát %1$@";
+
+/* Request %1$@ permission
+Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+"Request %1$@ permission" = "Yêu cầu quyền %1$@";
+
+/* Prefs check box */
+"Reverse Horizontal" = "Đảo ngược chiều ngang";
+
+/* Prefs check box */
+"Reverse Mouse" = "Đảo ngược chuột";
+
+/* Prefs check box */
+"Reverse Trackpad" = "Đảo ngược bàn di chuột";
+
+/* Prefs check box */
+"Reverse Vertical" = "Đảo ngược chiều dọc";
+
+/* No comment provided by engineer. */
+"Scroll Reverser is now running!" = "Scroll Reverser đang hoạt động!";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser cần quyền truy cập để điều chỉnh cách lăn chuột.";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser cần quyền quản lý nhập liệu để nhận biết bàn di chuột có đang hoạt động hay không.";
+
+/* Prefs section header */
+"Scroll Wheel" = "Con lăn chuột";
+
+/* Preferences pane for `Scrolling` serttings */
+"Scrolling" = "Lăn chuột";
+
+/* Prefs section title */
+"Scrolling Axes" = "Trục lăn";
+
+/* Prefs section title */
+"Scrolling Devices" = "Thiết bị lăn";
+
+/* Prefs check box */
+"Show in menu bar" = "Hiển thị trên thanh công cụ";
+
+/* Small step size */
+"Small" = "Nhỏ";
+
+/* Prefs check box */
+"Start at login" = "Bật khi đăng nhập";
+
+/* Size of one step of the mouse scroll wheel */
+"Step size" = "Bước lăn";
+
+/* Alert box text. 1=name of app */
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Biểu tượng %1$@ đã được gỡ bỏ khỏi thanh công cụ. Để khôi phục lại, mở %1$@ từ Finder.";
+
+/* No comment provided by engineer. */
+"⛔️ required" = "⛔️ chưa cho phép";
+
+/* No comment provided by engineer. */
+"✅ granted" = "✅ đã cho phép";

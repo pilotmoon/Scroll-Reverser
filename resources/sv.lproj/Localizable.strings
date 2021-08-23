@@ -1,10 +1,11 @@
-/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
+/* %1$@ permission: %2$@
+Please note %1$@ is a variable and must be preserved in the translated text.
+for example: `Accessibility permission: ⛔️ required` */
 
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "%1$@-behörighet: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "Hjälpmedel";
 
 /* Preferences pane for `App` settings */
 "App" = "Program";
@@ -16,40 +17,43 @@
 "Check for updates" = "Leta efter uppdateringar";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "Aktivera %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Klicka ikonen i menyraden för inställningar";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "Ikon dold";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "Inkludera betaversioner";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "Övervakning av inmatning";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "Stor";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+/* Open %1$@ preferences
+Please note %1$@ is a variable and must remain in the translated text.
+Example: "Open Input Monitoring preferences" */
+"Open %1$@ preferences" = "Öppna inställningar för %1$@";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "Behörigheter";
 
 /* No comment provided by engineer. */
 "Preferences" = "Inställningar";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "Avsluta %1$@";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
+/* Request %1$@ permission
+Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+"Request %1$@ permission" = "Be om tillåtelse för %1$@";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Invertera horisontellt";
@@ -67,13 +71,13 @@
 "Scroll Reverser is now running!" = "Scroll Reverser körs nu!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser behöver få Hjälpmedels-tillgång för att kunna ändra ditt rullningsbeteende.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser behöver få tillgång till Övervakning av inmatning för att upptäcka om dina fingrar rör styrplattan.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Rullhjull";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Rullning";
@@ -88,19 +92,19 @@
 "Show in menu bar" = "Visa i menyraden";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "Liten";
 
 /* Prefs check box */
 "Start at login" = "Starta vid inloggning";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Stegstorlek";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Ikonen för %1$@ har tagits bort från menyraden. För återställa ikonen igen, starta %1$@ via Finder.";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔️ krävs";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
+"✅ granted" = "✅ tillåten";
