@@ -259,7 +259,7 @@ static CGEventRef _callback(CGEventTapProxy proxy,
      active tap to do so causes various problems:
         - Triggers additional permissons dialogs when interacting with authorization services dialogs
         - Interferes with "shake to locate cursor" (when using Trackpad)
-        = Interferes with the 2-finger "show notificaton center" gesture */
+        - Interferes with the 2-finger "show notificaton center" gesture */
     self.passiveTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
                                                    kCGTailAppendEventTap,
                                                    kCGEventTapOptionListenOnly,
