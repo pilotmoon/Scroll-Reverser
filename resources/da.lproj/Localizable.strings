@@ -1,106 +1,110 @@
-/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
+/* %1$@ permission: %2$@
+Please note %1$@ is a variable and must be preserved in the translated text.
+for example: `Accessibility permission: ⛔️ required` */
 
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "Tilladelse til %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "Tilgængelighed";
 
 /* Preferences pane for `App` settings */
-"App" = "App";
+"App" = "Program";
 
 /* Check box next to the 'Check for updates' button */
-"Automatically" = "Automatically";
+"Automatically" = "Automatisk";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Check for updates";
+"Check for updates" = "Søg efter opdateringer";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "Aktivér %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "For settings, click the icon in the menu bar";
+"For settings, click the icon in the menu bar" = "For at tilgå indstillingerne, tryk på ikonet på menulinjen";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "Ikon skjult";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "Inkluder beta-versioner";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "Overvågning af input";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "Stor";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+/* Open %1$@ preferences
+Please note %1$@ is a variable and must remain in the translated text.
+Example: "Open Input Monitoring preferences" */
+"Open %1$@ preferences" = "Åben indstillinger for %1$@";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "Tilladelser";
 
 /* No comment provided by engineer. */
-"Preferences" = "Preferences";
+"Preferences" = "Indstillinger";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "Slut %1$@";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
-
-/* Prefs check box */
-"Reverse Horizontal" = "Reverse Horizontal";
+/* Request %1$@ permission
+Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+"Request %1$@ permission" = "Anmod om tilladelse til %1$@";
 
 /* Prefs check box */
-"Reverse Mouse" = "Reverse Mouse";
+"Reverse Horizontal" = "Omvend horisontalt";
 
 /* Prefs check box */
-"Reverse Trackpad" = "Reverse Trackpad";
+"Reverse Mouse" = "Omvend retning på mus";
 
 /* Prefs check box */
-"Reverse Vertical" = "Reverse Vertical";
+"Reverse Trackpad" = "Omvend retning på pegefelt";
+
+/* Prefs check box */
+"Reverse Vertical" = "Omvend vertikalt";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser is now running!";
+"Scroll Reverser is now running!" = "Scroll Reverser kører nu!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser har brug for adgang til Tilgængelighedsindstillingerne for at ændre din rulleretning.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser har brug for tilladelse til at overvåge input for at se, om dine fingre rører ved pegefeltet.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Rullehjul";
 
 /* Preferences pane for `Scrolling` serttings */
-"Scrolling" = "Scrolling";
+"Scrolling" = "Rulning";
 
 /* Prefs section title */
-"Scrolling Axes" = "Scrolling Axes";
+"Scrolling Axes" = "Akser for rulning";
 
 /* Prefs section title */
-"Scrolling Devices" = "Scrolling Devices";
+"Scrolling Devices" = "Enheder";
 
 /* Prefs check box */
-"Show in menu bar" = "Show in menu bar";
+"Show in menu bar" = "Vis på menulinje";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "Lille";
 
 /* Prefs check box */
-"Start at login" = "Start at login";
+"Start at login" = "Start ved login";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Rullehastighed";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@-ikonet er fjernet fra din menulinje. For at gendanne det, åbn %1$@ fra Finder.";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔️ Nødvendig";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
+"✅ granted" = "✅ Tilladt";
