@@ -1,5 +1,6 @@
-/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
+/* %1$@ permission: %2$@
+Please note %1$@ is a variable and must be preserved in the translated text.
+for example: `Accessibility permission: ⛔️ required` */
 
 "%1$@ permission: %2$@" = "Доступ к %1$@: %2$@";
 
@@ -36,7 +37,9 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Open %1$@ preferences
+Please note %1$@ is a variable and must remain in the translated text.
+Example: "Open Input Monitoring preferences" */
 "Open %1$@ preferences" = "Открыть настройки: %1$@";
 
 /* Section title */
@@ -48,7 +51,8 @@
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Закрыть %1$@";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Request %1$@ permission
+Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
 "Request %1$@ permission" = "Запросить доступ к %1$@";
 
 /* Prefs check box */

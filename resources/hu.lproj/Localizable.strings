@@ -1,10 +1,11 @@
-/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-/* for example: `Accessibility permission: ⛔️ required` */
+/* %1$@ permission: %2$@
+Please note %1$@ is a variable and must be preserved in the translated text.
+for example: `Accessibility permission: ⛔️ required` */
 
 "%1$@ permission: %2$@" = "%1$@ permission: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "Kisegítő lehetőségek";
 
 /* Preferences pane for `App` settings */
 "App" = "Alkalmazás";
@@ -16,40 +17,43 @@
 "Check for updates" = "Frissítések keresése";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "%1$@ engedélyezése";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Beállításokért kattints a menüsorban lévő ikonra";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "Ikon elrejtve";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Include beta versions";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "Bemenet figyelése";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "Nagy";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+/* Open %1$@ preferences
+Please note %1$@ is a variable and must remain in the translated text.
+Example: "Open Input Monitoring preferences" */
+"Open %1$@ preferences" = "%1$@ beállítás megnyitása";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "Jogosultságok";
 
 /* No comment provided by engineer. */
 "Preferences" = "Beállítások";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "Kilépés a %1$@ből";
 
-/* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Request %1$@ permission";
+/* Request %1$@ permission
+Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+"Request %1$@ permission" = "%1$@ engedély kérése";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Vízszintes megfordítása";
@@ -73,7 +77,7 @@
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Görgetés";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Görgetés";
@@ -88,19 +92,19 @@
 "Show in menu bar" = "Mutasd a menüsorban";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "Kicsi";
 
 /* Prefs check box */
 "Start at login" = "Indítás bejelentkezéskor";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Lépésköz";
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔️ szükséges";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
+"✅ granted" = "✅ megadva";

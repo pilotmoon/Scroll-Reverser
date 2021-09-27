@@ -5,7 +5,7 @@ for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "Quyền %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Truy cập";
+"Accessibility" = "Trợ năng";
 
 /* Preferences pane for `App` settings */
 "App" = "Ứng dụng";
