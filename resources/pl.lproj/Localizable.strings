@@ -2,10 +2,10 @@
 Please note %1$@ is a variable and must be preserved in the translated text.
 for example: `Accessibility permission: ⛔️ required` */
 
-"%1$@ permission: %2$@" = "%1$@ permission: %2$@";
+"%1$@ permission: %2$@" = "%1$@ uprawnienia: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Accessibility";
+"Accessibility" = "Dostępność";
 
 /* Preferences pane for `App` settings */
 "App" = "Aplikacja";
@@ -17,22 +17,22 @@ for example: `Accessibility permission: ⛔️ required` */
 "Check for updates" = "Sprawdź aktualizacje";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Enable %1$@";
+"Enable %1$@" = "Włącz %1$@";
 
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Aby zobaczyć ustawienia kliknij ikonkę na pasku";
 
 /* Alert box title */
-"Icon Hidden" = "Icon Hidden";
+"Icon Hidden" = "Ikona ukryta";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Include beta versions";
+"Include beta versions" = "Uwzględnij wersje beta";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input Monitoring";
+"Input Monitoring" = "Monitorowanie wprowadzania";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "Szybko";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -40,20 +40,20 @@ for example: `Accessibility permission: ⛔️ required` */
 /* Open %1$@ preferences
 Please note %1$@ is a variable and must remain in the translated text.
 Example: "Open Input Monitoring preferences" */
-"Open %1$@ preferences" = "Open %1$@ preferences";
+"Open %1$@ preferences" = "Otwórz ustawienia %1$@";
 
 /* Section title */
-"Permissions" = "Permissions";
+"Permissions" = "Uprawnienia";
 
 /* No comment provided by engineer. */
 "Preferences" = "Ustawienia";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Quit %1$@";
+"Quit %1$@" = "Zamknij %1$@";
 
 /* Request %1$@ permission
 Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
-"Request %1$@ permission" = "Request %1$@ permission";
+"Request %1$@ permission" = "Poproś o uprawnienia %1$@";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Odwróć w poziomie";
@@ -71,13 +71,13 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Scroll Reverser is now running!" = "Scroll Reverser został uruchomiony!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser potrzebuje uprawnień Dostępności aby modyfikować przewijanie.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser potrzebuje uprawnień Monitorowania Wprowadzania w celu wykrycia czy palce dotykają gładzika.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Kółko myszy";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Przewijanie";
@@ -92,19 +92,19 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Show in menu bar" = "Pokazuj na pasku";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "Wolno";
 
 /* Prefs check box */
 "Start at login" = "Uruchamiaj automatycznie";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Szybkość przewijania";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Ikona %1$@ została usunięta z paska menu. Aby ją przywrócić uruchom %1$@ ponownie używając Findera.";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ required";
+"⛔️ required" = "⛔ wymagane";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ granted";
+"✅ granted" = "✅ przyznane";
