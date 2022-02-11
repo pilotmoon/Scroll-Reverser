@@ -10,7 +10,7 @@ Web home page: [https://pilotmoon.com/scrollreverser/](https://pilotmoon.com/scr
 
 On macOS Monterey 12.2, Scroll Reverser is not working in Safari when using smooth scrolling devices — that is, trackpads and the Magic Mouse. The effect is a kind of "snap back" where the scrolling direction flips, as if it fighting you. The problem does not occur with scroll wheel devices.
 
-I have not been able to  find any way to modify Scroll Reverser to overcome this problem. (It seems Safari is ignoring the direction of the scrolling input during the momentum phase of the scroll, and instead it is deriving it from some other source. That means whatever Scroll Reverser does, it can't reverse the momentum part of the scroll, which is giving the "snap back" effect. Speculatively, this is something to do with recent work done to to improve Safari scrolling on ProMotion displays.)
+I have not been able to  find any way to modify Scroll Reverser to overcome this problem. (It seems Safari is ignoring the direction of the scrolling event input during the momentum phase of the scroll, and instead it is deriving it from some other source. That means whatever Scroll Reverser does, it can't reverse the momentum part of the scroll, which is giving the "snap back" effect. Speculatively, this is something to do with recent work done to to improve Safari scrolling on ProMotion displays.)
 
 For now we wait and see if the changes in 12.2 were an unintentional bug, or if this is the way it is now. If anyone has any technical info on all this, or solutions, please let me know. I do not plan do do any more work on Scroll Reverser unless this situation is resolved.
 
