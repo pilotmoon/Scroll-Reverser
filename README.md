@@ -4,7 +4,21 @@ Reverses the direction of macOS scrolling, with independent settings for trackpa
 
 Web home page: [https://pilotmoon.com/scrollreverser/](https://pilotmoon.com/scrollreverser/) (Please note the home page contains additional content about the app, FAQ, changelog etc.)
 
-*Announcement: In a future update, Scroll Reverser will become a paid app. It will remain open source. You can read more about my decision [here](https://pilotmoon.com/blog/2020/12/09/scroll-reverser-1-8).*
+<mark style="background-color: #FFFF00">
+## Safari Scrolling Problems in macOS Monterey 12.2
+</mark>
+
+**Summary: Bad news. Scroll Reverse isn't working in Safari, there is no fix available and none is expected.**
+
+On macOS Monterey 12.2, Scroll Reverser is not working in Safari when using smooth scrolling devices — that is, trackpads and the Magic Mouse. The effect is a kind of "snap back" where the scrolling direction flips, as if it fighting you. The problem does not occur with scroll wheel devices.
+
+I have not been able to  find any way to modify Scroll Reverser to overcome this problem. (It seems Safari is ignoring the direction of the scrolling input during the momentum phase of the scroll, and instead it is deriving it from some other source. That means whatever Scroll Reverser does, it can't reverse the momentum part of the scroll, which is giving the "snap back" effect. Speculatively, this is 
+something to do with recent work done to to improve Safari scrolling on ProMotion displays.)
+
+For now we wait and see if the changes in 12.2 were an unintentional bug, or if this is the way it is now. If anyone has any technical info on all this, or solutions, please let me know. I do not plan do do any more work on Scroll Reverser unless this situation is resolved.
+
+A note on alternative apps: [MOS](https://mos.caldis.me/) and [UnnaturalScrollWheels](https://github.com/ther0n/UnnaturalScrollWheels) are alternatives to Scroll Reverser and both are very good apps. However, neither of them can distinguish the Magic Mouse from the Trackpad — that has always been Scroll Reverser's speciality. The reason you don't see the problem with the other apps is that they don't attempt to reverse smooth scrolling, only discrete scroll wheels.
+
 
 ## Requirements
 
