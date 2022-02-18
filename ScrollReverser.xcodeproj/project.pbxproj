@@ -169,6 +169,8 @@
 		88AC80572405185D00063181 /* es */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = es; path = resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ScrollReverser-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Scroll Reverser (Dev).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scroll Reverser (Dev).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7CF5D6627BFAB8400E09485 /* IOKitSPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOKitSPI.h; sourceTree = "<group>"; };
+		B7CF5D6727BFACD800E09485 /* CoreGraphicsSPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreGraphicsSPI.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +304,8 @@
 			isa = PBXGroup;
 			children = (
 				256AC3F00F4B6AF500CF3369 /* Scroll_Inverter_Prefix.pch */,
+				B7CF5D6627BFAB8400E09485 /* IOKitSPI.h */,
+				B7CF5D6727BFACD800E09485 /* CoreGraphicsSPI.h */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
