@@ -4,6 +4,8 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+    #import "IOKitSPI.h"
+    #import "CoreGraphicsSPI.h"
 
 #if !defined(DEBUG)
     #define NSLog(...)

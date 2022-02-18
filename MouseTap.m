@@ -78,6 +78,8 @@ static CGEventRef _callback(CGEventTapProxy proxy,
         }
         else if (type==(CGEventType)NSEventTypeScrollWheel)
         {
+            IOHIDEventRef const ioHidEventRef=CGEventCopyIOHIDEvent(eventRef);
+
             // is inverted from device? (1=natural scrolling, 0=classic scrolling)
             const BOOL invertedFromDevice=!![event isDirectionInvertedFromDevice];
             [tap->logger logBool:invertedFromDevice forKey:@"ifd"];
@@ -93,12 +95,16 @@ static CGEventRef _callback(CGEventTapProxy proxy,
             const int64_t point_axis2=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2);
             const double fixedpt_axis1=CGEventGetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1);
             const double fixedpt_axis2=CGEventGetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2);
+            const IOHIDFloat iohid_axis1=IOHIDEventGetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollY);
+            const IOHIDFloat iohid_axis2=IOHIDEventGetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollX);
             [tap->logger logSignedInteger:axis1 forKey:@"y"];
             [tap->logger logSignedInteger:axis2 forKey:@"x"];
             [tap->logger logSignedInteger:point_axis1 forKey:@"y_pt"];
             [tap->logger logSignedInteger:point_axis2 forKey:@"x_pt"];
             [tap->logger logDouble:fixedpt_axis1 forKey:@"y_fp"];
             [tap->logger logDouble:fixedpt_axis2 forKey:@"x_fp"];
+            [tap->logger logDouble:iohid_axis1 forKey:@"y_iohid"];
+            [tap->logger logDouble:iohid_axis2 forKey:@"x_iohid"];
          
             // get source pid
             const uint64_t pid=CGEventGetIntegerValueField(eventRef, kCGEventSourceUnixProcessID);
@@ -197,12 +203,16 @@ static CGEventRef _callback(CGEventTapProxy proxy,
             if (!discreteAdjust&&vmul!=1) { // vertical - only set these if not doing discrete adjust
                 CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1, fixedpt_axis1*vmul);
                 CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis1, point_axis1*vmul);
+                IOHIDEventSetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollY, iohid_axis1*vmul);
             }
             if (hmul!=1) { // horizontal
                 CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis2, axis2*hmul);
                 CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2, fixedpt_axis2*hmul);
                 CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2, point_axis2*hmul);
+                IOHIDEventSetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollX, iohid_axis2*vmul);
             }
+
+            CFRelease(ioHidEventRef);
         }
         else
         {
