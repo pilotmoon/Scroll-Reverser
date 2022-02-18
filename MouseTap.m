@@ -95,8 +95,12 @@ static CGEventRef _callback(CGEventTapProxy proxy,
             const int64_t point_axis2=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2);
             const double fixedpt_axis1=CGEventGetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1);
             const double fixedpt_axis2=CGEventGetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2);
-            const IOHIDFloat iohid_axis1=IOHIDEventGetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollY);
-            const IOHIDFloat iohid_axis2=IOHIDEventGetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollX);
+            IOHIDFloat iohid_axis1=0;
+            IOHIDFloat iohid_axis2=0;
+            if (ioHidEventRef) {
+                iohid_axis1=IOHIDEventGetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollY);
+                iohid_axis2=IOHIDEventGetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollX);
+            }
             [tap->logger logSignedInteger:axis1 forKey:@"y"];
             [tap->logger logSignedInteger:axis2 forKey:@"x"];
             [tap->logger logSignedInteger:point_axis1 forKey:@"y_pt"];
@@ -203,16 +207,22 @@ static CGEventRef _callback(CGEventTapProxy proxy,
             if (!discreteAdjust&&vmul!=1) { // vertical - only set these if not doing discrete adjust
                 CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1, fixedpt_axis1*vmul);
                 CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis1, point_axis1*vmul);
-                IOHIDEventSetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollY, iohid_axis1*vmul);
+                if (ioHidEventRef) {
+                    IOHIDEventSetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollY, iohid_axis1*vmul);
+                }
             }
             if (hmul!=1) { // horizontal
                 CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis2, axis2*hmul);
                 CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2, fixedpt_axis2*hmul);
                 CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2, point_axis2*hmul);
-                IOHIDEventSetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollX, iohid_axis2*vmul);
+                if (ioHidEventRef) {
+                    IOHIDEventSetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollX, iohid_axis2*vmul);
+                }
             }
 
-            CFRelease(ioHidEventRef);
+            if (ioHidEventRef) {
+                CFRelease(ioHidEventRef);
+            }
         }
         else
         {
