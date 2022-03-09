@@ -4,19 +4,6 @@ Reverses the direction of macOS scrolling, with independent settings for trackpa
 
 Web home page: [https://pilotmoon.com/scrollreverser/](https://pilotmoon.com/scrollreverser/) (Please note the home page contains additional content about the app, FAQ, changelog etc.)
 
-## Known Issue: Safari Scrolling Broken in macOS Monterey 12.2
-
-**Summary: Bad news. Scroll Reverser isn't working in Safari and there is no fix.**
-
-On macOS Monterey 12.2, Scroll Reverser is not working in Safari when using smooth scrolling devices — that is, trackpads and the Magic Mouse. The effect is a kind of "snap back" where the scrolling direction flips, as if it fighting you. The problem does not occur with scroll wheel devices.
-
-I have not been able to  find any way to modify Scroll Reverser to overcome this problem. (It seems Safari is ignoring the direction of the scrolling event input during the momentum phase of the scroll, and instead it is deriving it from some other source. That means whatever Scroll Reverser does, it can't reverse the momentum part of the scroll, which is giving the "snap back" effect. Speculatively, this is something to do with recent work done to to improve Safari scrolling on ProMotion displays.)
-
-For now we wait and see if the changes in 12.2 were an unintentional bug, or if this is the way it is now. If anyone has any technical info on all this, or solutions, please let me know. I do not plan do do any more work on Scroll Reverser unless this situation is resolved.
-
-*A note on alternative apps: [MOS](https://mos.caldis.me/) and [UnnaturalScrollWheels](https://github.com/ther0n/UnnaturalScrollWheels) are excellent alternatives to Scroll Reverser that reverse **wheel mouse** scrolling independently of the trackpad. However, neither of them can distinguish the **Magic Mouse** from the trackpad  — that has always been Scroll Reverser's speciality. It's specifically trackpad/Magic Mouse reversing that is now not working.*
-
-Updated 11 Feb 2022. -Nick
 ## Requirements
 
 The latest build of Scroll Reverser requires macOS 10.12.6 and above, and is a univeral binary for both Intel and Apple Silicon (M1) Macs. Older versions are available for older OS  versions down to OS X 10.4. See the web home page for the downloads, or the respective labelled branches for the code.
