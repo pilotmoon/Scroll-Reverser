@@ -32,6 +32,10 @@ After cloning this repo, you'll need to `git submodule update --init` to check o
 
 You will get errors in the build script phase. That is because you need to replace out the part of the script which specifies my code signing key with the name of your own key. (If you don't have a code signing key, you'll need to Google that...)
 
+## Viewing debug log
+
+To display the debug window, Option(⌥)-click the Scroll Reverser menu bar icon. (Scroll Reverser does not output debug info with NSLog. This is because doing so slows down the event lap. Instead, it has some custom debug code which is more efficient to write to.)
+
 ## Notes on the code
 
 The master branch targets 10.12 and higher.
