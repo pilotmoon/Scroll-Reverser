@@ -6,7 +6,7 @@ Web home page: [https://pilotmoon.com/scrollreverser/](https://pilotmoon.com/scr
 
 ## Requirements
 
-The latest build of Scroll Reverser requires macOS 10.12.6 and above, and is a univeral binary for both Intel and Apple Silicon (M1) Macs. Older versions are available for older OS  versions down to OS X 10.4. See the web home page for the downloads, or the respective labelled branches for the code.
+The latest build of Scroll Reverser requires macOS 10.12.6 and above and is a universal binary for both Intel and Apple Silicon (M1) Macs. Older versions are available for older OS versions, down to OS X 10.4. See the web home page for the downloads or the respective labeled branches for the code.
 
 ## Install and run
 
