@@ -592,6 +592,11 @@
                             </buttonCell>
                             <connections>
                                 <action selector="buttonCheckForUpdatesClicked:" target="-2" id="U3N-wB-kQ2"/>
+                                <binding destination="-2" name="enabled" keyPath="updater.sessionInProgress" id="yGA-qu-Txm">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
                                 <binding destination="-2" name="title" keyPath="self.menuStringCheckNow" id="uWe-dn-5Wh"/>
                             </connections>
                         </button>
