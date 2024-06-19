@@ -91,24 +91,25 @@ static void *_contextPermissions=&_contextPermissions;
     }
 }
 
-/* Quickly and quetly quit and relaunch our own process. This is called on wake from sleep as a
- workaround for a macOS bug whereby the OS stops sending calling our event taps after sleep.
+/* Quickly and quietly quit and relaunch our own process. This is called on wake from sleep as a
+ workaround for a macOS bug whereby the OS stops calling our event taps after sleep.
  */
 - (void)relaunch
 {
     [self logAppEvent:@"Scroll Reverser will relaunch"];
 
-    // asynchronously launch a new instance
-    NSError *error=nil;
-    [[NSWorkspace sharedWorkspace] launchApplicationAtURL:[NSBundle mainBundle].bundleURL
-                                                  options:NSWorkspaceLaunchAsync|NSWorkspaceLaunchNewInstance
-                                            configuration:@{}
-                                                    error:&error];
-
-    // terminate self (async for a modicum of cleanliness)
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [NSApp terminate:self];
-    });
+    NSWorkspaceOpenConfiguration *config = [[NSWorkspaceOpenConfiguration alloc] init];
+    config.createsNewApplicationInstance = YES;
+    [[NSWorkspace sharedWorkspace] openApplicationAtURL:[NSBundle mainBundle].bundleURL
+                                          configuration:config
+                                      completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable error) {
+        if (app) {
+            NSLog(@"Launched new instance: %@", app);
+        }
+        if (error) {
+            NSLog(@"Error launching new instance: %@", error);
+        }
+    }];
 }
 
 - (void)handleURLEvent:(NSAppleEventDescriptor *)event withReplyEvent: (NSAppleEventDescriptor *)replyEvent
@@ -179,7 +180,7 @@ static void *_contextPermissions=&_contextPermissions;
 - (void)awakeFromNib {
     [self.statusController attachMenu:self.statusMenu];
 }
-	
+    
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Even though the app has no visible main menu, we set a minimal menu for keyboard shortcut support.
@@ -187,12 +188,12 @@ static void *_contextPermissions=&_contextPermissions;
     [NSApp setMainMenu:self.theMainMenu];
 
     // Show the welcome window if the user hasn't run Scroll Reverser before.
-	const BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
-	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
-	if(first) {
+    const BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
+    if(first) {
         self.welcomeWindowController=[[WelcomeWindowController alloc] initWithWindowNibName:@"WelcomeWindow"];
         [self.welcomeWindowController showWindow:self];
-	}
+    }
     
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(appDidWake:) name:NSWorkspaceDidWakeNotification object:nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(appWillSleep:) name:NSWorkspaceWillSleepNotification object:nil];
@@ -256,7 +257,7 @@ static void *_contextPermissions=&_contextPermissions;
     NSString *temp=yn(@"on", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]);
     temp=[temp stringByAppendingString:yn(@"v", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical])];
     temp=[temp stringByAppendingString:yn(@"h", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal])];
-    temp=[temp stringByAppendingString:yn(@"trackpad", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad])];    
+    temp=[temp stringByAppendingString:yn(@"trackpad", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad])];
     temp=[temp stringByAppendingString:yn(@"mouse", [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse])];
     return temp;
 }
@@ -309,7 +310,7 @@ static void *_contextPermissions=&_contextPermissions;
 - (IBAction)showAbout:(id)sender
 {
     [self.prefsWindowController close];
-	[NSApp activateIgnoringOtherApps:YES];
+    [NSApp activateIgnoringOtherApps:YES];
     NSDictionary *dict=@{@"ApplicationName": @"Scroll Reverser"};
     [NSApp orderFrontStandardAboutPanelWithOptions:dict];
 }
