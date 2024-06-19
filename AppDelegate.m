@@ -21,6 +21,7 @@ NSString *const PrefsBetaUpdates=@"BetaUpdates";
 NSString *const PrefsAppcastOverrideURL=@"AppcastOverrideURL";
 NSString *const PrefsTerminatedWithPrefsWindowOpen=@"TerminatedWithPrefsWindowOpen";
 NSString *const PrefsDiscreteScrollStepSize=@"DiscreteScrollStepSize";
+NSString *const PrefsShowDiscreteScrollOptions=@"ShowDiscreteScrollOptions";
 
 static void *_contextHideIcon=&_contextHideIcon;
 static void *_contextEnabled=&_contextEnabled;
@@ -407,6 +408,13 @@ static void *_contextPermissions=&_contextPermissions;
 
 - (void)showPermissionsUI {
     [self showPrefsWithDefaultPane:YES];
+}
+
+#pragma mark Special
+
+- (void)enableDiscreteScrollOptions
+{
+    [[NSUserDefaultsController sharedUserDefaultsController] setValue:@YES forKeyPath:@"values.ShowDiscreteScrollOptions"];
 }
 
 #pragma mark App info strings

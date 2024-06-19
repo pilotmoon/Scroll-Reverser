@@ -187,6 +187,15 @@ static CGEventRef _callback(CGEventTapProxy proxy,
             if(source!=lastSource) {
                 [tap->logger logMessage:@"Source changed" special:YES];
             }
+            
+            // show discrete scroll prefs if we have seen non-continuous scrolling
+            // (only do this once)
+            if (!continuous) {
+                static dispatch_once_t onceToken;
+                dispatch_once(&onceToken, ^{
+                    [(AppDelegate *)[NSApp delegate] enableDiscreteScrollOptions];
+                });
+            }
 
             // Adjust discrete scroll wheel?
             const NSInteger stepsize=_stepsize();
@@ -231,7 +240,7 @@ static CGEventRef _callback(CGEventTapProxy proxy,
     
         [tap->logger logEventType:type forKey:@"type"];
         [tap->logger logParams];
-	}
+    }
     
     return eventRef;
 }
@@ -257,13 +266,13 @@ static CGEventRef _callback(CGEventTapProxy proxy,
 
 - (BOOL)isActive
 {
-	return self.activeTapSource&&self.passiveTapSource&&self.activeTapPort&&self.passiveTapPort;
+    return self.activeTapSource&&self.passiveTapSource&&self.activeTapPort&&self.passiveTapPort;
 }
 
 - (void)start
 {
-	if([self isActive])
-		return;
+    if([self isActive])
+        return;
 
     [self willChangeValueForKey:kKeyActive];
 
@@ -273,7 +282,7 @@ static CGEventRef _callback(CGEventTapProxy proxy,
     // clear state
     touching=0;
     lastTouchTime=0;
-    lastSource=0;    
+    lastSource=0;
     
     /* We use a separate passive tap to monitor gesture events, because using an
      active tap to do so causes various problems:

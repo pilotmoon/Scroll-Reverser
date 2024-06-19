@@ -249,6 +249,15 @@
                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                     </dictionary>
                                 </binding>
+                                <binding destination="9eJ-Lx-koC" name="hidden2" keyPath="values.ShowDiscreteScrollOptions" previousBinding="Hx4-MQ-Um2" id="EJh-xD-hqe">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
                                 <binding destination="-2" name="title" keyPath="self.menuStringMouseWheelHeader" id="2tu-YA-VPD"/>
                             </connections>
                         </box>

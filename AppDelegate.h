@@ -16,6 +16,7 @@ extern NSString *const PrefsReverseTrackpad;
 extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsHideIcon;
 extern NSString *const PrefsDiscreteScrollStepSize;
+extern NSString *const PrefsShowDiscreteScrollOptions;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, StatusItemControllerDelegate, SPUUpdaterDelegate, SPUStandardUserDriverDelegate> {
 }
@@ -50,6 +51,7 @@ extern NSString *const PrefsDiscreteScrollStepSize;
 - (void)statusItemAltClicked;
 
 - (void)refreshPermissions;
+- (void)enableDiscreteScrollOptions;
 
 - (void)logAppEvent:(NSString *)str;
 
