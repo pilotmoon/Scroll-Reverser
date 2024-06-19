@@ -20,13 +20,13 @@ for example: `Accessibility permission: ⛔️ required` */
 "Enable %1$@" = "Aktivovať %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Kliknite na ikonu v menu lište pre nastavenia";
+"For settings, click the icon in the menu bar" = "Pre nastavenia kliknite na ikonu v lište";
 
 /* Alert box title */
-"Icon Hidden" = "Ikona je skrytá";
+"Icon Hidden" = "Ikona skrytá";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Zahrnúť beta verzie";
+"Include beta versions" = "Vrátane beta verzií";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Monitorovanie Vstupu";
@@ -74,7 +74,7 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser potrebuje povolenie Prístupnosti na úpravu rolovania.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser potrebuje povolenie na Monitorovanie Vstupu na detegovanie, či sa Vaše prsty dotýkaju trackpadu.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser potrebuje povolenie na Monitorovanie Vstupu na zistenie, či sa Vaše prsty dotýkajú trackpadu.";
 
 /* Prefs section header */
 "Scroll Wheel" = "Rolovacie Koliesko";
@@ -89,7 +89,7 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Scrolling Devices" = "Rolovacie zariadenia";
 
 /* Prefs check box */
-"Show in menu bar" = "Ukázať v menu lište";
+"Show in menu bar" = "Zobraziť v lište";
 
 /* Small step size */
 "Small" = "Malá";
@@ -98,10 +98,10 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Start at login" = "Spustiť pri štarte";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Veľkosť rolovania";
+"Step size" = "Rýchlosť pohybu";
 
 /* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Ikona appky %1$@ bola odstránená z menu lišty. Pre jej obnovenie, spustite %1$@ znovu z Findera.";
+"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Ikona %1$@ bola odstránená z lišty. Pre jej obnovenie, spustite %1$@ znovu z Findera.";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ vyžadované";

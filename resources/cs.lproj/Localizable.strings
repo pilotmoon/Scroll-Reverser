@@ -62,7 +62,7 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Reverse Mouse" = "Převrátit myš";
 
 /* Prefs check box */
-"Reverse Trackpad" = "Převrátit myš";
+"Reverse Trackpad" = "Převrátit trackpad";
 
 /* Prefs check box */
 "Reverse Vertical" = "Převrátit svislou";

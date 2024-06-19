@@ -32,7 +32,7 @@ for example: `Accessibility permission: ⛔️ required` */
 "Input Monitoring" = "Giriş İzleme";
 
 /* Large step size */
-"Large" = "Large";
+"Large" = "Büyük";
 
 /* No comment provided by engineer. */
 "OK" = "Tamam";
@@ -77,7 +77,7 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser parmaklarınızın izleme dörtgenine temas ettiğini tespit edebilmek için Giriş İzleme iznine ihtyiaç duyuyor.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel";
+"Scroll Wheel" = "Kaydırma Tekerleği";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Kaydırma";
@@ -92,13 +92,13 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Show in menu bar" = "Menü çubuğunda göster";
 
 /* Small step size */
-"Small" = "Small";
+"Small" = "Küçük";
 
 /* Prefs check box */
 "Start at login" = "Giriş yapıldığında başlat";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size";
+"Step size" = "Adım boyutu";
 
 /* Alert box text. 1=name of app */
 "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@ ikonu menü çubuğundan kaldırıldı. İstediğiniz zaman geri getirmek için Finder'dan %1$@'ı tekrardan başlatın.";

@@ -20,7 +20,7 @@ for example: `Accessibility permission: ⛔️ required` */
 "Enable %1$@" = "Habilitar %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Para los ajustes, haga click en el icono de la barra de menú";
+"For settings, click the icon in the menu bar" = "Para los ajustes, haga clic en el icono de la barra de menú";
 
 /* Alert box title */
 "Icon Hidden" = "Ícono oculto";
@@ -95,7 +95,7 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Small" = "Pequeño";
 
 /* Prefs check box */
-"Start at login" = "Arrancar en el login";
+"Start at login" = "Ejecutar al inicio de sesión";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Tamaño del paso";
