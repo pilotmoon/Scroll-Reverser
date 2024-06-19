@@ -237,8 +237,7 @@ static void *_contextPermissions=&_contextPermissions;
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 {
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsHideIcon];
-    [self.statusController openMenu];
+    [self showPrefs:nil];
     return NO;
 }
 
@@ -329,17 +328,7 @@ static void *_contextPermissions=&_contextPermissions;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context==_contextHideIcon) {
-        BOOL wasVisible=self.statusController.visible;
         self.statusController.visible=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHideIcon];;
-        if (wasVisible&&!self.statusController.visible)
-        {
-            [NSApp activateIgnoringOtherApps:YES];
-
-            NSAlert *alert=[[NSAlert alloc] init];
-            alert.messageText=NSLocalizedString(@"Icon Hidden", @"Alert box title");
-            alert.informativeText=[NSString stringWithFormat:NSLocalizedString(@"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.", @"Alert box text. 1=name of app"), self.appName];
-            [alert runModal];
-        }
     }
     else if (context==_contextEnabled) {
         self.statusController.enabled=self.enabled;

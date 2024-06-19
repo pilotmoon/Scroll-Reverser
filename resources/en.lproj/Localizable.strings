@@ -21,9 +21,6 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "For settings, click the icon in the menu bar";
 
-/* Alert box title */
-"Icon Hidden" = "Icon Hidden";
-
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Include beta versions";
 
@@ -95,9 +92,6 @@
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Step size"; 
-
-/* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ required";
