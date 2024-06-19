@@ -6,7 +6,7 @@ Web home page: [https://pilotmoon.com/scrollreverser/](https://pilotmoon.com/scr
 
 ## Requirements
 
-The latest build of Scroll Reverser requires macOS 10.12.6 and above, and is a univeral binary for both Intel and Apple Silicon (M1) Macs. Older versions are available for older OS  versions down to OS X 10.4. See the web home page for the downloads, or the respective labelled branches for the code.
+The latest build of Scroll Reverser requires macOS 13.5 and above, and is a univeral binary for both Intel and Apple Silicon (M1) Macs. Older versions are available for older OS versions down to OS X 10.4. See the web home page for the downloads, or the respective labelled branches for the code.
 
 ## Install and run
 
@@ -16,7 +16,7 @@ To uninstall, simply quit the app and drag `Scroll Reverser.app` to trash.
 
 ## Translations
 
-Translation contributions in your language are welcome. Please submit transmations using the [CrowdIn](https://crowdin.com/project/pilotmoon-apps) platform. 
+Translation contributions in your language are welcome. Please submit transmations using the [CrowdIn](https://crowdin.com/project/pilotmoon-apps) platform.
 ** When improving an existing translation, please add a comment and mark it as "Issue" so that it flags it up to me to approve. Otherwise I might not see it.**
 If you would like to open a new language, just send me an email.
 
@@ -38,7 +38,7 @@ To display the debug window, Option(⌥)-click the Scroll Reverser menu bar icon
 
 ## Notes on the code
 
-The master branch targets 10.12 and higher.
+The master branch targets 13.5 and higher.
 
 Older code targeting 10.4+ is in the 'tiger' branch and 10.7+ is in the 'lion' branch.
 
@@ -55,4 +55,4 @@ To distinguish between trackpad and mouse, Scroll Reverser essentially looks at 
   <li><a href="https://mousefix.org/">Mac Mouse Fix</a></li>
   <li><a href="https://mos.caldis.me">MOS</a></li>
   <li><a href="https://github.com/ther0n/UnnaturalScrollWheels">UnnaturalScrollWheels</a></li>
-</ul>  
+</ul>
