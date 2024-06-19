@@ -36,6 +36,8 @@ static void *_contextPermissions=&_contextPermissions;
 @property PermissionsManager *permissionsManager;
 @property LauncherController *launcherController;
 @property TapLogger *logger;
+@property SPUUpdater *updater;
+@property SPUStandardUserDriver *updaterUserDriver;
 @end
 
 @implementation AppDelegate
@@ -159,8 +161,16 @@ static void *_contextPermissions=&_contextPermissions;
 
         self.permissionsManager=[[PermissionsManager alloc] init];
 
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SUFeedURL"]; // might have been set before; clear it
-        [[SUUpdater sharedUpdater] setDelegate:self];
+        NSBundle *const hostBundle = [NSBundle mainBundle];
+        self.updaterUserDriver = [[SPUStandardUserDriver alloc] initWithHostBundle:hostBundle delegate:self];
+        self.updater = [[SPUUpdater alloc] initWithHostBundle:hostBundle applicationBundle:hostBundle userDriver:self.updaterUserDriver delegate:self];
+        NSError *error=nil;
+        if (![self.updater startUpdater:&error]) {
+            NSLog(@"Updater failed to start: %@", error);
+        }
+        else {
+            NSLog(@"Updater started");
+        }
 
         // event handler for url events (for launching)
         [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self

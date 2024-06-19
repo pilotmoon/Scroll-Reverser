@@ -46,7 +46,9 @@
 @property (readonly) NSString *menuStringMouseWheelStepMax;
 
 - (IBAction)buttonPermissionsHelpClicked:(id)sender;
+- (IBAction)buttonCheckForUpdatesClicked:(id)sender;
 - (void)showPermissionsPane;
 - (void)callAttention;
+
 
 @end

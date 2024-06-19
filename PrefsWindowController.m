@@ -30,6 +30,8 @@ static void *_contextPrefsStepSize=&_contextPrefsStepSize;
 
 @implementation PrefsWindowController
 
+#pragma mark Step size slider
+
 static const double _offset=0.1;
 static const double _exponent=1.8;
 static const double _multiplier=25.0;
@@ -49,6 +51,20 @@ static const double _multiplier=25.0;
     NSLog(@"set pref %@ from %@", @(result), @(sliderValue));
     [[NSUserDefaults standardUserDefaults] setInteger:result forKey:PrefsDiscreteScrollStepSize];
 }
+
+#pragma mark Updater
+
+- (SPUUpdater *)updater
+{
+    return ((AppDelegate *)[NSApp delegate]).updater;
+}
+
+- (IBAction)buttonCheckForUpdatesClicked:(id)sender
+{    
+    [self.updater checkForUpdates];
+}
+
+#pragma mark Window showing
 
 // animate window frame to draw user's attention
 - (void)callAttention

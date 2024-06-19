@@ -17,11 +17,12 @@ extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsHideIcon;
 extern NSString *const PrefsDiscreteScrollStepSize;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, StatusItemControllerDelegate, SPUUpdaterDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, StatusItemControllerDelegate, SPUUpdaterDelegate, SPUStandardUserDriverDelegate> {
 }
 
 @property (readonly) PermissionsManager *permissionsManager;
 @property (readonly) LauncherController *launcherController;
+@property (readonly) SPUUpdater *updater;
 
 @property (weak) IBOutlet NSMenu *theMainMenu;
 @property (weak) IBOutlet NSMenu *statusMenu;
