@@ -249,6 +249,7 @@
                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                     </dictionary>
                                 </binding>
+                                <binding destination="-2" name="title" keyPath="self.menuStringMouseWheelHeader" id="2tu-YA-VPD"/>
                                 <binding destination="9eJ-Lx-koC" name="hidden2" keyPath="values.ShowDiscreteScrollOptions" previousBinding="Hx4-MQ-Um2" id="EJh-xD-hqe">
                                     <dictionary key="options">
                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -258,7 +259,6 @@
                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                     </dictionary>
                                 </binding>
-                                <binding destination="-2" name="title" keyPath="self.menuStringMouseWheelHeader" id="2tu-YA-VPD"/>
                             </connections>
                         </box>
                         <box verticalHuggingPriority="249" title="PERMISSIONS" translatesAutoresizingMaskIntoConstraints="NO" id="NxL-q2-zhr">
@@ -592,12 +592,12 @@
                             </buttonCell>
                             <connections>
                                 <action selector="buttonCheckForUpdatesClicked:" target="-2" id="U3N-wB-kQ2"/>
+                                <binding destination="-2" name="title" keyPath="self.menuStringCheckNow" id="uWe-dn-5Wh"/>
                                 <binding destination="-2" name="enabled" keyPath="updater.sessionInProgress" id="yGA-qu-Txm">
                                     <dictionary key="options">
                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                     </dictionary>
                                 </binding>
-                                <binding destination="-2" name="title" keyPath="self.menuStringCheckNow" id="uWe-dn-5Wh"/>
                             </connections>
                         </button>
                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x77-YO-VXg">
