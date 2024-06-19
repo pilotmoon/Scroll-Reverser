@@ -79,6 +79,16 @@ static void *_contextPermissions=&_contextPermissions;
     return [[self class] sparkleFeedURLString];
 }
 
+- (BOOL)updaterShouldPromptForPermissionToCheckForUpdates:(SPUUpdater *)bundle
+{
+    return NO;
+}
+
+- (void)updater:(SPUUpdater *)updater didFinishLoadingAppcast:(SUAppcast *)appcast
+{
+    NSLog(@"Loaded appcast.");
+}
+
 #pragma mark Launch, relaunch and termination
 
 // There can be only one scroll reverser
