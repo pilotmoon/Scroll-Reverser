@@ -9,55 +9,60 @@
 #import <ServiceManagement/ServiceManagement.h>
 
 static NSString *const kPrefsStartAtLogin=@"StartAtLogin";
-static NSString *const kLauncherBundleID=BUILDSCRIPTS_LAUNCHER_BUNDLE_ID;
+
+@interface LauncherController ()
+@property LSSharedFileListRef loginItems;
+@end
 
 @implementation LauncherController
 
-+ (BOOL)loginItemState
+- (instancetype)init
 {
-    // though deprecated, this is explicitly allowed for this purpose (see header)
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    NSArray *const jobDicts = (__bridge_transfer NSArray *)SMCopyAllJobDictionaries(kSMDomainUserLaunchd);
-#pragma clang diagnostic pop
-
-    for (NSDictionary *job in jobDicts) {
-        if ([kLauncherBundleID isEqualToString:job[@"Label"]]) {
-            return [job[@"OnDemand"] boolValue];
-        }
+    self=[super init];
+    if (self) {
+        [self setFromPrefs];
     }
-    return NO;
+    return self;
 }
 
-+ (void)setLoginItemState:(BOOL)state
+// older versions used an embedded xpc launcher and also saved the state in prefs as a backup.
+// here we "one shot" migrate the state from the old prefs to the new method.
+- (void)setFromPrefs
 {
-    if (SMLoginItemSetEnabled((__bridge CFStringRef)kLauncherBundleID, state)) {
-        NSLog(@"SMLoginItemSetEnabled setting %d succeeded.", state);
-    }
-    else {
-        NSLog(@"SMLoginItemSetEnabled setting %d failed.", state);
-    }
-}
-
-+ (void)initialize
-{
-    if (self==[LauncherController class]) {
-        const BOOL state=[[NSUserDefaults standardUserDefaults] boolForKey:kPrefsStartAtLogin];
-        NSLog(@"Launcher state is %@; prefs state is %@", @([self loginItemState]), @(state));
-        [self setLoginItemState:state];
+    const BOOL state=[[NSUserDefaults standardUserDefaults] boolForKey:kPrefsStartAtLogin];
+    if (state) {
+        [self setStartAtLogin:YES];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kPrefsStartAtLogin];
     }
 }
 
 - (void)setStartAtLogin:(BOOL)state
 {
-    // as well as installing the login item, save state to prefs in case the login item gets "forgotten"
-    [[NSUserDefaults standardUserDefaults] setBool:state forKey:kPrefsStartAtLogin];
-    [[self class] setLoginItemState:state];
+    if (@available(macOS 13.0, *)) {
+        [self willChangeValueForKey:@"startAtLogin"];
+        NSError *error=nil;
+        if (state) {
+            if (SMAppService.mainAppService.status==SMAppServiceStatusEnabled) {
+                [SMAppService.mainAppService unregisterAndReturnError:&error];
+            }
+            [SMAppService.mainAppService registerAndReturnError:&error];
+        } else {
+            [SMAppService.mainAppService unregisterAndReturnError:&error];
+        }
+        if (error) {
+            NSLog(@"Error setting startAtLogin to %@: %@", @(state), error);
+        }
+        [self didChangeValueForKey:@"startAtLogin"];
+    }
 }
 
 - (BOOL)startAtLogin
 {
-    return [[self class] loginItemState];
+    if (@available(macOS 13.0, *)) {
+        return SMAppService.mainAppService.status==SMAppServiceStatusEnabled;
+    } else {
+        return NO;
+    }
 }
 
 @end
