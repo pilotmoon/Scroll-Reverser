@@ -71,7 +71,7 @@ static void *_contextPermissions=&_contextPermissions;
     return urlString ? urlString : @"https://localhost/";
 }
 
-- (NSString *)feedURLStringForUpdater:(SUUpdater *)updater
+- (NSString *)feedURLStringForUpdater:(SPUUpdater *)updater
 {
     return [[self class] sparkleFeedURLString];
 }

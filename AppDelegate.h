@@ -17,7 +17,7 @@ extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsHideIcon;
 extern NSString *const PrefsDiscreteScrollStepSize;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, StatusItemControllerDelegate, SUUpdaterDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, StatusItemControllerDelegate, SPUUpdaterDelegate> {
 }
 
 @property (readonly) PermissionsManager *permissionsManager;

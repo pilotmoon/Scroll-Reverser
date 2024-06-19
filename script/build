@@ -8,6 +8,6 @@ $BuildScripts/process/remove_langs $BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FO
 
 # sparkle
 signing_identity="Developer ID Application"
-$BuildScripts/process/process_sparkle $BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/Sparkle.framework $allowed_languages $signing_identity
+$BuildScripts/process/process_sparkle2_nosb $BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH $allowed_languages $signing_identity
 
 saybye $0
