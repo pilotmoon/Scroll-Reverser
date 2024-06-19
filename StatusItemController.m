@@ -3,6 +3,12 @@
 
 #import "StatusItemController.h"
 
+@interface StatusItemController () <NSMenuDelegate>
+@property NSStatusItem *statusItem;
+@property NSMenu *theMenu;
+@property BOOL menuIsOpen;
+@end
+
 @implementation StatusItemController
 
 + (NSSize)statusImageSize
@@ -37,100 +43,98 @@
 
 - (void)updateItems
 {
-    if ([_statusItem respondsToSelector:@selector(button)]) {
-        [_statusItem button].appearsDisabled=!self.enabled;
+    if ([self.statusItem respondsToSelector:@selector(button)]) {
+        [self.statusItem button].appearsDisabled=!self.enabled;
     }
     else {
         if (self.enabled) {
-            if (_menuIsOpen) {
-                [_statusItem setImage:[StatusItemController statusImageWithColor:[NSColor whiteColor]]];
+            if (self.menuIsOpen) {
+                [self.statusItem setImage:[StatusItemController statusImageWithColor:[NSColor whiteColor]]];
             }
             else {
-                [_statusItem setImage:[StatusItemController statusImageWithColor:[NSColor blackColor]]];
+                [self.statusItem setImage:[StatusItemController statusImageWithColor:[NSColor blackColor]]];
             }
         }
         else {
-            [_statusItem setImage:[StatusItemController statusImageWithColor:[NSColor grayColor]]];
+            [self.statusItem setImage:[StatusItemController statusImageWithColor:[NSColor grayColor]]];
         }
     }
 }
 
 - (void)addStatusIcon
 {
-	if (!_statusItem) {
-		_statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-        [_statusItem setHighlightMode:YES];
-        [_statusItem setTarget:self];
-        [_statusItem setAction:@selector(statusButtonClicked:)];
-        [_statusItem sendActionOn:NSEventMaskLeftMouseDown|NSEventMaskRightMouseDown];
+    if (!self.statusItem) {
+        self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+        [self.statusItem setHighlightMode:YES];
+        [self.statusItem setTarget:self];
+        [self.statusItem setAction:@selector(statusButtonClicked:)];
+        [self.statusItem sendActionOn:NSEventMaskLeftMouseDown|NSEventMaskRightMouseDown];
 
-        if ([_statusItem respondsToSelector:@selector(button)]) {
-			// on yosemite, set up the template image here
+        if ([self.statusItem respondsToSelector:@selector(button)]) {
+            // on yosemite, set up the template image here
             NSImage *const statusImage=[StatusItemController statusImageWithColor:[NSColor blackColor]];
             [statusImage setTemplate:YES];
-            [_statusItem setImage:statusImage];
+            [self.statusItem setImage:statusImage];
         }
-	}
+    }
 }
 
 - (void)removeStatusIcon
 {
-	if (_statusItem) {
-		[[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
-		_statusItem=nil;
-	}
+    if (self.statusItem) {
+        [[NSStatusBar systemStatusBar] removeStatusItem:self.statusItem];
+        self.statusItem=nil;
+    }
 }
 
 - (void)displayStatusIcon
 {
-	if (self.visible) {
+    if (self.visible) {
         [self addStatusIcon];
         [self updateItems];
-	}
-	else {
-		[self removeStatusIcon];
-	}
+    }
+    else {
+        [self removeStatusIcon];
+    }
 }
 
 - (id)init
 {
-	self = [super init];
+    self = [super init];
     if (self) {
         [self addObserver:self forKeyPath:@"enabled" options:0 context:0];
         [self addObserver:self forKeyPath:@"visible" options:0 context:0];
         [self displayStatusIcon];
     }
-	return self;
+    return self;
 }
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-	_menuIsOpen=YES;
-	[self updateItems];
+    self.menuIsOpen=YES;
+    [self updateItems];
 }
 
 - (void)menuDidClose:(NSMenu *)menu
 {
-	_menuIsOpen=NO;
-	[self updateItems];	
+    self.menuIsOpen=NO;
+    [self updateItems];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	[self displayStatusIcon];
+    [self displayStatusIcon];
 }
 
 - (void)attachMenu:(NSMenu *)menu
 {
-    _theMenu=menu;
-    [_theMenu setDelegate:self];
+    self.theMenu=menu;
+    [self.theMenu setDelegate:self];
 }
 
 - (void)openMenu
 {
-    if (_theMenu) {
-        [_statusItem popUpStatusItemMenu:_theMenu];
-    }
+    [self.statusItem.button performClick:nil];
 }
 
 - (void)statusButtonClicked:(id)sender
@@ -138,13 +142,13 @@
     if ((([[NSApp currentEvent] modifierFlags] & NSEventModifierFlagControl)==NSEventModifierFlagControl) ||
         [[NSApp currentEvent] type]==NSEventTypeRightMouseDown)
     {
-        [_statusItemDelegate statusItemRightClicked];
+        [self.statusItemDelegate statusItemRightClicked];
     }
     else if (([[NSApp currentEvent] modifierFlags] & NSEventModifierFlagOption)==NSEventModifierFlagOption) {
-        [_statusItemDelegate statusItemAltClicked];
+        [self.statusItemDelegate statusItemAltClicked];
     }
     else {
-        [_statusItemDelegate statusItemClicked];
+        [self.statusItemDelegate statusItemClicked];
         [self openMenu];
     }
 }

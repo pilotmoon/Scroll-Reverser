@@ -10,11 +10,7 @@
 - (void) statusItemClicked;
 @end
 
-@interface StatusItemController : NSWindowController <NSMenuDelegate> {
-	NSStatusItem *_statusItem;
-    NSMenu *_theMenu;
-	BOOL _menuIsOpen;
-}
+@interface StatusItemController : NSWindowController <NSMenuDelegate>
 
 @property id<StatusItemControllerDelegate> statusItemDelegate;
 @property (getter=isEnabled) BOOL enabled;
