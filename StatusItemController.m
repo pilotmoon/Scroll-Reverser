@@ -43,39 +43,20 @@
 
 - (void)updateItems
 {
-    if ([self.statusItem respondsToSelector:@selector(button)]) {
-        [self.statusItem button].appearsDisabled=!self.enabled;
-    }
-    else {
-        if (self.enabled) {
-            if (self.menuIsOpen) {
-                [self.statusItem setImage:[StatusItemController statusImageWithColor:[NSColor whiteColor]]];
-            }
-            else {
-                [self.statusItem setImage:[StatusItemController statusImageWithColor:[NSColor blackColor]]];
-            }
-        }
-        else {
-            [self.statusItem setImage:[StatusItemController statusImageWithColor:[NSColor grayColor]]];
-        }
-    }
+    [self.statusItem button].appearsDisabled=!self.enabled;
 }
 
 - (void)addStatusIcon
 {
     if (!self.statusItem) {
         self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-        [self.statusItem setHighlightMode:YES];
-        [self.statusItem setTarget:self];
-        [self.statusItem setAction:@selector(statusButtonClicked:)];
-        [self.statusItem sendActionOn:NSEventMaskLeftMouseDown|NSEventMaskRightMouseDown];
+        self.statusItem.button.target=self;
+        self.statusItem.button.action=@selector(statusButtonClicked:);
+        [self.statusItem.button sendActionOn:NSEventMaskLeftMouseDown|NSEventMaskRightMouseDown];
 
-        if ([self.statusItem respondsToSelector:@selector(button)]) {
-            // on yosemite, set up the template image here
-            NSImage *const statusImage=[StatusItemController statusImageWithColor:[NSColor blackColor]];
-            [statusImage setTemplate:YES];
-            [self.statusItem setImage:statusImage];
-        }
+        NSImage *const statusImage=[StatusItemController statusImageWithColor:[NSColor blackColor]];
+        [statusImage setTemplate:YES];
+        self.statusItem.button.image=statusImage;
     }
 }
 
@@ -134,7 +115,10 @@
 
 - (void)openMenu
 {
+    self.statusItem.menu = self.theMenu;
     [self.statusItem.button performClick:nil];
+    self.statusItem.menu = nil;
+    // we un-set the menu so that target/action will work
 }
 
 - (void)statusButtonClicked:(id)sender
