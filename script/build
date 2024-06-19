@@ -2,12 +2,15 @@
 set -eu; here=${0:a:h}; root=$here/..; BuildScripts=$root/BuildScripts; source $BuildScripts/common; sayhi $0
 memo_vars vars_build # save shell vars to temp file to aid debugging script
 
+# must be lowercase; extra zh langs for Sparkle
+allowed_languages="base cs cy da de el en es fr ga he hu it ja ko nb ne nl pl pt-br ro ru sk sv tr uk vi zh-hans zh-hant zh-tw zh-hk zh-cn"
+
 # common processing
-allowed_languages=$(list_langs $root/resources)
 $BuildScripts/process/remove_langs $BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH $allowed_languages
 
 # sparkle
 signing_identity="Developer ID Application"
+echo $allowed_languages
 $BuildScripts/process/process_sparkle2_nosb $BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH $allowed_languages $signing_identity
 
 saybye $0
