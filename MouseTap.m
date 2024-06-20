@@ -130,28 +130,17 @@ static CGEventRef _callback(CGEventTapProxy proxy,
             // work out the event source
             const ScrollEventSource lastSource=tap->lastSource;
             const ScrollEventSource source=(^{
-                
-                if (!continuous)
-                {
-                    [tap->logger logBool:YES forKey:@"usingNotContinuous"];
-                    return ScrollEventSourceMouse; // assume anything not-continuous is a mouse
+                switch (event.subtype) {
+                    case NSEventSubtypeMouseEvent:
+                        [tap->logger logBool:YES forKey:@"subtypeMouse"];
+                        return ScrollEventSourceMouse;
+                    case NSEventSubtypeTabletPoint:
+                        [tap->logger logBool:YES forKey:@"subtypeTabletPoint"];
+                        return ScrollEventSourceTrackpad;
+                    default:
+                        [tap->logger logBool:YES forKey:@"subtypeOther"];
+                        return ScrollEventSourceMouse;
                 }
-                
-                if (touching>=2 && touchElapsed<(MILLISECOND*222))
-                {
-                    [tap->logger logBool:YES forKey:@"usingTouches"];
-                    return ScrollEventSourceTrackpad;
-                }
-                
-                if (phase==ScrollPhaseNormal && touchElapsed>(MILLISECOND*333))
-                {
-                    [tap->logger logBool:YES forKey:@"usingTouchElapsed"];
-                    return ScrollEventSourceMouse;
-                }
-                
-                // not enough information to decide. assume the same as last time. ha!
-                [tap->logger logBool:YES forKey:@"usingPrevious"];
-                return tap->lastSource;
             })();
             tap->lastSource=source;
             
