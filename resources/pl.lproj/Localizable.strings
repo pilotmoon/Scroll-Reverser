@@ -65,7 +65,7 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Reverse Trackpad" = "Odwrócony gładzik";
 
 /* Prefs check box */
-"Reverse Vertical" = "Odwróć w pioniel";
+"Reverse Vertical" = "Odwróć w pionie";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser został uruchomiony!";
