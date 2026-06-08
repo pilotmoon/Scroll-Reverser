@@ -22,7 +22,7 @@ Debug builds produce an app with no app icon, named "Scroll Reverser (Dev)" and 
 
 The guts of the code is in MouseTap.m. Everything else is just user interface rigging.
 
-Scroll Reverser installs an event tap, which gives it access to event stream, including scrolling events and gesture events. The main documentation about event taps is [Quartz Event Services Reference](https://developer.apple.com/library/mac/documentation/Carbon/Reference/QuartzEventServicesRef/).
+Scroll Reverser installs an event tap, which gives it access to event stream, including scrolling events and gesture events. The main documentation about event taps is [Quartz Event Services](https://developer.apple.com/documentation/coregraphics/quartz-event-services?language=objc).
 
 To distinguish between trackpad and mouse, Scroll Reverser examines gesture events to determine whether there are two or more fingers on the trackpad. If so, it assumes scrolling is coming from the trackpad. Otherwise, mouse. (There's a little more to it than that, but that is the general idea.)
 
