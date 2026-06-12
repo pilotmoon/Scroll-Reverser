@@ -25,6 +25,7 @@ typedef enum {
     NSUInteger touching;
     uint64_t lastTouchTime;
     ScrollEventSource lastSource;
+    CFRunLoopRef tapRunLoop;
     
     __weak TapLogger *logger;    
 }

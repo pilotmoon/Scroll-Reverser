@@ -61,12 +61,13 @@ static CGEventRef _callback(CGEventTapProxy proxy,
         MouseTap *const tap=(__bridge MouseTap *)userInfo;
         const uint64_t time=_nanoseconds();
         NSEvent *const event=[NSEvent eventWithCGEvent:eventRef];
-        [(AppDelegate *)[NSApp delegate] refreshPermissions];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [(AppDelegate *)[NSApp delegate] refreshPermissions];
+        });
 
         if (type==(CGEventType)NSEventTypeGesture)
         {
             const NSUInteger touching=[[event touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];
-        
             if (touching>=2) {
                 [tap->logger logUnsignedInteger:touching forKey:@"touching"];
                 tap->lastTouchTime=time;
@@ -136,22 +137,26 @@ static CGEventRef _callback(CGEventTapProxy proxy,
                     [tap->logger logBool:YES forKey:@"usingNotContinuous"];
                     return ScrollEventSourceMouse; // assume anything not-continuous is a mouse
                 }
-                
-                if (touching>=2 && touchElapsed<(MILLISECOND*222))
+
+                // continuous=1 means trackpad or Magic Mouse; refine using touch data if available
+                const BOOL touchDataAvailable = tap->lastTouchTime > 0;
+
+                if (touchDataAvailable && touching>=2 && touchElapsed<(MILLISECOND*222))
                 {
                     [tap->logger logBool:YES forKey:@"usingTouches"];
                     return ScrollEventSourceTrackpad;
                 }
                 
-                if (phase==ScrollPhaseNormal && touchElapsed>(MILLISECOND*333))
+                if (touchDataAvailable && phase==ScrollPhaseNormal && touchElapsed>(MILLISECOND*333))
                 {
                     [tap->logger logBool:YES forKey:@"usingTouchElapsed"];
                     return ScrollEventSourceMouse;
                 }
-                
-                // not enough information to decide. assume the same as last time. ha!
-                [tap->logger logBool:YES forKey:@"usingPrevious"];
-                return tap->lastSource;
+
+                // touch data unavailable (e.g. macOS 26 gesture tap no longer reports touches)
+                // fall back to continuous flag: continuous=1 reliably means trackpad
+                [tap->logger logBool:YES forKey:@"usingContinuous"];
+                return ScrollEventSourceTrackpad;
             })();
             tap->lastSource=source;
             
@@ -206,7 +211,6 @@ static CGEventRef _callback(CGEventTapProxy proxy,
             // Calculate signed multiplier to apply
             const NSInteger vmul=(invert&&[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical])?-vstep:vstep;
             const NSInteger hmul=(invert&&[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal])?-1:1;
-
             /* Do the actual reversing. It's worth noting we have to set the point values second, or we lose smooth scrolling.
              This is because setting DeltaAxis causes macos to internally modify PointDeltaAxis (8x multiplier on DeltaAxis
              value) and FixedPtDeltaAxis (1x multiplier). */
@@ -299,7 +303,9 @@ static CGEventRef _callback(CGEventTapProxy proxy,
 
     // active tap, for modifying scroll events
     // this one requires user privacy permissions
-    self.activeTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
+    // note: kCGHIDEventTap is required on macOS 26 Tahoe; kCGSessionEventTap no longer
+    // allows scroll event modifications to take effect on that OS version
+    self.activeTapPort=(CFMachPortRef)CGEventTapCreate(kCGHIDEventTap,
                                            kCGTailAppendEventTap,
                                            kCGEventTapOptionDefault,
                                            NSEventMaskScrollWheel,
@@ -307,13 +313,24 @@ static CGEventRef _callback(CGEventTapProxy proxy,
                                            (__bridge void *)(self));
     NSLog(@"active tap port %p", self.activeTapPort);
 
-    // now create sources and add to run loop
+    // now create sources and add to a dedicated background thread's run loop
+    // (on macOS 26 Tahoe, attaching tap sources to the main run loop causes scroll
+    // event modifications to be silently dropped; a background run loop fixes this)
     if (self.passiveTapPort && self.activeTapPort) {
         NSLog(@"Got ports");
         self.passiveTapSource = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, self.passiveTapPort, 0);
-        CFRunLoopAddSource(CFRunLoopGetMain(), self.passiveTapSource, kCFRunLoopCommonModes);
         self.activeTapSource = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, self.activeTapPort, 0);
-        CFRunLoopAddSource(CFRunLoopGetMain(), self.activeTapSource, kCFRunLoopCommonModes);
+
+        dispatch_semaphore_t readySemaphore = dispatch_semaphore_create(0);
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
+            self->tapRunLoop = CFRunLoopGetCurrent();
+            CFRetain(self->tapRunLoop);
+            CFRunLoopAddSource(self->tapRunLoop, self.passiveTapSource, kCFRunLoopCommonModes);
+            CFRunLoopAddSource(self->tapRunLoop, self.activeTapSource, kCFRunLoopCommonModes);
+            dispatch_semaphore_signal(readySemaphore);
+            CFRunLoopRun();
+        });
+        dispatch_semaphore_wait(readySemaphore, DISPATCH_TIME_FOREVER);
     }
     else {
         NSLog(@"Didn't get ports");
@@ -334,8 +351,13 @@ static CGEventRef _callback(CGEventTapProxy proxy,
 {
     [self willChangeValueForKey:kKeyActive];
 
+    if (tapRunLoop) {
+        CFRunLoopStop(tapRunLoop);
+        CFRelease(tapRunLoop);
+        tapRunLoop = NULL;
+    }
+
     if (self.activeTapSource) {
-        CFRunLoopRemoveSource(CFRunLoopGetMain(), self.activeTapSource, kCFRunLoopCommonModes);
         CFRelease(self.activeTapSource);
         self.activeTapSource=nil;
     }
@@ -347,7 +369,6 @@ static CGEventRef _callback(CGEventTapProxy proxy,
     }
 
     if (self.passiveTapSource) {
-        CFRunLoopRemoveSource(CFRunLoopGetMain(), self.passiveTapSource, kCFRunLoopCommonModes);
         CFRelease(self.passiveTapSource);
         self.passiveTapSource=nil;
     }
