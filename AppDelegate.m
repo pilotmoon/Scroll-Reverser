@@ -202,8 +202,43 @@ static void *_contextPermissions=&_contextPermissions;
     [self.statusController attachMenu:self.statusMenu];
 }
     
+- (void)loadDotfileSettings
+{
+    NSString *xdgConfigHome=NSProcessInfo.processInfo.environment[@"XDG_CONFIG_HOME"]
+        ?: [@"~/.config" stringByExpandingTildeInPath];
+    NSString *path=[xdgConfigHome stringByAppendingPathComponent:@"scrollreverser/config"];
+    NSData *data=[NSData dataWithContentsOfFile:path];
+    if (!data) return;
+
+    NSString *contents=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if (!contents) return;
+
+    NSDictionary *keyMap=@{
+        @"enabled": PrefsReverseScrolling,
+        @"reverseVertical": PrefsReverseVertical,
+        @"reverseHorizontal": PrefsReverseHorizontal,
+        @"reverseTrackpad": PrefsReverseTrackpad,
+        @"reverseMouse": PrefsReverseMouse,
+    };
+
+    for (NSString *rawLine in [contents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]]) {
+        NSString *line=[rawLine stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if (line.length==0 || [line hasPrefix:@"#"]) continue;
+        NSRange eq=[line rangeOfString:@"="];
+        if (eq.location==NSNotFound) continue;
+        NSString *dotfileKey=[[line substringToIndex:eq.location] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSString *val=[[line substringFromIndex:eq.location+1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSString *prefsKey=keyMap[dotfileKey];
+        if (!prefsKey) continue;
+        BOOL boolVal=[val isEqualToString:@"true"] || [val isEqualToString:@"1"];
+        [[NSUserDefaults standardUserDefaults] setBool:boolVal forKey:prefsKey];
+    }
+    NSLog(@"Loaded settings from %@", path);
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [self loadDotfileSettings];
     // Even though the app has no visible main menu, we set a minimal menu for keyboard shortcut support.
     // For example, ⌘W to close the prefs window.
     [NSApp setMainMenu:self.theMainMenu];
