@@ -43,6 +43,13 @@
     [self updateConsole];
 }
 
+- (void)windowWillClose:(NSNotification *)notification
+{
+    [self.refreshTimer invalidate];
+    self.refreshTimer=nil;
+    [self.appDelegate stopLogging];
+}
+
 - (void)observeLogEntriesChange:(NSNotification *)note
 {
     NSIndexSet *const appendedIndexes=[note userInfo][LoggerEntriesAppended];
@@ -216,4 +223,3 @@
 
 
 @end
-

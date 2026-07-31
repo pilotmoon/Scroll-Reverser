@@ -9,8 +9,8 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // xcode settings
-PRODUCT_NAME = Scroll Reverser (Dev)
+PRODUCT_NAME = Scroll Reverser Dev
+BUILDSCRIPTS_APP_BUNDLE_ID = com.alexjiang.ScrollReverser.dev
 
 // custom settings
 BUILDSCRIPTS_ICON = // no icon for dev build
-

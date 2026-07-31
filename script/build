@@ -9,7 +9,7 @@ allowed_languages="base cs cy da de el en es fr ga he hu it ja ko nb ne nl pl pt
 $BuildScripts/process/remove_langs $BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH $allowed_languages
 
 # sparkle
-signing_identity="Developer ID Application"
+signing_identity=${EXPANDED_CODE_SIGN_IDENTITY:?Missing expanded code signing identity}
 echo $allowed_languages
 $BuildScripts/process/process_sparkle2_nosb $BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH $allowed_languages $signing_identity
 

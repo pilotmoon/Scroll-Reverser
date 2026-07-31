@@ -226,6 +226,29 @@ static void *_contextPermissions=&_contextPermissions;
                                  context:_contextPermissions];
     [self logAppEvent:@"Scroll Reverser started. Option-click the Scroll Reverser menu bar icon to show the debug console."];
 
+#if DEBUG
+    NSString *const expectedBundlePath=@"/Applications/Scroll Reverser Dev.app";
+#else
+    NSString *const expectedBundlePath=@"/Applications/Scroll Reverser.app";
+#endif
+    NSString *const bundlePath=[NSBundle mainBundle].bundlePath.stringByStandardizingPath;
+    const BOOL stableLaunchPathMatched=[bundlePath isEqualToString:expectedBundlePath];
+    NSLog(@"runtime identity: bundlePath=%@ bundleID=%@ accessibilityTrusted=%@ stableLaunchPathMatched=%@",
+          bundlePath,
+          [NSBundle mainBundle].bundleIdentifier,
+          @(AXIsProcessTrusted()),
+          @(stableLaunchPathMatched));
+
+#if DEBUG
+    BOOL tapRecoveryProbe=NO;
+    if (self.permissionsManager.hasAllRequiredPermissions) {
+        self.tap.active=YES;
+        tapRecoveryProbe=[self.tap runRecoveryProbe];
+        self.tap.active=NO;
+    }
+    NSLog(@"tap disable-handler probe: disabledThenReenabled=%@", @(tapRecoveryProbe));
+#endif
+
     // We don't bind `enabled` directly to prefs, because of the many dynamic interactions with the setting.
     BOOL enabledInPrefs=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
     [self addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionInitial context:_contextEnabled];
@@ -291,6 +314,12 @@ static void *_contextPermissions=&_contextPermissions;
     return self.logger;
 }
 
+- (void)stopLogging
+{
+    self.tap->logger=nil;
+    self.logger=nil;
+}
+
 - (void)logAppEvent:(NSString *)str
 {
     NSString *message=[NSString stringWithFormat:@"%@ %@", str, [self settingsSummary]];
@@ -305,8 +334,8 @@ static void *_contextPermissions=&_contextPermissions;
     [NSApp activateIgnoringOtherApps:YES];
     if(!self.debugWindowController) {
         self.debugWindowController=[[DebugWindowController alloc] initWithWindowNibName:@"DebugWindow"];
-        self.debugWindowController.logger=[self startLogging];
     }
+    self.debugWindowController.logger=[self startLogging];
     [self.debugWindowController showWindow:self];
 }
 
@@ -410,12 +439,6 @@ static void *_contextPermissions=&_contextPermissions;
     [self showDebug:self];
 }
 
-#pragma mark Permissions
-
-- (void)refreshPermissions {
-    [self.permissionsManager refresh];
-}
-
 - (void)showPermissionsUI {
     [self showPrefsWithDefaultPane:YES];
 }
@@ -468,4 +491,3 @@ static void *_contextPermissions=&_contextPermissions;
 }
 
 @end
-

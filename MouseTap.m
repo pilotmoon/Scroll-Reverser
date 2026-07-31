@@ -51,6 +51,11 @@ static NSInteger _stepsize(void)
     return setting;
 }
 
+static void _handleTapDisabled(MouseTap *tap)
+{
+    [tap enableTap];
+}
+
 static CGEventRef _callback(CGEventTapProxy proxy,
                            CGEventType type,
                            CGEventRef eventRef,
@@ -59,9 +64,17 @@ static CGEventRef _callback(CGEventTapProxy proxy,
     @autoreleasepool
     {
         MouseTap *const tap=(__bridge MouseTap *)userInfo;
+
+        // A tap disabled by the OS must be re-enabled before doing any of the
+        // normal event work. In particular, avoid allocations and permission
+        // polling here: a slow callback is what causes timeout disablement.
+        if (type==kCGEventTapDisabledByTimeout||type==kCGEventTapDisabledByUserInput) {
+            _handleTapDisabled(tap);
+            return eventRef;
+        }
+
         const uint64_t time=_nanoseconds();
         NSEvent *const event=[NSEvent eventWithCGEvent:eventRef];
-        [(AppDelegate *)[NSApp delegate] refreshPermissions];
 
         if (type==(CGEventType)NSEventTypeGesture)
         {
@@ -372,6 +385,18 @@ static CGEventRef _callback(CGEventTapProxy proxy,
     if (self.passiveTapPort&&!CGEventTapIsEnabled(self.passiveTapPort)) {
         CGEventTapEnable(self.passiveTapPort, YES);
     }
+}
+
+- (BOOL)runRecoveryProbe
+{
+    if (!self.activeTapPort||!CFMachPortIsValid(self.activeTapPort)) {
+        return NO;
+    }
+
+    CGEventTapEnable(self.activeTapPort, NO);
+    const BOOL observedDisabled=!CGEventTapIsEnabled(self.activeTapPort);
+    _handleTapDisabled(self);
+    return observedDisabled&&CGEventTapIsEnabled(self.activeTapPort);
 }
 
 

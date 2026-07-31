@@ -31,7 +31,7 @@ typedef enum {
 
 @property (getter=isActive) BOOL active;
 - (void)enableTap;
+- (BOOL)runRecoveryProbe;
 
 @end
-
 
