@@ -36,7 +36,7 @@ extern NSString *const PrefsShowDiscreteScrollOptions;
 @property (readonly) NSURL *appPermissionsHelpLink;
 
 @property (readonly) NSString *menuStringReverseScrolling;
-@property (readonly) NSString *menuStringPreferences;
+@property (readonly) NSString *menuStringSettings;
 @property (readonly) NSString *menuStringQuit;
 
 @property (getter=isEnabled) BOOL enabled;

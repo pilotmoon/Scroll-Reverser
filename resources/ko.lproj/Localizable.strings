@@ -46,7 +46,7 @@ Example: "Open Input Monitoring preferences" */
 "Permissions" = "권한";
 
 /* No comment provided by engineer. */
-"Preferences" = "환경설정";
+"Settings" = "설정";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "%1$@ 종료";

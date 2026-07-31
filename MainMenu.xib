@@ -28,15 +28,13 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="538"/>
-                <menuItem title="PrEfErEnCeS…" id="702">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Settings" keyEquivalent="," id="702">
                     <connections>
                         <action selector="showPrefs:" target="494" id="703"/>
-                        <binding destination="494" name="title" keyPath="self.menuStringPreferences" id="706"/>
+                        <binding destination="494" name="title" keyPath="self.menuStringSettings" id="706"/>
                     </connections>
                 </menuItem>
-                <menuItem title="QUIT S R" id="536">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="QUIT S R" keyEquivalent="q" id="536">
                     <connections>
                         <action selector="terminate:" target="-3" id="542"/>
                         <binding destination="494" name="title" keyPath="menuStringQuit" id="587"/>
@@ -48,6 +46,26 @@
         <userDefaultsController representsSharedInstance="YES" id="554"/>
         <menu id="708">
             <items>
+                <menuItem title="Application" id="app-menu-item">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Application" id="app-menu">
+                        <items>
+                            <menuItem title="Settings" keyEquivalent="," id="main-menu-preferences">
+                                <connections>
+                                    <action selector="showPrefs:" target="494" id="main-menu-preferences-action"/>
+                                    <binding destination="494" name="title" keyPath="self.menuStringSettings" id="main-menu-preferences-title"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="main-menu-separator"/>
+                            <menuItem title="Quit" keyEquivalent="q" id="main-menu-quit">
+                                <connections>
+                                    <action selector="terminate:" target="-3" id="main-menu-quit-action"/>
+                                    <binding destination="494" name="title" keyPath="menuStringQuit" id="main-menu-quit-title"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="File" id="769">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="File" id="770">

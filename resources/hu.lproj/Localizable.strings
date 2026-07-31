@@ -46,7 +46,7 @@ Example: "Open Input Monitoring preferences" */
 "Permissions" = "Jogosultságok";
 
 /* No comment provided by engineer. */
-"Preferences" = "Beállítások";
+"Settings" = "Beállítások";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Kilépés a %1$@ből";

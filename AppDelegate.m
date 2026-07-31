@@ -483,8 +483,8 @@ static void *_contextPermissions=&_contextPermissions;
 - (NSString *)menuStringReverseScrolling {
     return [NSString stringWithFormat:NSLocalizedString(@"Enable %1$@", @"1=name of app e.g. `Enable Scroll Reverser`"), self.appName];
 }
-- (NSString *)menuStringPreferences {
-    return [NSLocalizedString(@"Preferences", nil) stringByAppendingString:@"..."];
+- (NSString *)menuStringSettings {
+    return NSLocalizedString(@"Settings", nil);
 }
 - (NSString *)menuStringQuit {
     return [NSString stringWithFormat:NSLocalizedString(@"Quit %1$@",@"1=name of app e.g. `Quit Scroll Reverser`"`), self.appName];

@@ -40,7 +40,7 @@
 "Permissions" = "Permissions";
 
 /* No comment provided by engineer. */
-"Preferences" = "Preferences";
+"Settings" = "Settings";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Quit %1$@";
@@ -98,4 +98,3 @@
 
 /* No comment provided by engineer. */
 "✅ granted" = "✅ granted";
-

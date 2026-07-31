@@ -46,7 +46,7 @@ Example: "Open Input Monitoring preferences" */
 "Permissions" = "अनुमतिहरू";
 
 /* No comment provided by engineer. */
-"Preferences" = "प्राथमिकताहरू";
+"Settings" = "सेटिङहरू";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "%1$@ बन्द गर्नुहोस्";
