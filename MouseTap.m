@@ -63,6 +63,8 @@ static CGEventRef _callback(CGEventTapProxy proxy,
         // them first throws an exception and prevents the tap from recovering.
         if (type == kCGEventTapDisabledByTimeout || type == kCGEventTapDisabledByUserInput) {
             [tap enableTap];
+            [tap->logger logEventType:type forKey:@"type"];
+            [tap->logger logParams];
             return eventRef;
         }
         if (!eventRef || (type != (CGEventType)NSEventTypeGesture && type != kCGEventScrollWheel)) {

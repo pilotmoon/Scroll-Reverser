@@ -94,6 +94,10 @@
         case kCGEventTapDisabledByTimeout:
             str=@"timeout";
             break;
+
+        case kCGEventTapDisabledByUserInput:
+            str=@"user input";
+            break;
             
         default:
             break;
