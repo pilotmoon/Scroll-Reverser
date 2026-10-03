@@ -45,8 +45,8 @@ Example: "Open Input Monitoring preferences" */
 /* Section title */
 "Permissions" = "권한";
 
-/* No comment provided by engineer. */
-"Preferences" = "환경설정";
+/* Menu item that opens the settings window, including the trailing ellipsis */
+"Settings…" = "설정…";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "%1$@ 종료";

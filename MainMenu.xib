@@ -28,15 +28,13 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="538"/>
-                <menuItem title="PrEfErEnCeS…" id="702">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="SeTtInGs…" keyEquivalent="," id="702">
                     <connections>
                         <action selector="showPrefs:" target="494" id="703"/>
-                        <binding destination="494" name="title" keyPath="self.menuStringPreferences" id="706"/>
+                        <binding destination="494" name="title" keyPath="self.menuStringSettings" id="706"/>
                     </connections>
                 </menuItem>
-                <menuItem title="QUIT S R" id="536">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="QUIT S R" keyEquivalent="q" id="536">
                     <connections>
                         <action selector="terminate:" target="-3" id="542"/>
                         <binding destination="494" name="title" keyPath="menuStringQuit" id="587"/>
@@ -48,6 +46,26 @@
         <userDefaultsController representsSharedInstance="YES" id="554"/>
         <menu id="708">
             <items>
+                <menuItem title="Scroll Reverser" id="Kq3-uT-7bN">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Scroll Reverser" id="vR8-Ld-2xP">
+                        <items>
+                            <menuItem title="SeTtInGs…" keyEquivalent="," id="Hc5-9w-QmZ">
+                                <connections>
+                                    <action selector="showPrefs:" target="494" id="Tn2-Yd-8fA"/>
+                                    <binding destination="494" name="title" keyPath="self.menuStringSettings" id="p4W-Jx-6sE"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="Zb7-mN-3rK"/>
+                            <menuItem title="QUIT S R" keyEquivalent="q" id="Ue9-Fh-1cV">
+                                <connections>
+                                    <action selector="terminate:" target="-3" id="Ya6-Gp-5tM"/>
+                                    <binding destination="494" name="title" keyPath="menuStringQuit" id="Wd3-Rk-0nQ"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="File" id="769">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="File" id="770">

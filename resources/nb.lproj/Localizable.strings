@@ -45,8 +45,8 @@ Example: "Open Input Monitoring preferences" */
 /* Section title */
 "Permissions" = "Tillatelser";
 
-/* No comment provided by engineer. */
-"Preferences" = "Valg";
+/* Menu item that opens the settings window, including the trailing ellipsis */
+"Settings…" = "Innstillinger…";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Avslutt %1$@";
