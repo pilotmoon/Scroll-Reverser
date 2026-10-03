@@ -23,7 +23,6 @@
 		019FB05A14EB1A9100FA225A /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019FB05914EB1A9100FA225A /* WelcomeWindowController.m */; };
 		01AF54C91B0CB87C0028A26A /* TapLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AF54C81B0CB87C0028A26A /* TapLogger.m */; };
 		01AF54D31B0E11150028A26A /* TestWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AF54D11B0E11150028A26A /* TestWindowController.m */; };
-		01AF54D41B0E11150028A26A /* TestWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AF54D21B0E11150028A26A /* TestWindow.xib */; };
 		01D9F8932386D5C1002F0EC0 /* PermissionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D9F8922386D5C1002F0EC0 /* PermissionsManager.m */; };
 		01D9F8962386E01C002F0EC0 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D9F8942386E013002F0EC0 /* IOKit.framework */; };
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
@@ -89,7 +88,6 @@
 		01AF54C81B0CB87C0028A26A /* TapLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapLogger.m; sourceTree = "<group>"; };
 		01AF54D01B0E11150028A26A /* TestWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestWindowController.h; sourceTree = "<group>"; };
 		01AF54D11B0E11150028A26A /* TestWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestWindowController.m; sourceTree = "<group>"; };
-		01AF54D21B0E11150028A26A /* TestWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestWindow.xib; sourceTree = "<group>"; };
 		01BC496125CC597800EF8CC5 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = resources/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01BC496325CC5E3D00EF8CC5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01BC496525CD3B1B00EF8CC5 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "resources/pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -242,7 +240,6 @@
 			children = (
 				C0D4DFE12E986D5900E40368 /* Media.xcassets */,
 				011A628619D49B69003CE6DC /* ReleaseNotes.md */,
-				01AF54D21B0E11150028A26A /* TestWindow.xib */,
 				0183EE6D1A37943500A260E0 /* MainMenu.xib */,
 				01438E5F1AFB467100C5C857 /* DebugWindow.xib */,
 				0183EE6E1A37943500A260E0 /* WelcomeWindow.xib */,
@@ -346,7 +343,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01AF54D41B0E11150028A26A /* TestWindow.xib in Resources */,
 				01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */,
 				017347631A35D9C100A0A1BE /* PrefsWindow.xib in Resources */,
 				01438E611AFB467100C5C857 /* DebugWindow.xib in Resources */,

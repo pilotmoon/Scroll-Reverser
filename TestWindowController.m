@@ -45,27 +45,39 @@
     return image;
 }
 
-- (void)windowDidLoad {
-    [super windowDidLoad];
-    
-    // create an image view containing the test image
-    NSImage *const testImage=[self testImage];
-    const NSRect testRect=NSMakeRect(0, 0, testImage.size.width, testImage.size.height);
-    NSImageView *const testView=[[NSImageView alloc] initWithFrame:testRect];
-    testView.image=testImage;
-    [testView setBounds:testRect];
-    
-    // create the scroll view so that it fills the entire window
-    NSScrollView *const scrollView = [[NSScrollView alloc] initWithFrame:[[self.window contentView] frame]];
-    [scrollView setHasVerticalScroller:YES];
-    [scrollView setHasHorizontalScroller:YES];
-    [scrollView setBorderType:NSNoBorder];
-    [scrollView setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
-    [scrollView setDocumentView:testView];
-    [self.window setContentView:scrollView];
-    
-    // scroll to top
-    [[scrollView documentView] scrollPoint:NSMakePoint(0, testImage.size.height)];
+- (instancetype)init
+{
+    NSWindow *const window=[[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 256, 256)
+                                                       styleMask:NSWindowStyleMaskTitled|NSWindowStyleMaskClosable|NSWindowStyleMaskMiniaturizable|NSWindowStyleMaskResizable
+                                                         backing:NSBackingStoreBuffered
+                                                           defer:YES];
+    window.title=@"Scrolling Test Window";
+    window.minSize=NSMakeSize(200, 200);
+    window.releasedWhenClosed=NO;
+    window.restorable=NO;
+
+    self=[super initWithWindow:window];
+    if (self) {
+        // create an image view containing the test image
+        NSImage *const testImage=[self testImage];
+        const NSRect testRect=NSMakeRect(0, 0, testImage.size.width, testImage.size.height);
+        NSImageView *const testView=[[NSImageView alloc] initWithFrame:testRect];
+        testView.image=testImage;
+        [testView setBounds:testRect];
+
+        // create the scroll view so that it fills the entire window
+        NSScrollView *const scrollView=[[NSScrollView alloc] initWithFrame:[[window contentView] frame]];
+        [scrollView setHasVerticalScroller:YES];
+        [scrollView setHasHorizontalScroller:YES];
+        [scrollView setBorderType:NSNoBorder];
+        [scrollView setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
+        [scrollView setDocumentView:testView];
+        [window setContentView:scrollView];
+
+        // scroll to top
+        [[scrollView documentView] scrollPoint:NSMakePoint(0, testImage.size.height)];
+    }
+    return self;
 }
 
 - (void)showWindow:(id)sender
@@ -77,10 +89,5 @@
         [super showWindow:sender];
     });
 }
-
-- (NSString *)uiStringTestWindow {
-    return @"Scrolling Test Window";
-}
-
 
 @end

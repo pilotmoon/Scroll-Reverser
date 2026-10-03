@@ -5,6 +5,4 @@
 
 @interface TestWindowController : NSWindowController
 
-@property (readonly) NSString *uiStringTestWindow;
-
 @end

@@ -344,7 +344,7 @@ static void *_contextPermissions=&_contextPermissions;
 {
     [NSApp activateIgnoringOtherApps:YES];
     if(!self.testWindowController) {
-        self.testWindowController=[[TestWindowController alloc] initWithWindowNibName:@"TestWindow"];
+        self.testWindowController=[[TestWindowController alloc] init];
     }
     [self.testWindowController showWindow:self];
 }
