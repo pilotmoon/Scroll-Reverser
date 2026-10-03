@@ -6,16 +6,10 @@
 
 @interface DebugWindowController : NSWindowController  <NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate>
 
-@property (weak) IBOutlet NSTableView *consoleTableView;
-@property (weak) IBOutlet LoggerScrollView *consoleScrollView;
+@property (readonly) NSTableView *consoleTableView;
+@property (readonly) LoggerScrollView *consoleScrollView;
 @property (weak, nonatomic) Logger *logger;
 @property BOOL paused;
-
-@property (readonly) NSString *uiStringDebugConsole;
-@property (readonly) NSString *uiStringClear;
-@property (readonly) NSString *uiStringPause;
-@property (readonly) NSString *uiStringLogState;
-@property (readonly) NSString *uiStringShowTestWindow;
 
 @property (readonly) AppDelegate *appDelegate;
 

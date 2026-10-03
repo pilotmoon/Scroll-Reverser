@@ -10,7 +10,6 @@
 		01145CF2256ED29000E0EFE5 /* LoginItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01145CF1256ED29000E0EFE5 /* LoginItemController.m */; };
 		01145CF6256ED93400E0EFE5 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01145CF5256ED93400E0EFE5 /* ServiceManagement.framework */; };
 		01438E601AFB467100C5C857 /* DebugWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01438E5E1AFB467100C5C857 /* DebugWindowController.m */; };
-		01438E611AFB467100C5C857 /* DebugWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01438E5F1AFB467100C5C857 /* DebugWindow.xib */; };
 		01438E901AFB640400C5C857 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 01438E8F1AFB640400C5C857 /* Logger.m */; };
 		01438E931AFB7BC100C5C857 /* LoggerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01438E921AFB7BC100C5C857 /* LoggerScrollView.m */; };
 		01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01587306134DD1E200CD9CC4 /* Localizable.strings */; };
@@ -58,7 +57,6 @@
 		013E4E401DD7C50F00DCC144 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = nl; path = resources/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01438E5D1AFB467100C5C857 /* DebugWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugWindowController.h; sourceTree = "<group>"; };
 		01438E5E1AFB467100C5C857 /* DebugWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugWindowController.m; sourceTree = "<group>"; };
-		01438E5F1AFB467100C5C857 /* DebugWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugWindow.xib; sourceTree = "<group>"; };
 		01438E8E1AFB640400C5C857 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		01438E8F1AFB640400C5C857 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		01438E911AFB7BC100C5C857 /* LoggerScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerScrollView.h; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 				C0D4DFE12E986D5900E40368 /* Media.xcassets */,
 				011A628619D49B69003CE6DC /* ReleaseNotes.md */,
 				0183EE6D1A37943500A260E0 /* MainMenu.xib */,
-				01438E5F1AFB467100C5C857 /* DebugWindow.xib */,
 				017347621A35D9C100A0A1BE /* PrefsWindow.xib */,
 				01587306134DD1E200CD9CC4 /* Localizable.strings */,
 				8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */,
@@ -342,7 +339,6 @@
 			files = (
 				01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */,
 				017347631A35D9C100A0A1BE /* PrefsWindow.xib in Resources */,
-				01438E611AFB467100C5C857 /* DebugWindow.xib in Resources */,
 				0183EE6F1A37943500A260E0 /* MainMenu.xib in Resources */,
 				C0D4DFE22E986D5900E40368 /* Media.xcassets in Resources */,
 				0183EE781A3794F800A260E0 /* ScrollReverser.sdef in Resources */,

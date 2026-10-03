@@ -6,7 +6,11 @@
 #import "LoggerScrollView.h"
 #import "AppDelegate.h"
 
+static NSUserInterfaceItemIdentifier const kLogCellIdentifier=@"LogCell";
+
 @interface DebugWindowController ()
+@property NSTableView *consoleTableView;
+@property LoggerScrollView *consoleScrollView;
 @property NSDateFormatter *df;
 @property NSTimer *refreshTimer;
 @end
@@ -21,7 +25,9 @@
     if (logger) {
         [logger bind:@"enabled" toObject:self withKeyPath:@"paused" options:@{NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
     }
-   _logger=logger;
+    _logger=logger;
+    // a new logger starts with its own entries, so drop any rows from the previous one
+    [self.consoleTableView reloadData];
 }
 
 - (void)dealloc
@@ -30,26 +36,87 @@
     self.logger=nil;
 }
 
-- (void)windowDidLoad {
-    [super windowDidLoad];
-    self.df=[[NSDateFormatter alloc] init];
-    self.df.dateFormat=@"HH:mm:ss.S";
-    self.consoleTableView.dataSource=self;
-    self.consoleTableView.delegate=self;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeLogEntriesChange:) name:LoggerEntriesChanged object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeLogUpdatesWaiting:) name:LoggerUpdatesWaiting object:nil];
-    [self addObserver:self forKeyPath:@"paused" options:NSKeyValueObservingOptionInitial context:nil];
-    [self.consoleTableView reloadData];
-    [self updateConsole];
+- (instancetype)init
+{
+    NSWindow *const window=[[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 800, 276)
+                                                       styleMask:NSWindowStyleMaskTitled|NSWindowStyleMaskClosable|NSWindowStyleMaskMiniaturizable|NSWindowStyleMaskResizable
+                                                         backing:NSBackingStoreBuffered
+                                                           defer:YES];
+    window.title=@"Scroll Reverser Debug Console";
+    window.releasedWhenClosed=NO;
+    window.restorable=NO;
+
+    self=[super initWithWindow:window];
+    if (self) {
+        window.delegate=self;
+        self.df=[[NSDateFormatter alloc] init];
+        self.df.dateFormat=@"HH:mm:ss.S";
+        [self buildContentView:window.contentView];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeLogEntriesChange:) name:LoggerEntriesChanged object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeLogUpdatesWaiting:) name:LoggerUpdatesWaiting object:nil];
+        [self addObserver:self forKeyPath:@"paused" options:NSKeyValueObservingOptionInitial context:nil];
+    }
+    return self;
 }
 
-- (void)windowWillClose:(NSNotification *)notification
+- (void)buildContentView:(NSView *)contentView
 {
-    // stop logging while the console is closed; nothing processes the log while it is hidden
-    [self.refreshTimer invalidate];
-    self.refreshTimer=nil;
-    self.logger=nil;
-    [self.appDelegate stopLogging];
+    // one wide column, so long lines can be scrolled to horizontally while paused
+    NSTableColumn *const column=[[NSTableColumn alloc] initWithIdentifier:kLogCellIdentifier];
+    column.editable=NO;
+    column.width=1200;
+    column.minWidth=1200;
+    column.maxWidth=100000;
+    column.resizingMask=NSTableColumnAutoresizingMask;
+
+    self.consoleTableView=[[NSTableView alloc] init];
+    self.consoleTableView.style=NSTableViewStyleFullWidth;
+    self.consoleTableView.rowSizeStyle=NSTableViewRowSizeStyleCustom;
+    self.consoleTableView.rowHeight=17;
+    self.consoleTableView.headerView=nil;
+    self.consoleTableView.allowsColumnReordering=NO;
+    self.consoleTableView.allowsColumnResizing=NO;
+    self.consoleTableView.allowsMultipleSelection=YES;
+    self.consoleTableView.allowsTypeSelect=NO;
+    self.consoleTableView.allowsExpansionToolTips=YES;
+    self.consoleTableView.intercellSpacing=NSMakeSize(3, 2);
+    [self.consoleTableView addTableColumn:column];
+    self.consoleTableView.dataSource=self;
+    self.consoleTableView.delegate=self;
+
+    self.consoleScrollView=[[LoggerScrollView alloc] init];
+    self.consoleScrollView.translatesAutoresizingMaskIntoConstraints=NO;
+    self.consoleScrollView.borderType=NSBezelBorder;
+    self.consoleScrollView.autohidesScrollers=YES;
+    self.consoleScrollView.usesPredominantAxisScrolling=NO;
+    self.consoleScrollView.contentView.drawsBackground=NO;
+    self.consoleScrollView.documentView=self.consoleTableView;
+    [contentView addSubview:self.consoleScrollView];
+
+    NSButton *const clearButton=[NSButton buttonWithTitle:@"Clear" target:self action:@selector(clearLog:)];
+    NSButton *const pauseCheckbox=[NSButton checkboxWithTitle:@"Pause" target:nil action:nil];
+    [pauseCheckbox bind:NSValueBinding toObject:self withKeyPath:@"paused" options:nil];
+    NSButton *const testWindowButton=[NSButton buttonWithTitle:@"Show Test Window" target:self action:@selector(showDemoWindow:)];
+    for (NSButton *button in @[clearButton, pauseCheckbox, testWindowButton]) {
+        button.translatesAutoresizingMaskIntoConstraints=NO;
+        button.controlSize=NSControlSizeSmall;
+        button.font=[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSControlSizeSmall]];
+        [contentView addSubview:button];
+    }
+
+    // the scroll view overhangs the window edges by 1pt to hide its border at the sides and top
+    [NSLayoutConstraint activateConstraints:@[
+        [self.consoleScrollView.topAnchor constraintEqualToAnchor:contentView.topAnchor constant:-1],
+        [self.consoleScrollView.leadingAnchor constraintEqualToAnchor:contentView.leadingAnchor constant:-1],
+        [self.consoleScrollView.trailingAnchor constraintEqualToAnchor:contentView.trailingAnchor constant:1],
+        [clearButton.topAnchor constraintEqualToAnchor:self.consoleScrollView.bottomAnchor constant:5],
+        [clearButton.leadingAnchor constraintEqualToAnchor:contentView.leadingAnchor constant:7],
+        [clearButton.bottomAnchor constraintEqualToAnchor:contentView.bottomAnchor constant:-5],
+        [pauseCheckbox.leadingAnchor constraintEqualToAnchor:clearButton.trailingAnchor constant:6],
+        [pauseCheckbox.bottomAnchor constraintEqualToAnchor:contentView.bottomAnchor constant:-8],
+        [testWindowButton.trailingAnchor constraintEqualToAnchor:contentView.trailingAnchor constant:-7],
+        [testWindowButton.bottomAnchor constraintEqualToAnchor:contentView.bottomAnchor constant:-5],
+    ]];
 }
 
 - (void)observeLogEntriesChange:(NSNotification *)note
@@ -191,9 +258,31 @@
    viewForTableColumn:(NSTableColumn *)tableColumn
                   row:(NSInteger)row
 {
-    NSTableCellView *const result = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+    NSTableCellView *result=[tableView makeViewWithIdentifier:kLogCellIdentifier owner:self];
+    if (!result) {
+        result=[self makeLogCellView];
+    }
     result.textField.attributedStringValue=[self formatEntry:[self.logger entryAtIndex:row]];
     return result;
+}
+
+- (NSTableCellView *)makeLogCellView
+{
+    NSTextField *const textField=[NSTextField labelWithString:@""];
+    textField.translatesAutoresizingMaskIntoConstraints=NO;
+    textField.lineBreakMode=NSLineBreakByTruncatingTail;
+    [textField setContentCompressionResistancePriority:NSLayoutPriorityDefaultLow forOrientation:NSLayoutConstraintOrientationHorizontal];
+
+    NSTableCellView *const cellView=[[NSTableCellView alloc] init];
+    cellView.identifier=kLogCellIdentifier;
+    cellView.textField=textField;
+    [cellView addSubview:textField];
+    [NSLayoutConstraint activateConstraints:@[
+        [textField.leadingAnchor constraintEqualToAnchor:cellView.leadingAnchor constant:3],
+        [textField.trailingAnchor constraintEqualToAnchor:cellView.trailingAnchor],
+        [textField.centerYAnchor constraintEqualToAnchor:cellView.centerYAnchor],
+    ]];
+    return cellView;
 }
 
 - (NSIndexSet *)tableView:(NSTableView *)tableView selectionIndexesForProposedSelection:(NSIndexSet *)proposedSelectionIndexes
@@ -201,28 +290,4 @@
     return self.paused?proposedSelectionIndexes:nil;
 }
 
-#pragma mark Strings
-
-- (NSString *)uiStringDebugConsole {
-    return @"Scroll Reverser Debug Console";
-}
-
-- (NSString *)uiStringClear {
-    return @"Clear";
-}
-
-- (NSString *)uiStringPause {
-    return @"Pause";
-}
-
-- (NSString *)uiStringLogState {
-    return @"Log Current Settings";
-}
-
-- (NSString *)uiStringShowTestWindow {
-    return @"Show Test Window";
-}
-
-
 @end
-

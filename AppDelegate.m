@@ -308,10 +308,12 @@ static void *_contextPermissions=&_contextPermissions;
 - (IBAction)showDebug:(id)sender
 {
     [NSApp activateIgnoringOtherApps:YES];
+    // start logging first, so the console's own startup messages are captured
+    Logger *const logger=[self startLogging];
     if(!self.debugWindowController) {
-        self.debugWindowController=[[DebugWindowController alloc] initWithWindowNibName:@"DebugWindow"];
+        self.debugWindowController=[[DebugWindowController alloc] init];
     }
-    self.debugWindowController.logger=[self startLogging];
+    self.debugWindowController.logger=logger;
     [self.debugWindowController showWindow:self];
 }
 
