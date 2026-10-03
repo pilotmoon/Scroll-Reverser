@@ -412,10 +412,6 @@ static void *_contextPermissions=&_contextPermissions;
 
 #pragma mark Permissions
 
-- (void)refreshPermissions {
-    [self.permissionsManager refresh];
-}
-
 - (void)showPermissionsUI {
     [self showPrefsWithDefaultPane:YES];
 }

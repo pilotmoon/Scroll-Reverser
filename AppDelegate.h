@@ -50,7 +50,6 @@ extern NSString *const PrefsShowDiscreteScrollOptions;
 - (void)statusItemRightClicked;
 - (void)statusItemAltClicked;
 
-- (void)refreshPermissions;
 - (void)enableDiscreteScrollOptions;
 
 - (void)logAppEvent:(NSString *)str;
