@@ -212,7 +212,7 @@ static void *_contextPermissions=&_contextPermissions;
     const BOOL first=![[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRunBefore];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRunBefore];
     if(first) {
-        self.welcomeWindowController=[[WelcomeWindowController alloc] initWithWindowNibName:@"WelcomeWindow"];
+        self.welcomeWindowController=[[WelcomeWindowController alloc] init];
         [self.welcomeWindowController showWindow:self];
     }
     
