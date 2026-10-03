@@ -25,19 +25,12 @@ extern NSString *const PrefsShowDiscreteScrollOptions;
 @property (readonly) LoginItemController *loginItemController;
 @property (readonly) SPUUpdater *updater;
 
-@property (weak) IBOutlet NSMenu *theMainMenu;
-@property (weak) IBOutlet NSMenu *statusMenu;
-
 @property (readonly) NSString *appName;
 @property (readonly) NSString *appVersion;
 @property (readonly) NSString *appCredit;
 @property (readonly) NSURL *appLink;
 @property (readonly) NSString *appDisplayLink;
 @property (readonly) NSURL *appPermissionsHelpLink;
-
-@property (readonly) NSString *menuStringReverseScrolling;
-@property (readonly) NSString *menuStringSettings;
-@property (readonly) NSString *menuStringQuit;
 
 @property (getter=isEnabled) BOOL enabled;
 

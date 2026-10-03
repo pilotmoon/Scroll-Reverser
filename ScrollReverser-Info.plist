@@ -41,8 +41,6 @@
 	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>© Pilotmoon Software</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>OSAScriptingDefinition</key>
