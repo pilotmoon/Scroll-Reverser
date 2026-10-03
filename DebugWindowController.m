@@ -43,6 +43,15 @@
     [self updateConsole];
 }
 
+- (void)windowWillClose:(NSNotification *)notification
+{
+    // stop logging while the console is closed; nothing processes the log while it is hidden
+    [self.refreshTimer invalidate];
+    self.refreshTimer=nil;
+    self.logger=nil;
+    [self.appDelegate stopLogging];
+}
+
 - (void)observeLogEntriesChange:(NSNotification *)note
 {
     NSIndexSet *const appendedIndexes=[note userInfo][LoggerEntriesAppended];

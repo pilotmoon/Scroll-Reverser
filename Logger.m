@@ -16,6 +16,8 @@ NSString *const LoggerKeyType=@"type";
 NSString *const LoggerTypeNormal=@"normal";
 NSString *const LoggerTypeSpecial=@"special";
 
+static const NSUInteger LoggerMaxPendingEntries=256;
+
 @interface Logger ()
 @property NSMutableArray *logArray;
 @property NSMutableArray *blockArray;
@@ -51,6 +53,13 @@ NSString *const LoggerTypeSpecial=@"special";
 
 - (void)appendDeferred:(NSDictionary *)entry
 {
+    // pending entries are only processed while the console is visible (e.g. not while minimized),
+    // so cap them; drop new entries rather than shifting the array on the event tap callback path
+    const NSUInteger pendingLimit=self.limit>0?MIN(self.limit, LoggerMaxPendingEntries):LoggerMaxPendingEntries;
+    if (self.blockArray.count>=pendingLimit) {
+        return;
+    }
+
     // append action to array for later processing (so log updates can be batched up in a timer)
     __weak Logger *welf=self;
     [self.blockArray addObject:[^{

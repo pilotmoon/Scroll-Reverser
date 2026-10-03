@@ -4,7 +4,7 @@
 #import <Cocoa/Cocoa.h>
 @class Logger, LoggerScrollView, AppDelegate;
 
-@interface DebugWindowController : NSWindowController  <NSTableViewDataSource, NSTableViewDelegate>
+@interface DebugWindowController : NSWindowController  <NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate>
 
 @property (weak) IBOutlet NSTableView *consoleTableView;
 @property (weak) IBOutlet LoggerScrollView *consoleScrollView;

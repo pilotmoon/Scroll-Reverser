@@ -291,6 +291,11 @@ static void *_contextPermissions=&_contextPermissions;
     return self.logger;
 }
 
+- (void)stopLogging
+{
+    self.logger=nil; // the tap's reference is weak
+}
+
 - (void)logAppEvent:(NSString *)str
 {
     NSString *message=[NSString stringWithFormat:@"%@ %@", str, [self settingsSummary]];
@@ -305,8 +310,8 @@ static void *_contextPermissions=&_contextPermissions;
     [NSApp activateIgnoringOtherApps:YES];
     if(!self.debugWindowController) {
         self.debugWindowController=[[DebugWindowController alloc] initWithWindowNibName:@"DebugWindow"];
-        self.debugWindowController.logger=[self startLogging];
     }
+    self.debugWindowController.logger=[self startLogging];
     [self.debugWindowController showWindow:self];
 }
 

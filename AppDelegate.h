@@ -53,5 +53,6 @@ extern NSString *const PrefsShowDiscreteScrollOptions;
 - (void)enableDiscreteScrollOptions;
 
 - (void)logAppEvent:(NSString *)str;
+- (void)stopLogging;
 
 @end
