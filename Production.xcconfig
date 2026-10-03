@@ -10,6 +10,4 @@
 
 // xcode settings
 PRODUCT_NAME = Scroll Reverser
-
-// custom settings
-BUILDSCRIPTS_ICON = ScrollReverser
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon

@@ -11,36 +11,6 @@
 
 @implementation StatusItemController
 
-+ (NSSize)statusImageSize
-{
-    return NSMakeSize(14, 17);
-}
-
-+ (NSImage *)statusImageWithColor:(NSColor *)color
-{
-    NSImage *const templateImage=[NSImage imageNamed:@"scroll"];
-    
-    // create blank image to draw into
-    NSImage *const statusImage=[[NSImage alloc] init];
-    [statusImage setSize:[self statusImageSize]];
-    [statusImage lockFocus];
-    
-    // draw base black image
-    const NSRect dstRect=NSMakeRect(0, 0, [self statusImageSize].width, [self statusImageSize].height);
-    [templateImage drawInRect:dstRect
-                     fromRect:NSZeroRect
-                    operation:NSCompositingOperationSourceOver
-                     fraction:1.0];
-    
-    // fill with color
-    [color set];
-    NSRectFillUsingOperation(dstRect, NSCompositingOperationSourceIn);
-    
-    // finished drawing
-    [statusImage unlockFocus];
-    return statusImage;
-}
-
 - (void)updateItems
 {
     [self.statusItem button].appearsDisabled=!self.enabled;
@@ -54,8 +24,9 @@
         self.statusItem.button.action=@selector(statusButtonClicked:);
         [self.statusItem.button sendActionOn:NSEventMaskLeftMouseDown|NSEventMaskRightMouseDown];
 
-        NSImage *const statusImage=[StatusItemController statusImageWithColor:[NSColor blackColor]];
-        [statusImage setTemplate:YES];
+        // vector template image from the asset catalog; AppKit renders it for each display and appearance
+        NSImage *const statusImage=[NSImage imageNamed:@"StatusIcon"];
+        statusImage.accessibilityDescription=@"Scroll Reverser";
         self.statusItem.button.image=statusImage;
     }
 }

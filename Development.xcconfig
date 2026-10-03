@@ -10,7 +10,5 @@
 
 // xcode settings
 PRODUCT_NAME = Scroll Reverser (Dev)
-
-// custom settings
-BUILDSCRIPTS_ICON = // no icon for dev build
+ASSETCATALOG_COMPILER_APPICON_NAME = // no icon for dev build
 
