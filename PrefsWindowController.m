@@ -17,8 +17,7 @@ static NSString *const kPrefsToolbarIdentifer=@"PrefsToolbar";
 static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 
 
-static void *_contextRefresh=&_contextRefresh;
-static void *_contextPrefsStepSize=&_contextPrefsStepSize;
+static void *_contextPermissions=&_contextPermissions;
 
 
 @interface PrefsWindowController ()
@@ -26,6 +25,12 @@ static void *_contextPrefsStepSize=&_contextPrefsStepSize;
 @property NSToolbar *toolbar;
 @property NSDictionary *panels;
 @property CGFloat width;
+@property NSView *scrollingSettings;
+@property NSView *appSettings;
+@property NSTextField *axStatusLabel;
+@property NSButton *axButton;
+@property NSTextField *imStatusLabel;
+@property NSButton *imButton;
 @end
 
 @implementation PrefsWindowController
@@ -84,17 +89,40 @@ static const double _multiplier=25.0;
     });
 }
 
-- (void)windowDidLoad
+- (instancetype)init
 {
-    [super windowDidLoad];
+    NSWindow *const window=[[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 480, 270)
+                                                       styleMask:NSWindowStyleMaskTitled|NSWindowStyleMaskClosable|NSWindowStyleMaskMiniaturizable
+                                                         backing:NSBackingStoreBuffered
+                                                           defer:YES];
+    window.releasedWhenClosed=NO;
+
+    self=[super initWithWindow:window];
+    if (self) {
+        window.title=self.appDelegate.appName;
+        window.delegate=self;
+        self.scrollingSettings=[self makeScrollingSettings];
+        self.appSettings=[self makeAppSettings];
+
+        // fill in the permission labels before the panes are measured, and keep them up to date
+        for (NSString *keyPath in @[PermissionsManagerKeyAccessibilityEnabled, PermissionsManagerKeyInputMonitoringEnabled, @"inputMonitoringRequested"]) {
+            [self.appDelegate.permissionsManager addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:_contextPermissions];
+        }
+        [self setUpPanels];
+    }
+    return self;
+}
+
+- (void)setUpPanels
+{
     self.width=400; // minimum width to avoid toolbar collapse
     
     NSArray *const toolbarDefinition=@[kPanelScrolling, kPanelApp];
     NSDictionary *const panelsDefinition=@{kPanelScrolling: @{kKeyView: self.scrollingSettings,
-                                                              kKeyTitle: self.menuStringScrollingSettings,
+                                                              kKeyTitle: NSLocalizedString(@"Scrolling", @"Preferences pane for `Scrolling` serttings"),
                                                               kKeyImageName: NSImageNamePreferencesGeneral},
                                            kPanelApp: @{kKeyView: self.appSettings,
-                                                        kKeyTitle: self.menuStringAppSettings,
+                                                        kKeyTitle: NSLocalizedString(@"App", @"Preferences pane for `App` settings"),
                                                         kKeyImageName: NSImageNameApplicationIcon}};
     
     // set up tab view
@@ -149,12 +177,6 @@ static const double _multiplier=25.0;
         startingIdentifier=[toolbarDefinition firstObject];
     }
     
-    // other set-up
-    self.linkView.url=self.appDelegate.appLink;
-
-    [self.appDelegate.permissionsManager addObserver:self forKeyPath:@"accessibilityEnabled" options:0 context:_contextRefresh];
-    [self.appDelegate.permissionsManager addObserver:self forKeyPath:@"inputMonitoringEnabled" options:0 context:_contextRefresh];
-    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:[@"values." stringByAppendingString:PrefsDiscreteScrollStepSize] options:NSKeyValueObservingOptionNew context:_contextPrefsStepSize];
 
     // select the initial pane
     [self.tabView selectTabViewItemWithIdentifier:startingIdentifier];
@@ -164,11 +186,8 @@ static const double _multiplier=25.0;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
-    if (context==_contextRefresh) {
-        NSLog(@"refresh observe");
-    }
-    else if (context==_contextPrefsStepSize) {
-        NSLog(@"stepsize observe");
+    if (context==_contextPermissions) {
+        [self updatePermissionLabels];
     }
 }
 
@@ -201,14 +220,16 @@ static const double _multiplier=25.0;
 // Futz about with the geometry
 - (void)updateWindowForIdentifier:(NSString *)identifier
 {
-    // we simply set the width to out pre-stored width. autolayout will deal with the height.
-    NSRect contentRect=[NSWindow contentRectForFrameRect:[self.window frame]
-                                               styleMask:[self.window styleMask]];
-    contentRect.size.width=self.width;
-    [self.window setFrame:[NSWindow frameRectForContentRect:contentRect
-                                                  styleMask:[self.window styleMask]]
-                  display:YES
-                  animate:NO];
+    // set the width to our pre-stored width, and the height to fit the pane, keeping the top edge in place.
+    // autolayout then keeps the height fitted as parts of the pane are shown and hidden.
+    NSView *const pane=[[self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:identifier]] view];
+    NSRect frame=[self.window frame];
+    const CGFloat chromeHeight=NSHeight(frame)-NSHeight([[self.window contentView] frame]);
+    const CGFloat height=[pane fittingSize].height+chromeHeight;
+    frame.origin.y+=NSHeight(frame)-height;
+    frame.size.height=height;
+    frame.size.width=self.width;
+    [self.window setFrame:frame display:YES animate:NO];
 }
 
 #pragma mark Permissions
@@ -300,44 +321,15 @@ static const double _multiplier=25.0;
     }
 }
 
-+ (NSSet *)keyPathsForValuesAffectingMenuStringAXButtonLabel
+- (void)updatePermissionLabels
 {
-    return [NSSet setWithObject:@"appDelegate.permissionsManager.accessibilityEnabled"];
-}
-
-- (NSString *)menuStringAXButtonLabel
-{
-    return [self buttonLabel:self.appDelegate.permissionsManager.accessibilityEnabled label:self.menuStringPermissionsAX];
-}
-
-+ (NSSet *)keyPathsForValuesAffectingMenuStringIMButtonLabel
-{
-    return [NSSet setWithObject:@"appDelegate.permissionsManager.inputMonitoringRequested"];
-}
-
-- (NSString *)menuStringIMButtonLabel
-{
-    return [self buttonLabel:self.appDelegate.permissionsManager.inputMonitoringRequested label:self.menuStringPermissionsIM];
-}
-
-+ (NSSet *)keyPathsForValuesAffectingMenuStringAXStatus
-{
-    return [NSSet setWithObject:@"appDelegate.permissionsManager.accessibilityEnabled"];
-}
-
-- (NSString *)menuStringAXStatus
-{
-    return [self statusString:self.appDelegate.permissionsManager.accessibilityEnabled label:self.menuStringPermissionsAX];
-}
-
-+ (NSSet *)keyPathsForValuesAffectingMenuStringIMStatus
-{
-    return [NSSet setWithObject:@"appDelegate.permissionsManager.inputMonitoringEnabled"];
-}
-
-- (NSString *)menuStringIMStatus
-{
-    return [self statusString:self.appDelegate.permissionsManager.inputMonitoringEnabled label:self.menuStringPermissionsIM];
+    PermissionsManager *const permissions=self.appDelegate.permissionsManager;
+    NSString *const ax=NSLocalizedString(@"Accessibility", @"corresponds to Accessibility in system Privacy settings");
+    NSString *const im=NSLocalizedString(@"Input Monitoring", @"corresponds to Input Monitoring in system Privacy settings");
+    self.axStatusLabel.stringValue=[self statusString:permissions.accessibilityEnabled label:ax];
+    self.axButton.title=[self buttonLabel:permissions.accessibilityEnabled label:ax];
+    self.imStatusLabel.stringValue=[self statusString:permissions.inputMonitoringEnabled label:im];
+    self.imButton.title=[self buttonLabel:permissions.inputMonitoringRequested label:im];
 }
 
 - (NSString *)statusString:(BOOL)state label:(NSString *)label
@@ -347,110 +339,353 @@ static const double _multiplier=25.0;
             NSLocalizedString(@"⛔️ required", nil)];
 }
 
-#pragma mark Bindings
-// I'm sure there's a better way of doing this 😂
+#pragma mark Accessors
 
 - (AppDelegate *)appDelegate
 {
     return (AppDelegate *)[[NSApplication sharedApplication] delegate];
 }
 
-- (NSString *)menuStringReverseScrolling
+#pragma mark Control helpers
+
+static NSString *defaultsKeyPath(NSString *key)
 {
-    return self.appDelegate.menuStringReverseScrolling;
+    return [@"values." stringByAppendingString:key];
 }
 
-- (NSString *)menuStringPreferencesTitle
+static NSDictionary *negated(void)
 {
-    return self.appDelegate.appName;
+    return @{NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName};
 }
 
-- (NSString *)menuStringAppSettings {
-    return NSLocalizedString(@"App", @"Preferences pane for `App` settings");
+static NSButton *checkbox(NSString *title)
+{
+    NSButton *const button=[NSButton checkboxWithTitle:title target:nil action:nil];
+    button.translatesAutoresizingMaskIntoConstraints=NO;
+    return button;
 }
 
-- (NSString *)menuStringScrollingSettings {
-    return NSLocalizedString(@"Scrolling", @"Preferences pane for `Scrolling` serttings");
+// checkboxes in the scrolling pane are slightly shorter than their natural height
+static NSButton *compactCheckbox(NSString *title)
+{
+    NSButton *const button=checkbox(title);
+    [button.heightAnchor constraintEqualToConstant:14].active=YES;
+    return button;
 }
 
-- (NSString *)menuStringScrollingAxes {
-    return NSLocalizedString(@"Scrolling Axes", @"Prefs section title");
+static NSButton *smallCheckbox(NSString *title)
+{
+    NSButton *const button=checkbox(title);
+    button.controlSize=NSControlSizeSmall;
+    button.font=[NSFont messageFontOfSize:11];
+    [button setContentHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationHorizontal];
+    [button setContentHuggingPriority:NSLayoutPriorityDefaultLow-1 forOrientation:NSLayoutConstraintOrientationVertical];
+    [button setContentCompressionResistancePriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationVertical];
+    return button;
 }
 
-- (NSString *)menuStringScrollingDevices {
-    return NSLocalizedString(@"Scrolling Devices", @"Prefs section title");
+static NSTextField *label(NSTextField *field, NSFont *font, NSColor *color)
+{
+    field.translatesAutoresizingMaskIntoConstraints=NO;
+    field.font=font;
+    field.textColor=color;
+    return field;
 }
 
-- (NSString *)menuStringHorizontal {
-    return NSLocalizedString(@"Reverse Horizontal", @"Prefs check box");
+static NSFont *smallFont(void)
+{
+    return [NSFont systemFontOfSize:[NSFont smallSystemFontSize]];
 }
 
-- (NSString *)menuStringVertical {
-    return NSLocalizedString(@"Reverse Vertical", @"Prefs check box");
+static NSBox *box(NSString *title)
+{
+    NSBox *const box=[[NSBox alloc] init];
+    box.translatesAutoresizingMaskIntoConstraints=NO;
+    box.title=title;
+    box.contentViewMargins=NSZeroSize;
+    return box;
 }
 
-- (NSString *)menuStringTrackpad {
-    return NSLocalizedString(@"Reverse Trackpad", @"Prefs check box");
+static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayoutAttribute alignment, CGFloat spacing, NSArray<NSView *> *views)
+{
+    NSStackView *const stack=[NSStackView stackViewWithViews:views];
+    stack.translatesAutoresizingMaskIntoConstraints=NO;
+    stack.orientation=orientation;
+    stack.distribution=NSStackViewDistributionFill;
+    stack.alignment=alignment;
+    stack.spacing=spacing;
+    stack.detachesHiddenViews=YES;
+    return stack;
 }
 
-- (NSString *)menuStringMouse {
-    return NSLocalizedString(@"Reverse Mouse", @"Prefs check box");
+#pragma mark Scrolling pane
+
+- (NSView *)makeScrollingSettings
+{
+    AppDelegate *const appDelegate=self.appDelegate;
+    PermissionsManager *const permissions=appDelegate.permissionsManager;
+    NSUserDefaultsController *const defaults=[NSUserDefaultsController sharedUserDefaultsController];
+
+    // master switch
+    NSButton *const enableCheckbox=compactCheckbox([NSString stringWithFormat:NSLocalizedString(@"Enable %1$@", @"1=name of app e.g. `Enable Scroll Reverser`"), appDelegate.appName]);
+    [enableCheckbox bind:NSValueBinding toObject:appDelegate withKeyPath:@"enabled" options:@{NSValidatesImmediatelyBindingOption: @YES}];
+    [enableCheckbox bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:negated()];
+
+    // axes and devices, side by side
+    NSBox *const axesBox=[self boxWithTitle:NSLocalizedString(@"Scrolling Axes", @"Prefs section title")
+                                 checkboxes:@[@[NSLocalizedString(@"Reverse Vertical", @"Prefs check box"), PrefsReverseVertical],
+                                              @[NSLocalizedString(@"Reverse Horizontal", @"Prefs check box"), PrefsReverseHorizontal]]];
+    NSBox *const devicesBox=[self boxWithTitle:NSLocalizedString(@"Scrolling Devices", @"Prefs section title")
+                                    checkboxes:@[@[NSLocalizedString(@"Reverse Trackpad", @"Prefs check box"), PrefsReverseTrackpad],
+                                                 @[NSLocalizedString(@"Reverse Mouse", @"Prefs check box"), PrefsReverseMouse]]];
+    NSStackView *const axesAndDevices=stack(NSUserInterfaceLayoutOrientationHorizontal, NSLayoutAttributeTop, 8, @[axesBox, devicesBox]);
+    [axesAndDevices setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
+    [axesAndDevices bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:negated()];
+
+    // discrete scroll step size, shown once non-continuous scrolling has been seen
+    NSView *const scrollWheelBox=[self makeScrollWheelBox];
+    [scrollWheelBox bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:negated()];
+    [scrollWheelBox bind:@"hidden2" toObject:defaults withKeyPath:defaultsKeyPath(PrefsShowDiscreteScrollOptions) options:negated()];
+
+    // permissions, shown only while something is missing
+    NSView *const permissionsBox=[self makePermissionsBox];
+    [permissionsBox bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:nil];
+
+    NSStackView *const pane=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeCenterX, 17, @[enableCheckbox, axesAndDevices, scrollWheelBox, permissionsBox]);
+    // hug the content more strongly than the window keeps its size, so the window fits the pane as sections show and hide
+    [pane setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
+    NSView *const view=[[NSView alloc] init];
+    [view addSubview:pane];
+    NSLayoutConstraint *const bottom=[view.bottomAnchor constraintEqualToAnchor:pane.bottomAnchor constant:20];
+    bottom.priority=NSLayoutPriorityDefaultHigh;
+    [NSLayoutConstraint activateConstraints:@[
+        [pane.topAnchor constraintEqualToAnchor:view.topAnchor constant:20],
+        [pane.leadingAnchor constraintEqualToAnchor:view.leadingAnchor constant:20],
+        [view.trailingAnchor constraintEqualToAnchor:pane.trailingAnchor constant:20],
+        bottom,
+        [axesAndDevices.leadingAnchor constraintEqualToAnchor:pane.leadingAnchor],
+        [axesAndDevices.trailingAnchor constraintEqualToAnchor:pane.trailingAnchor],
+        [devicesBox.widthAnchor constraintEqualToAnchor:axesBox.widthAnchor],
+        [scrollWheelBox.leadingAnchor constraintEqualToAnchor:pane.leadingAnchor],
+        [scrollWheelBox.trailingAnchor constraintEqualToAnchor:pane.trailingAnchor],
+        [permissionsBox.leadingAnchor constraintEqualToAnchor:pane.leadingAnchor],
+        [permissionsBox.trailingAnchor constraintEqualToAnchor:pane.trailingAnchor],
+    ]];
+    return view;
 }
 
-- (NSString *)menuStringStartAtLogin {
-    return NSLocalizedString(@"Start at login", @"Prefs check box");
+// a box of two checkboxes, each given as @[title, defaults key], enabled only while reversing is on
+- (NSBox *)boxWithTitle:(NSString *)title checkboxes:(NSArray<NSArray<NSString *> *> *)definitions
+{
+    NSBox *const result=box(title);
+    NSButton *previous=nil;
+    for (NSArray<NSString *> *definition in definitions) {
+        NSButton *const button=compactCheckbox(definition[0]);
+        [button bind:NSEnabledBinding toObject:self.appDelegate withKeyPath:@"enabled" options:nil];
+        [button bind:NSValueBinding toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:defaultsKeyPath(definition[1]) options:nil];
+        [result.contentView addSubview:button];
+        [NSLayoutConstraint activateConstraints:@[
+            previous ? [button.topAnchor constraintEqualToAnchor:previous.bottomAnchor constant:6] : [button.topAnchor constraintEqualToAnchor:result.topAnchor constant:26],
+            [button.leadingAnchor constraintEqualToAnchor:result.leadingAnchor constant:16],
+            [result.trailingAnchor constraintGreaterThanOrEqualToAnchor:button.trailingAnchor constant:16],
+        ]];
+        previous=button;
+    }
+    [result.contentView.bottomAnchor constraintEqualToAnchor:previous.bottomAnchor constant:11].active=YES;
+    return result;
 }
 
-- (NSString *)menuStringShowInMenuBar {
-    return NSLocalizedString(@"Show in menu bar", @"Prefs check box");
+- (NSView *)makeScrollWheelBox
+{
+    NSBox *const result=box(NSLocalizedString(@"Scroll Wheel", @"Prefs section header"));
+    NSView *const content=result.contentView;
+
+    NSTextField *const stepSizeLabel=label([NSTextField labelWithString:NSLocalizedString(@"Step size", @"Size of one step of the mouse scroll wheel")], [NSFont systemFontOfSize:0], [NSColor labelColor]);
+    [stepSizeLabel setContentHuggingPriority:NSLayoutPriorityDefaultLow+1 forOrientation:NSLayoutConstraintOrientationHorizontal];
+
+    NSSlider *const slider=[NSSlider sliderWithTarget:nil action:nil];
+    slider.translatesAutoresizingMaskIntoConstraints=NO;
+    slider.minValue=0;
+    slider.maxValue=1;
+    [slider bind:NSEnabledBinding toObject:self.appDelegate withKeyPath:@"enabled" options:nil];
+    [slider bind:NSValueBinding toObject:self withKeyPath:@"stepSizeSliderValue" options:nil];
+
+    NSTextField *const minLabel=label([NSTextField labelWithString:NSLocalizedString(@"Small", @"Small step size")], smallFont(), [NSColor secondaryLabelColor]);
+    NSTextField *const maxLabel=label([NSTextField labelWithString:NSLocalizedString(@"Large", @"Large step size")], smallFont(), [NSColor secondaryLabelColor]);
+    maxLabel.alignment=NSTextAlignmentRight;
+
+    for (NSView *view in @[stepSizeLabel, slider, minLabel, maxLabel]) {
+        [content addSubview:view];
+    }
+    [NSLayoutConstraint activateConstraints:@[
+        [stepSizeLabel.leadingAnchor constraintEqualToAnchor:result.leadingAnchor constant:14],
+        [stepSizeLabel.centerYAnchor constraintEqualToAnchor:slider.centerYAnchor],
+        [slider.leadingAnchor constraintEqualToAnchor:stepSizeLabel.trailingAnchor constant:14],
+        [content.trailingAnchor constraintEqualToAnchor:slider.trailingAnchor constant:14],
+        [slider.topAnchor constraintEqualToAnchor:content.topAnchor constant:14],
+        [minLabel.topAnchor constraintEqualToAnchor:slider.bottomAnchor constant:3],
+        [minLabel.leadingAnchor constraintEqualToAnchor:slider.leadingAnchor],
+        [content.bottomAnchor constraintEqualToAnchor:minLabel.bottomAnchor constant:9],
+        [maxLabel.topAnchor constraintEqualToAnchor:slider.bottomAnchor constant:3],
+        [maxLabel.trailingAnchor constraintEqualToAnchor:slider.trailingAnchor],
+        [content.bottomAnchor constraintEqualToAnchor:maxLabel.bottomAnchor constant:9],
+    ]];
+    return result;
 }
 
-- (NSString *)menuStringCheckNow {
-    return NSLocalizedString(@"Check for updates", @"Button, when pressed, checks for updates now");
+- (NSView *)makePermissionsBox
+{
+    PermissionsManager *const permissions=self.appDelegate.permissionsManager;
+
+    self.axStatusLabel=[self permissionStatusLabel];
+    self.axButton=[NSButton buttonWithTitle:@"" target:self action:@selector(buttonAXClicked:)];
+    NSView *const axView=[self permissionViewWithDescription:NSLocalizedString(@"Scroll Reverser needs Accessibility permission to modify your scrolling.", nil)
+                                                 statusLabel:self.axStatusLabel
+                                                      button:self.axButton
+                                            descriptionInset:0];
+    [self.axButton bind:NSEnabledBinding toObject:permissions withKeyPath:PermissionsManagerKeyAccessibilityEnabled options:negated()];
+    [axView bind:NSHiddenBinding toObject:permissions withKeyPath:@"accessibilityRequired" options:negated()];
+
+    self.imStatusLabel=[self permissionStatusLabel];
+    self.imButton=[NSButton buttonWithTitle:@"" target:self action:@selector(buttonIMClicked:)];
+    NSView *const imView=[self permissionViewWithDescription:NSLocalizedString(@"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.", nil)
+                                                 statusLabel:self.imStatusLabel
+                                                      button:self.imButton
+                                            descriptionInset:8];
+    [self.imButton bind:NSEnabledBinding toObject:permissions withKeyPath:PermissionsManagerKeyInputMonitoringEnabled options:negated()];
+    [imView bind:NSHiddenBinding toObject:permissions withKeyPath:@"inputMonitoringRequired" options:negated()];
+
+    NSStackView *const permissionStack=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeLeading, 16, @[axView, imView]);
+    NSBox *const result=box(NSLocalizedString(@"Permissions", @"Section title"));
+    [result setContentHuggingPriority:NSLayoutPriorityDefaultLow-1 forOrientation:NSLayoutConstraintOrientationVertical];
+    NSView *const content=result.contentView;
+    [content addSubview:permissionStack];
+    [NSLayoutConstraint activateConstraints:@[
+        [permissionStack.topAnchor constraintEqualToAnchor:content.topAnchor constant:14],
+        [permissionStack.leadingAnchor constraintEqualToAnchor:content.leadingAnchor constant:14],
+        [content.trailingAnchor constraintEqualToAnchor:permissionStack.trailingAnchor constant:14],
+        [content.bottomAnchor constraintEqualToAnchor:permissionStack.bottomAnchor constant:14],
+        [axView.leadingAnchor constraintEqualToAnchor:permissionStack.leadingAnchor],
+        [axView.trailingAnchor constraintEqualToAnchor:permissionStack.trailingAnchor],
+        [imView.leadingAnchor constraintEqualToAnchor:permissionStack.leadingAnchor],
+        [imView.trailingAnchor constraintEqualToAnchor:permissionStack.trailingAnchor],
+    ]];
+    return result;
 }
 
-- (NSString *)menuStringCheckForUpdates {
-    return NSLocalizedString(@"Automatically", @"Check box next to the 'Check for updates' button");
+- (NSTextField *)permissionStatusLabel
+{
+    NSTextField *const statusLabel=label([NSTextField labelWithString:@""], smallFont(), [NSColor labelColor]);
+    statusLabel.selectable=YES;
+    [statusLabel setContentHuggingPriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationHorizontal];
+    [statusLabel setContentCompressionResistancePriority:NSLayoutPriorityDefaultLow forOrientation:NSLayoutConstraintOrientationHorizontal];
+    return statusLabel;
 }
 
-- (NSString *)menuStringBetaUpdates {
-    return NSLocalizedString(@"Include beta versions", @"Check box: Include beta versionss of the app when checking for updates");
+// description, status line and request button for one permission
+- (NSView *)permissionViewWithDescription:(NSString *)description statusLabel:(NSTextField *)statusLabel button:(NSButton *)button descriptionInset:(CGFloat)inset
+{
+    NSTextField *const descriptionLabel=label([NSTextField wrappingLabelWithString:description], smallFont(), [NSColor secondaryLabelColor]);
+    button.translatesAutoresizingMaskIntoConstraints=NO;
+
+    NSView *const view=[[NSView alloc] init];
+    view.translatesAutoresizingMaskIntoConstraints=NO;
+    for (NSView *subview in @[descriptionLabel, statusLabel, button]) {
+        [view addSubview:subview];
+    }
+    [NSLayoutConstraint activateConstraints:@[
+        [descriptionLabel.topAnchor constraintEqualToAnchor:view.topAnchor],
+        [descriptionLabel.leadingAnchor constraintEqualToAnchor:view.leadingAnchor],
+        [view.trailingAnchor constraintEqualToAnchor:descriptionLabel.trailingAnchor constant:inset],
+        [statusLabel.topAnchor constraintEqualToAnchor:descriptionLabel.bottomAnchor constant:6],
+        [statusLabel.centerXAnchor constraintEqualToAnchor:view.centerXAnchor],
+        [button.topAnchor constraintEqualToAnchor:statusLabel.bottomAnchor constant:6],
+        [button.centerXAnchor constraintEqualToAnchor:view.centerXAnchor],
+        [view.bottomAnchor constraintEqualToAnchor:button.bottomAnchor],
+    ]];
+    return view;
 }
 
-- (NSString *)menuStringPermissionsHeader {
-    return NSLocalizedString(@"Permissions", @"Section title");
-}
+#pragma mark App pane
 
-- (NSString *)menuStringPermissionsAXDescription {
-    return NSLocalizedString(@"Scroll Reverser needs Accessibility permission to modify your scrolling.", nil);
-}
+- (NSView *)makeAppSettings
+{
+    AppDelegate *const appDelegate=self.appDelegate;
+    NSUserDefaultsController *const defaults=[NSUserDefaultsController sharedUserDefaultsController];
 
-- (NSString *)menuStringPermissionsIMDescription {
-    return NSLocalizedString(@"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.", nil);
-}
+    // general options
+    NSButton *const startAtLoginCheckbox=checkbox(NSLocalizedString(@"Start at login", @"Prefs check box"));
+    [startAtLoginCheckbox bind:NSValueBinding toObject:appDelegate.loginItemController withKeyPath:@"startAtLogin" options:nil];
+    NSButton *const showInMenuBarCheckbox=checkbox(NSLocalizedString(@"Show in menu bar", @"Prefs check box"));
+    [showInMenuBarCheckbox bind:NSValueBinding toObject:defaults withKeyPath:defaultsKeyPath(PrefsHideIcon) options:negated()];
+    [startAtLoginCheckbox setContentHuggingPriority:NSLayoutPriorityDefaultHigh-1 forOrientation:NSLayoutConstraintOrientationHorizontal];
+    [showInMenuBarCheckbox setContentHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationHorizontal];
+    for (NSButton *button in @[startAtLoginCheckbox, showInMenuBarCheckbox]) {
+        [button setContentCompressionResistancePriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationHorizontal];
+    }
+    NSStackView *const options=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeLeading, 6, @[startAtLoginCheckbox, showInMenuBarCheckbox]);
+    [options setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationHorizontal];
+    [options setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
 
-- (NSString *)menuStringPermissionsAX {
-    return NSLocalizedString(@"Accessibility", @"corresponds to Accessibility in system Privacy settings");
-}
+    // a separator is horizontal if it starts out wider than it is tall
+    NSBox *const separator=[[NSBox alloc] initWithFrame:NSMakeRect(0, 0, 100, 1)];
+    separator.translatesAutoresizingMaskIntoConstraints=NO;
+    separator.boxType=NSBoxSeparator;
 
-- (NSString *)menuStringPermissionsIM {
-    return NSLocalizedString(@"Input Monitoring", @"corresponds to Input Monitoring in system Privacy settings");
-}
+    // about the app
+    NSFont *const infoFont=[NSFont messageFontOfSize:11];
+    NSTextField *const nameLabel=label([NSTextField labelWithString:appDelegate.appName], [NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]], [NSColor labelColor]);
+    NSTextField *const versionLabel=label([NSTextField labelWithString:appDelegate.appVersion], infoFont, [NSColor labelColor]);
+    NSTextField *const creditLabel=label([NSTextField labelWithString:appDelegate.appCredit], infoFont, [NSColor labelColor]);
+    LinkView *const linkLabel=(LinkView *)label([LinkView labelWithString:appDelegate.appDisplayLink], infoFont, [NSColor controlAccentColor]);
+    linkLabel.url=appDelegate.appLink;
+    // the stack stretches the labels to the widest one, so centre the text within them
+    for (NSTextField *field in @[nameLabel, versionLabel, creditLabel, linkLabel]) {
+        field.alignment=NSTextAlignmentCenter;
+    }
+    NSStackView *const info=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeCenterX, 0, @[nameLabel, versionLabel, creditLabel, linkLabel]);
+    [info setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationHorizontal];
+    [info setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
 
-- (NSString *)menuStringMouseWheelHeader {
-    return NSLocalizedString(@"Scroll Wheel", @"Prefs section header");
-}
+    // updates
+    SPUUpdater *const updater=self.updater;
+    NSButton *const checkNowButton=[NSButton buttonWithTitle:NSLocalizedString(@"Check for updates", @"Button, when pressed, checks for updates now") target:self action:@selector(buttonCheckForUpdatesClicked:)];
+    checkNowButton.translatesAutoresizingMaskIntoConstraints=NO;
+    checkNowButton.controlSize=NSControlSizeSmall;
+    checkNowButton.font=infoFont;
+    [checkNowButton setContentHuggingPriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationHorizontal];
+    [checkNowButton setContentHuggingPriority:NSLayoutPriorityDefaultHigh+1 forOrientation:NSLayoutConstraintOrientationVertical];
+    [checkNowButton bind:NSEnabledBinding toObject:updater withKeyPath:@"sessionInProgress" options:negated()];
+    NSButton *const automaticCheckbox=smallCheckbox(NSLocalizedString(@"Automatically", @"Check box next to the 'Check for updates' button"));
+    [automaticCheckbox bind:NSValueBinding toObject:updater withKeyPath:@"automaticallyChecksForUpdates" options:nil];
+    NSButton *const betaCheckbox=smallCheckbox(NSLocalizedString(@"Include beta versions", @"Check box: Include beta versionss of the app when checking for updates"));
+    [betaCheckbox bind:NSValueBinding toObject:defaults withKeyPath:defaultsKeyPath(@"BetaUpdates") options:nil];
+    NSStackView *const updateOptions=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeLeading, 6, @[automaticCheckbox, betaCheckbox]);
+    NSStackView *const updates=stack(NSUserInterfaceLayoutOrientationHorizontal, NSLayoutAttributeTop, 8, @[checkNowButton, updateOptions]);
+    [updates setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationHorizontal];
+    [updates setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
 
-- (NSString *)menuStringMouseWheelStepSize {
-    return NSLocalizedString(@"Step size", @"Size of one step of the mouse scroll wheel");
-}
-
-- (NSString *)menuStringMouseWheelStepMin {
-    return NSLocalizedString(@"Small", @"Small step size");
-}
-
-- (NSString *)menuStringMouseWheelStepMax {
-    return NSLocalizedString(@"Large", @"Large step size");
+    NSView *const view=[[NSView alloc] init];
+    for (NSView *subview in @[options, separator, info, updates]) {
+        [view addSubview:subview];
+    }
+    NSLayoutConstraint *const bottom=[view.bottomAnchor constraintEqualToAnchor:updates.bottomAnchor constant:20];
+    bottom.priority=NSLayoutPriorityDefaultHigh;
+    [NSLayoutConstraint activateConstraints:@[
+        [options.topAnchor constraintEqualToAnchor:view.topAnchor constant:20],
+        [options.centerXAnchor constraintEqualToAnchor:view.centerXAnchor],
+        [separator.topAnchor constraintEqualToAnchor:options.bottomAnchor constant:16],
+        [separator.leadingAnchor constraintEqualToAnchor:view.leadingAnchor constant:20],
+        [view.trailingAnchor constraintEqualToAnchor:separator.trailingAnchor constant:20],
+        [separator.heightAnchor constraintEqualToConstant:1],
+        [info.topAnchor constraintEqualToAnchor:separator.bottomAnchor constant:16],
+        [info.centerXAnchor constraintEqualToAnchor:view.centerXAnchor],
+        [updates.topAnchor constraintEqualToAnchor:info.bottomAnchor constant:16],
+        [updates.centerXAnchor constraintEqualToAnchor:view.centerXAnchor],
+        bottom,
+        [checkNowButton.firstBaselineAnchor constraintEqualToAnchor:automaticCheckbox.firstBaselineAnchor],
+    ]];
+    return view;
 }
 
 @end

@@ -14,7 +14,6 @@
 		01438E931AFB7BC100C5C857 /* LoggerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01438E921AFB7BC100C5C857 /* LoggerScrollView.m */; };
 		01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01587306134DD1E200CD9CC4 /* Localizable.strings */; };
 		0158735813265EDD00100E4C /* StatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0158735513265EDD00100E4C /* StatusItemController.m */; };
-		017347631A35D9C100A0A1BE /* PrefsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017347621A35D9C100A0A1BE /* PrefsWindow.xib */; };
 		017347661A35DA2600A0A1BE /* PrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 017347651A35DA2600A0A1BE /* PrefsWindowController.m */; };
 		0183EE6F1A37943500A260E0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0183EE6D1A37943500A260E0 /* MainMenu.xib */; };
 		0183EE781A3794F800A260E0 /* ScrollReverser.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 0183EE771A3794F800A260E0 /* ScrollReverser.sdef */; };
@@ -69,7 +68,6 @@
 		0158735413265EDD00100E4C /* StatusItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusItemController.h; sourceTree = "<group>"; };
 		0158735513265EDD00100E4C /* StatusItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItemController.m; sourceTree = "<group>"; };
 		015D94B02571810B00A685C8 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
-		017347621A35D9C100A0A1BE /* PrefsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsWindow.xib; sourceTree = "<group>"; };
 		017347641A35DA2600A0A1BE /* PrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsWindowController.h; sourceTree = "<group>"; };
 		017347651A35DA2600A0A1BE /* PrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsWindowController.m; sourceTree = "<group>"; };
 		0183EE6D1A37943500A260E0 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -237,7 +235,6 @@
 				C0D4DFE12E986D5900E40368 /* Media.xcassets */,
 				011A628619D49B69003CE6DC /* ReleaseNotes.md */,
 				0183EE6D1A37943500A260E0 /* MainMenu.xib */,
-				017347621A35D9C100A0A1BE /* PrefsWindow.xib */,
 				01587306134DD1E200CD9CC4 /* Localizable.strings */,
 				8D1107310486CEB800E47090 /* ScrollReverser-Info.plist */,
 				0183EE771A3794F800A260E0 /* ScrollReverser.sdef */,
@@ -338,7 +335,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */,
-				017347631A35D9C100A0A1BE /* PrefsWindow.xib in Resources */,
 				0183EE6F1A37943500A260E0 /* MainMenu.xib in Resources */,
 				C0D4DFE22E986D5900E40368 /* Media.xcassets in Resources */,
 				0183EE781A3794F800A260E0 /* ScrollReverser.sdef in Resources */,

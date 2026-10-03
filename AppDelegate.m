@@ -321,7 +321,7 @@ static void *_contextPermissions=&_contextPermissions;
 {
     [NSApp activateIgnoringOtherApps:YES];
     if(!self.prefsWindowController) {
-        self.prefsWindowController=[[PrefsWindowController alloc] initWithWindowNibName:@"PrefsWindow"];
+        self.prefsWindowController=[[PrefsWindowController alloc] init];
     }
     if (showDefault) {
         [self.prefsWindowController showPermissionsPane];
