@@ -1,20 +1,16 @@
 //
-//  LauncherController.m
+//  LoginItemController.m
 //  Scroll Reverser
 //
 //  Created by Nicholas Moore on 25/11/2020.
 //
 
-#import "LauncherController.h"
+#import "LoginItemController.h"
 #import <ServiceManagement/ServiceManagement.h>
 
 static NSString *const kPrefsStartAtLogin=@"StartAtLogin";
 
-@interface LauncherController ()
-@property LSSharedFileListRef loginItems;
-@end
-
-@implementation LauncherController
+@implementation LoginItemController
 
 - (instancetype)init
 {
@@ -38,31 +34,25 @@ static NSString *const kPrefsStartAtLogin=@"StartAtLogin";
 
 - (void)setStartAtLogin:(BOOL)state
 {
-    if (@available(macOS 13.0, *)) {
-        [self willChangeValueForKey:@"startAtLogin"];
-        NSError *error=nil;
-        if (state) {
-            if (SMAppService.mainAppService.status==SMAppServiceStatusEnabled) {
-                [SMAppService.mainAppService unregisterAndReturnError:&error];
-            }
-            [SMAppService.mainAppService registerAndReturnError:&error];
-        } else {
+    [self willChangeValueForKey:@"startAtLogin"];
+    NSError *error=nil;
+    if (state) {
+        if (SMAppService.mainAppService.status==SMAppServiceStatusEnabled) {
             [SMAppService.mainAppService unregisterAndReturnError:&error];
         }
-        if (error) {
-            NSLog(@"Error setting startAtLogin to %@: %@", @(state), error);
-        }
-        [self didChangeValueForKey:@"startAtLogin"];
+        [SMAppService.mainAppService registerAndReturnError:&error];
+    } else {
+        [SMAppService.mainAppService unregisterAndReturnError:&error];
     }
+    if (error) {
+        NSLog(@"Error setting startAtLogin to %@: %@", @(state), error);
+    }
+    [self didChangeValueForKey:@"startAtLogin"];
 }
 
 - (BOOL)startAtLogin
 {
-    if (@available(macOS 13.0, *)) {
-        return SMAppService.mainAppService.status==SMAppServiceStatusEnabled;
-    } else {
-        return NO;
-    }
+    return SMAppService.mainAppService.status==SMAppServiceStatusEnabled;
 }
 
 @end

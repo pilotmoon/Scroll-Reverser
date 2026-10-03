@@ -35,7 +35,7 @@ static void *_contextPermissions=&_contextPermissions;
 @property DebugWindowController *debugWindowController;
 @property TestWindowController *testWindowController;
 @property PermissionsManager *permissionsManager;
-@property LauncherController *launcherController;
+@property LoginItemController *loginItemController;
 @property TapLogger *logger;
 @property SPUUpdater *updater;
 @property SPUStandardUserDriver *updaterUserDriver;
@@ -163,7 +163,7 @@ static void *_contextPermissions=&_contextPermissions;
 
         self.tap=[[MouseTap alloc] init];
 
-        self.launcherController=[[LauncherController alloc] init];
+        self.loginItemController=[[LoginItemController alloc] init];
 
         self.statusController=[[StatusItemController alloc] init];
         self.statusController.statusItemDelegate=self;
