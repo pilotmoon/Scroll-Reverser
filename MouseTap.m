@@ -59,6 +59,15 @@ static CGEventRef _callback(CGEventTapProxy proxy,
     @autoreleasepool
     {
         MouseTap *const tap=(__bridge MouseTap *)userInfo;
+        // Tap-disabled notifications are control messages, not NSEvents. Converting
+        // them first throws an exception and prevents the tap from recovering.
+        if (type == kCGEventTapDisabledByTimeout || type == kCGEventTapDisabledByUserInput) {
+            [tap enableTap];
+            return eventRef;
+        }
+        if (!eventRef || (type != (CGEventType)NSEventTypeGesture && type != kCGEventScrollWheel)) {
+            return eventRef;
+        }
         const uint64_t time=_nanoseconds();
         NSEvent *const event=[NSEvent eventWithCGEvent:eventRef];
         [(AppDelegate *)[NSApp delegate] refreshPermissions];
@@ -233,11 +242,6 @@ static CGEventRef _callback(CGEventTapProxy proxy,
                 CFRelease(ioHidEventRef);
             }
         }
-        else
-        {
-            [tap enableTap];
-        }
-    
         [tap->logger logEventType:type forKey:@"type"];
         [tap->logger logParams];
     }
