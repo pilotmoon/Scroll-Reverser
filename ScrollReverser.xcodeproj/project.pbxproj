@@ -25,8 +25,6 @@
 		01AF54C91B0CB87C0028A26A /* TapLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AF54C81B0CB87C0028A26A /* TapLogger.m */; };
 		01AF54D31B0E11150028A26A /* TestWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AF54D11B0E11150028A26A /* TestWindowController.m */; };
 		01AF54D41B0E11150028A26A /* TestWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AF54D21B0E11150028A26A /* TestWindow.xib */; };
-		01B5ABCD1700D26200FF6F6A /* ScrollReverserStatusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */; };
-		01B5ABDD1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */; };
 		01D9F8932386D5C1002F0EC0 /* PermissionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D9F8922386D5C1002F0EC0 /* PermissionsManager.m */; };
 		01D9F8962386E01C002F0EC0 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D9F8942386E013002F0EC0 /* IOKit.framework */; };
 		01E6A6CF1A42E6BF00C1FB2A /* ScrollReverser.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 01E6A6CE1A42E6BF00C1FB2A /* ScrollReverser.iconset */; };
@@ -37,6 +35,7 @@
 		256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* AppDelegate.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		C0D4DFE22E986D5900E40368 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0D4DFE12E986D5900E40368 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -94,8 +93,6 @@
 		01AF54D01B0E11150028A26A /* TestWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestWindowController.h; sourceTree = "<group>"; };
 		01AF54D11B0E11150028A26A /* TestWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestWindowController.m; sourceTree = "<group>"; };
 		01AF54D21B0E11150028A26A /* TestWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestWindow.xib; sourceTree = "<group>"; };
-		01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScrollReverserStatusIcon.png; path = Graphics/ScrollReverserStatusIcon.png; sourceTree = "<group>"; };
-		01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ScrollReverserStatusIcon@2x.png"; path = "Graphics/ScrollReverserStatusIcon@2x.png"; sourceTree = "<group>"; };
 		01BC496125CC597800EF8CC5 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = resources/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01BC496325CC5E3D00EF8CC5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01BC496525CD3B1B00EF8CC5 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "resources/pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -137,6 +134,7 @@
 		8D1107320486CEB800E47090 /* Scroll Reverser (Dev).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scroll Reverser (Dev).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7CF5D6627BFAB8400E09485 /* IOKitSPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOKitSPI.h; sourceTree = "<group>"; };
 		B7CF5D6727BFACD800E09485 /* CoreGraphicsSPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreGraphicsSPI.h; sourceTree = "<group>"; };
+		C0D4DFE12E986D5900E40368 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,8 +157,6 @@
 			children = (
 				01E6A6CE1A42E6BF00C1FB2A /* ScrollReverser.iconset */,
 				011A628919D4A748003CE6DC /* IntroShot.png */,
-				01B5ABCA1700D26200FF6F6A /* ScrollReverserStatusIcon.png */,
-				01B5ABDA1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";
@@ -230,6 +226,7 @@
 			children = (
 				0148C7E2257195E00086B838 /* Common.xcconfig */,
 				015D94B02571810B00A685C8 /* Development.xcconfig */,
+				C0D4DFE12E986D5900E40368 /* Media.xcassets */,
 				01F580282571848F00BACC0F /* Production.xcconfig */,
 				01D6961D25783F9500A18D48 /* Version.xcconfig */,
 				01E5C31E2567FF8800C10ABA /* BuildScripts */,
@@ -367,12 +364,11 @@
 				01587308134DD1E200CD9CC4 /* Localizable.strings in Resources */,
 				01E6A6CF1A42E6BF00C1FB2A /* ScrollReverser.iconset in Resources */,
 				011A628B19D4A748003CE6DC /* IntroShot.png in Resources */,
-				01B5ABCD1700D26200FF6F6A /* ScrollReverserStatusIcon.png in Resources */,
 				017347631A35D9C100A0A1BE /* PrefsWindow.xib in Resources */,
 				01438E611AFB467100C5C857 /* DebugWindow.xib in Resources */,
-				01B5ABDD1700D50600FF6F6A /* ScrollReverserStatusIcon@2x.png in Resources */,
 				0183EE6F1A37943500A260E0 /* MainMenu.xib in Resources */,
 				0183EE701A37943500A260E0 /* WelcomeWindow.xib in Resources */,
+				C0D4DFE22E986D5900E40368 /* Media.xcassets in Resources */,
 				0183EE781A3794F800A260E0 /* ScrollReverser.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

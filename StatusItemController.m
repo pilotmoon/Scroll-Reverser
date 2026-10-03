@@ -18,7 +18,7 @@
 
 + (NSImage *)statusImageWithColor:(NSColor *)color
 {
-    NSImage *const templateImage=[NSImage imageNamed:@"ScrollReverserStatusIcon"];
+    NSImage *const templateImage=[NSImage imageNamed:@"scroll"];
     
     // create blank image to draw into
     NSImage *const statusImage=[[NSImage alloc] init];
