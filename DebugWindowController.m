@@ -64,8 +64,8 @@ static NSUserInterfaceItemIdentifier const kLogCellIdentifier=@"LogCell";
     // one wide column, so long lines can be scrolled to horizontally while paused
     NSTableColumn *const column=[[NSTableColumn alloc] initWithIdentifier:kLogCellIdentifier];
     column.editable=NO;
-    column.width=1200;
-    column.minWidth=1200;
+    column.width=2000;
+    column.minWidth=2000;
     column.maxWidth=100000;
     column.resizingMask=NSTableColumnAutoresizingMask;
 
@@ -270,7 +270,10 @@ static NSUserInterfaceItemIdentifier const kLogCellIdentifier=@"LogCell";
 {
     NSTextField *const textField=[NSTextField labelWithString:@""];
     textField.translatesAutoresizingMaskIntoConstraints=NO;
-    textField.lineBreakMode=NSLineBreakByTruncatingTail;
+    // keep each entry on one line, running off the edge rather than wrapping into the next row.
+    // single line mode is needed because the attributed string's default paragraph style would otherwise wrap.
+    textField.lineBreakMode=NSLineBreakByClipping;
+    textField.usesSingleLineMode=YES;
     [textField setContentCompressionResistancePriority:NSLayoutPriorityDefaultLow forOrientation:NSLayoutConstraintOrientationHorizontal];
 
     NSTableCellView *const cellView=[[NSTableCellView alloc] init];
