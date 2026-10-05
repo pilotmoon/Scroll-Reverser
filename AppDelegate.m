@@ -62,13 +62,8 @@ static void *_contextPermissions=&_contextPermissions;
     if (!urlString) {
         if([self appIsProductionBuild]||[self appIsBetaBuild])
         {
-            urlString=@"https://softwareupdate.pilotmoon.com/update/scrollreverser/";
-            if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsBetaUpdates]) {
-                urlString=[urlString stringByAppendingString:@"appcast-beta.xml"];
-            }
-            else {
-                urlString=[urlString stringByAppendingString:@"appcast.xml"];
-            }
+            // one feed for both channels; beta items are tagged with the Beta channel
+            urlString=@"https://softwareupdate.pilotmoon.com/update/scrollreverser/appcast.xml";
         }
     }
     return urlString ? urlString : @"https://localhost/";
@@ -77,6 +72,14 @@ static void *_contextPermissions=&_contextPermissions;
 - (NSString *)feedURLStringForUpdater:(SPUUpdater *)updater
 {
     return [[self class] sparkleFeedURLString];
+}
+
+- (NSSet<NSString *> *)allowedChannelsForUpdater:(SPUUpdater *)updater
+{
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsBetaUpdates]) {
+        return [NSSet setWithObject:@"Beta"];
+    }
+    return [NSSet set];
 }
 
 - (BOOL)updaterShouldPromptForPermissionToCheckForUpdates:(SPUUpdater *)bundle
