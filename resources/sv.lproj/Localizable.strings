@@ -65,7 +65,7 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Reverse Trackpad" = "Invertera styrplatta";
 
 /* Prefs check box */
-"Reverse Vertical" = "Reverser vertikalt";
+"Reverse Vertical" = "Invertera vertikalt";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser körs nu!";
@@ -77,7 +77,7 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser behöver få tillgång till Övervakning av inmatning för att upptäcka om dina fingrar rör styrplattan.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Rullhjull";
+"Scroll Wheel" = "Rullhjul";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Rullning";
@@ -86,7 +86,7 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 "Scrolling Axes" = "Rullningsaxlar";
 
 /* Prefs section title */
-"Scrolling Devices" = "Rullnings enheter";
+"Scrolling Devices" = "Rullningsenheter";
 
 /* Prefs check box */
 "Show in menu bar" = "Visa i menyraden";
