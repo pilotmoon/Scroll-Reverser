@@ -92,7 +92,7 @@ static void *_contextPermissions=&_contextPermissions;
     NSLog(@"Loaded appcast.");
 }
 
-#pragma mark Launch, relaunch and termination
+#pragma mark Launch and termination
 
 // There can be only one scroll reverser
 + (void)terminateOthers
@@ -105,27 +105,6 @@ static void *_contextPermissions=&_contextPermissions;
             }
         }
     }
-}
-
-/* Quickly and quietly quit and relaunch our own process. This is called on wake from sleep as a
- workaround for a macOS bug whereby the OS stops calling our event taps after sleep.
- */
-- (void)relaunch
-{
-    [self logAppEvent:@"Scroll Reverser will relaunch"];
-
-    NSWorkspaceOpenConfiguration *config = [[NSWorkspaceOpenConfiguration alloc] init];
-    config.createsNewApplicationInstance = YES;
-    [[NSWorkspace sharedWorkspace] openApplicationAtURL:[NSBundle mainBundle].bundleURL
-                                          configuration:config
-                                      completionHandler:^(NSRunningApplication * _Nullable app, NSError * _Nullable error) {
-        if (app) {
-            NSLog(@"Launched new instance: %@", app);
-        }
-        if (error) {
-            NSLog(@"Error launching new instance: %@", error);
-        }
-    }];
 }
 
 - (void)handleURLEvent:(NSAppleEventDescriptor *)event withReplyEvent: (NSAppleEventDescriptor *)replyEvent
@@ -237,10 +216,14 @@ static void *_contextPermissions=&_contextPermissions;
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsTerminatedWithPrefsWindowOpen];
 }
 
+/* Recreate the event taps on wake from sleep. This works around a macOS bug, seen from 10.10 to 10.12,
+ whereby the OS stopped sending gesture events to our taps after sleep, so trackpad scrolling was
+ mistaken for mouse scrolling (issue #15).
+ */
 - (void)appDidWake:(NSNotification *)note
 {
-    [self logAppEvent:@"OS woke from sleep - will relaunch"];
-    [self relaunch];
+    [self logAppEvent:@"OS woke from sleep - will restart tap"];
+    [self.tap restart];
 }
 
 - (void)appWillSleep:(NSNotification *)note

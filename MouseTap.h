@@ -30,6 +30,7 @@ typedef enum {
 }
 
 @property (getter=isActive) BOOL active;
+- (void)restart;
 - (void)enableTap;
 
 @end

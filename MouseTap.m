@@ -280,7 +280,32 @@ static CGEventRef _callback(CGEventTapProxy proxy,
         return;
 
     [self willChangeValueForKey:kKeyActive];
+    [self createTaps];
+    [self didChangeValueForKey:kKeyActive];
+}
 
+- (void)stop
+{
+    [self willChangeValueForKey:kKeyActive];
+    [self destroyTaps];
+    [self didChangeValueForKey:kKeyActive];
+}
+
+// Recreate the taps if they are running. Observers of `active` see one change for the
+// whole restart, rather than the taps briefly appearing to stop.
+- (void)restart
+{
+    if(![self isActive])
+        return;
+
+    [self willChangeValueForKey:kKeyActive];
+    [self destroyTaps];
+    [self createTaps];
+    [self didChangeValueForKey:kKeyActive];
+}
+
+- (void)createTaps
+{
     // initialise
     _preventReverseOtherApp=[[NSUserDefaults standardUserDefaults] boolForKey:@"ReverseOnlyRawInput"];
 
@@ -322,10 +347,8 @@ static CGEventRef _callback(CGEventTapProxy proxy,
     }
     else {
         NSLog(@"Didn't get ports");
-        [self stop];
+        [self destroyTaps];
     }
-
-    [self didChangeValueForKey:kKeyActive];
 
     if ([self isActive]) {
         [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap started"];
@@ -335,10 +358,8 @@ static CGEventRef _callback(CGEventTapProxy proxy,
     }
 }
 
-- (void)stop
+- (void)destroyTaps
 {
-    [self willChangeValueForKey:kKeyActive];
-
     if (self.activeTapSource) {
         CFRunLoopRemoveSource(CFRunLoopGetMain(), self.activeTapSource, kCFRunLoopCommonModes);
         CFRelease(self.activeTapSource);
@@ -362,8 +383,6 @@ static CGEventRef _callback(CGEventTapProxy proxy,
         CFRelease(self.passiveTapPort);
         self.passiveTapPort=nil;
     }
-
-    [self didChangeValueForKey:kKeyActive];
 
     [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap stopped"];
 }
