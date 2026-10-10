@@ -10,7 +10,8 @@ static AppDelegate *appDelegate;
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        // Create the delegate before NSApplicationMain, so that its init runs before launch.
+        // The delegate does its setup in applicationWillFinishLaunching:, once NSApplicationMain has
+        // registered the app with the window server, and before it finishes launching.
         appDelegate=[[AppDelegate alloc] init];
         [NSApplication sharedApplication].delegate=appDelegate;
     }
