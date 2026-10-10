@@ -107,17 +107,6 @@ static void *_contextPermissions=&_contextPermissions;
     }
 }
 
-- (void)handleURLEvent:(NSAppleEventDescriptor *)event withReplyEvent: (NSAppleEventDescriptor *)replyEvent
-{
-    NSURL* url = [NSURL URLWithString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
-    NSLog(@"Handling URL: %@", url);
-    if ([[url scheme] isEqualToString:BUILDSCRIPTS_URL_SCHEME]) {
-        if ([[url host] isEqualToString:@"launch"]) {
-            NSLog(@"Launch via URL");
-        }
-    }
-}
-
 #pragma mark Inits
 
 + (void)initialize
@@ -173,12 +162,6 @@ static void *_contextPermissions=&_contextPermissions;
     else {
         NSLog(@"Updater started");
     }
-
-    // event handler for url events (for launching)
-    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
-                                                       andSelector:@selector(handleURLEvent:withReplyEvent:)
-                                                     forEventClass:kInternetEventClass
-                                                        andEventID:kAEGetURL];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification

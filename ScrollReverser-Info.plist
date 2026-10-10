@@ -16,19 +16,6 @@
 	<string>$(BUILDSCRIPTS_VERSION_STRING)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>CFBundleURLName</key>
-			<string>$(BUILDSCRIPTS_URL_ID)</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>$(BUILDSCRIPTS_URL_SCHEME)</string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleVersion</key>
 	<string>$(BUILDSCRIPTS_VERSION_NUM)</string>
 	<key>LSApplicationCategoryType</key>
