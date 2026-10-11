@@ -431,6 +431,12 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
     [enableCheckbox bind:NSValueBinding toObject:appDelegate withKeyPath:@"enabled" options:@{NSValidatesImmediatelyBindingOption: @YES}];
     [enableCheckbox bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:negated()];
 
+    // follow mouse connection
+    NSButton *const autoEnableCheckbox=smallCheckbox(NSLocalizedString(@"Turn on when a mouse is connected, off when it is disconnected", @"Prefs check box"));
+    [autoEnableCheckbox bind:NSValueBinding toObject:defaults withKeyPath:defaultsKeyPath(PrefsAutoEnableWithMouse) options:nil];
+    NSStackView *const enableOptions=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeCenterX, 8, @[enableCheckbox, autoEnableCheckbox]);
+    [enableOptions bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:negated()];
+
     // axes and devices, side by side
     NSBox *const axesBox=[self boxWithTitle:NSLocalizedString(@"Scrolling Axes", @"Prefs section title")
                                  checkboxes:@[@[NSLocalizedString(@"Reverse Vertical", @"Prefs check box"), PrefsReverseVertical],
@@ -451,7 +457,7 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
     NSView *const permissionsBox=[self makePermissionsBox];
     [permissionsBox bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:nil];
 
-    NSStackView *const pane=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeCenterX, 17, @[enableCheckbox, axesAndDevices, scrollWheelBox, permissionsBox]);
+    NSStackView *const pane=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeCenterX, 17, @[enableOptions, axesAndDevices, scrollWheelBox, permissionsBox]);
     // hug the content more strongly than the window keeps its size, so the window fits the pane as sections show and hide
     [pane setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
     NSView *const view=[[NSView alloc] init];

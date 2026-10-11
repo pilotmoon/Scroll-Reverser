@@ -9,6 +9,7 @@
 #import "DebugWindowController.h"
 #import "TestWindowController.h"
 #import "TapLogger.h"
+#import "MouseMonitor.h"
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
 NSString *const PrefsReverseHorizontal=@"ReverseX";
@@ -22,10 +23,13 @@ NSString *const PrefsAppcastOverrideURL=@"AppcastOverrideURL";
 NSString *const PrefsTerminatedWithPrefsWindowOpen=@"TerminatedWithPrefsWindowOpen";
 NSString *const PrefsDiscreteScrollStepSize=@"DiscreteScrollStepSize";
 NSString *const PrefsShowDiscreteScrollOptions=@"ShowDiscreteScrollOptions";
+NSString *const PrefsAutoEnableWithMouse=@"AutoEnableWithMouse";
 
 static void *_contextHideIcon=&_contextHideIcon;
 static void *_contextEnabled=&_contextEnabled;
 static void *_contextPermissions=&_contextPermissions;
+static void *_contextMouseConnected=&_contextMouseConnected;
+static void *_contextAutoEnableWithMouse=&_contextAutoEnableWithMouse;
 
 @interface AppDelegate ()
 @property MouseTap *tap;
@@ -36,6 +40,7 @@ static void *_contextPermissions=&_contextPermissions;
 @property TestWindowController *testWindowController;
 @property PermissionsManager *permissionsManager;
 @property LoginItemController *loginItemController;
+@property MouseMonitor *mouseMonitor;
 @property TapLogger *logger;
 @property SPUUpdater *updater;
 @property SPUStandardUserDriver *updaterUserDriver;
@@ -120,6 +125,7 @@ static void *_contextPermissions=&_contextPermissions;
             PrefsReverseTrackpad: @(YES),
             PrefsReverseMouse: @(YES),
             PrefsDiscreteScrollStepSize: @(3),
+            PrefsAutoEnableWithMouse: @(NO),
             LoggerMaxEntries: @(50000),
             PrefsBetaUpdates: @([self appIsBetaBuild]),
         }];
@@ -192,6 +198,12 @@ static void *_contextPermissions=&_contextPermissions;
     BOOL enabledInPrefs=[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling];
     [self addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionInitial context:_contextEnabled];
     self.enabled=enabledInPrefs;
+
+    // Optionally follow whether a mouse is connected: on with a mouse, off without one.
+    self.mouseMonitor=[[MouseMonitor alloc] init];
+    [self.mouseMonitor addObserver:self forKeyPath:MouseMonitorKeyMouseConnected options:0 context:_contextMouseConnected];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:PrefsAutoEnableWithMouse options:0 context:_contextAutoEnableWithMouse];
+    [self applyAutoEnableWithMouse];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsTerminatedWithPrefsWindowOpen]) {
         [self showPrefs:self];
@@ -381,9 +393,15 @@ static void *_contextPermissions=&_contextPermissions;
         self.statusController.enabled=self.enabled;
         [[NSUserDefaults standardUserDefaults] setBool:self.enabled forKey:PrefsReverseScrolling];
     }
+    else if (context==_contextMouseConnected || context==_contextAutoEnableWithMouse) {
+        [self applyAutoEnableWithMouse];
+    }
     else if (context==_contextPermissions) {
         if(!self.permissionsManager.hasAllRequiredPermissions) {
             self.enabled=NO;
+        }
+        else {
+            [self applyAutoEnableWithMouse];
         }
     }
 }
@@ -420,6 +438,17 @@ static void *_contextPermissions=&_contextPermissions;
 
 + (NSSet *)keyPathsForValuesAffectingEnabled {
     return [NSSet setWithObject:@"tap.active"];
+}
+
+- (void)applyAutoEnableWithMouse
+{
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:PrefsAutoEnableWithMouse]) {
+        return;
+    }
+    const BOOL connected=self.mouseMonitor.mouseConnected;
+    if (connected!=self.enabled) {
+        self.enabled=connected;
+    }
 }
 
 #pragma mark Status item handling

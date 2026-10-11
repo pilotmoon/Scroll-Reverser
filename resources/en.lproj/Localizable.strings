@@ -93,6 +93,9 @@
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Step size"; 
 
+/* Prefs check box */
+"Turn on when a mouse is connected, off when it is disconnected" = "Turn on when a mouse is connected, off when it is disconnected";
+
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ required";
 

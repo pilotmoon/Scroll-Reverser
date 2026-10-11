@@ -20,6 +20,7 @@
 		01AF54C91B0CB87C0028A26A /* TapLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AF54C81B0CB87C0028A26A /* TapLogger.m */; };
 		01AF54D31B0E11150028A26A /* TestWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AF54D11B0E11150028A26A /* TestWindowController.m */; };
 		01D9F8932386D5C1002F0EC0 /* PermissionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D9F8922386D5C1002F0EC0 /* PermissionsManager.m */; };
+		E1A0C0DE0000000000000003 /* MouseMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0C0DE0000000000000002 /* MouseMonitor.m */; };
 		01D9F8962386E01C002F0EC0 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D9F8942386E013002F0EC0 /* IOKit.framework */; };
 		01EB78C41324D574005390BD /* MouseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB78C21324D574005390BD /* MouseTap.m */; };
 		01ED37DF1A375EB9001B3094 /* LinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01ED37DE1A375EB9001B3094 /* LinkView.m */; };
@@ -88,6 +89,8 @@
 		01CEC73C1A5E8BCF0086DDEC /* sk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = sk; path = resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01D9F8912386D5C1002F0EC0 /* PermissionsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PermissionsManager.h; sourceTree = "<group>"; };
 		01D9F8922386D5C1002F0EC0 /* PermissionsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PermissionsManager.m; sourceTree = "<group>"; };
+		E1A0C0DE0000000000000001 /* MouseMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MouseMonitor.h; sourceTree = "<group>"; };
+		E1A0C0DE0000000000000002 /* MouseMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MouseMonitor.m; sourceTree = "<group>"; };
 		01D9F8942386E013002F0EC0 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		01DE5B63221B1E220045826E /* sv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = sv; path = resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01E5C31E2567FF8800C10ABA /* BuildScripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BuildScripts; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 				256AC3D90F4B6AC300CF3369 /* AppDelegate.m */,
 				01D9F8912386D5C1002F0EC0 /* PermissionsManager.h */,
 				01D9F8922386D5C1002F0EC0 /* PermissionsManager.m */,
+				E1A0C0DE0000000000000001 /* MouseMonitor.h */,
+				E1A0C0DE0000000000000002 /* MouseMonitor.m */,
 				01EB78C21324D574005390BD /* MouseTap.m */,
 				01EB78C31324D574005390BD /* MouseTap.h */,
 				01ED37DD1A375EB9001B3094 /* LinkView.h */,
@@ -360,6 +365,7 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				01AF54C91B0CB87C0028A26A /* TapLogger.m in Sources */,
 				01D9F8932386D5C1002F0EC0 /* PermissionsManager.m in Sources */,
+				E1A0C0DE0000000000000003 /* MouseMonitor.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */,
 				01ED37DF1A375EB9001B3094 /* LinkView.m in Sources */,
 				01EB78C41324D574005390BD /* MouseTap.m in Sources */,

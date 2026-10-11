@@ -7,7 +7,7 @@
 #import "LoginItemController.h"
 #import <Sparkle/Sparkle.h>
 
-@class MouseTap, WelcomeWindowController, PrefsWindowController, DebugWindowController, TapLogger, TestWindowController;
+@class MouseTap, MouseMonitor, WelcomeWindowController, PrefsWindowController, DebugWindowController, TapLogger, TestWindowController;
 
 extern NSString *const PrefsReverseScrolling;
 extern NSString *const PrefsReverseHorizontal;
@@ -17,12 +17,14 @@ extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsHideIcon;
 extern NSString *const PrefsDiscreteScrollStepSize;
 extern NSString *const PrefsShowDiscreteScrollOptions;
+extern NSString *const PrefsAutoEnableWithMouse;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, StatusItemControllerDelegate, SPUUpdaterDelegate, SPUStandardUserDriverDelegate> {
 }
 
 @property (readonly) PermissionsManager *permissionsManager;
 @property (readonly) LoginItemController *loginItemController;
+@property (readonly) MouseMonitor *mouseMonitor;
 @property (readonly) SPUUpdater *updater;
 
 @property (readonly) NSString *appName;
