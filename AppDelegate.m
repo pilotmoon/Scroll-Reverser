@@ -205,6 +205,13 @@ static void *_contextAutoEnableWithMouse=&_contextAutoEnableWithMouse;
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:PrefsAutoEnableWithMouse options:0 context:_contextAutoEnableWithMouse];
     [self applyAutoEnableWithMouse];
 
+    // On later launches, a missing permission would otherwise fail silently, for example after the
+    // app is replaced or its permissions are reset. Ask again and show the permissions pane.
+    // On first run the welcome window covers this.
+    if (!first) {
+        [self requestMissingPermissions];
+    }
+
     if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsTerminatedWithPrefsWindowOpen]) {
         [self showPrefs:self];
     }
@@ -466,6 +473,21 @@ static void *_contextAutoEnableWithMouse=&_contextAutoEnableWithMouse;
 }
 
 #pragma mark Permissions
+
+- (void)requestMissingPermissions {
+    PermissionsManager *const permissions=self.permissionsManager;
+    if (permissions.hasAllRequiredPermissions) {
+        return;
+    }
+    if (permissions.accessibilityRequired && !permissions.accessibilityEnabled) {
+        [permissions requestAccessibilityPermission];
+    }
+    if (permissions.inputMonitoringRequired && !permissions.inputMonitoringEnabled) {
+        [permissions requestInputMonitoringPermission];
+    }
+    [permissions refresh];
+    [self showPermissionsUI];
+}
 
 - (void)showPermissionsUI {
     [self showPrefsWithDefaultPane:YES];

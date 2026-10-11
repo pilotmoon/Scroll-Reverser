@@ -105,7 +105,7 @@ static const double _multiplier=25.0;
         self.appSettings=[self makeAppSettings];
 
         // fill in the permission labels before the panes are measured, and keep them up to date
-        for (NSString *keyPath in @[PermissionsManagerKeyAccessibilityEnabled, PermissionsManagerKeyInputMonitoringEnabled, @"inputMonitoringRequested"]) {
+        for (NSString *keyPath in @[PermissionsManagerKeyAccessibilityEnabled, PermissionsManagerKeyInputMonitoringEnabled, @"inputMonitoringRequested", PermissionsManagerKeyHasAllRequiredPermissions]) {
             [self.appDelegate.permissionsManager addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:_contextPermissions];
         }
         [self setUpPanels];
@@ -188,13 +188,14 @@ static const double _multiplier=25.0;
 {
     if (context==_contextPermissions) {
         [self updatePermissionLabels];
+        [self updateWindowLevel];
     }
 }
 
 - (void)showWindow:(id)sender
 {
     self.window.delegate=self;
-    self.window.level=NSNormalWindowLevel;
+    [self updateWindowLevel];
     if (![NSApp isActive]) {
         [NSApp activateIgnoringOtherApps:YES];
     }
@@ -234,6 +235,13 @@ static const double _multiplier=25.0;
 
 #pragma mark Permissions
 
+// While a permission is missing, keep the window above System Settings, so it doesn't get lost
+// behind it while the user turns the permissions on. (The app has no Dock icon to bring it back.)
+- (void)updateWindowLevel
+{
+    self.window.level=self.appDelegate.permissionsManager.hasAllRequiredPermissions ? NSNormalWindowLevel : NSFloatingWindowLevel;
+}
+
 - (void)showPermissionsPane {
     [self setPane:kPanelScrolling];
 }
@@ -245,6 +253,11 @@ static const double _multiplier=25.0;
     else {
         [self.appDelegate.permissionsManager requestAccessibilityPermission];
     }
+}
+
+- (IBAction)buttonShowInFinderClicked:(id)sender {
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[NSBundle mainBundle].bundleURL]];
+    [self.appDelegate.permissionsManager openInputMonitoringPrefs];
 }
 
 - (IBAction)buttonIMClicked:(id)sender {
@@ -554,9 +567,15 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
 
     self.imStatusLabel=[self permissionStatusLabel];
     self.imButton=[NSButton buttonWithTitle:@"" target:self action:@selector(buttonIMClicked:)];
+    // Recent macOS versions don't add the app to the Input Monitoring list when it asks, so offer
+    // the app in Finder, ready to drag into the list.
+    NSButton *const showInFinderButton=[NSButton buttonWithTitle:NSLocalizedString(@"Show in Finder", @"Button that reveals the app in Finder, so it can be dragged into the Input Monitoring list") target:self action:@selector(buttonShowInFinderClicked:)];
+    showInFinderButton.toolTip=NSLocalizedString(@"Drag Scroll Reverser from Finder into the Input Monitoring list in System Settings, then turn it on.", nil);
+    [showInFinderButton bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyInputMonitoringEnabled options:nil];
+    NSStackView *const imButtons=stack(NSUserInterfaceLayoutOrientationHorizontal, NSLayoutAttributeFirstBaseline, 8, @[self.imButton, showInFinderButton]);
     NSView *const imView=[self permissionViewWithDescription:NSLocalizedString(@"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.", nil)
                                                  statusLabel:self.imStatusLabel
-                                                      button:self.imButton
+                                                      button:imButtons
                                             descriptionInset:8];
     [self.imButton bind:NSEnabledBinding toObject:permissions withKeyPath:PermissionsManagerKeyInputMonitoringEnabled options:negated()];
     [imView bind:NSHiddenBinding toObject:permissions withKeyPath:@"inputMonitoringRequired" options:negated()];
@@ -588,8 +607,8 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
     return statusLabel;
 }
 
-// description, status line and request button for one permission
-- (NSView *)permissionViewWithDescription:(NSString *)description statusLabel:(NSTextField *)statusLabel button:(NSButton *)button descriptionInset:(CGFloat)inset
+// description, status line and request button (or row of buttons) for one permission
+- (NSView *)permissionViewWithDescription:(NSString *)description statusLabel:(NSTextField *)statusLabel button:(NSView *)button descriptionInset:(CGFloat)inset
 {
     NSTextField *const descriptionLabel=label([NSTextField wrappingLabelWithString:description], smallFont(), [NSColor secondaryLabelColor]);
     button.translatesAutoresizingMaskIntoConstraints=NO;

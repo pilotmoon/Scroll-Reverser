@@ -15,6 +15,9 @@
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "Check for updates";
 
+/* No comment provided by engineer. */
+"Drag Scroll Reverser from Finder into the Input Monitoring list in System Settings, then turn it on." = "Drag Scroll Reverser from Finder into the Input Monitoring list in System Settings, then turn it on.";
+
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Enable %1$@";
 
@@ -80,6 +83,9 @@
 
 /* Prefs section title */
 "Scrolling Devices" = "Scrolling Devices";
+
+/* Button that reveals the app in Finder, so it can be dragged into the Input Monitoring list */
+"Show in Finder" = "Show in Finder";
 
 /* Prefs check box */
 "Show in menu bar" = "Show in menu bar";
