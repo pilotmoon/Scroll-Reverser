@@ -1,0 +1,100 @@
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
+
+/* for example: `Accessibility permission: ⛔️ required` */
+"%1$@ permission: %2$@" = "مجوز %1$@: %2$@";
+
+/* corresponds to Accessibility in system Privacy settings */
+"Accessibility" = "Accessibility";
+
+/* Preferences pane for `App` settings */
+"App" = "برنامه";
+
+/* Check box next to the 'Check for updates' button */
+"Automatically" = "به‌طور خودکار";
+
+/* Button, when pressed, checks for updates now */
+"Check for updates" = "بررسی به‌روزرسانی‌ها";
+
+/* 1=name of app e.g. `Enable Scroll Reverser` */
+"Enable %1$@" = "فعال‌سازی %1$@";
+
+/* No comment provided by engineer. */
+"For settings, click the icon in the menu bar" = "برای تنظیمات، روی نماد در نوار منو کلیک کنید";
+
+/* Check box: Include beta versionss of the app when checking for updates */
+"Include beta versions" = "شامل نسخه‌های بتا";
+
+/* corresponds to Input Monitoring in system Privacy settings */
+"Input Monitoring" = "Input Monitoring";
+
+/* Large step size */
+"Large" = "بزرگ"; 
+
+/* No comment provided by engineer. */
+"OK" = "تأیید";
+
+/* 1=`Input Monitoring` or `Accessibility` */
+"Open %1$@ preferences" = "باز کردن تنظیمات %1$@";
+
+/* Section title */
+"Permissions" = "مجوزها";
+
+/* Menu item that opens the settings window, including the trailing ellipsis */
+"Settings…" = "تنظیمات…";
+
+/* 1=name of app e.g. `Quit Scroll Reverser` */
+"Quit %1$@" = "خروج از %1$@";
+
+/* 1=`Input Monitoring` or `Accessibility` */
+"Request %1$@ permission" = "درخواست مجوز %1$@";
+
+/* Prefs check box */
+"Reverse Horizontal" = "معکوس کردن افقی";
+
+/* Prefs check box */
+"Reverse Mouse" = "معکوس کردن ماوس";
+
+/* Prefs check box */
+"Reverse Trackpad" = "معکوس کردن ترک‌پد";
+
+/* Prefs check box */
+"Reverse Vertical" = "معکوس کردن عمودی";
+
+/* No comment provided by engineer. */
+"Scroll Reverser is now running!" = "Scroll Reverser اکنون در حال اجرا است!";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser برای تغییر پیمایش شما به مجوز Accessibility نیاز دارد.";
+
+/* No comment provided by engineer. */
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser برای تشخیص اینکه آیا انگشتان شما ترک‌پد را لمس می‌کنند به مجوز Input Monitoring نیاز دارد.";
+
+/* Prefs section header */
+"Scroll Wheel" = "چرخ پیمایش"; 
+
+/* Preferences pane for `Scrolling` serttings */
+"Scrolling" = "پیمایش";
+
+/* Prefs section title */
+"Scrolling Axes" = "محورهای پیمایش";
+
+/* Prefs section title */
+"Scrolling Devices" = "دستگاه‌های پیمایش";
+
+/* Prefs check box */
+"Show in menu bar" = "نمایش در نوار منو";
+
+/* Small step size */
+"Small" = "کوچک"; 
+
+/* Prefs check box */
+"Start at login" = "اجرا هنگام ورود به سیستم";
+
+/* Size of one step of the mouse scroll wheel */
+"Step size" = "اندازه گام"; 
+
+/* No comment provided by engineer. */
+"⛔️ required" = "⛔️ الزامی";
+
+/* No comment provided by engineer. */
+"✅ granted" = "✅ اعطا شده";

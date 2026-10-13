@@ -50,6 +50,7 @@
 		01145CF1256ED29000E0EFE5 /* LoginItemController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginItemController.m; sourceTree = "<group>"; };
 		01145CF5256ED93400E0EFE5 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		01261C8C25DAD4C300927EA4 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = resources/he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		093A2DC7D701369896039248 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = resources/fa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		012A2B171A5D2A3A009DF434 /* ro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ro; path = resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		013E4E401DD7C50F00DCC144 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = nl; path = resources/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01438E5D1AFB467100C5C857 /* DebugWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugWindowController.h; sourceTree = "<group>"; };
@@ -310,6 +311,7 @@
 				da,
 				vi,
 				cs,
+				fa,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Scroll Inverter */;
 			projectDirPath = "";
@@ -403,6 +405,7 @@
 				01BC496525CD3B1B00EF8CC5 /* pt-BR */,
 				01BC496625CD3B6000EF8CC5 /* ne */,
 				01261C8C25DAD4C300927EA4 /* he */,
+				093A2DC7D701369896039248 /* fa */,
 				01893897269F23A800DD6611 /* da */,
 				01E6BD5626D3981A00A70D3D /* vi */,
 				01E6BD5726D3985500A70D3D /* cs */,
