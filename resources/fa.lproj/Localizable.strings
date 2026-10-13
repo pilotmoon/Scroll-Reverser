@@ -61,13 +61,13 @@
 "Reverse Vertical" = "معکوس کردن عمودی";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser اکنون در حال اجرا است!";
+"Scroll Reverser is now running!" = "اکنون Scroll Reverser در حال اجرا است!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser برای تغییر پیمایش شما به مجوز Accessibility نیاز دارد.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "برای تغییر پیمایش شما، Scroll Reverser به مجوز Accessibility نیاز دارد.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser برای تشخیص اینکه آیا انگشتان شما ترک‌پد را لمس می‌کنند به مجوز Input Monitoring نیاز دارد.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "برای تشخیص اینکه آیا انگشتان شما ترک‌پد را لمس می‌کنند، Scroll Reverser به مجوز Input Monitoring نیاز دارد.";
 
 /* Prefs section header */
 "Scroll Wheel" = "چرخ پیمایش"; 
