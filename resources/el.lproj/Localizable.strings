@@ -1,5 +1,5 @@
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "Δικαιώματα για %1$@: %2$@";
+"%1$@ permission: %2$@" = "Άδεια «%1$@»: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Προσβασιμότητα";
@@ -11,70 +11,70 @@
 "Automatically" = "Αυτόματα";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Έλεγχος για αναβαθμίσεις";
+"Check for updates" = "Έλεγχος για ενημερώσεις";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Ενεργοποίησε το %1$@";
+"Enable %1$@" = "Ενεργοποίηση %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Για τις προτιμήσεις κλικάτερε στο εικονίδιο που βρίσκεται στη γραμμή μενού";
+"For settings, click the icon in the menu bar" = "Για τις ρυθμίσεις, κάντε κλικ στο εικονίδιο στη γραμμή μενού";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Περιέλαβε και τις δοκιμαστικές εκδόσεις";
+"Include beta versions" = "Συμπερίληψη εκδόσεων beta";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Παρακολούθηση συσκευής εισόδου";
+"Input Monitoring" = "Παρακολούθηση εισόδου";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "γραμμές";
 
 /* No comment provided by engineer. */
 "OK" = "ΟΚ";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Άνοιξε τις ρυθμίσεις %1$@";
+"Open %1$@ preferences" = "Άνοιγμα ρυθμίσεων «%1$@»";
 
 /* Section title */
-"Permissions" = "Δικαιώματα";
+"Permissions" = "Άδειες";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Έξοδος %1$@";
+"Quit %1$@" = "Τερματισμός %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Αίτηση δικαιωμάτων για %1$@";
+"Request %1$@ permission" = "Αίτηση άδειας «%1$@»";
 
 /* Prefs check box */
-"Reverse Horizontal" = "Οριζόντια Αντιστροφή";
+"Reverse Horizontal" = "Οριζόντια αντιστροφή";
 
 /* Prefs check box */
-"Reverse Mouse" = "Αντιστροφή στο Mouse";
+"Reverse Mouse" = "Αντιστροφή στο ποντίκι";
 
 /* Prefs check box */
-"Reverse Trackpad" = "Αντιστροφή στο Trackpad";
+"Reverse Trackpad" = "Αντιστροφή στην επιφάνεια αφής";
 
 /* Prefs check box */
-"Reverse Vertical" = "Κάθετη Αντιστροφή";
+"Reverse Vertical" = "Κάθετη αντιστροφή";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Το Scroll Reverser είναι ενεργό!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Το Scroll Reverser χρειάζεται δικαιώματα για να αλλάξει το σκρολάρισμα.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Το Scroll Reverser χρειάζεται άδεια Προσβασιμότητας για να τροποποιεί την κύλιση.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Το Scroll Reverser χρειάζεται δικαιώματα Παρακολούθησης Συσκευής Εισόδου για να δει αν τα δάχτυλά σας ακουμπούν το Trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Το Scroll Reverser χρειάζεται άδεια Παρακολούθησης εισόδου για να ανιχνεύει αν τα δάχτυλά σας αγγίζουν την επιφάνεια αφής.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Κύλιση Τροχού";
+"Scroll Wheel" = "Τροχός κύλισης";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Κύλιση";
 
 /* Prefs section title */
-"Scrolling Axes" = "Άξονες Κύλισης";
+"Scrolling Axes" = "Άξονες κύλισης";
 
 /* Prefs section title */
-"Scrolling Devices" = "Συσκευές Κύλισης";
+"Scrolling Devices" = "Συσκευές κύλισης";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Ρυθμίσεις…";
@@ -83,7 +83,7 @@
 "Show in menu bar" = "Εμφάνιση στη γραμμή μενού";
 
 /* Prefs check box */
-"Start at login" = "Εκκίνηση κατά την είσοδο";
+"Start at login" = "Άνοιγμα κατά την είσοδο";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Μέγεθος βήματος";
