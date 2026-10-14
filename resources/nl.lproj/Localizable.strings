@@ -1,68 +1,68 @@
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "%1$@ rechten: %2$@";
+"%1$@ permission: %2$@" = "Toestemming voor '%1$@': %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Toegankelijkheid";
 
-/* TODO:TRANSLATE — Preferences pane for `App` settings */
+/* Preferences pane for `App` settings */
 "App" = "App";
 
 /* Check box next to the 'Check for updates' button */
 "Automatically" = "Automatisch";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Controleren op updates";
+"Check for updates" = "Zoek naar updates";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Schakel %1$@ in";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Voor voorkeuren, klik op het icoon in de menubalk";
+"For settings, click the icon in the menu bar" = "Klik voor instellingen op het symbool in de menubalk";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Neem bèta-versies op";
+"Include beta versions" = "Neem bètaversies op";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Invoer monitoren";
+"Input Monitoring" = "Invoer vastleggen";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "regels";
 
-/* TODO:TRANSLATE — No comment provided by engineer. */
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Open %1$@ voorkeuren";
+"Open %1$@ preferences" = "Open instellingen voor '%1$@'";
 
 /* Section title */
 "Permissions" = "Toestemmingen";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "%1$@ afsluiten";
+"Quit %1$@" = "Stop %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Vraag %1$@ rechten aan";
+"Request %1$@ permission" = "Vraag toestemming voor '%1$@' aan";
 
 /* Prefs check box */
-"Reverse Horizontal" = "Horizontaal Omkeren";
+"Reverse Horizontal" = "Horizontaal omkeren";
 
 /* Prefs check box */
-"Reverse Mouse" = "Muis Omkeren";
+"Reverse Mouse" = "Muis omkeren";
 
 /* Prefs check box */
-"Reverse Trackpad" = "Trackpad Omkeren";
+"Reverse Trackpad" = "Trackpad omkeren";
 
 /* Prefs check box */
-"Reverse Vertical" = "Verticaal Omkeren";
+"Reverse Vertical" = "Verticaal omkeren";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser is nu geactiveerd!";
+"Scroll Reverser is now running!" = "Scroll Reverser is nu actief!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser heeft toegangsrechten nodig om je scrolling aan te passen.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser heeft toestemming voor 'Toegankelijkheid' nodig om het scrollen aan te passen.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser heeft invoermonitoring rechten nodig om te detecteren of je vingers het trackpad aanraken.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser heeft toestemming voor 'Invoer vastleggen' nodig om te detecteren of je vingers het trackpad aanraken.";
 
 /* Prefs section header */
 "Scroll Wheel" = "Muiswiel";
@@ -80,16 +80,16 @@
 "Settings…" = "Instellingen…";
 
 /* Prefs check box */
-"Show in menu bar" = "Weergeven in menubalk";
+"Show in menu bar" = "Toon in menubalk";
 
 /* Prefs check box */
-"Start at login" = "Starten na inloggen";
+"Start at login" = "Open bij inloggen";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Stapgrootte";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔ vereist";
+"⛔️ required" = "⛔️ vereist";
 
 /* No comment provided by engineer. */
 "✅ granted" = "✅ toegestaan";
