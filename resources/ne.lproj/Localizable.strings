@@ -1,8 +1,8 @@
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "%1$@को अनुमति: %2$@";
+"%1$@ permission: %2$@" = "%1$@ अनुमति: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "सहज प्रयोग";
+"Accessibility" = "Accessibility";
 
 /* Preferences pane for `App` settings */
 "App" = "एप";
@@ -14,25 +14,25 @@
 "Check for updates" = "अपडेटहरू खोज्नुहोस्";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "%1$@ सुचारू गर्नुहोस्";
+"Enable %1$@" = "%1$@ सक्षम गर्नुहोस्";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "सेटिङ्गका लागि मेन्यु बारको एप-चिह्नमा थिच्नुहोस्";
+"For settings, click the icon in the menu bar" = "सेटिङहरूका लागि मेन्यु बारको आइकनमा क्लिक गर्नुहोस्";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "बेटा संस्करण समावेश गर्नुहोस्";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "इनपुट मनिटरिङ";
+"Input Monitoring" = "Input Monitoring";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "लाइन";
 
 /* No comment provided by engineer. */
-"OK" = "हुन्छ";
+"OK" = "ठिक छ";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "%1$@ प्राथमिकता खोल्नुहोस्";
+"Open %1$@ preferences" = "%1$@ सेटिङहरू खोल्नुहोस्";
 
 /* Section title */
 "Permissions" = "अनुमतिहरू";
@@ -41,7 +41,7 @@
 "Quit %1$@" = "%1$@ बन्द गर्नुहोस्";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "%1$@को अनुमति प्रदान गर्नुहोस्";
+"Request %1$@ permission" = "%1$@ अनुमति अनुरोध गर्नुहोस्";
 
 /* Prefs check box */
 "Reverse Horizontal" = "तेर्सो दिशा उल्टो गर्नुहोस्";
@@ -50,19 +50,19 @@
 "Reverse Mouse" = "माउस उल्टो गर्नुहोस्";
 
 /* Prefs check box */
-"Reverse Trackpad" = "ट्रयाकप्याड उल्टो गर्नुहोस्";
+"Reverse Trackpad" = "ट्र्याकप्याड उल्टो गर्नुहोस्";
 
 /* Prefs check box */
-"Reverse Vertical" = "तल-माथि उल्टो गर्नुहोस्";
+"Reverse Vertical" = "ठाडो दिशा उल्टो गर्नुहोस्";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "स्क्रोल रिभर्सर अब चलिरहेको छ!";
+"Scroll Reverser is now running!" = "Scroll Reverser अब चलिरहेको छ!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "स्क्रोल रिभर्सरलाई हजुरको स्क्रोल परिवर्तन गर्न सहज प्रयोगको अनुमति चाहिन्छ।";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser लाई तपाईंको स्क्रोलिङ परिवर्तन गर्न Accessibility अनुमति चाहिन्छ।";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "स्क्रोल रिभर्सरलाई हजुरको औँलाले ट्रयाकप्याड छोएको छ भन्ने थाहा पाउन इनपुट मनिटरिङको अनुमति चाहिन्छ।";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser लाई तपाईंका औँलाले ट्र्याकप्याड छोइरहेका छन् कि छैनन् भनी पत्ता लगाउन Input Monitoring अनुमति चाहिन्छ।";
 
 /* Prefs section header */
 "Scroll Wheel" = "स्क्रोल चक्र";
@@ -83,13 +83,13 @@
 "Show in menu bar" = "मेन्यु बारमा देखाउनुहोस्";
 
 /* Prefs check box */
-"Start at login" = "लग-इनमा सुचारू गर्नुहोस्";
+"Start at login" = "लगइन हुँदा सुरु गर्नुहोस्";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "स्क्रोलको आकार";
+"Step size" = "चरणको आकार";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "आवश्यक छ";
+"⛔️ required" = "⛔️ आवश्यक छ";
 
 /* No comment provided by engineer. */
-"✅ granted" = "प्रदान गरिएको छ";
+"✅ granted" = "✅ प्रदान गरिएको छ";
