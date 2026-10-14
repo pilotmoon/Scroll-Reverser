@@ -94,12 +94,14 @@
 
 - (void)statusButtonClicked:(id)sender
 {
-    if ((([[NSApp currentEvent] modifierFlags] & NSEventModifierFlagControl)==NSEventModifierFlagControl) ||
+    // On macOS 27 the status item's mouse-down event arrives with no modifier flags, so read the current keyboard state instead.
+    const NSEventModifierFlags flags=[NSEvent modifierFlags];
+    if (((flags & NSEventModifierFlagControl)==NSEventModifierFlagControl) ||
         [[NSApp currentEvent] type]==NSEventTypeRightMouseDown)
     {
         [self.statusItemDelegate statusItemRightClicked];
     }
-    else if (([[NSApp currentEvent] modifierFlags] & NSEventModifierFlagOption)==NSEventModifierFlagOption) {
+    else if ((flags & NSEventModifierFlagOption)==NSEventModifierFlagOption) {
         [self.statusItemDelegate statusItemAltClicked];
     }
     else {
