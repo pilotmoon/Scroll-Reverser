@@ -1,71 +1,71 @@
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "הרשאת %1$@: %2$@";
+"%1$@ permission: %2$@" = "הרשאת ״%1$@״: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "נגישות";
 
 /* Preferences pane for `App` settings */
-"App" = "אפליקציה";
+"App" = "יישום";
 
 /* Check box next to the 'Check for updates' button */
 "Automatically" = "באופן אוטומטי";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "בדוק אם קיימים עדכונים";
+"Check for updates" = "חיפוש עדכונים";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "אפשר %1$@";
+"Enable %1$@" = "הפעלת %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "להגדרות, לחץ על הסמל בשורת התפריטים";
+"For settings, click the icon in the menu bar" = "כדי לפתוח את ההגדרות, יש ללחוץ על האייקון בשורת התפריטים";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "כלול גרסאות בטא";
+"Include beta versions" = "הכללת גרסאות בטא";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "ניטור קלט";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "שורות";
 
 /* No comment provided by engineer. */
 "OK" = "אישור";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "בחר/י %1$@ בהעדפות המערכת";
+"Open %1$@ preferences" = "פתיחת הגדרות ״%1$@״";
 
 /* Section title */
 "Permissions" = "הרשאות";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "צא/י מ- %1$@";
+"Quit %1$@" = "סיום %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "בקש/י הרשאת %1$@";
+"Request %1$@ permission" = "בקשת הרשאת ״%1$@״";
 
 /* Prefs check box */
-"Reverse Horizontal" = "הפוך אופקי";
+"Reverse Horizontal" = "היפוך אופקי";
 
 /* Prefs check box */
-"Reverse Mouse" = "הפוך עכבר";
+"Reverse Mouse" = "היפוך בעכבר";
 
 /* Prefs check box */
-"Reverse Trackpad" = "הפוך משטח נגיעה";
+"Reverse Trackpad" = "היפוך במשטח המגע";
 
 /* Prefs check box */
-"Reverse Vertical" = "הפוך אנכי";
+"Reverse Vertical" = "היפוך אנכי";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser רץ כרגע!";
+"Scroll Reverser is now running!" = "היישום Scroll Reverser פועל כעת!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser צריך הרשאות נגישות כדי לשנות את הגדרות הגלילה שלך.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "ל-Scroll Reverser נדרשת הרשאת ״נגישות״ כדי לשנות את אופן הגלילה שלך.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser צריך הרשאת ״ניטור קלט״ כדי לזהות נגיעה של האצבעות במשטח גלילה.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "ל-Scroll Reverser נדרשת הרשאת ״ניטור קלט״ כדי לזהות אם האצבעות שלך נוגעות במשטח המגע.";
 
 /* Prefs section header */
-"Scroll Wheel" = "גלגלת עכבר";
+"Scroll Wheel" = "גלגלת גלילה";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "גלילה";
@@ -80,16 +80,16 @@
 "Settings…" = "הגדרות…";
 
 /* Prefs check box */
-"Show in menu bar" = "הצגה בשורת המצב";
+"Show in menu bar" = "הצגה בשורת התפריטים";
 
 /* Prefs check box */
-"Start at login" = "הפעל בעת ההתחברות";
+"Start at login" = "פתיחה בעת ההתחברות";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "מהירות הגלילה";
+"Step size" = "גודל צעד";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ נדרש";
+"⛔️ required" = "⛔️ נדרשת";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ הוענק";
+"✅ granted" = "✅ הוענקה";
