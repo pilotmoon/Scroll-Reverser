@@ -23,7 +23,8 @@ resources/<lang>.lproj/<same table> (except en):
 
 To translate: replace the placeholder value. A string whose translation is
 intentionally identical to English is cleared by removing the
-"TODO:TRANSLATE — " prefix from its comment.
+"TODO:TRANSLATE — " prefix from its comment. Use script/apple_term.py to match
+Apple's own wording, and script/check_placeholders.py to validate the result.
 
 --mark-identical additionally tags any unmarked value that is identical to
 English as untranslated. Use it when adopting files that predate the marker
