@@ -23,7 +23,7 @@
 "Include beta versions" = "Bétaverziókkal együtt";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Bemenetfigyelés";
+"Input Monitoring" = "Bemenet figyelése";
 
 /* Unit for scroll wheel step size, shown after the number */
 "lines" = "sor";
@@ -62,7 +62,7 @@
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "A Scroll Reversernek Kisegítő lehetőségek engedélyre van szüksége a görgetés módosításához.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "A Scroll Reversernek Bemenetfigyelés engedélyre van szüksége, hogy érzékelje, hozzáérnek-e az ujjaid a trackpadhez.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "A Scroll Reversernek Bemenet figyelése engedélyre van szüksége, hogy érzékelje, hozzáérnek-e az ujjaid a trackpadhez.";
 
 /* Prefs section header */
 "Scroll Wheel" = "Görgetőkerék";

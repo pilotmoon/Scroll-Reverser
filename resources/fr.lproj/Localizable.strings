@@ -11,7 +11,7 @@
 "Automatically" = "Automatiquement";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Vérifier les mises à jour";
+"Check for updates" = "Rechercher les mises à jour";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Activer %1$@";
@@ -83,7 +83,7 @@
 "Show in menu bar" = "Afficher dans la barre des menus";
 
 /* Prefs check box */
-"Start at login" = "Ouvrir à la connexion";
+"Start at login" = "Ouvrir avec la session";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Taille du pas";
