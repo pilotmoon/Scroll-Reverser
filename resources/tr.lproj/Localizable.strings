@@ -14,31 +14,31 @@
 "Check for updates" = "Güncellemeleri denetle";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "%1$@'ı Etkinleştir";
+"Enable %1$@" = "%1$@’ı Etkinleştir";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Ayarlar için menü çubuğundaki ikona tıklayın";
+"For settings, click the icon in the menu bar" = "Ayarlar için menü çubuğundaki simgeyi tıklayın";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Beta versiyonları dahil et";
+"Include beta versions" = "Beta sürümleri dahil et";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Giriş İzleme";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "satır";
 
 /* No comment provided by engineer. */
 "OK" = "Tamam";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "%1$@ tercihlerini aç";
+"Open %1$@ preferences" = "%1$@ ayarlarını aç";
 
 /* Section title */
 "Permissions" = "İzinler";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "%1$@'ı Kapat";
+"Quit %1$@" = "%1$@’dan Çık";
 
 /* 1=`Input Monitoring` or `Accessibility` */
 "Request %1$@ permission" = "%1$@ iznini iste";
@@ -56,13 +56,13 @@
 "Reverse Vertical" = "Dikeyde Tersine Çevir";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser şu anda çalışıyor!";
+"Scroll Reverser is now running!" = "Scroll Reverser artık çalışıyor!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser kaydırmayı özelleştirebilmek için Erişilebilirlik iznine ihtiyaç duyuyor.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser’ın kaydırmanızı değiştirebilmesi için Erişilebilirlik izni gerekir.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser parmaklarınızın izleme dörtgenine temas ettiğini tespit edebilmek için Giriş İzleme iznine ihtyiaç duyuyor.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser’ın parmaklarınızın izleme dörtgenine dokunup dokunmadığını algılayabilmesi için Giriş İzleme izni gerekir.";
 
 /* Prefs section header */
 "Scroll Wheel" = "Kaydırma Tekerleği";
@@ -83,7 +83,7 @@
 "Show in menu bar" = "Menü çubuğunda göster";
 
 /* Prefs check box */
-"Start at login" = "Giriş yapıldığında başlat";
+"Start at login" = "Oturum açıldığında başlat";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Adım boyutu";
