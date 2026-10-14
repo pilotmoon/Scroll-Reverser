@@ -497,7 +497,7 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
 {
     NSBox *const result=box(NSLocalizedString(@"Scroll Wheel", @"Prefs section header"));
     NSGridView *const grid=[NSGridView gridViewWithViews:@[
-        [self stepSizeRowWithTitle:NSLocalizedString(@"Vertical step size:", @"Prefs check box, followed by a number of lines to scroll for each step of the mouse scroll wheel")
+        [self stepSizeRowWithTitle:NSLocalizedString(@"Step size", @"Size of one step of the mouse scroll wheel")
                         enabledKey:PrefsDiscreteScrollStepSizeEnabled
                            sizeKey:PrefsDiscreteScrollStepSize],
     ]];

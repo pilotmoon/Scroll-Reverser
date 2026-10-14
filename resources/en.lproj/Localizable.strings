@@ -87,8 +87,8 @@
 /* Prefs check box */
 "Start at login" = "Start at login";
 
-/* Prefs check box, followed by a number of lines to scroll for each step of the mouse scroll wheel */
-"Vertical step size:" = "Vertical step size:";
+/* Size of one step of the mouse scroll wheel */
+"Step size" = "Step size"; 
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ required";

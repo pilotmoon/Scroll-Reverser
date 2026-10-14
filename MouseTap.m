@@ -212,29 +212,35 @@ static CGEventRef _callback(CGEventTapProxy proxy,
 
             // Adjust discrete scroll wheel?
             const NSInteger stepsize=_stepsize(PrefsDiscreteScrollStepSizeEnabled, PrefsDiscreteScrollStepSize);
-            const BOOL discreteAdjust=stepsize>1&&llabs(axis1)==1&&!continuous;
-            const NSInteger vstep=discreteAdjust?stepsize:1;
+            // (shift+scroll with a wheel mouse arrives here already converted to horizontal)
+            const BOOL vDiscreteAdjust=stepsize>1&&llabs(axis1)==1&&!continuous;
+            const BOOL hDiscreteAdjust=stepsize>1&&llabs(axis2)==1&&!continuous;
+            const NSInteger vstep=vDiscreteAdjust?stepsize:1;
+            const NSInteger hstep=hDiscreteAdjust?stepsize:1;
             [tap->logger logSignedInteger:vstep forKey:@"vstep"];
+            [tap->logger logSignedInteger:hstep forKey:@"hstep"];
 
             // Calculate signed multiplier to apply
             const NSInteger vmul=(invert&&[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical])?-vstep:vstep;
-            const NSInteger hmul=(invert&&[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal])?-1:1;
+            const NSInteger hmul=(invert&&[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal])?-hstep:hstep;
 
             /* Do the actual reversing. It's worth noting we have to set the point values second, or we lose smooth scrolling.
              This is because setting DeltaAxis causes macos to internally modify PointDeltaAxis (8x multiplier on DeltaAxis
              value) and FixedPtDeltaAxis (1x multiplier). */
-            if (discreteAdjust||vmul!=1) { // vertical
+            if (vDiscreteAdjust||vmul!=1) { // vertical
                 CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis1, axis1*vmul);
             }
-            if (!discreteAdjust&&vmul!=1) { // vertical - only set these if not doing discrete adjust
+            if (!vDiscreteAdjust&&vmul!=1) { // vertical - only set these if not doing discrete adjust
                 CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1, fixedpt_axis1*vmul);
                 CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis1, point_axis1*vmul);
                 if (ioHidEventRef) {
                     IOHIDEventSetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollY, iohid_axis1*vmul);
                 }
             }
-            if (hmul!=1) { // horizontal
+            if (hDiscreteAdjust||hmul!=1) { // horizontal
                 CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis2, axis2*hmul);
+            }
+            if (!hDiscreteAdjust&&hmul!=1) { // horizontal - only set these if not doing discrete adjust
                 CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2, fixedpt_axis2*hmul);
                 CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2, point_axis2*hmul);
                 if (ioHidEventRef) {
