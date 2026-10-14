@@ -1,5 +1,5 @@
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "Доступ к %1$@: %2$@";
+"%1$@ permission: %2$@" = "Разрешение «%1$@»: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Универсальный доступ";
@@ -11,7 +11,7 @@
 "Automatically" = "Автоматически";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Проверить обновления";
+"Check for updates" = "Проверить наличие обновлений";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Включить %1$@";
@@ -20,49 +20,49 @@
 "For settings, click the icon in the menu bar" = "Чтобы открыть настройки, нажмите на значок в строке меню";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Включая бета-версии";
+"Include beta versions" = "Включать бета-версии";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Мониторинг ввода";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "строки";
 
-/* TODO:TRANSLATE — No comment provided by engineer. */
-"OK" = "OK";
+/* No comment provided by engineer. */
+"OK" = "ОК";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Открыть настройки: %1$@";
+"Open %1$@ preferences" = "Открыть настройки «%1$@»";
 
 /* Section title */
-"Permissions" = "Доступ";
+"Permissions" = "Разрешения";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Закрыть %1$@";
+"Quit %1$@" = "Завершить %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Запросить доступ к %1$@";
+"Request %1$@ permission" = "Запросить разрешение «%1$@»";
 
 /* Prefs check box */
-"Reverse Horizontal" = "Горизонтальный реверс";
+"Reverse Horizontal" = "Инвертировать по горизонтали";
 
 /* Prefs check box */
-"Reverse Mouse" = "Реверс мыши";
+"Reverse Mouse" = "Инвертировать для мыши";
 
 /* Prefs check box */
-"Reverse Trackpad" = "Реверс трекпада";
+"Reverse Trackpad" = "Инвертировать для трекпада";
 
 /* Prefs check box */
-"Reverse Vertical" = "Вертикальный реверс";
+"Reverse Vertical" = "Инвертировать по вертикали";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser запущен!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Для изменения прокрутки Scroll Reverser необходимо разрешить Универсальный доступ.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser требуется разрешение «Универсальный доступ», чтобы изменять прокрутку.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser требуется доступ к Мониторингу ввода, чтобы распознавать пальцы на трекпаде.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser требуется разрешение «Мониторинг ввода», чтобы определять, касаются ли пальцы трекпада.";
 
 /* Prefs section header */
 "Scroll Wheel" = "Колесо прокрутки";
@@ -74,22 +74,22 @@
 "Scrolling Axes" = "Оси прокрутки";
 
 /* Prefs section title */
-"Scrolling Devices" = "Устройства";
+"Scrolling Devices" = "Устройства прокрутки";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Настройки…";
 
 /* Prefs check box */
-"Show in menu bar" = "Показать в строке меню";
+"Show in menu bar" = "Показывать в строке меню";
 
 /* Prefs check box */
-"Start at login" = "Автозапуск";
+"Start at login" = "Открывать при входе";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Шаг";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ требуется доступ";
+"⛔️ required" = "⛔️ требуется";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ разрешено";
+"✅ granted" = "✅ предоставлено";
