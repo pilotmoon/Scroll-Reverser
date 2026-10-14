@@ -1,7 +1,4 @@
-/* %1$@ permission: %2$@
-Please note %1$@ is a variable and must be preserved in the translated text.
-for example: `Accessibility permission: ⛔️ required` */
-
+/* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@ 权限： %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -22,37 +19,28 @@ for example: `Accessibility permission: ⛔️ required` */
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "请点击菜单栏的图标来修改设置";
 
-/* Alert box title */
-"Icon Hidden" = "图标已隐藏";
-
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "允许测试版更新";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "输入监测";
 
-/* Large step size */
-"Large" = "较大";
+/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
+"lines" = "lines";
 
 /* No comment provided by engineer. */
 "OK" = "确定";
 
-/* Open %1$@ preferences
-Please note %1$@ is a variable and must remain in the translated text.
-Example: "Open Input Monitoring preferences" */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Open %1$@ preferences" = "打开%1$@设置";
 
 /* Section title */
 "Permissions" = "权限设置";
 
-/* Menu item that opens the settings window, including the trailing ellipsis */
-"Settings…" = "设置…";
-
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "退出 %1$@";
 
-/* Request %1$@ permission
-Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Request %1$@ permission" = "请求 %1$@ 权限";
 
 /* Prefs check box */
@@ -88,20 +76,17 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 /* Prefs section title */
 "Scrolling Devices" = "输入设备";
 
+/* Menu item that opens the settings window, including the trailing ellipsis */
+"Settings…" = "设置…";
+
 /* Prefs check box */
 "Show in menu bar" = "在菜单栏中显示";
-
-/* Small step size */
-"Small" = "较小";
 
 /* Prefs check box */
 "Start at login" = "登录时启动";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "单次长度";
-
-/* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@ 图标已从菜单栏中移除。要随时还原它，请从Finder再次启动 %1$@。";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔ 未授权";

@@ -1,13 +1,10 @@
-/* %1$@ permission: %2$@
-Please note %1$@ is a variable and must be preserved in the translated text.
-for example: `Accessibility permission: ⛔️ required` */
-
+/* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@ rechten: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Toegankelijkheid";
 
-/* Preferences pane for `App` settings */
+/* TODO:TRANSLATE — Preferences pane for `App` settings */
 "App" = "App";
 
 /* Check box next to the 'Check for updates' button */
@@ -22,37 +19,28 @@ for example: `Accessibility permission: ⛔️ required` */
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Voor voorkeuren, klik op het icoon in de menubalk";
 
-/* Alert box title */
-"Icon Hidden" = "Icoon verborgen";
-
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Neem bèta-versies op";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Invoer monitoren";
 
-/* Large step size */
-"Large" = "Groot";
+/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
+"lines" = "lines";
 
-/* No comment provided by engineer. */
+/* TODO:TRANSLATE — No comment provided by engineer. */
 "OK" = "OK";
 
-/* Open %1$@ preferences
-Please note %1$@ is a variable and must remain in the translated text.
-Example: "Open Input Monitoring preferences" */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Open %1$@ preferences" = "Open %1$@ voorkeuren";
 
 /* Section title */
 "Permissions" = "Toestemmingen";
 
-/* Menu item that opens the settings window, including the trailing ellipsis */
-"Settings…" = "Instellingen…";
-
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "%1$@ afsluiten";
 
-/* Request %1$@ permission
-Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Request %1$@ permission" = "Vraag %1$@ rechten aan";
 
 /* Prefs check box */
@@ -88,20 +76,17 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 /* Prefs section title */
 "Scrolling Devices" = "Scrolapparaten";
 
+/* Menu item that opens the settings window, including the trailing ellipsis */
+"Settings…" = "Instellingen…";
+
 /* Prefs check box */
 "Show in menu bar" = "Weergeven in menubalk";
-
-/* Small step size */
-"Small" = "Klein";
 
 /* Prefs check box */
 "Start at login" = "Starten na inloggen";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Stapgrootte";
-
-/* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Het %1$@ icoon werd verwijdert uit de menubalk. Om het te herstellen op elk gewenst moment, start %1$@ opnieuw op vanuit Finder.";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔ vereist";

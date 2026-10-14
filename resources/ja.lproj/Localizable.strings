@@ -1,7 +1,4 @@
-/* %1$@ permission: %2$@
-Please note %1$@ is a variable and must be preserved in the translated text.
-for example: `Accessibility permission: ⛔️ required` */
-
+/* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@ の許可: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -22,37 +19,28 @@ for example: `Accessibility permission: ⛔️ required` */
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "設定はメニューバーにあるアイコンをクリックして下さい";
 
-/* Alert box title */
-"Icon Hidden" = "アイコンの非表示";
-
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "ベータ版を含む";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "入力監視";
 
-/* Large step size */
-"Large" = "大きい";
+/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
+"lines" = "lines";
 
-/* No comment provided by engineer. */
+/* TODO:TRANSLATE — No comment provided by engineer. */
 "OK" = "OK";
 
-/* Open %1$@ preferences
-Please note %1$@ is a variable and must remain in the translated text.
-Example: "Open Input Monitoring preferences" */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Open %1$@ preferences" = "%1$@ の環境設定を開く";
 
 /* Section title */
 "Permissions" = "権限";
 
-/* Menu item that opens the settings window, including the trailing ellipsis */
-"Settings…" = "設定…";
-
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "%1$@を終了する";
 
-/* Request %1$@ permission
-Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Request %1$@ permission" = "%1$@ の許可をリクエストする";
 
 /* Prefs check box */
@@ -88,21 +76,17 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 /* Prefs section title */
 "Scrolling Devices" = "スクロールデバイス";
 
+/* Menu item that opens the settings window, including the trailing ellipsis */
+"Settings…" = "設定…";
+
 /* Prefs check box */
 "Show in menu bar" = "メニューバーに表示";
-
-/* Small step size */
-"Small" = "小さい";
 
 /* Prefs check box */
 "Start at login" = "ログイン時に開始";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "ステップサイズ";
-
-/* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@のアイコンは、メニューバーから削除されました。
-リストアするには、Finderから%1$@を再度起動してください。";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "要求";

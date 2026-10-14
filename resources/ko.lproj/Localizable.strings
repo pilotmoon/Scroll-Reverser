@@ -1,7 +1,4 @@
-/* %1$@ permission: %2$@
-Please note %1$@ is a variable and must be preserved in the translated text.
-for example: `Accessibility permission: ⛔️ required` */
-
+/* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@ 권한: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -22,37 +19,28 @@ for example: `Accessibility permission: ⛔️ required` */
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "설정을 변경하려면 메뉴 막대의 아이콘을 클릭해주세요";
 
-/* Alert box title */
-"Icon Hidden" = "아이콘 숨겨짐";
-
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "베타 버전 사용";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "입력 모니터링";
 
-/* Large step size */
-"Large" = "크게";
+/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
+"lines" = "lines";
 
 /* No comment provided by engineer. */
 "OK" = "확인";
 
-/* Open %1$@ preferences
-Please note %1$@ is a variable and must remain in the translated text.
-Example: "Open Input Monitoring preferences" */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Open %1$@ preferences" = "%1$@ 설정 열기";
 
 /* Section title */
 "Permissions" = "권한";
 
-/* Menu item that opens the settings window, including the trailing ellipsis */
-"Settings…" = "설정…";
-
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "%1$@ 종료";
 
-/* Request %1$@ permission
-Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Request %1$@ permission" = "%1$@ 권한 요청";
 
 /* Prefs check box */
@@ -88,20 +76,17 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 /* Prefs section title */
 "Scrolling Devices" = "스크롤 기기";
 
+/* Menu item that opens the settings window, including the trailing ellipsis */
+"Settings…" = "설정…";
+
 /* Prefs check box */
 "Show in menu bar" = "메뉴 막대에 표시";
-
-/* Small step size */
-"Small" = "작게";
 
 /* Prefs check box */
 "Start at login" = "로그인할때 시작";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "스크롤 크기";
-
-/* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@ 아이콘이 메뉴 막대에서 제거되었습니다. 복구하기 위해서는, Finder에서 %1$@ 를 다시 실행해 주세요.";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ 권한 필요";

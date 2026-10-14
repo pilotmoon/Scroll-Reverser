@@ -1,7 +1,4 @@
-/* %1$@ permission: %2$@
-Please note %1$@ is a variable and must be preserved in the translated text.
-for example: `Accessibility permission: ⛔️ required` */
-
+/* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "Δικαιώματα για %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -22,37 +19,28 @@ for example: `Accessibility permission: ⛔️ required` */
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Για τις προτιμήσεις κλικάτερε στο εικονίδιο που βρίσκεται στη γραμμή μενού";
 
-/* Alert box title */
-"Icon Hidden" = "Το εικονίδιο κρύφτηκε";
-
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Περιέλαβε και τις δοκιμαστικές εκδόσεις";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Παρακολούθηση συσκευής εισόδου";
 
-/* Large step size */
-"Large" = "Μεγάλο";
+/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
+"lines" = "lines";
 
 /* No comment provided by engineer. */
 "OK" = "ΟΚ";
 
-/* Open %1$@ preferences
-Please note %1$@ is a variable and must remain in the translated text.
-Example: "Open Input Monitoring preferences" */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Open %1$@ preferences" = "Άνοιξε τις ρυθμίσεις %1$@";
 
 /* Section title */
 "Permissions" = "Δικαιώματα";
 
-/* Menu item that opens the settings window, including the trailing ellipsis */
-"Settings…" = "Ρυθμίσεις…";
-
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Έξοδος %1$@";
 
-/* Request %1$@ permission
-Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Request %1$@ permission" = "Αίτηση δικαιωμάτων για %1$@";
 
 /* Prefs check box */
@@ -88,20 +76,17 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 /* Prefs section title */
 "Scrolling Devices" = "Συσκευές Κύλισης";
 
+/* Menu item that opens the settings window, including the trailing ellipsis */
+"Settings…" = "Ρυθμίσεις…";
+
 /* Prefs check box */
 "Show in menu bar" = "Εμφάνιση στη γραμμή μενού";
-
-/* Small step size */
-"Small" = "Μικρό";
 
 /* Prefs check box */
 "Start at login" = "Εκκίνηση κατά την είσοδο";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Μέγεθος βήματος";
-
-/* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Το εικονίδιο %1$@ έχει αφαιρεθεί από τη μενού μπάρα. Για να το επαναφέρετε, τρέξτε το %1$@ ξανά από τον Finder.";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ απαιτείται";

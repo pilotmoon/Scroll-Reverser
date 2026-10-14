@@ -1,7 +1,4 @@
-/* %1$@ permission: %2$@
-Please note %1$@ is a variable and must be preserved in the translated text.
-for example: `Accessibility permission: ⛔️ required` */
-
+/* TODO:TRANSLATE — for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@ permission: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -22,37 +19,28 @@ for example: `Accessibility permission: ⛔️ required` */
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Beállításokért kattints a menüsorban lévő ikonra";
 
-/* Alert box title */
-"Icon Hidden" = "Ikon elrejtve";
-
-/* Check box: Include beta versionss of the app when checking for updates */
+/* TODO:TRANSLATE — Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Include beta versions";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Bemenet figyelése";
 
-/* Large step size */
-"Large" = "Nagy";
+/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
+"lines" = "lines";
 
-/* No comment provided by engineer. */
+/* TODO:TRANSLATE — No comment provided by engineer. */
 "OK" = "OK";
 
-/* Open %1$@ preferences
-Please note %1$@ is a variable and must remain in the translated text.
-Example: "Open Input Monitoring preferences" */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Open %1$@ preferences" = "%1$@ beállítás megnyitása";
 
 /* Section title */
 "Permissions" = "Jogosultságok";
 
-/* Menu item that opens the settings window, including the trailing ellipsis */
-"Settings…" = "Beállítások…";
-
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Kilépés a %1$@ből";
 
-/* Request %1$@ permission
-Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Request %1$@ permission" = "%1$@ engedély kérése";
 
 /* Prefs check box */
@@ -70,10 +58,10 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "A Scroll Reverser most már fut!";
 
-/* No comment provided by engineer. */
+/* TODO:TRANSLATE — No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser needs Accessibility permission to modify your scrolling.";
 
-/* No comment provided by engineer. */
+/* TODO:TRANSLATE — No comment provided by engineer. */
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
 
 /* Prefs section header */
@@ -88,20 +76,17 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 /* Prefs section title */
 "Scrolling Devices" = "Görgető eszközök";
 
+/* Menu item that opens the settings window, including the trailing ellipsis */
+"Settings…" = "Beállítások…";
+
 /* Prefs check box */
 "Show in menu bar" = "Mutasd a menüsorban";
-
-/* Small step size */
-"Small" = "Kicsi";
 
 /* Prefs check box */
 "Start at login" = "Indítás bejelentkezéskor";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Lépésköz";
-
-/* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder.";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ szükséges";

@@ -1,7 +1,4 @@
-/* %1$@ permission: %2$@
-Please note %1$@ is a variable and must be preserved in the translated text.
-for example: `Accessibility permission: ⛔️ required` */
-
+/* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@ Berechtigung: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -22,37 +19,28 @@ for example: `Accessibility permission: ⛔️ required` */
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Das Icon in der Menüleiste führt zu den Einstellungen.";
 
-/* Alert box title */
-"Icon Hidden" = "Symbol verborgen";
-
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Beta-Versionen einbeziehen";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Input-Monitoring";
 
-/* Large step size */
-"Large" = "Große";
+/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
+"lines" = "lines";
 
-/* No comment provided by engineer. */
+/* TODO:TRANSLATE — No comment provided by engineer. */
 "OK" = "OK";
 
-/* Open %1$@ preferences
-Please note %1$@ is a variable and must remain in the translated text.
-Example: "Open Input Monitoring preferences" */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Open %1$@ preferences" = "%1$@ Einstellungen öffnen";
 
 /* Section title */
 "Permissions" = "Berechtigungen";
 
-/* Menu item that opens the settings window, including the trailing ellipsis */
-"Settings…" = "Einstellungen …";
-
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "%1$@ beenden";
 
-/* Request %1$@ permission
-Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Request %1$@ permission" = "%1$@ Berechtigung anfordern";
 
 /* Prefs check box */
@@ -88,20 +76,17 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 /* Prefs section title */
 "Scrolling Devices" = "Geräte";
 
+/* Menu item that opens the settings window, including the trailing ellipsis */
+"Settings…" = "Einstellungen …";
+
 /* Prefs check box */
 "Show in menu bar" = "In der Menüleiste anzeigen";
-
-/* Small step size */
-"Small" = "klein";
 
 /* Prefs check box */
 "Start at login" = "Beim Anmelden starten";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Schrittweite";
-
-/* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "Das %1$@-Symbol wurde aus der Menüleiste entfernt. Um es später wiederherzustellen, starten Sie %1$@ erneut vom Finder aus.";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔ erforderlich";

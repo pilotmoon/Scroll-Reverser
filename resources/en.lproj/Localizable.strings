@@ -1,5 +1,3 @@
-/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
-
 /* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@ permission: %2$@";
 
@@ -39,9 +37,6 @@
 /* Section title */
 "Permissions" = "Permissions";
 
-/* Menu item that opens the settings window, including the trailing ellipsis */
-"Settings…" = "Settings…";
-
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Quit %1$@";
 
@@ -70,7 +65,7 @@
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Scroll Wheel"; 
+"Scroll Wheel" = "Scroll Wheel";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Scrolling";
@@ -81,6 +76,9 @@
 /* Prefs section title */
 "Scrolling Devices" = "Scrolling Devices";
 
+/* Menu item that opens the settings window, including the trailing ellipsis */
+"Settings…" = "Settings…";
+
 /* Prefs check box */
 "Show in menu bar" = "Show in menu bar";
 
@@ -88,10 +86,11 @@
 "Start at login" = "Start at login";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size"; 
+"Step size" = "Step size";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ required";
 
 /* No comment provided by engineer. */
 "✅ granted" = "✅ granted";
+

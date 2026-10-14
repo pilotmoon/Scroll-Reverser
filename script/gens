@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+# Regenerate the English base strings from the source code, then propagate any
+# new/removed keys to every translation. Runnable from anywhere. Extra arguments
+# are passed through to merge_strings.py (e.g. --check, --mark-identical).
+
+set -e # set strict exception mode
+here=${0:a:h}
+root=$here/..
+dest=$root/resources/en.lproj
+
+function convert {
+	for file in $@; do
+		print " Converting $file"
+		iconv -f utf-16 -t utf-8 $file > $file.tmp
+		mv $file.tmp $file
+	done
+}
+
+print "Generating English base in $dest"
+genstrings -o $dest $root/*.m
+print "Converting to UTF-8"
+convert $dest/*.strings
+print "Propagating to translations"
+python3 $here/merge_strings.py $@
+print "Done"

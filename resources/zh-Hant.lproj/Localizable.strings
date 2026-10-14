@@ -1,7 +1,4 @@
-/* %1$@ permission: %2$@
-Please note %1$@ is a variable and must be preserved in the translated text.
-for example: `Accessibility permission: ⛔️ required` */
-
+/* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@取用授權：%2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
@@ -22,37 +19,28 @@ for example: `Accessibility permission: ⛔️ required` */
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "請按選單列上的圖示來做設定";
 
-/* Alert box title */
-"Icon Hidden" = "圖示已隱藏";
-
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "包含beta版本";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "「輸入監控」";
 
-/* Large step size */
-"Large" = "較大";
+/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
+"lines" = "lines";
 
 /* No comment provided by engineer. */
 "OK" = "確定";
 
-/* Open %1$@ preferences
-Please note %1$@ is a variable and must remain in the translated text.
-Example: "Open Input Monitoring preferences" */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Open %1$@ preferences" = "開啟%1$@偏好設定";
 
 /* Section title */
 "Permissions" = "取用授權";
 
-/* Menu item that opens the settings window, including the trailing ellipsis */
-"Settings…" = "設定⋯";
-
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "結束%1$@";
 
-/* Request %1$@ permission
-Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or `Accessibility`. */
+/* 1=`Input Monitoring` or `Accessibility` */
 "Request %1$@ permission" = "請求%1$@取用授權";
 
 /* Prefs check box */
@@ -88,20 +76,17 @@ Please note %1$@ is a variable. It is replaced with either `Input Monitoring` or
 /* Prefs section title */
 "Scrolling Devices" = "套用裝置";
 
+/* Menu item that opens the settings window, including the trailing ellipsis */
+"Settings…" = "設定⋯";
+
 /* Prefs check box */
 "Show in menu bar" = "於選單列顯示圖示";
-
-/* Small step size */
-"Small" = "較小";
 
 /* Prefs check box */
 "Start at login" = "登入時啟動";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "間距";
-
-/* Alert box text. 1=name of app */
-"The %1$@ icon has been removed from the menu bar. To restore it at any time, launch %1$@ again from Finder." = "%1$@的圖示已從您的選單列隱藏。您只要從Finder重新啟用%1$@，即可隨時復原此設定。";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️待授權";
