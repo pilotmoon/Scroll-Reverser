@@ -35,7 +35,7 @@ extern NSString *const PrefsShowDiscreteScrollOptions;
 @property (getter=isEnabled) BOOL enabled;
 
 - (IBAction)showDebug:(id)sender;
-- (IBAction)showPrefs:(id)sender;
+- (IBAction)orderFrontPreferencesPanel:(id)sender;
 - (IBAction)showAbout:(id)sender;
 - (IBAction)showTestWindow:(id)sender;
 

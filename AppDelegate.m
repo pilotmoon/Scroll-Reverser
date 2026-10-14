@@ -194,7 +194,7 @@ static void *_contextPermissions=&_contextPermissions;
     self.enabled=enabledInPrefs;
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsTerminatedWithPrefsWindowOpen]) {
-        [self showPrefs:self];
+        [self orderFrontPreferencesPanel:self];
     }
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:PrefsTerminatedWithPrefsWindowOpen];
 }
@@ -224,7 +224,7 @@ static void *_contextPermissions=&_contextPermissions;
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 {
-    [self showPrefs:nil];
+    [self orderFrontPreferencesPanel:nil];
     return NO;
 }
 
@@ -277,7 +277,7 @@ static void *_contextPermissions=&_contextPermissions;
 // Used by both the status menu and the app menu.
 - (void)addSettingsAndQuitItemsToMenu:(NSMenu *)menu separated:(BOOL)separated
 {
-    NSMenuItem *const settingsItem=[menu addItemWithTitle:NSLocalizedString(@"Settings…", @"Menu item that opens the settings window, including the trailing ellipsis") action:@selector(showPrefs:) keyEquivalent:@","];
+    NSMenuItem *const settingsItem=[menu addItemWithTitle:NSLocalizedString(@"Settings…", @"Menu item that opens the settings window, including the trailing ellipsis") action:@selector(orderFrontPreferencesPanel:) keyEquivalent:@","];
     settingsItem.target=self;
     if (separated) {
         [menu addItem:[NSMenuItem separatorItem]];
@@ -348,7 +348,7 @@ static void *_contextPermissions=&_contextPermissions;
     [self.prefsWindowController showWindow:self];
 }
 
-- (IBAction)showPrefs:(id)sender
+- (IBAction)orderFrontPreferencesPanel:(id)sender
 {
     [self showPrefsWithDefaultPane:NO];
 }
