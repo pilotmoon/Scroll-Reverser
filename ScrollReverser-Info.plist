@@ -36,8 +36,6 @@
 	<string>$(BUILDSCRIPTS_RELEASE_CHANNEL)</string>
 	<key>PilotmoonReleaseEdition</key>
 	<string>$(BUILDSCRIPTS_RELEASE_EDITION)</string>
-	<key>SUAllowsAutomaticUpdates</key>
-	<false/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUEnableSystemProfiling</key>

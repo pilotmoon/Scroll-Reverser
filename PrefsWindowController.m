@@ -35,7 +35,14 @@ static void *_contextPermissions=&_contextPermissions;
 @end
 
 
+typedef NS_ENUM(NSInteger, UpdateMode) {
+    UpdateModeOff,
+    UpdateModeNotify,
+    UpdateModeInstall,
+};
+
 @interface PrefsWindowController ()
+@property UpdateMode updateMode;
 @property NSTabView *tabView;
 @property NSToolbar *toolbar;
 @property NSDictionary *panels;
@@ -60,6 +67,28 @@ static void *_contextPermissions=&_contextPermissions;
 - (IBAction)buttonCheckForUpdatesClicked:(id)sender
 {    
     [self.updater checkForUpdates];
+}
+
+// the Automatic updates menu combines two Sparkle settings
++ (NSSet<NSString *> *)keyPathsForValuesAffectingUpdateMode
+{
+    return [NSSet setWithObjects:@"updater.automaticallyChecksForUpdates", @"updater.automaticallyDownloadsUpdates", nil];
+}
+
+- (UpdateMode)updateMode
+{
+    SPUUpdater *const updater=self.updater;
+    if (!updater.automaticallyChecksForUpdates) {
+        return UpdateModeOff;
+    }
+    return updater.automaticallyDownloadsUpdates ? UpdateModeInstall : UpdateModeNotify;
+}
+
+- (void)setUpdateMode:(UpdateMode)updateMode
+{
+    SPUUpdater *const updater=self.updater;
+    updater.automaticallyChecksForUpdates=updateMode!=UpdateModeOff;
+    updater.automaticallyDownloadsUpdates=updateMode==UpdateModeInstall;
 }
 
 #pragma mark Window showing
@@ -680,20 +709,34 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
     [info setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
 
     // updates
-    SPUUpdater *const updater=self.updater;
+    NSTextField *const modeLabel=label([NSTextField labelWithString:NSLocalizedString(@"Automatic updates:", @"Label before the pop-up menu that chooses how updates are handled")], infoFont, [NSColor labelColor]);
+    NSPopUpButton *const modePopUp=[[NSPopUpButton alloc] initWithFrame:NSZeroRect pullsDown:NO];
+    modePopUp.translatesAutoresizingMaskIntoConstraints=NO;
+    modePopUp.controlSize=NSControlSizeSmall;
+    modePopUp.font=infoFont;
+    for (NSArray *item in @[@[NSLocalizedString(@"Install automatically", @"Automatic updates menu item: download and install updates without asking"), @(UpdateModeInstall)],
+                            @[NSLocalizedString(@"Notify only", @"Automatic updates menu item: check for updates and ask before installing them"), @(UpdateModeNotify)],
+                            @[NSLocalizedString(@"Off", @"Automatic updates menu item: don't check for updates automatically"), @(UpdateModeOff)]]) {
+        [modePopUp addItemWithTitle:item[0]];
+        modePopUp.lastItem.tag=[item[1] integerValue];
+    }
+    [modePopUp bind:NSSelectedTagBinding toObject:self withKeyPath:@"updateMode" options:nil];
+    NSButton *const betaCheckbox=smallCheckbox(NSLocalizedString(@"Include beta versions", @"Check box: Include beta versionss of the app when checking for updates"));
+    [betaCheckbox bind:NSValueBinding toObject:defaults withKeyPath:defaultsKeyPath(@"BetaUpdates") options:nil];
+    NSGridView *const updateOptions=[NSGridView gridViewWithViews:@[@[modeLabel, modePopUp],
+                                                                     @[[NSGridCell emptyContentView], betaCheckbox]]];
+    updateOptions.translatesAutoresizingMaskIntoConstraints=NO;
+    updateOptions.rowAlignment=NSGridRowAlignmentFirstBaseline;
+    updateOptions.columnSpacing=6;
+    updateOptions.rowSpacing=8;
+    [updateOptions columnAtIndex:0].xPlacement=NSGridCellPlacementTrailing;
     NSButton *const checkNowButton=[NSButton buttonWithTitle:NSLocalizedString(@"Check for updates", @"Button, when pressed, checks for updates now") target:self action:@selector(buttonCheckForUpdatesClicked:)];
     checkNowButton.translatesAutoresizingMaskIntoConstraints=NO;
     checkNowButton.controlSize=NSControlSizeSmall;
     checkNowButton.font=infoFont;
     [checkNowButton setContentHuggingPriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationHorizontal];
-    [checkNowButton setContentHuggingPriority:NSLayoutPriorityDefaultHigh+1 forOrientation:NSLayoutConstraintOrientationVertical];
-    [checkNowButton bind:NSEnabledBinding toObject:updater withKeyPath:@"sessionInProgress" options:negated()];
-    NSButton *const automaticCheckbox=smallCheckbox(NSLocalizedString(@"Automatically", @"Check box next to the 'Check for updates' button"));
-    [automaticCheckbox bind:NSValueBinding toObject:updater withKeyPath:@"automaticallyChecksForUpdates" options:nil];
-    NSButton *const betaCheckbox=smallCheckbox(NSLocalizedString(@"Include beta versions", @"Check box: Include beta versionss of the app when checking for updates"));
-    [betaCheckbox bind:NSValueBinding toObject:defaults withKeyPath:defaultsKeyPath(@"BetaUpdates") options:nil];
-    NSStackView *const updateOptions=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeLeading, 6, @[automaticCheckbox, betaCheckbox]);
-    NSStackView *const updates=stack(NSUserInterfaceLayoutOrientationHorizontal, NSLayoutAttributeTop, 8, @[checkNowButton, updateOptions]);
+    [checkNowButton bind:NSEnabledBinding toObject:self.updater withKeyPath:@"sessionInProgress" options:negated()];
+    NSStackView *const updates=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeCenterX, 12, @[updateOptions, checkNowButton]);
     [updates setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationHorizontal];
     [updates setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
 
@@ -715,7 +758,6 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
         [updates.topAnchor constraintEqualToAnchor:info.bottomAnchor constant:16],
         [updates.centerXAnchor constraintEqualToAnchor:view.centerXAnchor],
         bottom,
-        [checkNowButton.firstBaselineAnchor constraintEqualToAnchor:automaticCheckbox.firstBaselineAnchor],
     ]];
     return view;
 }

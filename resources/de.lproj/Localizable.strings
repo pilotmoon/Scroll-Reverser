@@ -7,8 +7,8 @@
 /* Preferences pane for `App` settings */
 "App" = "App";
 
-/* Check box next to the 'Check for updates' button */
-"Automatically" = "Automatisch";
+/* Label before the pop-up menu that chooses how updates are handled */
+"Automatic updates:" = "Automatische Updates:";
 
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "Nach Updates suchen";
@@ -25,8 +25,17 @@
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Eingabeüberwachung";
 
+/* Automatic updates menu item: download and install updates without asking */
+"Install automatically" = "Automatisch installieren";
+
 /* Unit for scroll wheel step size, shown after the number */
 "lines" = "Zeilen";
+
+/* Automatic updates menu item: check for updates and ask before installing them */
+"Notify only" = "Nur benachrichtigen";
+
+/* Automatic updates menu item: don't check for updates automatically */
+"Off" = "Aus";
 
 /* No comment provided by engineer. */
 "OK" = "OK";

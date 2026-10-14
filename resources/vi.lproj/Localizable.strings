@@ -7,8 +7,8 @@
 /* Preferences pane for `App` settings */
 "App" = "Ứng dụng";
 
-/* Check box next to the 'Check for updates' button */
-"Automatically" = "Tự động";
+/* Label before the pop-up menu that chooses how updates are handled */
+"Automatic updates:" = "Tự động cập nhật:";
 
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "Kiểm tra bản cập nhật";
@@ -25,8 +25,17 @@
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Giám sát đầu vào";
 
+/* Automatic updates menu item: download and install updates without asking */
+"Install automatically" = "Cài đặt tự động";
+
 /* Unit for scroll wheel step size, shown after the number */
 "lines" = "dòng";
+
+/* Automatic updates menu item: check for updates and ask before installing them */
+"Notify only" = "Chỉ thông báo";
+
+/* Automatic updates menu item: don't check for updates automatically */
+"Off" = "Tắt";
 
 /* No comment provided by engineer. */
 "OK" = "OK";

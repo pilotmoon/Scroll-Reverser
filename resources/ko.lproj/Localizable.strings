@@ -7,8 +7,8 @@
 /* Preferences pane for `App` settings */
 "App" = "앱";
 
-/* Check box next to the 'Check for updates' button */
-"Automatically" = "자동으로";
+/* Label before the pop-up menu that chooses how updates are handled */
+"Automatic updates:" = "자동 업데이트:";
 
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "업데이트 확인";
@@ -25,8 +25,17 @@
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "입력 모니터링";
 
+/* Automatic updates menu item: download and install updates without asking */
+"Install automatically" = "자동으로 설치";
+
 /* Unit for scroll wheel step size, shown after the number */
 "lines" = "줄";
+
+/* Automatic updates menu item: check for updates and ask before installing them */
+"Notify only" = "알림만";
+
+/* Automatic updates menu item: don't check for updates automatically */
+"Off" = "끄기";
 
 /* No comment provided by engineer. */
 "OK" = "확인";

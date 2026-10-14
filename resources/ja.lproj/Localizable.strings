@@ -7,8 +7,8 @@
 /* Preferences pane for `App` settings */
 "App" = "アプリ";
 
-/* Check box next to the 'Check for updates' button */
-"Automatically" = "自動確認";
+/* Label before the pop-up menu that chooses how updates are handled */
+"Automatic updates:" = "自動更新：";
 
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "アップデートを確認";
@@ -25,8 +25,17 @@
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "入力監視";
 
+/* Automatic updates menu item: download and install updates without asking */
+"Install automatically" = "自動インストール";
+
 /* Unit for scroll wheel step size, shown after the number */
 "lines" = "行";
+
+/* Automatic updates menu item: check for updates and ask before installing them */
+"Notify only" = "通知のみ";
+
+/* Automatic updates menu item: don't check for updates automatically */
+"Off" = "オフ";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
