@@ -8,7 +8,6 @@
 @interface PrefsWindowController : NSWindowController <NSTabViewDelegate, NSToolbarDelegate, NSWindowDelegate>
 
 @property (readonly) AppDelegate *appDelegate;
-@property NSNumber *stepSizeSliderValue;
 
 - (IBAction)buttonPermissionsHelpClicked:(id)sender;
 - (IBAction)buttonCheckForUpdatesClicked:(id)sender;

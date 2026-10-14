@@ -43,10 +43,13 @@ static uint64_t _nanoseconds(void)
     return * (uint64_t *) &time;
 }
 
-static NSInteger _stepsize(void)
+// lines to scroll per discrete scroll wheel step, where 1 means no adjustment
+static NSInteger _stepsize(NSString *enabledKey, NSString *sizeKey)
 {
-    const NSInteger setting=[[NSUserDefaults standardUserDefaults] integerForKey:PrefsDiscreteScrollStepSize];
-    if (setting<0) return 0;
+    NSUserDefaults *const defaults=[NSUserDefaults standardUserDefaults];
+    if (![defaults boolForKey:enabledKey]) return 1;
+    const NSInteger setting=[defaults integerForKey:sizeKey];
+    if (setting<1) return 1;
     if (setting>100) return 100;
     return setting;
 }
@@ -208,8 +211,8 @@ static CGEventRef _callback(CGEventTapProxy proxy,
             }
 
             // Adjust discrete scroll wheel?
-            const NSInteger stepsize=_stepsize();
-            const BOOL discreteAdjust=stepsize>0&&llabs(axis1)==1&&!continuous;
+            const NSInteger stepsize=_stepsize(PrefsDiscreteScrollStepSizeEnabled, PrefsDiscreteScrollStepSize);
+            const BOOL discreteAdjust=stepsize>1&&llabs(axis1)==1&&!continuous;
             const NSInteger vstep=discreteAdjust?stepsize:1;
             [tap->logger logSignedInteger:vstep forKey:@"vstep"];
 

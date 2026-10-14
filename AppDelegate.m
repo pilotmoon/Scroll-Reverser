@@ -20,6 +20,7 @@ NSString *const PrefsHideIcon=@"HideIcon";
 NSString *const PrefsBetaUpdates=@"BetaUpdates";
 NSString *const PrefsAppcastOverrideURL=@"AppcastOverrideURL";
 NSString *const PrefsTerminatedWithPrefsWindowOpen=@"TerminatedWithPrefsWindowOpen";
+NSString *const PrefsDiscreteScrollStepSizeEnabled=@"DiscreteScrollStepSizeEnabled";
 NSString *const PrefsDiscreteScrollStepSize=@"DiscreteScrollStepSize";
 NSString *const PrefsShowDiscreteScrollOptions=@"ShowDiscreteScrollOptions";
 
@@ -119,10 +120,18 @@ static void *_contextPermissions=&_contextPermissions;
             PrefsReverseVertical: @(YES),
             PrefsReverseTrackpad: @(YES),
             PrefsReverseMouse: @(YES),
+            PrefsDiscreteScrollStepSizeEnabled: @(YES),
             PrefsDiscreteScrollStepSize: @(3),
             LoggerMaxEntries: @(50000),
             PrefsBetaUpdates: @([self appIsBetaBuild]),
         }];
+
+        // Step size 0 used to mean off; it is now a separate setting.
+        NSUserDefaults *const defaults=[NSUserDefaults standardUserDefaults];
+        if ([defaults integerForKey:PrefsDiscreteScrollStepSize]<1) {
+            [defaults setBool:NO forKey:PrefsDiscreteScrollStepSizeEnabled];
+            [defaults removeObjectForKey:PrefsDiscreteScrollStepSize];
+        }
     }
 }
 

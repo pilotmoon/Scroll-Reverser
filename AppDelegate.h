@@ -15,6 +15,7 @@ extern NSString *const PrefsReverseVertical;
 extern NSString *const PrefsReverseTrackpad;
 extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsHideIcon;
+extern NSString *const PrefsDiscreteScrollStepSizeEnabled;
 extern NSString *const PrefsDiscreteScrollStepSize;
 extern NSString *const PrefsShowDiscreteScrollOptions;
 

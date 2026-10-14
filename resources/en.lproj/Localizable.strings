@@ -27,8 +27,8 @@
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Input Monitoring";
 
-/* Large step size */
-"Large" = "Large"; 
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "lines";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -84,14 +84,11 @@
 /* Prefs check box */
 "Show in menu bar" = "Show in menu bar";
 
-/* Small step size */
-"Small" = "Small"; 
-
 /* Prefs check box */
 "Start at login" = "Start at login";
 
-/* Size of one step of the mouse scroll wheel */
-"Step size" = "Step size"; 
+/* Prefs check box, followed by a number of lines to scroll for each step of the mouse scroll wheel */
+"Vertical step size:" = "Vertical step size:";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ required";

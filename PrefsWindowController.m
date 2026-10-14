@@ -20,6 +20,21 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 static void *_contextPermissions=&_contextPermissions;
 
 
+// a label that dims while disabled, to match the controls beside it
+@interface DimmingLabel : NSTextField
+@end
+
+@implementation DimmingLabel
+
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    self.textColor=enabled?[NSColor labelColor]:[NSColor disabledControlTextColor];
+}
+
+@end
+
+
 @interface PrefsWindowController ()
 @property NSTabView *tabView;
 @property NSToolbar *toolbar;
@@ -34,28 +49,6 @@ static void *_contextPermissions=&_contextPermissions;
 @end
 
 @implementation PrefsWindowController
-
-#pragma mark Step size slider
-
-static const double _offset=0.1;
-static const double _exponent=1.8;
-static const double _multiplier=25.0;
-
-- (NSNumber *)stepSizeSliderValue
-{
-    const NSInteger stepSize=[[NSUserDefaults standardUserDefaults] integerForKey:PrefsDiscreteScrollStepSize];
-    const double result=pow(stepSize/_multiplier,1.0/_exponent);
-    NSLog(@"read pref %@ from %@", @(result), @(stepSize));
-    return @(result-_offset);
-}
-
-- (void)setStepSizeSliderValue:(NSNumber *)stepSizeSliderValue
-{
-    const double sliderValue=[stepSizeSliderValue doubleValue]+_offset;
-    const NSInteger result=lround(pow(sliderValue,_exponent)*_multiplier);
-    NSLog(@"set pref %@ from %@", @(result), @(sliderValue));
-    [[NSUserDefaults standardUserDefaults] setInteger:result forKey:PrefsDiscreteScrollStepSize];
-}
 
 #pragma mark Updater
 
@@ -498,39 +491,72 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
 - (NSView *)makeScrollWheelBox
 {
     NSBox *const result=box(NSLocalizedString(@"Scroll Wheel", @"Prefs section header"));
-    NSView *const content=result.contentView;
-
-    NSTextField *const stepSizeLabel=label([NSTextField labelWithString:NSLocalizedString(@"Step size", @"Size of one step of the mouse scroll wheel")], [NSFont systemFontOfSize:0], [NSColor labelColor]);
-    [stepSizeLabel setContentHuggingPriority:NSLayoutPriorityDefaultLow+1 forOrientation:NSLayoutConstraintOrientationHorizontal];
-
-    NSSlider *const slider=[NSSlider sliderWithTarget:nil action:nil];
-    slider.translatesAutoresizingMaskIntoConstraints=NO;
-    slider.minValue=0;
-    slider.maxValue=1;
-    [slider bind:NSEnabledBinding toObject:self.appDelegate withKeyPath:@"enabled" options:nil];
-    [slider bind:NSValueBinding toObject:self withKeyPath:@"stepSizeSliderValue" options:nil];
-
-    NSTextField *const minLabel=label([NSTextField labelWithString:NSLocalizedString(@"Small", @"Small step size")], smallFont(), [NSColor secondaryLabelColor]);
-    NSTextField *const maxLabel=label([NSTextField labelWithString:NSLocalizedString(@"Large", @"Large step size")], smallFont(), [NSColor secondaryLabelColor]);
-    maxLabel.alignment=NSTextAlignmentRight;
-
-    for (NSView *view in @[stepSizeLabel, slider, minLabel, maxLabel]) {
-        [content addSubview:view];
+    NSGridView *const grid=[NSGridView gridViewWithViews:@[
+        [self stepSizeRowWithTitle:NSLocalizedString(@"Vertical step size:", @"Prefs check box, followed by a number of lines to scroll for each step of the mouse scroll wheel")
+                        enabledKey:PrefsDiscreteScrollStepSizeEnabled
+                           sizeKey:PrefsDiscreteScrollStepSize],
+    ]];
+    grid.translatesAutoresizingMaskIntoConstraints=NO;
+    grid.rowAlignment=NSGridRowAlignmentFirstBaseline;
+    grid.columnSpacing=2;
+    grid.rowSpacing=6;
+    [grid columnAtIndex:0].trailingPadding=6;
+    [grid columnAtIndex:2].trailingPadding=4;
+    // steppers have no baseline
+    for (NSInteger i=0; i<grid.numberOfRows; i++) {
+        NSGridCell *const cell=[grid cellAtColumnIndex:2 rowIndex:i];
+        cell.rowAlignment=NSGridRowAlignmentNone;
+        cell.yPlacement=NSGridCellPlacementCenter;
     }
+    [result.contentView addSubview:grid];
     [NSLayoutConstraint activateConstraints:@[
-        [stepSizeLabel.leadingAnchor constraintEqualToAnchor:result.leadingAnchor constant:14],
-        [stepSizeLabel.centerYAnchor constraintEqualToAnchor:slider.centerYAnchor],
-        [slider.leadingAnchor constraintEqualToAnchor:stepSizeLabel.trailingAnchor constant:14],
-        [content.trailingAnchor constraintEqualToAnchor:slider.trailingAnchor constant:14],
-        [slider.topAnchor constraintEqualToAnchor:content.topAnchor constant:14],
-        [minLabel.topAnchor constraintEqualToAnchor:slider.bottomAnchor constant:3],
-        [minLabel.leadingAnchor constraintEqualToAnchor:slider.leadingAnchor],
-        [content.bottomAnchor constraintEqualToAnchor:minLabel.bottomAnchor constant:9],
-        [maxLabel.topAnchor constraintEqualToAnchor:slider.bottomAnchor constant:3],
-        [maxLabel.trailingAnchor constraintEqualToAnchor:slider.trailingAnchor],
-        [content.bottomAnchor constraintEqualToAnchor:maxLabel.bottomAnchor constant:9],
+        [grid.topAnchor constraintEqualToAnchor:result.topAnchor constant:26],
+        [grid.leadingAnchor constraintEqualToAnchor:result.leadingAnchor constant:16],
+        [result.trailingAnchor constraintGreaterThanOrEqualToAnchor:grid.trailingAnchor constant:16],
+        [result.contentView.bottomAnchor constraintEqualToAnchor:grid.bottomAnchor constant:11],
     ]];
     return result;
+}
+
+// checkbox, number field, stepper and unit label for one axis's step size
+- (NSArray<NSView *> *)stepSizeRowWithTitle:(NSString *)title enabledKey:(NSString *)enabledKey sizeKey:(NSString *)sizeKey
+{
+    NSUserDefaultsController *const defaults=[NSUserDefaultsController sharedUserDefaultsController];
+    const NSInteger maxStepSize=30;
+
+    NSButton *const checkbox=compactCheckbox(title);
+    [checkbox bind:NSEnabledBinding toObject:self.appDelegate withKeyPath:@"enabled" options:nil];
+    [checkbox bind:NSValueBinding toObject:defaults withKeyPath:defaultsKeyPath(enabledKey) options:nil];
+
+    NSNumberFormatter *const formatter=[[NSNumberFormatter alloc] init];
+    formatter.allowsFloats=NO;
+    formatter.minimum=@(1);
+    formatter.maximum=@(maxStepSize);
+
+    NSTextField *const field=[NSTextField textFieldWithString:@""];
+    field.translatesAutoresizingMaskIntoConstraints=NO;
+    field.formatter=formatter;
+    field.alignment=NSTextAlignmentRight;
+    [field.widthAnchor constraintEqualToConstant:36].active=YES;
+
+    NSStepper *const stepper=[[NSStepper alloc] init];
+    stepper.translatesAutoresizingMaskIntoConstraints=NO;
+    stepper.minValue=1;
+    stepper.maxValue=maxStepSize;
+    stepper.increment=1;
+
+    NSTextField *const unitLabel=label([DimmingLabel labelWithString:NSLocalizedString(@"lines", @"Unit for scroll wheel step size, shown after the number")], [NSFont systemFontOfSize:0], [NSColor labelColor]);
+
+    // enabled only while both reversing and this step size are on
+    for (NSControl *control in @[field, stepper, unitLabel]) {
+        [control bind:NSEnabledBinding toObject:self.appDelegate withKeyPath:@"enabled" options:nil];
+        [control bind:@"enabled2" toObject:defaults withKeyPath:defaultsKeyPath(enabledKey) options:nil];
+    }
+    for (NSControl *control in @[field, stepper]) {
+        [control bind:NSValueBinding toObject:defaults withKeyPath:defaultsKeyPath(sizeKey) options:@{NSValidatesImmediatelyBindingOption: @YES}];
+    }
+
+    return @[checkbox, field, stepper, unitLabel];
 }
 
 - (NSView *)makePermissionsBox
