@@ -1,14 +1,14 @@
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "%1$@ 权限： %2$@";
+"%1$@ permission: %2$@" = "%1$@权限：%2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "可访问性";
+"Accessibility" = "辅助功能";
 
 /* Preferences pane for `App` settings */
-"App" = "软件";
+"App" = "App";
 
 /* Check box next to the 'Check for updates' button */
-"Automatically" = "自动更新";
+"Automatically" = "自动";
 
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "检查更新";
@@ -17,16 +17,16 @@
 "Enable %1$@" = "启用 %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "请点击菜单栏的图标来修改设置";
+"For settings, click the icon in the menu bar" = "如需更改设置，请点按菜单栏中的图标";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "允许测试版更新";
+"Include beta versions" = "包括Beta版";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "输入监测";
+"Input Monitoring" = "输入监控";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "行";
 
 /* No comment provided by engineer. */
 "OK" = "确定";
@@ -41,31 +41,31 @@
 "Quit %1$@" = "退出 %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "请求 %1$@ 权限";
+"Request %1$@ permission" = "请求%1$@权限";
 
 /* Prefs check box */
-"Reverse Horizontal" = "翻转水平滚动 (Reverse Horizontal)";
+"Reverse Horizontal" = "反转水平滚动";
 
 /* Prefs check box */
-"Reverse Mouse" = "翻转鼠标";
+"Reverse Mouse" = "反转鼠标";
 
 /* Prefs check box */
-"Reverse Trackpad" = "翻转触摸板";
+"Reverse Trackpad" = "反转触控板";
 
 /* Prefs check box */
-"Reverse Vertical" = "翻转垂直滚动 (Reverse Vertical)";
+"Reverse Vertical" = "反转垂直滚动";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser 已经在运行";
+"Scroll Reverser is now running!" = "Scroll Reverser 已开始运行！";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser 需要可访问性权限来修改滚动程序。";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser 需要辅助功能权限才能更改滚动方向。";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser 需要输入监控权限以检测手指是否触碰到Trackpad。";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser 需要输入监控权限才能检测手指是否正在触碰触控板。";
 
 /* Prefs section header */
-"Scroll Wheel" = "滚动滚轮";
+"Scroll Wheel" = "滚轮";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "滚动";
@@ -80,16 +80,16 @@
 "Settings…" = "设置…";
 
 /* Prefs check box */
-"Show in menu bar" = "在菜单栏中显示";
+"Show in menu bar" = "在菜单栏显示";
 
 /* Prefs check box */
-"Start at login" = "登录时启动";
+"Start at login" = "登录时打开";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "单次长度";
+"Step size" = "步长";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔ 未授权";
+"⛔️ required" = "⛔️ 未授权";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅  已允许";
+"✅ granted" = "✅ 已授权";
