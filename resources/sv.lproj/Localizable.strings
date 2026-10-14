@@ -1,14 +1,14 @@
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "%1$@-behörighet: %2$@";
+"%1$@ permission: %2$@" = "Behörighet för %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Hjälpmedel";
 
 /* Preferences pane for `App` settings */
-"App" = "Program";
+"App" = "App";
 
 /* Check box next to the 'Check for updates' button */
-"Automatically" = "Automatisk";
+"Automatically" = "Automatiskt";
 
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "Leta efter uppdateringar";
@@ -17,7 +17,7 @@
 "Enable %1$@" = "Aktivera %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Klicka ikonen i menyraden för inställningar";
+"For settings, click the icon in the menu bar" = "Klicka på symbolen i menyraden för att öppna inställningarna";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Inkludera betaversioner";
@@ -25,10 +25,10 @@
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Övervakning av inmatning";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "rader";
 
-/* TODO:TRANSLATE — No comment provided by engineer. */
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
@@ -41,7 +41,7 @@
 "Quit %1$@" = "Avsluta %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Be om tillåtelse för %1$@";
+"Request %1$@ permission" = "Begär behörighet för %1$@";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Invertera horisontellt";
@@ -59,10 +59,10 @@
 "Scroll Reverser is now running!" = "Scroll Reverser körs nu!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser behöver få Hjälpmedels-tillgång för att kunna ändra ditt rullningsbeteende.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser behöver behörighet för Hjälpmedel för att kunna ändra din rullning.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser behöver få tillgång till Övervakning av inmatning för att upptäcka om dina fingrar rör styrplattan.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser behöver behörighet för Övervakning av inmatning för att kunna känna av om dina fingrar rör vid styrplattan.";
 
 /* Prefs section header */
 "Scroll Wheel" = "Rullhjul";
@@ -80,10 +80,10 @@
 "Settings…" = "Inställningar…";
 
 /* Prefs check box */
-"Show in menu bar" = "Visa i menyraden";
+"Show in menu bar" = "Visa i menyrad";
 
 /* Prefs check box */
-"Start at login" = "Starta vid inloggning";
+"Start at login" = "Öppna vid inloggning";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Stegstorlek";
@@ -92,4 +92,4 @@
 "⛔️ required" = "⛔️ krävs";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ tillåten";
+"✅ granted" = "✅ beviljad";
