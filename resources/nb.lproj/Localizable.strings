@@ -7,8 +7,8 @@
 /* Preferences pane for `App` settings */
 "App" = "App";
 
-/* TODO:TRANSLATE — Label before the pop-up menu that chooses how updates are handled */
-"Automatic updates:" = "Automatic updates:";
+/* Label before the pop-up menu that chooses how updates are handled */
+"Automatic updates:" = "Automatiske oppdateringer:";
 
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "Søk etter oppdateringer";
@@ -25,17 +25,17 @@
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Inndataovervåkning";
 
-/* TODO:TRANSLATE — Automatic updates menu item: download and install updates without asking */
-"Install automatically" = "Install automatically";
+/* Automatic updates menu item: download and install updates without asking */
+"Install automatically" = "Installer automatisk";
 
 /* Unit for scroll wheel step size, shown after the number */
 "lines" = "linjer";
 
-/* TODO:TRANSLATE — Automatic updates menu item: check for updates and ask before installing them */
-"Notify only" = "Notify only";
+/* Automatic updates menu item: check for updates and ask before installing them */
+"Notify only" = "Bare varsle";
 
-/* TODO:TRANSLATE — Automatic updates menu item: don't check for updates automatically */
-"Off" = "Off";
+/* Automatic updates menu item: don't check for updates automatically */
+"Off" = "Av";
 
 /* No comment provided by engineer. */
 "OK" = "OK";

@@ -7,8 +7,8 @@
 /* Preferences pane for `App` settings */
 "App" = "Εφαρμογή";
 
-/* TODO:TRANSLATE — Label before the pop-up menu that chooses how updates are handled */
-"Automatic updates:" = "Automatic updates:";
+/* Label before the pop-up menu that chooses how updates are handled */
+"Automatic updates:" = "Αυτόματες ενημερώσεις:";
 
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "Έλεγχος για ενημερώσεις";
@@ -25,17 +25,17 @@
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Παρακολούθηση εισόδου";
 
-/* TODO:TRANSLATE — Automatic updates menu item: download and install updates without asking */
-"Install automatically" = "Install automatically";
+/* Automatic updates menu item: download and install updates without asking */
+"Install automatically" = "Αυτόματη εγκατάσταση";
 
 /* Unit for scroll wheel step size, shown after the number */
 "lines" = "γραμμές";
 
-/* TODO:TRANSLATE — Automatic updates menu item: check for updates and ask before installing them */
-"Notify only" = "Notify only";
+/* Automatic updates menu item: check for updates and ask before installing them */
+"Notify only" = "Μόνο ειδοποίηση";
 
-/* TODO:TRANSLATE — Automatic updates menu item: don't check for updates automatically */
-"Off" = "Off";
+/* Automatic updates menu item: don't check for updates automatically */
+"Off" = "Ανενεργές";
 
 /* No comment provided by engineer. */
 "OK" = "ΟΚ";

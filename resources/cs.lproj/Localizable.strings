@@ -7,8 +7,8 @@
 /* Preferences pane for `App` settings */
 "App" = "Aplikace";
 
-/* TODO:TRANSLATE — Label before the pop-up menu that chooses how updates are handled */
-"Automatic updates:" = "Automatic updates:";
+/* Label before the pop-up menu that chooses how updates are handled */
+"Automatic updates:" = "Automatické aktualizace:";
 
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "Vyhledat aktualizace";
@@ -25,17 +25,17 @@
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Monitorování vstupu";
 
-/* TODO:TRANSLATE — Automatic updates menu item: download and install updates without asking */
-"Install automatically" = "Install automatically";
+/* Automatic updates menu item: download and install updates without asking */
+"Install automatically" = "Instalovat automaticky";
 
 /* Unit for scroll wheel step size, shown after the number */
 "lines" = "řádky";
 
-/* TODO:TRANSLATE — Automatic updates menu item: check for updates and ask before installing them */
-"Notify only" = "Notify only";
+/* Automatic updates menu item: check for updates and ask before installing them */
+"Notify only" = "Pouze upozornit";
 
-/* TODO:TRANSLATE — Automatic updates menu item: don't check for updates automatically */
-"Off" = "Off";
+/* Automatic updates menu item: don't check for updates automatically */
+"Off" = "Vypnuto";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
