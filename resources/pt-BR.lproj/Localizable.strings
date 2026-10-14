@@ -4,20 +4,20 @@
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Acessibilidade";
 
-/* TODO:TRANSLATE — Preferences pane for `App` settings */
+/* Preferences pane for `App` settings */
 "App" = "App";
 
 /* Check box next to the 'Check for updates' button */
-"Automatically" = "Automático";
+"Automatically" = "Automaticamente";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Procurar por atualizações";
+"Check for updates" = "Buscar atualizações";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Habilitar %1$@";
+"Enable %1$@" = "Ativar %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Para os ajustes, clique no ícone da barra de menus";
+"For settings, click the icon in the menu bar" = "Para acessar os ajustes, clique no ícone na barra de menus";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Incluir versões beta";
@@ -25,56 +25,56 @@
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Monitoração de Entrada";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "linhas";
 
-/* TODO:TRANSLATE — No comment provided by engineer. */
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Abrir preferências de %1$@";
+"Open %1$@ preferences" = "Abrir ajustes de %1$@";
 
 /* Section title */
 "Permissions" = "Permissões";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Encerrar o %1$@";
+"Quit %1$@" = "Encerrar %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
 "Request %1$@ permission" = "Solicitar permissão de %1$@";
 
 /* Prefs check box */
-"Reverse Horizontal" = "Reverter Horizontalmente";
+"Reverse Horizontal" = "Inverter Horizontalmente";
 
 /* Prefs check box */
-"Reverse Mouse" = "Reverter o Mouse";
+"Reverse Mouse" = "Inverter no Mouse";
 
 /* Prefs check box */
-"Reverse Trackpad" = "Reverter o Trackpad";
+"Reverse Trackpad" = "Inverter no Trackpad";
 
 /* Prefs check box */
-"Reverse Vertical" = "Reverter Verticalmente";
+"Reverse Vertical" = "Inverter Verticalmente";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "O Scroll Reverser está rodando!";
+"Scroll Reverser is now running!" = "O Scroll Reverser está em execução!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser precisa de permissão de Acessibilidade para modificar o scroll.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "O Scroll Reverser precisa da permissão de Acessibilidade para modificar a rolagem.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser precisa da permissão de Monitoração de Entrada para detectar se seus dedos estão tocando o trackpad.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "O Scroll Reverser precisa da permissão de Monitoração de Entrada para detectar se seus dedos estão tocando o trackpad.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Roda de Scroll";
+"Scroll Wheel" = "Roda de Rolagem";
 
 /* Preferences pane for `Scrolling` serttings */
-"Scrolling" = "Rolando";
+"Scrolling" = "Rolagem";
 
 /* Prefs section title */
-"Scrolling Axes" = "Eixos de Scroll";
+"Scrolling Axes" = "Eixos de Rolagem";
 
 /* Prefs section title */
-"Scrolling Devices" = "Dispositivos de Scroll";
+"Scrolling Devices" = "Dispositivos de Rolagem";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Ajustes…";
@@ -83,13 +83,13 @@
 "Show in menu bar" = "Mostrar na barra de menus";
 
 /* Prefs check box */
-"Start at login" = "Iniciar no login";
+"Start at login" = "Abrir no início da sessão";
 
 /* Size of one step of the mouse scroll wheel */
 "Step size" = "Tamanho do passo";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔ obrigatório";
+"⛔️ required" = "⛔️ necessária";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ concedido";
+"✅ granted" = "✅ concedida";
