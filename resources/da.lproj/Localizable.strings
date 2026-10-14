@@ -5,7 +5,7 @@
 "Accessibility" = "Tilgængelighed";
 
 /* Preferences pane for `App` settings */
-"App" = "Program";
+"App" = "App";
 
 /* Check box next to the 'Check for updates' button */
 "Automatically" = "Automatisk";
@@ -17,22 +17,22 @@
 "Enable %1$@" = "Aktivér %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "For at tilgå indstillingerne, tryk på ikonet på menulinjen";
+"For settings, click the icon in the menu bar" = "Klik på symbolet på menulinjen for at åbne indstillingerne";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Inkluder beta-versioner";
+"Include beta versions" = "Inkluder betaversioner";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Overvågning af input";
+"Input Monitoring" = "Overvågning af tastatur";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "linjer";
 
-/* TODO:TRANSLATE — No comment provided by engineer. */
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Åben indstillinger for %1$@";
+"Open %1$@ preferences" = "Åbn indstillinger for %1$@";
 
 /* Section title */
 "Permissions" = "Tilladelser";
@@ -59,10 +59,10 @@
 "Scroll Reverser is now running!" = "Scroll Reverser kører nu!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser har brug for adgang til Tilgængelighedsindstillingerne for at ændre din rulleretning.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser har brug for tilladelse til Tilgængelighed for at kunne ændre din rulning.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser har brug for tilladelse til at overvåge input for at se, om dine fingre rører ved pegefeltet.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser har brug for tilladelse til Overvågning af tastatur for at kunne registrere, om dine fingre rører ved pegefeltet.";
 
 /* Prefs section header */
 "Scroll Wheel" = "Rullehjul";
@@ -86,10 +86,10 @@
 "Start at login" = "Start ved login";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Rullehastighed";
+"Step size" = "Trinstørrelse";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ Nødvendig";
+"⛔️ required" = "⛔️ påkrævet";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ Tilladt";
+"✅ granted" = "✅ tilladt";
