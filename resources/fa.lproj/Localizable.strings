@@ -1,7 +1,7 @@
 /* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "مجوز %1$@: %2$@";
 
-/* TODO:TRANSLATE — corresponds to Accessibility in system Privacy settings */
+/* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Accessibility";
 
 /* Preferences pane for `App` settings */
@@ -22,11 +22,11 @@
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "شامل نسخه‌های بتا";
 
-/* TODO:TRANSLATE — corresponds to Input Monitoring in system Privacy settings */
+/* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "Input Monitoring";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "خط";
 
 /* No comment provided by engineer. */
 "OK" = "تأیید";
