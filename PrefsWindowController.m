@@ -191,13 +191,18 @@ static void *_contextPermissions=&_contextPermissions;
     if (![NSApp isActive]) {
         [NSApp activateIgnoringOtherApps:YES];
     }
-    if (self.window.visible) {
+    const BOOL wasVisible=self.window.visible;
+    if (wasVisible) {
         [self callAttention];
     }
     else {
         [self.window center];
     }
     [super showWindow:sender];
+    if (!wasVisible) {
+        // don't start with the step size field focused
+        [self.window makeFirstResponder:nil];
+    }
 }
 
 - (void)setPane:(NSString *)identifier
@@ -544,6 +549,7 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
     stepper.minValue=1;
     stepper.maxValue=maxStepSize;
     stepper.increment=1;
+    stepper.valueWraps=NO;
 
     NSTextField *const unitLabel=label([DimmingLabel labelWithString:NSLocalizedString(@"lines", @"Unit for scroll wheel step size, shown after the number")], [NSFont systemFontOfSize:0], [NSColor labelColor]);
 
