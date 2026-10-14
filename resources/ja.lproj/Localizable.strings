@@ -1,5 +1,5 @@
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "%1$@ の許可: %2$@";
+"%1$@ permission: %2$@" = "%1$@の許可：%2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "アクセシビリティ";
@@ -11,37 +11,37 @@
 "Automatically" = "自動確認";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "更新を確認";
+"Check for updates" = "アップデートを確認";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "%1$@を動作させる";
+"Enable %1$@" = "%1$@を有効にする";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "設定はメニューバーにあるアイコンをクリックして下さい";
+"For settings, click the icon in the menu bar" = "設定を変更するには、メニューバーのアイコンをクリックしてください";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "ベータ版を含む";
+"Include beta versions" = "ベータ版を含める";
 
 /* corresponds to Input Monitoring in system Privacy settings */
 "Input Monitoring" = "入力監視";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "行";
 
-/* TODO:TRANSLATE — No comment provided by engineer. */
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "%1$@ の環境設定を開く";
+"Open %1$@ preferences" = "%1$@の設定を開く";
 
 /* Section title */
 "Permissions" = "権限";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "%1$@を終了する";
+"Quit %1$@" = "%1$@を終了";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "%1$@ の許可をリクエストする";
+"Request %1$@ permission" = "%1$@の許可をリクエスト";
 
 /* Prefs check box */
 "Reverse Horizontal" = "横方向を逆にする";
@@ -56,16 +56,16 @@
 "Reverse Vertical" = "縦方向を逆にする";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser は現在動作中です";
+"Scroll Reverser is now running!" = "Scroll Reverserが起動しました！";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverserは、スクロールの変更にアクセシビリティの許可が必要です。";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverserがスクロールを変更するには、アクセシビリティの許可が必要です。";
 
 /* No comment provided by engineer. */
 "Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverserでは、指がトラックパッドに触れているかどうかを検出するために、入力監視の許可が必要です。";
 
 /* Prefs section header */
-"Scroll Wheel" = "ホイールスクロール";
+"Scroll Wheel" = "スクロールホイール";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "スクロール";
@@ -83,13 +83,13 @@
 "Show in menu bar" = "メニューバーに表示";
 
 /* Prefs check box */
-"Start at login" = "ログイン時に開始";
+"Start at login" = "ログイン時に起動";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "ステップサイズ";
+"Step size" = "スクロール量";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "要求";
+"⛔️ required" = "⛔️ 必要";
 
 /* No comment provided by engineer. */
-"✅ granted" = "許可する";
+"✅ granted" = "✅ 許可済み";
