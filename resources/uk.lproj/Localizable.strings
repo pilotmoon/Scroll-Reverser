@@ -1,47 +1,47 @@
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "Доступ до %1$@: %2$@";
+"%1$@ permission: %2$@" = "Дозвіл «%1$@»: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
-"Accessibility" = "Спеціальні можливості";
+"Accessibility" = "Доступність";
 
 /* Preferences pane for `App` settings */
-"App" = "Додаток";
+"App" = "Програма";
 
 /* Check box next to the 'Check for updates' button */
 "Automatically" = "Автоматично";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Перевірити оновлення";
+"Check for updates" = "Перевірити наявність оновлень";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Увімкнути %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Щоб відкрити налаштування, натисніть на іконку у смузі меню";
+"For settings, click the icon in the menu bar" = "Щоб відкрити параметри, клацніть іконку на смузі меню";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Включити бета-версії";
+"Include beta versions" = "Враховувати бета-версії";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Моніторинг введення";
+"Input Monitoring" = "Контроль вводу";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "рядки";
 
 /* No comment provided by engineer. */
-"OK" = "ОК";
+"OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "Відкрити налаштування: %1$@";
+"Open %1$@ preferences" = "Відкрити параметри «%1$@»";
 
 /* Section title */
 "Permissions" = "Дозволи";
 
 /* 1=name of app e.g. `Quit Scroll Reverser` */
-"Quit %1$@" = "Закрити %1$@";
+"Quit %1$@" = "Завершити %1$@";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "Запит доступу до %1$@";
+"Request %1$@ permission" = "Запитати дозвіл «%1$@»";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Горизонтальний реверс";
@@ -56,31 +56,31 @@
 "Reverse Vertical" = "Вертикальний реверс";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser запущений!";
+"Scroll Reverser is now running!" = "Scroll Reverser тепер працює!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Для зміни прокрутки Scroll Reverser повинен мати доступ до Спеціальних можливостей.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser потребує дозволу «Доступність», щоб змінювати прокручування.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser потрібен доступ до Моніторингу введення, щоб розпізнавати пальці на трекпеді.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser потребує дозволу «Контроль вводу», щоб визначати, чи торкаються ваші пальці трекпеда.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Колесо прокрутки";
+"Scroll Wheel" = "Колесо прокручування";
 
 /* Preferences pane for `Scrolling` serttings */
-"Scrolling" = "Прокрутка";
+"Scrolling" = "Прокручування";
 
 /* Prefs section title */
-"Scrolling Axes" = "Осі прокрутки";
+"Scrolling Axes" = "Осі прокручування";
 
 /* Prefs section title */
-"Scrolling Devices" = "Пристрої";
+"Scrolling Devices" = "Пристрої прокручування";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Параметри…";
 
 /* Prefs check box */
-"Show in menu bar" = "Показати у смузі меню";
+"Show in menu bar" = "Показувати на смузі меню";
 
 /* Prefs check box */
 "Start at login" = "Автозапуск";
@@ -89,7 +89,7 @@
 "Step size" = "Розмір кроку";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔️ вимагається";
+"⛔️ required" = "⛔️ потрібен";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ дозволено";
+"✅ granted" = "✅ надано";
