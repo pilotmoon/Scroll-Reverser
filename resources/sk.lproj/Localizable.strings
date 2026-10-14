@@ -11,24 +11,24 @@
 "Automatically" = "Automaticky";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Skontrolovať aktualizácie";
+"Check for updates" = "Vyhľadať aktualizácie";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Aktivovať %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Pre nastavenia kliknite na ikonu v lište";
+"For settings, click the icon in the menu bar" = "Nastavenia otvoríte kliknutím na ikonu v lište";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Vrátane beta verzií";
+"Include beta versions" = "Zahrnúť beta verzie";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Monitorovanie Vstupu";
+"Input Monitoring" = "Monitorovanie vstupu";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "riadky";
 
-/* TODO:TRANSLATE — No comment provided by engineer. */
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
@@ -59,13 +59,13 @@
 "Scroll Reverser is now running!" = "Scroll Reverser je teraz spustený!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser potrebuje povolenie Prístupnosti na úpravu rolovania.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser potrebuje povolenie pre Prístupnosť, aby mohol upravovať rolovanie.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser potrebuje povolenie na Monitorovanie Vstupu na zistenie, či sa Vaše prsty dotýkajú trackpadu.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser potrebuje povolenie pre Monitorovanie vstupu, aby mohol zistiť, či sa prstami dotýkate trackpadu.";
 
 /* Prefs section header */
-"Scroll Wheel" = "Rolovacie Koliesko";
+"Scroll Wheel" = "Rolovacie koliesko";
 
 /* Preferences pane for `Scrolling` serttings */
 "Scrolling" = "Rolovanie";
@@ -83,10 +83,10 @@
 "Show in menu bar" = "Zobraziť v lište";
 
 /* Prefs check box */
-"Start at login" = "Spustiť pri štarte";
+"Start at login" = "Spustiť po prihlásení";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Rýchlosť pohybu";
+"Step size" = "Veľkosť kroku";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ vyžadované";
