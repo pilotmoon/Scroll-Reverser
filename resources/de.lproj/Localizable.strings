@@ -1,38 +1,38 @@
 /* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "%1$@ Berechtigung: %2$@";
+"%1$@ permission: %2$@" = "Berechtigung für %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Bedienungshilfen";
 
 /* Preferences pane for `App` settings */
-"App" = "Programm";
+"App" = "App";
 
 /* Check box next to the 'Check for updates' button */
-"Automatically" = "Automatisch prüfen";
+"Automatically" = "Automatisch";
 
 /* Button, when pressed, checks for updates now */
-"Check for updates" = "Auf neue Programmversion prüfen";
+"Check for updates" = "Nach Updates suchen";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
-"Enable %1$@" = "Aktiviere %1$@";
+"Enable %1$@" = "%1$@ aktivieren";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Das Icon in der Menüleiste führt zu den Einstellungen.";
+"For settings, click the icon in the menu bar" = "Klicke auf das Symbol in der Menüleiste, um die Einstellungen zu öffnen.";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Beta-Versionen einbeziehen";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Input-Monitoring";
+"Input Monitoring" = "Eingabeüberwachung";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "Zeilen";
 
-/* TODO:TRANSLATE — No comment provided by engineer. */
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Open %1$@ preferences" = "%1$@ Einstellungen öffnen";
+"Open %1$@ preferences" = "%1$@ in den Systemeinstellungen öffnen";
 
 /* Section title */
 "Permissions" = "Berechtigungen";
@@ -41,7 +41,7 @@
 "Quit %1$@" = "%1$@ beenden";
 
 /* 1=`Input Monitoring` or `Accessibility` */
-"Request %1$@ permission" = "%1$@ Berechtigung anfordern";
+"Request %1$@ permission" = "Berechtigung für %1$@ anfordern";
 
 /* Prefs check box */
 "Reverse Horizontal" = "Horizontal umkehren";
@@ -56,13 +56,13 @@
 "Reverse Vertical" = "Vertikal umkehren";
 
 /* No comment provided by engineer. */
-"Scroll Reverser is now running!" = "Scroll Reverser läuft!";
+"Scroll Reverser is now running!" = "Scroll Reverser läuft jetzt!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser benötigt Zugriffsrechte um Ihr Scrollen zu ändern.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser benötigt die Berechtigung für Bedienungshilfen, um dein Scrollen zu ändern.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser benötigt die Berechtigungen für das Input Monitoring, um festzustellen, ob die Finger das Trackpad berühren.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser benötigt die Berechtigung für Eingabeüberwachung, um zu erkennen, ob deine Finger das Trackpad berühren.";
 
 /* Prefs section header */
 "Scroll Wheel" = "Scrollrad";
@@ -89,7 +89,7 @@
 "Step size" = "Schrittweite";
 
 /* No comment provided by engineer. */
-"⛔️ required" = "⛔ erforderlich";
+"⛔️ required" = "⛔️ erforderlich";
 
 /* No comment provided by engineer. */
-"✅ granted" = "✅ gewährt";
+"✅ granted" = "✅ erteilt";
