@@ -17,19 +17,19 @@
 "Enable %1$@" = "Bật %1$@";
 
 /* No comment provided by engineer. */
-"For settings, click the icon in the menu bar" = "Để cài đặt, hãy nhấn vào biểu tượng trên thanh công cụ";
+"For settings, click the icon in the menu bar" = "Để mở cài đặt, hãy bấm vào biểu tượng trên thanh menu";
 
 /* Check box: Include beta versionss of the app when checking for updates */
-"Include beta versions" = "Bao gồm các phiên bản thử nghiệm";
+"Include beta versions" = "Bao gồm các phiên bản beta";
 
 /* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Quản lý nhập liệu";
+"Input Monitoring" = "Giám sát đầu vào";
 
-/* TODO:TRANSLATE — Unit for scroll wheel step size, shown after the number */
-"lines" = "lines";
+/* Unit for scroll wheel step size, shown after the number */
+"lines" = "dòng";
 
 /* No comment provided by engineer. */
-"OK" = "Đồng ý";
+"OK" = "OK";
 
 /* 1=`Input Monitoring` or `Accessibility` */
 "Open %1$@ preferences" = "Mở cài đặt %1$@";
@@ -59,34 +59,34 @@
 "Scroll Reverser is now running!" = "Scroll Reverser đang hoạt động!";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser cần quyền truy cập để điều chỉnh cách lăn chuột.";
+"Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser cần quyền Trợ năng để điều chỉnh thao tác cuộn của bạn.";
 
 /* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser cần quyền quản lý nhập liệu để nhận biết bàn di chuột có đang hoạt động hay không.";
+"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser cần quyền Giám sát đầu vào để nhận biết ngón tay của bạn có đang chạm vào bàn di chuột hay không.";
 
 /* Prefs section header */
 "Scroll Wheel" = "Con lăn chuột";
 
 /* Preferences pane for `Scrolling` serttings */
-"Scrolling" = "Lăn chuột";
+"Scrolling" = "Cuộn";
 
 /* Prefs section title */
-"Scrolling Axes" = "Trục lăn";
+"Scrolling Axes" = "Trục cuộn";
 
 /* Prefs section title */
-"Scrolling Devices" = "Thiết bị lăn";
+"Scrolling Devices" = "Thiết bị cuộn";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Cài đặt…";
 
 /* Prefs check box */
-"Show in menu bar" = "Hiển thị trên thanh công cụ";
+"Show in menu bar" = "Hiển thị trong thanh menu";
 
 /* Prefs check box */
-"Start at login" = "Bật khi đăng nhập";
+"Start at login" = "Mở khi đăng nhập";
 
 /* Size of one step of the mouse scroll wheel */
-"Step size" = "Bước lăn";
+"Step size" = "Bước cuộn";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ chưa cho phép";
