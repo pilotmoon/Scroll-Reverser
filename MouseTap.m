@@ -5,13 +5,20 @@
 #import "CoreFoundation/CoreFoundation.h"
 #import "TapLogger.h"
 #import "AppDelegate.h"
-#import <mach/mach_time.h>
-
-static BOOL _preventReverseOtherApp;
+#import "ScrollSource.h"
+#import "SourceTable.h"
 
 static NSString *const kKeyActive=@"active";
 
-#define MILLISECOND ((uint64_t)1000000)
+// The tap's state, for the callback. Private to this file.
+@interface MouseTap () {
+@public
+    ScrollSourceIdentifier *_sourceIdentifier;
+    SourceTable *_sourceTable;
+}
+@property CFMachPortRef activeTapPort;
+@property CFRunLoopSourceRef activeTapSource;
+@end
 
 static ScrollPhase _momentumPhaseForEvent(CGEventRef event)
 {
@@ -26,32 +33,6 @@ static ScrollPhase _momentumPhaseForEvent(CGEventRef event)
         default:
             return ScrollPhaseNormal;
     }
-}
-
-static uint64_t _nanoseconds(void)
-{
-    static mach_timebase_info_data_t info={0};
-    if (info.denom==0) {
-        mach_timebase_info(&info);
-    }
-
-    // convert to nanoseconds
-    uint64_t time = mach_absolute_time();
-    time *= info.numer;
-    time /= info.denom;
-
-    return * (uint64_t *) &time;
-}
-
-// lines to scroll per discrete scroll wheel step, where 1 means no adjustment
-static NSInteger _stepsize(NSString *enabledKey, NSString *sizeKey)
-{
-    NSUserDefaults *const defaults=[NSUserDefaults standardUserDefaults];
-    if (![defaults boolForKey:enabledKey]) return 1;
-    const NSInteger setting=[defaults integerForKey:sizeKey];
-    if (setting<1) return 1;
-    if (setting>100) return 100;
-    return setting;
 }
 
 static CGEventRef _callback(CGEventTapProxy proxy,
@@ -70,203 +51,124 @@ static CGEventRef _callback(CGEventTapProxy proxy,
             [tap->logger logParams];
             return eventRef;
         }
-        if (!eventRef || (type != (CGEventType)NSEventTypeGesture && type != kCGEventScrollWheel)) {
+        if (!eventRef || type != kCGEventScrollWheel) {
             return eventRef;
         }
-        const uint64_t time=_nanoseconds();
         NSEvent *const event=[NSEvent eventWithCGEvent:eventRef];
+        IOHIDEventRef const ioHidEventRef=CGEventCopyIOHIDEvent(eventRef);
 
-        if (type==(CGEventType)NSEventTypeGesture)
-        {
-            const NSUInteger touching=[[event touchesMatchingPhase:NSTouchPhaseTouching inView:nil] count];
-        
-            if (touching>=2) {
-                [tap->logger logUnsignedInteger:touching forKey:@"touching"];
-                tap->lastTouchTime=time;
-                tap->touching=MAX(tap->touching, touching);
-            }
-            else {
-                return eventRef; // totally ignore zero or one touch events
+        // has the system applied natural scrolling to this event? (1=natural, 0=classic)
+        const BOOL natural=!![event isDirectionInvertedFromDevice];
+        [tap->logger logBool:natural forKey:@"ifd"];
+
+        // is continuous (magic mouse and magic trackpad scrolling is continuous)
+        const BOOL continuous=!!CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventIsContinuous);
+        [tap->logger logBool:continuous forKey:@"continuous"];
+
+        // get the scrolling deltas
+        const int64_t axis1=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis1);
+        const int64_t axis2=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis2);
+        const int64_t point_axis1=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis1);
+        const int64_t point_axis2=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2);
+        const double fixedpt_axis1=CGEventGetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1);
+        const double fixedpt_axis2=CGEventGetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2);
+        IOHIDFloat iohid_axis1=0;
+        IOHIDFloat iohid_axis2=0;
+        if (ioHidEventRef) {
+            iohid_axis1=IOHIDEventGetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollY);
+            iohid_axis2=IOHIDEventGetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollX);
+        }
+        [tap->logger logSignedInteger:axis1 forKey:@"y"];
+        [tap->logger logSignedInteger:axis2 forKey:@"x"];
+        [tap->logger logSignedInteger:point_axis1 forKey:@"y_pt"];
+        [tap->logger logSignedInteger:point_axis2 forKey:@"x_pt"];
+        [tap->logger logDouble:fixedpt_axis1 forKey:@"y_fp"];
+        [tap->logger logDouble:fixedpt_axis2 forKey:@"x_fp"];
+        [tap->logger logDouble:iohid_axis1 forKey:@"y_iohid"];
+        [tap->logger logDouble:iohid_axis2 forKey:@"x_iohid"];
+
+        // get source pid
+        const uint64_t pid=CGEventGetIntegerValueField(eventRef, kCGEventSourceUnixProcessID);
+        [tap->logger logUnsignedInteger:pid forKey:@"pid"];
+
+        // get phase
+        if (tap->logger) {
+            [tap->logger logPhase:_momentumPhaseForEvent(eventRef) forKey:@"phase"];
+        }
+
+        // the source, identified by the HID event sender or posting process, and its settings
+        ScrollSource *const source=[tap->_sourceIdentifier sourceForHIDEvent:ioHidEventRef pid:(pid_t)pid continuous:continuous];
+        SourceRow *const row=[tap->_sourceTable recordSource:source continuous:continuous natural:natural amount:llabs(point_axis1)+llabs(point_axis2)];
+        if (tap->logger) {
+            [tap->logger logObject:ioHidEventRef?[NSString stringWithFormat:@"0x%llx", IOHIDEventGetSenderID(ioHidEventRef)]:@"-" forKey:@"sender"];
+            [tap->logger logObject:source.key forKey:@"sourcekey"];
+        }
+        // what to change, by the row's settings
+        const SourceAdjustment adjustment=[row adjustmentForNatural:natural continuous:continuous];
+        const BOOL reverseVertical=adjustment.reverseVertical;
+        const BOOL reverseHorizontal=adjustment.reverseHorizontal;
+        [tap->logger logBool:reverseVertical forKey:@"reverseV"];
+        [tap->logger logBool:reverseHorizontal forKey:@"reverseH"];
+
+        // Adjust discrete scroll wheel? (the step size is 1 for continuous scrolling)
+        const NSInteger stepsize=adjustment.stepSize;
+        // (shift+scroll with a wheel mouse arrives here already converted to horizontal)
+        const BOOL vDiscreteAdjust=stepsize>1&&llabs(axis1)==1;
+        const BOOL hDiscreteAdjust=stepsize>1&&llabs(axis2)==1;
+        const NSInteger vstep=vDiscreteAdjust?stepsize:1;
+        const NSInteger hstep=hDiscreteAdjust?stepsize:1;
+        [tap->logger logSignedInteger:vstep forKey:@"vstep"];
+        [tap->logger logSignedInteger:hstep forKey:@"hstep"];
+
+        // Calculate signed multiplier to apply
+        const NSInteger vmul=reverseVertical?-vstep:vstep;
+        const NSInteger hmul=reverseHorizontal?-hstep:hstep;
+
+        /* Do the actual reversing. It's worth noting we have to set the point values second, or we lose smooth scrolling.
+         This is because setting DeltaAxis causes macos to internally modify PointDeltaAxis (8x multiplier on DeltaAxis
+         value) and FixedPtDeltaAxis (1x multiplier). */
+        if (vDiscreteAdjust||vmul!=1) { // vertical
+            CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis1, axis1*vmul);
+        }
+        if (!vDiscreteAdjust&&vmul!=1) { // vertical - only set these if not doing discrete adjust
+            CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1, fixedpt_axis1*vmul);
+            CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis1, point_axis1*vmul);
+            if (ioHidEventRef) {
+                IOHIDEventSetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollY, iohid_axis1*vmul);
             }
         }
-        else if (type==(CGEventType)NSEventTypeScrollWheel)
-        {
-            IOHIDEventRef const ioHidEventRef=CGEventCopyIOHIDEvent(eventRef);
-
-            // is inverted from device? (1=natural scrolling, 0=classic scrolling)
-            const BOOL invertedFromDevice=!![event isDirectionInvertedFromDevice];
-            [tap->logger logBool:invertedFromDevice forKey:@"ifd"];
-
-            // is continuous (magic mouse and magic trackpad scrolling is continuous)
-            const BOOL continuous=!!CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventIsContinuous);
-            [tap->logger logBool:continuous forKey:@"continuous"];
-
-            // get the scrolling deltas
-            const int64_t axis1=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis1); // non-const since we may modify
-            const int64_t axis2=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis2);
-            const int64_t point_axis1=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis1);
-            const int64_t point_axis2=CGEventGetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2);
-            const double fixedpt_axis1=CGEventGetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1);
-            const double fixedpt_axis2=CGEventGetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2);
-            IOHIDFloat iohid_axis1=0;
-            IOHIDFloat iohid_axis2=0;
+        if (hDiscreteAdjust||hmul!=1) { // horizontal
+            CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis2, axis2*hmul);
+        }
+        if (!hDiscreteAdjust&&hmul!=1) { // horizontal - only set these if not doing discrete adjust
+            CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2, fixedpt_axis2*hmul);
+            CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2, point_axis2*hmul);
             if (ioHidEventRef) {
-                iohid_axis1=IOHIDEventGetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollY);
-                iohid_axis2=IOHIDEventGetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollX);
+                IOHIDEventSetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollX, iohid_axis2*hmul);
             }
-            [tap->logger logSignedInteger:axis1 forKey:@"y"];
-            [tap->logger logSignedInteger:axis2 forKey:@"x"];
-            [tap->logger logSignedInteger:point_axis1 forKey:@"y_pt"];
-            [tap->logger logSignedInteger:point_axis2 forKey:@"x_pt"];
-            [tap->logger logDouble:fixedpt_axis1 forKey:@"y_fp"];
-            [tap->logger logDouble:fixedpt_axis2 forKey:@"x_fp"];
-            [tap->logger logDouble:iohid_axis1 forKey:@"y_iohid"];
-            [tap->logger logDouble:iohid_axis2 forKey:@"x_iohid"];
-         
-            // get source pid
-            const uint64_t pid=CGEventGetIntegerValueField(eventRef, kCGEventSourceUnixProcessID);
-            [tap->logger logUnsignedInteger:pid forKey:@"pid"];
-            
-            // calculate elapsed time since touch
-            const uint64_t touchElapsed=(time-tap->lastTouchTime);
-            [tap->logger logNanoseconds:touchElapsed forKey:@"elapsed"];
-            
-            // get and reset fingers touching
-            const NSUInteger touching=tap->touching;
-            [tap->logger logUnsignedInteger:touching forKey:@"touching"];
-            tap->touching=0;
+        }
 
-            // get phase
-            const ScrollPhase phase=_momentumPhaseForEvent(eventRef);
-            [tap->logger logPhase:phase forKey:@"phase"];
-            
-            // work out the event source
-            const ScrollEventSource lastSource=tap->lastSource;
-            const ScrollEventSource source=(^{
-                
-                if (!continuous)
-                {
-                    [tap->logger logBool:YES forKey:@"usingNotContinuous"];
-                    return ScrollEventSourceMouse; // assume anything not-continuous is a mouse
-                }
-                
-                if (touching>=2 && touchElapsed<(MILLISECOND*222))
-                {
-                    [tap->logger logBool:YES forKey:@"usingTouches"];
-                    return ScrollEventSourceTrackpad;
-                }
-                
-                if (phase==ScrollPhaseNormal && touchElapsed>(MILLISECOND*333))
-                {
-                    [tap->logger logBool:YES forKey:@"usingTouchElapsed"];
-                    return ScrollEventSourceMouse;
-                }
-                
-                // not enough information to decide. assume the same as last time. ha!
-                [tap->logger logBool:YES forKey:@"usingPrevious"];
-                return tap->lastSource;
-            })();
-            tap->lastSource=source;
-            
-            // finally, do we reverse the scroll or not?
-            const BOOL invert=(^BOOL {
-                
-                /* Don't reverse scrolling coming from another app (if that setting is on).
-                 This is useful if Scroll Reverser is running inside a remote desktop, to ignore
-                 scrolling coming from the controlling host but still reverse local scrolling.
-                 */
-                const BOOL preventBecauseComingFromOtherApp=_preventReverseOtherApp?pid!=0:NO;
-                
-                if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseScrolling]&&!preventBecauseComingFromOtherApp)
-                {
-                    switch (source)
-                    {
-                        case ScrollEventSourceTrackpad:
-                            return [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseTrackpad];
-                            
-                        case ScrollEventSourceMouse:
-                        default:
-                            return [[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseMouse];
-                    }
-                }
-                else {
-                    return NO;
-                }
-            })();
-            
-            [tap->logger logBool:invert forKey:@"reversing"];
-            [tap->logger logSource:source forKey:@"source"];
-
-            if(source!=lastSource) {
-                [tap->logger logMessage:@"Source changed" special:YES];
-            }
-            
-            // show discrete scroll prefs if we have seen non-continuous scrolling
-            // (only do this once)
-            if (!continuous) {
-                static dispatch_once_t onceToken;
-                dispatch_once(&onceToken, ^{
-                    [(AppDelegate *)[NSApp delegate] enableDiscreteScrollOptions];
-                });
-            }
-
-            // Adjust discrete scroll wheel?
-            const NSInteger stepsize=_stepsize(PrefsDiscreteScrollStepSizeEnabled, PrefsDiscreteScrollStepSize);
-            // (shift+scroll with a wheel mouse arrives here already converted to horizontal)
-            const BOOL vDiscreteAdjust=stepsize>1&&llabs(axis1)==1&&!continuous;
-            const BOOL hDiscreteAdjust=stepsize>1&&llabs(axis2)==1&&!continuous;
-            const NSInteger vstep=vDiscreteAdjust?stepsize:1;
-            const NSInteger hstep=hDiscreteAdjust?stepsize:1;
-            [tap->logger logSignedInteger:vstep forKey:@"vstep"];
-            [tap->logger logSignedInteger:hstep forKey:@"hstep"];
-
-            // Calculate signed multiplier to apply
-            const NSInteger vmul=(invert&&[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseVertical])?-vstep:vstep;
-            const NSInteger hmul=(invert&&[[NSUserDefaults standardUserDefaults] boolForKey:PrefsReverseHorizontal])?-hstep:hstep;
-
-            /* Do the actual reversing. It's worth noting we have to set the point values second, or we lose smooth scrolling.
-             This is because setting DeltaAxis causes macos to internally modify PointDeltaAxis (8x multiplier on DeltaAxis
-             value) and FixedPtDeltaAxis (1x multiplier). */
-            if (vDiscreteAdjust||vmul!=1) { // vertical
-                CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis1, axis1*vmul);
-            }
-            if (!vDiscreteAdjust&&vmul!=1) { // vertical - only set these if not doing discrete adjust
-                CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis1, fixedpt_axis1*vmul);
-                CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis1, point_axis1*vmul);
-                if (ioHidEventRef) {
-                    IOHIDEventSetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollY, iohid_axis1*vmul);
-                }
-            }
-            if (hDiscreteAdjust||hmul!=1) { // horizontal
-                CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventDeltaAxis2, axis2*hmul);
-            }
-            if (!hDiscreteAdjust&&hmul!=1) { // horizontal - only set these if not doing discrete adjust
-                CGEventSetDoubleValueField(eventRef, kCGScrollWheelEventFixedPtDeltaAxis2, fixedpt_axis2*hmul);
-                CGEventSetIntegerValueField(eventRef, kCGScrollWheelEventPointDeltaAxis2, point_axis2*hmul);
-                if (ioHidEventRef) {
-                    IOHIDEventSetFloatValue(ioHidEventRef, kIOHIDEventFieldScrollX, iohid_axis2*hmul);
-                }
-            }
-
-            if (ioHidEventRef) {
-                CFRelease(ioHidEventRef);
-            }
+        if (ioHidEventRef) {
+            CFRelease(ioHidEventRef);
         }
         [tap->logger logEventType:type forKey:@"type"];
         [tap->logger logParams];
     }
-    
+
     return eventRef;
 }
 
-@interface MouseTap ()
-@property CFMachPortRef activeTapPort;
-@property CFRunLoopSourceRef activeTapSource;
-@property CFMachPortRef passiveTapPort;
-@property CFRunLoopSourceRef passiveTapSource;
-@end
-
 @implementation MouseTap
+
+- (instancetype)initWithSourceTable:(SourceTable *)sourceTable
+{
+    self=[super init];
+    if (self) {
+        _sourceIdentifier=[[ScrollSourceIdentifier alloc] init];
+        _sourceTable=sourceTable;
+    }
+    return self;
+}
 
 - (void)setActive:(BOOL)state
 {
@@ -280,7 +182,7 @@ static CGEventRef _callback(CGEventTapProxy proxy,
 
 - (BOOL)isActive
 {
-    return self.activeTapSource&&self.passiveTapSource&&self.activeTapPort&&self.passiveTapPort;
+    return self.activeTapSource&&self.activeTapPort;
 }
 
 - (void)start
@@ -289,53 +191,19 @@ static CGEventRef _callback(CGEventTapProxy proxy,
         return;
 
     [self willChangeValueForKey:kKeyActive];
-    [self createTaps];
+    [self createTap];
     [self didChangeValueForKey:kKeyActive];
 }
 
 - (void)stop
 {
     [self willChangeValueForKey:kKeyActive];
-    [self destroyTaps];
+    [self destroyTap];
     [self didChangeValueForKey:kKeyActive];
 }
 
-// Recreate the taps if they are running. Observers of `active` see one change for the
-// whole restart, rather than the taps briefly appearing to stop.
-- (void)restart
+- (void)createTap
 {
-    if(![self isActive])
-        return;
-
-    [self willChangeValueForKey:kKeyActive];
-    [self destroyTaps];
-    [self createTaps];
-    [self didChangeValueForKey:kKeyActive];
-}
-
-- (void)createTaps
-{
-    // initialise
-    _preventReverseOtherApp=[[NSUserDefaults standardUserDefaults] boolForKey:@"ReverseOnlyRawInput"];
-
-    // clear state
-    touching=0;
-    lastTouchTime=0;
-    lastSource=0;
-    
-    /* We use a separate passive tap to monitor gesture events, because using an
-     active tap to do so causes various problems:
-        - Triggers additional permissons dialogs when interacting with authorization services dialogs
-        - Interferes with "shake to locate cursor" (when using Trackpad)
-        - Interferes with the 2-finger "show notificaton center" gesture */
-    self.passiveTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
-                                                   kCGTailAppendEventTap,
-                                                   kCGEventTapOptionListenOnly,
-                                                   NSEventMaskGesture,
-                                                   _callback,
-                                                   (__bridge void *)(self));
-    NSLog(@"passive tap port %p", self.passiveTapPort);
-
     // active tap, for modifying scroll events
     // this one requires user privacy permissions
     self.activeTapPort=(CFMachPortRef)CGEventTapCreate(kCGSessionEventTap,
@@ -346,17 +214,15 @@ static CGEventRef _callback(CGEventTapProxy proxy,
                                            (__bridge void *)(self));
     NSLog(@"active tap port %p", self.activeTapPort);
 
-    // now create sources and add to run loop
-    if (self.passiveTapPort && self.activeTapPort) {
-        NSLog(@"Got ports");
-        self.passiveTapSource = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, self.passiveTapPort, 0);
-        CFRunLoopAddSource(CFRunLoopGetMain(), self.passiveTapSource, kCFRunLoopCommonModes);
+    // now create the source and add to run loop
+    if (self.activeTapPort) {
+        NSLog(@"Got port");
         self.activeTapSource = (CFRunLoopSourceRef)CFMachPortCreateRunLoopSource(kCFAllocatorDefault, self.activeTapPort, 0);
         CFRunLoopAddSource(CFRunLoopGetMain(), self.activeTapSource, kCFRunLoopCommonModes);
     }
     else {
-        NSLog(@"Didn't get ports");
-        [self destroyTaps];
+        NSLog(@"Didn't get port");
+        [self destroyTap];
     }
 
     if ([self isActive]) {
@@ -367,7 +233,7 @@ static CGEventRef _callback(CGEventTapProxy proxy,
     }
 }
 
-- (void)destroyTaps
+- (void)destroyTap
 {
     if (self.activeTapSource) {
         CFRunLoopRemoveSource(CFRunLoopGetMain(), self.activeTapSource, kCFRunLoopCommonModes);
@@ -381,18 +247,6 @@ static CGEventRef _callback(CGEventTapProxy proxy,
         self.activeTapPort=nil;
     }
 
-    if (self.passiveTapSource) {
-        CFRunLoopRemoveSource(CFRunLoopGetMain(), self.passiveTapSource, kCFRunLoopCommonModes);
-        CFRelease(self.passiveTapSource);
-        self.passiveTapSource=nil;
-    }
-
-    if (self.passiveTapPort) {
-        CFMachPortInvalidate(self.passiveTapPort);
-        CFRelease(self.passiveTapPort);
-        self.passiveTapPort=nil;
-    }
-
     [(AppDelegate *)[NSApp delegate] logAppEvent:@"Tap stopped"];
 }
 
@@ -401,9 +255,6 @@ static CGEventRef _callback(CGEventTapProxy proxy,
 {
     if (self.activeTapPort&&!CGEventTapIsEnabled(self.activeTapPort)) {
         CGEventTapEnable(self.activeTapPort, YES);
-    }
-    if (self.passiveTapPort&&!CGEventTapIsEnabled(self.passiveTapPort)) {
-        CGEventTapEnable(self.passiveTapPort, YES);
     }
 }
 

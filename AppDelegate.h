@@ -7,17 +7,10 @@
 #import "LoginItemController.h"
 #import <Sparkle/Sparkle.h>
 
-@class MouseTap, WelcomeWindowController, PrefsWindowController, DebugWindowController, TapLogger, TestWindowController;
+@class MouseTap, SourceTable, WelcomeWindowController, PrefsWindowController, DebugWindowController, TapLogger, TestWindowController;
 
 extern NSString *const PrefsReverseScrolling;
-extern NSString *const PrefsReverseHorizontal;
-extern NSString *const PrefsReverseVertical;
-extern NSString *const PrefsReverseTrackpad;
-extern NSString *const PrefsReverseMouse;
 extern NSString *const PrefsHideIcon;
-extern NSString *const PrefsDiscreteScrollStepSizeEnabled;
-extern NSString *const PrefsDiscreteScrollStepSize;
-extern NSString *const PrefsShowDiscreteScrollOptions;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, StatusItemControllerDelegate, SPUUpdaterDelegate, SPUStandardUserDriverDelegate> {
 }
@@ -25,6 +18,7 @@ extern NSString *const PrefsShowDiscreteScrollOptions;
 @property (readonly) PermissionsManager *permissionsManager;
 @property (readonly) LoginItemController *loginItemController;
 @property (readonly) SPUUpdater *updater;
+@property (readonly) SourceTable *sourceTable;
 
 @property (readonly) NSString *appName;
 @property (readonly) NSString *appVersion;
@@ -43,8 +37,6 @@ extern NSString *const PrefsShowDiscreteScrollOptions;
 - (void)statusItemClicked;
 - (void)statusItemRightClicked;
 - (void)statusItemAltClicked;
-
-- (void)enableDiscreteScrollOptions;
 
 - (void)logAppEvent:(NSString *)str;
 - (void)stopLogging;

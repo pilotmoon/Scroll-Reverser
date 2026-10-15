@@ -3,13 +3,6 @@
 
 #import <Foundation/Foundation.h>
 
-// The possible sources of scrolling events.
-typedef enum {
-    ScrollEventSourceMouse=0,
-    ScrollEventSourceTrackpad,
-    ScrollEventSourceMax 
-} ScrollEventSource;
-
 // We abstract the system defined scrolling phases into these possibilities.
 typedef enum {
     ScrollPhaseStart=0,
@@ -19,18 +12,18 @@ typedef enum {
     ScrollPhaseMax
 } ScrollPhase;
 
-@class MouseTap, TapLogger, AppDelegate;
+@class TapLogger, SourceTable;
+
+/* The event tap that reverses scrolling. Each event's source is looked up and recorded in the
+ source table, and the event is changed according to the source's row. */
 @interface MouseTap : NSObject {
 @public
-    NSUInteger touching;
-    uint64_t lastTouchTime;
-    ScrollEventSource lastSource;
-    
     __weak TapLogger *logger;    
 }
 
+- (instancetype)initWithSourceTable:(SourceTable *)sourceTable;
+
 @property (getter=isActive) BOOL active;
-- (void)restart;
 - (void)enableTap;
 
 @end

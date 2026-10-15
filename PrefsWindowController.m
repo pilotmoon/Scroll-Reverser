@@ -20,21 +20,6 @@ static NSString *const kPrefsLastUsedPanel=@"PrefsLastUsedPanel";
 static void *_contextPermissions=&_contextPermissions;
 
 
-// a label that dims while disabled, to match the controls beside it
-@interface DimmingLabel : NSTextField
-@end
-
-@implementation DimmingLabel
-
-- (void)setEnabled:(BOOL)enabled
-{
-    [super setEnabled:enabled];
-    self.textColor=enabled?[NSColor labelColor]:[NSColor disabledControlTextColor];
-}
-
-@end
-
-
 typedef NS_ENUM(NSInteger, UpdateMode) {
     UpdateModeOff,
     UpdateModeNotify,
@@ -451,34 +436,16 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
 {
     AppDelegate *const appDelegate=self.appDelegate;
     PermissionsManager *const permissions=appDelegate.permissionsManager;
-    NSUserDefaultsController *const defaults=[NSUserDefaultsController sharedUserDefaultsController];
-
     // master switch
     NSButton *const enableCheckbox=compactCheckbox([NSString stringWithFormat:NSLocalizedString(@"Enable %1$@", @"1=name of app e.g. `Enable Scroll Reverser`"), appDelegate.appName]);
     [enableCheckbox bind:NSValueBinding toObject:appDelegate withKeyPath:@"enabled" options:@{NSValidatesImmediatelyBindingOption: @YES}];
     [enableCheckbox bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:negated()];
 
-    // axes and devices, side by side
-    NSBox *const axesBox=[self boxWithTitle:NSLocalizedString(@"Scrolling Axes", @"Prefs section title")
-                                 checkboxes:@[@[NSLocalizedString(@"Reverse Vertical", @"Prefs check box"), PrefsReverseVertical],
-                                              @[NSLocalizedString(@"Reverse Horizontal", @"Prefs check box"), PrefsReverseHorizontal]]];
-    NSBox *const devicesBox=[self boxWithTitle:NSLocalizedString(@"Scrolling Devices", @"Prefs section title")
-                                    checkboxes:@[@[NSLocalizedString(@"Reverse Trackpad", @"Prefs check box"), PrefsReverseTrackpad],
-                                                 @[NSLocalizedString(@"Reverse Mouse", @"Prefs check box"), PrefsReverseMouse]]];
-    NSStackView *const axesAndDevices=stack(NSUserInterfaceLayoutOrientationHorizontal, NSLayoutAttributeTop, 8, @[axesBox, devicesBox]);
-    [axesAndDevices setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
-    [axesAndDevices bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:negated()];
-
-    // discrete scroll step size, shown once non-continuous scrolling has been seen
-    NSView *const scrollWheelBox=[self makeScrollWheelBox];
-    [scrollWheelBox bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:negated()];
-    [scrollWheelBox bind:@"hidden2" toObject:defaults withKeyPath:defaultsKeyPath(PrefsShowDiscreteScrollOptions) options:negated()];
-
     // permissions, shown only while something is missing
     NSView *const permissionsBox=[self makePermissionsBox];
     [permissionsBox bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:nil];
 
-    NSStackView *const pane=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeCenterX, 17, @[enableCheckbox, axesAndDevices, scrollWheelBox, permissionsBox]);
+    NSStackView *const pane=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeCenterX, 17, @[enableCheckbox, permissionsBox]);
     // hug the content more strongly than the window keeps its size, so the window fits the pane as sections show and hide
     [pane setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
     NSView *const view=[[NSView alloc] init];
@@ -490,108 +457,10 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
         [pane.leadingAnchor constraintEqualToAnchor:view.leadingAnchor constant:20],
         [view.trailingAnchor constraintEqualToAnchor:pane.trailingAnchor constant:20],
         bottom,
-        [axesAndDevices.leadingAnchor constraintEqualToAnchor:pane.leadingAnchor],
-        [axesAndDevices.trailingAnchor constraintEqualToAnchor:pane.trailingAnchor],
-        [devicesBox.widthAnchor constraintEqualToAnchor:axesBox.widthAnchor],
-        [scrollWheelBox.leadingAnchor constraintEqualToAnchor:pane.leadingAnchor],
-        [scrollWheelBox.trailingAnchor constraintEqualToAnchor:pane.trailingAnchor],
         [permissionsBox.leadingAnchor constraintEqualToAnchor:pane.leadingAnchor],
         [permissionsBox.trailingAnchor constraintEqualToAnchor:pane.trailingAnchor],
     ]];
     return view;
-}
-
-// a box of two checkboxes, each given as @[title, defaults key], enabled only while reversing is on
-- (NSBox *)boxWithTitle:(NSString *)title checkboxes:(NSArray<NSArray<NSString *> *> *)definitions
-{
-    NSBox *const result=box(title);
-    NSButton *previous=nil;
-    for (NSArray<NSString *> *definition in definitions) {
-        NSButton *const button=compactCheckbox(definition[0]);
-        [button bind:NSEnabledBinding toObject:self.appDelegate withKeyPath:@"enabled" options:nil];
-        [button bind:NSValueBinding toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:defaultsKeyPath(definition[1]) options:nil];
-        [result.contentView addSubview:button];
-        [NSLayoutConstraint activateConstraints:@[
-            previous ? [button.topAnchor constraintEqualToAnchor:previous.bottomAnchor constant:6] : [button.topAnchor constraintEqualToAnchor:result.topAnchor constant:26],
-            [button.leadingAnchor constraintEqualToAnchor:result.leadingAnchor constant:16],
-            [result.trailingAnchor constraintGreaterThanOrEqualToAnchor:button.trailingAnchor constant:16],
-        ]];
-        previous=button;
-    }
-    [result.contentView.bottomAnchor constraintEqualToAnchor:previous.bottomAnchor constant:11].active=YES;
-    return result;
-}
-
-- (NSView *)makeScrollWheelBox
-{
-    NSBox *const result=box(NSLocalizedString(@"Scroll Wheel", @"Prefs section header"));
-    NSGridView *const grid=[NSGridView gridViewWithViews:@[
-        [self stepSizeRowWithTitle:NSLocalizedString(@"Step size", @"Size of one step of the mouse scroll wheel")
-                        enabledKey:PrefsDiscreteScrollStepSizeEnabled
-                           sizeKey:PrefsDiscreteScrollStepSize],
-    ]];
-    grid.translatesAutoresizingMaskIntoConstraints=NO;
-    grid.rowAlignment=NSGridRowAlignmentFirstBaseline;
-    grid.columnSpacing=2;
-    grid.rowSpacing=6;
-    [grid columnAtIndex:0].trailingPadding=6;
-    [grid columnAtIndex:2].trailingPadding=4;
-    // steppers have no baseline
-    for (NSInteger i=0; i<grid.numberOfRows; i++) {
-        NSGridCell *const cell=[grid cellAtColumnIndex:2 rowIndex:i];
-        cell.rowAlignment=NSGridRowAlignmentNone;
-        cell.yPlacement=NSGridCellPlacementCenter;
-    }
-    [result.contentView addSubview:grid];
-    [NSLayoutConstraint activateConstraints:@[
-        [grid.topAnchor constraintEqualToAnchor:result.topAnchor constant:26],
-        [grid.leadingAnchor constraintEqualToAnchor:result.leadingAnchor constant:16],
-        [result.trailingAnchor constraintGreaterThanOrEqualToAnchor:grid.trailingAnchor constant:16],
-        [result.contentView.bottomAnchor constraintEqualToAnchor:grid.bottomAnchor constant:11],
-    ]];
-    return result;
-}
-
-// checkbox, number field, stepper and unit label for one axis's step size
-- (NSArray<NSView *> *)stepSizeRowWithTitle:(NSString *)title enabledKey:(NSString *)enabledKey sizeKey:(NSString *)sizeKey
-{
-    NSUserDefaultsController *const defaults=[NSUserDefaultsController sharedUserDefaultsController];
-    const NSInteger maxStepSize=30;
-
-    NSButton *const checkbox=compactCheckbox(title);
-    [checkbox bind:NSEnabledBinding toObject:self.appDelegate withKeyPath:@"enabled" options:nil];
-    [checkbox bind:NSValueBinding toObject:defaults withKeyPath:defaultsKeyPath(enabledKey) options:nil];
-
-    NSNumberFormatter *const formatter=[[NSNumberFormatter alloc] init];
-    formatter.allowsFloats=NO;
-    formatter.minimum=@(1);
-    formatter.maximum=@(maxStepSize);
-
-    NSTextField *const field=[NSTextField textFieldWithString:@""];
-    field.translatesAutoresizingMaskIntoConstraints=NO;
-    field.formatter=formatter;
-    field.alignment=NSTextAlignmentRight;
-    [field.widthAnchor constraintEqualToConstant:36].active=YES;
-
-    NSStepper *const stepper=[[NSStepper alloc] init];
-    stepper.translatesAutoresizingMaskIntoConstraints=NO;
-    stepper.minValue=1;
-    stepper.maxValue=maxStepSize;
-    stepper.increment=1;
-    stepper.valueWraps=NO;
-
-    NSTextField *const unitLabel=label([DimmingLabel labelWithString:NSLocalizedString(@"lines", @"Unit for scroll wheel step size, shown after the number")], [NSFont systemFontOfSize:0], [NSColor labelColor]);
-
-    // enabled only while both reversing and this step size are on
-    for (NSControl *control in @[field, stepper, unitLabel]) {
-        [control bind:NSEnabledBinding toObject:self.appDelegate withKeyPath:@"enabled" options:nil];
-        [control bind:@"enabled2" toObject:defaults withKeyPath:defaultsKeyPath(enabledKey) options:nil];
-    }
-    for (NSControl *control in @[field, stepper]) {
-        [control bind:NSValueBinding toObject:defaults withKeyPath:defaultsKeyPath(sizeKey) options:@{NSValidatesImmediatelyBindingOption: @YES}];
-    }
-
-    return @[checkbox, field, stepper, unitLabel];
 }
 
 - (NSView *)makePermissionsBox

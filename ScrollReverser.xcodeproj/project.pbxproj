@@ -29,6 +29,8 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		C0D4DFE22E986D5900E40368 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0D4DFE12E986D5900E40368 /* Media.xcassets */; };
+		76D38FE335295C428003DE75 /* ScrollSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCBF0A41CAAB23FFA2A9D28 /* ScrollSource.m */; };
+		D3ABCE83108CB07D71F76FE9 /* SourceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496835211CF3731A45D623C0 /* SourceTable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -119,6 +121,10 @@
 		B7CF5D6627BFAB8400E09485 /* IOKitSPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOKitSPI.h; sourceTree = "<group>"; };
 		B7CF5D6727BFACD800E09485 /* CoreGraphicsSPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreGraphicsSPI.h; sourceTree = "<group>"; };
 		C0D4DFE12E986D5900E40368 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		AFCBF0A41CAAB23FFA2A9D28 /* ScrollSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollSource.m; sourceTree = "<group>"; };
+		8BC2E47D95EBDD351B400CF2 /* ScrollSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollSource.h; sourceTree = "<group>"; };
+		496835211CF3731A45D623C0 /* SourceTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceTable.m; sourceTree = "<group>"; };
+		5158F2F5ACC6F79F9ABF7FF3 /* SourceTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceTable.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -157,6 +163,10 @@
 				01D9F8922386D5C1002F0EC0 /* PermissionsManager.m */,
 				01EB78C21324D574005390BD /* MouseTap.m */,
 				01EB78C31324D574005390BD /* MouseTap.h */,
+				5158F2F5ACC6F79F9ABF7FF3 /* SourceTable.h */,
+				496835211CF3731A45D623C0 /* SourceTable.m */,
+				8BC2E47D95EBDD351B400CF2 /* ScrollSource.h */,
+				AFCBF0A41CAAB23FFA2A9D28 /* ScrollSource.m */,
 				01ED37DD1A375EB9001B3094 /* LinkView.h */,
 				01ED37DE1A375EB9001B3094 /* LinkView.m */,
 				01438E8E1AFB640400C5C857 /* Logger.h */,
@@ -364,6 +374,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3ABCE83108CB07D71F76FE9 /* SourceTable.m in Sources */,
+				76D38FE335295C428003DE75 /* ScrollSource.m in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				01AF54C91B0CB87C0028A26A /* TapLogger.m in Sources */,
 				01D9F8932386D5C1002F0EC0 /* PermissionsManager.m in Sources */,

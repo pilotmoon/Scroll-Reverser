@@ -18,7 +18,6 @@
 - (void)logCount:(id)obj forKey:(NSString *)key;
 
 - (void)logEventType:(CGEventType)source forKey:(NSString *)key;
-- (void)logSource:(ScrollEventSource)source forKey:(NSString *)key;
 - (void)logPhase:(ScrollPhase)phase forKey:(NSString *)key;
 
 - (void)logParams;

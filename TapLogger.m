@@ -106,24 +106,6 @@
 }
 
 
-- (void)logSource:(ScrollEventSource)source forKey:(NSString *)key
-{
-    NSString *str=@"unknown";
-    switch (source) {
-        case ScrollEventSourceMouse:
-            str=@"mouse";
-            break;
-            
-        case ScrollEventSourceTrackpad:
-            str=@"trackpad";
-            break;
-            
-        default:
-            break;
-    }
-    [self logObject:str forKey:key];
-}
-
 - (void)logPhase:(ScrollPhase)phase forKey:(NSString *)key
 {
     NSString *str=@"unknown";
