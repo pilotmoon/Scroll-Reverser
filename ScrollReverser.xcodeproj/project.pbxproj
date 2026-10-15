@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -121,6 +121,10 @@
 		C0D4DFE12E986D5900E40368 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		01F378FA30816FFC00A01E09 /* docs */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = docs; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -201,6 +205,7 @@
 				0148C7E2257195E00086B838 /* Common.xcconfig */,
 				015D94B02571810B00A685C8 /* Development.xcconfig */,
 				01F580282571848F00BACC0F /* Production.xcconfig */,
+				01F378FA30816FFC00A01E09 /* docs */,
 				01E5C31E2567FF8800C10ABA /* BuildScripts */,
 				01E5C320256801B000C10ABA /* script */,
 				080E96DDFE201D6D7F000001 /* Classes */,
