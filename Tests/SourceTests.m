@@ -265,6 +265,16 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
     XCTAssertEqual([self.table.rows count], 2);
 }
 
+// an app that moves keeps its row, by bundle ID, and the row follows it
+- (void)testReportedNameAndPathAreRefreshed
+{
+    SourceRow *const row=[self app];
+    ScrollSource *const moved=[ScrollSource appSourcesWithIdentifier:@"com.example.app" name:@"Example 2" path:@"/Applications/Utilities/Example.app"][0];
+    XCTAssertEqual([self.table recordSource:moved natural:NO amount:1], row);
+    XCTAssertEqualObjects(row.reportedName, @"Example 2");
+    XCTAssertEqualObjects(row.path, @"/Applications/Utilities/Example.app");
+}
+
 - (void)testCustomName
 {
     SourceRow *const row=[self app];

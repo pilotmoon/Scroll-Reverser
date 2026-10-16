@@ -55,13 +55,14 @@ static NSDate *_dateValue(id obj)
 @property (readwrite) ScrollSourceCategory category;
 @property (readwrite) BOOL continuous;
 @property (readwrite, nullable, nonatomic, copy) NSString *reportedName;
-@property (readwrite, nullable) NSString *path;
+@property (readwrite, nullable, nonatomic, copy) NSString *path;
 @property (readwrite) NSDate *firstSeen;
 @property (readwrite) CFAbsoluteTime lastSeenTime;
 @property (readwrite) double scrollTotal;
 @property (readwrite) BOOL seenNatural;
 @property (readwrite) BOOL seenClassic;
 - (BOOL)recordSightingAtTime:(CFAbsoluteTime)time natural:(BOOL)natural amount:(double)amount;
+- (void)updateFromSource:(ScrollSource *)source;
 @end
 
 @implementation SourceRow
@@ -188,9 +189,27 @@ static NSDate *_dateValue(id obj)
     return self.kind==ScrollSourceKindLocalDevice||self.kind==ScrollSourceKindRemoteDevice||self.kind==ScrollSourceKindUnidentifiedDevice;
 }
 
+// What a source reports can change after its row is created: a Bluetooth device can be renamed,
+// and an app can move while keeping its bundle ID.
+- (void)updateFromSource:(ScrollSource *)source
+{
+    if (source.name&&![source.name isEqualToString:self.reportedName]) {
+        self.reportedName=source.name;
+    }
+    if (source.path&&![source.path isEqualToString:self.path]) {
+        self.path=source.path;
+    }
+}
+
 - (void)setReportedName:(NSString *)reportedName
 {
     _reportedName=[reportedName copy];
+    [self.table rowSettingsDidChange];
+}
+
+- (void)setPath:(NSString *)path
+{
+    _path=[path copy];
     [self.table rowSettingsDidChange];
 }
 
@@ -288,9 +307,8 @@ static NSDate *_dateValue(id obj)
             [self rowSettingsDidChange];
             started=YES;
         }
-        else if (source.name&&![source.name isEqualToString:row.reportedName]) {
-            // for example a Bluetooth device renamed since the row was created
-            row.reportedName=source.name;
+        else {
+            [row updateFromSource:source];
         }
         self.lastSource=source;
         self.lastRow=row;

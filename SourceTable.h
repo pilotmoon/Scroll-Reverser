@@ -46,7 +46,7 @@ typedef struct {
 @property (readonly) BOOL hasDeviceDirection;
 // As reported by the device or app when the source was last looked up.
 @property (readonly, nullable, nonatomic, copy) NSString *reportedName;
-@property (readonly, nullable) NSString *path;
+@property (readonly, nullable, nonatomic, copy) NSString *path;
 
 // The user's name for the source, or nil to use the reported one. Empty strings are stored as nil.
 @property (nullable, nonatomic, copy) NSString *customName;
