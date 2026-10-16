@@ -75,6 +75,16 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5E57000000000000000000A1"
+               BuildableName = "ScrollReverserTests.xctest"
+               BlueprintName = "ScrollReverserTests"
+               ReferencedContainer = "container:ScrollReverser.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

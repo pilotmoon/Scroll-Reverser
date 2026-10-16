@@ -34,6 +34,10 @@
 		D811F056D7A9E674C362F12D /* SourceRow+Display.m in Sources */ = {isa = PBXBuildFile; fileRef = 7796A131298E4CFD93B8BC05 /* SourceRow+Display.m */; };
 		0EA36D58104C007CE1DF6865 /* SourceInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D61638A5C1B96F546D6B6777 /* SourceInfoViewController.m */; };
 		671C5ABFF947FA807B4B1549 /* SourcesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA762B70B9D66C5B5C21D4DE /* SourcesTableController.m */; };
+		5E57000000000000000000B1 /* SourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E57000000000000000000A9 /* SourceTests.m */; };
+		5E57000000000000000000B2 /* ScrollSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCBF0A41CAAB23FFA2A9D28 /* ScrollSource.m */; };
+		5E57000000000000000000B3 /* SourceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496835211CF3731A45D623C0 /* SourceTable.m */; };
+		5E57000000000000000000B4 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D9F8942386E013002F0EC0 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -134,6 +138,8 @@
 		9711C7CDB08079A54357F942 /* SourceInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceInfoViewController.h; sourceTree = "<group>"; };
 		FA762B70B9D66C5B5C21D4DE /* SourcesTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourcesTableController.m; sourceTree = "<group>"; };
 		D80F5A3FF11498359182D516 /* SourcesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourcesTableController.h; sourceTree = "<group>"; };
+		5E57000000000000000000A9 /* SourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceTests.m; sourceTree = "<group>"; };
+		5E57000000000000000000A2 /* ScrollReverserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrollReverserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -149,6 +155,14 @@
 				01D9F8962386E01C002F0EC0 /* IOKit.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				01F66862174B5E43001727DE /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E57000000000000000000A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E57000000000000000000B4 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Scroll Reverser (Dev).app */,
+				5E57000000000000000000A2 /* ScrollReverserTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -231,6 +246,7 @@
 				015D94B02571810B00A685C8 /* Development.xcconfig */,
 				01F580282571848F00BACC0F /* Production.xcconfig */,
 				01F378FA30816FFC00A01E09 /* docs */,
+				5E57000000000000000000A8 /* Tests */,
 				01E5C31E2567FF8800C10ABA /* BuildScripts */,
 				01E5C320256801B000C10ABA /* script */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -276,6 +292,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5E57000000000000000000A8 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5E57000000000000000000A9 /* SourceTests.m */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -298,6 +322,22 @@
 			productName = "Scroll Inverter";
 			productReference = 8D1107320486CEB800E47090 /* Scroll Reverser (Dev).app */;
 			productType = "com.apple.product-type.application";
+		};
+		5E57000000000000000000A1 /* ScrollReverserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E57000000000000000000A5 /* Build configuration list for PBXNativeTarget "ScrollReverserTests" */;
+			buildPhases = (
+				5E57000000000000000000A3 /* Sources */,
+				5E57000000000000000000A4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScrollReverserTests;
+			productName = ScrollReverserTests;
+			productReference = 5E57000000000000000000A2 /* ScrollReverserTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -348,6 +388,7 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Scroll Reverser */,
+				5E57000000000000000000A1 /* ScrollReverserTests */,
 			);
 		};
 /* End PBXProject section */
@@ -408,6 +449,16 @@
 				01145CF2256ED29000E0EFE5 /* LoginItemController.m in Sources */,
 				017347661A35DA2600A0A1BE /* PrefsWindowController.m in Sources */,
 				019FB05A14EB1A9100FA225A /* WelcomeWindowController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E57000000000000000000A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E57000000000000000000B1 /* SourceTests.m in Sources */,
+				5E57000000000000000000B2 /* ScrollSource.m in Sources */,
+				5E57000000000000000000B3 /* SourceTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +665,36 @@
 			};
 			name = Release;
 		};
+		5E57000000000000000000A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUILDSCRIPTS_APP_BUNDLE_ID).tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
+			};
+			name = Debug;
+		};
+		5E57000000000000000000A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUILDSCRIPTS_APP_BUNDLE_ID).tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -631,6 +712,15 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E57000000000000000000A5 /* Build configuration list for PBXNativeTarget "ScrollReverserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E57000000000000000000A6 /* Debug */,
+				5E57000000000000000000A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
