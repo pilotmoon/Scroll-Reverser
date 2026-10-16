@@ -437,6 +437,7 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
 
     // a row of settings per scroll source
     self.sourcesController=[[SourcesTableController alloc] initWithSourceTable:appDelegate.sourceTable];
+    [self.sourcesController bind:@"enabled" toObject:appDelegate withKeyPath:@"enabled" options:nil];
     NSView *const sources=self.sourcesController.view;
     [sources bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:negated()];
 

@@ -28,15 +28,17 @@ static NSTextField *_value(NSString *string)
 
 @interface SourceInfoViewController ()
 @property SourceRow *row;
+@property BOOL editable;
 @end
 
 @implementation SourceInfoViewController
 
-- (instancetype)initWithRow:(SourceRow *)row
+- (instancetype)initWithRow:(SourceRow *)row editable:(BOOL)editable
 {
     self=[super initWithNibName:nil bundle:nil];
     if (self) {
         self.row=row;
+        self.editable=editable;
     }
     return self;
 }
@@ -59,6 +61,9 @@ static NSTextField *_value(NSString *string)
     [horizontalPopUp addItemWithTitle:NSLocalizedString(@"Match vertical", @"Horizontal scrolling menu item: reverse horizontal scrolling whenever vertical scrolling is reversed")];
     horizontalPopUp.lastItem.tag=YES;
     [horizontalPopUp bind:NSSelectedTagBinding toObject:row withKeyPath:@"horizontalMatchesVertical" options:nil];
+
+    nameField.enabled=self.editable;
+    horizontalPopUp.enabled=self.editable;
 
     NSDateFormatter *const dateFormatter=[[NSDateFormatter alloc] init];
     dateFormatter.dateStyle=NSDateFormatterMediumStyle;

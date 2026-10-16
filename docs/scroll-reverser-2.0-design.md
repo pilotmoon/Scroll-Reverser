@@ -148,6 +148,10 @@ nothing for the user to configure.
 The 1.x "Enable Scroll Reverser" switch and the status item's right-click toggle stay, with the
 same key (`InvertScrollingOn`). Off means no tap at all.
 
+While it's off nothing is recorded, so the sources table is greyed out to show that it isn't
+updating: its controls, the remove button and the info popover's Name and Horizontal scrolling are
+disabled, and the labels and icons are dimmed to half opacity. The ⓘ button still shows the details.
+
 ### Recorded per row
 
 - First seen and last seen.
@@ -303,8 +307,8 @@ All from 15 Oct 2026, with Nick, in order.
 
 From 16 Oct 2026, with Nick:
 
-- **Discovery while the master switch is off:** not done. Sources are added only while the tap
-  runs. (The reason given at the time, that a listen-only tap would need Input Monitoring, turned
+- **Discovery while the master switch is off:** not done; the table is greyed out instead (see
+  "Master switch"). A listen-only tap could be added later as an enhancement. (The reason given at the time, that a listen-only tap would need Input Monitoring, turned
   out to be wrong: Accessibility covers it. Worth revisiting if discovery while off is wanted.)
 - **Hint text for known re-posters** (e.g. "Logitech devices handled by Options+"): left out of
   2.0.

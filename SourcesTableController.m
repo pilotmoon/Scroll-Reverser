@@ -31,6 +31,33 @@ static NSDictionary *_negated(void)
     return @{NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName};
 }
 
+// Labels and images don't dim while disabled, as the controls beside them do, so fade them.
+@interface DimmingLabel : NSTextField
+@end
+
+@implementation DimmingLabel
+
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    self.alphaValue=enabled?1:0.5;
+}
+
+@end
+
+@interface DimmingImageView : NSImageView
+@end
+
+@implementation DimmingImageView
+
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    self.alphaValue=enabled?1:0.5;
+}
+
+@end
+
 static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
 {
     return [rows sortedArrayUsingComparator:^NSComparisonResult(SourceRow *a, SourceRow *b) {
@@ -267,6 +294,19 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
 
 #pragma mark Actions
 
+- (void)setEnabled:(BOOL)enabled
+{
+    _enabled=enabled;
+    // its settings were enabled or not when it opened
+    [self.infoPopover close];
+    [self updateRemoveButton];
+}
+
+- (void)updateRemoveButton
+{
+    self.removeButton.enabled=self.enabled&&self.tableView.selectedRow>=0;
+}
+
 - (void)infoClicked:(NSButton *)sender
 {
     const NSInteger index=[self.tableView rowForView:sender];
@@ -276,7 +316,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     [self.infoPopover close];
     self.infoPopover=[[NSPopover alloc] init];
     self.infoPopover.behavior=NSPopoverBehaviorTransient;
-    self.infoPopover.contentViewController=[[SourceInfoViewController alloc] initWithRow:self.rows[index]];
+    self.infoPopover.contentViewController=[[SourceInfoViewController alloc] initWithRow:self.rows[index] editable:self.enabled];
     [self.infoPopover showRelativeToRect:sender.bounds ofView:sender preferredEdge:NSRectEdgeMaxX];
 }
 
@@ -302,7 +342,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
-    self.removeButton.enabled=self.tableView.selectedRow>=0;
+    [self updateRemoveButton];
 }
 
 - (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row
@@ -333,7 +373,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     cell.identifier=identifier;
     NSView *content;
     if ([identifier isEqualToString:kColumnIcon]) {
-        NSImageView *const imageView=[[NSImageView alloc] init];
+        NSImageView *const imageView=[[DimmingImageView alloc] init];
         imageView.imageScaling=NSImageScaleNone;
         [imageView.widthAnchor constraintEqualToConstant:22].active=YES;
         [imageView.heightAnchor constraintEqualToConstant:18].active=YES;
@@ -341,7 +381,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
         content=imageView;
     }
     else if ([identifier isEqualToString:kColumnName]) {
-        NSTextField *const field=[NSTextField labelWithString:@""];
+        NSTextField *const field=[DimmingLabel labelWithString:@""];
         field.lineBreakMode=NSLineBreakByTruncatingTail;
         field.cell.usesSingleLineMode=YES;
         [field bind:NSValueBinding toObject:cell withKeyPath:@"objectValue.displayName" options:nil];
@@ -361,7 +401,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
         content=[self stepSizeViewForCell:cell];
     }
     else if ([identifier isEqualToString:kColumnLastUsed]) {
-        NSTextField *const field=[NSTextField labelWithString:@""];
+        NSTextField *const field=[DimmingLabel labelWithString:@""];
         field.font=_smallFont();
         field.textColor=[NSColor secondaryLabelColor];
         field.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -375,6 +415,9 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
         content=button;
     }
 
+    if (![identifier isEqualToString:kColumnInfo]) {
+        [self bindEnabledOfControlsInView:content];
+    }
     content.translatesAutoresizingMaskIntoConstraints=NO;
     [cell addSubview:content];
     const BOOL leading=[identifier isEqualToString:kColumnName];
@@ -384,6 +427,18 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
         leading?[cell.trailingAnchor constraintEqualToAnchor:content.trailingAnchor constant:2]:[cell.trailingAnchor constraintGreaterThanOrEqualToAnchor:content.trailingAnchor],
     ]];
     return cell;
+}
+
+// Controls are enabled only while reversing is on, as well as by any enabled binding they already have.
+- (void)bindEnabledOfControlsInView:(NSView *)view
+{
+    if ([view isKindOfClass:[NSControl class]]) {
+        NSString *const binding=[view infoForBinding:NSEnabledBinding]?@"enabled2":NSEnabledBinding;
+        [view bind:binding toObject:self withKeyPath:@"enabled" options:nil];
+    }
+    for (NSView *subview in view.subviews) {
+        [self bindEnabledOfControlsInView:subview];
+    }
 }
 
 // The cell may be nil, for measuring.
@@ -437,7 +492,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     [controls setCustomSpacing:0 afterView:field];
     [controls bind:NSHiddenBinding toObject:cell withKeyPath:@"objectValue.showsStepSize" options:_negated()];
 
-    NSTextField *const continuousLabel=[NSTextField labelWithString:NSLocalizedString(@"Continuous", @"Scrolling type of a source that scrolls continuously, like a trackpad")];
+    NSTextField *const continuousLabel=[DimmingLabel labelWithString:NSLocalizedString(@"Continuous", @"Scrolling type of a source that scrolls continuously, like a trackpad")];
     continuousLabel.font=_smallFont();
     continuousLabel.textColor=[NSColor secondaryLabelColor];
     [continuousLabel bind:NSHiddenBinding toObject:cell withKeyPath:@"objectValue.showsStepSize" options:nil];

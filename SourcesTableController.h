@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithSourceTable:(SourceTable *)sourceTable;
 
 @property (readonly) NSView *view;
+// Whether the settings can be changed: bound to whether reversing is on, since nothing is recorded while it's off.
+@property (nonatomic) BOOL enabled;
 
 // Keep the table up to date only while the window is open.
 - (void)windowWillShow;
