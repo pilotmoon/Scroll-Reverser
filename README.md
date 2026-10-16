@@ -14,18 +14,26 @@ Downloads are also available in the GitHub releases tab.
 
 Scroll Reverser installs an event tap, which gives it access to the stream of scroll events. The main documentation about event taps is [Quartz Event Services](https://developer.apple.com/documentation/coregraphics/quartz-event-services?language=objc). The tap needs Accessibility permission.
 
-Each scroll event is attributed to the most specific source the event itself identifies:
+Each scroll event is attributed to a source based on the available information:
 
-- **A device**, from the sender ID of the HID event inside the scroll event (a private API, `IOHIDEventGetSenderID`). The sender is looked up in the IORegistry, or in the HID event system for the virtual devices that Universal Control creates.
-- **An app**, from the process ID, for scroll events posted by other software, such as mouse utilities.
+- **A device**, from the sender ID of the HID event inside the scroll event.
+- **An app**, from the process ID, for scroll events posted by other software.
 - **An unidentified source**, when neither is available.
 
-Continuous scrolling (trackpads, the Magic Mouse) and non-continuous scrolling (scroll wheels) from the same source are separate sources. Each source gets a row of settings, saved in user defaults: the scrolling direction, whether horizontal scrolling follows vertical, and a step size for scroll wheels.
+Additionally, scrolling sources are differentiated by whether they are **continuous** (typically trackpads and the Magic Mouse) or **discrete** (typically mice with scroll wheels).
 
-How the direction is decided depends on what the event tells us:
+Each source gets its own row in a table in Settings, with the scrolling direction preference and step size saved to user defaults.
 
-- **Device sources** (any event with a HID event inside, even if the device can't be identified) offer Natural, Classic or Unchanged. For these events, `-[NSEvent isDirectionInvertedFromDevice]` says whether macOS has already applied natural scrolling. Scroll Reverser reverses the event only when that doesn't match the row's setting: a Natural row reverses events that arrive classic, and a Classic row reverses events that arrive natural. So the result doesn't depend on the natural scrolling setting in System Settings.
-- **App sources** (events with no HID event inside, including the unidentified ones) offer only Reversed or Unchanged. Scrolling posted by an app never has natural scrolling applied by macOS (the app chose the direction itself), so there is nothing to compare against, and a Reversed row simply reverses every event.
+Scrolling direction options are as follows:
+
+- For **devices**, the system-defined scrolling direction is obtained using `[NSEvent isDirectionInvertedFromDevice]`, and the the direction options are **Natural** or **Classic**, with reversing applied as needed to give the desired outcome. A third option, **Unchanged**, acts as a passthrough.
+- For **apps** and **unidentified** sources, which do not indicate the underlying scrolling direction, the options are **Reversed** and **Unchanged**.
+
+Default settings for newly detected scrolling sources:
+
+- **Scrolling:** Natural for trackpads, Classic for other devices (mice, in practice), and Unchanged for apps and unidentified sources. A device counts as a trackpad if its `HIDScrollAccelerationType` property is `HIDTrackpadScrollAcceleration`, or if it's driven by Apple's multitouch trackpad driver.
+- **Horizontal scrolling:** follows vertical for discrete scrolling sources, which is to say scroll wheels (including via Shift+scroll). Otherwise it's left as Unchanged, since reversing continuous horizontal scrolling causes issues with trackpad swipe gestures (e.g back/forward swipe in browsers).
+- **Step size:** defaults to on, at 3 lines.
 
 ### Code layout
 
