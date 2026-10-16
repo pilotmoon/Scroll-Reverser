@@ -10,7 +10,9 @@
 
 BUILDSCRIPTS_APP_BUNDLE_ID = com.pilotmoon.scroll-reverser
 
-BUILDSCRIPTS_VERSION_OFFSET = 10000
+// build numbers are commits since the buildbase tag plus this offset: 1xxxx for 1.x, 2xxxx for 2.x
+// (leaves 1xxxx free for maintenance releases of 1.x, built with offset 10000 on a 1.x branch)
+BUILDSCRIPTS_VERSION_OFFSET = 20000
 BUILDSCRIPTS_VERSION_DEV = 99999
 
 BUILDSCRIPTS_MINIMUM_SYSTEM_VERSION = 13.5
