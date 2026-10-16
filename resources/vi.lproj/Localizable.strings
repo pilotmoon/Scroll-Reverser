@@ -1,9 +1,6 @@
 /* Name of a device on another Mac, used through Universal Control. 1=the device's name */
 "%1$@ (Universal Control)" = "%1$@ (Điều khiển chung)";
 
-/* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "Quyền %1$@: %2$@";
-
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Trợ năng";
 
@@ -168,9 +165,3 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "Thiết bị chưa đặt tên";
-
-/* No comment provided by engineer. */
-"⛔️ required" = "⛔️ chưa cho phép";
-
-/* No comment provided by engineer. */
-"✅ granted" = "✅ đã cho phép";

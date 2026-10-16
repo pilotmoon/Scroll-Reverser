@@ -1,9 +1,6 @@
 /* Name of a device on another Mac, used through Universal Control. 1=the device's name */
 "%1$@ (Universal Control)" = "%1$@ (Univerzális vezérlés)";
 
-/* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "%1$@ engedély: %2$@";
-
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Kisegítő lehetőségek";
 
@@ -168,9 +165,3 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "Névtelen eszköz";
-
-/* No comment provided by engineer. */
-"⛔️ required" = "⛔️ szükséges";
-
-/* No comment provided by engineer. */
-"✅ granted" = "✅ megadva";

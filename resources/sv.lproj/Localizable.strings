@@ -1,9 +1,6 @@
 /* Name of a device on another Mac, used through Universal Control. 1=the device's name */
 "%1$@ (Universal Control)" = "%1$@ (Universell kontroll)";
 
-/* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "Behörighet för %1$@: %2$@";
-
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Hjälpmedel";
 
@@ -168,9 +165,3 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "Namnlös enhet";
-
-/* No comment provided by engineer. */
-"⛔️ required" = "⛔️ krävs";
-
-/* No comment provided by engineer. */
-"✅ granted" = "✅ beviljad";

@@ -36,7 +36,6 @@ typedef NS_ENUM(NSInteger, UpdateMode) {
 @property NSView *scrollingSettings;
 @property NSView *appSettings;
 @property SourcesTableController *sourcesController;
-@property NSTextField *axStatusLabel;
 @property NSButton *axButton;
 @end
 
@@ -334,15 +333,7 @@ typedef NS_ENUM(NSInteger, UpdateMode) {
 {
     PermissionsManager *const permissions=self.appDelegate.permissionsManager;
     NSString *const ax=NSLocalizedString(@"Accessibility", @"corresponds to Accessibility in system Privacy settings");
-    self.axStatusLabel.stringValue=[self statusString:permissions.accessibilityEnabled label:ax];
     self.axButton.title=[self buttonLabel:permissions.accessibilityEnabled label:ax];
-}
-
-- (NSString *)statusString:(BOOL)state label:(NSString *)label
-{
-    return [NSString stringWithFormat:NSLocalizedString(@"%1$@ permission: %2$@", "for example: `Accessibility permission: ⛔️ required`"), label, state ?
-            NSLocalizedString(@"✅ granted", nil) :
-            NSLocalizedString(@"⛔️ required", nil)];
 }
 
 #pragma mark Accessors
@@ -469,10 +460,8 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
 {
     PermissionsManager *const permissions=self.appDelegate.permissionsManager;
 
-    self.axStatusLabel=[self permissionStatusLabel];
     self.axButton=[NSButton buttonWithTitle:@"" target:self action:@selector(buttonAXClicked:)];
     NSView *const axView=[self permissionViewWithDescription:NSLocalizedString(@"Scroll Reverser needs Accessibility permission to modify your scrolling.", nil)
-                                                 statusLabel:self.axStatusLabel
                                                       button:self.axButton];
     [self.axButton bind:NSEnabledBinding toObject:permissions withKeyPath:PermissionsManagerKeyAccessibilityEnabled options:negated()];
     [axView bind:NSHiddenBinding toObject:permissions withKeyPath:@"accessibilityRequired" options:negated()];
@@ -490,33 +479,23 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
     return result;
 }
 
-- (NSTextField *)permissionStatusLabel
-{
-    NSTextField *const statusLabel=label([NSTextField labelWithString:@""], smallFont(), [NSColor labelColor]);
-    statusLabel.selectable=YES;
-    [statusLabel setContentHuggingPriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationHorizontal];
-    [statusLabel setContentCompressionResistancePriority:NSLayoutPriorityDefaultLow forOrientation:NSLayoutConstraintOrientationHorizontal];
-    return statusLabel;
-}
-
-// description, status line and request button for one permission
-- (NSView *)permissionViewWithDescription:(NSString *)description statusLabel:(NSTextField *)statusLabel button:(NSButton *)button
+// description and request button for a permission
+- (NSView *)permissionViewWithDescription:(NSString *)description button:(NSButton *)button
 {
     NSTextField *const descriptionLabel=label([NSTextField wrappingLabelWithString:description], smallFont(), [NSColor secondaryLabelColor]);
+    descriptionLabel.alignment=NSTextAlignmentCenter;
     button.translatesAutoresizingMaskIntoConstraints=NO;
 
     NSView *const view=[[NSView alloc] init];
     view.translatesAutoresizingMaskIntoConstraints=NO;
-    for (NSView *subview in @[descriptionLabel, statusLabel, button]) {
+    for (NSView *subview in @[descriptionLabel, button]) {
         [view addSubview:subview];
     }
     [NSLayoutConstraint activateConstraints:@[
         [descriptionLabel.topAnchor constraintEqualToAnchor:view.topAnchor],
         [descriptionLabel.leadingAnchor constraintEqualToAnchor:view.leadingAnchor],
         [view.trailingAnchor constraintEqualToAnchor:descriptionLabel.trailingAnchor],
-        [statusLabel.topAnchor constraintEqualToAnchor:descriptionLabel.bottomAnchor constant:6],
-        [statusLabel.centerXAnchor constraintEqualToAnchor:view.centerXAnchor],
-        [button.topAnchor constraintEqualToAnchor:statusLabel.bottomAnchor constant:6],
+        [button.topAnchor constraintEqualToAnchor:descriptionLabel.bottomAnchor constant:10],
         [button.centerXAnchor constraintEqualToAnchor:view.centerXAnchor],
         [view.bottomAnchor constraintEqualToAnchor:button.bottomAnchor],
     ]];

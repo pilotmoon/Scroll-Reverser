@@ -1,9 +1,6 @@
 /* Name of a device on another Mac, used through Universal Control. 1=the device's name */
 "%1$@ (Universal Control)" = "%1$@（ユニバーサルコントロール）";
 
-/* for example: `Accessibility permission: ⛔️ required` */
-"%1$@ permission: %2$@" = "%1$@の許可：%2$@";
-
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "アクセシビリティ";
 
@@ -168,9 +165,3 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "名称未設定のデバイス";
-
-/* No comment provided by engineer. */
-"⛔️ required" = "⛔️ 必要";
-
-/* No comment provided by engineer. */
-"✅ granted" = "✅ 許可済み";
