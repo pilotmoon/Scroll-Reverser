@@ -4,6 +4,7 @@
 #import "PrefsWindowController.h"
 #import "AppDelegate.h"
 #import "LinkView.h"
+#import "SourcesTableController.h"
 
 
 static NSString *const kPanelScrolling=@"scrolling";
@@ -34,6 +35,7 @@ typedef NS_ENUM(NSInteger, UpdateMode) {
 @property CGFloat width;
 @property NSView *scrollingSettings;
 @property NSView *appSettings;
+@property SourcesTableController *sourcesController;
 @property NSTextField *axStatusLabel;
 @property NSButton *axButton;
 @property NSTextField *imStatusLabel;
@@ -126,10 +128,10 @@ typedef NS_ENUM(NSInteger, UpdateMode) {
     
     NSArray *const toolbarDefinition=@[kPanelScrolling, kPanelApp];
     NSDictionary *const panelsDefinition=@{kPanelScrolling: @{kKeyView: self.scrollingSettings,
-                                                              kKeyTitle: NSLocalizedString(@"Scrolling", @"Preferences pane for `Scrolling` serttings"),
+                                                              kKeyTitle: NSLocalizedString(@"Scrolling", @"Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling"),
                                                               kKeyImageName: NSImageNamePreferencesGeneral},
                                            kPanelApp: @{kKeyView: self.appSettings,
-                                                        kKeyTitle: NSLocalizedString(@"App", @"Preferences pane for `App` settings"),
+                                                        kKeyTitle: NSLocalizedString(@"App", @"Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own"),
                                                         kKeyImageName: NSImageNameApplicationIcon}};
     
     // set up tab view
@@ -211,12 +213,18 @@ typedef NS_ENUM(NSInteger, UpdateMode) {
     }
     else {
         [self.window center];
+        [self.sourcesController windowWillShow];
     }
     [super showWindow:sender];
     if (!wasVisible) {
         // don't start with the step size field focused
         [self.window makeFirstResponder:nil];
     }
+}
+
+- (void)windowWillClose:(NSNotification *)notification
+{
+    [self.sourcesController windowWillClose];
 }
 
 - (void)setPane:(NSString *)identifier
@@ -441,11 +449,16 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
     [enableCheckbox bind:NSValueBinding toObject:appDelegate withKeyPath:@"enabled" options:@{NSValidatesImmediatelyBindingOption: @YES}];
     [enableCheckbox bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:negated()];
 
+    // a row of settings per scroll source
+    self.sourcesController=[[SourcesTableController alloc] initWithSourceTable:appDelegate.sourceTable];
+    NSView *const sources=self.sourcesController.view;
+    [sources bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:negated()];
+
     // permissions, shown only while something is missing
     NSView *const permissionsBox=[self makePermissionsBox];
     [permissionsBox bind:NSHiddenBinding toObject:permissions withKeyPath:PermissionsManagerKeyHasAllRequiredPermissions options:nil];
 
-    NSStackView *const pane=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeCenterX, 17, @[enableCheckbox, permissionsBox]);
+    NSStackView *const pane=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeCenterX, 17, @[enableCheckbox, sources, permissionsBox]);
     // hug the content more strongly than the window keeps its size, so the window fits the pane as sections show and hide
     [pane setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
     NSView *const view=[[NSView alloc] init];
@@ -457,6 +470,8 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
         [pane.leadingAnchor constraintEqualToAnchor:view.leadingAnchor constant:20],
         [view.trailingAnchor constraintEqualToAnchor:pane.trailingAnchor constant:20],
         bottom,
+        [sources.leadingAnchor constraintEqualToAnchor:pane.leadingAnchor],
+        [sources.trailingAnchor constraintEqualToAnchor:pane.trailingAnchor],
         [permissionsBox.leadingAnchor constraintEqualToAnchor:pane.leadingAnchor],
         [permissionsBox.trailingAnchor constraintEqualToAnchor:pane.trailingAnchor],
     ]];

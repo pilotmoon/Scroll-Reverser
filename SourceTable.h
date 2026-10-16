@@ -20,6 +20,13 @@ typedef NS_ENUM(NSInteger, ScrollDirectionMode) {
 static const NSInteger SourceRowMinStepSize=1;
 static const NSInteger SourceRowMaxStepSize=30;
 
+// A source counts as scrolling for this long after its last event.
+static const CFTimeInterval SourceRowScrollingInterval=0.25;
+
+// Posted, with the row as the object, when a source starts scrolling: on its first event, or its
+// first after SourceRowScrollingInterval without one.
+extern NSNotificationName const SourceRowDidStartScrollingNotification;
+
 // How to change one scroll event.
 typedef struct {
     BOOL reverseVertical;
@@ -52,6 +59,7 @@ typedef struct {
 @property (readonly) NSDate *firstSeen;
 @property (readonly) NSDate *lastSeen;
 @property (readonly) CFAbsoluteTime lastSeenTime;
+@property (readonly, getter=isScrolling) BOOL scrolling;
 // Total distance scrolled, in points, on both axes.
 @property (readonly) double scrollTotal;
 @property (readonly) BOOL seenContinuous;

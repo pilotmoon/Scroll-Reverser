@@ -31,6 +31,9 @@
 		C0D4DFE22E986D5900E40368 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0D4DFE12E986D5900E40368 /* Media.xcassets */; };
 		76D38FE335295C428003DE75 /* ScrollSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCBF0A41CAAB23FFA2A9D28 /* ScrollSource.m */; };
 		D3ABCE83108CB07D71F76FE9 /* SourceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496835211CF3731A45D623C0 /* SourceTable.m */; };
+		D811F056D7A9E674C362F12D /* SourceRow+Display.m in Sources */ = {isa = PBXBuildFile; fileRef = 7796A131298E4CFD93B8BC05 /* SourceRow+Display.m */; };
+		0EA36D58104C007CE1DF6865 /* SourceInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D61638A5C1B96F546D6B6777 /* SourceInfoViewController.m */; };
+		671C5ABFF947FA807B4B1549 /* SourcesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA762B70B9D66C5B5C21D4DE /* SourcesTableController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -125,6 +128,12 @@
 		8BC2E47D95EBDD351B400CF2 /* ScrollSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollSource.h; sourceTree = "<group>"; };
 		496835211CF3731A45D623C0 /* SourceTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceTable.m; sourceTree = "<group>"; };
 		5158F2F5ACC6F79F9ABF7FF3 /* SourceTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceTable.h; sourceTree = "<group>"; };
+		7796A131298E4CFD93B8BC05 /* SourceRow+Display.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SourceRow+Display.m"; sourceTree = "<group>"; };
+		F6825C5591FDB936F43D46A1 /* SourceRow+Display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SourceRow+Display.h"; sourceTree = "<group>"; };
+		D61638A5C1B96F546D6B6777 /* SourceInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceInfoViewController.m; sourceTree = "<group>"; };
+		9711C7CDB08079A54357F942 /* SourceInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceInfoViewController.h; sourceTree = "<group>"; };
+		FA762B70B9D66C5B5C21D4DE /* SourcesTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourcesTableController.m; sourceTree = "<group>"; };
+		D80F5A3FF11498359182D516 /* SourcesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourcesTableController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -163,6 +172,12 @@
 				01D9F8922386D5C1002F0EC0 /* PermissionsManager.m */,
 				01EB78C21324D574005390BD /* MouseTap.m */,
 				01EB78C31324D574005390BD /* MouseTap.h */,
+				D80F5A3FF11498359182D516 /* SourcesTableController.h */,
+				FA762B70B9D66C5B5C21D4DE /* SourcesTableController.m */,
+				9711C7CDB08079A54357F942 /* SourceInfoViewController.h */,
+				D61638A5C1B96F546D6B6777 /* SourceInfoViewController.m */,
+				F6825C5591FDB936F43D46A1 /* SourceRow+Display.h */,
+				7796A131298E4CFD93B8BC05 /* SourceRow+Display.m */,
 				5158F2F5ACC6F79F9ABF7FF3 /* SourceTable.h */,
 				496835211CF3731A45D623C0 /* SourceTable.m */,
 				8BC2E47D95EBDD351B400CF2 /* ScrollSource.h */,
@@ -374,6 +389,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				671C5ABFF947FA807B4B1549 /* SourcesTableController.m in Sources */,
+				0EA36D58104C007CE1DF6865 /* SourceInfoViewController.m in Sources */,
+				D811F056D7A9E674C362F12D /* SourceRow+Display.m in Sources */,
 				D3ABCE83108CB07D71F76FE9 /* SourceTable.m in Sources */,
 				76D38FE335295C428003DE75 /* ScrollSource.m in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,

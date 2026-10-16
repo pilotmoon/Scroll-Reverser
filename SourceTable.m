@@ -3,6 +3,8 @@
 
 #import "SourceTable.h"
 
+NSNotificationName const SourceRowDidStartScrollingNotification=@"SourceRowDidStartScrollingNotification";
+
 static NSString *const PrefsSources=@"Sources";
 
 static NSString *const kRowKind=@"Kind";
@@ -65,7 +67,7 @@ static NSDate *_dateValue(id obj)
 @property (readwrite) BOOL seenNonContinuous;
 @property (readwrite) BOOL seenNatural;
 @property (readwrite) BOOL seenClassic;
-- (void)recordSightingAtTime:(CFAbsoluteTime)time continuous:(BOOL)continuous natural:(BOOL)natural amount:(double)amount;
+- (BOOL)recordSightingAtTime:(CFAbsoluteTime)time continuous:(BOOL)continuous natural:(BOOL)natural amount:(double)amount;
 @end
 
 @implementation SourceRow
@@ -157,10 +159,11 @@ static NSDate *_dateValue(id obj)
     return dict;
 }
 
-/* Called for every event, so the totals and time are set directly, without change notifications:
- the settings window polls them. The flags change at most once each, and are observed. */
-- (void)recordSightingAtTime:(CFAbsoluteTime)time continuous:(BOOL)continuous natural:(BOOL)natural amount:(double)amount
+/* Called for every event, so the totals and time are set directly, without change notifications.
+ The flags change at most once each, and are observed. Returns whether the source has started scrolling. */
+- (BOOL)recordSightingAtTime:(CFAbsoluteTime)time continuous:(BOOL)continuous natural:(BOOL)natural amount:(double)amount
 {
+    const BOOL started=time-_lastSeenTime>=SourceRowScrollingInterval;
     _lastSeenTime=time;
     _scrollTotal+=amount;
     if (continuous&&!_seenContinuous) {
@@ -175,6 +178,7 @@ static NSDate *_dateValue(id obj)
     else if (!natural&&!_seenClassic) {
         self.seenClassic=YES;
     }
+    return started;
 }
 
 - (SourceAdjustment)adjustmentForNatural:(BOOL)natural continuous:(BOOL)continuous
@@ -193,6 +197,11 @@ static NSDate *_dateValue(id obj)
 - (NSDate *)lastSeen
 {
     return [NSDate dateWithTimeIntervalSinceReferenceDate:self.lastSeenTime];
+}
+
+- (BOOL)isScrolling
+{
+    return CFAbsoluteTimeGetCurrent()-self.lastSeenTime<SourceRowScrollingInterval;
 }
 
 - (BOOL)hasDeviceDirection
@@ -298,6 +307,7 @@ static NSDate *_dateValue(id obj)
 {
     const CFAbsoluteTime now=CFAbsoluteTimeGetCurrent();
     SourceRow *row=source==self.lastSource?self.lastRow:nil;
+    BOOL started=NO;
     if (!row) {
         row=self.rowsByKey[source.key];
         if (!row) {
@@ -307,6 +317,7 @@ static NSDate *_dateValue(id obj)
             [self didChangeValueForKey:@"rows"];
             NSLog(@"New source row %@", row);
             [self rowSettingsDidChange];
+            started=YES;
         }
         else if (source.name&&![source.name isEqualToString:row.reportedName]) {
             // for example a Bluetooth device renamed since the row was created
@@ -315,8 +326,14 @@ static NSDate *_dateValue(id obj)
         self.lastSource=source;
         self.lastRow=row;
     }
-    [row recordSightingAtTime:now continuous:continuous natural:natural amount:amount];
+    started=[row recordSightingAtTime:now continuous:continuous natural:natural amount:amount]||started;
     [self setNeedsSaveBy:now+kSightingSaveDelay];
+    if (started) {
+        // after the event has been handled, since observers may update the settings window
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:SourceRowDidStartScrollingNotification object:row];
+        });
+    }
     return row;
 }
 
