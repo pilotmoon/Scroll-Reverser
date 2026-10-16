@@ -30,7 +30,7 @@ static NSNumber *_numberValue(id obj)
     return [obj isKindOfClass:[NSNumber class]]?obj:nil;
 }
 
-/* Keys are fields joined by "|", with "#continuous" or "#discrete" on the end for split sources.
+/* Keys are fields joined by "|", with "#continuous" or "#discrete" on the end.
  Escape those separators, and the escape character, inside a field, so a key can't be read two ways. */
 static NSString *_escaped(NSString *field)
 {
@@ -45,32 +45,23 @@ static NSString *_escaped(NSString *field)
 @property (readwrite) ScrollSourceCategory category;
 @property (readwrite, nullable) NSString *name;
 @property (readwrite, nullable) NSString *path;
-@property (readwrite) BOOL splitByContinuity;
 @property (readwrite) BOOL continuous;
 @end
 
 @implementation ScrollSource
 
-+ (ScrollSource *)sourceWithKey:(NSString *)key kind:(ScrollSourceKind)kind category:(ScrollSourceCategory)category name:(NSString *)name path:(NSString *)path
-{
-    ScrollSource *const source=[[ScrollSource alloc] init];
-    source.key=key;
-    source.kind=kind;
-    source.category=category;
-    source.name=name;
-    source.path=path;
-    return source;
-}
-
-/* The identifier caches an array per sender or pid: one source, or two for a source split by
- continuity, indexed by the event's continuous flag. */
-+ (NSArray<ScrollSource *> *)splitSourcesWithKey:(NSString *)key kind:(ScrollSourceKind)kind name:(NSString *)name path:(NSString *)path
+/* The non-continuous and continuous sources for a key, indexed by the event's continuous flag.
+ The identifier caches this pair per sender or pid. */
++ (NSArray<ScrollSource *> *)sourcesWithKey:(NSString *)key kind:(ScrollSourceKind)kind category:(ScrollSourceCategory)category name:(NSString *)name path:(NSString *)path
 {
     NSMutableArray *const result=[NSMutableArray array];
     for (NSNumber *continuous in @[@NO, @YES]) {
-        NSString *const suffix=[continuous boolValue]?@"#continuous":@"#discrete";
-        ScrollSource *const source=[self sourceWithKey:[key stringByAppendingString:suffix] kind:kind category:ScrollSourceCategoryOther name:name path:path];
-        source.splitByContinuity=YES;
+        ScrollSource *const source=[[ScrollSource alloc] init];
+        source.key=[key stringByAppendingString:[continuous boolValue]?@"#continuous":@"#discrete"];
+        source.kind=kind;
+        source.category=category;
+        source.name=name;
+        source.path=path;
         source.continuous=[continuous boolValue];
         [result addObject:source];
     }
@@ -81,7 +72,7 @@ static NSString *_escaped(NSString *field)
  changes on every reconnect and every Universal Control session. Identical devices with
  no serial number share a key, and so share a row. The product name is used only when there
  is nothing better, since it can change: a Bluetooth device's is the name in Bluetooth settings. */
-+ (ScrollSource *)deviceSourceWithKind:(ScrollSourceKind)kind properties:(NSDictionary<NSString *, id> *)properties trackpadDriver:(BOOL)trackpadDriver
++ (NSArray<ScrollSource *> *)deviceSourcesWithKind:(ScrollSourceKind)kind properties:(NSDictionary<NSString *, id> *)properties trackpadDriver:(BOOL)trackpadDriver
 {
     NSString *const product=_stringValue(properties[@kIOHIDProductKey]);
     NSString *const transport=_stringValue(properties[@kIOHIDTransportKey]);
@@ -106,12 +97,12 @@ static NSString *_escaped(NSString *field)
     }
 
     const BOOL trackpad=trackpadDriver||[properties[kScrollAccelerationTypeKey] isEqual:kTrackpadScrollAcceleration];
-    return [self sourceWithKey:[parts componentsJoinedByString:@"|"] kind:kind category:trackpad?ScrollSourceCategoryTrackpad:ScrollSourceCategoryMouse name:product path:nil];
+    return [self sourcesWithKey:[parts componentsJoinedByString:@"|"] kind:kind category:trackpad?ScrollSourceCategoryTrackpad:ScrollSourceCategoryMouse name:product path:nil];
 }
 
 + (NSArray<ScrollSource *> *)appSourcesWithIdentifier:(NSString *)identifier name:(NSString *)name path:(NSString *)path
 {
-    return [self splitSourcesWithKey:[@"app|" stringByAppendingString:_escaped(identifier)] kind:ScrollSourceKindApp name:name path:path];
+    return [self sourcesWithKey:[@"app|" stringByAppendingString:_escaped(identifier)] kind:ScrollSourceKindApp category:ScrollSourceCategoryOther name:name path:path];
 }
 
 - (NSString *)description
@@ -140,7 +131,7 @@ static BOOL _conformsToSelfOrParent(io_service_t service, const char *className)
 }
 
 // The sender of a HID event is the registry entry ID of the HID event service.
-static ScrollSource *_localDeviceSource(IOHIDEventSenderID senderID)
+static NSArray<ScrollSource *> *_localDeviceSources(IOHIDEventSenderID senderID)
 {
     const io_service_t service=IOServiceGetMatchingService(kIOMainPortDefault, IORegistryEntryIDMatching(senderID));
     if (!service) {
@@ -153,13 +144,13 @@ static ScrollSource *_localDeviceSource(IOHIDEventSenderID senderID)
     // for a trackpad whose node lacks the scroll acceleration type
     const BOOL trackpadDriver=_conformsToSelfOrParent(service, "AppleMultitouchTrackpadHIDEventDriver");
     IOObjectRelease(service);
-    return [ScrollSource deviceSourceWithKind:ScrollSourceKindLocalDevice properties:properties trackpadDriver:trackpadDriver];
+    return [ScrollSource deviceSourcesWithKind:ScrollSourceKindLocalDevice properties:properties trackpadDriver:trackpadDriver];
 }
 
 /* Services created in user space, such as the ones Universal Control creates to mirror the
  other Mac's devices, are not in the IORegistry. Look for them in the HID event system
  instead. They copy the original device's properties, including the scroll acceleration type. */
-static ScrollSource *_remoteDeviceSource(IOHIDEventSenderID senderID)
+static NSArray<ScrollSource *> *_remoteDeviceSources(IOHIDEventSenderID senderID)
 {
     static IOHIDEventSystemClientRef client;
     if (!client) {
@@ -173,7 +164,7 @@ static ScrollSource *_remoteDeviceSource(IOHIDEventSenderID senderID)
             for (NSString *key in _identityPropertyKeys()) {
                 properties[key]=CFBridgingRelease(IOHIDServiceClientCopyProperty(service, (__bridge CFStringRef)key));
             }
-            return [ScrollSource deviceSourceWithKind:ScrollSourceKindRemoteDevice properties:properties trackpadDriver:NO];
+            return [ScrollSource deviceSourcesWithKind:ScrollSourceKindRemoteDevice properties:properties trackpadDriver:NO];
         }
     }
     return nil;
@@ -228,9 +219,9 @@ static NSArray<ScrollSource *> *_appSources(pid_t pid)
         self.pidSources=[NSMutableDictionary dictionary];
         self.pidExitSources=[NSMutableDictionary dictionary];
         // each bucket has its own prefix, so the first field of a key always says what kind it is
-        self.unidentifiedDeviceSources=[ScrollSource splitSourcesWithKey:@"unidentified-device" kind:ScrollSourceKindUnidentifiedDevice name:nil path:nil];
-        self.unknownAppSources=[ScrollSource splitSourcesWithKey:@"unknown-app" kind:ScrollSourceKindApp name:nil path:nil];
-        self.unidentifiedSources=[ScrollSource splitSourcesWithKey:@"unidentified" kind:ScrollSourceKindUnidentified name:nil path:nil];
+        self.unidentifiedDeviceSources=[ScrollSource sourcesWithKey:@"unidentified-device" kind:ScrollSourceKindUnidentifiedDevice category:ScrollSourceCategoryOther name:nil path:nil];
+        self.unknownAppSources=[ScrollSource sourcesWithKey:@"unknown-app" kind:ScrollSourceKindApp category:ScrollSourceCategoryOther name:nil path:nil];
+        self.unidentifiedSources=[ScrollSource sourcesWithKey:@"unidentified" kind:ScrollSourceKindUnidentified category:ScrollSourceCategoryOther name:nil path:nil];
     }
     return self;
 }
@@ -255,7 +246,7 @@ static NSArray<ScrollSource *> *_appSources(pid_t pid)
     else {
         sources=self.unidentifiedSources;
     }
-    return sources[[sources count]>1&&continuous?1:0];
+    return sources[continuous?1:0];
 }
 
 /* Registry entry IDs are not reused within a boot, so the result can be cached per sender.
@@ -270,11 +261,10 @@ static NSArray<ScrollSource *> *_appSources(pid_t pid)
         return sources;
     }
 
-    ScrollSource *const source=_localDeviceSource(senderID)?:_remoteDeviceSource(senderID);
-    if (source) {
-        sources=@[source];
+    sources=_localDeviceSources(senderID)?:_remoteDeviceSources(senderID);
+    if (sources) {
         [self.senderRetryTimes removeObjectForKey:key];
-        NSLog(@"HID sender 0x%llx is %@", senderID, source);
+        NSLog(@"HID sender 0x%llx is %@", senderID, sources[0]);
     }
     else {
         sources=self.unidentifiedDeviceSources;

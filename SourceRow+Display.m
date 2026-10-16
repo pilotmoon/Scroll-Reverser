@@ -79,8 +79,8 @@ static NSString *_unidentifiedSource(void)
                 symbol=@"rectangle.and.hand.point.up.left";
             }
             else {
-                // a mouse that only scrolls continuously has a touch surface, like the Magic Mouse
-                symbol=self.seenNonContinuous?@"computermouse":@"magicmouse";
+                // continuous scrolling from a mouse comes from a touch surface, like the Magic Mouse's
+                symbol=self.continuous?@"magicmouse":@"computermouse";
             }
             break;
         case ScrollSourceKindApp:
@@ -117,16 +117,8 @@ static NSString *_unidentifiedSource(void)
 
 - (NSString *)scrollingTypeDescription
 {
-    if (self.seenContinuous&&self.seenNonContinuous) {
-        return NSLocalizedString(@"Both continuous and discrete", @"Scrolling type of a source that has scrolled both continuously, like a trackpad, and in steps, like a scroll wheel");
-    }
-    if (self.seenContinuous) {
-        return NSLocalizedString(@"Continuous", @"Scrolling type of a source that scrolls continuously, like a trackpad");
-    }
-    if (self.seenNonContinuous) {
-        return NSLocalizedString(@"Discrete", @"Scrolling type of a source that scrolls in steps, like a scroll wheel");
-    }
-    return @"—";
+    return self.continuous?NSLocalizedString(@"Continuous", @"Scrolling type of a source that scrolls continuously, like a trackpad"):
+        NSLocalizedString(@"Discrete", @"Scrolling type of a source that scrolls in steps, like a scroll wheel");
 }
 
 - (NSString *)systemDirectionDescription

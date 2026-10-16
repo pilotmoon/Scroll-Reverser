@@ -98,13 +98,13 @@ static CGEventRef _callback(CGEventTapProxy proxy,
 
         // the source, identified by the HID event sender or posting process, and its settings
         ScrollSource *const source=[tap->_sourceIdentifier sourceForHIDEvent:ioHidEventRef pid:(pid_t)pid continuous:continuous];
-        SourceRow *const row=[tap->_sourceTable recordSource:source continuous:continuous natural:natural amount:llabs(point_axis1)+llabs(point_axis2)];
+        SourceRow *const row=[tap->_sourceTable recordSource:source natural:natural amount:llabs(point_axis1)+llabs(point_axis2)];
         if (tap->logger) {
             [tap->logger logObject:ioHidEventRef?[NSString stringWithFormat:@"0x%llx", IOHIDEventGetSenderID(ioHidEventRef)]:@"-" forKey:@"sender"];
             [tap->logger logObject:source.key forKey:@"sourcekey"];
         }
         // what to change, by the row's settings
-        const SourceAdjustment adjustment=[row adjustmentForNatural:natural continuous:continuous];
+        const SourceAdjustment adjustment=[row adjustmentForNatural:natural];
         const BOOL reverseVertical=adjustment.reverseVertical;
         const BOOL reverseHorizontal=adjustment.reverseHorizontal;
         [tap->logger logBool:reverseVertical forKey:@"reverseV"];

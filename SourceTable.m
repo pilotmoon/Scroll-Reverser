@@ -9,7 +9,6 @@ static NSString *const PrefsSources=@"Sources";
 
 static NSString *const kRowKind=@"Kind";
 static NSString *const kRowCategory=@"Category";
-static NSString *const kRowSplitByContinuity=@"SplitByContinuity";
 static NSString *const kRowContinuous=@"Continuous";
 static NSString *const kRowReportedName=@"ReportedName";
 static NSString *const kRowPath=@"Path";
@@ -21,8 +20,6 @@ static NSString *const kRowStepSize=@"StepSize";
 static NSString *const kRowFirstSeen=@"FirstSeen";
 static NSString *const kRowLastSeen=@"LastSeen";
 static NSString *const kRowScrollTotal=@"ScrollTotal";
-static NSString *const kRowSeenNonContinuous=@"SeenNonContinuous";
-static NSString *const kRowSeenContinuous=@"SeenContinuous";
 static NSString *const kRowSeenNatural=@"SeenNatural";
 static NSString *const kRowSeenClassic=@"SeenClassic";
 
@@ -56,27 +53,24 @@ static NSDate *_dateValue(id obj)
 @property (readwrite) NSString *key;
 @property (readwrite) ScrollSourceKind kind;
 @property (readwrite) ScrollSourceCategory category;
-@property (readwrite) BOOL splitByContinuity;
 @property (readwrite) BOOL continuous;
 @property (readwrite, nullable, nonatomic, copy) NSString *reportedName;
 @property (readwrite, nullable) NSString *path;
 @property (readwrite) NSDate *firstSeen;
 @property (readwrite) CFAbsoluteTime lastSeenTime;
 @property (readwrite) double scrollTotal;
-@property (readwrite) BOOL seenContinuous;
-@property (readwrite) BOOL seenNonContinuous;
 @property (readwrite) BOOL seenNatural;
 @property (readwrite) BOOL seenClassic;
-- (BOOL)recordSightingAtTime:(CFAbsoluteTime)time continuous:(BOOL)continuous natural:(BOOL)natural amount:(double)amount;
+- (BOOL)recordSightingAtTime:(CFAbsoluteTime)time natural:(BOOL)natural amount:(double)amount;
 @end
 
 @implementation SourceRow
 
 /* Defaults: trackpads natural, other devices classic, and apps unchanged. Horizontal scrolling
- matches vertical only for sources whose first scrolling is non-continuous, such as wheel mice:
- trackpads and the Magic Mouse use horizontal swipes for gestures such as swiping between pages.
- Step size is as in 1.x. */
-- (instancetype)initWithSource:(ScrollSource *)source continuous:(BOOL)continuous table:(SourceTable *)table
+ matches vertical only for non-continuous scrolling from devices other than trackpads, such as wheel
+ mice: continuous horizontal scrolling, as on trackpads and the Magic Mouse, doubles as gestures
+ such as swiping between pages. Step size is as in 1.x. */
+- (instancetype)initWithSource:(ScrollSource *)source table:(SourceTable *)table
 {
     self=[super init];
     if (self) {
@@ -84,13 +78,12 @@ static NSDate *_dateValue(id obj)
         _key=source.key;
         _kind=source.kind;
         _category=source.category;
-        _splitByContinuity=source.splitByContinuity;
         _continuous=source.continuous;
         _reportedName=source.name;
         _path=source.path;
         const BOOL trackpad=_category==ScrollSourceCategoryTrackpad;
         _verticalMode=!self.hasDeviceDirection?ScrollDirectionModeUnchanged:trackpad?ScrollDirectionModeNatural:ScrollDirectionModeClassic;
-        _horizontalMatchesVertical=!trackpad&&!continuous;
+        _horizontalMatchesVertical=!trackpad&&!_continuous;
         _stepSizeEnabled=YES;
         _stepSize=3;
         _lastSeenTime=CFAbsoluteTimeGetCurrent();
@@ -111,7 +104,6 @@ static NSDate *_dateValue(id obj)
         _key=key;
         _kind=[dict[kRowKind] integerValue];
         _category=[dict[kRowCategory] integerValue];
-        _splitByContinuity=[_numberValue(dict[kRowSplitByContinuity]) boolValue];
         _continuous=[_numberValue(dict[kRowContinuous]) boolValue];
         _reportedName=_stringValue(dict[kRowReportedName]);
         _path=_stringValue(dict[kRowPath]);
@@ -124,8 +116,6 @@ static NSDate *_dateValue(id obj)
         _lastSeenTime=[lastSeen timeIntervalSinceReferenceDate];
         _firstSeen=_dateValue(dict[kRowFirstSeen])?:lastSeen;
         _scrollTotal=[_numberValue(dict[kRowScrollTotal]) doubleValue];
-        _seenNonContinuous=[_numberValue(dict[kRowSeenNonContinuous]) boolValue];
-        _seenContinuous=[_numberValue(dict[kRowSeenContinuous]) boolValue];
         _seenNatural=[_numberValue(dict[kRowSeenNatural]) boolValue];
         _seenClassic=[_numberValue(dict[kRowSeenClassic]) boolValue];
     }
@@ -137,6 +127,7 @@ static NSDate *_dateValue(id obj)
     NSMutableDictionary *const dict=[@{
         kRowKind: @(self.kind),
         kRowCategory: @(self.category),
+        kRowContinuous: @(self.continuous),
         kRowVerticalMode: @(self.verticalMode),
         kRowHorizontalMatchesVertical: @(self.horizontalMatchesVertical),
         kRowStepSizeEnabled: @(self.stepSizeEnabled),
@@ -144,15 +135,9 @@ static NSDate *_dateValue(id obj)
         kRowFirstSeen: self.firstSeen,
         kRowLastSeen: self.lastSeen,
         kRowScrollTotal: @(self.scrollTotal),
-        kRowSeenNonContinuous: @(self.seenNonContinuous),
-        kRowSeenContinuous: @(self.seenContinuous),
         kRowSeenNatural: @(self.seenNatural),
         kRowSeenClassic: @(self.seenClassic),
     } mutableCopy];
-    if (self.splitByContinuity) {
-        dict[kRowSplitByContinuity]=@YES;
-        dict[kRowContinuous]=@(self.continuous);
-    }
     dict[kRowReportedName]=self.reportedName;
     dict[kRowPath]=self.path;
     dict[kRowCustomName]=self.customName;
@@ -161,17 +146,11 @@ static NSDate *_dateValue(id obj)
 
 /* Called for every event, so the totals and time are set directly, without change notifications.
  The flags change at most once each, and are observed. Returns whether the source has started scrolling. */
-- (BOOL)recordSightingAtTime:(CFAbsoluteTime)time continuous:(BOOL)continuous natural:(BOOL)natural amount:(double)amount
+- (BOOL)recordSightingAtTime:(CFAbsoluteTime)time natural:(BOOL)natural amount:(double)amount
 {
     const BOOL started=time-_lastSeenTime>=SourceRowScrollingInterval;
     _lastSeenTime=time;
     _scrollTotal+=amount;
-    if (continuous&&!_seenContinuous) {
-        self.seenContinuous=YES;
-    }
-    else if (!continuous&&!_seenNonContinuous) {
-        self.seenNonContinuous=YES;
-    }
     if (natural&&!_seenNatural) {
         self.seenNatural=YES;
     }
@@ -181,7 +160,7 @@ static NSDate *_dateValue(id obj)
     return started;
 }
 
-- (SourceAdjustment)adjustmentForNatural:(BOOL)natural continuous:(BOOL)continuous
+- (SourceAdjustment)adjustmentForNatural:(BOOL)natural
 {
     const ScrollDirectionMode mode=self.verticalMode;
     const BOOL reverseVertical=mode==ScrollDirectionModeReversed||
@@ -190,7 +169,7 @@ static NSDate *_dateValue(id obj)
     return (SourceAdjustment){
         .reverseVertical=reverseVertical,
         .reverseHorizontal=reverseVertical&&self.horizontalMatchesVertical,
-        .stepSize=continuous||!self.stepSizeEnabled?1:MIN(MAX(self.stepSize, SourceRowMinStepSize), SourceRowMaxStepSize),
+        .stepSize=self.continuous||!self.stepSizeEnabled?1:MIN(MAX(self.stepSize, SourceRowMinStepSize), SourceRowMaxStepSize),
     };
 }
 
@@ -207,16 +186,6 @@ static NSDate *_dateValue(id obj)
 - (BOOL)hasDeviceDirection
 {
     return self.kind==ScrollSourceKindLocalDevice||self.kind==ScrollSourceKindRemoteDevice||self.kind==ScrollSourceKindUnidentifiedDevice;
-}
-
-- (BOOL)showsStepSize
-{
-    return self.splitByContinuity?!self.continuous:self.seenNonContinuous;
-}
-
-+ (NSSet *)keyPathsForValuesAffectingShowsStepSize
-{
-    return [NSSet setWithObject:@"seenNonContinuous"];
 }
 
 - (void)setReportedName:(NSString *)reportedName
@@ -303,7 +272,7 @@ static NSDate *_dateValue(id obj)
     return [self.rowsByKey allValues];
 }
 
-- (SourceRow *)recordSource:(ScrollSource *)source continuous:(BOOL)continuous natural:(BOOL)natural amount:(double)amount
+- (SourceRow *)recordSource:(ScrollSource *)source natural:(BOOL)natural amount:(double)amount
 {
     const CFAbsoluteTime now=CFAbsoluteTimeGetCurrent();
     SourceRow *row=source==self.lastSource?self.lastRow:nil;
@@ -311,7 +280,7 @@ static NSDate *_dateValue(id obj)
     if (!row) {
         row=self.rowsByKey[source.key];
         if (!row) {
-            row=[[SourceRow alloc] initWithSource:source continuous:continuous table:self];
+            row=[[SourceRow alloc] initWithSource:source table:self];
             [self willChangeValueForKey:@"rows"];
             self.rowsByKey[source.key]=row;
             [self didChangeValueForKey:@"rows"];
@@ -326,7 +295,7 @@ static NSDate *_dateValue(id obj)
         self.lastSource=source;
         self.lastRow=row;
     }
-    started=[row recordSightingAtTime:now continuous:continuous natural:natural amount:amount]||started;
+    started=[row recordSightingAtTime:now natural:natural amount:amount]||started;
     [self setNeedsSaveBy:now+kSightingSaveDelay];
     if (started) {
         // after the event has been handled, since observers may update the settings window

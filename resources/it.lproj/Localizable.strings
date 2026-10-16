@@ -13,9 +13,6 @@
 /* Label before the pop-up menu that chooses how updates are handled */
 "Automatic updates:" = "Aggiornamenti automatici:";
 
-/* Scrolling type of a source that has scrolled both continuously, like a trackpad, and in steps, like a scroll wheel */
-"Both continuous and discrete" = "Continuo e a scatti";
-
 /* System direction of a source whose scrolling the system has delivered both ways */
 "Both natural and classic" = "Naturale e classico";
 

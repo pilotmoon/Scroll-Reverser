@@ -40,8 +40,8 @@ typedef struct {
 @property (readonly) NSString *key;
 @property (readonly) ScrollSourceKind kind;
 @property (readonly) ScrollSourceCategory category;
-@property (readonly) BOOL splitByContinuity;
-@property (readonly) BOOL continuous; // only meaningful if splitByContinuity
+// Whether the source's scrolling is continuous, like a trackpad's, rather than in steps, like a wheel's.
+@property (readonly) BOOL continuous;
 // Whether the source's events are HID events, which offer Natural and Classic rather than Reversed.
 @property (readonly) BOOL hasDeviceDirection;
 // As reported by the device or app when the source was last looked up.
@@ -62,17 +62,13 @@ typedef struct {
 @property (readonly, getter=isScrolling) BOOL scrolling;
 // Total distance scrolled, in points, on both axes.
 @property (readonly) double scrollTotal;
-@property (readonly) BOOL seenContinuous;
-@property (readonly) BOOL seenNonContinuous;
 // Whether the system has delivered this source's events with natural scrolling applied
 // (NSEvent's isDirectionInvertedFromDevice), without, or both.
 @property (readonly) BOOL seenNatural;
 @property (readonly) BOOL seenClassic;
-// Step size applies only to non-continuous scrolling.
-@property (readonly) BOOL showsStepSize;
-
 // The reversing rule. `natural` is whether the system applied natural scrolling to the event.
-- (SourceAdjustment)adjustmentForNatural:(BOOL)natural continuous:(BOOL)continuous;
+// Step size applies only to non-continuous scrolling.
+- (SourceAdjustment)adjustmentForNatural:(BOOL)natural;
 
 @end
 
@@ -87,7 +83,7 @@ typedef struct {
 @property (readonly) NSArray<SourceRow *> *rows;
 
 // Called for every scroll event, so it is cheap: sightings are saved in batches.
-- (SourceRow *)recordSource:(ScrollSource *)source continuous:(BOOL)continuous natural:(BOOL)natural amount:(double)amount;
+- (SourceRow *)recordSource:(ScrollSource *)source natural:(BOOL)natural amount:(double)amount;
 - (void)removeRow:(SourceRow *)row;
 
 // Write any unsaved changes now.

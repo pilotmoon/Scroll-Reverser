@@ -490,12 +490,12 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     NSStackView *const controls=[NSStackView stackViewWithViews:@[checkbox, field, stepper]];
     controls.spacing=4;
     [controls setCustomSpacing:0 afterView:field];
-    [controls bind:NSHiddenBinding toObject:cell withKeyPath:@"objectValue.showsStepSize" options:_negated()];
+    [controls bind:NSHiddenBinding toObject:cell withKeyPath:@"objectValue.continuous" options:nil];
 
     NSTextField *const continuousLabel=[DimmingLabel labelWithString:NSLocalizedString(@"Continuous", @"Scrolling type of a source that scrolls continuously, like a trackpad")];
     continuousLabel.font=_smallFont();
     continuousLabel.textColor=[NSColor secondaryLabelColor];
-    [continuousLabel bind:NSHiddenBinding toObject:cell withKeyPath:@"objectValue.showsStepSize" options:nil];
+    [continuousLabel bind:NSHiddenBinding toObject:cell withKeyPath:@"objectValue.continuous" options:_negated()];
 
     return [NSStackView stackViewWithViews:@[controls, continuousLabel]];
 }

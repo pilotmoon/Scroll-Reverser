@@ -16,17 +16,20 @@ settings, and the user decides per row. The UI shows what the system actually te
 
 ## Sources
 
-| The event carries | Source | Split by continuity? |
-|---|---|---|
-| HID event whose sender is found in the IORegistry | Device | No |
-| HID event whose sender is a virtual service found via `IOHIDEventSystemClient` (Universal Control) | Universal Control device | No |
-| HID event, but sender 0 or still unresolved after retries | Unidentified device | Yes |
-| No HID event, pid ≠ 0 | App | Yes |
-| No HID event, pid 0 (Sidecar, in practice) | Unidentified source | Yes |
+| The event carries | Source |
+|---|---|
+| HID event whose sender is found in the IORegistry | Device |
+| HID event whose sender is a virtual service found via `IOHIDEventSystemClient` (Universal Control) | Universal Control device |
+| HID event, but sender 0 or still unresolved after retries | Unidentified device |
+| No HID event, pid ≠ 0 | App |
+| No HID event, pid 0 (Sidecar, in practice) | Unidentified source |
 
-- **Split by continuity:** the source gets separate rows for continuous and non-continuous
-  scrolling, each created only when that kind is first seen. For example, Screen Sharing
-  forwards a remote trackpad (continuous) and a remote wheel mouse (non-continuous).
+- **Split by continuity, always:** every source has separate rows for continuous and
+  non-continuous scrolling, each created only when that kind is first seen. Continuity, rather
+  than the device, is what decides how scrolling feels (a touch surface or a wheel), so it's a
+  dimension of every source rather than an assumption about devices. For example, Screen Sharing
+  forwards a remote trackpad (continuous) and a remote wheel mouse (non-continuous), and the
+  Mighty Mouse's ball is continuous.
 - **Category,** for display and defaults:
   - **Trackpad:** a device whose `HIDScrollAccelerationType` is
     `HIDTrackpadScrollAcceleration`, or which is driven by `AppleMultitouchTrackpadHIDEventDriver`
@@ -80,16 +83,16 @@ of anything the user can rename or replug.
 
 | Source | Key |
 |---|---|
-| Device with a serial | `device\|Transport\|VID\|PID\|sn:Serial` |
-| Device without a serial | `device\|Transport\|VID\|PID` |
-| Device with no serial and VID/PID 0 | `device\|Transport\|0\|0\|Product` |
-| Universal Control device | `remote\|…`, same rules |
-| App | `app\|BundleID#continuous` or `#discrete`, or `app\|/executable/path#…` |
-| Unidentified device | `unidentified-device#continuous` or `#discrete` |
+| Device with a serial | `device\|Transport\|VID\|PID\|sn:Serial#continuous` or `#discrete` |
+| Device without a serial | `device\|Transport\|VID\|PID#…` |
+| Device with no serial and VID/PID 0 | `device\|Transport\|0\|0\|Product#…` |
+| Universal Control device | `remote\|…#…`, same rules |
+| App | `app\|BundleID#…`, or `app\|/executable/path#…` |
+| Unidentified device | `unidentified-device#…` |
 | Process gone before lookup | `unknown-app#…` |
 | No HID event, pid 0 | `unidentified#…` |
 
-- The first field names the kind.
+- The first field names the kind, and every key ends in `#continuous` or `#discrete`.
 - `%`, `|` and `#` inside a field are escaped as `%25`, `%7C` and `%23`, so a key can be read only
   one way.
 - The same physical device on a different connection gets a different key, and so a different
@@ -110,8 +113,8 @@ of anything the user can rename or replug.
 - **Horizontal scrolling:** Unchanged or Match vertical. Match vertical gives horizontal the same
   reversal as vertical. macOS applies natural scrolling to both axes, so a Classic wheel mouse
   needs this to scroll classic both ways.
-- **Step size** (enabled + 1…30 lines): applies only to non-continuous scrolling, and is shown
-  only for rows that have seen it.
+- **Step size** (enabled + 1…30 lines): applies only to non-continuous scrolling, so it's shown
+  only for non-continuous rows.
 - **Custom name:** optional.
 
 ### The reversing rule
@@ -139,8 +142,8 @@ nothing for the user to configure.
 
 - **Scrolling:** Natural for trackpads, Classic for other devices, Unchanged for app rows and
   unidentified sources.
-- **Horizontal:** Match vertical only when the row isn't a trackpad and its first event is
-  non-continuous (wheel mice). Trackpads and the Magic Mouse use horizontal swipes for gestures.
+- **Horizontal:** Match vertical only for non-continuous rows that aren't trackpads (wheel mice).
+  Continuous horizontal scrolling, as on trackpads and the Magic Mouse, doubles as gestures.
 - **Step size:** on, at 3.
 
 ### Master switch
@@ -156,7 +159,7 @@ disabled, and the labels and icons are dimmed to half opacity. The ⓘ button st
 
 - First seen and last seen.
 - Total distance scrolled, in points on both axes.
-- Whether continuous and non-continuous scrolling have been seen.
+- Whether it's the continuous or the non-continuous row.
 - Whether events arrived with natural scrolling applied, without it, or both.
 - Kind, category, reported name and path. The reported name is refreshed whenever the source is
   looked up again, e.g. on reconnect.
@@ -179,10 +182,10 @@ when the permissions box shows instead. The App pane is unchanged from 1.x.
 
 | Column | Content |
 |---|---|
-| Icon | An app's own icon at 18×18. Devices use SF Symbols drawn at 13pt (not scaled to fit): `rectangle.and.hand.point.up.left` for trackpads, `magicmouse` for a mouse that has only scrolled continuously, `computermouse` otherwise. `app` for an app that can't be found, and `questionmark.circle` for unidentified sources. |
+| Icon | An app's own icon at 18×18. Devices use SF Symbols drawn at 13pt (not scaled to fit): `rectangle.and.hand.point.up.left` for trackpads, `magicmouse` for a mouse's continuous row, `computermouse` for its non-continuous row. `app` for an app that can't be found, and `questionmark.circle` for unidentified sources. |
 | Source | The name, truncated, with the full name as its tooltip. Not editable here. |
 | Scrolling | A pop-up: Natural / Classic / Unchanged, or Reversed / Unchanged. |
-| Step size | Checkbox, number field and stepper (1…30), or "Continuous" in secondary text when the row hasn't seen non-continuous scrolling. |
+| Step size | Checkbox, number field and stepper (1…30), or "Continuous" in secondary text for a continuous row. |
 | Last used | "Just now" within the last minute, then a relative time ("5 min ago"). |
 | ⓘ | Opens the row's info popover. |
 
@@ -196,7 +199,7 @@ The custom name if set, or else the default name:
 - With no reported name, the default is "Unnamed device", "Unidentified device", "Unknown app" or
   "Unidentified source".
 - Names never mention continuity. A source with both a continuous and a non-continuous row shows
-  the same name twice. That's rare, and accepted.
+  the same name twice; the Step size column tells them apart.
 
 ### Order
 
@@ -225,7 +228,7 @@ silent.
    - **Reported name.**
    - **Identifier:** the row key.
    - **Path:** apps only.
-   - **Scrolling type:** Continuous, Discrete, or Both continuous and discrete.
+   - **Scrolling type:** Continuous or Discrete.
    - **System direction:** Natural, Classic, Both natural and classic, or "Unknown" for app rows
      and unidentified sources.
    - **First seen.**
@@ -312,3 +315,6 @@ From 16 Oct 2026, with Nick:
   out to be wrong: Accessibility covers it. Worth revisiting if discovery while off is wanted.)
 - **Hint text for known re-posters** (e.g. "Logitech devices handled by Options+"): left out of
   2.0.
+- **Devices split by continuity too:** every source now has continuous and non-continuous rows,
+  where at first only sources that don't identify a device were split. It's one rule, and it doesn't
+  assume a device scrolls only one way.

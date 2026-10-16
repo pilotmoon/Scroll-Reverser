@@ -13,9 +13,6 @@
 /* Label before the pop-up menu that chooses how updates are handled */
 "Automatic updates:" = "자동 업데이트:";
 
-/* Scrolling type of a source that has scrolled both continuously, like a trackpad, and in steps, like a scroll wheel */
-"Both continuous and discrete" = "연속 및 단계별";
-
 /* System direction of a source whose scrolling the system has delivered both ways */
 "Both natural and classic" = "자연스럽게 및 클래식";
 

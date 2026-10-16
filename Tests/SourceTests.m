@@ -6,9 +6,15 @@
 #import "ScrollSource.h"
 #import "SourceTable.h"
 
+// the device's non-continuous source
 static ScrollSource *_device(NSDictionary *properties)
 {
-    return [ScrollSource deviceSourceWithKind:ScrollSourceKindLocalDevice properties:properties trackpadDriver:NO];
+    return [ScrollSource deviceSourcesWithKind:ScrollSourceKindLocalDevice properties:properties trackpadDriver:NO][0];
+}
+
+static ScrollSource *_continuousDevice(NSDictionary *properties)
+{
+    return [ScrollSource deviceSourcesWithKind:ScrollSourceKindLocalDevice properties:properties trackpadDriver:NO][1];
 }
 
 #pragma mark - Keys
@@ -22,10 +28,26 @@ static ScrollSource *_device(NSDictionary *properties)
 {
     ScrollSource *const source=_device(@{@kIOHIDTransportKey: @"Bluetooth", @kIOHIDVendorIDKey: @76, @kIOHIDProductIDKey: @617,
                                          @kIOHIDSerialNumberKey: @"A8:91:3D:31:4C:6A", @kIOHIDProductKey: @"Nick's Mouse"});
-    XCTAssertEqualObjects(source.key, @"device|Bluetooth|76|617|sn:A8:91:3D:31:4C:6A");
+    XCTAssertEqualObjects(source.key, @"device|Bluetooth|76|617|sn:A8:91:3D:31:4C:6A#discrete");
     XCTAssertEqualObjects(source.name, @"Nick's Mouse");
     XCTAssertEqual(source.kind, ScrollSourceKindLocalDevice);
-    XCTAssertFalse(source.splitByContinuity);
+    XCTAssertFalse(source.continuous);
+}
+
+- (void)testDeviceIsSplitByContinuity
+{
+    NSArray<ScrollSource *> *const sources=[ScrollSource deviceSourcesWithKind:ScrollSourceKindLocalDevice
+                                                                     properties:@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1118, @kIOHIDProductIDKey: @64, @kIOHIDProductKey: @"Mouse"}
+                                                                 trackpadDriver:NO];
+    XCTAssertEqual([sources count], 2);
+    XCTAssertEqualObjects(sources[0].key, @"device|USB|1118|64#discrete");
+    XCTAssertEqualObjects(sources[1].key, @"device|USB|1118|64#continuous");
+    XCTAssertFalse(sources[0].continuous);
+    XCTAssertTrue(sources[1].continuous);
+    for (ScrollSource *source in sources) {
+        XCTAssertEqual(source.category, ScrollSourceCategoryMouse);
+        XCTAssertEqualObjects(source.name, @"Mouse");
+    }
 }
 
 // the name is left out, so renaming a Bluetooth device keeps its row
@@ -33,43 +55,43 @@ static ScrollSource *_device(NSDictionary *properties)
 {
     ScrollSource *const source=_device(@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1118, @kIOHIDProductIDKey: @64,
                                          @kIOHIDProductKey: @"Microsoft 3-Button Mouse with IntelliEye(TM)", @kIOHIDLocationIDKey: @0x14100000});
-    XCTAssertEqualObjects(source.key, @"device|USB|1118|64");
+    XCTAssertEqualObjects(source.key, @"device|USB|1118|64#discrete");
 }
 
 - (void)testDeviceWithoutSerialOrIDsUsesName
 {
     ScrollSource *const source=_device(@{@kIOHIDTransportKey: @"FIFO", @kIOHIDVendorIDKey: @0, @kIOHIDProductIDKey: @0,
                                          @kIOHIDProductKey: @"Apple Internal Keyboard / Trackpad"});
-    XCTAssertEqualObjects(source.key, @"device|FIFO|0|0|Apple Internal Keyboard / Trackpad");
+    XCTAssertEqualObjects(source.key, @"device|FIFO|0|0|Apple Internal Keyboard / Trackpad#discrete");
 }
 
 - (void)testDeviceWithNoProperties
 {
-    XCTAssertEqualObjects(_device(@{}).key, @"device||||");
+    XCTAssertEqualObjects(_device(@{}).key, @"device||||#discrete");
 }
 
 - (void)testEmptySerialIsIgnored
 {
-    XCTAssertEqualObjects(_device(@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1, @kIOHIDProductIDKey: @2, @kIOHIDSerialNumberKey: @""}).key, @"device|USB|1|2");
+    XCTAssertEqualObjects(_device(@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1, @kIOHIDProductIDKey: @2, @kIOHIDSerialNumberKey: @""}).key, @"device|USB|1|2#discrete");
 }
 
 - (void)testRemoteDevice
 {
-    ScrollSource *const source=[ScrollSource deviceSourceWithKind:ScrollSourceKindRemoteDevice
-                                                       properties:@{@kIOHIDTransportKey: @"Virtual", @kIOHIDVendorIDKey: @76, @kIOHIDProductIDKey: @613, @kIOHIDProductKey: @"V-Magic Trackpad"}
-                                                   trackpadDriver:NO];
-    XCTAssertEqualObjects(source.key, @"remote|Virtual|76|613");
+    ScrollSource *const source=[ScrollSource deviceSourcesWithKind:ScrollSourceKindRemoteDevice
+                                                        properties:@{@kIOHIDTransportKey: @"Virtual", @kIOHIDVendorIDKey: @76, @kIOHIDProductIDKey: @613, @kIOHIDProductKey: @"V-Magic Trackpad"}
+                                                    trackpadDriver:NO][1];
+    XCTAssertEqualObjects(source.key, @"remote|Virtual|76|613#continuous");
     XCTAssertEqual(source.kind, ScrollSourceKindRemoteDevice);
 }
 
 - (void)testSeparatorsInFieldsAreEscaped
 {
     ScrollSource *const serial=_device(@{@kIOHIDTransportKey: @"a|b", @kIOHIDVendorIDKey: @1, @kIOHIDProductIDKey: @2, @kIOHIDSerialNumberKey: @"x#y%z|"});
-    XCTAssertEqualObjects(serial.key, @"device|a%7Cb|1|2|sn:x%23y%25z%7C");
+    XCTAssertEqualObjects(serial.key, @"device|a%7Cb|1|2|sn:x%23y%25z%7C#discrete");
     ScrollSource *const product=_device(@{@kIOHIDTransportKey: @"SPI", @kIOHIDProductKey: @"100% #1 | best"});
-    XCTAssertEqualObjects(product.key, @"device|SPI|||100%25 %231 %7C best");
+    XCTAssertEqualObjects(product.key, @"device|SPI|||100%25 %231 %7C best#discrete");
     // an escape sequence in the original text is escaped too, so it can't be mistaken for a separator
-    XCTAssertEqualObjects(_device(@{@kIOHIDTransportKey: @"%7C"}).key, @"device|%257C|||");
+    XCTAssertEqualObjects(_device(@{@kIOHIDTransportKey: @"%7C"}).key, @"device|%257C|||#discrete");
 }
 
 - (void)testCategory
@@ -77,7 +99,7 @@ static ScrollSource *_device(NSDictionary *properties)
     XCTAssertEqual(_device(@{@"HIDScrollAccelerationType": @"HIDTrackpadScrollAcceleration"}).category, ScrollSourceCategoryTrackpad);
     XCTAssertEqual(_device(@{@"HIDScrollAccelerationType": @"HIDMouseScrollAcceleration"}).category, ScrollSourceCategoryMouse);
     XCTAssertEqual(_device(@{}).category, ScrollSourceCategoryMouse);
-    XCTAssertEqual([ScrollSource deviceSourceWithKind:ScrollSourceKindLocalDevice properties:@{} trackpadDriver:YES].category, ScrollSourceCategoryTrackpad);
+    XCTAssertEqual([ScrollSource deviceSourcesWithKind:ScrollSourceKindLocalDevice properties:@{} trackpadDriver:YES][1].category, ScrollSourceCategoryTrackpad);
 }
 
 - (void)testAppIsSplitByContinuity
@@ -89,7 +111,6 @@ static ScrollSource *_device(NSDictionary *properties)
     XCTAssertFalse(sources[0].continuous);
     XCTAssertTrue(sources[1].continuous);
     for (ScrollSource *source in sources) {
-        XCTAssertTrue(source.splitByContinuity);
         XCTAssertEqual(source.kind, ScrollSourceKindApp);
         XCTAssertEqual(source.category, ScrollSourceCategoryOther);
         XCTAssertEqualObjects(source.name, @"Logi Options+");
@@ -129,20 +150,20 @@ static ScrollSource *_device(NSDictionary *properties)
 
 - (SourceRow *)trackpad
 {
-    ScrollSource *const source=_device(@{@kIOHIDTransportKey: @"FIFO", @kIOHIDProductKey: @"Trackpad", @"HIDScrollAccelerationType": @"HIDTrackpadScrollAcceleration"});
-    return [self.table recordSource:source continuous:YES natural:YES amount:1];
+    ScrollSource *const source=_continuousDevice(@{@kIOHIDTransportKey: @"FIFO", @kIOHIDProductKey: @"Trackpad", @"HIDScrollAccelerationType": @"HIDTrackpadScrollAcceleration"});
+    return [self.table recordSource:source natural:YES amount:1];
 }
 
 - (SourceRow *)wheelMouse
 {
     ScrollSource *const source=_device(@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1118, @kIOHIDProductIDKey: @64});
-    return [self.table recordSource:source continuous:NO natural:YES amount:1];
+    return [self.table recordSource:source natural:YES amount:1];
 }
 
 - (SourceRow *)app
 {
     ScrollSource *const source=[ScrollSource appSourcesWithIdentifier:@"com.example.app" name:@"Example" path:@"/Applications/Example.app"][0];
-    return [self.table recordSource:source continuous:NO natural:NO amount:1];
+    return [self.table recordSource:source natural:NO amount:1];
 }
 
 - (void)testDefaults
@@ -158,8 +179,8 @@ static ScrollSource *_device(NSDictionary *properties)
     XCTAssertTrue(mouse.stepSizeEnabled);
     XCTAssertEqual(mouse.stepSize, 3);
 
-    // a mouse whose first scrolling is continuous, like the Magic Mouse, keeps horizontal swipes for gestures
-    SourceRow *const magicMouse=[self.table recordSource:_device(@{@kIOHIDTransportKey: @"Bluetooth", @kIOHIDSerialNumberKey: @"1"}) continuous:YES natural:YES amount:1];
+    // continuous scrolling from a mouse, like the Magic Mouse's, keeps horizontal swipes for gestures
+    SourceRow *const magicMouse=[self.table recordSource:_continuousDevice(@{@kIOHIDTransportKey: @"Bluetooth", @kIOHIDSerialNumberKey: @"1"}) natural:YES amount:1];
     XCTAssertEqual(magicMouse.verticalMode, ScrollDirectionModeClassic);
     XCTAssertFalse(magicMouse.horizontalMatchesVertical);
 
@@ -173,30 +194,30 @@ static ScrollSource *_device(NSDictionary *properties)
     SourceRow *const row=[self trackpad];
     row.verticalMode=ScrollDirectionModeNatural;
     row.horizontalMatchesVertical=YES;
-    XCTAssertFalse([row adjustmentForNatural:YES continuous:YES].reverseVertical);
-    XCTAssertFalse([row adjustmentForNatural:YES continuous:YES].reverseHorizontal);
-    XCTAssertTrue([row adjustmentForNatural:NO continuous:YES].reverseVertical);
-    XCTAssertTrue([row adjustmentForNatural:NO continuous:YES].reverseHorizontal);
+    XCTAssertFalse([row adjustmentForNatural:YES].reverseVertical);
+    XCTAssertFalse([row adjustmentForNatural:YES].reverseHorizontal);
+    XCTAssertTrue([row adjustmentForNatural:NO].reverseVertical);
+    XCTAssertTrue([row adjustmentForNatural:NO].reverseHorizontal);
 }
 
 - (void)testClassic
 {
     SourceRow *const row=[self wheelMouse];
     row.verticalMode=ScrollDirectionModeClassic;
-    XCTAssertTrue([row adjustmentForNatural:YES continuous:NO].reverseVertical);
-    XCTAssertFalse([row adjustmentForNatural:NO continuous:NO].reverseVertical);
+    XCTAssertTrue([row adjustmentForNatural:YES].reverseVertical);
+    XCTAssertFalse([row adjustmentForNatural:NO].reverseVertical);
 }
 
 - (void)testReversedAndUnchanged
 {
     SourceRow *const row=[self app];
     row.verticalMode=ScrollDirectionModeReversed;
-    XCTAssertTrue([row adjustmentForNatural:NO continuous:NO].reverseVertical);
-    XCTAssertTrue([row adjustmentForNatural:YES continuous:NO].reverseVertical);
+    XCTAssertTrue([row adjustmentForNatural:NO].reverseVertical);
+    XCTAssertTrue([row adjustmentForNatural:YES].reverseVertical);
     row.verticalMode=ScrollDirectionModeUnchanged;
     row.horizontalMatchesVertical=YES;
     for (NSNumber *natural in @[@NO, @YES]) {
-        const SourceAdjustment adjustment=[row adjustmentForNatural:[natural boolValue] continuous:NO];
+        const SourceAdjustment adjustment=[row adjustmentForNatural:[natural boolValue]];
         XCTAssertFalse(adjustment.reverseVertical);
         XCTAssertFalse(adjustment.reverseHorizontal);
     }
@@ -206,40 +227,42 @@ static ScrollSource *_device(NSDictionary *properties)
 {
     SourceRow *const row=[self wheelMouse];
     row.horizontalMatchesVertical=NO;
-    const SourceAdjustment adjustment=[row adjustmentForNatural:YES continuous:NO];
+    const SourceAdjustment adjustment=[row adjustmentForNatural:YES];
     XCTAssertTrue(adjustment.reverseVertical);
     XCTAssertFalse(adjustment.reverseHorizontal);
     row.horizontalMatchesVertical=YES;
-    XCTAssertTrue([row adjustmentForNatural:YES continuous:NO].reverseHorizontal);
+    XCTAssertTrue([row adjustmentForNatural:YES].reverseHorizontal);
 }
 
 - (void)testStepSize
 {
     SourceRow *const row=[self wheelMouse];
     row.stepSize=5;
-    XCTAssertEqual([row adjustmentForNatural:YES continuous:NO].stepSize, 5);
-    XCTAssertEqual([row adjustmentForNatural:YES continuous:YES].stepSize, 1, @"step size is only for non-continuous scrolling");
+    XCTAssertEqual([row adjustmentForNatural:YES].stepSize, 5);
+    XCTAssertEqual([[self trackpad] adjustmentForNatural:YES].stepSize, 1, @"step size is only for non-continuous scrolling");
     row.stepSize=0;
-    XCTAssertEqual([row adjustmentForNatural:YES continuous:NO].stepSize, SourceRowMinStepSize);
+    XCTAssertEqual([row adjustmentForNatural:YES].stepSize, SourceRowMinStepSize);
     row.stepSize=1000;
-    XCTAssertEqual([row adjustmentForNatural:YES continuous:NO].stepSize, SourceRowMaxStepSize);
+    XCTAssertEqual([row adjustmentForNatural:YES].stepSize, SourceRowMaxStepSize);
     row.stepSizeEnabled=NO;
-    XCTAssertEqual([row adjustmentForNatural:YES continuous:NO].stepSize, 1);
+    XCTAssertEqual([row adjustmentForNatural:YES].stepSize, 1);
 }
 
 - (void)testSightings
 {
     SourceRow *const row=[self wheelMouse];
-    XCTAssertTrue(row.seenNonContinuous);
-    XCTAssertFalse(row.seenContinuous);
+    XCTAssertFalse(row.continuous);
     XCTAssertTrue(row.seenNatural);
     XCTAssertFalse(row.seenClassic);
-    XCTAssertTrue(row.showsStepSize);
-    XCTAssertEqual([self.table recordSource:_device(@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1118, @kIOHIDProductIDKey: @64}) continuous:YES natural:NO amount:10], row);
-    XCTAssertTrue(row.seenContinuous);
+    XCTAssertEqual([self.table recordSource:_device(@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1118, @kIOHIDProductIDKey: @64}) natural:NO amount:10], row);
     XCTAssertTrue(row.seenClassic);
     XCTAssertEqual(row.scrollTotal, 11);
     XCTAssertEqual([self.table.rows count], 1);
+    // continuous scrolling from the same device has its own row
+    SourceRow *const continuousRow=[self.table recordSource:_continuousDevice(@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1118, @kIOHIDProductIDKey: @64}) natural:NO amount:1];
+    XCTAssertNotEqual(continuousRow, row);
+    XCTAssertTrue(continuousRow.continuous);
+    XCTAssertEqual([self.table.rows count], 2);
 }
 
 - (void)testCustomName
@@ -271,7 +294,7 @@ static ScrollSource *_device(NSDictionary *properties)
     XCTAssertTrue(row.horizontalMatchesVertical);
     XCTAssertEqual(row.stepSize, 7);
     XCTAssertEqualObjects(row.customName, @"Wheel");
-    XCTAssertTrue(row.seenNonContinuous);
+    XCTAssertFalse(row.continuous);
     XCTAssertEqualWithAccuracy(row.lastSeenTime, mouse.lastSeenTime, 0.001);
 }
 

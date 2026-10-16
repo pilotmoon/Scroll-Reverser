@@ -23,7 +23,9 @@ typedef NS_ENUM(NSInteger, ScrollSourceCategory) {
     ScrollSourceCategoryOther,
 };
 
-// A source of scroll events, which gets its own row of settings.
+// A source of scroll events, which gets its own row of settings. Continuous and non-continuous
+// scrolling from the same device or app are separate sources, since they feel different: a touch
+// surface or a wheel.
 @interface ScrollSource : NSObject
 
 // Stable identifier for the source's row. Built from device properties, a bundle ID or an
@@ -35,16 +37,14 @@ typedef NS_ENUM(NSInteger, ScrollSourceCategory) {
 @property (readonly, nullable) NSString *name;
 // Bundle or executable path, for app sources.
 @property (readonly, nullable) NSString *path;
-// Sources that don't identify a device have separate rows for continuous and
-// non-continuous scrolling.
-@property (readonly) BOOL splitByContinuity;
-@property (readonly) BOOL continuous; // only meaningful if splitByContinuity
+@property (readonly) BOOL continuous;
 
-/* Key building, separated from the lookups so it can be tested. `properties` holds the sending
- service's HID properties (kIOHIDProductKey and so on). `trackpadDriver` is whether the service is
- driven by the multitouch trackpad driver. */
-+ (ScrollSource *)deviceSourceWithKind:(ScrollSourceKind)kind properties:(NSDictionary<NSString *, id> *)properties trackpadDriver:(BOOL)trackpadDriver;
-// The non-continuous and continuous sources for an app, identified by bundle ID or executable path.
+/* Key building, separated from the lookups so it can be tested. Each returns the non-continuous and
+ continuous sources, in that order. `properties` holds the sending service's HID properties
+ (kIOHIDProductKey and so on). `trackpadDriver` is whether the service is driven by the multitouch
+ trackpad driver. */
++ (NSArray<ScrollSource *> *)deviceSourcesWithKind:(ScrollSourceKind)kind properties:(NSDictionary<NSString *, id> *)properties trackpadDriver:(BOOL)trackpadDriver;
+// Apps are identified by bundle ID or executable path.
 + (NSArray<ScrollSource *> *)appSourcesWithIdentifier:(NSString *)identifier name:(nullable NSString *)name path:(NSString *)path;
 
 @end
