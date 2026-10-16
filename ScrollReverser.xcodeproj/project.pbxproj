@@ -142,10 +142,6 @@
 		5E57000000000000000000A2 /* ScrollReverserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrollReverserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		01F378FA30816FFC00A01E09 /* docs */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = docs; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -245,7 +241,6 @@
 				0148C7E2257195E00086B838 /* Common.xcconfig */,
 				015D94B02571810B00A685C8 /* Development.xcconfig */,
 				01F580282571848F00BACC0F /* Production.xcconfig */,
-				01F378FA30816FFC00A01E09 /* docs */,
 				5E57000000000000000000A8 /* Tests */,
 				01E5C31E2567FF8800C10ABA /* BuildScripts */,
 				01E5C320256801B000C10ABA /* script */,
