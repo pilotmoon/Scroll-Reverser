@@ -279,13 +279,6 @@ silent.
 - **Sidecar:** what else produces "no HID event, pid 0"? Seen only with Sidecar so far.
 - **Pid reuse:** the exit-source approach is untested under fast pid reuse.
 
-### Open questions
-
-- **Discovery while the master switch is off:** sources aren't added then, because the tap
-  doesn't run. Should a listen-only tap record sources while reversing is off?
-- **Hint text for known re-posters** (e.g. "Logitech devices handled by Options+"): considered,
-  never built.
-
 ## Decisions and alternatives rejected
 
 All from 15 Oct 2026, with Nick, in order.
@@ -306,3 +299,10 @@ All from 15 Oct 2026, with Nick, in order.
   to "−".
 - **Naming the pid-0 bucket "Sidecar":** rejected. It stays "Unidentified source", since the
   bucket is defined by what's observed.
+
+From 16 Oct 2026, with Nick:
+
+- **Discovery while the master switch is off:** not done. Sources are added only while the tap
+  runs. A listen-only tap would need Input Monitoring again.
+- **Hint text for known re-posters** (e.g. "Logitech devices handled by Options+"): left out of
+  2.0.
