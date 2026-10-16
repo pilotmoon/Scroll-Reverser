@@ -225,13 +225,16 @@ silent.
    - **System direction:** Natural, Classic, Both natural and classic, or "Unknown" for app rows
      and unidentified sources.
    - **First seen.**
-   - **Scrolled:** the distance in points.
+   - **Points scrolled:** the distance, as a plain number, so it needs no plural forms.
 
 ## Permissions
 
 - Accessibility only, for the one active scroll tap.
-- Input Monitoring was needed only for 1.x's passive gesture tap. **Remove** its code, prompt and
-  UI, once the check under "Untested" passes.
+- Input Monitoring was needed only for 1.x's passive gesture tap, and 2.0 doesn't ask for it.
+  Checked on 16 Oct 2026 with Scroll Reverser absent from the Input Monitoring list: the active tap
+  and the `IOHIDEventSystemClient` lookups work, and a Universal Control trackpad resolved to its
+  own row. `IOHIDCheckAccess(kIOHIDRequestTypeListenEvent)` reports "granted" in that state, so
+  macOS evidently counts Accessibility as covering listen access too.
 
 ## Upgrade from 1.x
 
@@ -271,8 +274,6 @@ silent.
 
 ### Untested
 
-- **Input Monitoring:** with the permission switched off, confirm that the active tap plus the
-  `IOHIDEventSystemClient` reads (the Universal Control lookup) need only Accessibility.
 - **The #130 state after wake:** never reproduced. Confirm that senders are present then.
 - **Other re-posting apps:** SteerMouse, USB Overdrive, BetterTouchTool, Mac Mouse Fix. They're
   expected to appear as app rows.
@@ -303,6 +304,7 @@ All from 15 Oct 2026, with Nick, in order.
 From 16 Oct 2026, with Nick:
 
 - **Discovery while the master switch is off:** not done. Sources are added only while the tap
-  runs. A listen-only tap would need Input Monitoring again.
+  runs. (The reason given at the time, that a listen-only tap would need Input Monitoring, turned
+  out to be wrong: Accessibility covers it. Worth revisiting if discovery while off is wanted.)
 - **Hint text for known re-posters** (e.g. "Logitech devices handled by Options+"): left out of
   2.0.
