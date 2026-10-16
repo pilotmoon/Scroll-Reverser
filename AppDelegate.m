@@ -252,8 +252,15 @@ static void *_contextPermissions=&_contextPermissions;
     NSMenu *const fileMenu=addSubmenu(@"File");
     [fileMenu addItemWithTitle:@"Close" action:@selector(performClose:) keyEquivalent:@"w"];
 
+    // standard text editing, for the fields in the settings window
     NSMenu *const editMenu=addSubmenu(@"Edit");
+    // (AppKit handles undo: and redo: but doesn't declare them)
+    [editMenu addItemWithTitle:@"Undo" action:NSSelectorFromString(@"undo:") keyEquivalent:@"z"];
+    [editMenu addItemWithTitle:@"Redo" action:NSSelectorFromString(@"redo:") keyEquivalent:@"Z"];
+    [editMenu addItem:[NSMenuItem separatorItem]];
+    [editMenu addItemWithTitle:@"Cut" action:@selector(cut:) keyEquivalent:@"x"];
     [editMenu addItemWithTitle:@"Copy" action:@selector(copy:) keyEquivalent:@"c"];
+    [editMenu addItemWithTitle:@"Paste" action:@selector(paste:) keyEquivalent:@"v"];
     [editMenu addItemWithTitle:@"Select All" action:@selector(selectAll:) keyEquivalent:@"a"];
 
     NSMenu *const windowMenu=addSubmenu(@"Window");
