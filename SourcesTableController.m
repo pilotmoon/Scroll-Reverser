@@ -323,12 +323,6 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     _enabled=enabled;
     // its settings were enabled or not when it opened
     [self.infoPopover close];
-    [self updateRemoveButton];
-}
-
-- (void)updateRemoveButton
-{
-    self.removeButton.enabled=self.enabled&&self.tableView.selectedRow>=0;
 }
 
 - (void)infoClicked:(NSButton *)sender
@@ -366,7 +360,8 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
-    [self updateRemoveButton];
+    // removing works whether or not reversing is on
+    self.removeButton.enabled=self.tableView.selectedRow>=0;
 }
 
 - (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row
