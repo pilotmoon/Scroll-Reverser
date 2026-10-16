@@ -38,8 +38,6 @@ typedef NS_ENUM(NSInteger, UpdateMode) {
 @property SourcesTableController *sourcesController;
 @property NSTextField *axStatusLabel;
 @property NSButton *axButton;
-@property NSTextField *imStatusLabel;
-@property NSButton *imButton;
 @end
 
 @implementation PrefsWindowController
@@ -114,7 +112,7 @@ typedef NS_ENUM(NSInteger, UpdateMode) {
         self.appSettings=[self makeAppSettings];
 
         // fill in the permission labels before the panes are measured, and keep them up to date
-        for (NSString *keyPath in @[PermissionsManagerKeyAccessibilityEnabled, PermissionsManagerKeyInputMonitoringEnabled, @"inputMonitoringRequested"]) {
+        for (NSString *keyPath in @[PermissionsManagerKeyAccessibilityEnabled]) {
             [self.appDelegate.permissionsManager addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:_contextPermissions];
         }
         [self setUpPanels];
@@ -267,15 +265,6 @@ typedef NS_ENUM(NSInteger, UpdateMode) {
     }
 }
 
-- (IBAction)buttonIMClicked:(id)sender {
-    if (self.appDelegate.permissionsManager.inputMonitoringRequested) {
-        [self.appDelegate.permissionsManager openInputMonitoringPrefs];
-    }
-    else {
-        [self.appDelegate.permissionsManager requestInputMonitoringPermission];
-    }
-}
-
 - (IBAction)buttonPermissionsHelpClicked:(id)sender {
     NSLog(@"Permissions help clicked %@", sender);
     [[NSWorkspace sharedWorkspace] openURL:self.appDelegate.appPermissionsHelpLink];
@@ -334,10 +323,10 @@ typedef NS_ENUM(NSInteger, UpdateMode) {
 - (NSString *)buttonLabel:(BOOL)open label:(NSString *)label
 {
     if (open) {
-        return [NSString stringWithFormat: NSLocalizedString(@"Open %1$@ preferences", @"1=`Input Monitoring` or `Accessibility`"), label];
+        return [NSString stringWithFormat: NSLocalizedString(@"Open %1$@ preferences", @"1=`Accessibility`"), label];
     }
     else {
-        return [NSString stringWithFormat: NSLocalizedString(@"Request %1$@ permission", @"1=`Input Monitoring` or `Accessibility`"), label];
+        return [NSString stringWithFormat: NSLocalizedString(@"Request %1$@ permission", @"1=`Accessibility`"), label];
     }
 }
 
@@ -345,11 +334,8 @@ typedef NS_ENUM(NSInteger, UpdateMode) {
 {
     PermissionsManager *const permissions=self.appDelegate.permissionsManager;
     NSString *const ax=NSLocalizedString(@"Accessibility", @"corresponds to Accessibility in system Privacy settings");
-    NSString *const im=NSLocalizedString(@"Input Monitoring", @"corresponds to Input Monitoring in system Privacy settings");
     self.axStatusLabel.stringValue=[self statusString:permissions.accessibilityEnabled label:ax];
     self.axButton.title=[self buttonLabel:permissions.accessibilityEnabled label:ax];
-    self.imStatusLabel.stringValue=[self statusString:permissions.inputMonitoringEnabled label:im];
-    self.imButton.title=[self buttonLabel:permissions.inputMonitoringRequested label:im];
 }
 
 - (NSString *)statusString:(BOOL)state label:(NSString *)label
@@ -486,34 +472,19 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
     self.axButton=[NSButton buttonWithTitle:@"" target:self action:@selector(buttonAXClicked:)];
     NSView *const axView=[self permissionViewWithDescription:NSLocalizedString(@"Scroll Reverser needs Accessibility permission to modify your scrolling.", nil)
                                                  statusLabel:self.axStatusLabel
-                                                      button:self.axButton
-                                            descriptionInset:0];
+                                                      button:self.axButton];
     [self.axButton bind:NSEnabledBinding toObject:permissions withKeyPath:PermissionsManagerKeyAccessibilityEnabled options:negated()];
     [axView bind:NSHiddenBinding toObject:permissions withKeyPath:@"accessibilityRequired" options:negated()];
 
-    self.imStatusLabel=[self permissionStatusLabel];
-    self.imButton=[NSButton buttonWithTitle:@"" target:self action:@selector(buttonIMClicked:)];
-    NSView *const imView=[self permissionViewWithDescription:NSLocalizedString(@"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad.", nil)
-                                                 statusLabel:self.imStatusLabel
-                                                      button:self.imButton
-                                            descriptionInset:8];
-    [self.imButton bind:NSEnabledBinding toObject:permissions withKeyPath:PermissionsManagerKeyInputMonitoringEnabled options:negated()];
-    [imView bind:NSHiddenBinding toObject:permissions withKeyPath:@"inputMonitoringRequired" options:negated()];
-
-    NSStackView *const permissionStack=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeLeading, 16, @[axView, imView]);
     NSBox *const result=box(NSLocalizedString(@"Permissions", @"Section title"));
     [result setContentHuggingPriority:NSLayoutPriorityDefaultLow-1 forOrientation:NSLayoutConstraintOrientationVertical];
     NSView *const content=result.contentView;
-    [content addSubview:permissionStack];
+    [content addSubview:axView];
     [NSLayoutConstraint activateConstraints:@[
-        [permissionStack.topAnchor constraintEqualToAnchor:content.topAnchor constant:14],
-        [permissionStack.leadingAnchor constraintEqualToAnchor:content.leadingAnchor constant:14],
-        [content.trailingAnchor constraintEqualToAnchor:permissionStack.trailingAnchor constant:14],
-        [content.bottomAnchor constraintEqualToAnchor:permissionStack.bottomAnchor constant:14],
-        [axView.leadingAnchor constraintEqualToAnchor:permissionStack.leadingAnchor],
-        [axView.trailingAnchor constraintEqualToAnchor:permissionStack.trailingAnchor],
-        [imView.leadingAnchor constraintEqualToAnchor:permissionStack.leadingAnchor],
-        [imView.trailingAnchor constraintEqualToAnchor:permissionStack.trailingAnchor],
+        [axView.topAnchor constraintEqualToAnchor:content.topAnchor constant:14],
+        [axView.leadingAnchor constraintEqualToAnchor:content.leadingAnchor constant:14],
+        [content.trailingAnchor constraintEqualToAnchor:axView.trailingAnchor constant:14],
+        [content.bottomAnchor constraintEqualToAnchor:axView.bottomAnchor constant:14],
     ]];
     return result;
 }
@@ -528,7 +499,7 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
 }
 
 // description, status line and request button for one permission
-- (NSView *)permissionViewWithDescription:(NSString *)description statusLabel:(NSTextField *)statusLabel button:(NSButton *)button descriptionInset:(CGFloat)inset
+- (NSView *)permissionViewWithDescription:(NSString *)description statusLabel:(NSTextField *)statusLabel button:(NSButton *)button
 {
     NSTextField *const descriptionLabel=label([NSTextField wrappingLabelWithString:description], smallFont(), [NSColor secondaryLabelColor]);
     button.translatesAutoresizingMaskIntoConstraints=NO;
@@ -541,7 +512,7 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
     [NSLayoutConstraint activateConstraints:@[
         [descriptionLabel.topAnchor constraintEqualToAnchor:view.topAnchor],
         [descriptionLabel.leadingAnchor constraintEqualToAnchor:view.leadingAnchor],
-        [view.trailingAnchor constraintEqualToAnchor:descriptionLabel.trailingAnchor constant:inset],
+        [view.trailingAnchor constraintEqualToAnchor:descriptionLabel.trailingAnchor],
         [statusLabel.topAnchor constraintEqualToAnchor:descriptionLabel.bottomAnchor constant:6],
         [statusLabel.centerXAnchor constraintEqualToAnchor:view.centerXAnchor],
         [button.topAnchor constraintEqualToAnchor:statusLabel.bottomAnchor constant:6],

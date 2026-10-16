@@ -10,7 +10,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 extern NSString *const PermissionsManagerKeyAccessibilityEnabled;
-extern NSString *const PermissionsManagerKeyInputMonitoringEnabled;
 extern NSString *const PermissionsManagerKeyHasAllRequiredPermissions;
 
 @interface PermissionsManager : NSObject
@@ -23,12 +22,6 @@ extern NSString *const PermissionsManagerKeyHasAllRequiredPermissions;
 @property (readonly, getter=isAccessibilityRequired) BOOL accessibilityRequired;
 @property (readonly, getter=isAccessibilityEnabled) BOOL accessibilityEnabled;
 @property (readonly, getter=isAccessibilityRequested) BOOL accessibilityRequested;
-
-- (void)requestInputMonitoringPermission;
-- (void)openInputMonitoringPrefs;
-@property (readonly, getter=isInputMonitoringRequired) BOOL inputMonitoringRequired;
-@property (readonly, getter=isInputMonitoringEnabled) BOOL inputMonitoringEnabled;
-@property (readonly, getter=isInputMonitoringRequested) BOOL inputMonitoringRequested;
 
 @end
 

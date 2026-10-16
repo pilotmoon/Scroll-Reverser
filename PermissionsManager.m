@@ -6,18 +6,14 @@
 //
 
 #import "PermissionsManager.h"
-#import <IOKit/hidsystem/IOHIDLib.h>
 
 NSString *const PermissionsManagerKeyAccessibilityEnabled=@"accessibilityEnabled";
-NSString *const PermissionsManagerKeyInputMonitoringEnabled=@"inputMonitoringEnabled";
 NSString *const PermissionsManagerKeyHasAllRequiredPermissions=@"hasAllRequiredPermissions";
 
-static NSString *const PrefsHasRequestedInputMonitoringPermission=@"HasRequestedInputMonitoringPermission";
 static NSString *const PrefsHasRequestedAccessibilityPermission=@"HasRequestedAccessibilityPermission";
 
 @interface PermissionsManager ()
 @property (getter=isAccessibilityEnabled) BOOL accessibilityEnabled;
-@property (getter=isInputMonitoringEnabled) BOOL inputMonitoringEnabled;
 @property NSTimer *refreshTimer;
 @property NSDate *refreshStarted;
 @end
@@ -52,30 +48,9 @@ static NSString *const PrefsHasRequestedAccessibilityPermission=@"HasRequestedAc
     return AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)options);
 }
 
-- (BOOL)checkInputMonitoringWithPrompt:(BOOL)prompt
-{
-    if (@available(macOS 10.15, *)) {
-        static const IOHIDRequestType accessType=kIOHIDRequestTypeListenEvent;
-        if (prompt) {
-            // this will block
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-                IOHIDRequestAccess(accessType);
-            });
-            return NO;
-        }
-        else {
-            // this check is very fast
-            return kIOHIDAccessTypeGranted==IOHIDCheckAccess(accessType);
-        }
-    }
-    else {
-        return YES;
-    }
-}
-
 + (NSSet *)keyPathsForValuesAffectingHasAllRequiredPermissions
 {
-    return [NSSet setWithArray:@[PermissionsManagerKeyAccessibilityEnabled, PermissionsManagerKeyInputMonitoringEnabled]];
+    return [NSSet setWithObject:PermissionsManagerKeyAccessibilityEnabled];
 }
 
 - (void)checkState
@@ -84,11 +59,7 @@ static NSString *const PrefsHasRequestedAccessibilityPermission=@"HasRequestedAc
     if(axState!=self.accessibilityEnabled) {
         self.accessibilityEnabled=axState;
     }
-    BOOL imState=[self checkInputMonitoringWithPrompt:NO];
-    if(imState!=self.inputMonitoringEnabled) {
-        self.inputMonitoringEnabled=imState;
-    }
-    NSLog(@"permissions: ax %@, im %@", @(axState), @(imState));
+    NSLog(@"permissions: ax %@", @(axState));
 }
 
 #pragma mark Public Interface
@@ -118,10 +89,6 @@ static NSString *const PrefsHasRequestedAccessibilityPermission=@"HasRequestedAc
         NSLog(@"missing required accessibility permission");
         result=NO;
     }
-    if (self.inputMonitoringRequired && !self.inputMonitoringEnabled) {
-        NSLog(@"missing required input monitoring permission");
-        result=NO;
-    }
     return result;
 }
 
@@ -138,22 +105,9 @@ static NSString *const PrefsHasRequestedAccessibilityPermission=@"HasRequestedAc
 
 }
 
-- (void)requestInputMonitoringPermission
-{
-    [self willChangeValueForKey:@"inputMonitoringRequested"];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHasRequestedInputMonitoringPermission];
-    [self didChangeValueForKey:@"inputMonitoringRequested"];
-    [self checkInputMonitoringWithPrompt:YES];
-}
-
 - (void)openAccessibilityPrefs
 {
     [[NSWorkspace sharedWorkspace] openURL:[[self class] securitySettingsUrlForKey:@"Privacy_Accessibility"]];
-}
-
-- (void)openInputMonitoringPrefs
-{
-    [[NSWorkspace sharedWorkspace] openURL:[[self class] securitySettingsUrlForKey:@"Privacy_ListenEvent"]];
 }
 
 // Accessibility permission is needed on Mojave and above
@@ -167,27 +121,9 @@ static NSString *const PrefsHasRequestedAccessibilityPermission=@"HasRequestedAc
     }
 }
 
- // Input Monitoring permission is needed on Catalina and above
-- (BOOL)isInputMonitoringRequired
-{
-    if (@available(macOS 10.15, *)) {
-        return YES;
-    }
-    else {
-        return NO;
-    }
-}
-
 - (BOOL)isAccessibilityRequested
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRequestedAccessibilityPermission];
-}
-
-// macos only lets an app request this ONCE EVER. so we remember if we requested it, and
-// thereafter can offer to open the prefpane instead
-- (BOOL)isInputMonitoringRequested
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:PrefsHasRequestedInputMonitoringPermission];
 }
 
 
