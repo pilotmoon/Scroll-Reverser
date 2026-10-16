@@ -136,6 +136,9 @@
 /* Prefs check box */
 "Start at login" = "Автозапуск";
 
+/* Shown in the empty sources table, which fills with devices and apps as they scroll */
+"Start scrolling to see your devices here." = "Почніть прокручування, щоб побачити тут свої пристрої.";
+
 /* Sources table column header: scroll wheel step size */
 "Step size" = "Розмір кроку";
 

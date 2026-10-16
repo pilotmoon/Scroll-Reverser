@@ -136,6 +136,9 @@
 /* Prefs check box */
 "Start at login" = "Abrir al iniciar sesión";
 
+/* Shown in the empty sources table, which fills with devices and apps as they scroll */
+"Start scrolling to see your devices here." = "Empieza a desplazarte para ver aquí tus dispositivos.";
+
 /* Sources table column header: scroll wheel step size */
 "Step size" = "Tamaño del paso";
 

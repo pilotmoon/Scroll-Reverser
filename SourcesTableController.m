@@ -70,6 +70,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
 @property NSMutableArray<SourceRow *> *rows; // in the order shown
 @property NSTableView *tableView;
 @property NSButton *removeButton;
+@property NSTextField *placeholder;
 @property NSView *view;
 @property NSPopover *infoPopover;
 @property NSTimer *lastUsedTimer;
@@ -145,12 +146,25 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     self.removeButton.toolTip=NSLocalizedString(@"Remove the selected source. It will be added again if it scrolls.", @"Tooltip for the button below the sources table");
     self.removeButton.enabled=NO;
 
+    // shown while there are no rows, as on first run
+    self.placeholder=[DimmingLabel wrappingLabelWithString:NSLocalizedString(@"Start scrolling to see your devices here.", @"Shown in the empty sources table, which fills with devices and apps as they scroll")];
+    self.placeholder.translatesAutoresizingMaskIntoConstraints=NO;
+    self.placeholder.alignment=NSTextAlignmentCenter;
+    self.placeholder.textColor=[NSColor secondaryLabelColor];
+    self.placeholder.hidden=YES;
+    [self.placeholder bind:NSEnabledBinding toObject:self withKeyPath:@"enabled" options:nil];
+
     NSView *const view=[[NSView alloc] init];
     view.translatesAutoresizingMaskIntoConstraints=NO;
-    for (NSView *subview in @[scrollView, self.removeButton]) {
+    for (NSView *subview in @[scrollView, self.removeButton, self.placeholder]) {
         [view addSubview:subview];
     }
+    // the area below the header, where the rows go (the clip view extends under the header)
+    NSLayoutGuide *const rowsArea=[[NSLayoutGuide alloc] init];
+    [view addLayoutGuide:rowsArea];
     [NSLayoutConstraint activateConstraints:@[
+        [rowsArea.topAnchor constraintEqualToAnchor:table.headerView.bottomAnchor],
+        [rowsArea.bottomAnchor constraintEqualToAnchor:scrollView.bottomAnchor],
         [scrollView.topAnchor constraintEqualToAnchor:view.topAnchor],
         [scrollView.leadingAnchor constraintEqualToAnchor:view.leadingAnchor],
         [view.trailingAnchor constraintEqualToAnchor:scrollView.trailingAnchor],
@@ -161,6 +175,9 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
         [self.removeButton.widthAnchor constraintEqualToConstant:24],
         [self.removeButton.heightAnchor constraintEqualToConstant:22],
         [view.bottomAnchor constraintEqualToAnchor:self.removeButton.bottomAnchor],
+        [self.placeholder.centerXAnchor constraintEqualToAnchor:scrollView.centerXAnchor],
+        [self.placeholder.centerYAnchor constraintEqualToAnchor:rowsArea.centerYAnchor],
+        [self.placeholder.widthAnchor constraintLessThanOrEqualToAnchor:scrollView.widthAnchor constant:-40],
     ]];
     return view;
 }
@@ -176,6 +193,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     [self.rows setArray:_sortedByRecentUse(self.sourceTable.rows)];
     [self.tableView deselectAll:nil];
     [self.tableView reloadData];
+    [self updatePlaceholder];
 
     [self.sourceTable addObserver:self forKeyPath:@"rows" options:0 context:_contextRows];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rowDidStartScrolling:) name:SourceRowDidStartScrollingNotification object:nil];
@@ -225,6 +243,12 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
             [self.tableView insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:0] withAnimation:NSTableViewAnimationEffectNone];
         }
     }
+    [self updatePlaceholder];
+}
+
+- (void)updatePlaceholder
+{
+    self.placeholder.hidden=[self.rows count]>0;
 }
 
 // A source that starts scrolling moves to the top, by moving its row so that the selection follows it,

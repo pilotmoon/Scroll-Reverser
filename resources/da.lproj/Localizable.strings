@@ -136,6 +136,9 @@
 /* Prefs check box */
 "Start at login" = "Start ved login";
 
+/* Shown in the empty sources table, which fills with devices and apps as they scroll */
+"Start scrolling to see your devices here." = "Begynd at rulle for at se dine enheder her.";
+
 /* Sources table column header: scroll wheel step size */
 "Step size" = "Trinstørrelse";
 
