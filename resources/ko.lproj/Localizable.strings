@@ -1,35 +1,86 @@
+/* Name of a device on another Mac, used through Universal Control. 1=the device's name */
+"%1$@ (Universal Control)" = "%1$@ (유니버설 컨트롤)";
+
 /* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@ 권한: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "손쉬운 사용";
 
-/* Preferences pane for `App` settings */
+/* Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own */
 "App" = "앱";
 
 /* Label before the pop-up menu that chooses how updates are handled */
 "Automatic updates:" = "자동 업데이트:";
 
+/* Scrolling type of a source that has scrolled both continuously, like a trackpad, and in steps, like a scroll wheel */
+"Both continuous and discrete" = "연속 및 단계별";
+
+/* System direction of a source whose scrolling the system has delivered both ways */
+"Both natural and classic" = "자연스럽게 및 클래식";
+
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "업데이트 확인";
+
+/* Scrolling direction: the opposite of natural scrolling */
+"Classic" = "클래식";
+
+/* Scrolling type of a source that scrolls continuously, like a trackpad */
+"Continuous" = "연속";
+
+/* Accessibility label of the button that shows a source's details */
+"Details" = "세부사항";
+
+/* Tooltip of the button that shows a source's details */
+"Details and horizontal scrolling" = "세부사항 및 가로 스크롤";
+
+/* Scrolling type of a source that scrolls in steps, like a scroll wheel */
+"Discrete" = "단계별";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "%1$@ 활성화";
 
+/* Source info: label before the date the source first scrolled */
+"First seen:" = "처음 감지:";
+
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "설정을 변경하려면 메뉴 막대의 아이콘을 클릭해주세요";
+
+/* Source info: label before the horizontal scrolling menu */
+"Horizontal scrolling:" = "가로 스크롤:";
+
+/* Source info: label before the identifier of the source's settings */
+"Identifier:" = "식별자:";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "베타 버전 포함";
 
-/* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "입력 모니터링";
-
 /* Automatic updates menu item: download and install updates without asking */
 "Install automatically" = "자동으로 설치";
 
-/* Unit for scroll wheel step size, shown after the number */
-"lines" = "줄";
+/* Sources table: the source scrolled within the last minute */
+"Just now" = "방금";
+
+/* Source info: label before the kind of source, such as Mouse or App */
+"Kind:" = "종류:";
+
+/* Sources table column header: when the source last scrolled */
+"Last used" = "최근 사용";
+
+/* Horizontal scrolling menu item: reverse horizontal scrolling whenever vertical scrolling is reversed */
+"Match vertical" = "세로와 동일하게";
+
+/* Kind of source: a mouse, or any other device that isn't a trackpad */
+"Mouse" = "마우스";
+
+/* Kind of source: a mouse on another Mac, used through Universal Control */
+"Mouse (Universal Control)" = "마우스 (유니버설 컨트롤)";
+
+/* Source info: label before the source's name field */
+"Name:" = "이름:";
+
+/* Scrolling direction: natural scrolling, as in System Settings */
+"Natural" = "자연스럽게";
 
 /* Automatic updates menu item: check for updates and ask before installing them */
 "Notify only" = "알림만";
@@ -40,29 +91,32 @@
 /* No comment provided by engineer. */
 "OK" = "확인";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* 1=`Accessibility` */
 "Open %1$@ preferences" = "%1$@ 설정 열기";
+
+/* Source info: label before the location of an app */
+"Path:" = "경로:";
 
 /* Section title */
 "Permissions" = "권한";
 
+/* Source info: label before the total distance the source has scrolled, as a number of points (the unit of distance on screen) */
+"Points scrolled:" = "스크롤 거리(포인트):";
+
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "%1$@ 종료";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Tooltip for the button below the sources table */
+"Remove the selected source. It will be added again if it scrolls." = "선택한 소스를 제거합니다. 다시 스크롤하면 다시 추가됩니다.";
+
+/* Source info: label before the name the device or app reports */
+"Reported name:" = "보고된 이름:";
+
+/* 1=`Accessibility` */
 "Request %1$@ permission" = "%1$@ 권한 요청";
 
-/* Prefs check box */
-"Reverse Horizontal" = "수평 반전";
-
-/* Prefs check box */
-"Reverse Mouse" = "마우스 반전";
-
-/* Prefs check box */
-"Reverse Trackpad" = "트랙패드 반전";
-
-/* Prefs check box */
-"Reverse Vertical" = "수직 반전";
+/* Scrolling menu item: reverse the direction of scrolling posted by an app */
+"Reversed" = "반전";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser가 현재 실행 중입니다!";
@@ -70,20 +124,11 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser가 스크롤을 변경하려면 손쉬운 사용 권한이 필요합니다.";
 
-/* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser가 트랙패드에 손가락이 닿아 있는지 감지하려면 입력 모니터링 권한이 필요합니다.";
-
-/* Prefs section header */
-"Scroll Wheel" = "스크롤 휠";
-
-/* Preferences pane for `Scrolling` serttings */
+/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
 "Scrolling" = "스크롤";
 
-/* Prefs section title */
-"Scrolling Axes" = "스크롤 축";
-
-/* Prefs section title */
-"Scrolling Devices" = "스크롤 기기";
+/* Source info: label before Continuous or Discrete */
+"Scrolling type:" = "스크롤 유형:";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "설정…";
@@ -91,11 +136,41 @@
 /* Prefs check box */
 "Show in menu bar" = "메뉴 막대에 표시";
 
+/* Sources table column header: the device or app that scrolls */
+"Source" = "소스";
+
 /* Prefs check box */
 "Start at login" = "로그인 시 시작";
 
-/* Size of one step of the mouse scroll wheel */
+/* Sources table column header: scroll wheel step size */
 "Step size" = "스크롤 단위";
+
+/* Source info: label before the direction the system delivers the source's scrolling in, such as Natural */
+"System direction:" = "시스템 방향:";
+
+/* Kind of source: a trackpad */
+"Trackpad" = "트랙패드";
+
+/* Kind of source: a trackpad on another Mac, used through Universal Control */
+"Trackpad (Universal Control)" = "트랙패드 (유니버설 컨트롤)";
+
+/* Scrolling menu item: leave scrolling as the system delivers it */
+"Unchanged" = "변경 안 함";
+
+/* Name and kind of a source of scrolling that is a device the system can't identify */
+"Unidentified device" = "식별되지 않은 기기";
+
+/* Name and kind of a source of scrolling that is neither a device nor an app */
+"Unidentified source" = "식별되지 않은 소스";
+
+/* System direction of scrolling posted by an app, which the system doesn't say */
+"Unknown" = "알 수 없음";
+
+/* Name of an app that posted scrolling but quit before it could be identified */
+"Unknown app" = "알 수 없는 앱";
+
+/* Name of a device that reports no name */
+"Unnamed device" = "이름 없는 기기";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ 권한 필요";

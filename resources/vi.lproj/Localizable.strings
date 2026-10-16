@@ -1,35 +1,86 @@
+/* Name of a device on another Mac, used through Universal Control. 1=the device's name */
+"%1$@ (Universal Control)" = "%1$@ (Điều khiển chung)";
+
 /* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "Quyền %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Trợ năng";
 
-/* Preferences pane for `App` settings */
+/* Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own */
 "App" = "Ứng dụng";
 
 /* Label before the pop-up menu that chooses how updates are handled */
 "Automatic updates:" = "Tự động cập nhật:";
 
+/* Scrolling type of a source that has scrolled both continuously, like a trackpad, and in steps, like a scroll wheel */
+"Both continuous and discrete" = "Cả liên tục và theo bước";
+
+/* System direction of a source whose scrolling the system has delivered both ways */
+"Both natural and classic" = "Cả tự nhiên và cổ điển";
+
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "Kiểm tra bản cập nhật";
+
+/* Scrolling direction: the opposite of natural scrolling */
+"Classic" = "Cổ điển";
+
+/* Scrolling type of a source that scrolls continuously, like a trackpad */
+"Continuous" = "Liên tục";
+
+/* Accessibility label of the button that shows a source's details */
+"Details" = "Chi tiết";
+
+/* Tooltip of the button that shows a source's details */
+"Details and horizontal scrolling" = "Chi tiết và cuộn ngang";
+
+/* Scrolling type of a source that scrolls in steps, like a scroll wheel */
+"Discrete" = "Theo bước";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Bật %1$@";
 
+/* Source info: label before the date the source first scrolled */
+"First seen:" = "Phát hiện lần đầu:";
+
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Để mở cài đặt, hãy bấm vào biểu tượng trên thanh menu";
+
+/* Source info: label before the horizontal scrolling menu */
+"Horizontal scrolling:" = "Cuộn ngang:";
+
+/* Source info: label before the identifier of the source's settings */
+"Identifier:" = "Mã định danh:";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Bao gồm các phiên bản beta";
 
-/* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Giám sát đầu vào";
-
 /* Automatic updates menu item: download and install updates without asking */
 "Install automatically" = "Cài đặt tự động";
 
-/* Unit for scroll wheel step size, shown after the number */
-"lines" = "dòng";
+/* Sources table: the source scrolled within the last minute */
+"Just now" = "Vừa xong";
+
+/* Source info: label before the kind of source, such as Mouse or App */
+"Kind:" = "Loại:";
+
+/* Sources table column header: when the source last scrolled */
+"Last used" = "Dùng lần cuối";
+
+/* Horizontal scrolling menu item: reverse horizontal scrolling whenever vertical scrolling is reversed */
+"Match vertical" = "Giống cuộn dọc";
+
+/* Kind of source: a mouse, or any other device that isn't a trackpad */
+"Mouse" = "Chuột";
+
+/* Kind of source: a mouse on another Mac, used through Universal Control */
+"Mouse (Universal Control)" = "Chuột (Điều khiển chung)";
+
+/* Source info: label before the source's name field */
+"Name:" = "Tên:";
+
+/* Scrolling direction: natural scrolling, as in System Settings */
+"Natural" = "Tự nhiên";
 
 /* Automatic updates menu item: check for updates and ask before installing them */
 "Notify only" = "Chỉ thông báo";
@@ -40,29 +91,32 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* 1=`Accessibility` */
 "Open %1$@ preferences" = "Mở cài đặt %1$@";
+
+/* Source info: label before the location of an app */
+"Path:" = "Đường dẫn:";
 
 /* Section title */
 "Permissions" = "Quyền";
 
+/* Source info: label before the total distance the source has scrolled, as a number of points (the unit of distance on screen) */
+"Points scrolled:" = "Đã cuộn (điểm):";
+
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Thoát %1$@";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Tooltip for the button below the sources table */
+"Remove the selected source. It will be added again if it scrolls." = "Xóa nguồn đã chọn. Nguồn sẽ được thêm lại nếu cuộn.";
+
+/* Source info: label before the name the device or app reports */
+"Reported name:" = "Tên được báo cáo:";
+
+/* 1=`Accessibility` */
 "Request %1$@ permission" = "Yêu cầu quyền %1$@";
 
-/* Prefs check box */
-"Reverse Horizontal" = "Đảo ngược chiều ngang";
-
-/* Prefs check box */
-"Reverse Mouse" = "Đảo ngược chuột";
-
-/* Prefs check box */
-"Reverse Trackpad" = "Đảo ngược bàn di chuột";
-
-/* Prefs check box */
-"Reverse Vertical" = "Đảo ngược chiều dọc";
+/* Scrolling menu item: reverse the direction of scrolling posted by an app */
+"Reversed" = "Đảo ngược";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser đang hoạt động!";
@@ -70,20 +124,11 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser cần quyền Trợ năng để điều chỉnh thao tác cuộn của bạn.";
 
-/* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser cần quyền Giám sát đầu vào để nhận biết ngón tay của bạn có đang chạm vào bàn di chuột hay không.";
-
-/* Prefs section header */
-"Scroll Wheel" = "Con lăn chuột";
-
-/* Preferences pane for `Scrolling` serttings */
+/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
 "Scrolling" = "Cuộn";
 
-/* Prefs section title */
-"Scrolling Axes" = "Trục cuộn";
-
-/* Prefs section title */
-"Scrolling Devices" = "Thiết bị cuộn";
+/* Source info: label before Continuous or Discrete */
+"Scrolling type:" = "Kiểu cuộn:";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Cài đặt…";
@@ -91,11 +136,41 @@
 /* Prefs check box */
 "Show in menu bar" = "Hiển thị trong thanh menu";
 
+/* Sources table column header: the device or app that scrolls */
+"Source" = "Nguồn";
+
 /* Prefs check box */
 "Start at login" = "Mở khi đăng nhập";
 
-/* Size of one step of the mouse scroll wheel */
+/* Sources table column header: scroll wheel step size */
 "Step size" = "Bước cuộn";
+
+/* Source info: label before the direction the system delivers the source's scrolling in, such as Natural */
+"System direction:" = "Hướng hệ thống:";
+
+/* Kind of source: a trackpad */
+"Trackpad" = "Bàn di chuột";
+
+/* Kind of source: a trackpad on another Mac, used through Universal Control */
+"Trackpad (Universal Control)" = "Bàn di chuột (Điều khiển chung)";
+
+/* Scrolling menu item: leave scrolling as the system delivers it */
+"Unchanged" = "Không thay đổi";
+
+/* Name and kind of a source of scrolling that is a device the system can't identify */
+"Unidentified device" = "Thiết bị chưa xác định";
+
+/* Name and kind of a source of scrolling that is neither a device nor an app */
+"Unidentified source" = "Nguồn chưa xác định";
+
+/* System direction of scrolling posted by an app, which the system doesn't say */
+"Unknown" = "Không xác định";
+
+/* Name of an app that posted scrolling but quit before it could be identified */
+"Unknown app" = "Ứng dụng không xác định";
+
+/* Name of a device that reports no name */
+"Unnamed device" = "Thiết bị chưa đặt tên";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ chưa cho phép";

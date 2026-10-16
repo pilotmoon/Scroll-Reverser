@@ -1,35 +1,86 @@
+/* Name of a device on another Mac, used through Universal Control. 1=the device's name */
+"%1$@ (Universal Control)" = "%1$@（ユニバーサルコントロール）";
+
 /* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@の許可：%2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "アクセシビリティ";
 
-/* Preferences pane for `App` settings */
+/* Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own */
 "App" = "アプリ";
 
 /* Label before the pop-up menu that chooses how updates are handled */
 "Automatic updates:" = "自動更新：";
 
+/* Scrolling type of a source that has scrolled both continuously, like a trackpad, and in steps, like a scroll wheel */
+"Both continuous and discrete" = "連続的と段階的の両方";
+
+/* System direction of a source whose scrolling the system has delivered both ways */
+"Both natural and classic" = "ナチュラルとクラシックの両方";
+
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "アップデートを確認";
+
+/* Scrolling direction: the opposite of natural scrolling */
+"Classic" = "クラシック";
+
+/* Scrolling type of a source that scrolls continuously, like a trackpad */
+"Continuous" = "連続的";
+
+/* Accessibility label of the button that shows a source's details */
+"Details" = "詳細";
+
+/* Tooltip of the button that shows a source's details */
+"Details and horizontal scrolling" = "詳細と横スクロール";
+
+/* Scrolling type of a source that scrolls in steps, like a scroll wheel */
+"Discrete" = "段階的";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "%1$@を有効にする";
 
+/* Source info: label before the date the source first scrolled */
+"First seen:" = "初回検出：";
+
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "設定を変更するには、メニューバーのアイコンをクリックしてください";
+
+/* Source info: label before the horizontal scrolling menu */
+"Horizontal scrolling:" = "横スクロール：";
+
+/* Source info: label before the identifier of the source's settings */
+"Identifier:" = "識別子：";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "ベータ版を含める";
 
-/* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "入力監視";
-
 /* Automatic updates menu item: download and install updates without asking */
 "Install automatically" = "自動インストール";
 
-/* Unit for scroll wheel step size, shown after the number */
-"lines" = "行";
+/* Sources table: the source scrolled within the last minute */
+"Just now" = "たった今";
+
+/* Source info: label before the kind of source, such as Mouse or App */
+"Kind:" = "種類：";
+
+/* Sources table column header: when the source last scrolled */
+"Last used" = "最後に使用";
+
+/* Horizontal scrolling menu item: reverse horizontal scrolling whenever vertical scrolling is reversed */
+"Match vertical" = "縦スクロールに合わせる";
+
+/* Kind of source: a mouse, or any other device that isn't a trackpad */
+"Mouse" = "マウス";
+
+/* Kind of source: a mouse on another Mac, used through Universal Control */
+"Mouse (Universal Control)" = "マウス（ユニバーサルコントロール）";
+
+/* Source info: label before the source's name field */
+"Name:" = "名前：";
+
+/* Scrolling direction: natural scrolling, as in System Settings */
+"Natural" = "ナチュラル";
 
 /* Automatic updates menu item: check for updates and ask before installing them */
 "Notify only" = "通知のみ";
@@ -40,29 +91,32 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* 1=`Accessibility` */
 "Open %1$@ preferences" = "%1$@の設定を開く";
+
+/* Source info: label before the location of an app */
+"Path:" = "パス：";
 
 /* Section title */
 "Permissions" = "権限";
 
+/* Source info: label before the total distance the source has scrolled, as a number of points (the unit of distance on screen) */
+"Points scrolled:" = "スクロール距離（ポイント）：";
+
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "%1$@を終了";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Tooltip for the button below the sources table */
+"Remove the selected source. It will be added again if it scrolls." = "選択したソースを削除します。再びスクロールすると、また追加されます。";
+
+/* Source info: label before the name the device or app reports */
+"Reported name:" = "報告された名前：";
+
+/* 1=`Accessibility` */
 "Request %1$@ permission" = "%1$@の許可をリクエスト";
 
-/* Prefs check box */
-"Reverse Horizontal" = "横方向を逆にする";
-
-/* Prefs check box */
-"Reverse Mouse" = "マウスを逆にする";
-
-/* Prefs check box */
-"Reverse Trackpad" = "トラックパッドを逆にする";
-
-/* Prefs check box */
-"Reverse Vertical" = "縦方向を逆にする";
+/* Scrolling menu item: reverse the direction of scrolling posted by an app */
+"Reversed" = "反転";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverserが起動しました！";
@@ -70,20 +124,11 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverserがスクロールを変更するには、アクセシビリティの許可が必要です。";
 
-/* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverserでは、指がトラックパッドに触れているかどうかを検出するために、入力監視の許可が必要です。";
-
-/* Prefs section header */
-"Scroll Wheel" = "スクロールホイール";
-
-/* Preferences pane for `Scrolling` serttings */
+/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
 "Scrolling" = "スクロール";
 
-/* Prefs section title */
-"Scrolling Axes" = "スクロール方向";
-
-/* Prefs section title */
-"Scrolling Devices" = "スクロールデバイス";
+/* Source info: label before Continuous or Discrete */
+"Scrolling type:" = "スクロールの種類：";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "設定…";
@@ -91,11 +136,41 @@
 /* Prefs check box */
 "Show in menu bar" = "メニューバーに表示";
 
+/* Sources table column header: the device or app that scrolls */
+"Source" = "ソース";
+
 /* Prefs check box */
 "Start at login" = "ログイン時に起動";
 
-/* Size of one step of the mouse scroll wheel */
+/* Sources table column header: scroll wheel step size */
 "Step size" = "スクロール量";
+
+/* Source info: label before the direction the system delivers the source's scrolling in, such as Natural */
+"System direction:" = "システムの方向：";
+
+/* Kind of source: a trackpad */
+"Trackpad" = "トラックパッド";
+
+/* Kind of source: a trackpad on another Mac, used through Universal Control */
+"Trackpad (Universal Control)" = "トラックパッド（ユニバーサルコントロール）";
+
+/* Scrolling menu item: leave scrolling as the system delivers it */
+"Unchanged" = "変更なし";
+
+/* Name and kind of a source of scrolling that is a device the system can't identify */
+"Unidentified device" = "未識別のデバイス";
+
+/* Name and kind of a source of scrolling that is neither a device nor an app */
+"Unidentified source" = "未識別のソース";
+
+/* System direction of scrolling posted by an app, which the system doesn't say */
+"Unknown" = "不明";
+
+/* Name of an app that posted scrolling but quit before it could be identified */
+"Unknown app" = "不明なアプリ";
+
+/* Name of a device that reports no name */
+"Unnamed device" = "名称未設定のデバイス";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ 必要";

@@ -1,35 +1,86 @@
+/* Name of a device on another Mac, used through Universal Control. 1=the device's name */
+"%1$@ (Universal Control)" = "%1$@ (Control universal)";
+
 /* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "Permiso de %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Accesibilidad";
 
-/* Preferences pane for `App` settings */
+/* Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own */
 "App" = "Aplicación";
 
 /* Label before the pop-up menu that chooses how updates are handled */
 "Automatic updates:" = "Actualizaciones automáticas:";
 
+/* Scrolling type of a source that has scrolled both continuously, like a trackpad, and in steps, like a scroll wheel */
+"Both continuous and discrete" = "Continuo y por pasos";
+
+/* System direction of a source whose scrolling the system has delivered both ways */
+"Both natural and classic" = "Natural y clásico";
+
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "Buscar actualizaciones";
+
+/* Scrolling direction: the opposite of natural scrolling */
+"Classic" = "Clásico";
+
+/* Scrolling type of a source that scrolls continuously, like a trackpad */
+"Continuous" = "Continuo";
+
+/* Accessibility label of the button that shows a source's details */
+"Details" = "Detalles";
+
+/* Tooltip of the button that shows a source's details */
+"Details and horizontal scrolling" = "Detalles y desplazamiento horizontal";
+
+/* Scrolling type of a source that scrolls in steps, like a scroll wheel */
+"Discrete" = "Por pasos";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Habilitar %1$@";
 
+/* Source info: label before the date the source first scrolled */
+"First seen:" = "Primera detección:";
+
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Para acceder a los ajustes, haz clic en el icono de la barra de menús";
+
+/* Source info: label before the horizontal scrolling menu */
+"Horizontal scrolling:" = "Desplazamiento horizontal:";
+
+/* Source info: label before the identifier of the source's settings */
+"Identifier:" = "Identificador:";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Incluir versiones beta";
 
-/* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Monitorización de los dispositivos de entrada";
-
 /* Automatic updates menu item: download and install updates without asking */
 "Install automatically" = "Instalar automáticamente";
 
-/* Unit for scroll wheel step size, shown after the number */
-"lines" = "líneas";
+/* Sources table: the source scrolled within the last minute */
+"Just now" = "Ahora mismo";
+
+/* Source info: label before the kind of source, such as Mouse or App */
+"Kind:" = "Tipo:";
+
+/* Sources table column header: when the source last scrolled */
+"Last used" = "Último uso";
+
+/* Horizontal scrolling menu item: reverse horizontal scrolling whenever vertical scrolling is reversed */
+"Match vertical" = "Igual que vertical";
+
+/* Kind of source: a mouse, or any other device that isn't a trackpad */
+"Mouse" = "Ratón";
+
+/* Kind of source: a mouse on another Mac, used through Universal Control */
+"Mouse (Universal Control)" = "Ratón (Control universal)";
+
+/* Source info: label before the source's name field */
+"Name:" = "Nombre:";
+
+/* Scrolling direction: natural scrolling, as in System Settings */
+"Natural" = "Natural";
 
 /* Automatic updates menu item: check for updates and ask before installing them */
 "Notify only" = "Solo notificar";
@@ -40,29 +91,32 @@
 /* No comment provided by engineer. */
 "OK" = "Aceptar";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* 1=`Accessibility` */
 "Open %1$@ preferences" = "Abrir ajustes de %1$@";
+
+/* Source info: label before the location of an app */
+"Path:" = "Ruta:";
 
 /* Section title */
 "Permissions" = "Permisos";
 
+/* Source info: label before the total distance the source has scrolled, as a number of points (the unit of distance on screen) */
+"Points scrolled:" = "Desplazado (puntos):";
+
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Salir de %1$@";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Tooltip for the button below the sources table */
+"Remove the selected source. It will be added again if it scrolls." = "Eliminar el origen seleccionado. Se volverá a añadir si se desplaza.";
+
+/* Source info: label before the name the device or app reports */
+"Reported name:" = "Nombre declarado:";
+
+/* 1=`Accessibility` */
 "Request %1$@ permission" = "Solicitar permiso de %1$@";
 
-/* Prefs check box */
-"Reverse Horizontal" = "Invertir horizontalmente";
-
-/* Prefs check box */
-"Reverse Mouse" = "Invertir ratón";
-
-/* Prefs check box */
-"Reverse Trackpad" = "Invertir trackpad";
-
-/* Prefs check box */
-"Reverse Vertical" = "Invertir verticalmente";
+/* Scrolling menu item: reverse the direction of scrolling posted by an app */
+"Reversed" = "Invertido";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "¡Scroll Reverser está en ejecución!";
@@ -70,20 +124,11 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser necesita permiso de Accesibilidad para modificar el desplazamiento.";
 
-/* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser necesita permiso de Monitorización de los dispositivos de entrada para detectar si tus dedos están tocando el trackpad.";
-
-/* Prefs section header */
-"Scroll Wheel" = "Rueda de desplazamiento";
-
-/* Preferences pane for `Scrolling` serttings */
+/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
 "Scrolling" = "Desplazamiento";
 
-/* Prefs section title */
-"Scrolling Axes" = "Ejes de desplazamiento";
-
-/* Prefs section title */
-"Scrolling Devices" = "Dispositivos de desplazamiento";
+/* Source info: label before Continuous or Discrete */
+"Scrolling type:" = "Tipo de desplazamiento:";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Ajustes…";
@@ -91,11 +136,41 @@
 /* Prefs check box */
 "Show in menu bar" = "Mostrar en la barra de menús";
 
+/* Sources table column header: the device or app that scrolls */
+"Source" = "Origen";
+
 /* Prefs check box */
 "Start at login" = "Abrir al iniciar sesión";
 
-/* Size of one step of the mouse scroll wheel */
+/* Sources table column header: scroll wheel step size */
 "Step size" = "Tamaño del paso";
+
+/* Source info: label before the direction the system delivers the source's scrolling in, such as Natural */
+"System direction:" = "Sentido del sistema:";
+
+/* Kind of source: a trackpad */
+"Trackpad" = "Trackpad";
+
+/* Kind of source: a trackpad on another Mac, used through Universal Control */
+"Trackpad (Universal Control)" = "Trackpad (Control universal)";
+
+/* Scrolling menu item: leave scrolling as the system delivers it */
+"Unchanged" = "Sin cambios";
+
+/* Name and kind of a source of scrolling that is a device the system can't identify */
+"Unidentified device" = "Dispositivo no identificado";
+
+/* Name and kind of a source of scrolling that is neither a device nor an app */
+"Unidentified source" = "Origen no identificado";
+
+/* System direction of scrolling posted by an app, which the system doesn't say */
+"Unknown" = "Desconocido";
+
+/* Name of an app that posted scrolling but quit before it could be identified */
+"Unknown app" = "Aplicación desconocida";
+
+/* Name of a device that reports no name */
+"Unnamed device" = "Dispositivo sin nombre";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ necesario";

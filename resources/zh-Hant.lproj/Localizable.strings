@@ -1,35 +1,86 @@
+/* Name of a device on another Mac, used through Universal Control. 1=the device's name */
+"%1$@ (Universal Control)" = "%1$@（通用控制）";
+
 /* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "%1$@權限：%2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "「輔助使用」";
 
-/* Preferences pane for `App` settings */
+/* Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own */
 "App" = "App";
 
 /* Label before the pop-up menu that chooses how updates are handled */
 "Automatic updates:" = "自動更新：";
 
+/* Scrolling type of a source that has scrolled both continuously, like a trackpad, and in steps, like a scroll wheel */
+"Both continuous and discrete" = "連續和分段";
+
+/* System direction of a source whose scrolling the system has delivered both ways */
+"Both natural and classic" = "自然和經典";
+
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "檢查更新";
+
+/* Scrolling direction: the opposite of natural scrolling */
+"Classic" = "經典";
+
+/* Scrolling type of a source that scrolls continuously, like a trackpad */
+"Continuous" = "連續";
+
+/* Accessibility label of the button that shows a source's details */
+"Details" = "詳細資訊";
+
+/* Tooltip of the button that shows a source's details */
+"Details and horizontal scrolling" = "詳細資訊和水平捲動";
+
+/* Scrolling type of a source that scrolls in steps, like a scroll wheel */
+"Discrete" = "分段";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "啟用%1$@";
 
+/* Source info: label before the date the source first scrolled */
+"First seen:" = "首次出現：";
+
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "若要更改設定，請按一下選單列中的圖示";
+
+/* Source info: label before the horizontal scrolling menu */
+"Horizontal scrolling:" = "水平捲動：";
+
+/* Source info: label before the identifier of the source's settings */
+"Identifier:" = "識別碼：";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "包含Beta版";
 
-/* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "「輸入監控」";
-
 /* Automatic updates menu item: download and install updates without asking */
 "Install automatically" = "自動安裝";
 
-/* Unit for scroll wheel step size, shown after the number */
-"lines" = "行";
+/* Sources table: the source scrolled within the last minute */
+"Just now" = "剛剛";
+
+/* Source info: label before the kind of source, such as Mouse or App */
+"Kind:" = "種類：";
+
+/* Sources table column header: when the source last scrolled */
+"Last used" = "上次使用";
+
+/* Horizontal scrolling menu item: reverse horizontal scrolling whenever vertical scrolling is reversed */
+"Match vertical" = "與垂直方向一致";
+
+/* Kind of source: a mouse, or any other device that isn't a trackpad */
+"Mouse" = "滑鼠";
+
+/* Kind of source: a mouse on another Mac, used through Universal Control */
+"Mouse (Universal Control)" = "滑鼠（通用控制）";
+
+/* Source info: label before the source's name field */
+"Name:" = "名稱：";
+
+/* Scrolling direction: natural scrolling, as in System Settings */
+"Natural" = "自然";
 
 /* Automatic updates menu item: check for updates and ask before installing them */
 "Notify only" = "僅通知";
@@ -40,29 +91,32 @@
 /* No comment provided by engineer. */
 "OK" = "好";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* 1=`Accessibility` */
 "Open %1$@ preferences" = "打開%1$@設定";
+
+/* Source info: label before the location of an app */
+"Path:" = "路徑：";
 
 /* Section title */
 "Permissions" = "權限";
 
+/* Source info: label before the total distance the source has scrolled, as a number of points (the unit of distance on screen) */
+"Points scrolled:" = "捲動距離（點）：";
+
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "結束%1$@";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Tooltip for the button below the sources table */
+"Remove the selected source. It will be added again if it scrolls." = "移除所選來源。若它再次捲動，將重新加入。";
+
+/* Source info: label before the name the device or app reports */
+"Reported name:" = "回報的名稱：";
+
+/* 1=`Accessibility` */
 "Request %1$@ permission" = "要求%1$@權限";
 
-/* Prefs check box */
-"Reverse Horizontal" = "反轉水平捲動";
-
-/* Prefs check box */
-"Reverse Mouse" = "反轉滑鼠";
-
-/* Prefs check box */
-"Reverse Trackpad" = "反轉觸控式軌跡板";
-
-/* Prefs check box */
-"Reverse Vertical" = "反轉垂直捲動";
+/* Scrolling menu item: reverse the direction of scrolling posted by an app */
+"Reversed" = "反轉";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser 已開始執行！";
@@ -70,20 +124,11 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser 需要「輔助使用」權限才能更改捲動方向。";
 
-/* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser 需要「輸入監控」權限才能偵測你的手指是否正在觸碰觸控式軌跡板。";
-
-/* Prefs section header */
-"Scroll Wheel" = "滾輪";
-
-/* Preferences pane for `Scrolling` serttings */
+/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
 "Scrolling" = "捲動";
 
-/* Prefs section title */
-"Scrolling Axes" = "捲動方向";
-
-/* Prefs section title */
-"Scrolling Devices" = "捲動裝置";
+/* Source info: label before Continuous or Discrete */
+"Scrolling type:" = "捲動類型：";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "設定⋯";
@@ -91,11 +136,41 @@
 /* Prefs check box */
 "Show in menu bar" = "在選單列中顯示";
 
+/* Sources table column header: the device or app that scrolls */
+"Source" = "來源";
+
 /* Prefs check box */
 "Start at login" = "登入時啟動";
 
-/* Size of one step of the mouse scroll wheel */
+/* Sources table column header: scroll wheel step size */
 "Step size" = "每格捲動";
+
+/* Source info: label before the direction the system delivers the source's scrolling in, such as Natural */
+"System direction:" = "系統方向：";
+
+/* Kind of source: a trackpad */
+"Trackpad" = "觸控式軌跡板";
+
+/* Kind of source: a trackpad on another Mac, used through Universal Control */
+"Trackpad (Universal Control)" = "觸控式軌跡板（通用控制）";
+
+/* Scrolling menu item: leave scrolling as the system delivers it */
+"Unchanged" = "不變";
+
+/* Name and kind of a source of scrolling that is a device the system can't identify */
+"Unidentified device" = "無法識別的裝置";
+
+/* Name and kind of a source of scrolling that is neither a device nor an app */
+"Unidentified source" = "無法識別的來源";
+
+/* System direction of scrolling posted by an app, which the system doesn't say */
+"Unknown" = "未知";
+
+/* Name of an app that posted scrolling but quit before it could be identified */
+"Unknown app" = "未知的App";
+
+/* Name of a device that reports no name */
+"Unnamed device" = "未命名的裝置";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️待授權";

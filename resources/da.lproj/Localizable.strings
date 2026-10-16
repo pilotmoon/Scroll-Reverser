@@ -1,35 +1,86 @@
+/* Name of a device on another Mac, used through Universal Control. 1=the device's name */
+"%1$@ (Universal Control)" = "%1$@ (Universel betjening)";
+
 /* for example: `Accessibility permission: ⛔️ required` */
 "%1$@ permission: %2$@" = "Tilladelse til %1$@: %2$@";
 
 /* corresponds to Accessibility in system Privacy settings */
 "Accessibility" = "Tilgængelighed";
 
-/* Preferences pane for `App` settings */
+/* Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own */
 "App" = "App";
 
 /* Label before the pop-up menu that chooses how updates are handled */
 "Automatic updates:" = "Automatiske opdateringer:";
 
+/* Scrolling type of a source that has scrolled both continuously, like a trackpad, and in steps, like a scroll wheel */
+"Both continuous and discrete" = "Både kontinuerlig og trinvis";
+
+/* System direction of a source whose scrolling the system has delivered both ways */
+"Both natural and classic" = "Både naturlig og klassisk";
+
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "Søg efter opdateringer";
+
+/* Scrolling direction: the opposite of natural scrolling */
+"Classic" = "Klassisk";
+
+/* Scrolling type of a source that scrolls continuously, like a trackpad */
+"Continuous" = "Kontinuerlig";
+
+/* Accessibility label of the button that shows a source's details */
+"Details" = "Oplysninger";
+
+/* Tooltip of the button that shows a source's details */
+"Details and horizontal scrolling" = "Oplysninger og vandret rulning";
+
+/* Scrolling type of a source that scrolls in steps, like a scroll wheel */
+"Discrete" = "Trinvis";
 
 /* 1=name of app e.g. `Enable Scroll Reverser` */
 "Enable %1$@" = "Aktivér %1$@";
 
+/* Source info: label before the date the source first scrolled */
+"First seen:" = "Først set:";
+
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Klik på symbolet på menulinjen for at åbne indstillingerne";
+
+/* Source info: label before the horizontal scrolling menu */
+"Horizontal scrolling:" = "Vandret rulning:";
+
+/* Source info: label before the identifier of the source's settings */
+"Identifier:" = "Id:";
 
 /* Check box: Include beta versionss of the app when checking for updates */
 "Include beta versions" = "Inkluder betaversioner";
 
-/* corresponds to Input Monitoring in system Privacy settings */
-"Input Monitoring" = "Overvågning af tastatur";
-
 /* Automatic updates menu item: download and install updates without asking */
 "Install automatically" = "Installer automatisk";
 
-/* Unit for scroll wheel step size, shown after the number */
-"lines" = "linjer";
+/* Sources table: the source scrolled within the last minute */
+"Just now" = "Lige nu";
+
+/* Source info: label before the kind of source, such as Mouse or App */
+"Kind:" = "Type:";
+
+/* Sources table column header: when the source last scrolled */
+"Last used" = "Sidst brugt";
+
+/* Horizontal scrolling menu item: reverse horizontal scrolling whenever vertical scrolling is reversed */
+"Match vertical" = "Som lodret";
+
+/* Kind of source: a mouse, or any other device that isn't a trackpad */
+"Mouse" = "Mus";
+
+/* Kind of source: a mouse on another Mac, used through Universal Control */
+"Mouse (Universal Control)" = "Mus (Universel betjening)";
+
+/* Source info: label before the source's name field */
+"Name:" = "Navn:";
+
+/* Scrolling direction: natural scrolling, as in System Settings */
+"Natural" = "Naturlig";
 
 /* Automatic updates menu item: check for updates and ask before installing them */
 "Notify only" = "Underret kun";
@@ -40,29 +91,32 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* 1=`Accessibility` */
 "Open %1$@ preferences" = "Åbn indstillinger for %1$@";
+
+/* Source info: label before the location of an app */
+"Path:" = "Sti:";
 
 /* Section title */
 "Permissions" = "Tilladelser";
 
+/* Source info: label before the total distance the source has scrolled, as a number of points (the unit of distance on screen) */
+"Points scrolled:" = "Rullet (punkter):";
+
 /* 1=name of app e.g. `Quit Scroll Reverser` */
 "Quit %1$@" = "Slut %1$@";
 
-/* 1=`Input Monitoring` or `Accessibility` */
+/* Tooltip for the button below the sources table */
+"Remove the selected source. It will be added again if it scrolls." = "Fjern den valgte kilde. Den tilføjes igen, hvis den ruller.";
+
+/* Source info: label before the name the device or app reports */
+"Reported name:" = "Rapporteret navn:";
+
+/* 1=`Accessibility` */
 "Request %1$@ permission" = "Anmod om tilladelse til %1$@";
 
-/* Prefs check box */
-"Reverse Horizontal" = "Omvend horisontalt";
-
-/* Prefs check box */
-"Reverse Mouse" = "Omvend retning på mus";
-
-/* Prefs check box */
-"Reverse Trackpad" = "Omvend retning på pegefelt";
-
-/* Prefs check box */
-"Reverse Vertical" = "Omvend vertikalt";
+/* Scrolling menu item: reverse the direction of scrolling posted by an app */
+"Reversed" = "Omvendt";
 
 /* No comment provided by engineer. */
 "Scroll Reverser is now running!" = "Scroll Reverser kører nu!";
@@ -70,20 +124,11 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser har brug for tilladelse til Tilgængelighed for at kunne ændre din rulning.";
 
-/* No comment provided by engineer. */
-"Scroll Reverser needs Input Monitoring permission to detect whether your fingers are touching the trackpad." = "Scroll Reverser har brug for tilladelse til Overvågning af tastatur for at kunne registrere, om dine fingre rører ved pegefeltet.";
-
-/* Prefs section header */
-"Scroll Wheel" = "Rullehjul";
-
-/* Preferences pane for `Scrolling` serttings */
+/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
 "Scrolling" = "Rulning";
 
-/* Prefs section title */
-"Scrolling Axes" = "Akser for rulning";
-
-/* Prefs section title */
-"Scrolling Devices" = "Enheder";
+/* Source info: label before Continuous or Discrete */
+"Scrolling type:" = "Rulningstype:";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Indstillinger…";
@@ -91,11 +136,41 @@
 /* Prefs check box */
 "Show in menu bar" = "Vis på menulinje";
 
+/* Sources table column header: the device or app that scrolls */
+"Source" = "Kilde";
+
 /* Prefs check box */
 "Start at login" = "Start ved login";
 
-/* Size of one step of the mouse scroll wheel */
+/* Sources table column header: scroll wheel step size */
 "Step size" = "Trinstørrelse";
+
+/* Source info: label before the direction the system delivers the source's scrolling in, such as Natural */
+"System direction:" = "Systemretning:";
+
+/* Kind of source: a trackpad */
+"Trackpad" = "Pegefelt";
+
+/* Kind of source: a trackpad on another Mac, used through Universal Control */
+"Trackpad (Universal Control)" = "Pegefelt (Universel betjening)";
+
+/* Scrolling menu item: leave scrolling as the system delivers it */
+"Unchanged" = "Uændret";
+
+/* Name and kind of a source of scrolling that is a device the system can't identify */
+"Unidentified device" = "Uidentificeret enhed";
+
+/* Name and kind of a source of scrolling that is neither a device nor an app */
+"Unidentified source" = "Uidentificeret kilde";
+
+/* System direction of scrolling posted by an app, which the system doesn't say */
+"Unknown" = "Ukendt";
+
+/* Name of an app that posted scrolling but quit before it could be identified */
+"Unknown app" = "Ukendt app";
+
+/* Name of a device that reports no name */
+"Unnamed device" = "Unavngivet enhed";
 
 /* No comment provided by engineer. */
 "⛔️ required" = "⛔️ påkrævet";
