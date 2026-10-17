@@ -297,9 +297,14 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
     XCTAssertFalse(row.continuous);
     XCTAssertTrue(row.seenNatural);
     XCTAssertFalse(row.seenClassic);
+    XCTAssertTrue(row.lastNatural);
     XCTAssertEqual([self.table recordSource:_device(@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1118, @kIOHIDProductIDKey: @64}) natural:NO amount:10], row);
     XCTAssertTrue(row.seenClassic);
+    XCTAssertFalse(row.lastNatural);
+    [self.table recordSource:_device(@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1118, @kIOHIDProductIDKey: @64}) natural:YES amount:0];
+    XCTAssertTrue(row.lastNatural);
     XCTAssertEqual(row.scrollTotal, 11);
+    XCTAssertTrue(row.seenNatural&&row.seenClassic);
     XCTAssertEqual([self.table.rows count], 1);
     // continuous scrolling from the same device has its own row
     SourceRow *const continuousRow=[self.table recordSource:_continuousDevice(@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1118, @kIOHIDProductIDKey: @64}) natural:NO amount:1];
@@ -334,6 +339,7 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
     mouse.horizontalMode=ScrollDirectionModeClassic;
     mouse.stepSize=7;
     mouse.customName=@"Wheel";
+    [self.table recordSource:_device(@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1118, @kIOHIDProductIDKey: @64}) natural:NO amount:1];
     SourceRow *const removed=[self trackpad];
     [self.table removeRow:removed];
     [self.table save];
@@ -349,6 +355,8 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
     XCTAssertEqual(row.stepSize, 7);
     XCTAssertEqualObjects(row.customName, @"Wheel");
     XCTAssertFalse(row.continuous);
+    XCTAssertTrue(row.seenNatural&&row.seenClassic);
+    XCTAssertFalse(row.lastNatural);
     XCTAssertEqualWithAccuracy(row.lastSeenTime, mouse.lastSeenTime, 0.001);
 }
 
@@ -380,6 +388,29 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
     NSDictionary *const resaved=[self.defaults dictionaryForKey:@"Sources"][@"matching"];
     XCTAssertEqualObjects(resaved[@"HorizontalMode"], @(ScrollDirectionModeMatchVertical));
     XCTAssertNil(resaved[@"HorizontalMatchesVertical"]);
+}
+
+// rows saved before the last direction was kept
+- (void)testLastNaturalFromOlderRows
+{
+    NSDictionary *const saved=@{@"Kind": @(ScrollSourceKindLocalDevice), @"Category": @(ScrollSourceCategoryMouse)};
+    NSMutableDictionary *const natural=[saved mutableCopy];
+    natural[@"SeenNatural"]=@YES;
+    NSMutableDictionary *const classic=[saved mutableCopy];
+    classic[@"SeenClassic"]=@YES;
+    NSMutableDictionary *const both=[saved mutableCopy];
+    both[@"SeenNatural"]=@YES;
+    both[@"SeenClassic"]=@YES;
+    [self.defaults setObject:@{@"natural": natural, @"classic": classic, @"both": both} forKey:@"Sources"];
+
+    SourceTable *const loaded=[[SourceTable alloc] initWithUserDefaults:self.defaults];
+    NSMutableDictionary<NSString *, SourceRow *> *const rows=[NSMutableDictionary dictionary];
+    for (SourceRow *row in loaded.rows) {
+        rows[row.key]=row;
+    }
+    XCTAssertTrue(rows[@"natural"].lastNatural);
+    XCTAssertFalse(rows[@"classic"].lastNatural);
+    XCTAssertTrue(rows[@"both"].lastNatural, @"a guess");
 }
 
 - (void)testRemovedSourceGetsNewRow

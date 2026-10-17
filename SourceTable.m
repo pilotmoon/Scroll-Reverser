@@ -24,6 +24,7 @@ static NSString *const kRowLastSeen=@"LastSeen";
 static NSString *const kRowScrollTotal=@"ScrollTotal";
 static NSString *const kRowSeenNatural=@"SeenNatural";
 static NSString *const kRowSeenClassic=@"SeenClassic";
+static NSString *const kRowLastNatural=@"LastNatural";
 
 // New rows and settings changes are saved soon. Sightings alone are saved at most once a minute.
 static const CFTimeInterval kChangeSaveDelay=1;
@@ -127,6 +128,8 @@ static NSDate *_dateValue(id obj)
         _scrollTotal=[_numberValue(dict[kRowScrollTotal]) doubleValue];
         _seenNatural=[_numberValue(dict[kRowSeenNatural]) boolValue];
         _seenClassic=[_numberValue(dict[kRowSeenClassic]) boolValue];
+        // rows saved before this was kept: natural if it's been seen, which is a guess if classic has too
+        _lastNatural=[(_numberValue(dict[kRowLastNatural])?:@(_seenNatural)) boolValue];
     }
     return self;
 }
@@ -146,6 +149,7 @@ static NSDate *_dateValue(id obj)
         kRowScrollTotal: @(self.scrollTotal),
         kRowSeenNatural: @(self.seenNatural),
         kRowSeenClassic: @(self.seenClassic),
+        kRowLastNatural: @(self.lastNatural),
     } mutableCopy];
     dict[kRowReportedName]=self.reportedName;
     dict[kRowPath]=self.path;
@@ -153,13 +157,15 @@ static NSDate *_dateValue(id obj)
     return dict;
 }
 
-/* Called for every event, so the totals and time are set directly, without change notifications.
- The flags change at most once each, and are observed. Returns whether the source has started scrolling. */
+/* Called for every event, so the totals, time and last direction are set directly, without change
+ notifications. The flags change at most once each, and are observed. Returns whether the source has
+ started scrolling. */
 - (BOOL)recordSightingAtTime:(CFAbsoluteTime)time natural:(BOOL)natural amount:(double)amount
 {
     const BOOL started=time-_lastSeenTime>=SourceRowScrollingInterval;
     _lastSeenTime=time;
     _scrollTotal+=amount;
+    _lastNatural=natural;
     if (natural&&!_seenNatural) {
         self.seenNatural=YES;
     }

@@ -68,6 +68,9 @@ typedef struct {
 // (NSEvent's isDirectionInvertedFromDevice), without, or both.
 @property (readonly) BOOL seenNatural;
 @property (readonly) BOOL seenClassic;
+// Whether the system delivered the most recent event with natural scrolling applied. Meaningful only
+// once either flag above is set.
+@property (readonly) BOOL lastNatural;
 // The reversing rule. `natural` is whether the system applied natural scrolling to the event.
 // Step size applies only to non-continuous scrolling.
 - (SourceAdjustment)adjustmentForNatural:(BOOL)natural;
