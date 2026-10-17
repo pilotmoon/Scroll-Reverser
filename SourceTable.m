@@ -68,9 +68,9 @@ static NSDate *_dateValue(id obj)
 @implementation SourceRow
 
 /* Defaults: trackpads natural, other devices classic, and apps unchanged. Horizontal scrolling
- matches vertical only for non-continuous scrolling from devices other than trackpads, such as wheel
- mice: continuous horizontal scrolling, as on trackpads and the Magic Mouse, doubles as gestures
- such as swiping between pages. Step size is as in 1.x. */
+ matches vertical only for non-continuous scrolling, such as from wheel mice: continuous horizontal
+ scrolling, as on trackpads and the Magic Mouse, doubles as gestures such as swiping between pages.
+ Step size is as in 1.x. */
 - (instancetype)initWithSource:(ScrollSource *)source table:(SourceTable *)table
 {
     self=[super init];
@@ -84,7 +84,7 @@ static NSDate *_dateValue(id obj)
         _path=source.path;
         const BOOL trackpad=_category==ScrollSourceCategoryTrackpad;
         _verticalMode=!self.hasDeviceDirection?ScrollDirectionModeUnchanged:trackpad?ScrollDirectionModeNatural:ScrollDirectionModeClassic;
-        _horizontalMatchesVertical=!trackpad&&!_continuous;
+        _horizontalMatchesVertical=!_continuous;
         _stepSizeEnabled=YES;
         _stepSize=3;
         _lastSeenTime=CFAbsoluteTimeGetCurrent();
