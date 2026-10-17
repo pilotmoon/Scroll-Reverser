@@ -556,6 +556,8 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
         modePopUp.lastItem.tag=[item[1] integerValue];
     }
     [modePopUp bind:NSSelectedTagBinding toObject:self withKeyPath:@"updateMode" options:nil];
+    // otherwise the stack's hugging truncates it
+    [modePopUp setContentCompressionResistancePriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationHorizontal];
     NSButton *const betaCheckbox=smallCheckbox(NSLocalizedString(@"Include beta versions", @"Check box: Include beta versionss of the app when checking for updates"));
     [betaCheckbox bind:NSValueBinding toObject:defaults withKeyPath:defaultsKeyPath(@"BetaUpdates") options:nil];
     NSGridView *const updateOptions=[NSGridView gridViewWithViews:@[@[modeLabel, modePopUp],
