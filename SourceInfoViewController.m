@@ -56,11 +56,16 @@ static NSTextField *_value(NSString *string)
     NSPopUpButton *const horizontalPopUp=[[NSPopUpButton alloc] initWithFrame:NSZeroRect pullsDown:NO];
     horizontalPopUp.controlSize=NSControlSizeSmall;
     horizontalPopUp.font=_font();
-    [horizontalPopUp addItemWithTitle:SourceDirectionModeTitle(ScrollDirectionModeUnchanged)];
-    horizontalPopUp.lastItem.tag=NO;
-    [horizontalPopUp addItemWithTitle:NSLocalizedString(@"Match vertical", @"Horizontal scrolling menu item: reverse horizontal scrolling whenever vertical scrolling is reversed")];
-    horizontalPopUp.lastItem.tag=YES;
-    [horizontalPopUp bind:NSSelectedTagBinding toObject:row withKeyPath:@"horizontalMatchesVertical" options:nil];
+    // Match vertical, then the same modes as the source's vertical menu
+    NSArray<NSNumber *> *const modes=row.hasDeviceDirection?@[@(ScrollDirectionModeNatural), @(ScrollDirectionModeClassic), @(ScrollDirectionModeUnchanged)]:@[@(ScrollDirectionModeReversed), @(ScrollDirectionModeUnchanged)];
+    [horizontalPopUp addItemWithTitle:SourceDirectionModeTitle(ScrollDirectionModeMatchVertical)];
+    horizontalPopUp.lastItem.tag=ScrollDirectionModeMatchVertical;
+    [horizontalPopUp.menu addItem:[NSMenuItem separatorItem]];
+    for (NSNumber *mode in modes) {
+        [horizontalPopUp addItemWithTitle:SourceDirectionModeTitle([mode integerValue])];
+        horizontalPopUp.lastItem.tag=[mode integerValue];
+    }
+    [horizontalPopUp bind:NSSelectedTagBinding toObject:row withKeyPath:@"horizontalMode" options:nil];
 
     nameField.enabled=self.editable;
     horizontalPopUp.enabled=self.editable;

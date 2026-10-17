@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, ScrollDirectionMode) {
     ScrollDirectionModeNatural,
     ScrollDirectionModeClassic,
     ScrollDirectionModeReversed,
+    ScrollDirectionModeMatchVertical, // horizontal only: reversed whenever vertical is
 };
 
 // Step size is in lines per step of a non-continuous scroll wheel.
@@ -51,8 +52,9 @@ typedef struct {
 // The user's name for the source, or nil to use the reported one. Empty strings are stored as nil.
 @property (nullable, nonatomic, copy) NSString *customName;
 @property (nonatomic) ScrollDirectionMode verticalMode;
-// Whether horizontal scrolling is reversed along with vertical, or left unchanged.
-@property (nonatomic) BOOL horizontalMatchesVertical;
+// Any mode, including Match vertical. Natural and Classic are absolute, as for vertical, which matters
+// for devices such as thumb wheels that roll one way but scroll the other.
+@property (nonatomic) ScrollDirectionMode horizontalMode;
 @property (nonatomic) BOOL stepSizeEnabled;
 @property (nonatomic) NSInteger stepSize;
 

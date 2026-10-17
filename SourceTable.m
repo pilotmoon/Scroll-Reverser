@@ -14,6 +14,8 @@ static NSString *const kRowReportedName=@"ReportedName";
 static NSString *const kRowPath=@"Path";
 static NSString *const kRowCustomName=@"CustomName";
 static NSString *const kRowVerticalMode=@"VerticalMode";
+static NSString *const kRowHorizontalMode=@"HorizontalMode";
+// replaced by HorizontalMode: YES for Match vertical, NO for Unchanged
 static NSString *const kRowHorizontalMatchesVertical=@"HorizontalMatchesVertical";
 static NSString *const kRowStepSizeEnabled=@"StepSizeEnabled";
 static NSString *const kRowStepSize=@"StepSize";
@@ -84,7 +86,7 @@ static NSDate *_dateValue(id obj)
         _path=source.path;
         const BOOL trackpad=_category==ScrollSourceCategoryTrackpad;
         _verticalMode=!self.hasDeviceDirection?ScrollDirectionModeUnchanged:trackpad?ScrollDirectionModeNatural:ScrollDirectionModeClassic;
-        _horizontalMatchesVertical=!_continuous;
+        _horizontalMode=_continuous?ScrollDirectionModeUnchanged:ScrollDirectionModeMatchVertical;
         _stepSizeEnabled=YES;
         _stepSize=3;
         _lastSeenTime=CFAbsoluteTimeGetCurrent();
@@ -110,7 +112,13 @@ static NSDate *_dateValue(id obj)
         _path=_stringValue(dict[kRowPath]);
         _customName=_stringValue(dict[kRowCustomName]);
         _verticalMode=[_numberValue(dict[kRowVerticalMode]) integerValue];
-        _horizontalMatchesVertical=[_numberValue(dict[kRowHorizontalMatchesVertical]) boolValue];
+        NSNumber *const horizontalMode=_numberValue(dict[kRowHorizontalMode]);
+        if (horizontalMode) {
+            _horizontalMode=[horizontalMode integerValue];
+        }
+        else {
+            _horizontalMode=[_numberValue(dict[kRowHorizontalMatchesVertical]) boolValue]?ScrollDirectionModeMatchVertical:ScrollDirectionModeUnchanged;
+        }
         _stepSizeEnabled=[_numberValue(dict[kRowStepSizeEnabled]) boolValue];
         _stepSize=[_numberValue(dict[kRowStepSize]) integerValue];
         NSDate *const lastSeen=_dateValue(dict[kRowLastSeen])?:[NSDate date];
@@ -130,7 +138,7 @@ static NSDate *_dateValue(id obj)
         kRowCategory: @(self.category),
         kRowContinuous: @(self.continuous),
         kRowVerticalMode: @(self.verticalMode),
-        kRowHorizontalMatchesVertical: @(self.horizontalMatchesVertical),
+        kRowHorizontalMode: @(self.horizontalMode),
         kRowStepSizeEnabled: @(self.stepSizeEnabled),
         kRowStepSize: @(self.stepSize),
         kRowFirstSeen: self.firstSeen,
@@ -161,15 +169,21 @@ static NSDate *_dateValue(id obj)
     return started;
 }
 
-- (SourceAdjustment)adjustmentForNatural:(BOOL)natural
+// Whether a mode other than Match vertical reverses an event.
+static BOOL _reverses(ScrollDirectionMode mode, BOOL natural)
 {
-    const ScrollDirectionMode mode=self.verticalMode;
-    const BOOL reverseVertical=mode==ScrollDirectionModeReversed||
+    return mode==ScrollDirectionModeReversed||
         (mode==ScrollDirectionModeNatural&&!natural)||
         (mode==ScrollDirectionModeClassic&&natural);
+}
+
+- (SourceAdjustment)adjustmentForNatural:(BOOL)natural
+{
+    const BOOL reverseVertical=_reverses(self.verticalMode, natural);
+    const ScrollDirectionMode horizontalMode=self.horizontalMode;
     return (SourceAdjustment){
         .reverseVertical=reverseVertical,
-        .reverseHorizontal=reverseVertical&&self.horizontalMatchesVertical,
+        .reverseHorizontal=horizontalMode==ScrollDirectionModeMatchVertical?reverseVertical:_reverses(horizontalMode, natural),
         .stepSize=self.continuous||!self.stepSizeEnabled?1:MIN(MAX(self.stepSize, SourceRowMinStepSize), SourceRowMaxStepSize),
     };
 }
@@ -225,9 +239,9 @@ static NSDate *_dateValue(id obj)
     [self.table rowSettingsDidChange];
 }
 
-- (void)setHorizontalMatchesVertical:(BOOL)horizontalMatchesVertical
+- (void)setHorizontalMode:(ScrollDirectionMode)horizontalMode
 {
-    _horizontalMatchesVertical=horizontalMatchesVertical;
+    _horizontalMode=horizontalMode;
     [self.table rowSettingsDidChange];
 }
 
