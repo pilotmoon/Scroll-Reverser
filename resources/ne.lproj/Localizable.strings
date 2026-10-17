@@ -10,9 +10,6 @@
 /* Label before the pop-up menu that chooses how updates are handled */
 "Automatic updates:" = "स्वचालित अपडेटहरू:";
 
-/* System direction of a source whose scrolling the system has delivered both ways */
-"Both natural and classic" = "प्राकृतिक र क्लासिक दुवै";
-
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "अपडेटहरू खोज्नुहोस्";
 

@@ -10,9 +10,6 @@
 /* Label before the pop-up menu that chooses how updates are handled */
 "Automatic updates:" = "Automatické aktualizace:";
 
-/* System direction of a source whose scrolling the system has delivered both ways */
-"Both natural and classic" = "Přirozené i klasické";
-
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "Vyhledat aktualizace";
 

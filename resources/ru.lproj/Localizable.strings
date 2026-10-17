@@ -10,9 +10,6 @@
 /* Label before the pop-up menu that chooses how updates are handled */
 "Automatic updates:" = "Автоматические обновления:";
 
-/* System direction of a source whose scrolling the system has delivered both ways */
-"Both natural and classic" = "Естественная и классическая";
-
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "Проверить наличие обновлений";
 

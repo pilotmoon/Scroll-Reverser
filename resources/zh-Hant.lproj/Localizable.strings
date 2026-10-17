@@ -10,9 +10,6 @@
 /* Label before the pop-up menu that chooses how updates are handled */
 "Automatic updates:" = "自動更新：";
 
-/* System direction of a source whose scrolling the system has delivered both ways */
-"Both natural and classic" = "自然和經典";
-
 /* Button, when pressed, checks for updates now */
 "Check for updates" = "檢查更新";
 
