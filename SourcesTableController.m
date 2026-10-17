@@ -58,6 +58,45 @@ static NSDictionary *_negated(void)
 
 @end
 
+/* A row view that is tinted while its source is scrolling. It draws the tint itself rather than
+ setting backgroundColor, which takes the selected style away from a selected row's pop-up menu.
+ On a selected row, the selection is lightened (darkened in dark mode) instead, since it covers the
+ background. */
+@interface SourceRowView : NSTableRowView
+@property (nonatomic) BOOL scrolling;
+@end
+
+@implementation SourceRowView
+
+- (void)setScrolling:(BOOL)scrolling
+{
+    if (scrolling!=_scrolling) {
+        _scrolling=scrolling;
+        self.needsDisplay=YES;
+    }
+}
+
+- (void)drawBackgroundInRect:(NSRect)dirtyRect
+{
+    [super drawBackgroundInRect:dirtyRect];
+    if (self.scrolling) {
+        [[[NSColor controlAccentColor] colorWithAlphaComponent:0.25] setFill];
+        NSRectFillUsingOperation(self.bounds, NSCompositingOperationSourceOver);
+    }
+}
+
+- (void)drawSelectionInRect:(NSRect)dirtyRect
+{
+    [super drawSelectionInRect:dirtyRect];
+    if (self.scrolling) {
+        const BOOL dark=[[self.effectiveAppearance bestMatchFromAppearancesWithNames:@[NSAppearanceNameAqua, NSAppearanceNameDarkAqua]] isEqualToString:NSAppearanceNameDarkAqua];
+        [[NSColor colorWithWhite:dark?0:1 alpha:0.25] setFill];
+        NSRectFillUsingOperation(self.bounds, NSCompositingOperationSourceOver);
+    }
+}
+
+@end
+
 static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
 {
     return [rows sortedArrayUsingComparator:^NSComparisonResult(SourceRow *a, SourceRow *b) {
@@ -297,13 +336,13 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
 // The highlight and Last used time, which change with time rather than by observation.
 - (void)updateRowAtIndex:(NSInteger)index
 {
-    NSTableRowView *const rowView=[self.tableView rowViewAtRow:index makeIfNecessary:NO];
+    SourceRowView *const rowView=[self.tableView rowViewAtRow:index makeIfNecessary:NO];
     [self updateRowView:rowView forRow:self.rows[index]];
 }
 
-- (void)updateRowView:(NSTableRowView *)rowView forRow:(SourceRow *)row
+- (void)updateRowView:(SourceRowView *)rowView forRow:(SourceRow *)row
 {
-    rowView.backgroundColor=row.scrolling?[[NSColor controlAccentColor] colorWithAlphaComponent:0.25]:[NSColor clearColor];
+    rowView.scrolling=row.scrolling;
     NSTableCellView *const lastUsedCell=[rowView viewAtColumn:[self.tableView columnWithIdentifier:kColumnLastUsed]];
     lastUsedCell.textField.stringValue=[self lastUsedStringForRow:row];
 }
@@ -364,7 +403,12 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     self.removeButton.enabled=self.tableView.selectedRow>=0;
 }
 
-- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row
+- (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row
+{
+    return [[SourceRowView alloc] init];
+}
+
+- (void)tableView:(NSTableView *)tableView didAddRowView:(SourceRowView *)rowView forRow:(NSInteger)row
 {
     [self updateRowView:rowView forRow:self.rows[row]];
 }
