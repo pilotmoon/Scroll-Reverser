@@ -27,6 +27,19 @@ typedef NS_ENUM(NSInteger, UpdateMode) {
     UpdateModeInstall,
 };
 
+// A button that opens a link, so it shows the pointing hand, as LinkView does.
+@interface LinkButton : NSButton
+@end
+
+@implementation LinkButton
+
+- (void)resetCursorRects
+{
+    [self addCursorRect:self.bounds cursor:[NSCursor pointingHandCursor]];
+}
+
+@end
+
 @interface PrefsWindowController ()
 @property UpdateMode updateMode;
 @property NSTabView *tabView;
@@ -547,7 +560,7 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
         [field setContentCompressionResistancePriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationHorizontal];
     }
     // Buy Me a Coffee's own button, at a size to suit the text above it
-    NSButton *const coffeeButton=[NSButton buttonWithImage:[NSImage imageNamed:@"BuyMeACoffee"] target:self action:@selector(buttonCoffeeClicked:)];
+    NSButton *const coffeeButton=[LinkButton buttonWithImage:[NSImage imageNamed:@"BuyMeACoffee"] target:self action:@selector(buttonCoffeeClicked:)];
     coffeeButton.translatesAutoresizingMaskIntoConstraints=NO;
     coffeeButton.bordered=NO;
     coffeeButton.imageScaling=NSImageScaleProportionallyUpOrDown;
