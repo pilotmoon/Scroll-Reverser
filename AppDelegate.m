@@ -456,6 +456,10 @@ static void *_contextPermissions=&_contextPermissions;
     return @"pilotmoon.com/scrollreverser";
 }
 
+- (NSURL *)appCoffeeLink {
+    return [NSURL URLWithString:@"https://buymeacoffee.com/pilotmoon"];
+}
+
 - (NSURL *)appPermissionsHelpLink {
     return [NSURL URLWithString:@"https://pilotmoon.com/link/scrollreverser/help/permissions"];
 }

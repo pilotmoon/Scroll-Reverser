@@ -25,6 +25,7 @@ extern NSString *const PrefsHideIcon;
 @property (readonly) NSString *appCredit;
 @property (readonly) NSURL *appLink;
 @property (readonly) NSString *appDisplayLink;
+@property (readonly) NSURL *appCoffeeLink;
 @property (readonly) NSURL *appPermissionsHelpLink;
 
 @property (getter=isEnabled) BOOL enabled;
