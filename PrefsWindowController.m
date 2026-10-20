@@ -574,14 +574,14 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
     [info setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
 
     // updates
-    NSTextField *const modeLabel=label([NSTextField labelWithString:NSLocalizedString(@"Automatic updates:", @"Label before the pop-up menu that chooses how updates are handled")], infoFont, [NSColor labelColor]);
+    NSTextField *const modeLabel=label([NSTextField labelWithString:NSLocalizedString(@"Automatic checks:", @"Label before the pop-up menu that chooses how automatic update checks are handled")], infoFont, [NSColor labelColor]);
     NSPopUpButton *const modePopUp=[[NSPopUpButton alloc] initWithFrame:NSZeroRect pullsDown:NO];
     modePopUp.translatesAutoresizingMaskIntoConstraints=NO;
     modePopUp.controlSize=NSControlSizeSmall;
     modePopUp.font=infoFont;
-    for (NSArray *item in @[@[NSLocalizedString(@"Install automatically", @"Automatic updates menu item: download and install updates without asking"), @(UpdateModeInstall)],
+    for (NSArray *item in @[@[NSLocalizedString(@"Off", @"Automatic updates menu item: don't check for updates automatically"), @(UpdateModeOff)],
                             @[NSLocalizedString(@"Notify only", @"Automatic updates menu item: check for updates and ask before installing them"), @(UpdateModeNotify)],
-                            @[NSLocalizedString(@"Off", @"Automatic updates menu item: don't check for updates automatically"), @(UpdateModeOff)]]) {
+                            @[NSLocalizedString(@"Install automatically", @"Automatic updates menu item: download and install updates without asking"), @(UpdateModeInstall)]]) {
         [modePopUp addItemWithTitle:item[0]];
         modePopUp.lastItem.tag=[item[1] integerValue];
     }
@@ -592,20 +592,19 @@ static NSStackView *stack(NSUserInterfaceLayoutOrientation orientation, NSLayout
     for (NSView *control in @[modeLabel, modePopUp, betaCheckbox]) {
         [control setContentCompressionResistancePriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationHorizontal];
     }
-    NSGridView *const updateOptions=[NSGridView gridViewWithViews:@[@[modeLabel, modePopUp],
-                                                                     @[[NSGridCell emptyContentView], betaCheckbox]]];
+    NSGridView *const updateOptions=[NSGridView gridViewWithViews:@[@[modeLabel, modePopUp]]];
     updateOptions.translatesAutoresizingMaskIntoConstraints=NO;
     updateOptions.rowAlignment=NSGridRowAlignmentFirstBaseline;
     updateOptions.columnSpacing=6;
-    updateOptions.rowSpacing=8;
-    [updateOptions columnAtIndex:0].xPlacement=NSGridCellPlacementTrailing;
-    NSButton *const checkNowButton=[NSButton buttonWithTitle:NSLocalizedString(@"Check for updates", @"Button, when pressed, checks for updates now") target:self action:@selector(buttonCheckForUpdatesClicked:)];
+    NSButton *const checkNowButton=[NSButton buttonWithTitle:NSLocalizedString(@"Check for Update", @"Button, when pressed, checks for an update now") target:self action:@selector(buttonCheckForUpdatesClicked:)];
     checkNowButton.translatesAutoresizingMaskIntoConstraints=NO;
     checkNowButton.controlSize=NSControlSizeSmall;
     checkNowButton.font=infoFont;
     [checkNowButton setContentHuggingPriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationHorizontal];
     [checkNowButton bind:NSEnabledBinding toObject:self.updater withKeyPath:@"sessionInProgress" options:negated()];
-    NSStackView *const updates=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeCenterX, 12, @[updateOptions, checkNowButton]);
+    NSStackView *const updates=stack(NSUserInterfaceLayoutOrientationVertical, NSLayoutAttributeCenterX, 12, @[checkNowButton, betaCheckbox, updateOptions]);
+    // the beta checkbox applies to manual and automatic checks alike, so it sits with the button
+    [updates setCustomSpacing:8 afterView:checkNowButton];
     [updates setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationHorizontal];
     [updates setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
 

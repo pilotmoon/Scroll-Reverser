@@ -7,11 +7,11 @@
 /* Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own */
 "App" = "Εφαρμογή";
 
-/* Label before the pop-up menu that chooses how updates are handled */
-"Automatic updates:" = "Αυτόματες ενημερώσεις:";
+/* Label before the pop-up menu that chooses how automatic update checks are handled */
+"Automatic checks:" = "Αυτόματοι έλεγχοι:";
 
-/* Button, when pressed, checks for updates now */
-"Check for updates" = "Έλεγχος για ενημερώσεις";
+/* Button, when pressed, checks for an update now */
+"Check for Update" = "Έλεγχος για ενημερώσεις";
 
 /* Scrolling direction: the opposite of natural scrolling */
 "Classic" = "Κλασική";
@@ -74,7 +74,7 @@
 "Notify only" = "Μόνο ειδοποίηση";
 
 /* Automatic updates menu item: don't check for updates automatically */
-"Off" = "Ανενεργές";
+"Off" = "Ανενεργοί";
 
 /* No comment provided by engineer. */
 "OK" = "ΟΚ";

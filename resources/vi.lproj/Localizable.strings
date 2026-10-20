@@ -7,11 +7,11 @@
 /* Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own */
 "App" = "Ứng dụng";
 
-/* Label before the pop-up menu that chooses how updates are handled */
-"Automatic updates:" = "Tự động cập nhật:";
+/* Label before the pop-up menu that chooses how automatic update checks are handled */
+"Automatic checks:" = "Tự động kiểm tra:";
 
-/* Button, when pressed, checks for updates now */
-"Check for updates" = "Kiểm tra bản cập nhật";
+/* Button, when pressed, checks for an update now */
+"Check for Update" = "Kiểm tra bản cập nhật";
 
 /* Scrolling direction: the opposite of natural scrolling */
 "Classic" = "Cổ điển";

@@ -7,11 +7,11 @@
 /* Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own */
 "App" = "앱";
 
-/* Label before the pop-up menu that chooses how updates are handled */
-"Automatic updates:" = "자동 업데이트:";
+/* Label before the pop-up menu that chooses how automatic update checks are handled */
+"Automatic checks:" = "자동 확인:";
 
-/* Button, when pressed, checks for updates now */
-"Check for updates" = "업데이트 확인";
+/* Button, when pressed, checks for an update now */
+"Check for Update" = "업데이트 확인";
 
 /* Scrolling direction: the opposite of natural scrolling */
 "Classic" = "클래식";

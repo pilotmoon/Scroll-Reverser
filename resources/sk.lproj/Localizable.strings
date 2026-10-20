@@ -7,11 +7,11 @@
 /* Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own */
 "App" = "Aplikácia";
 
-/* Label before the pop-up menu that chooses how updates are handled */
-"Automatic updates:" = "Automatické aktualizácie:";
+/* Label before the pop-up menu that chooses how automatic update checks are handled */
+"Automatic checks:" = "Automatická kontrola:";
 
-/* Button, when pressed, checks for updates now */
-"Check for updates" = "Vyhľadať aktualizácie";
+/* Button, when pressed, checks for an update now */
+"Check for Update" = "Vyhľadať aktualizácie";
 
 /* Scrolling direction: the opposite of natural scrolling */
 "Classic" = "Klasické";

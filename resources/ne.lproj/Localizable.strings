@@ -7,11 +7,11 @@
 /* Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own */
 "App" = "एप";
 
-/* Label before the pop-up menu that chooses how updates are handled */
-"Automatic updates:" = "स्वचालित अपडेटहरू:";
+/* Label before the pop-up menu that chooses how automatic update checks are handled */
+"Automatic checks:" = "स्वचालित जाँच:";
 
-/* Button, when pressed, checks for updates now */
-"Check for updates" = "अपडेटहरू खोज्नुहोस्";
+/* Button, when pressed, checks for an update now */
+"Check for Update" = "अपडेटहरू खोज्नुहोस्";
 
 /* Scrolling direction: the opposite of natural scrolling */
 "Classic" = "क्लासिक";
