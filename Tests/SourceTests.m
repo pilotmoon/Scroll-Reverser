@@ -194,7 +194,7 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
 {
     SourceRow *const row=[self trackpad];
     row.verticalMode=ScrollDirectionModeNatural;
-    row.horizontalMode=ScrollDirectionModeMatchVertical;
+    row.horizontalMode=ScrollDirectionModeNatural;
     XCTAssertFalse([row adjustmentForNatural:YES].reverseVertical);
     XCTAssertFalse([row adjustmentForNatural:YES].reverseHorizontal);
     XCTAssertTrue([row adjustmentForNatural:NO].reverseVertical);
@@ -216,23 +216,12 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
     XCTAssertTrue([row adjustmentForNatural:NO].reverseVertical);
     XCTAssertTrue([row adjustmentForNatural:YES].reverseVertical);
     row.verticalMode=ScrollDirectionModeUnchanged;
-    row.horizontalMode=ScrollDirectionModeMatchVertical;
+    row.horizontalMode=ScrollDirectionModeUnchanged;
     for (NSNumber *natural in @[@NO, @YES]) {
         const SourceAdjustment adjustment=[row adjustmentForNatural:[natural boolValue]];
         XCTAssertFalse(adjustment.reverseVertical);
         XCTAssertFalse(adjustment.reverseHorizontal);
     }
-}
-
-- (void)testHorizontalFollowsVerticalOnlyWhenMatching
-{
-    SourceRow *const row=[self wheelMouse];
-    row.horizontalMode=ScrollDirectionModeUnchanged;
-    const SourceAdjustment adjustment=[row adjustmentForNatural:YES];
-    XCTAssertTrue(adjustment.reverseVertical);
-    XCTAssertFalse(adjustment.reverseHorizontal);
-    row.horizontalMode=ScrollDirectionModeMatchVertical;
-    XCTAssertTrue([row adjustmentForNatural:YES].reverseHorizontal);
 }
 
 // Every vertical and horizontal mode, for events with and without natural scrolling applied.
@@ -248,11 +237,7 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
                 (verticalModes[v]==ScrollDirectionModeNatural&&!natural)||
                 (verticalModes[v]==ScrollDirectionModeClassic&&natural);
             NSString *const context=[NSString stringWithFormat:@"vertical %ld, natural %d", (long)verticalModes[v], natural];
-
-            row.horizontalMode=ScrollDirectionModeMatchVertical;
-            XCTAssertEqual([row adjustmentForNatural:natural].reverseVertical, reverseVertical, @"%@", context);
-            XCTAssertEqual([row adjustmentForNatural:natural].reverseHorizontal, reverseVertical, @"%@", context);
-            // the other horizontal modes don't depend on vertical
+            // horizontal modes don't depend on vertical
             row.horizontalMode=ScrollDirectionModeNatural;
             XCTAssertEqual([row adjustmentForNatural:natural].reverseVertical, reverseVertical, @"%@", context);
             XCTAssertEqual([row adjustmentForNatural:natural].reverseHorizontal, !natural, @"%@", context);
@@ -360,34 +345,37 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
     XCTAssertEqualWithAccuracy(row.lastSeenTime, mouse.lastSeenTime, 0.001);
 }
 
-// rows saved before the horizontal mode had only HorizontalMatchesVertical
-- (void)testHorizontalMatchesVerticalIsMigrated
+// rows saved with the old Match vertical mode (4), or with only the older HorizontalMatchesVertical key
+- (void)testMatchVerticalLoadsAsUnchanged
 {
     NSDictionary *const saved=@{@"Kind": @(ScrollSourceKindLocalDevice), @"Category": @(ScrollSourceCategoryMouse)};
-    NSMutableDictionary *const matching=[saved mutableCopy];
-    matching[@"HorizontalMatchesVertical"]=@YES;
-    NSMutableDictionary *const unchanged=[saved mutableCopy];
-    unchanged[@"HorizontalMatchesVertical"]=@NO;
-    NSMutableDictionary *const both=[saved mutableCopy];
-    both[@"HorizontalMatchesVertical"]=@YES;
-    both[@"HorizontalMode"]=@(ScrollDirectionModeNatural);
-    [self.defaults setObject:@{@"matching": matching, @"unchanged": unchanged, @"both": both} forKey:@"Sources"];
+    NSMutableDictionary *const matchVertical=[saved mutableCopy];
+    matchVertical[@"HorizontalMode"]=@4;
+    NSMutableDictionary *const oldMatching=[saved mutableCopy];
+    oldMatching[@"HorizontalMatchesVertical"]=@YES;
+    NSMutableDictionary *const oldUnchanged=[saved mutableCopy];
+    oldUnchanged[@"HorizontalMatchesVertical"]=@NO;
+    NSMutableDictionary *const natural=[saved mutableCopy];
+    natural[@"HorizontalMatchesVertical"]=@YES;
+    natural[@"HorizontalMode"]=@(ScrollDirectionModeNatural);
+    [self.defaults setObject:@{@"matchVertical": matchVertical, @"oldMatching": oldMatching, @"oldUnchanged": oldUnchanged, @"natural": natural} forKey:@"Sources"];
 
     SourceTable *const loaded=[[SourceTable alloc] initWithUserDefaults:self.defaults];
     NSMutableDictionary<NSString *, SourceRow *> *const rows=[NSMutableDictionary dictionary];
     for (SourceRow *row in loaded.rows) {
         rows[row.key]=row;
     }
-    XCTAssertEqual(rows[@"matching"].horizontalMode, ScrollDirectionModeMatchVertical);
-    XCTAssertEqual(rows[@"unchanged"].horizontalMode, ScrollDirectionModeUnchanged);
-    XCTAssertEqual(rows[@"both"].horizontalMode, ScrollDirectionModeNatural, @"the new key wins");
+    XCTAssertEqual(rows[@"matchVertical"].horizontalMode, ScrollDirectionModeUnchanged);
+    XCTAssertEqual(rows[@"oldMatching"].horizontalMode, ScrollDirectionModeUnchanged);
+    XCTAssertEqual(rows[@"oldUnchanged"].horizontalMode, ScrollDirectionModeUnchanged);
+    XCTAssertEqual(rows[@"natural"].horizontalMode, ScrollDirectionModeNatural);
 
-    // saved again, under the new key only
-    rows[@"unchanged"].stepSize=4;
+    // saved again as Unchanged, without the older key
+    rows[@"natural"].stepSize=4;
     [loaded save];
-    NSDictionary *const resaved=[self.defaults dictionaryForKey:@"Sources"][@"matching"];
-    XCTAssertEqualObjects(resaved[@"HorizontalMode"], @(ScrollDirectionModeMatchVertical));
-    XCTAssertNil(resaved[@"HorizontalMatchesVertical"]);
+    NSDictionary *const resaved=[self.defaults dictionaryForKey:@"Sources"];
+    XCTAssertEqualObjects(resaved[@"matchVertical"][@"HorizontalMode"], @(ScrollDirectionModeUnchanged));
+    XCTAssertNil(resaved[@"oldMatching"][@"HorizontalMatchesVertical"]);
 }
 
 // rows saved before the last direction was kept

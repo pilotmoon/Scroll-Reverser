@@ -56,14 +56,8 @@ static NSTextField *_value(NSString *string)
     NSPopUpButton *const horizontalPopUp=[[NSPopUpButton alloc] initWithFrame:NSZeroRect pullsDown:NO];
     horizontalPopUp.controlSize=NSControlSizeSmall;
     horizontalPopUp.font=_font();
-    // Match vertical, then the same modes as the source's vertical menu
+    // the same modes as the source's vertical menu
     NSArray<NSNumber *> *const modes=row.hasDeviceDirection?@[@(ScrollDirectionModeNatural), @(ScrollDirectionModeClassic), @(ScrollDirectionModeUnchanged)]:@[@(ScrollDirectionModeReversed), @(ScrollDirectionModeUnchanged)];
-    [horizontalPopUp addItemWithTitle:SourceDirectionModeTitle(ScrollDirectionModeMatchVertical)];
-    horizontalPopUp.lastItem.tag=ScrollDirectionModeMatchVertical;
-    // its tag would otherwise be 0, Unchanged's, and the binding selects the first item with the tag
-    NSMenuItem *const separator=[NSMenuItem separatorItem];
-    separator.tag=-1;
-    [horizontalPopUp.menu addItem:separator];
     for (NSNumber *mode in modes) {
         [horizontalPopUp addItemWithTitle:SourceDirectionModeTitle([mode integerValue])];
         horizontalPopUp.lastItem.tag=[mode integerValue];

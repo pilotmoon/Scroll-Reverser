@@ -12,8 +12,6 @@ NSString *SourceDirectionModeTitle(ScrollDirectionMode mode)
             return NSLocalizedString(@"Classic", @"Scrolling direction: the opposite of natural scrolling");
         case ScrollDirectionModeReversed:
             return NSLocalizedString(@"Reversed", @"Scrolling menu item: reverse the direction of scrolling posted by an app");
-        case ScrollDirectionModeMatchVertical:
-            return NSLocalizedString(@"Match vertical", @"Horizontal scrolling menu item: reverse horizontal scrolling whenever vertical scrolling is reversed");
         case ScrollDirectionModeUnchanged:
         default:
             return NSLocalizedString(@"Unchanged", @"Scrolling menu item: leave scrolling as the system delivers it");

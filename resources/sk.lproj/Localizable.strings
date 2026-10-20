@@ -58,9 +58,6 @@
 /* Sources table column header: when the source last scrolled */
 "Last used" = "Naposledy použité";
 
-/* Horizontal scrolling menu item: reverse horizontal scrolling whenever vertical scrolling is reversed */
-"Match vertical" = "Ako zvislé";
-
 /* Kind of source: a mouse, or any other device that isn't a trackpad */
 "Mouse" = "Myš";
 

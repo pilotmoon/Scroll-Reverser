@@ -15,8 +15,6 @@ static NSString *const kRowPath=@"Path";
 static NSString *const kRowCustomName=@"CustomName";
 static NSString *const kRowVerticalMode=@"VerticalMode";
 static NSString *const kRowHorizontalMode=@"HorizontalMode";
-// replaced by HorizontalMode: YES for Match vertical, NO for Unchanged
-static NSString *const kRowHorizontalMatchesVertical=@"HorizontalMatchesVertical";
 static NSString *const kRowStepSizeEnabled=@"StepSizeEnabled";
 static NSString *const kRowStepSize=@"StepSize";
 static NSString *const kRowFirstSeen=@"FirstSeen";
@@ -113,12 +111,11 @@ static NSDate *_dateValue(id obj)
         _path=_stringValue(dict[kRowPath]);
         _customName=_stringValue(dict[kRowCustomName]);
         _verticalMode=[_numberValue(dict[kRowVerticalMode]) integerValue];
-        NSNumber *const horizontalMode=_numberValue(dict[kRowHorizontalMode]);
-        if (horizontalMode) {
-            _horizontalMode=[horizontalMode integerValue];
-        }
-        else {
-            _horizontalMode=[_numberValue(dict[kRowHorizontalMatchesVertical]) boolValue]?ScrollDirectionModeMatchVertical:ScrollDirectionModeUnchanged;
+        // Unchanged for rows saved with the old Match vertical mode (4), or with only the older
+        // HorizontalMatchesVertical key
+        _horizontalMode=[_numberValue(dict[kRowHorizontalMode]) integerValue];
+        if (_horizontalMode<ScrollDirectionModeUnchanged||_horizontalMode>ScrollDirectionModeReversed) {
+            _horizontalMode=ScrollDirectionModeUnchanged;
         }
         _stepSizeEnabled=[_numberValue(dict[kRowStepSizeEnabled]) boolValue];
         _stepSize=[_numberValue(dict[kRowStepSize]) integerValue];
@@ -175,7 +172,7 @@ static NSDate *_dateValue(id obj)
     return started;
 }
 
-// Whether a mode other than Match vertical reverses an event.
+// Whether a mode reverses an event.
 static BOOL _reverses(ScrollDirectionMode mode, BOOL natural)
 {
     return mode==ScrollDirectionModeReversed||
@@ -185,11 +182,9 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural)
 
 - (SourceAdjustment)adjustmentForNatural:(BOOL)natural
 {
-    const BOOL reverseVertical=_reverses(self.verticalMode, natural);
-    const ScrollDirectionMode horizontalMode=self.horizontalMode;
     return (SourceAdjustment){
-        .reverseVertical=reverseVertical,
-        .reverseHorizontal=horizontalMode==ScrollDirectionModeMatchVertical?reverseVertical:_reverses(horizontalMode, natural),
+        .reverseVertical=_reverses(self.verticalMode, natural),
+        .reverseHorizontal=_reverses(self.horizontalMode, natural),
         .stepSize=self.continuous||!self.stepSizeEnabled?1:MIN(MAX(self.stepSize, SourceRowMinStepSize), SourceRowMaxStepSize),
     };
 }
