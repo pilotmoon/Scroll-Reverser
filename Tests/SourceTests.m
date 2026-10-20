@@ -175,7 +175,7 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
 
     SourceRow *const mouse=[self wheelMouse];
     XCTAssertEqual(mouse.verticalMode, ScrollDirectionModeClassic);
-    XCTAssertEqual(mouse.horizontalMode, ScrollDirectionModeMatchVertical);
+    XCTAssertEqual(mouse.horizontalMode, ScrollDirectionModeUnchanged);
     XCTAssertTrue(mouse.stepSizeEnabled);
     XCTAssertEqual(mouse.stepSize, 3);
 
@@ -186,7 +186,7 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
 
     SourceRow *const app=[self app];
     XCTAssertEqual(app.verticalMode, ScrollDirectionModeUnchanged);
-    XCTAssertEqual(app.horizontalMode, ScrollDirectionModeMatchVertical);
+    XCTAssertEqual(app.horizontalMode, ScrollDirectionModeUnchanged);
     XCTAssertFalse(app.hasDeviceDirection);
 }
 
