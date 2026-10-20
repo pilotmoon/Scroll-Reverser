@@ -118,8 +118,8 @@
 /* Source info: label before Continuous or Discrete */
 "Scrolling type:" = "Тип прокручування:";
 
-/* TODO:TRANSLATE — Hint shown once, pointing to a source's details button, the first time a scroll wheel scrolls horizontally */
-"Set horizontal scrolling for this source here." = "Set horizontal scrolling for this source here.";
+/* Hint shown once, pointing to a source's details button, the first time a scroll wheel scrolls horizontally */
+"Set horizontal scrolling for this source here." = "Тут можна налаштувати горизонтальне прокручування для цього джерела.";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Параметри…";
