@@ -118,6 +118,9 @@
 /* Source info: label before Continuous or Discrete */
 "Scrolling type:" = "Tip derulare:";
 
+/* TODO:TRANSLATE — Hint shown once, pointing to a source's details button, the first time a scroll wheel scrolls horizontally */
+"Set horizontal scrolling for this source here." = "Set horizontal scrolling for this source here.";
+
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Configurări…";
 
