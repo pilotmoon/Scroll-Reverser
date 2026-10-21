@@ -118,7 +118,7 @@
 /* Source info: label before Continuous or Discrete */
 "Scrolling type:" = "Görgetés típusa:";
 
-/* Hint shown once, pointing to a source's details button, the first time a scroll wheel scrolls horizontally */
+/* Hint shown once, pointing to a source's details button, the first time a source scrolls horizontally */
 "Set horizontal scrolling for this source here." = "Itt állítható be ennek a forrásnak a vízszintes görgetése.";
 
 /* Menu item that opens the settings window, including the trailing ellipsis */

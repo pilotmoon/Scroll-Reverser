@@ -333,7 +333,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     });
 }
 
-/* The first time a wheel scrolls horizontally while the window is open, point to where its horizontal
+/* The first time a source scrolls horizontally while the window is open, point to where its horizontal
  scrolling is set, since people don't find it in the info popover. Shown once, ever. */
 - (void)rowDidStartScrollingHorizontally:(NSNotification *)notification
 {
@@ -362,7 +362,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
 // Clicking the hint opens the info popover it points to.
 - (void)showHintAtInfoButton:(NSButton *)button
 {
-    NSTextField *const label=[NSTextField wrappingLabelWithString:NSLocalizedString(@"Set horizontal scrolling for this source here.", @"Hint shown once, pointing to a source's details button, the first time a scroll wheel scrolls horizontally")];
+    NSTextField *const label=[NSTextField wrappingLabelWithString:NSLocalizedString(@"Set horizontal scrolling for this source here.", @"Hint shown once, pointing to a source's details button, the first time a source scrolls horizontally")];
     label.translatesAutoresizingMaskIntoConstraints=NO;
     // otherwise it wraps as narrow as it can
     label.preferredMaxLayoutWidth=220;

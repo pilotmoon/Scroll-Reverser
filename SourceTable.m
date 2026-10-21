@@ -354,7 +354,7 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural)
             [[NSNotificationCenter defaultCenter] postNotificationName:SourceRowDidStartScrollingNotification object:row];
         });
     }
-    if (horizontal&&!row.continuous&&[row recordHorizontalAtTime:now]) {
+    if (horizontal&&[row recordHorizontalAtTime:now]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:SourceRowDidStartScrollingHorizontallyNotification object:row];
         });

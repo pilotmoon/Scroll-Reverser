@@ -27,9 +27,9 @@ static const CFTimeInterval SourceRowScrollingInterval=0.25;
 // first after SourceRowScrollingInterval without one.
 extern NSNotificationName const SourceRowDidStartScrollingNotification;
 
-// Posted, with the row as the object, when a non-continuous source starts scrolling only horizontally, as a
-// thumb wheel or Shift+scroll does: on its first such event, or its first after SourceRowScrollingInterval
-// without one. Continuous sources are left out, since trackpads drift sideways as they scroll.
+// Posted, with the row as the object, when a source starts scrolling only horizontally, as a thumb wheel,
+// Shift+scroll or a sideways swipe does: on its first such event, or its first after
+// SourceRowScrollingInterval without one.
 extern NSNotificationName const SourceRowDidStartScrollingHorizontallyNotification;
 
 // How to change one scroll event.
