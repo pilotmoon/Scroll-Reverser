@@ -544,7 +544,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
         content=field;
     }
     else if ([identifier isEqualToString:kColumnInfo]) {
-        NSButton *const button=[NSButton buttonWithImage:[NSImage imageWithSystemSymbolName:@"info.circle" accessibilityDescription:NSLocalizedString(@"Details", @"Accessibility label of the button that shows a source's details")] target:self action:@selector(infoClicked:)];
+        NSButton *const button=[NSButton buttonWithImage:[NSImage imageWithSystemSymbolName:@"gearshape" accessibilityDescription:NSLocalizedString(@"Details", @"Accessibility label of the button that shows a source's details")] target:self action:@selector(infoClicked:)];
         button.bordered=NO;
         button.toolTip=NSLocalizedString(@"Details and horizontal scrolling", @"Tooltip of the button that shows a source's details");
         content=button;
