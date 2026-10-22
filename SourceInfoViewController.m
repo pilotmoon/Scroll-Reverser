@@ -26,9 +26,16 @@ static NSTextField *_value(NSString *string)
     return field;
 }
 
+// The scroll total and system direction change with every event, without notifications, so they're
+// looked at again this often while the popover is shown.
+static const NSTimeInterval kRefreshInterval=0.1;
+
 @interface SourceInfoViewController ()
 @property SourceRow *row;
 @property BOOL editable;
+@property NSTextField *directionField;
+@property NSTextField *scrolledField;
+@property NSTimer *refreshTimer;
 @end
 
 @implementation SourceInfoViewController
@@ -58,8 +65,8 @@ static NSTextField *_value(NSString *string)
     NSDateFormatter *const dateFormatter=[[NSDateFormatter alloc] init];
     dateFormatter.dateStyle=NSDateFormatterMediumStyle;
     dateFormatter.timeStyle=NSDateFormatterShortStyle;
-    // the unit is in the label, so the value needs no plural forms
-    NSString *const scrolled=[NSNumberFormatter localizedStringFromNumber:@(round(row.scrollTotal)) numberStyle:NSNumberFormatterDecimalStyle];
+    self.directionField=_value(row.systemDirectionDescription);
+    self.scrolledField=_value(self.scrolledString);
 
     NSMutableArray<NSArray<NSView *> *> *const rows=[NSMutableArray arrayWithArray:@[
         @[_title(NSLocalizedString(@"Name:", @"Source info: label before the source's name field")), nameField],
@@ -72,9 +79,9 @@ static NSTextField *_value(NSString *string)
     }
     [rows addObjectsFromArray:@[
         @[_title(NSLocalizedString(@"Scrolling type:", @"Source info: label before Continuous or Discrete")), _value(row.scrollingTypeDescription)],
-        @[_title(NSLocalizedString(@"System direction:", @"Source info: label before the direction the system delivers the source's scrolling in, such as Natural")), _value(row.systemDirectionDescription)],
+        @[_title(NSLocalizedString(@"System direction:", @"Source info: label before the direction the system delivers the source's scrolling in, such as Natural")), self.directionField],
         @[_title(NSLocalizedString(@"First seen:", @"Source info: label before the date the source first scrolled")), _value([dateFormatter stringFromDate:row.firstSeen])],
-        @[_title(NSLocalizedString(@"Points scrolled:", @"Source info: label before the total distance the source has scrolled, as a number of points (the unit of distance on screen)")), _value(scrolled)],
+        @[_title(NSLocalizedString(@"Points scrolled:", @"Source info: label before the total distance the source has scrolled, as a number of points (the unit of distance on screen)")), self.scrolledField],
     ]];
 
     NSGridView *const grid=[NSGridView gridViewWithViews:rows];
@@ -93,6 +100,43 @@ static NSTextField *_value(NSString *string)
         [view.bottomAnchor constraintEqualToAnchor:grid.bottomAnchor constant:14],
     ]];
     self.view=view;
+}
+
+// the unit is in the label, so the value needs no plural forms
+- (NSString *)scrolledString
+{
+    return [NSNumberFormatter localizedStringFromNumber:@(round(self.row.scrollTotal)) numberStyle:NSNumberFormatterDecimalStyle];
+}
+
+- (void)viewWillAppear
+{
+    [super viewWillAppear];
+    [self refresh];
+    __weak SourceInfoViewController *const weakSelf=self;
+    self.refreshTimer=[NSTimer timerWithTimeInterval:kRefreshInterval repeats:YES block:^(NSTimer *timer) {
+        [weakSelf refresh];
+    }];
+    self.refreshTimer.tolerance=kRefreshInterval/5;
+    [[NSRunLoop mainRunLoop] addTimer:self.refreshTimer forMode:NSRunLoopCommonModes];
+}
+
+- (void)viewDidDisappear
+{
+    [super viewDidDisappear];
+    [self.refreshTimer invalidate];
+    self.refreshTimer=nil;
+}
+
+- (void)refresh
+{
+    NSString *const direction=self.row.systemDirectionDescription;
+    if (![self.directionField.stringValue isEqualToString:direction]) {
+        self.directionField.stringValue=direction;
+    }
+    NSString *const scrolled=self.scrolledString;
+    if (![self.scrolledField.stringValue isEqualToString:scrolled]) {
+        self.scrolledField.stringValue=scrolled;
+    }
 }
 
 @end
