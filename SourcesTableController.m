@@ -7,13 +7,16 @@
 
 static NSString *const kColumnIcon=@"icon";
 static NSString *const kColumnName=@"name";
-static NSString *const kColumnDirection=@"direction";
+static NSString *const kColumnVertical=@"vertical";
+static NSString *const kColumnHorizontal=@"horizontal";
 static NSString *const kColumnStepSize=@"stepSize";
 static NSString *const kColumnLastUsed=@"lastUsed";
 static NSString *const kColumnInfo=@"info";
-// the direction column's cells differ by kind of source
-static NSString *const kCellDirectionDevice=@"directionDevice";
-static NSString *const kCellDirectionApp=@"directionApp";
+// the direction columns' cells differ by kind of source
+static NSString *const kCellVerticalDevice=@"verticalDevice";
+static NSString *const kCellVerticalApp=@"verticalApp";
+static NSString *const kCellHorizontalDevice=@"horizontalDevice";
+static NSString *const kCellHorizontalApp=@"horizontalApp";
 
 // "Just now" for this long after a source last scrolled, then a relative time
 static const CFTimeInterval kJustNowInterval=60;
@@ -147,12 +150,13 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     // only the name column resizes, so it takes up any spare width
     table.columnAutoresizingStyle=NSTableViewUniformColumnAutoresizingStyle;
     // wide enough for the longest scrolling mode in the user's language
-    NSPopUpButton *const widestPopUp=[self directionPopUpForCell:nil modes:@[@(ScrollDirectionModeNatural), @(ScrollDirectionModeClassic), @(ScrollDirectionModeUnchanged), @(ScrollDirectionModeReversed)]];
+    NSPopUpButton *const widestPopUp=[self directionPopUpForCell:nil keyPath:nil modes:@[@(ScrollDirectionModeNatural), @(ScrollDirectionModeClassic), @(ScrollDirectionModeUnchanged), @(ScrollDirectionModeReversed)]];
     const CGFloat directionWidth=MAX(104, ceil(widestPopUp.fittingSize.width)+8);
     CGFloat tableWidth=0;
     for (NSArray *definition in @[@[kColumnIcon, @"", @26],
                                   @[kColumnName, NSLocalizedString(@"Source", @"Sources table column header: the device or app that scrolls"), @240],
-                                  @[kColumnDirection, NSLocalizedString(@"Scrolling", @"Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling"), @(directionWidth)],
+                                  @[kColumnVertical, NSLocalizedString(@"Vertical", @"Sources table column header: the direction of vertical scrolling, such as natural or classic"), @(directionWidth)],
+                                  @[kColumnHorizontal, NSLocalizedString(@"Horizontal", @"Sources table column header: the direction of horizontal scrolling, such as natural or classic"), @(directionWidth)],
                                   @[kColumnStepSize, NSLocalizedString(@"Step size", @"Sources table column header: scroll wheel step size"), @96],
                                   @[kColumnLastUsed, NSLocalizedString(@"Last used", @"Sources table column header: when the source last scrolled"), @100],
                                   @[kColumnInfo, @"", @24]]) {
@@ -417,8 +421,11 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
 {
     SourceRow *const row=self.rows[rowIndex];
     NSString *identifier=tableColumn.identifier;
-    if ([identifier isEqualToString:kColumnDirection]) {
-        identifier=row.hasDeviceDirection?kCellDirectionDevice:kCellDirectionApp;
+    if ([identifier isEqualToString:kColumnVertical]) {
+        identifier=row.hasDeviceDirection?kCellVerticalDevice:kCellVerticalApp;
+    }
+    else if ([identifier isEqualToString:kColumnHorizontal]) {
+        identifier=row.hasDeviceDirection?kCellHorizontalDevice:kCellHorizontalApp;
     }
     NSTableCellView *const cell=[tableView makeViewWithIdentifier:identifier owner:self]?:[self makeCellWithIdentifier:identifier];
     if ([identifier isEqualToString:kColumnIcon]) {
@@ -453,12 +460,14 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
         cell.textField=field;
         content=field;
     }
-    else if ([identifier isEqualToString:kCellDirectionDevice]) {
-        content=[self directionPopUpForCell:cell modes:@[@(ScrollDirectionModeNatural), @(ScrollDirectionModeClassic), @(ScrollDirectionModeUnchanged)]];
+    else if ([identifier isEqualToString:kCellVerticalDevice]||[identifier isEqualToString:kCellHorizontalDevice]) {
+        NSString *const keyPath=[identifier isEqualToString:kCellVerticalDevice]?@"verticalMode":@"horizontalMode";
+        content=[self directionPopUpForCell:cell keyPath:keyPath modes:@[@(ScrollDirectionModeNatural), @(ScrollDirectionModeClassic), @(ScrollDirectionModeUnchanged)]];
     }
-    else if ([identifier isEqualToString:kCellDirectionApp]) {
+    else if ([identifier isEqualToString:kCellVerticalApp]||[identifier isEqualToString:kCellHorizontalApp]) {
         // an app chooses its own direction, so all we can do is reverse it
-        content=[self directionPopUpForCell:cell modes:@[@(ScrollDirectionModeReversed), @(ScrollDirectionModeUnchanged)]];
+        NSString *const keyPath=[identifier isEqualToString:kCellVerticalApp]?@"verticalMode":@"horizontalMode";
+        content=[self directionPopUpForCell:cell keyPath:keyPath modes:@[@(ScrollDirectionModeReversed), @(ScrollDirectionModeUnchanged)]];
     }
     else if ([identifier isEqualToString:kColumnStepSize]) {
         content=[self stepSizeViewForCell:cell];
@@ -472,9 +481,10 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
         content=field;
     }
     else if ([identifier isEqualToString:kColumnInfo]) {
-        NSButton *const button=[NSButton buttonWithImage:[NSImage imageWithSystemSymbolName:@"info.circle" accessibilityDescription:NSLocalizedString(@"Details", @"Accessibility label of the button that shows a source's details")] target:self action:@selector(infoClicked:)];
+        NSString *const details=NSLocalizedString(@"Details", @"Accessibility label and tooltip of the button that shows a source's details");
+        NSButton *const button=[NSButton buttonWithImage:[NSImage imageWithSystemSymbolName:@"info.circle" accessibilityDescription:details] target:self action:@selector(infoClicked:)];
         button.bordered=NO;
-        button.toolTip=NSLocalizedString(@"Details and horizontal scrolling", @"Tooltip of the button that shows a source's details");
+        button.toolTip=details;
         content=button;
     }
 
@@ -504,8 +514,8 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     }
 }
 
-// The cell may be nil, for measuring.
-- (NSPopUpButton *)directionPopUpForCell:(NSTableCellView *)cell modes:(NSArray<NSNumber *> *)modes
+// Bound to the row's mode at keyPath. The cell may be nil, for measuring.
+- (NSPopUpButton *)directionPopUpForCell:(NSTableCellView *)cell keyPath:(NSString *)keyPath modes:(NSArray<NSNumber *> *)modes
 {
     NSPopUpButton *const popUp=[[NSPopUpButton alloc] initWithFrame:NSZeroRect pullsDown:NO];
     popUp.controlSize=NSControlSizeSmall;
@@ -515,7 +525,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
         popUp.lastItem.tag=[mode integerValue];
     }
     if (cell) {
-        [popUp bind:NSSelectedTagBinding toObject:cell withKeyPath:@"objectValue.verticalMode" options:nil];
+        [popUp bind:NSSelectedTagBinding toObject:cell withKeyPath:[@"objectValue." stringByAppendingString:keyPath] options:nil];
     }
     return popUp;
 }

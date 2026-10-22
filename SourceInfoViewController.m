@@ -53,19 +53,7 @@ static NSTextField *_value(NSString *string)
     [nameField bind:NSValueBinding toObject:row withKeyPath:@"customName" options:@{NSContinuouslyUpdatesValueBindingOption: @YES,
                                                                                    NSNullPlaceholderBindingOption: row.defaultName}];
 
-    NSPopUpButton *const horizontalPopUp=[[NSPopUpButton alloc] initWithFrame:NSZeroRect pullsDown:NO];
-    horizontalPopUp.controlSize=NSControlSizeSmall;
-    horizontalPopUp.font=_font();
-    // the same modes as the source's vertical menu
-    NSArray<NSNumber *> *const modes=row.hasDeviceDirection?@[@(ScrollDirectionModeNatural), @(ScrollDirectionModeClassic), @(ScrollDirectionModeUnchanged)]:@[@(ScrollDirectionModeReversed), @(ScrollDirectionModeUnchanged)];
-    for (NSNumber *mode in modes) {
-        [horizontalPopUp addItemWithTitle:SourceDirectionModeTitle([mode integerValue])];
-        horizontalPopUp.lastItem.tag=[mode integerValue];
-    }
-    [horizontalPopUp bind:NSSelectedTagBinding toObject:row withKeyPath:@"horizontalMode" options:nil];
-
     nameField.enabled=self.editable;
-    horizontalPopUp.enabled=self.editable;
 
     NSDateFormatter *const dateFormatter=[[NSDateFormatter alloc] init];
     dateFormatter.dateStyle=NSDateFormatterMediumStyle;
@@ -75,7 +63,6 @@ static NSTextField *_value(NSString *string)
 
     NSMutableArray<NSArray<NSView *> *> *const rows=[NSMutableArray arrayWithArray:@[
         @[_title(NSLocalizedString(@"Name:", @"Source info: label before the source's name field")), nameField],
-        @[_title(NSLocalizedString(@"Horizontal scrolling:", @"Source info: label before the horizontal scrolling menu")), horizontalPopUp],
         @[_title(NSLocalizedString(@"Kind:", @"Source info: label before the kind of source, such as Mouse or App")), _value(row.kindDescription)],
         @[_title(NSLocalizedString(@"Reported name:", @"Source info: label before the name the device or app reports")), _value(row.reportedName)],
         @[_title(NSLocalizedString(@"Identifier:", @"Source info: label before the identifier of the source's settings")), _value(row.key)],

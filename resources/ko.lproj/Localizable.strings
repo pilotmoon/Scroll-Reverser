@@ -19,11 +19,8 @@
 /* Scrolling type of a source that scrolls continuously, like a trackpad */
 "Continuous" = "연속";
 
-/* Accessibility label of the button that shows a source's details */
+/* Accessibility label and tooltip of the button that shows a source's details */
 "Details" = "세부사항";
-
-/* Tooltip of the button that shows a source's details */
-"Details and horizontal scrolling" = "세부사항 및 가로 스크롤";
 
 /* Scrolling type of a source that scrolls in steps, like a scroll wheel */
 "Discrete" = "단계별";
@@ -37,8 +34,8 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "설정을 변경하려면 메뉴 막대의 아이콘을 클릭해주세요";
 
-/* Source info: label before the horizontal scrolling menu */
-"Horizontal scrolling:" = "가로 스크롤:";
+/* Sources table column header: the direction of horizontal scrolling, such as natural or classic */
+"Horizontal" = "가로";
 
 /* Source info: label before the identifier of the source's settings */
 "Identifier:" = "식별자:";
@@ -112,7 +109,7 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser가 스크롤을 변경하려면 손쉬운 사용 권한이 필요합니다.";
 
-/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
+/* Preferences pane for `Scrolling` settings */
 "Scrolling" = "스크롤";
 
 /* Source info: label before Continuous or Discrete */
@@ -162,3 +159,6 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "이름 없는 기기";
+
+/* Sources table column header: the direction of vertical scrolling, such as natural or classic */
+"Vertical" = "세로";

@@ -19,11 +19,8 @@
 /* Scrolling type of a source that scrolls continuously, like a trackpad */
 "Continuous" = "Plynulé";
 
-/* Accessibility label of the button that shows a source's details */
+/* Accessibility label and tooltip of the button that shows a source's details */
 "Details" = "Detaily";
-
-/* Tooltip of the button that shows a source's details */
-"Details and horizontal scrolling" = "Detaily a vodorovné rolovanie";
 
 /* Scrolling type of a source that scrolls in steps, like a scroll wheel */
 "Discrete" = "Po krokoch";
@@ -37,8 +34,8 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Nastavenia otvoríte kliknutím na ikonu v lište";
 
-/* Source info: label before the horizontal scrolling menu */
-"Horizontal scrolling:" = "Vodorovné rolovanie:";
+/* Sources table column header: the direction of horizontal scrolling, such as natural or classic */
+"Horizontal" = "Vodorovné";
 
 /* Source info: label before the identifier of the source's settings */
 "Identifier:" = "Identifikátor:";
@@ -112,7 +109,7 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser potrebuje povolenie pre Prístupnosť, aby mohol upravovať rolovanie.";
 
-/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
+/* Preferences pane for `Scrolling` settings */
 "Scrolling" = "Rolovanie";
 
 /* Source info: label before Continuous or Discrete */
@@ -162,3 +159,6 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "Nepomenované zariadenie";
+
+/* Sources table column header: the direction of vertical scrolling, such as natural or classic */
+"Vertical" = "Zvislé";

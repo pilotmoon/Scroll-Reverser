@@ -19,11 +19,8 @@
 /* Scrolling type of a source that scrolls continuously, like a trackpad */
 "Continuous" = "Płynne";
 
-/* Accessibility label of the button that shows a source's details */
+/* Accessibility label and tooltip of the button that shows a source's details */
 "Details" = "Szczegóły";
-
-/* Tooltip of the button that shows a source's details */
-"Details and horizontal scrolling" = "Szczegóły i przewijanie poziome";
 
 /* Scrolling type of a source that scrolls in steps, like a scroll wheel */
 "Discrete" = "Skokowe";
@@ -37,8 +34,8 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Aby otworzyć ustawienia, kliknij ikonę na pasku menu";
 
-/* Source info: label before the horizontal scrolling menu */
-"Horizontal scrolling:" = "Przewijanie poziome:";
+/* Sources table column header: the direction of horizontal scrolling, such as natural or classic */
+"Horizontal" = "Poziome";
 
 /* Source info: label before the identifier of the source's settings */
 "Identifier:" = "Identyfikator:";
@@ -112,7 +109,7 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser potrzebuje uprawnienia „Dostępność”, aby modyfikować przewijanie.";
 
-/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
+/* Preferences pane for `Scrolling` settings */
 "Scrolling" = "Przewijanie";
 
 /* Source info: label before Continuous or Discrete */
@@ -162,3 +159,6 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "Urządzenie bez nazwy";
+
+/* Sources table column header: the direction of vertical scrolling, such as natural or classic */
+"Vertical" = "Pionowe";

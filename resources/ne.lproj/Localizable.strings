@@ -19,11 +19,8 @@
 /* Scrolling type of a source that scrolls continuously, like a trackpad */
 "Continuous" = "निरन्तर";
 
-/* Accessibility label of the button that shows a source's details */
+/* Accessibility label and tooltip of the button that shows a source's details */
 "Details" = "विवरण";
-
-/* Tooltip of the button that shows a source's details */
-"Details and horizontal scrolling" = "विवरण र तेर्सो स्क्रोलिङ";
 
 /* Scrolling type of a source that scrolls in steps, like a scroll wheel */
 "Discrete" = "चरणबद्ध";
@@ -37,8 +34,8 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "सेटिङहरूका लागि मेन्यु बारको आइकनमा क्लिक गर्नुहोस्";
 
-/* Source info: label before the horizontal scrolling menu */
-"Horizontal scrolling:" = "तेर्सो स्क्रोलिङ:";
+/* Sources table column header: the direction of horizontal scrolling, such as natural or classic */
+"Horizontal" = "तेर्सो";
 
 /* Source info: label before the identifier of the source's settings */
 "Identifier:" = "पहिचानकर्ता:";
@@ -112,7 +109,7 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser लाई तपाईंको स्क्रोलिङ परिवर्तन गर्न Accessibility अनुमति चाहिन्छ।";
 
-/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
+/* Preferences pane for `Scrolling` settings */
 "Scrolling" = "स्क्रोलिङ";
 
 /* Source info: label before Continuous or Discrete */
@@ -162,3 +159,6 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "नाम नभएको उपकरण";
+
+/* Sources table column header: the direction of vertical scrolling, such as natural or classic */
+"Vertical" = "ठाडो";

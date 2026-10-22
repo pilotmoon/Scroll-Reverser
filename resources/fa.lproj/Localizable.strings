@@ -19,11 +19,8 @@
 /* Scrolling type of a source that scrolls continuously, like a trackpad */
 "Continuous" = "پیوسته";
 
-/* Accessibility label of the button that shows a source's details */
+/* Accessibility label and tooltip of the button that shows a source's details */
 "Details" = "جزئیات";
-
-/* Tooltip of the button that shows a source's details */
-"Details and horizontal scrolling" = "جزئیات و پیمایش افقی";
 
 /* Scrolling type of a source that scrolls in steps, like a scroll wheel */
 "Discrete" = "گام‌به‌گام";
@@ -37,8 +34,8 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "برای تنظیمات، روی نماد در نوار منو کلیک کنید";
 
-/* Source info: label before the horizontal scrolling menu */
-"Horizontal scrolling:" = "پیمایش افقی:";
+/* Sources table column header: the direction of horizontal scrolling, such as natural or classic */
+"Horizontal" = "افقی";
 
 /* Source info: label before the identifier of the source's settings */
 "Identifier:" = "شناسه:";
@@ -112,7 +109,7 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "برای تغییر پیمایش شما، Scroll Reverser به مجوز Accessibility نیاز دارد.";
 
-/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
+/* Preferences pane for `Scrolling` settings */
 "Scrolling" = "پیمایش";
 
 /* Source info: label before Continuous or Discrete */
@@ -162,3 +159,6 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "دستگاه بی‌نام";
+
+/* Sources table column header: the direction of vertical scrolling, such as natural or classic */
+"Vertical" = "عمودی";
