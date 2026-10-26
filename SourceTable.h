@@ -36,7 +36,7 @@ extern NSNotificationName const SourceRowDidStartScrollingHorizontallyNotificati
 typedef struct {
     BOOL reverseVertical;
     BOOL reverseHorizontal;
-    NSInteger stepSize; // 1 for no change
+    NSInteger stepSize; // lines per wheel step, or 0 to leave steps as macOS delivers them
 } SourceAdjustment;
 
 // The settings and history for one source. Settings changes are saved automatically.

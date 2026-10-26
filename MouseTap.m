@@ -110,11 +110,13 @@ static CGEventRef _callback(CGEventTapProxy proxy,
         [tap->logger logBool:reverseVertical forKey:@"reverseV"];
         [tap->logger logBool:reverseHorizontal forKey:@"reverseH"];
 
-        // Adjust discrete scroll wheel? (the step size is 1 for continuous scrolling)
+        // Adjust discrete scroll wheel? (the step size is 0 for continuous scrolling, or when it's off)
         const NSInteger stepsize=adjustment.stepSize;
-        // (shift+scroll with a wheel mouse arrives here already converted to horizontal)
-        const BOOL vDiscreteAdjust=stepsize>1&&llabs(axis1)==1;
-        const BOOL hDiscreteAdjust=stepsize>1&&llabs(axis2)==1;
+        /* Even a step size of 1 is applied, as in 1.x: setting the line delta makes macOS recompute the point
+         deltas from it, so each step scrolls one whole line rather than macOS's accelerated amount.
+         (shift+scroll with a wheel mouse arrives here already converted to horizontal) */
+        const BOOL vDiscreteAdjust=stepsize>0&&llabs(axis1)==1;
+        const BOOL hDiscreteAdjust=stepsize>0&&llabs(axis2)==1;
         const NSInteger vstep=vDiscreteAdjust?stepsize:1;
         const NSInteger hstep=hDiscreteAdjust?stepsize:1;
         [tap->logger logSignedInteger:vstep forKey:@"vstep"];

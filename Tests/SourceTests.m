@@ -260,13 +260,16 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
     SourceRow *const row=[self wheelMouse];
     row.stepSize=5;
     XCTAssertEqual([row adjustmentForNatural:YES].stepSize, 5);
-    XCTAssertEqual([[self trackpad] adjustmentForNatural:YES].stepSize, 1, @"step size is only for non-continuous scrolling");
+    XCTAssertEqual([[self trackpad] adjustmentForNatural:YES].stepSize, 0, @"step size is only for non-continuous scrolling");
     row.stepSize=0;
     XCTAssertEqual([row adjustmentForNatural:YES].stepSize, SourceRowMinStepSize);
     row.stepSize=1000;
     XCTAssertEqual([row adjustmentForNatural:YES].stepSize, SourceRowMaxStepSize);
-    row.stepSizeEnabled=NO;
+    // 1 is applied, as one line per step, unlike the step size being off
+    row.stepSize=1;
     XCTAssertEqual([row adjustmentForNatural:YES].stepSize, 1);
+    row.stepSizeEnabled=NO;
+    XCTAssertEqual([row adjustmentForNatural:YES].stepSize, 0);
 }
 
 - (void)testSightings

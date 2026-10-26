@@ -200,7 +200,7 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural)
     return (SourceAdjustment){
         .reverseVertical=_reverses(self.verticalMode, natural),
         .reverseHorizontal=_reverses(self.horizontalMode, natural),
-        .stepSize=self.continuous||!self.stepSizeEnabled?1:MIN(MAX(self.stepSize, SourceRowMinStepSize), SourceRowMaxStepSize),
+        .stepSize=self.continuous||!self.stepSizeEnabled?0:MIN(MAX(self.stepSize, SourceRowMinStepSize), SourceRowMaxStepSize),
     };
 }
 
