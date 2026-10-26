@@ -48,6 +48,8 @@ static NSDate *_dateValue(id obj)
 - (void)rowSettingsDidChange;
 @end
 
+static BOOL _reverses(ScrollDirectionMode mode, BOOL natural);
+
 #pragma mark -
 
 @interface SourceRow ()
@@ -116,12 +118,6 @@ static NSDate *_dateValue(id obj)
         _path=_stringValue(dict[kRowPath]);
         _customName=_stringValue(dict[kRowCustomName]);
         _verticalMode=[_numberValue(dict[kRowVerticalMode]) integerValue];
-        // Unchanged for rows saved with the old Match vertical mode (4), or with only the older
-        // HorizontalMatchesVertical key
-        _horizontalMode=[_numberValue(dict[kRowHorizontalMode]) integerValue];
-        if (_horizontalMode<ScrollDirectionModeUnchanged||_horizontalMode>ScrollDirectionModeReversed) {
-            _horizontalMode=ScrollDirectionModeUnchanged;
-        }
         _stepSizeEnabled=[_numberValue(dict[kRowStepSizeEnabled]) boolValue];
         _stepSize=[_numberValue(dict[kRowStepSize]) integerValue];
         NSDate *const lastSeen=_dateValue(dict[kRowLastSeen])?:[NSDate date];
@@ -132,6 +128,12 @@ static NSDate *_dateValue(id obj)
         _seenClassic=[_numberValue(dict[kRowSeenClassic]) boolValue];
         // rows saved before this was kept: natural if it's been seen, which is a guess if classic has too
         _lastNatural=[(_numberValue(dict[kRowLastNatural])?:@(_seenNatural)) boolValue];
+        /* Horizontal was once Natural or Classic for devices. Those become whichever of Reversed and Unchanged
+         does the same with the direction the system last delivered the source's scrolling in, or natural, as
+         macOS has by default, if it hasn't been seen. Anything else, such as the old Match vertical mode (4),
+         or a row with only the older HorizontalMatchesVertical key, is Unchanged. */
+        const BOOL natural=_seenNatural||_seenClassic?_lastNatural:YES;
+        _horizontalMode=_reverses([_numberValue(dict[kRowHorizontalMode]) integerValue], natural)?ScrollDirectionModeReversed:ScrollDirectionModeUnchanged;
     }
     return self;
 }
@@ -307,6 +309,10 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural)
             SourceRow *const row=_stringValue(key)?[[SourceRow alloc] initWithKey:key dictionary:obj table:self]:nil;
             if (row) {
                 self.rowsByKey[key]=row;
+                // save a row whose horizontal mode was converted, so it's converted only once
+                if (![obj[kRowHorizontalMode] isEqual:@(row.horizontalMode)]) {
+                    [self rowSettingsDidChange];
+                }
             }
         }];
         NSLog(@"Loaded %lu source rows", (unsigned long)[self.rowsByKey count]);

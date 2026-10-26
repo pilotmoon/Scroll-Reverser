@@ -56,7 +56,7 @@ typedef struct {
 // The user's name for the source, or nil to use the reported one. Empty strings are stored as nil.
 @property (nullable, nonatomic, copy) NSString *customName;
 @property (nonatomic) ScrollDirectionMode verticalMode;
-// Natural and Classic are absolute, as for vertical, which matters for devices such as thumb wheels
+// Reversed or Unchanged, for any source: natural and classic aren't meaningful sideways for svery sources. E.g. shift+scrollwheel, ot Logitech side wheels
 // that roll one way but scroll the other.
 @property (nonatomic) ScrollDirectionMode horizontalMode;
 @property (nonatomic) BOOL stepSizeEnabled;

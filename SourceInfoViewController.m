@@ -56,9 +56,7 @@ static NSTextField *_value(NSString *string)
     NSPopUpButton *const horizontalPopUp=[[NSPopUpButton alloc] initWithFrame:NSZeroRect pullsDown:NO];
     horizontalPopUp.controlSize=NSControlSizeSmall;
     horizontalPopUp.font=_font();
-    // the same modes as the source's vertical menu
-    NSArray<NSNumber *> *const modes=row.hasDeviceDirection?@[@(ScrollDirectionModeNatural), @(ScrollDirectionModeClassic), @(ScrollDirectionModeUnchanged)]:@[@(ScrollDirectionModeReversed), @(ScrollDirectionModeUnchanged)];
-    for (NSNumber *mode in modes) {
+    for (NSNumber *mode in @[@(ScrollDirectionModeReversed), @(ScrollDirectionModeUnchanged)]) {
         [horizontalPopUp addItemWithTitle:SourceDirectionModeTitle([mode integerValue])];
         horizontalPopUp.lastItem.tag=[mode integerValue];
     }
