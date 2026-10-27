@@ -19,11 +19,8 @@
 /* Scrolling type of a source that scrolls continuously, like a trackpad */
 "Continuous" = "Συνεχής";
 
-/* Accessibility label of the button that shows a source's details */
+/* Accessibility label and tooltip of the button that shows a source's details */
 "Details" = "Λεπτομέρειες";
-
-/* Tooltip of the button that shows a source's details */
-"Details and horizontal scrolling" = "Λεπτομέρειες και οριζόντια κύλιση";
 
 /* Scrolling type of a source that scrolls in steps, like a scroll wheel */
 "Discrete" = "Βηματική";
@@ -37,8 +34,8 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Για τις ρυθμίσεις, κάντε κλικ στο εικονίδιο στη γραμμή μενού";
 
-/* Source info: label before the horizontal scrolling menu */
-"Horizontal scrolling:" = "Οριζόντια κύλιση:";
+/* Sources table column header: the direction of horizontal scrolling, such as reversed or unchanged */
+"Horizontal" = "Οριζόντια";
 
 /* Source info: label before the identifier of the source's settings */
 "Identifier:" = "Αναγνωριστικό:";
@@ -115,7 +112,7 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Το Scroll Reverser χρειάζεται άδεια Προσβασιμότητας για να τροποποιεί την κύλιση.";
 
-/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
+/* Preferences pane for `Scrolling` settings */
 "Scrolling" = "Κύλιση";
 
 /* Source info: label before Continuous or Discrete */
@@ -165,3 +162,6 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "Συσκευή χωρίς όνομα";
+
+/* Sources table column header: the direction of vertical scrolling, such as natural or classic */
+"Vertical" = "Κατακόρυφα";

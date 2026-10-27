@@ -19,11 +19,8 @@
 /* Scrolling type of a source that scrolls continuously, like a trackpad */
 "Continuous" = "Continu";
 
-/* Accessibility label of the button that shows a source's details */
+/* Accessibility label and tooltip of the button that shows a source's details */
 "Details" = "Details";
-
-/* Tooltip of the button that shows a source's details */
-"Details and horizontal scrolling" = "Details en horizontaal scrollen";
 
 /* Scrolling type of a source that scrolls in steps, like a scroll wheel */
 "Discrete" = "Stapsgewijs";
@@ -37,8 +34,8 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Klik voor instellingen op het symbool in de menubalk";
 
-/* Source info: label before the horizontal scrolling menu */
-"Horizontal scrolling:" = "Horizontaal scrollen:";
+/* Sources table column header: the direction of horizontal scrolling, such as reversed or unchanged */
+"Horizontal" = "Horizontaal";
 
 /* Source info: label before the identifier of the source's settings */
 "Identifier:" = "ID:";
@@ -115,7 +112,7 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser heeft toestemming voor 'Toegankelijkheid' nodig om het scrollen aan te passen.";
 
-/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
+/* Preferences pane for `Scrolling` settings */
 "Scrolling" = "Scrollen";
 
 /* Source info: label before Continuous or Discrete */
@@ -165,3 +162,6 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "Naamloos apparaat";
+
+/* Sources table column header: the direction of vertical scrolling, such as natural or classic */
+"Vertical" = "Verticaal";

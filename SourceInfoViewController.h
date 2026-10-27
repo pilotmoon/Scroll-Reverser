@@ -7,10 +7,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// The contents of a source's info popover: its name, horizontal scrolling and details.
+// The contents of a source's info popover: its name and details.
 @interface SourceInfoViewController : NSViewController
 
-// With editable NO, the name and horizontal scrolling are shown but can't be changed.
+// With editable NO, the name is shown but can't be changed.
 - (instancetype)initWithRow:(SourceRow *)row editable:(BOOL)editable;
 
 @property (readonly) SourceRow *row;
