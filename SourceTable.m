@@ -16,6 +16,8 @@ static NSString *const kRowPath=@"Path";
 static NSString *const kRowCustomName=@"CustomName";
 static NSString *const kRowVerticalMode=@"VerticalMode";
 static NSString *const kRowHorizontalMode=@"HorizontalMode";
+// replaced by HorizontalMode: YES for Match vertical, NO for Unchanged
+static NSString *const kRowHorizontalMatchesVertical=@"HorizontalMatchesVertical";
 static NSString *const kRowStepSizeEnabled=@"StepSizeEnabled";
 static NSString *const kRowStepSize=@"StepSize";
 static NSString *const kRowFirstSeen=@"FirstSeen";
@@ -130,10 +132,16 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural);
         _lastNatural=[(_numberValue(dict[kRowLastNatural])?:@(_seenNatural)) boolValue];
         /* Horizontal was once Natural or Classic for devices. Those become whichever of Reversed and Unchanged
          does the same with the direction the system last delivered the source's scrolling in, or natural, as
-         macOS has by default, if it hasn't been seen. Anything else, such as the old Match vertical mode (4),
-         or a row with only the older HorizontalMatchesVertical key, is Unchanged. */
-        const BOOL natural=_seenNatural||_seenClassic?_lastNatural:YES;
-        _horizontalMode=_reverses([_numberValue(dict[kRowHorizontalMode]) integerValue], natural)?ScrollDirectionModeReversed:ScrollDirectionModeUnchanged;
+         macOS has by default, if it hasn't been seen. Rows with only the older HorizontalMatchesVertical key
+         are Match vertical or Unchanged. */
+        NSNumber *const horizontalMode=_numberValue(dict[kRowHorizontalMode]);
+        if (horizontalMode?[horizontalMode integerValue]==ScrollDirectionModeMatchVertical:[_numberValue(dict[kRowHorizontalMatchesVertical]) boolValue]) {
+            _horizontalMode=ScrollDirectionModeMatchVertical;
+        }
+        else {
+            const BOOL natural=_seenNatural||_seenClassic?_lastNatural:YES;
+            _horizontalMode=_reverses([horizontalMode integerValue], natural)?ScrollDirectionModeReversed:ScrollDirectionModeUnchanged;
+        }
     }
     return self;
 }
@@ -187,7 +195,7 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural);
     return started;
 }
 
-// Whether a mode reverses an event.
+// Whether a mode other than Match vertical reverses an event.
 static BOOL _reverses(ScrollDirectionMode mode, BOOL natural)
 {
     return mode==ScrollDirectionModeReversed||
@@ -197,9 +205,11 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural)
 
 - (SourceAdjustment)adjustmentForNatural:(BOOL)natural
 {
+    const BOOL reverseVertical=_reverses(self.verticalMode, natural);
+    const ScrollDirectionMode horizontalMode=self.horizontalMode;
     return (SourceAdjustment){
-        .reverseVertical=_reverses(self.verticalMode, natural),
-        .reverseHorizontal=_reverses(self.horizontalMode, natural),
+        .reverseVertical=reverseVertical,
+        .reverseHorizontal=horizontalMode==ScrollDirectionModeMatchVertical?reverseVertical:_reverses(horizontalMode, natural),
         .stepSize=self.continuous||!self.stepSizeEnabled?0:MIN(MAX(self.stepSize, SourceRowMinStepSize), SourceRowMaxStepSize),
     };
 }

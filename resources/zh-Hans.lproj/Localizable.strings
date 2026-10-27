@@ -58,6 +58,9 @@
 /* Sources table column header: when the source last scrolled */
 "Last used" = "上次使用";
 
+/* Horizontal scrolling menu item: reverse horizontal scrolling whenever vertical scrolling is reversed */
+"Match vertical" = "与垂直方向一致";
+
 /* Kind of source: a mouse, or any other device that isn't a trackpad */
 "Mouse" = "鼠标";
 

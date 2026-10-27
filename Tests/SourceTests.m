@@ -234,7 +234,11 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
                 (verticalModes[v]==ScrollDirectionModeNatural&&!natural)||
                 (verticalModes[v]==ScrollDirectionModeClassic&&natural);
             NSString *const context=[NSString stringWithFormat:@"vertical %ld, natural %d", (long)verticalModes[v], natural];
-            // horizontal modes don't depend on vertical, or on the system's direction
+
+            row.horizontalMode=ScrollDirectionModeMatchVertical;
+            XCTAssertEqual([row adjustmentForNatural:natural].reverseVertical, reverseVertical, @"%@", context);
+            XCTAssertEqual([row adjustmentForNatural:natural].reverseHorizontal, reverseVertical, @"%@", context);
+            // the other horizontal modes don't depend on vertical, or on the system's direction
             row.horizontalMode=ScrollDirectionModeReversed;
             XCTAssertEqual([row adjustmentForNatural:natural].reverseVertical, reverseVertical, @"%@", context);
             XCTAssertTrue([row adjustmentForNatural:natural].reverseHorizontal, @"%@", context);
@@ -242,6 +246,17 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
             XCTAssertFalse([row adjustmentForNatural:natural].reverseHorizontal, @"%@", context);
         }
     }
+}
+
+- (void)testHorizontalFollowsVerticalOnlyWhenMatching
+{
+    SourceRow *const row=[self wheelMouse];
+    row.horizontalMode=ScrollDirectionModeUnchanged;
+    const SourceAdjustment adjustment=[row adjustmentForNatural:YES];
+    XCTAssertTrue(adjustment.reverseVertical);
+    XCTAssertFalse(adjustment.reverseHorizontal);
+    row.horizontalMode=ScrollDirectionModeMatchVertical;
+    XCTAssertTrue([row adjustmentForNatural:YES].reverseHorizontal);
 }
 
 // a thumb wheel reversed while its wheel follows the system's natural scrolling
@@ -341,12 +356,12 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
     XCTAssertEqualWithAccuracy(row.lastSeenTime, mouse.lastSeenTime, 0.001);
 }
 
-// rows saved with the old Match vertical mode (4), or with only the older HorizontalMatchesVertical key
-- (void)testMatchVerticalLoadsAsUnchanged
+// rows saved with Match vertical, or with only the older HorizontalMatchesVertical key
+- (void)testMatchVerticalIsLoaded
 {
     NSDictionary *const saved=@{@"Kind": @(ScrollSourceKindLocalDevice), @"Category": @(ScrollSourceCategoryMouse)};
     NSMutableDictionary *const matchVertical=[saved mutableCopy];
-    matchVertical[@"HorizontalMode"]=@4;
+    matchVertical[@"HorizontalMode"]=@(ScrollDirectionModeMatchVertical);
     NSMutableDictionary *const oldMatching=[saved mutableCopy];
     oldMatching[@"HorizontalMatchesVertical"]=@YES;
     NSMutableDictionary *const oldUnchanged=[saved mutableCopy];
@@ -361,15 +376,16 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
     for (SourceRow *row in loaded.rows) {
         rows[row.key]=row;
     }
-    XCTAssertEqual(rows[@"matchVertical"].horizontalMode, ScrollDirectionModeUnchanged);
-    XCTAssertEqual(rows[@"oldMatching"].horizontalMode, ScrollDirectionModeUnchanged);
+    XCTAssertEqual(rows[@"matchVertical"].horizontalMode, ScrollDirectionModeMatchVertical);
+    XCTAssertEqual(rows[@"oldMatching"].horizontalMode, ScrollDirectionModeMatchVertical);
     XCTAssertEqual(rows[@"oldUnchanged"].horizontalMode, ScrollDirectionModeUnchanged);
-    XCTAssertEqual(rows[@"reversed"].horizontalMode, ScrollDirectionModeReversed);
+    XCTAssertEqual(rows[@"reversed"].horizontalMode, ScrollDirectionModeReversed, @"the new key wins");
 
-    // saved again as Unchanged, without the older key
+    // saved again under the new key only
     [loaded save];
     NSDictionary *const resaved=[self.defaults dictionaryForKey:@"Sources"];
-    XCTAssertEqualObjects(resaved[@"matchVertical"][@"HorizontalMode"], @(ScrollDirectionModeUnchanged));
+    XCTAssertEqualObjects(resaved[@"matchVertical"][@"HorizontalMode"], @(ScrollDirectionModeMatchVertical));
+    XCTAssertEqualObjects(resaved[@"oldMatching"][@"HorizontalMode"], @(ScrollDirectionModeMatchVertical));
     XCTAssertNil(resaved[@"oldMatching"][@"HorizontalMatchesVertical"]);
 }
 
