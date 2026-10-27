@@ -170,23 +170,22 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
 {
     SourceRow *const trackpad=[self trackpad];
     XCTAssertEqual(trackpad.verticalMode, ScrollDirectionModeNatural);
-    XCTAssertEqual(trackpad.horizontalMode, ScrollDirectionModeUnchanged);
+    XCTAssertEqual(trackpad.horizontalMode, ScrollDirectionModeMatchVertical);
     XCTAssertTrue(trackpad.hasDeviceDirection);
 
     SourceRow *const mouse=[self wheelMouse];
     XCTAssertEqual(mouse.verticalMode, ScrollDirectionModeClassic);
-    XCTAssertEqual(mouse.horizontalMode, ScrollDirectionModeUnchanged);
+    XCTAssertEqual(mouse.horizontalMode, ScrollDirectionModeMatchVertical);
     XCTAssertTrue(mouse.stepSizeEnabled);
     XCTAssertEqual(mouse.stepSize, 3);
 
-    // continuous scrolling from a mouse, like the Magic Mouse's, keeps horizontal swipes for gestures
     SourceRow *const magicMouse=[self.table recordSource:_continuousDevice(@{@kIOHIDTransportKey: @"Bluetooth", @kIOHIDSerialNumberKey: @"1"}) natural:YES amount:1];
     XCTAssertEqual(magicMouse.verticalMode, ScrollDirectionModeClassic);
-    XCTAssertEqual(magicMouse.horizontalMode, ScrollDirectionModeUnchanged);
+    XCTAssertEqual(magicMouse.horizontalMode, ScrollDirectionModeMatchVertical);
 
     SourceRow *const app=[self app];
     XCTAssertEqual(app.verticalMode, ScrollDirectionModeUnchanged);
-    XCTAssertEqual(app.horizontalMode, ScrollDirectionModeUnchanged);
+    XCTAssertEqual(app.horizontalMode, ScrollDirectionModeMatchVertical);
     XCTAssertFalse(app.hasDeviceDirection);
 }
 

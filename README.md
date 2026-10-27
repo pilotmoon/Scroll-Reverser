@@ -33,7 +33,7 @@ Scrolling direction options are as follows:
 Default settings for newly detected scrolling sources:
 
 - **Scrolling:** Natural for trackpads, Classic for other devices (mice, in practice), and Unchanged for apps and unidentified sources. A device counts as a trackpad if its `HIDScrollAccelerationType` property is `HIDTrackpadScrollAcceleration`, or if it's driven by Apple's multitouch trackpad driver.
-- **Horizontal scrolling:** Default to Unchanged, since reversing continuous horizontal scrolling causes issues with trackpad swipe gestures (e.g back/forward swipe in browsers), and reversing the horizontal scroll wheel on popular Logitech mice causes counterintuitive results.
+- **Horizontal scrolling:** Match vertical.
 - **Step size:** defaults to on, at 3 lines.
 
 ### Code layout

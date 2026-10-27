@@ -77,10 +77,8 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural);
     CFAbsoluteTime _lastHorizontalTime;
 }
 
-/* Defaults: trackpads natural, other devices classic, and apps unchanged. Horizontal scrolling is
- unchanged: continuous horizontal scrolling, as on trackpads and the Magic Mouse, doubles as gestures
- such as swiping between pages, and thumb wheels, as on the MX Master, roll at right angles to the way
- they scroll, so matching vertical surprises people. Step size is as in 1.x. */
+/* Defaults: trackpads natural, other devices classic, and apps unchanged. Horizontal scrolling matches
+ vertical. Step size is as in 1.x. */
 - (instancetype)initWithSource:(ScrollSource *)source table:(SourceTable *)table
 {
     self=[super init];
@@ -94,7 +92,7 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural);
         _path=source.path;
         const BOOL trackpad=_category==ScrollSourceCategoryTrackpad;
         _verticalMode=!self.hasDeviceDirection?ScrollDirectionModeUnchanged:trackpad?ScrollDirectionModeNatural:ScrollDirectionModeClassic;
-        _horizontalMode=ScrollDirectionModeUnchanged;
+        _horizontalMode=ScrollDirectionModeMatchVertical;
         _stepSizeEnabled=YES;
         _stepSize=3;
         _lastSeenTime=CFAbsoluteTimeGetCurrent();
