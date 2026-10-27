@@ -121,9 +121,6 @@
 /* Source info: label before Continuous or Discrete */
 "Scrolling type:" = "Tipo de desplazamiento:";
 
-/* Hint shown once, pointing to a source's details button, the first time a source scrolls horizontally */
-"Set horizontal scrolling for this source here." = "Configura aquí el desplazamiento horizontal de este origen.";
-
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Ajustes…";
 

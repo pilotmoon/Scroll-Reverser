@@ -474,28 +474,6 @@ static ScrollSource *_continuousDevice(NSDictionary *properties)
     XCTAssertEqual(again.verticalMode, ScrollDirectionModeClassic);
 }
 
-// only scrolling that is only horizontal, as from a thumb wheel or a sideways swipe, and once per burst
-- (void)testStartedScrollingHorizontallyNotification
-{
-    NSMutableArray *const posted=[NSMutableArray array];
-    id const observer=[[NSNotificationCenter defaultCenter] addObserverForName:SourceRowDidStartScrollingHorizontallyNotification object:nil queue:nil usingBlock:^(NSNotification *notification) {
-        [posted addObject:notification.object];
-    }];
-    ScrollSource *const wheel=_device(@{@kIOHIDTransportKey: @"USB", @kIOHIDVendorIDKey: @1118, @kIOHIDProductIDKey: @64});
-    SourceRow *const row=[self.table recordSource:wheel natural:YES amount:1];
-    [self.table recordSource:wheel natural:YES amount:1 horizontal:YES];
-    [self.table recordSource:wheel natural:YES amount:1 horizontal:YES];
-    SourceRow *const trackpad=[self.table recordSource:_continuousDevice(@{@kIOHIDTransportKey: @"FIFO", @kIOHIDProductKey: @"Trackpad"}) natural:YES amount:1 horizontal:YES];
-    // the notifications are posted asynchronously
-    XCTestExpectation *const drained=[self expectationWithDescription:@"main queue drained"];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [drained fulfill];
-    });
-    [self waitForExpectationsWithTimeout:1 handler:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:observer];
-    XCTAssertEqualObjects(posted, (@[row, trackpad]));
-}
-
 - (void)testStartedScrollingNotification
 {
     [self expectationForNotification:SourceRowDidStartScrollingNotification object:nil handler:nil];

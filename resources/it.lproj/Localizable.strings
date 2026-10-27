@@ -121,9 +121,6 @@
 /* Source info: label before Continuous or Discrete */
 "Scrolling type:" = "Tipo di scorrimento:";
 
-/* Hint shown once, pointing to a source's details button, the first time a source scrolls horizontally */
-"Set horizontal scrolling for this source here." = "Imposta qui lo scorrimento orizzontale di questa sorgente.";
-
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Impostazioni…";
 

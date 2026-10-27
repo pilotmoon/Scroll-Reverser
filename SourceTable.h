@@ -28,11 +28,6 @@ static const CFTimeInterval SourceRowScrollingInterval=0.25;
 // first after SourceRowScrollingInterval without one.
 extern NSNotificationName const SourceRowDidStartScrollingNotification;
 
-// Posted, with the row as the object, when a source starts scrolling only horizontally, as a thumb wheel,
-// Shift+scroll or a sideways swipe does: on its first such event, or its first after
-// SourceRowScrollingInterval without one.
-extern NSNotificationName const SourceRowDidStartScrollingHorizontallyNotification;
-
 // How to change one scroll event.
 typedef struct {
     BOOL reverseVertical;
@@ -93,9 +88,6 @@ typedef struct {
 @property (readonly) NSArray<SourceRow *> *rows;
 
 // Called for every scroll event, so it is cheap: sightings are saved in batches.
-// `horizontal` is whether the event scrolls only horizontally.
-- (SourceRow *)recordSource:(ScrollSource *)source natural:(BOOL)natural amount:(double)amount horizontal:(BOOL)horizontal;
-// As above, for an event that isn't only horizontal.
 - (SourceRow *)recordSource:(ScrollSource *)source natural:(BOOL)natural amount:(double)amount;
 - (void)removeRow:(SourceRow *)row;
 
