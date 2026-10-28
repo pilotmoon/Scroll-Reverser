@@ -19,8 +19,11 @@
 /* Scrolling type of a source that scrolls continuously, like a trackpad */
 "Continuous" = "Kontinuerlig";
 
-/* Accessibility label and tooltip of the button that shows a source's details */
+/* Accessibility label of the button that shows a source's details */
 "Details" = "Oplysninger";
+
+/* Tooltip of the button that shows a source's details */
+"Details and horizontal scrolling" = "Oplysninger og vandret rulning";
 
 /* Scrolling type of a source that scrolls in steps, like a scroll wheel */
 "Discrete" = "Trinvis";
@@ -34,8 +37,8 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Klik på symbolet på menulinjen for at åbne indstillingerne";
 
-/* Sources table column header: the direction of horizontal scrolling, such as reversed or unchanged */
-"Horizontal" = "Vandret";
+/* Source info: label before the horizontal scrolling menu */
+"Horizontal scrolling:" = "Vandret rulning:";
 
 /* Source info: label before the identifier of the source's settings */
 "Identifier:" = "Id:";
@@ -112,7 +115,7 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser har brug for tilladelse til Tilgængelighed for at kunne ændre din rulning.";
 
-/* Preferences pane for `Scrolling` settings */
+/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
 "Scrolling" = "Rulning";
 
 /* Source info: label before Continuous or Discrete */
@@ -162,6 +165,3 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "Unavngivet enhed";
-
-/* Sources table column header: the direction of vertical scrolling, such as natural or classic */
-"Vertical" = "Lodret";

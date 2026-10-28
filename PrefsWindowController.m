@@ -143,7 +143,7 @@ typedef NS_ENUM(NSInteger, UpdateMode) {
     
     NSArray *const toolbarDefinition=@[kPanelScrolling, kPanelApp];
     NSDictionary *const panelsDefinition=@{kPanelScrolling: @{kKeyView: self.scrollingSettings,
-                                                              kKeyTitle: NSLocalizedString(@"Scrolling", @"Preferences pane for `Scrolling` settings"),
+                                                              kKeyTitle: NSLocalizedString(@"Scrolling", @"Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling"),
                                                               kKeyImageName: NSImageNamePreferencesGeneral},
                                            kPanelApp: @{kKeyView: self.appSettings,
                                                         kKeyTitle: NSLocalizedString(@"App", @"Preferences pane for `App` settings; also the kind of source that is an app posting scrolling of its own"),

@@ -19,8 +19,11 @@
 /* Scrolling type of a source that scrolls continuously, like a trackpad */
 "Continuous" = "连续";
 
-/* Accessibility label and tooltip of the button that shows a source's details */
+/* Accessibility label of the button that shows a source's details */
 "Details" = "详细信息";
+
+/* Tooltip of the button that shows a source's details */
+"Details and horizontal scrolling" = "详细信息和水平滚动";
 
 /* Scrolling type of a source that scrolls in steps, like a scroll wheel */
 "Discrete" = "分段";
@@ -34,8 +37,8 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "如需更改设置，请点按菜单栏中的图标";
 
-/* Sources table column header: the direction of horizontal scrolling, such as reversed or unchanged */
-"Horizontal" = "水平";
+/* Source info: label before the horizontal scrolling menu */
+"Horizontal scrolling:" = "水平滚动：";
 
 /* Source info: label before the identifier of the source's settings */
 "Identifier:" = "标识符：";
@@ -112,7 +115,7 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser 需要辅助功能权限才能更改滚动方向。";
 
-/* Preferences pane for `Scrolling` settings */
+/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
 "Scrolling" = "滚动";
 
 /* Source info: label before Continuous or Discrete */
@@ -162,6 +165,3 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "未命名设备";
-
-/* Sources table column header: the direction of vertical scrolling, such as natural or classic */
-"Vertical" = "垂直";

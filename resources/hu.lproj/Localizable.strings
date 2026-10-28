@@ -19,8 +19,11 @@
 /* Scrolling type of a source that scrolls continuously, like a trackpad */
 "Continuous" = "Folyamatos";
 
-/* Accessibility label and tooltip of the button that shows a source's details */
+/* Accessibility label of the button that shows a source's details */
 "Details" = "Részletek";
+
+/* Tooltip of the button that shows a source's details */
+"Details and horizontal scrolling" = "Részletek és vízszintes görgetés";
 
 /* Scrolling type of a source that scrolls in steps, like a scroll wheel */
 "Discrete" = "Lépésenkénti";
@@ -34,8 +37,8 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "A beállításokhoz kattints a menüsorban lévő ikonra";
 
-/* Sources table column header: the direction of horizontal scrolling, such as reversed or unchanged */
-"Horizontal" = "Vízszintes";
+/* Source info: label before the horizontal scrolling menu */
+"Horizontal scrolling:" = "Vízszintes görgetés:";
 
 /* Source info: label before the identifier of the source's settings */
 "Identifier:" = "Azonosító:";
@@ -112,7 +115,7 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "A Scroll Reversernek Kisegítő lehetőségek engedélyre van szüksége a görgetés módosításához.";
 
-/* Preferences pane for `Scrolling` settings */
+/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
 "Scrolling" = "Görgetés";
 
 /* Source info: label before Continuous or Discrete */
@@ -162,6 +165,3 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "Névtelen eszköz";
-
-/* Sources table column header: the direction of vertical scrolling, such as natural or classic */
-"Vertical" = "Függőleges";

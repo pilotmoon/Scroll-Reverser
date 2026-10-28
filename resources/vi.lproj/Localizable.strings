@@ -19,8 +19,11 @@
 /* Scrolling type of a source that scrolls continuously, like a trackpad */
 "Continuous" = "Liên tục";
 
-/* Accessibility label and tooltip of the button that shows a source's details */
+/* Accessibility label of the button that shows a source's details */
 "Details" = "Chi tiết";
+
+/* Tooltip of the button that shows a source's details */
+"Details and horizontal scrolling" = "Chi tiết và cuộn ngang";
 
 /* Scrolling type of a source that scrolls in steps, like a scroll wheel */
 "Discrete" = "Theo bước";
@@ -34,8 +37,8 @@
 /* No comment provided by engineer. */
 "For settings, click the icon in the menu bar" = "Để mở cài đặt, hãy bấm vào biểu tượng trên thanh menu";
 
-/* Sources table column header: the direction of horizontal scrolling, such as reversed or unchanged */
-"Horizontal" = "Ngang";
+/* Source info: label before the horizontal scrolling menu */
+"Horizontal scrolling:" = "Cuộn ngang:";
 
 /* Source info: label before the identifier of the source's settings */
 "Identifier:" = "Mã định danh:";
@@ -112,7 +115,7 @@
 /* No comment provided by engineer. */
 "Scroll Reverser needs Accessibility permission to modify your scrolling." = "Scroll Reverser cần quyền Trợ năng để điều chỉnh thao tác cuộn của bạn.";
 
-/* Preferences pane for `Scrolling` settings */
+/* Preferences pane for `Scrolling` settings; also the sources table column header for natural or classic scrolling */
 "Scrolling" = "Cuộn";
 
 /* Source info: label before Continuous or Discrete */
@@ -162,6 +165,3 @@
 
 /* Name of a device that reports no name */
 "Unnamed device" = "Thiết bị chưa đặt tên";
-
-/* Sources table column header: the direction of vertical scrolling, such as natural or classic */
-"Vertical" = "Dọc";
