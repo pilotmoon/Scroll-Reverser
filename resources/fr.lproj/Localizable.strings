@@ -121,6 +121,9 @@
 /* Source info: label before Continuous or Discrete */
 "Scrolling type:" = "Type de défilement :";
 
+/* Hint shown once, pointing to a source's details button, the first time a source scrolls horizontally */
+"Set horizontal scrolling for this source here." = "Réglez ici le défilement horizontal de cette source.";
+
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Réglages…";
 

@@ -121,6 +121,9 @@
 /* Source info: label before Continuous or Discrete */
 "Scrolling type:" = "스크롤 유형:";
 
+/* Hint shown once, pointing to a source's details button, the first time a source scrolls horizontally */
+"Set horizontal scrolling for this source here." = "이 소스의 가로 스크롤은 여기에서 설정합니다.";
+
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "설정…";
 

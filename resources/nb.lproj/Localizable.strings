@@ -121,6 +121,9 @@
 /* Source info: label before Continuous or Discrete */
 "Scrolling type:" = "Rulletype:";
 
+/* Hint shown once, pointing to a source's details button, the first time a source scrolls horizontally */
+"Set horizontal scrolling for this source here." = "Still inn vannrett rulling for denne kilden her.";
+
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "Innstillinger…";
 

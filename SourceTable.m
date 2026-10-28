@@ -4,6 +4,7 @@
 #import "SourceTable.h"
 
 NSNotificationName const SourceRowDidStartScrollingNotification=@"SourceRowDidStartScrollingNotification";
+NSNotificationName const SourceRowDidStartScrollingHorizontallyNotification=@"SourceRowDidStartScrollingHorizontallyNotification";
 
 static NSString *const PrefsSources=@"Sources";
 
@@ -67,10 +68,14 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural);
 @property (readwrite) BOOL seenNatural;
 @property (readwrite) BOOL seenClassic;
 - (BOOL)recordSightingAtTime:(CFAbsoluteTime)time natural:(BOOL)natural amount:(double)amount;
+- (BOOL)recordHorizontalAtTime:(CFAbsoluteTime)time;
 - (void)updateFromSource:(ScrollSource *)source;
 @end
 
-@implementation SourceRow
+@implementation SourceRow {
+    // when the source last scrolled only horizontally, for this session only
+    CFAbsoluteTime _lastHorizontalTime;
+}
 
 /* Defaults: trackpads natural, other devices classic, and apps unchanged. Horizontal scrolling matches
  vertical. Step size is as in 1.x. */
@@ -177,6 +182,14 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural);
     else if (!natural&&!_seenClassic) {
         self.seenClassic=YES;
     }
+    return started;
+}
+
+// Returns whether the source has started scrolling horizontally.
+- (BOOL)recordHorizontalAtTime:(CFAbsoluteTime)time
+{
+    const BOOL started=time-_lastHorizontalTime>=SourceRowScrollingInterval;
+    _lastHorizontalTime=time;
     return started;
 }
 
@@ -322,6 +335,11 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural)
 
 - (SourceRow *)recordSource:(ScrollSource *)source natural:(BOOL)natural amount:(double)amount
 {
+    return [self recordSource:source natural:natural amount:amount horizontal:NO];
+}
+
+- (SourceRow *)recordSource:(ScrollSource *)source natural:(BOOL)natural amount:(double)amount horizontal:(BOOL)horizontal
+{
     const CFAbsoluteTime now=CFAbsoluteTimeGetCurrent();
     SourceRow *row=source==self.lastSource?self.lastRow:nil;
     BOOL started=NO;
@@ -348,6 +366,11 @@ static BOOL _reverses(ScrollDirectionMode mode, BOOL natural)
         // after the event has been handled, since observers may update the settings window
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:SourceRowDidStartScrollingNotification object:row];
+        });
+    }
+    if (horizontal&&[row recordHorizontalAtTime:now]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:SourceRowDidStartScrollingHorizontallyNotification object:row];
         });
     }
     return row;

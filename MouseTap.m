@@ -98,7 +98,7 @@ static CGEventRef _callback(CGEventTapProxy proxy,
 
         // the source, identified by the HID event sender or posting process, and its settings
         ScrollSource *const source=[tap->_sourceIdentifier sourceForHIDEvent:ioHidEventRef pid:(pid_t)pid continuous:continuous];
-        SourceRow *const row=[tap->_sourceTable recordSource:source natural:natural amount:llabs(point_axis1)+llabs(point_axis2)];
+        SourceRow *const row=[tap->_sourceTable recordSource:source natural:natural amount:llabs(point_axis1)+llabs(point_axis2) horizontal:point_axis2&&!point_axis1];
         if (tap->logger) {
             [tap->logger logObject:ioHidEventRef?[NSString stringWithFormat:@"0x%llx", IOHIDEventGetSenderID(ioHidEventRef)]:@"-" forKey:@"sender"];
             [tap->logger logObject:source.key forKey:@"sourcekey"];

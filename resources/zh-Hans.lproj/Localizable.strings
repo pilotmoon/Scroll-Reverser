@@ -121,6 +121,9 @@
 /* Source info: label before Continuous or Discrete */
 "Scrolling type:" = "滚动类型：";
 
+/* Hint shown once, pointing to a source's details button, the first time a source scrolls horizontally */
+"Set horizontal scrolling for this source here." = "在这里设置此来源的水平滚动。";
+
 /* Menu item that opens the settings window, including the trailing ellipsis */
 "Settings…" = "设置…";
 

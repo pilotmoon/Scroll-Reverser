@@ -21,6 +21,9 @@ static const NSTimeInterval kLastUsedRefreshInterval=10;
 
 static void *_contextRows=&_contextRows;
 
+// whether the hint about horizontal scrolling has been shown, which happens only once
+static NSString *const PrefsHorizontalHintShown=@"HorizontalHintShown";
+
 static NSFont *_smallFont(void)
 {
     return [NSFont systemFontOfSize:[NSFont smallSystemFontSize]];
@@ -112,6 +115,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
 @property NSTextField *placeholder;
 @property NSView *view;
 @property NSPopover *infoPopover;
+@property NSPopover *hintPopover;
 @property NSTimer *lastUsedTimer;
 @property NSRelativeDateTimeFormatter *dateFormatter;
 @property BOOL visible;
@@ -236,6 +240,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
 
     [self.sourceTable addObserver:self forKeyPath:@"rows" options:0 context:_contextRows];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rowDidStartScrolling:) name:SourceRowDidStartScrollingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rowDidStartScrollingHorizontally:) name:SourceRowDidStartScrollingHorizontallyNotification object:nil];
     self.lastUsedTimer=[NSTimer timerWithTimeInterval:kLastUsedRefreshInterval target:self selector:@selector(lastUsedTimerFired:) userInfo:nil repeats:YES];
     self.lastUsedTimer.tolerance=1;
     [[NSRunLoop mainRunLoop] addTimer:self.lastUsedTimer forMode:NSRunLoopCommonModes];
@@ -249,9 +254,11 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     self.visible=NO;
     [self.sourceTable removeObserver:self forKeyPath:@"rows" context:_contextRows];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:SourceRowDidStartScrollingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SourceRowDidStartScrollingHorizontallyNotification object:nil];
     [self.lastUsedTimer invalidate];
     self.lastUsedTimer=nil;
     [self.infoPopover close];
+    [self.hintPopover close];
 }
 
 #pragma mark Keeping up to date
@@ -326,6 +333,70 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     });
 }
 
+/* The first time a source scrolls horizontally while the window is open, point to where its horizontal
+ scrolling is set, since people don't find it in the info popover. Shown once, ever. */
+- (void)rowDidStartScrollingHorizontally:(NSNotification *)notification
+{
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:PrefsHorizontalHintShown]||!self.enabled||self.infoPopover.shown||self.hintPopover.shown) {
+        return;
+    }
+    SourceRow *const row=notification.object;
+    // once the row has moved to the top, as it does when it starts scrolling
+    __weak SourcesTableController *const weakSelf=self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        SourcesTableController *const strongSelf=weakSelf;
+        const NSUInteger index=[strongSelf.rows indexOfObjectIdenticalTo:row];
+        if (!strongSelf.visible||index==NSNotFound||strongSelf.infoPopover.shown) {
+            return;
+        }
+        NSTableCellView *const cell=[strongSelf.tableView viewAtColumn:[strongSelf.tableView columnWithIdentifier:kColumnInfo] row:index makeIfNecessary:NO];
+        NSButton *const button=cell.subviews.firstObject;
+        if (![button isKindOfClass:[NSButton class]]||!button.window.visible) {
+            return;
+        }
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:PrefsHorizontalHintShown];
+        [strongSelf showHintAtInfoButton:button];
+    });
+}
+
+// Clicking the hint opens the info popover it points to.
+- (void)showHintAtInfoButton:(NSButton *)button
+{
+    NSTextField *const label=[NSTextField wrappingLabelWithString:NSLocalizedString(@"Set horizontal scrolling for this source here.", @"Hint shown once, pointing to a source's details button, the first time a source scrolls horizontally")];
+    label.translatesAutoresizingMaskIntoConstraints=NO;
+    // otherwise it wraps as narrow as it can
+    label.preferredMaxLayoutWidth=220;
+    NSView *const view=[[NSView alloc] init];
+    [view addSubview:label];
+    [NSLayoutConstraint activateConstraints:@[
+        [label.topAnchor constraintEqualToAnchor:view.topAnchor constant:10],
+        [label.leadingAnchor constraintEqualToAnchor:view.leadingAnchor constant:12],
+        [view.trailingAnchor constraintEqualToAnchor:label.trailingAnchor constant:12],
+        [view.bottomAnchor constraintEqualToAnchor:label.bottomAnchor constant:10],
+    ]];
+    NSClickGestureRecognizer *const click=[[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(hintClicked:)];
+    [view addGestureRecognizer:click];
+    NSViewController *const controller=[[NSViewController alloc] init];
+    controller.view=view;
+    controller.representedObject=button;
+    // the popover takes its size from this, not from the constraints
+    controller.preferredContentSize=view.fittingSize;
+
+    self.hintPopover=[[NSPopover alloc] init];
+    self.hintPopover.behavior=NSPopoverBehaviorTransient;
+    self.hintPopover.contentViewController=controller;
+    [self.hintPopover showRelativeToRect:button.bounds ofView:button preferredEdge:NSRectEdgeMaxX];
+}
+
+- (void)hintClicked:(NSClickGestureRecognizer *)recognizer
+{
+    NSButton *const button=self.hintPopover.contentViewController.representedObject;
+    [self.hintPopover close];
+    if (button.window) {
+        [self infoClicked:button];
+    }
+}
+
 - (void)lastUsedTimerFired:(NSTimer *)timer
 {
     [self.tableView enumerateAvailableRowViewsUsingBlock:^(NSTableRowView *rowView, NSInteger index) {
@@ -362,6 +433,7 @@ static NSArray<SourceRow *> *_sortedByRecentUse(NSArray<SourceRow *> *rows)
     _enabled=enabled;
     // its settings were enabled or not when it opened
     [self.infoPopover close];
+    [self.hintPopover close];
 }
 
 - (void)infoClicked:(NSButton *)sender
