@@ -26,6 +26,9 @@ typedef enum {
 @property (getter=isActive) BOOL active;
 - (void)enableTap;
 
+/* Asked before re-enabling the tap after macOS disables it. Return NO to leave it disabled. */
+@property (copy) BOOL (^shouldReenable)(void);
+
 @end
 
 

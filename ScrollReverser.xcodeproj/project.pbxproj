@@ -38,6 +38,11 @@
 		5E57000000000000000000B2 /* ScrollSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCBF0A41CAAB23FFA2A9D28 /* ScrollSource.m */; };
 		5E57000000000000000000B3 /* SourceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 496835211CF3731A45D623C0 /* SourceTable.m */; };
 		5E57000000000000000000B4 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D9F8942386E013002F0EC0 /* IOKit.framework */; };
+		5E5700000000000000000C03 /* ExecutableWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5700000000000000000C02 /* ExecutableWatcher.m */; };
+		5E5700000000000000000C06 /* ExecutableWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5700000000000000000C02 /* ExecutableWatcher.m */; };
+		5E5700000000000000000C09 /* ExecutableWatcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5700000000000000000C08 /* ExecutableWatcherTests.m */; };
+		5E5700000000000000000C05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5700000000000000000C04 /* Security.framework */; };
+		5E5700000000000000000C07 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5700000000000000000C04 /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -140,6 +145,10 @@
 		D80F5A3FF11498359182D516 /* SourcesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourcesTableController.h; sourceTree = "<group>"; };
 		5E57000000000000000000A9 /* SourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceTests.m; sourceTree = "<group>"; };
 		5E57000000000000000000A2 /* ScrollReverserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrollReverserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E5700000000000000000C01 /* ExecutableWatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExecutableWatcher.h; sourceTree = "<group>"; };
+		5E5700000000000000000C02 /* ExecutableWatcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExecutableWatcher.m; sourceTree = "<group>"; };
+		5E5700000000000000000C08 /* ExecutableWatcherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExecutableWatcherTests.m; sourceTree = "<group>"; };
+		5E5700000000000000000C04 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +158,7 @@
 			files = (
 				01145CF6256ED93400E0EFE5 /* ServiceManagement.framework in Frameworks */,
 				01D9F8962386E01C002F0EC0 /* IOKit.framework in Frameworks */,
+				5E5700000000000000000C05 /* Security.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				01F66862174B5E43001727DE /* Sparkle.framework in Frameworks */,
 			);
@@ -159,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E57000000000000000000B4 /* IOKit.framework in Frameworks */,
+				5E5700000000000000000C07 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +191,8 @@
 				256AC3D90F4B6AC300CF3369 /* AppDelegate.m */,
 				01D9F8912386D5C1002F0EC0 /* PermissionsManager.h */,
 				01D9F8922386D5C1002F0EC0 /* PermissionsManager.m */,
+				5E5700000000000000000C01 /* ExecutableWatcher.h */,
+				5E5700000000000000000C02 /* ExecutableWatcher.m */,
 				01EB78C21324D574005390BD /* MouseTap.m */,
 				01EB78C31324D574005390BD /* MouseTap.h */,
 				D80F5A3FF11498359182D516 /* SourcesTableController.h */,
@@ -280,6 +293,7 @@
 			children = (
 				01145CF5256ED93400E0EFE5 /* ServiceManagement.framework */,
 				01D9F8942386E013002F0EC0 /* IOKit.framework */,
+				5E5700000000000000000C04 /* Security.framework */,
 				01F66861174B5E43001727DE /* Sparkle.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
@@ -291,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				5E57000000000000000000A9 /* SourceTests.m */,
+				5E5700000000000000000C08 /* ExecutableWatcherTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -433,6 +448,7 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				01AF54C91B0CB87C0028A26A /* TapLogger.m in Sources */,
 				01D9F8932386D5C1002F0EC0 /* PermissionsManager.m in Sources */,
+				5E5700000000000000000C03 /* ExecutableWatcher.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* AppDelegate.m in Sources */,
 				01ED37DF1A375EB9001B3094 /* LinkView.m in Sources */,
 				01EB78C41324D574005390BD /* MouseTap.m in Sources */,
@@ -454,6 +470,8 @@
 				5E57000000000000000000B1 /* SourceTests.m in Sources */,
 				5E57000000000000000000B2 /* ScrollSource.m in Sources */,
 				5E57000000000000000000B3 /* SourceTable.m in Sources */,
+				5E5700000000000000000C06 /* ExecutableWatcher.m in Sources */,
+				5E5700000000000000000C09 /* ExecutableWatcherTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

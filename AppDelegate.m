@@ -10,6 +10,7 @@
 #import "TestWindowController.h"
 #import "TapLogger.h"
 #import "SourceTable.h"
+#import "ExecutableWatcher.h"
 
 NSString *const PrefsReverseScrolling=@"InvertScrollingOn";
 NSString *const PrefsHasRunBefore=@"HasRunBefore";
@@ -35,6 +36,7 @@ static void *_contextPermissions=&_contextPermissions;
 @property TapLogger *logger;
 @property SPUUpdater *updater;
 @property SPUStandardUserDriver *updaterUserDriver;
+@property ExecutableWatcher *executableWatcher;
 @end
 
 @implementation AppDelegate
@@ -134,6 +136,15 @@ static void *_contextPermissions=&_contextPermissions;
     self.sourceTable=[[SourceTable alloc] init];
     self.tap=[[MouseTap alloc] initWithSourceTable:self.sourceTable];
 
+    __weak AppDelegate *weakSelf=self;
+    self.executableWatcher=[[ExecutableWatcher alloc] initWithHandler:^{
+        [weakSelf executableWasReplaced];
+    }];
+    // don't bring the tap back after macOS disables it, if this copy has been replaced on disk
+    self.tap.shouldReenable=^BOOL{
+        return ![weakSelf.executableWatcher check];
+    };
+
     self.loginItemController=[[LoginItemController alloc] init];
 
     self.statusController=[[StatusItemController alloc] init];
@@ -194,6 +205,7 @@ static void *_contextPermissions=&_contextPermissions;
 - (void)appDidWake:(NSNotification *)note
 {
     [self logAppEvent:@"OS woke from sleep"];
+    [self.executableWatcher check];
 }
 
 - (void)appWillSleep:(NSNotification *)note
@@ -369,7 +381,10 @@ static void *_contextPermissions=&_contextPermissions;
     }
     else if (context==_contextEnabled) {
         self.statusController.enabled=self.enabled;
-        [[NSUserDefaults standardUserDefaults] setBool:self.enabled forKey:PrefsReverseScrolling];
+        // A replaced copy turns itself off, but the user's setting should carry over to the new copy.
+        if (!self.executableWatcher.replaced) {
+            [[NSUserDefaults standardUserDefaults] setBool:self.enabled forKey:PrefsReverseScrolling];
+        }
     }
     else if (context==_contextPermissions) {
         if(!self.permissionsManager.hasAllRequiredPermissions) {
@@ -383,6 +398,13 @@ static void *_contextPermissions=&_contextPermissions;
 - (void)setEnabled:(BOOL)state
 {
     if (state==self.enabled) { // already in this state
+        return;
+    }
+
+    if (state && [self.executableWatcher check]) {
+        [self logAppEvent:@"Cannot enable Scroll Reverser; this copy was replaced or removed on disk. Quit and reopen Scroll Reverser."];
+        [self willChangeValueForKey:@"enabled"];
+        [self didChangeValueForKey:@"enabled"];
         return;
     }
 
@@ -410,6 +432,64 @@ static void *_contextPermissions=&_contextPermissions;
 
 + (NSSet *)keyPathsForValuesAffectingEnabled {
     return [NSSet setWithObject:@"tap.active"];
+}
+
+#pragma mark Replaced on disk
+
+/* The app was replaced on disk while running (#220). macOS will stop trusting this process at the next
+ permissions change anywhere, and then the tap would block all input, so remove the tap now and switch to
+ the new copy. The saved on/off setting is left alone, so the new copy starts in the same state. */
+- (void)executableWasReplaced
+{
+    if (self.tap.active) {
+        self.tap.active=NO;
+        [self logAppEvent:@"Scroll Reverser was replaced on disk while running; removed the event tap"];
+    }
+    else {
+        [self logAppEvent:@"Scroll Reverser was replaced on disk while running"];
+    }
+    [self relaunchWhenReplacementIsValidAttempts:30];
+}
+
+// An installer may still be copying the new bundle into place, so check once a second for a while.
+- (void)relaunchWhenReplacementIsValidAttempts:(NSInteger)attempts
+{
+    ExecutableWatcher *const watcher=self.executableWatcher;
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
+        const BOOL valid=[watcher replacementIsValid];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (valid) {
+                [self relaunchFromURL:watcher.launchBundleURL];
+            }
+            else if (attempts>1) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    [self relaunchWhenReplacementIsValidAttempts:attempts-1];
+                });
+            }
+            else {
+                [self logAppEvent:[NSString stringWithFormat:@"No valid copy of Scroll Reverser at %@; staying off until reopened", watcher.launchBundleURL.path]];
+            }
+        });
+    });
+}
+
+- (void)relaunchFromURL:(NSURL *)url
+{
+    [self logAppEvent:[NSString stringWithFormat:@"Relaunching from %@", url.path]];
+    NSWorkspaceOpenConfiguration *const configuration=[NSWorkspaceOpenConfiguration configuration];
+    configuration.createsNewApplicationInstance=YES; // otherwise it would just activate this copy
+    configuration.activates=NO;
+    [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:configuration completionHandler:^(NSRunningApplication *app, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (app) {
+                // the new copy also asks us to quit when it starts (terminateOthers)
+                [NSApp terminate:nil];
+            }
+            else {
+                [self logAppEvent:[NSString stringWithFormat:@"Relaunch failed (%@); staying off until reopened", error.localizedDescription]];
+            }
+        });
+    }];
 }
 
 #pragma mark Status item handling

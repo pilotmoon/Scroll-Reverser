@@ -46,7 +46,9 @@ static CGEventRef _callback(CGEventTapProxy proxy,
         // Tap-disabled notifications are control messages, not NSEvents. Converting
         // them first throws an exception and prevents the tap from recovering.
         if (type == kCGEventTapDisabledByTimeout || type == kCGEventTapDisabledByUserInput) {
-            [tap enableTap];
+            if (!tap.shouldReenable || tap.shouldReenable()) {
+                [tap enableTap];
+            }
             [tap->logger logEventType:type forKey:@"type"];
             [tap->logger logParams];
             return eventRef;
